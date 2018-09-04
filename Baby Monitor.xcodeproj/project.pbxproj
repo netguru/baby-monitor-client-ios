@@ -30,12 +30,12 @@
 
 /* Begin PBXFileReference section */
 		EC699579213EAB5700A4AAA6 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		EC82B556213EA072005CA395 /* Baby Monitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Baby Monitor.app"; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC82B563213EA074005CA395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC82B565213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC82B56A213EA074005CA395 /* CarRecognition Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CarRecognition Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baby Monitor Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B56E213EA074005CA395 /* Baby_MonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baby_MonitorTests.swift; sourceTree = "<group>"; };
 		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
@@ -76,8 +76,8 @@
 		EC82B557213EA072005CA395 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EC82B556213EA072005CA395 /* Baby Monitor.app */,
-				EC82B56A213EA074005CA395 /* CarRecognition Tests.xctest */,
+				EC82B556213EA072005CA395 /* BabyMonitor.app */,
+				EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,7 +196,7 @@
 			);
 			name = "Baby Monitor";
 			productName = "Baby Monitor";
-			productReference = EC82B556213EA072005CA395 /* Baby Monitor.app */;
+			productReference = EC82B556213EA072005CA395 /* BabyMonitor.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EC82B569213EA074005CA395 /* Baby MonitorTests */ = {
@@ -214,7 +214,7 @@
 			);
 			name = "Baby MonitorTests";
 			productName = "Baby MonitorTests";
-			productReference = EC82B56A213EA074005CA395 /* CarRecognition Tests.xctest */;
+			productReference = EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -336,6 +336,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
 			};
 			name = Development;
 		};
@@ -350,6 +351,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
 			};
 			name = Development;
 		};
@@ -357,6 +359,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
 			};
 			name = Production;
 		};
@@ -371,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
 			};
 			name = Staging;
 		};
@@ -378,6 +382,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
 			};
 			name = Staging;
 		};

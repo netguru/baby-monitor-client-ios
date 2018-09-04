@@ -1,6 +1,6 @@
 //
 //  Test-Common.xcconfig
-//  CarRecognition
+//  Baby Monitor
 //
 
 #include "../Carthage/Checkouts/xcconfigs/Targets/Tests.xcconfig"
@@ -9,7 +9,7 @@
 __PRODUCT_BUNDLE_IDENTIFIER_SUFFIX = .test
 
 _ENVIRONMENTS = ENV_TESTS
-_BUNDLE_NAME = CarRecognition Tests
+_BUNDLE_NAME = Baby Monitor Tests
 _BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Baby MonitorTests/Supporting Files/Info.plist
 
 _CODESIGN_STYLE =

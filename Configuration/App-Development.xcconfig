@@ -1,6 +1,6 @@
 //
 //  App-Development.xcconfig
-//  CarRecognition
+//  Baby Monitor
 //
 
 #include "../Carthage/Checkouts/xcconfigs/Targets/Application.xcconfig"
