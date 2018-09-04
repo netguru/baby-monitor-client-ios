@@ -4,7 +4,7 @@
 //
 
 import XCTest
-@testable import Baby_Monitor
+@testable import BabyMonitor
 
 class Baby_MonitorTests: XCTestCase {
     

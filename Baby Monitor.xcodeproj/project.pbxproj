@@ -35,7 +35,7 @@
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC82B563213EA074005CA395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC82B565213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC82B56A213EA074005CA395 /* Baby MonitorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Baby MonitorTests.xctest"; path = "CarRecognition Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC82B56A213EA074005CA395 /* CarRecognition Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CarRecognition Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B56E213EA074005CA395 /* Baby_MonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baby_MonitorTests.swift; sourceTree = "<group>"; };
 		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				EC82B556213EA072005CA395 /* Baby Monitor.app */,
-				EC82B56A213EA074005CA395 /* Baby MonitorTests.xctest */,
+				EC82B56A213EA074005CA395 /* CarRecognition Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,7 +214,7 @@
 			);
 			name = "Baby MonitorTests";
 			productName = "Baby MonitorTests";
-			productReference = EC82B56A213EA074005CA395 /* Baby MonitorTests.xctest */;
+			productReference = EC82B56A213EA074005CA395 /* CarRecognition Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
