@@ -336,7 +336,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
 			};
 			name = Development;
 		};
@@ -351,7 +350,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
 			};
 			name = Development;
 		};
@@ -359,7 +357,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
 			};
 			name = Production;
 		};
@@ -374,7 +371,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
 			};
 			name = Staging;
 		};
@@ -382,7 +378,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
 			};
 			name = Staging;
 		};
