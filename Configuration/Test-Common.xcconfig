@@ -1,0 +1,21 @@
+//
+//  Test-Common.xcconfig
+//  Baby Monitor
+//
+
+#include "../Carthage/Checkouts/xcconfigs/Targets/Tests.xcconfig"
+#include "App-Common.xcconfig"
+
+__PRODUCT_BUNDLE_IDENTIFIER_SUFFIX = .test
+
+_ENVIRONMENTS = ENV_TESTS
+_BUNDLE_NAME = Baby Monitor Tests
+_BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Baby MonitorTests/Supporting Files/Info.plist
+
+_CODESIGN_STYLE =
+_CODESIGN_DEVELOPMENT_TEAM =
+_CODESIGN_IDENTITY =
+_CODESIGN_PROFILE_SPECIFIER =
+
+TEST_HOST = $(BUILT_PRODUCTS_DIR)/BabyMonitor.app/BabyMonitor
+BUNDLE_LOADER = $(TEST_HOST)

@@ -1,0 +1,15 @@
+//
+//  App-Staging.xcconfig
+//  Baby Monitor
+//
+#include "../Carthage/Checkouts/xcconfigs/Targets/Application.xcconfig"
+#include "../Carthage/Checkouts/xcconfigs/Configurations/Debug.xcconfig"
+#include "App-Common.xcconfig"
+
+__PRODUCT_BUNDLE_IDENTIFIER_SUFFIX = .staging
+
+_ENVIRONMENTS = ENV_STAGING
+
+_CODESIGN_DEVELOPMENT_TEAM = 9HJ69C5G9K
+_CODESIGN_IDENTITY = iPhone Distribution
+_CODESIGN_PROFILE_SPECIFIER = BabyMonitor Staging

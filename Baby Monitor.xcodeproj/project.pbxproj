@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
+		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
+		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
+		EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8389B6213FD7F500F00B83 /* MathTests.swift */; };
+		ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */; };
+		ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */; };
+		ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */; };
+		ECB146E2213EA45E00C504FD /* App-Common.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DD213EA45E00C504FD /* App-Common.xcconfig */; };
+		ECB146E3213EA45E00C504FD /* Test-Common.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EC82B56B213EA074005CA395 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC82B54E213EA072005CA395 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC82B555213EA072005CA395;
+			remoteInfo = "Baby Monitor";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC82B563213EA074005CA395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EC82B565213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baby Monitor Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC8389B6213FD7F500F00B83 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
+		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
+		ECB146DB213EA45E00C504FD /* App-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Development.xcconfig"; sourceTree = "<group>"; };
+		ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Staging.xcconfig"; sourceTree = "<group>"; };
+		ECB146DD213EA45E00C504FD /* App-Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Common.xcconfig"; sourceTree = "<group>"; };
+		ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Test-Common.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC82B553213EA072005CA395 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC82B567213EA074005CA395 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC82B54D213EA072005CA395 = {
+			isa = PBXGroup;
+			children = (
+				ECB146D9213EA44C00C504FD /* Configuration */,
+				EC82B558213EA072005CA395 /* Baby Monitor */,
+				EC82B56D213EA074005CA395 /* Baby MonitorTests */,
+				EC82B557213EA072005CA395 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC82B557213EA072005CA395 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC82B556213EA072005CA395 /* BabyMonitor.app */,
+				EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC82B558213EA072005CA395 /* Baby Monitor */ = {
+			isa = PBXGroup;
+			children = (
+				EC82B579213EA0CB005CA395 /* Source Files */,
+				EC82B57E213EA142005CA395 /* Resources */,
+				EC82B57D213EA137005CA395 /* Interfaces */,
+				EC82B57F213EA150005CA395 /* Supporting Files */,
+			);
+			path = "Baby Monitor";
+			sourceTree = "<group>";
+		};
+		EC82B56D213EA074005CA395 /* Baby MonitorTests */ = {
+			isa = PBXGroup;
+			children = (
+				EC82B580213EA179005CA395 /* Supporting Files */,
+				EC8389B6213FD7F500F00B83 /* MathTests.swift */,
+			);
+			path = "Baby MonitorTests";
+			sourceTree = "<group>";
+		};
+		EC82B579213EA0CB005CA395 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC82B57A213EA116005CA395 /* Models */,
+				EC82B57B213EA11B005CA395 /* Views */,
+				EC82B57C213EA120005CA395 /* View Controllers */,
+				EC82B559213EA072005CA395 /* AppDelegate.swift */,
+			);
+			path = "Source Files";
+			sourceTree = "<group>";
+		};
+		EC82B57A213EA116005CA395 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EC82B57B213EA11B005CA395 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EC82B57C213EA120005CA395 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		EC82B57D213EA137005CA395 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				EC82B562213EA074005CA395 /* LaunchScreen.storyboard */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		EC82B57E213EA142005CA395 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EC82B560213EA074005CA395 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EC82B57F213EA150005CA395 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC82B565213EA074005CA395 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC82B580213EA179005CA395 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC82B570213EA074005CA395 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ECB146D9213EA44C00C504FD /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				ECB146DD213EA45E00C504FD /* App-Common.xcconfig */,
+				ECB146DB213EA45E00C504FD /* App-Development.xcconfig */,
+				ECB146DA213EA45E00C504FD /* App-Production.xcconfig */,
+				ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */,
+				ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC82B555213EA072005CA395 /* Baby Monitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC82B573213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby Monitor" */;
+			buildPhases = (
+				EC82B552213EA072005CA395 /* Sources */,
+				EC82B553213EA072005CA395 /* Frameworks */,
+				EC82B554213EA072005CA395 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Baby Monitor";
+			productName = "Baby Monitor";
+			productReference = EC82B556213EA072005CA395 /* BabyMonitor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EC82B569213EA074005CA395 /* Baby MonitorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC82B576213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby MonitorTests" */;
+			buildPhases = (
+				EC82B566213EA074005CA395 /* Sources */,
+				EC82B567213EA074005CA395 /* Frameworks */,
+				EC82B568213EA074005CA395 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC82B56C213EA074005CA395 /* PBXTargetDependency */,
+			);
+			name = "Baby MonitorTests";
+			productName = "Baby MonitorTests";
+			productReference = EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC82B54E213EA072005CA395 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "";
+				TargetAttributes = {
+					EC82B555213EA072005CA395 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					EC82B569213EA074005CA395 = {
+						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
+						TestTargetID = EC82B555213EA072005CA395;
+					};
+				};
+			};
+			buildConfigurationList = EC82B551213EA072005CA395 /* Build configuration list for PBXProject "Baby Monitor" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC82B54D213EA072005CA395;
+			productRefGroup = EC82B557213EA072005CA395 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC82B555213EA072005CA395 /* Baby Monitor */,
+				EC82B569213EA074005CA395 /* Baby MonitorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC82B554213EA072005CA395 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */,
+				EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */,
+				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
+				ECB146E2213EA45E00C504FD /* App-Common.xcconfig in Resources */,
+				EC82B561213EA074005CA395 /* Assets.xcassets in Resources */,
+				ECB146E3213EA45E00C504FD /* Test-Common.xcconfig in Resources */,
+				ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC82B568213EA074005CA395 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC82B552213EA072005CA395 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC82B566213EA074005CA395 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EC82B56C213EA074005CA395 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC82B555213EA072005CA395 /* Baby Monitor */;
+			targetProxy = EC82B56B213EA074005CA395 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EC82B562213EA074005CA395 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC82B563213EA074005CA395 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EC82B571213EA074005CA395 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECB146DD213EA45E00C504FD /* App-Common.xcconfig */;
+			buildSettings = {
+			};
+			name = Development;
+		};
+		EC82B572213EA074005CA395 /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECB146DD213EA45E00C504FD /* App-Common.xcconfig */;
+			buildSettings = {
+			};
+			name = Production;
+		};
+		EC82B574213EA074005CA395 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
+			buildSettings = {
+			};
+			name = Development;
+		};
+		EC82B575213EA074005CA395 /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */;
+			buildSettings = {
+			};
+			name = Production;
+		};
+		EC82B577213EA074005CA395 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SWIFT_VERSION = 3.0;
+			};
+			name = Development;
+		};
+		EC82B578213EA074005CA395 /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SWIFT_VERSION = 3.0;
+			};
+			name = Production;
+		};
+		EC82B583213EA3E5005CA395 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECB146DD213EA45E00C504FD /* App-Common.xcconfig */;
+			buildSettings = {
+			};
+			name = Staging;
+		};
+		EC82B584213EA3E5005CA395 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */;
+			buildSettings = {
+			};
+			name = Staging;
+		};
+		EC82B585213EA3E5005CA395 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SWIFT_VERSION = 3.0;
+			};
+			name = Staging;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC82B551213EA072005CA395 /* Build configuration list for PBXProject "Baby Monitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC82B571213EA074005CA395 /* Development */,
+				EC82B583213EA3E5005CA395 /* Staging */,
+				EC82B572213EA074005CA395 /* Production */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		EC82B573213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby Monitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC82B574213EA074005CA395 /* Development */,
+				EC82B584213EA3E5005CA395 /* Staging */,
+				EC82B575213EA074005CA395 /* Production */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		EC82B576213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby MonitorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC82B577213EA074005CA395 /* Development */,
+				EC82B585213EA3E5005CA395 /* Staging */,
+				EC82B578213EA074005CA395 /* Production */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC82B54E213EA072005CA395 /* Project object */;
+}
