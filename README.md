@@ -1,6 +1,8 @@
 # Baby Monitor iOS
 
-Welcome to the **Baby Monitor** project. It's an application made for **explain what application does**.
+Welcome to the **Baby Monitor** project. It's an application made for monitoring babies, which can help parents take care of their children. Application works similar to this product: https://www.philips.ie/c-p/SCD620_05/avent-baby-monitor-digital-video-baby-monitor
+
+.
 
 ## Team
 
@@ -26,7 +28,7 @@ Welcome to the **Baby Monitor** project. It's an application made for **explain 
 - [Bundler](http://bundler.io) (`gem install bundler`)
 - [Homebrew](https://brew.sh)
 - [Carthage](https://github.com/Carthage/Carthage) (`brew install carthage`)
-- [CocoaPods](https://cocoapods.org) (`brew install cocoapods`)
+<!-- - [CocoaPods](https://cocoapods.org) (`brew install cocoapods`) -->
 
 ### Instalation
 
@@ -59,7 +61,7 @@ Welcome to the **Baby Monitor** project. It's an application made for **explain 
 	bundle exec pod install
 	```
 
-6. Open `Baby Monitor.xcworkspace` file and build the project.
+6. Open `Baby Monitor.xcodeproj` file and build the project.
 
 
 ## Coding guidelines
@@ -79,17 +81,6 @@ Welcome to the **Baby Monitor** project. It's an application made for **explain 
 	func perform(magicTrick trick: MagicTrick) -> Bool {
 		// body
 	}
-	```
-	for **Objective-C**:
-
-	```objc
-	/**
-	Tells the magician to perform a given trick.
-
-	@param trick The magic trick to perform.
-	@returns Whether the magician succeeded in performing the magic trick.
-	*/
-	- (BOOL)performMagicTrick:(XYZMagicTrick *)trick;
 	```
 
 ## Related repositories
