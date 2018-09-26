@@ -29,12 +29,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BabyMonitor.app; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC82B563213EA074005CA395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC82B565213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baby Monitor Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Baby Monitor Tests.xctest"; path = .xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8389B6213FD7F500F00B83 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
@@ -104,33 +104,9 @@
 		EC82B579213EA0CB005CA395 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
-				EC82B57A213EA116005CA395 /* Models */,
-				EC82B57B213EA11B005CA395 /* Views */,
-				EC82B57C213EA120005CA395 /* View Controllers */,
 				EC82B559213EA072005CA395 /* AppDelegate.swift */,
 			);
 			path = "Source Files";
-			sourceTree = "<group>";
-		};
-		EC82B57A213EA116005CA395 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		EC82B57B213EA11B005CA395 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		EC82B57C213EA120005CA395 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		EC82B57D213EA137005CA395 /* Interfaces */ = {
@@ -349,13 +325,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				SWIFT_VERSION = 3.0;
 			};
 			name = Development;
 		};
@@ -363,13 +332,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				SWIFT_VERSION = 3.0;
 			};
 			name = Production;
 		};
@@ -391,13 +353,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				SWIFT_VERSION = 3.0;
 			};
 			name = Staging;
 		};
