@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */; };
+		4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7952161FBA1005575E0 /* Coordinator.swift */; };
+		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
@@ -29,12 +32,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BabyMonitor.app; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		4E6EA7952161FBA1005575E0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC82B563213EA074005CA395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC82B565213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Baby Monitor Tests.xctest"; path = .xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baby Monitor Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8389B6213FD7F500F00B83 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
@@ -62,6 +68,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E5BEB13215E5EC60056E5CC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4E6EA7932161FB81005575E0 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4E6EA7942161FB8F005575E0 /* Coordinator */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		4E6EA7942161FB8F005575E0 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				4E6EA7952161FBA1005575E0 /* Coordinator.swift */,
+				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		EC82B54D213EA072005CA395 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +115,8 @@
 		EC82B558213EA072005CA395 /* Baby Monitor */ = {
 			isa = PBXGroup;
 			children = (
+				4E6EA7932161FB81005575E0 /* Modules */,
+				4E5BEB13215E5EC60056E5CC /* Extensions */,
 				EC82B579213EA0CB005CA395 /* Source Files */,
 				EC82B57E213EA142005CA395 /* Resources */,
 				EC82B57D213EA137005CA395 /* Interfaces */,
@@ -260,6 +293,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
+				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
+				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
+				4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

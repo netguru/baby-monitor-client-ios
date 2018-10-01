@@ -88,3 +88,17 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 - [baby-monitor-client-ios](https://github.com/netguru/baby-monitor-client-ios)
 - [baby-monitor-client-android](https://github.com/netguru/baby-monitor-client-android)
 - [baby-monitor-server-android](https://github.com/netguru/baby-monitor-server-android)
+
+## Tips
+### Layout
+* Use helper methods from `UIView+AutoLayout.swift`
+* Examples:
+```swift
+addSubview(view)
+view.addConstraints([
+    equalConstant(.height, 36), // sets height to 36
+    equalConstant(.width, 285), // sets width to 285
+    equal(.centerX), // attaches centerXAnchor to superView centerXAnchor
+    equalTo(topView, .top, .bottom, constant: 80) // attaches views topAnchor to topView bottom anchor with offset 80
+])
+```
