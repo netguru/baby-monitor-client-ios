@@ -12,17 +12,19 @@ protocol Coordinator: class {
     
     init(_ navigationController: UINavigationController)
     
+    /// Starts coordinator work. Should be called only once.
     func start()
 }
 
 extension Coordinator {
+    
     func add(_ coordinator: Coordinator) {
         childCoordinators.append(coordinator)
     }
     
     func remove(_ coordinator: Coordinator) {
-        childCoordinators = childCoordinators.filter({
+        childCoordinators = childCoordinators.filter {
             $0 !== coordinator
-        })
+        }
     }
 }
