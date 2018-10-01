@@ -99,6 +99,6 @@ view.addConstraints([
     equalConstant(.height, 36), // sets height to 36
     equalConstant(.width, 285), // sets width to 285
     equal(.centerX), // attaches centerXAnchor to superView centerXAnchor
-    equalTo(topView, \.topAnchor, \.bottomAnchor, constant: 80) // attaches views topAnchor to topView bottom anchor with offset 80
+    equalTo(topView, .top, .bottom, constant: 80) // attaches views topAnchor to topView bottom anchor with offset 80
 ])
 ```
