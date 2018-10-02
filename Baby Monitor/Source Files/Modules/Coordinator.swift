@@ -6,6 +6,12 @@
 
 import UIKit
 
+protocol RootCoordinatorProtocol: Coordinator {
+    
+    var window: UIWindow { get set }
+    init(_ window: UIWindow)
+}
+
 protocol Coordinator: class {
     var childCoordinators: [Coordinator] { get set }
     var navigationController: UINavigationController { get set }
