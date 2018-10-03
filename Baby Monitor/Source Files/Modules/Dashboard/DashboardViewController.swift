@@ -12,10 +12,37 @@ final class DashboardViewController: BaseViewController {
         static let mainOffset: CGFloat = 20
     }
     
-    private let photoImageView = UIImageView()
-    private let nameLabel = UILabel()
-    private let descriptionLabel = UILabel()
-    private let dashboardButtonsStackView = UIStackView()
+    private lazy var dashboardButtonsStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [liveCameraButton, talkButton, playLullabyButton])
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        return stackView
+    }()
+    
+    private let photoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .red
+        return imageView
+    }()
+    
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        //TODO: mock for now
+        label.text = "Franuś"
+        return label
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        //TODO: mock for now
+        label.text = "Nothing unusual, Franuś is probably sleeping calmly and dreaming about sheeps and unicorns."
+        return label
+    }()
+    
     private let layoutView = UIView() // only for centering stack view vertically
     private let liveCameraButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.liveCamera)
     private let talkButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.talk)
@@ -48,40 +75,11 @@ final class DashboardViewController: BaseViewController {
     
     //MARK: - private functions
     private func setupLayout() {
-        view.addSubview(layoutView)
-        setupPhotoImageView()
-        setupLabels()
-        setupDashboardButtonsStackView()
+        [layoutView, photoImageView, nameLabel, descriptionLabel, dashboardButtonsStackView].forEach {
+            view.addSubview($0)
+        }
         
         setupConstraints()
-    }
-    
-    private func setupPhotoImageView() {
-        photoImageView.contentMode = .scaleAspectFit
-        photoImageView.backgroundColor = .red
-        view.addSubview(photoImageView)
-    }
-    
-    private func setupLabels() {
-        //TODO: mock for now
-        nameLabel.text = "Franuś"
-        view.addSubview(nameLabel)
-        
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.textAlignment = .center
-        //TODO: mock for now
-        descriptionLabel.text = "Nothing unusual, Franuś is probably sleeping calmly and dreaming about sheeps and unicorns."
-        view.addSubview(descriptionLabel)
-    }
-    
-    private func setupDashboardButtonsStackView() {
-        dashboardButtonsStackView.axis = .horizontal
-        dashboardButtonsStackView.distribution = .fillEqually
-        dashboardButtonsStackView.alignment = .center
-        [liveCameraButton, talkButton, playLullabyButton].forEach {
-            dashboardButtonsStackView.addArrangedSubview($0)
-        }
-        view.addSubview(dashboardButtonsStackView)
     }
     
     private func setupConstraints() {

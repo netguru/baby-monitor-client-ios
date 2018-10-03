@@ -8,9 +8,24 @@ import UIKit
 
 final class DashboardButtonView: UIView {
     
-    private let button = UIButton()
-    private let imageView = UIImageView()
-    private let textLabel = UILabel()
+    private let button: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(onTouchButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .blue
+        return imageView
+    }()
+    
+    private let textLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        return label
+    }()
     
     var onSelect: (() -> Void)?
     
@@ -34,27 +49,11 @@ final class DashboardButtonView: UIView {
     
     //MARK: - private functions
     private func setup() {
-        setupButton()
-        setupImageView()
-        setupLabel()
+        [button, imageView, textLabel].forEach {
+            addSubview($0)
+        }
         
         setupConstraints()
-    }
-    
-    private func setupButton() {
-        button.addTarget(self, action: #selector(onTouchButton), for: .touchUpInside)
-        addSubview(button)
-    }
-    
-    private func setupImageView() {
-        imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .blue
-        addSubview(imageView)
-    }
-    
-    private func setupLabel() {
-        textLabel.textAlignment = .center
-        addSubview(textLabel)
     }
     
     private func setupConstraints() {

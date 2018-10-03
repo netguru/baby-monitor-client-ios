@@ -23,6 +23,6 @@ final class LullabiesCoordinator: Coordinator {
     private func showLullabies() {
         let viewModel = LullabiesViewViewModel()
         let viewController = LullabiesViewController(viewModel: viewModel)
-        navigationController.setViewControllers([viewController], animated: false)
+        navigationController.pushViewController(viewController, animated: false)
     }
 }

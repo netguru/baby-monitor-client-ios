@@ -23,6 +23,6 @@ final class ActivityLogCoordinator: Coordinator {
     private func showActivityLog() {
         let viewModel = ActivityLogViewViewModel()
         let viewController = ActivityLogViewController(viewModel: viewModel)
-        navigationController.setViewControllers([viewController], animated: false)
+        navigationController.pushViewController(viewController, animated: false)
     }
 }

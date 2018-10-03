@@ -17,6 +17,8 @@
 		4E9563182163521900289475 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563172163521900289475 /* DashboardButton.swift */; };
 		4E95631B21638D1500289475 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95631A21638D1500289475 /* Localizable.swift */; };
 		4E95631E21638E2200289475 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E95632021638E2200289475 /* Localizable.strings */; };
+		4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */; };
+		4E9563262164BA4600289475 /* WindowInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563252164BA4600289475 /* WindowInitializable.swift */; };
 		4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */; };
 		4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BDC216237D8009C44C5 /* DashboardViewController.swift */; };
 		4E994BE121623821009C44C5 /* DashboardViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE021623821009C44C5 /* DashboardViewViewModel.swift */; };
@@ -58,6 +60,8 @@
 		4E9563172163521900289475 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		4E95631A21638D1500289475 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		4E95631F21638E2200289475 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerInitializable.swift; sourceTree = "<group>"; };
+		4E9563252164BA4600289475 /* WindowInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowInitializable.swift; sourceTree = "<group>"; };
 		4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		4E994BDC216237D8009C44C5 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		4E994BE021623821009C44C5 /* DashboardViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewViewModel.swift; sourceTree = "<group>"; };
@@ -113,11 +117,11 @@
 			children = (
 				4E6EA7952161FBA1005575E0 /* Coordinator.swift */,
 				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
+				4E994BF121624835009C44C5 /* BaseViewController.swift */,
 				4E994BE221623EC3009C44C5 /* ActivityLog */,
 				4E994BDB216237CB009C44C5 /* Dashboard */,
 				4E994BE5216240CD009C44C5 /* Lullabies */,
 				4E994BE6216240DA009C44C5 /* Settings */,
-				4E994BF121624835009C44C5 /* BaseViewController.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -144,6 +148,15 @@
 			children = (
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		4E9563242164BA2900289475 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */,
+				4E9563252164BA4600289475 /* WindowInitializable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		4E994BDB216237CB009C44C5 /* Dashboard */ = {
@@ -233,6 +246,7 @@
 			children = (
 				EC82B559213EA072005CA395 /* AppDelegate.swift */,
 				4E6EA7932161FB81005575E0 /* Modules */,
+				4E9563242164BA2900289475 /* Protocols */,
 				4E95631921638CE400289475 /* Localizations */,
 			);
 			path = "Source Files";
@@ -405,9 +419,11 @@
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
+				4E9563262164BA4600289475 /* WindowInitializable.swift in Sources */,
 				4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewViewModel.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewViewModel.swift in Sources */,
+				4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

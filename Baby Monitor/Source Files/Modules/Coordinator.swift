@@ -6,23 +6,17 @@
 
 import UIKit
 
-protocol RootCoordinatorProtocol: Coordinator {
-    
-    var window: UIWindow { get set }
-    init(_ window: UIWindow)
-}
+typealias RootCoordinatorProtocol = PartialCoordinator & WindowInitializable
+typealias Coordinator = PartialCoordinator & NavigationControllerInitializable
 
-protocol Coordinator: class {
+protocol PartialCoordinator: class {
     var childCoordinators: [Coordinator] { get set }
-    var navigationController: UINavigationController { get set }
-    
-    init(_ navigationController: UINavigationController)
     
     /// Starts coordinator work. Should be called only once.
     func start()
 }
 
-extension Coordinator {
+extension PartialCoordinator {
     
     func add(_ coordinator: Coordinator) {
         childCoordinators.append(coordinator)

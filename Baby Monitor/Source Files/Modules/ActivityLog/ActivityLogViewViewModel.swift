@@ -7,5 +7,5 @@
 import Foundation
 
 final class ActivityLogViewViewModel {
-    
+    //TODO: add implementation
 }

@@ -22,6 +22,6 @@ final class DashboardCoordinator: Coordinator {
     private func showDashboard() {
         let viewModel = DashboardViewViewModel()
         let dashboardViewController = DashboardViewController(viewModel: viewModel)
-        navigationController.setViewControllers([dashboardViewController], animated: false)
+        navigationController.pushViewController(dashboardViewController, animated: false)
     }
 }

@@ -23,7 +23,7 @@ final class SettingsCoordinator: Coordinator {
     private func showLullabies() {
         let viewModel = SettingsViewViewModel()
         let viewController = SettingsViewController(viewModel: viewModel)
-        navigationController.setViewControllers([viewController], animated: false)
+        navigationController.pushViewController(viewController, animated: false)
     }
 }
 

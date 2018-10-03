@@ -7,5 +7,6 @@
 import Foundation
 
 final class DashboardViewViewModel {
+    //TODO: add implementation
 }
 

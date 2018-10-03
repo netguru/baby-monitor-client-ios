@@ -4,13 +4,13 @@
 */
 
 //MARK: - Dashboard
-"dashboard.button.live.camera" = "LIVE CAMERA";
+"dashboard.button.live-camera" = "LIVE CAMERA";
 "dashboard.button.talk" = "TALK";
-"dashboard.button.play.lullaby" = "PLAY LULLABY";
-"dashboard.bar.button.item.edit.profile" = "Edit profile";
+"dashboard.button.play-lullaby" = "PLAY LULLABY";
+"dashboard.bar-button-item.edit-profile" = "Edit profile";
 
 //MARK: - TabBar
-"tab.bar.dashboard" = "Dashboard";
-"tab.bar.activity.log" = "Activity Log";
-"tab.bar.lullabies" = "Lullabies";
-"tab.bar.settings" = "Settings";
+"tab-bar.dashboard" = "Dashboard";
+"tab-bar.activity-log" = "Activity Log";
+"tab-bar.lullabies" = "Lullabies";
+"tab-bar.settings" = "Settings";

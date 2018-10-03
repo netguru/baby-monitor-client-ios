@@ -17,19 +17,12 @@ final class RootCoordinator: RootCoordinatorProtocol {
     
     var window: UIWindow
     
-    //Since UITabBarController is used here, navigationController isn't
-    var navigationController = UINavigationController()
-    
     private let tabBarController = UITabBarController()
     
     init(_ window: UIWindow) {
         self.window = window
         
         setup()
-    }
-    
-    init(_ navigationController: UINavigationController) {
-        fatalError("init(navigationController:) is not implemented. Use init(window:) instead")
     }
     
     func start() {
