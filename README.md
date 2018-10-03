@@ -95,10 +95,10 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 * Examples:
 ```swift
 addSubview(view)
-view.addConstraints([
-    equalConstant(.height, 36), // sets height to 36
-    equalConstant(.width, 285), // sets width to 285
-    equal(.centerX), // attaches centerXAnchor to superView centerXAnchor
-    equalTo(topView, .top, .bottom, constant: 80) // attaches views topAnchor to topView bottom anchor with offset 80
-])
+view.addConstraints {[
+    $0.equalConstant(.height, 36), // sets height to 36
+    $0.equalConstant(.width, 285), // sets width to 285
+    $0.equal(.centerX), // attaches centerXAnchor to superView centerXAnchor
+    $0.equalTo(topView, .top, .bottom, constant: 80) // attaches views topAnchor to topView bottom anchor with offset 80
+]}
 ```

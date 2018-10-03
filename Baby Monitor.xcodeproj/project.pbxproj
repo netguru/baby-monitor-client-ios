@@ -7,9 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */; };
+		4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7A2163480C001CD8EA /* SettingsViewController.swift */; };
+		4E075C7D2163488D001CD8EA /* SettingsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7C2163488D001CD8EA /* SettingsViewViewModel.swift */; };
+		4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */; };
 		4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */; };
 		4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7952161FBA1005575E0 /* Coordinator.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
+		4E9563182163521900289475 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563172163521900289475 /* DashboardButton.swift */; };
+		4E95631B21638D1500289475 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95631A21638D1500289475 /* Localizable.swift */; };
+		4E95631E21638E2200289475 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E95632021638E2200289475 /* Localizable.strings */; };
+		4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */; };
+		4E9563262164BA4600289475 /* WindowInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563252164BA4600289475 /* WindowInitializable.swift */; };
+		4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */; };
+		4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BDC216237D8009C44C5 /* DashboardViewController.swift */; };
+		4E994BE121623821009C44C5 /* DashboardViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE021623821009C44C5 /* DashboardViewViewModel.swift */; };
+		4E994BE421623EE5009C44C5 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE321623EE5009C44C5 /* ActivityLogViewController.swift */; };
+		4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */; };
+		4E994BEA21624152009C44C5 /* LullabiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE921624152009C44C5 /* LullabiesViewController.swift */; };
+		4E994BEC2162416B009C44C5 /* LullabiesViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewViewModel.swift */; };
+		4E994BF0216247A9009C44C5 /* ActivityLogViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewViewModel.swift */; };
+		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
@@ -32,9 +50,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCoordinator.swift; sourceTree = "<group>"; };
+		4E075C7A2163480C001CD8EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4E075C7C2163488D001CD8EA /* SettingsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewViewModel.swift; sourceTree = "<group>"; };
+		4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		4E6EA7952161FBA1005575E0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		4E9563172163521900289475 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
+		4E95631A21638D1500289475 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		4E95631F21638E2200289475 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerInitializable.swift; sourceTree = "<group>"; };
+		4E9563252164BA4600289475 /* WindowInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowInitializable.swift; sourceTree = "<group>"; };
+		4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
+		4E994BDC216237D8009C44C5 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		4E994BE021623821009C44C5 /* DashboardViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewViewModel.swift; sourceTree = "<group>"; };
+		4E994BE321623EE5009C44C5 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
+		4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesCoordinator.swift; sourceTree = "<group>"; };
+		4E994BE921624152009C44C5 /* LullabiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewController.swift; sourceTree = "<group>"; };
+		4E994BEB2162416B009C44C5 /* LullabiesViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewViewModel.swift; sourceTree = "<group>"; };
+		4E994BEF216247A9009C44C5 /* ActivityLogViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewViewModel.swift; sourceTree = "<group>"; };
+		4E994BF121624835009C44C5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,18 +115,90 @@
 		4E6EA7932161FB81005575E0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				4E6EA7942161FB8F005575E0 /* Coordinator */,
+				4E6EA7952161FBA1005575E0 /* Coordinator.swift */,
+				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
+				4E994BF121624835009C44C5 /* BaseViewController.swift */,
+				4E994BE221623EC3009C44C5 /* ActivityLog */,
+				4E994BDB216237CB009C44C5 /* Dashboard */,
+				4E994BE5216240CD009C44C5 /* Lullabies */,
+				4E994BE6216240DA009C44C5 /* Settings */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		4E6EA7942161FB8F005575E0 /* Coordinator */ = {
+		4E956316216351B100289475 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				4E6EA7952161FBA1005575E0 /* Coordinator.swift */,
-				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
+				4E9563172163521900289475 /* DashboardButton.swift */,
 			);
-			path = Coordinator;
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		4E95631921638CE400289475 /* Localizations */ = {
+			isa = PBXGroup;
+			children = (
+				4E95631A21638D1500289475 /* Localizable.swift */,
+				4E95632021638E2200289475 /* Localizable.strings */,
+			);
+			path = Localizations;
+			sourceTree = "<group>";
+		};
+		4E9563212163933A00289475 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		4E9563242164BA2900289475 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */,
+				4E9563252164BA4600289475 /* WindowInitializable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4E994BDB216237CB009C44C5 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				4E956316216351B100289475 /* Custom Views */,
+				4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */,
+				4E994BDC216237D8009C44C5 /* DashboardViewController.swift */,
+				4E994BE021623821009C44C5 /* DashboardViewViewModel.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		4E994BE221623EC3009C44C5 /* ActivityLog */ = {
+			isa = PBXGroup;
+			children = (
+				4E9563212163933A00289475 /* Custom Views */,
+				4E994BE321623EE5009C44C5 /* ActivityLogViewController.swift */,
+				4E994BEF216247A9009C44C5 /* ActivityLogViewViewModel.swift */,
+				4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */,
+			);
+			path = ActivityLog;
+			sourceTree = "<group>";
+		};
+		4E994BE5216240CD009C44C5 /* Lullabies */ = {
+			isa = PBXGroup;
+			children = (
+				4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */,
+				4E994BE921624152009C44C5 /* LullabiesViewController.swift */,
+				4E994BEB2162416B009C44C5 /* LullabiesViewViewModel.swift */,
+			);
+			path = Lullabies;
+			sourceTree = "<group>";
+		};
+		4E994BE6216240DA009C44C5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4E075C7A2163480C001CD8EA /* SettingsViewController.swift */,
+				4E075C7C2163488D001CD8EA /* SettingsViewViewModel.swift */,
+				4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		EC82B54D213EA072005CA395 = {
@@ -115,7 +223,6 @@
 		EC82B558213EA072005CA395 /* Baby Monitor */ = {
 			isa = PBXGroup;
 			children = (
-				4E6EA7932161FB81005575E0 /* Modules */,
 				4E5BEB13215E5EC60056E5CC /* Extensions */,
 				EC82B579213EA0CB005CA395 /* Source Files */,
 				EC82B57E213EA142005CA395 /* Resources */,
@@ -138,6 +245,9 @@
 			isa = PBXGroup;
 			children = (
 				EC82B559213EA072005CA395 /* AppDelegate.swift */,
+				4E6EA7932161FB81005575E0 /* Modules */,
+				4E9563242164BA2900289475 /* Protocols */,
+				4E95631921638CE400289475 /* Localizations */,
 			);
 			path = "Source Files";
 			sourceTree = "<group>";
@@ -273,6 +383,7 @@
 				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
 				ECB146E2213EA45E00C504FD /* App-Common.xcconfig in Resources */,
 				EC82B561213EA074005CA395 /* Assets.xcassets in Resources */,
+				4E95631E21638E2200289475 /* Localizable.strings in Resources */,
 				ECB146E3213EA45E00C504FD /* Test-Common.xcconfig in Resources */,
 				ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */,
 			);
@@ -292,10 +403,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
+				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
+				4E994BE421623EE5009C44C5 /* ActivityLogViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
+				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
+				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
+				4E994BEC2162416B009C44C5 /* LullabiesViewViewModel.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
+				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
+				4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */,
+				4E994BE121623821009C44C5 /* DashboardViewViewModel.swift in Sources */,
+				4E994BEA21624152009C44C5 /* LullabiesViewController.swift in Sources */,
 				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
+				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
+				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
+				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
+				4E9563262164BA4600289475 /* WindowInitializable.swift in Sources */,
 				4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */,
+				4E075C7D2163488D001CD8EA /* SettingsViewViewModel.swift in Sources */,
+				4E994BF0216247A9009C44C5 /* ActivityLogViewViewModel.swift in Sources */,
+				4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +446,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4E95632021638E2200289475 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4E95631F21638E2200289475 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		EC82B562213EA074005CA395 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
