@@ -15,8 +15,8 @@ final class TabBarController: UITabBarController {
         Localizable.TabBar.settings
     ]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    /// Setups titles for tab bar view controllers
+    func setupTitles() {
         guard let viewControllers = viewControllers else {
             return
         }

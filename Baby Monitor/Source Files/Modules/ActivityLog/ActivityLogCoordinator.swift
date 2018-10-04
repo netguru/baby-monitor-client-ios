@@ -35,13 +35,13 @@ extension ActivityLogCoordinator: ActivityLogViewModelCoordinatorDelegate {
     
     func didSelectShowBabies() {
         if let switchBabyTableViewController = switchBabyTableViewController {
-            switchBabyTableViewController.remove()
+            switchBabyTableViewController.removeFromParent()
             self.switchBabyTableViewController = nil
             return
         }
         
         let switchBabyTableViewViewModel = SwitchBabyViewModel()
         self.switchBabyTableViewController = BabyMonitorGeneralViewController(viewModel: switchBabyTableViewViewModel, type: .switchBaby)
-        activityLogViewController?.add(self.switchBabyTableViewController!)
+        activityLogViewController?.addChild(self.switchBabyTableViewController!)
     }
 }

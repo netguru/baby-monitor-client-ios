@@ -65,11 +65,9 @@ final class BabyMonitorGeneralViewController: BaseViewController {
             view.backgroundColor = .clear
         case .activityLog:
             navigationItem.titleView = babyNavigationItemView
-            title = Localizable.TabBar.activityLog
             tableView.tableFooterView = UIView()
             backgroundView.isHidden = true
         }
-        navigationItem.title = ""
         
         [backgroundView, tableView].forEach {
             view.addSubview($0)

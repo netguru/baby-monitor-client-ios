@@ -169,13 +169,6 @@
 			path = Localizations;
 			sourceTree = "<group>";
 		};
-		4E9563212163933A00289475 /* Custom Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Custom Views";
-			sourceTree = "<group>";
-		};
 		4E9563242164BA2900289475 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,7 +223,6 @@
 		4E994BE221623EC3009C44C5 /* ActivityLog */ = {
 			isa = PBXGroup;
 			children = (
-				4E9563212163933A00289475 /* Custom Views */,
 				4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */,
 				4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */,
 			);

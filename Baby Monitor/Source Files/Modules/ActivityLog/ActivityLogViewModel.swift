@@ -39,8 +39,4 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
     func numberOfRows(for section: Int) -> Int {
         return 5 //TODO: implement this
     }
-    
-    func headerView(for section: Int) -> UIView? {
-        return nil
-    }
 }

@@ -30,18 +30,19 @@ final class DashboardCoordinator: Coordinator {
     }
 }
 
-//MARK: - DashboardViewViewModelCoordinatorDelegate
+
+//MARK: - DashboardViewModelCoordinatorDelegate
 extension DashboardCoordinator: DashboardViewModelCoordinatorDelegate {
     
-    func didSelectSwitchBaby() {
+    func didSelectShowBabies() {
         if let switchBabyTableViewController = switchBabyTableViewController {
-            switchBabyTableViewController.remove()
+            switchBabyTableViewController.removeFromParent()
             self.switchBabyTableViewController = nil
             return
         }
         
         let switchBabyTableViewViewModel = SwitchBabyViewModel()
         self.switchBabyTableViewController = BabyMonitorGeneralViewController(viewModel: switchBabyTableViewViewModel, type: .switchBaby)
-        dashboardViewController?.add(self.switchBabyTableViewController!)
+        dashboardViewController?.addChild(self.switchBabyTableViewController!)
     }
 }

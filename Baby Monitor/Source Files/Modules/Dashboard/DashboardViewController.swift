@@ -23,7 +23,7 @@ final class DashboardViewController: BaseViewController {
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        //TODO: remove color once getting image asset
+        //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         imageView.backgroundColor = .red
         return imageView
     }()
@@ -65,8 +65,6 @@ final class DashboardViewController: BaseViewController {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = editProfileBarButtonItem
-        title = Localizable.TabBar.dashboard
-        navigationItem.title = ""
         navigationItem.titleView = babyNavigationItemView
         babyNavigationItemView.onSelectArrow = { [weak self] in
             self?.viewModel.selectSwitchBaby()
