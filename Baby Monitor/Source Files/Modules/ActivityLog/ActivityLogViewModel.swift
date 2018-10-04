@@ -25,7 +25,7 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
     
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
         cell.type = .activityLog
-        //TODO: mock for now
+        //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
         cell.update(image: UIImage())
         cell.update(mainText: "Franuś was crying!")
         cell.update(secondaryText: "24 minutes ago")
@@ -37,6 +37,6 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
     }
     
     func numberOfRows(for section: Int) -> Int {
-        return 5 //TODO: implement this
+        return 5 //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
     }
 }
