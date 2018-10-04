@@ -1,12 +1,13 @@
 //
 //  Identifiable.swift
-//  CiLabs
+//  Baby Monitor
 //
 
 import Foundation
 
 protocol Identifiable {
     
+    /// Identifier for class that is it's name
     static var identifier: String { get }
 }
 

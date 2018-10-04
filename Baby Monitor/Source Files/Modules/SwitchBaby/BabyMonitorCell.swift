@@ -22,7 +22,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        //TODO: remove color once getting image asset
+        //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         imageView.backgroundColor = .gray
         return imageView
     }()
@@ -30,15 +30,13 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
     private let mainLabel = UILabel()
     private let secondaryLabel: UILabel = {
         let label = UILabel()
-        //TODO: remove color once getting image asset
-        label.backgroundColor = .gray
         label.font = label.font.withSize(5)
         return label
     }()
     
     private let additionalButton: UIButton = {
         let button = UIButton()
-        //TODO: remove color once getting image asset
+        //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         button.backgroundColor = .green
         return button
     }()
@@ -77,7 +75,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: internal functions
+    //MARK: Internal functions
     
     /// Updates main text
     func update(mainText: String) {
@@ -94,7 +92,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         photoImageView.image = image
     }
     
-    //MARK: - private functions
+    //MARK: - Private functions
     private func setup() {
         selectionStyle = .none
         contentView.addSubview(mainStackView)

@@ -11,7 +11,7 @@ final class BabyNavigationItemView: UIView {
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        //TODO: remove color once getting image asset
+        //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         imageView.backgroundColor = .gray
         return imageView
     }()
@@ -27,14 +27,13 @@ final class BabyNavigationItemView: UIView {
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
         stackView.alignment = .center
-        stackView.spacing = 0
         return stackView
     }()
     
     private let arrowButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(onTouchArrowButton), for: .touchUpInside)
-        //TODO: remove color once getting image asset
+        //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         button.backgroundColor = .red
         return button
     }()
@@ -44,7 +43,6 @@ final class BabyNavigationItemView: UIView {
     init(babyName: String) {
         super.init(frame: .zero)
         nameLabel.text = babyName
-        
         setup()
     }
     
@@ -58,10 +56,9 @@ final class BabyNavigationItemView: UIView {
         onSelectArrow?()
     }
     
-    //MARK: - private functions
+    //MARK: - View setup
     private func setup() {
         addSubview(stackView)
-        
         stackView.addConstraints {
             $0.equalEdges()
         }

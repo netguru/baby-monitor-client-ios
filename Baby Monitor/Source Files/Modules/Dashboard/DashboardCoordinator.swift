@@ -35,13 +35,13 @@ extension DashboardCoordinator: DashboardViewViewModelCoordinatorDelegate {
     
     func didSelectSwitchBaby() {
         if let switchBabyTableViewController = switchBabyTableViewController {
-            switchBabyTableViewController.remove()
+            switchBabyTableViewController.removeFromParent()
             self.switchBabyTableViewController = nil
             return
         }
         
         let switchBabyTableViewViewModel = SwitchBabyTableViewViewModel()
         self.switchBabyTableViewController = SwitchBabyViewController(viewModel: switchBabyTableViewViewModel)
-        dashboardViewController?.add(self.switchBabyTableViewController!)
+        dashboardViewController?.addChild(self.switchBabyTableViewController!)
     }
 }

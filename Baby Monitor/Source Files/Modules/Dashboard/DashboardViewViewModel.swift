@@ -8,6 +8,7 @@ import Foundation
 
 protocol DashboardViewViewModelCoordinatorDelegate: class {
     
+    /// <#Description#>
     func didSelectSwitchBaby()
 }
 

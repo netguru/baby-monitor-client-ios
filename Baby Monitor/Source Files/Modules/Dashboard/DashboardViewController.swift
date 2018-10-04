@@ -23,7 +23,7 @@ final class DashboardViewController: BaseViewController {
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        //TODO: remove color once getting image asset
+        //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         imageView.backgroundColor = .red
         return imageView
     }()

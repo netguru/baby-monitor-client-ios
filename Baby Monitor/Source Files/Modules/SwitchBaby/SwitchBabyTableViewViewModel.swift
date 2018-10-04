@@ -8,7 +8,7 @@ import Foundation
 
 final class SwitchBabyTableViewViewModel {
     
-    private var babies: [Baby] = [] //TODO: implement fetching
+    private var babies: [Baby] = [Baby(name: "Franuś")] //TODO: mock for now, implement fetching babies from local dataBase, ticket: https://netguru.atlassian.net/browse/BM-66
     
     var numberOfRows: Int {
         return babies.count + 1
