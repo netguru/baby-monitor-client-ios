@@ -1,12 +1,12 @@
 //
-//  SwitchBabyTableViewViewModel.swift
+//  SwitchBabyTableViewModel.swift
 //  Baby Monitor
 //
 
 
 import Foundation
 
-final class SwitchBabyTableViewViewModel {
+final class SwitchBabyTableViewModel {
     
     private var babies: [Baby] = [Baby(name: "Franuś")] //TODO: mock for now, implement fetching babies from local dataBase, ticket: https://netguru.atlassian.net/browse/BM-66
     

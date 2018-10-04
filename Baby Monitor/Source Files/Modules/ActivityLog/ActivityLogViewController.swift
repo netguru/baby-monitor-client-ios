@@ -8,9 +8,9 @@ import UIKit
 
 final class ActivityLogViewController: BaseViewController {
     
-    private let viewModel: ActivityLogViewViewModel
+    private let viewModel: ActivityLogViewModel
     
-    init(viewModel: ActivityLogViewViewModel) {
+    init(viewModel: ActivityLogViewModel) {
         self.viewModel = viewModel
         super.init()
     }

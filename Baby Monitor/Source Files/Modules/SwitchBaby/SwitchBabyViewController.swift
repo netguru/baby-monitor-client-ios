@@ -26,9 +26,9 @@ final class SwitchBabyViewController: BaseViewController {
         return view
     }()
     
-    private let viewModel: SwitchBabyTableViewViewModel
+    private let viewModel: SwitchBabyTableViewModel
     
-    init(viewModel: SwitchBabyTableViewViewModel) {
+    init(viewModel: SwitchBabyTableViewModel) {
         self.viewModel = viewModel
         super.init()
     }
