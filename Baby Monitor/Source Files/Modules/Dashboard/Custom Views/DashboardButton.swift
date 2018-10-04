@@ -17,6 +17,7 @@ final class DashboardButtonView: UIView {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        //TODO: remove color once getting image asset
         imageView.backgroundColor = .blue
         return imageView
     }()

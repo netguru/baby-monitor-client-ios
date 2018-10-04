@@ -21,6 +21,10 @@ struct Localizable {
         static let playLullaby = localized("dashboard.button.play-lullaby")
         static let editProfile = localized("dashboard.bar-button-item.edit-profile")
     }
+    
+    struct SwitchBaby {
+        static let addAnotherBaby = localized("switch-baby.add-another.baby")
+    }
 }
 
 private func localized(_ value: String) -> String {

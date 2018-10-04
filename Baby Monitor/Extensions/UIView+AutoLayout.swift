@@ -159,8 +159,8 @@ extension UIView {
     /// - Returns: created constraints
     func equalSafeAreaEdges() -> [Constraint] {
         return [
-            equal(.safeAreaTop),
-            equal(.safeAreaBottom),
+            equalTo(superview!, .top, .safeAreaTop),
+            equalTo(superview!, .bottom, .safeAreaBottom),
             equal(.leading),
             equal(.trailing)
         ]

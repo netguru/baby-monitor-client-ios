@@ -23,6 +23,7 @@ final class DashboardViewController: BaseViewController {
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        //TODO: remove color once getting image asset
         imageView.backgroundColor = .red
         return imageView
     }()
@@ -43,6 +44,7 @@ final class DashboardViewController: BaseViewController {
         return label
     }()
     
+    private let babyNavigationItemView = BabyNavigationItemView(babyName: "Franuś") //TODO: mock for now
     private let layoutView = UIView() // only for centering stack view vertically
     private let liveCameraButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.liveCamera)
     private let talkButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.talk)
@@ -65,6 +67,10 @@ final class DashboardViewController: BaseViewController {
         navigationItem.rightBarButtonItem = editProfileBarButtonItem
         title = Localizable.TabBar.dashboard
         navigationItem.title = ""
+        navigationItem.titleView = babyNavigationItemView
+        babyNavigationItemView.onSelectArrow = { [weak self] in
+            self?.viewModel.selectSwitchBaby()
+        }
         setupLayout()
     }
     

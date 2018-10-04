@@ -14,3 +14,6 @@
 "tab-bar.activity-log" = "Activity Log";
 "tab-bar.lullabies" = "Lullabies";
 "tab-bar.settings" = "Settings";
+
+//MARK - Switch Baby
+"switch-baby.add-another.baby" = "Add another baby";

@@ -19,6 +19,15 @@
 		4E95631E21638E2200289475 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E95632021638E2200289475 /* Localizable.strings */; };
 		4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */; };
 		4E9563262164BA4600289475 /* WindowInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563252164BA4600289475 /* WindowInitializable.swift */; };
+		4E9563292164CAC600289475 /* SwitchBabyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563282164CAC600289475 /* SwitchBabyViewController.swift */; };
+		4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95632A2164CB7900289475 /* BabyMonitorCell.swift */; };
+		4E95632D2164DB7500289475 /* SwitchBabyTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95632C2164DB7500289475 /* SwitchBabyTableViewViewModel.swift */; };
+		4E95632F2164DB9E00289475 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95632E2164DB9E00289475 /* BaseTableViewController.swift */; };
+		4E9563322164DDC100289475 /* Baby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563312164DDC100289475 /* Baby.swift */; };
+		4E9563342164E75700289475 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563332164E75700289475 /* Identifiable.swift */; };
+		4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563352164E77100289475 /* UITableView+Dequeue.swift */; };
+		4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563382164F09C00289475 /* BabyNavigationItemView.swift */; };
+		4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95633A2164F6D500289475 /* UIViewController+ChildViewController.swift */; };
 		4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */; };
 		4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BDC216237D8009C44C5 /* DashboardViewController.swift */; };
 		4E994BE121623821009C44C5 /* DashboardViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE021623821009C44C5 /* DashboardViewViewModel.swift */; };
@@ -62,6 +71,15 @@
 		4E95631F21638E2200289475 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerInitializable.swift; sourceTree = "<group>"; };
 		4E9563252164BA4600289475 /* WindowInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowInitializable.swift; sourceTree = "<group>"; };
+		4E9563282164CAC600289475 /* SwitchBabyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchBabyViewController.swift; sourceTree = "<group>"; };
+		4E95632A2164CB7900289475 /* BabyMonitorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCell.swift; sourceTree = "<group>"; };
+		4E95632C2164DB7500289475 /* SwitchBabyTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchBabyTableViewViewModel.swift; sourceTree = "<group>"; };
+		4E95632E2164DB9E00289475 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		4E9563312164DDC100289475 /* Baby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baby.swift; sourceTree = "<group>"; };
+		4E9563332164E75700289475 /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
+		4E9563352164E77100289475 /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
+		4E9563382164F09C00289475 /* BabyNavigationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyNavigationItemView.swift; sourceTree = "<group>"; };
+		4E95633A2164F6D500289475 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		4E994BDC216237D8009C44C5 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		4E994BE021623821009C44C5 /* DashboardViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewViewModel.swift; sourceTree = "<group>"; };
@@ -108,6 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */,
+				4E9563352164E77100289475 /* UITableView+Dequeue.swift */,
+				4E95633A2164F6D500289475 /* UIViewController+ChildViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -118,10 +138,12 @@
 				4E6EA7952161FBA1005575E0 /* Coordinator.swift */,
 				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
 				4E994BF121624835009C44C5 /* BaseViewController.swift */,
+				4E95632E2164DB9E00289475 /* BaseTableViewController.swift */,
 				4E994BE221623EC3009C44C5 /* ActivityLog */,
 				4E994BDB216237CB009C44C5 /* Dashboard */,
 				4E994BE5216240CD009C44C5 /* Lullabies */,
 				4E994BE6216240DA009C44C5 /* Settings */,
+				4E9563272164CAB000289475 /* SwitchBaby */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -155,8 +177,35 @@
 			children = (
 				4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */,
 				4E9563252164BA4600289475 /* WindowInitializable.swift */,
+				4E9563332164E75700289475 /* Identifiable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4E9563272164CAB000289475 /* SwitchBaby */ = {
+			isa = PBXGroup;
+			children = (
+				4E9563282164CAC600289475 /* SwitchBabyViewController.swift */,
+				4E95632A2164CB7900289475 /* BabyMonitorCell.swift */,
+				4E95632C2164DB7500289475 /* SwitchBabyTableViewViewModel.swift */,
+			);
+			path = SwitchBaby;
+			sourceTree = "<group>";
+		};
+		4E9563302164DDB000289475 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4E9563312164DDC100289475 /* Baby.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4E9563372164F07A00289475 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				4E9563382164F09C00289475 /* BabyNavigationItemView.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		4E994BDB216237CB009C44C5 /* Dashboard */ = {
@@ -246,6 +295,8 @@
 			children = (
 				EC82B559213EA072005CA395 /* AppDelegate.swift */,
 				4E6EA7932161FB81005575E0 /* Modules */,
+				4E9563372164F07A00289475 /* Custom Views */,
+				4E9563302164DDB000289475 /* Models */,
 				4E9563242164BA2900289475 /* Protocols */,
 				4E95631921638CE400289475 /* Localizations */,
 			);
@@ -409,18 +460,27 @@
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
+				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
 				4E994BEC2162416B009C44C5 /* LullabiesViewViewModel.swift in Sources */,
+				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */,
+				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
+				4E9563292164CAC600289475 /* SwitchBabyViewController.swift in Sources */,
 				4E994BE121623821009C44C5 /* DashboardViewViewModel.swift in Sources */,
 				4E994BEA21624152009C44C5 /* LullabiesViewController.swift in Sources */,
 				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
+				4E95632F2164DB9E00289475 /* BaseTableViewController.swift in Sources */,
+				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
+				4E9563322164DDC100289475 /* Baby.swift in Sources */,
 				4E9563262164BA4600289475 /* WindowInitializable.swift in Sources */,
 				4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */,
+				4E9563342164E75700289475 /* Identifiable.swift in Sources */,
+				4E95632D2164DB7500289475 /* SwitchBabyTableViewViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewViewModel.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewViewModel.swift in Sources */,
 				4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */,

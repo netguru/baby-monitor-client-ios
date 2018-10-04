@@ -6,7 +6,17 @@
 
 import Foundation
 
+protocol DashboardViewViewModelCoordinatorDelegate: class {
+    
+    func didSelectSwitchBaby()
+}
+
 final class DashboardViewViewModel {
-    //TODO: add implementation
+    
+    weak var coordinatorDelegate: DashboardViewViewModelCoordinatorDelegate?
+    
+    func selectSwitchBaby() {
+        coordinatorDelegate?.didSelectSwitchBaby()
+    }
 }
 
