@@ -9,20 +9,20 @@
 /* Begin PBXBuildFile section */
 		4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */; };
 		4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7A2163480C001CD8EA /* SettingsViewController.swift */; };
-		4E075C7D2163488D001CD8EA /* SettingsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7C2163488D001CD8EA /* SettingsViewViewModel.swift */; };
+		4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */; };
 		4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */; };
 		4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */; };
 		4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7952161FBA1005575E0 /* Coordinator.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
+		4E931330216635B700AEE942 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93132F216635B700AEE942 /* TabBarController.swift */; };
 		4E9563182163521900289475 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563172163521900289475 /* DashboardButton.swift */; };
 		4E95631B21638D1500289475 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95631A21638D1500289475 /* Localizable.swift */; };
 		4E95631E21638E2200289475 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E95632021638E2200289475 /* Localizable.strings */; };
 		4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */; };
 		4E9563262164BA4600289475 /* WindowInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563252164BA4600289475 /* WindowInitializable.swift */; };
-		4E9563292164CAC600289475 /* SwitchBabyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563282164CAC600289475 /* SwitchBabyViewController.swift */; };
+		4E9563292164CAC600289475 /* BabyMonitorGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563282164CAC600289475 /* BabyMonitorGeneralViewController.swift */; };
 		4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95632A2164CB7900289475 /* BabyMonitorCell.swift */; };
-		4E95632D2164DB7500289475 /* SwitchBabyTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95632C2164DB7500289475 /* SwitchBabyTableViewViewModel.swift */; };
-		4E95632F2164DB9E00289475 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95632E2164DB9E00289475 /* BaseTableViewController.swift */; };
+		4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95632C2164DB7500289475 /* SwitchBabyViewModel.swift */; };
 		4E9563322164DDC100289475 /* Baby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563312164DDC100289475 /* Baby.swift */; };
 		4E9563342164E75700289475 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563332164E75700289475 /* Identifiable.swift */; };
 		4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563352164E77100289475 /* UITableView+Dequeue.swift */; };
@@ -30,13 +30,16 @@
 		4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95633A2164F6D500289475 /* UIViewController+ChildViewController.swift */; };
 		4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */; };
 		4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BDC216237D8009C44C5 /* DashboardViewController.swift */; };
-		4E994BE121623821009C44C5 /* DashboardViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE021623821009C44C5 /* DashboardViewViewModel.swift */; };
-		4E994BE421623EE5009C44C5 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE321623EE5009C44C5 /* ActivityLogViewController.swift */; };
+		4E994BE121623821009C44C5 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE021623821009C44C5 /* DashboardViewModel.swift */; };
 		4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */; };
 		4E994BEA21624152009C44C5 /* LullabiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE921624152009C44C5 /* LullabiesViewController.swift */; };
-		4E994BEC2162416B009C44C5 /* LullabiesViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewViewModel.swift */; };
-		4E994BF0216247A9009C44C5 /* ActivityLogViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewViewModel.swift */; };
+		4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */; };
+		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
+		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
+		4EF846E121662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */; };
+		4EF846E321662A81006AB68C /* BabyMonitorCellSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */; };
+		4EF846E521663057006AB68C /* BabiesViewShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E421663057006AB68C /* BabiesViewShowable.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
@@ -61,20 +64,20 @@
 /* Begin PBXFileReference section */
 		4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCoordinator.swift; sourceTree = "<group>"; };
 		4E075C7A2163480C001CD8EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		4E075C7C2163488D001CD8EA /* SettingsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewViewModel.swift; sourceTree = "<group>"; };
+		4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		4E6EA7952161FBA1005575E0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		4E93132F216635B700AEE942 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4E9563172163521900289475 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		4E95631A21638D1500289475 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		4E95631F21638E2200289475 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerInitializable.swift; sourceTree = "<group>"; };
 		4E9563252164BA4600289475 /* WindowInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowInitializable.swift; sourceTree = "<group>"; };
-		4E9563282164CAC600289475 /* SwitchBabyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchBabyViewController.swift; sourceTree = "<group>"; };
+		4E9563282164CAC600289475 /* BabyMonitorGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewController.swift; sourceTree = "<group>"; };
 		4E95632A2164CB7900289475 /* BabyMonitorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCell.swift; sourceTree = "<group>"; };
-		4E95632C2164DB7500289475 /* SwitchBabyTableViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchBabyTableViewViewModel.swift; sourceTree = "<group>"; };
-		4E95632E2164DB9E00289475 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		4E95632C2164DB7500289475 /* SwitchBabyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchBabyViewModel.swift; sourceTree = "<group>"; };
 		4E9563312164DDC100289475 /* Baby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baby.swift; sourceTree = "<group>"; };
 		4E9563332164E75700289475 /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		4E9563352164E77100289475 /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
@@ -82,13 +85,16 @@
 		4E95633A2164F6D500289475 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		4E994BDC216237D8009C44C5 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
-		4E994BE021623821009C44C5 /* DashboardViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewViewModel.swift; sourceTree = "<group>"; };
-		4E994BE321623EE5009C44C5 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
+		4E994BE021623821009C44C5 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesCoordinator.swift; sourceTree = "<group>"; };
 		4E994BE921624152009C44C5 /* LullabiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewController.swift; sourceTree = "<group>"; };
-		4E994BEB2162416B009C44C5 /* LullabiesViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewViewModel.swift; sourceTree = "<group>"; };
-		4E994BEF216247A9009C44C5 /* ActivityLogViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewViewModel.swift; sourceTree = "<group>"; };
+		4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewModel.swift; sourceTree = "<group>"; };
+		4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewModel.swift; sourceTree = "<group>"; };
 		4E994BF121624835009C44C5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
+		4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorHeaderCellConfigurable.swift; sourceTree = "<group>"; };
+		4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellSelectable.swift; sourceTree = "<group>"; };
+		4EF846E421663057006AB68C /* BabiesViewShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabiesViewShowable.swift; sourceTree = "<group>"; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -135,15 +141,13 @@
 		4E6EA7932161FB81005575E0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				4E6EA7952161FBA1005575E0 /* Coordinator.swift */,
 				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
-				4E994BF121624835009C44C5 /* BaseViewController.swift */,
-				4E95632E2164DB9E00289475 /* BaseTableViewController.swift */,
 				4E994BE221623EC3009C44C5 /* ActivityLog */,
 				4E994BDB216237CB009C44C5 /* Dashboard */,
 				4E994BE5216240CD009C44C5 /* Lullabies */,
 				4E994BE6216240DA009C44C5 /* Settings */,
 				4E9563272164CAB000289475 /* SwitchBaby */,
+				4E93132F216635B700AEE942 /* TabBarController.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -175,9 +179,13 @@
 		4E9563242164BA2900289475 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				4E6EA7952161FBA1005575E0 /* Coordinator.swift */,
 				4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */,
 				4E9563252164BA4600289475 /* WindowInitializable.swift */,
 				4E9563332164E75700289475 /* Identifiable.swift */,
+				4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */,
+				4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */,
+				4EF846E421663057006AB68C /* BabiesViewShowable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -185,9 +193,7 @@
 		4E9563272164CAB000289475 /* SwitchBaby */ = {
 			isa = PBXGroup;
 			children = (
-				4E9563282164CAC600289475 /* SwitchBabyViewController.swift */,
-				4E95632A2164CB7900289475 /* BabyMonitorCell.swift */,
-				4E95632C2164DB7500289475 /* SwitchBabyTableViewViewModel.swift */,
+				4E95632C2164DB7500289475 /* SwitchBabyViewModel.swift */,
 			);
 			path = SwitchBaby;
 			sourceTree = "<group>";
@@ -203,7 +209,9 @@
 		4E9563372164F07A00289475 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				4EF36FBB21660F1700257384 /* BabyMonitorGeneral */,
 				4E9563382164F09C00289475 /* BabyNavigationItemView.swift */,
+				4E994BF121624835009C44C5 /* BaseViewController.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -214,7 +222,7 @@
 				4E956316216351B100289475 /* Custom Views */,
 				4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */,
 				4E994BDC216237D8009C44C5 /* DashboardViewController.swift */,
-				4E994BE021623821009C44C5 /* DashboardViewViewModel.swift */,
+				4E994BE021623821009C44C5 /* DashboardViewModel.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -223,8 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				4E9563212163933A00289475 /* Custom Views */,
-				4E994BE321623EE5009C44C5 /* ActivityLogViewController.swift */,
-				4E994BEF216247A9009C44C5 /* ActivityLogViewViewModel.swift */,
+				4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */,
 				4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */,
 			);
 			path = ActivityLog;
@@ -235,7 +242,7 @@
 			children = (
 				4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */,
 				4E994BE921624152009C44C5 /* LullabiesViewController.swift */,
-				4E994BEB2162416B009C44C5 /* LullabiesViewViewModel.swift */,
+				4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */,
 			);
 			path = Lullabies;
 			sourceTree = "<group>";
@@ -244,10 +251,20 @@
 			isa = PBXGroup;
 			children = (
 				4E075C7A2163480C001CD8EA /* SettingsViewController.swift */,
-				4E075C7C2163488D001CD8EA /* SettingsViewViewModel.swift */,
+				4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */,
 				4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		4EF36FBB21660F1700257384 /* BabyMonitorGeneral */ = {
+			isa = PBXGroup;
+			children = (
+				4E95632A2164CB7900289475 /* BabyMonitorCell.swift */,
+				4E9563282164CAC600289475 /* BabyMonitorGeneralViewController.swift */,
+				4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */,
+			);
+			path = BabyMonitorGeneral;
 			sourceTree = "<group>";
 		};
 		EC82B54D213EA072005CA395 = {
@@ -456,33 +473,36 @@
 			files = (
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
-				4E994BE421623EE5009C44C5 /* ActivityLogViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
-				4E994BEC2162416B009C44C5 /* LullabiesViewViewModel.swift in Sources */,
+				4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */,
 				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
+				4EF846E521663057006AB68C /* BabiesViewShowable.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
-				4E9563292164CAC600289475 /* SwitchBabyViewController.swift in Sources */,
-				4E994BE121623821009C44C5 /* DashboardViewViewModel.swift in Sources */,
+				4E9563292164CAC600289475 /* BabyMonitorGeneralViewController.swift in Sources */,
+				4E994BE121623821009C44C5 /* DashboardViewModel.swift in Sources */,
 				4E994BEA21624152009C44C5 /* LullabiesViewController.swift in Sources */,
 				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
+				4EF846E321662A81006AB68C /* BabyMonitorCellSelectable.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
-				4E95632F2164DB9E00289475 /* BaseTableViewController.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
+				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
+				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
 				4E9563262164BA4600289475 /* WindowInitializable.swift in Sources */,
 				4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */,
 				4E9563342164E75700289475 /* Identifiable.swift in Sources */,
-				4E95632D2164DB7500289475 /* SwitchBabyTableViewViewModel.swift in Sources */,
-				4E075C7D2163488D001CD8EA /* SettingsViewViewModel.swift in Sources */,
-				4E994BF0216247A9009C44C5 /* ActivityLogViewViewModel.swift in Sources */,
+				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
+				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
+				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
+				4EF846E121662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
 				4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

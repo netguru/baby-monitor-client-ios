@@ -8,9 +8,9 @@ import UIKit
 
 final class LullabiesViewController: BaseViewController {
     
-    private let viewModel: LullabiesViewViewModel
+    private let viewModel: LullabiesViewModel
     
-    init(viewModel: LullabiesViewViewModel) {
+    init(viewModel: LullabiesViewModel) {
         self.viewModel = viewModel
         super.init()
     }

@@ -1,18 +1,18 @@
 //
-//  SwitchBabyTableViewViewModel.swift
+//  SwitchBabyViewModel.swift
 //  Baby Monitor
 //
 
 
 import Foundation
 
-final class SwitchBabyTableViewViewModel {
+final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorCellSelectable {
     
-    private var babies: [Baby] = [] //TODO: implement fetching
-    
-    var numberOfRows: Int {
-        return babies.count + 1
+    var numberOfSections: Int {
+        return 0
     }
+    
+    private var babies: [Baby] = [Baby(name: "Franuś")] //TODO: implement fetching
     
     //MARK: - internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
@@ -23,6 +23,10 @@ final class SwitchBabyTableViewViewModel {
             cell.update(mainText: baby.name)
             cell.type = .switchBaby(.baby)
         }
+    }
+    
+    func numberOfRows(for section: Int) -> Int {
+        return babies.count + 1
     }
     
     func select(cell: BabyMonitorCell) {

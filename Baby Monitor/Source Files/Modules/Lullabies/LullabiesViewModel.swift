@@ -1,11 +1,11 @@
 //
-//  SettingsViewViewModel.swift
+//  LullabiesViewModel.swift
 //  Baby Monitor
 //
 
 
 import Foundation
 
-final class SettingsViewViewModel {
+final class LullabiesViewModel {
     //TODO: add implementation
 }

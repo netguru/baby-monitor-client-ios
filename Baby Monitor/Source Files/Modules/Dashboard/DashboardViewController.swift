@@ -54,9 +54,9 @@ final class DashboardViewController: BaseViewController {
                                                            target: self,
                                                            action: #selector(onTouchEditProfileButton))
     
-    private let viewModel: DashboardViewViewModel
+    private let viewModel: DashboardViewModel
     
-    init(viewModel: DashboardViewViewModel) {
+    init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
         super.init()
     }

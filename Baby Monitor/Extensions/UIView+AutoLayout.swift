@@ -128,7 +128,7 @@ extension UIView {
     ///   - constant: value
     /// - Returns: created constraint
     /// - Warning: This method uses force-unwrap on view's superview!
-    func equal<Anchor>(_ anchor: KeyPath<UIView, Anchor>, constant: CGFloat = 1) -> Constraint where Anchor: NSLayoutXAxisAnchor {
+    func equal<Anchor>(_ anchor: KeyPath<UIView, Anchor>, constant: CGFloat = 0) -> Constraint where Anchor: NSLayoutXAxisAnchor {
         return equalTo(self.superview!, anchor, anchor, constant: constant)
     }
     
