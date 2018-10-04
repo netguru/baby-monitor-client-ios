@@ -11,6 +11,7 @@ final class BabyMonitorGeneralViewController: BaseViewController {
     enum `Type` {
         case switchBaby
         case activityLog
+        case lullaby
     }
     
     private lazy var tableView: UITableView = {
@@ -63,7 +64,7 @@ final class BabyMonitorGeneralViewController: BaseViewController {
         case .switchBaby:
             tableView.separatorStyle = .none
             view.backgroundColor = .clear
-        case .activityLog:
+        case .activityLog, .lullaby:
             navigationItem.titleView = babyNavigationItemView
             tableView.tableFooterView = UIView()
             backgroundView.isHidden = true
@@ -81,6 +82,10 @@ extension BabyMonitorGeneralViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows(for: section)
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

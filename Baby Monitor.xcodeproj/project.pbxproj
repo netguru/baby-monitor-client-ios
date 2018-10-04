@@ -32,7 +32,6 @@
 		4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BDC216237D8009C44C5 /* DashboardViewController.swift */; };
 		4E994BE121623821009C44C5 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE021623821009C44C5 /* DashboardViewModel.swift */; };
 		4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */; };
-		4E994BEA21624152009C44C5 /* LullabiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE921624152009C44C5 /* LullabiesViewController.swift */; };
 		4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */; };
 		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
@@ -87,7 +86,6 @@
 		4E994BDC216237D8009C44C5 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		4E994BE021623821009C44C5 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesCoordinator.swift; sourceTree = "<group>"; };
-		4E994BE921624152009C44C5 /* LullabiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewController.swift; sourceTree = "<group>"; };
 		4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewModel.swift; sourceTree = "<group>"; };
 		4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewModel.swift; sourceTree = "<group>"; };
 		4E994BF121624835009C44C5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */,
-				4E994BE921624152009C44C5 /* LullabiesViewController.swift */,
 				4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */,
 			);
 			path = Lullabies;
@@ -478,7 +475,6 @@
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
 				4E9563292164CAC600289475 /* BabyMonitorGeneralViewController.swift in Sources */,
 				4E994BE121623821009C44C5 /* DashboardViewModel.swift in Sources */,
-				4E994BEA21624152009C44C5 /* LullabiesViewController.swift in Sources */,
 				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
 				4EF846E321662A81006AB68C /* BabyMonitorCellSelectable.swift in Sources */,

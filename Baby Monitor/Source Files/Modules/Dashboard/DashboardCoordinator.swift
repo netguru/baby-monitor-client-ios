@@ -12,7 +12,7 @@ final class DashboardCoordinator: Coordinator {
     var navigationController: UINavigationController
     
     private var dashboardViewController: DashboardViewController?
-    private var switchBabyTableViewController: BabyMonitorGeneralViewController?
+    private var switchBabyViewController: BabyMonitorGeneralViewController?
     
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -35,14 +35,14 @@ final class DashboardCoordinator: Coordinator {
 extension DashboardCoordinator: DashboardViewModelCoordinatorDelegate {
     
     func didSelectShowBabies() {
-        if let switchBabyTableViewController = switchBabyTableViewController {
-            switchBabyTableViewController.removeFromParent()
-            self.switchBabyTableViewController = nil
+        if let switchBabyViewController = self.switchBabyViewController {
+            switchBabyViewController.removeFromParent()
+            self.switchBabyViewController = nil
             return
         }
         
-        let switchBabyTableViewViewModel = SwitchBabyViewModel()
-        self.switchBabyTableViewController = BabyMonitorGeneralViewController(viewModel: switchBabyTableViewViewModel, type: .switchBaby)
-        dashboardViewController?.addChild(self.switchBabyTableViewController!)
+        let switchBabyViewModel = SwitchBabyViewModel()
+        self.switchBabyViewController = BabyMonitorGeneralViewController(viewModel: switchBabyViewModel, type: .switchBaby)
+        dashboardViewController?.addChild(self.switchBabyViewController!)
     }
 }

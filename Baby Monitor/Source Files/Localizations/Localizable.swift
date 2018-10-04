@@ -25,6 +25,11 @@ struct Localizable {
     struct SwitchBaby {
         static let addAnotherBaby = localized("switch-baby.add-another.baby")
     }
+    
+    struct Lullabies {
+        static let bmLibrary = localized("lullabies.bm-library")
+        static let yourLullabies = localized("lullabies.your-lullabies")
+    }
 }
 
 private func localized(_ value: String) -> String {
