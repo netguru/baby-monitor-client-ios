@@ -30,7 +30,7 @@ final class DashboardViewController: BaseViewController {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        //TODO: mock for now
+        //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
         label.text = "Franuś"
         return label
     }()
@@ -39,12 +39,12 @@ final class DashboardViewController: BaseViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
-        //TODO: mock for now
+        //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
         label.text = "Nothing unusual, Franuś is probably sleeping calmly and dreaming about sheeps and unicorns."
         return label
     }()
     
-    private let babyNavigationItemView = BabyNavigationItemView(babyName: "Franuś") //TODO: mock for now
+    private let babyNavigationItemView = BabyNavigationItemView(babyName: "Franuś") //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
     private let layoutView = UIView() // only for centering stack view vertically
     private let liveCameraButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.liveCamera)
     private let talkButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.talk)

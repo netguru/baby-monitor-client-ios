@@ -12,7 +12,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
         return 0
     }
     
-    private var babies: [Baby] = [Baby(name: "Franuś")] //TODO: implement fetching
+    private var babies: [Baby] = [Baby(name: "Franuś")] //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
     
     //MARK: - internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
