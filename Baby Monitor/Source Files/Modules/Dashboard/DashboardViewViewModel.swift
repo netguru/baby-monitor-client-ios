@@ -6,10 +6,11 @@
 
 import Foundation
 
+/// Protocol for coordinator delegate of Dashboard view
 protocol DashboardViewViewModelCoordinatorDelegate: class {
     
-    /// <#Description#>
-    func didSelectSwitchBaby()
+    /// Function that informs coordinator delegate about selecting show babies action
+    func didSelectShowBabies()
 }
 
 final class DashboardViewViewModel {
@@ -17,7 +18,7 @@ final class DashboardViewViewModel {
     weak var coordinatorDelegate: DashboardViewViewModelCoordinatorDelegate?
     
     func selectSwitchBaby() {
-        coordinatorDelegate?.didSelectSwitchBaby()
+        coordinatorDelegate?.didSelectShowBabies()
     }
 }
 

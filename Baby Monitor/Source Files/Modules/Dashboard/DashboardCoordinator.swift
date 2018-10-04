@@ -33,7 +33,7 @@ final class DashboardCoordinator: Coordinator {
 //MARK: - DashboardViewViewModelCoordinatorDelegate
 extension DashboardCoordinator: DashboardViewViewModelCoordinatorDelegate {
     
-    func didSelectSwitchBaby() {
+    func didSelectShowBabies() {
         if let switchBabyTableViewController = switchBabyTableViewController {
             switchBabyTableViewController.removeFromParent()
             self.switchBabyTableViewController = nil
