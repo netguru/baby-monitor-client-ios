@@ -21,7 +21,7 @@ final class LullabiesCoordinator: Coordinator {
     
     //MARK: - private functions
     private func showLullabies() {
-        let viewModel = LullabiesViewViewModel()
+        let viewModel = LullabiesViewModel()
         let viewController = LullabiesViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: false)
     }

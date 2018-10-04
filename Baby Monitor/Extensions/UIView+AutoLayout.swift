@@ -157,10 +157,11 @@ extension UIView {
     
     /// Describes edges that are equal to superview safe area edges
     /// - Returns: created constraints
+    /// - Warning: This method uses force-unwrap on view's superview!
     func equalSafeAreaEdges() -> [Constraint] {
         return [
-            equal(.safeAreaTop),
-            equal(.safeAreaBottom),
+            equalTo(superview!, .top, .safeAreaTop),
+            equalTo(superview!, .bottom, .safeAreaBottom),
             equal(.leading),
             equal(.trailing)
         ]

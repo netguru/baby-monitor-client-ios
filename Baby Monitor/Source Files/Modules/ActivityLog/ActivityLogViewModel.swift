@@ -1,11 +1,11 @@
 //
-//  LullabiesViewViewModel.swift
+//  ActivityLogViewModel.swift
 //  Baby Monitor
 //
 
 
 import Foundation
 
-final class LullabiesViewViewModel {
+final class ActivityLogViewModel {
     //TODO: add implementation
 }

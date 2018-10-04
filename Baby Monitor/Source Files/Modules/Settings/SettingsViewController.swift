@@ -8,9 +8,9 @@ import UIKit
 
 final class SettingsViewController: BaseViewController {
     
-    private let viewModel: SettingsViewViewModel
+    private let viewModel: SettingsViewModel
     
-    init(viewModel: SettingsViewViewModel) {
+    init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
         super.init()
     }

@@ -1,11 +1,11 @@
 //
-//  ActivityLogViewViewModel.swift
+//  SettingsViewModel.swift
 //  Baby Monitor
 //
 
 
 import Foundation
 
-final class ActivityLogViewViewModel {
+final class SettingsViewModel {
     //TODO: add implementation
 }
