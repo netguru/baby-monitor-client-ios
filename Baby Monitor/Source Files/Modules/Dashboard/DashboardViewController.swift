@@ -52,7 +52,7 @@ final class DashboardViewController: BaseViewController {
     private let editProfileBarButtonItem = UIBarButtonItem(title: Localizable.Dashboard.editProfile,
                                                            style: .plain,
                                                            target: self,
-                                                           action: #selector(onTouchEditProfileButton))
+                                                           action: #selector(didTouchEditProfileButton))
     
     private let viewModel: DashboardViewModel
     
@@ -63,26 +63,36 @@ final class DashboardViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+    
+    //MARK: - Selectors
+    @objc private func didTouchEditProfileButton() {
+        //TODO: add implementation
+    }
+    
+    @objc private func didTouchCameraPreviewButton() {
+        viewModel.selectLiveCameraPreview()
+    }
+    
+    //MARK: - private functions
+    private func setup() {
+        
+        setupLayout()
+    }
+    private func setupLayout() {
+        [layoutView, photoImageView, nameLabel, descriptionLabel, dashboardButtonsStackView].forEach {
+            view.addSubview($0)
+        }
         
         navigationItem.rightBarButtonItem = editProfileBarButtonItem
         navigationItem.titleView = babyNavigationItemView
         babyNavigationItemView.onSelectArrow = { [weak self] in
             self?.viewModel.selectSwitchBaby()
         }
-        setupLayout()
-    }
-    
-    //MARK: - Selectors
-    @objc private func onTouchEditProfileButton() {
-        //TODO: add implementation
-    }
-    
-    //MARK: - private functions
-    private func setupLayout() {
-        [layoutView, photoImageView, nameLabel, descriptionLabel, dashboardButtonsStackView].forEach {
-            view.addSubview($0)
+        liveCameraButton.onSelect = { [weak self] in
+          self?.viewModel.selectLiveCameraPreview()
         }
-        
         setupConstraints()
     }
     

@@ -54,7 +54,7 @@ final class BabyMonitorGeneralViewController: BaseViewController {
         tableView.separatorStyle = .singleLine
         
         babyNavigationItemView.onSelectArrow = { [weak self] in
-            guard let babiesViewShowableViewModel = self?.viewModel as? BabiesViewShowable else {
+            guard let babiesViewShowableViewModel = self?.viewModel as? BabiesViewSelectable else {
                 return
             }
             babiesViewShowableViewModel.selectShowBabies()
