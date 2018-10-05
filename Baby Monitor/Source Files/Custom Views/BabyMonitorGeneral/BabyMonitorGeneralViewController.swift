@@ -6,79 +6,48 @@
 
 import UIKit
 
-final class BabyMonitorGeneralViewController: BaseViewController {
+final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralView>, UITableViewDataSource, UITableViewDelegate {
     
-    enum `Type` {
+    enum ViewType {
         case switchBaby
         case activityLog
     }
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView.init(frame: .zero, style: .grouped)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.backgroundColor = .clear
-        tableView.register(BabyMonitorCell.self, forCellReuseIdentifier: BabyMonitorCell.identifier)
-        tableView.tableFooterView = UIView()
-        tableView.separatorStyle = .none
-        return tableView
-    }()
-    
-    private lazy var babyNavigationItemView = BabyNavigationItemView(babyName: "Franuś") //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
-    
-    private let backgroundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        view.alpha = 0.75
-        return view
-    }()
-    
     private let viewModel: BabyMonitorGeneralViewModelProtocol
-    private let type: Type
+    private let viewType: ViewType
     
-    init(viewModel: BabyMonitorGeneralViewModelProtocol, type: Type) {
-        self.type = type
+    init(viewModel: BabyMonitorGeneralViewModelProtocol, type: ViewType) {
         self.viewModel = viewModel
-        super.init()
+        self.viewType = type
+        super.init(viewMaker: BabyMonitorGeneralView(type: type))
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setup()
     }
     
-    //MARK: - private functions
+    //MARK: - Private functions
     private func setup() {
-        tableView.separatorStyle = .singleLine
-        
-        babyNavigationItemView.onSelectArrow = { [weak self] in
+        customView.tableView.dataSource = self
+        customView.tableView.delegate = self
+        let navigationView = customView.babyNavigationItemView
+        navigationView.onSelectArrow = { [weak self] in
             guard let babiesViewShowableViewModel = self?.viewModel as? BabiesViewShowable else {
                 return
             }
             babiesViewShowableViewModel.selectShowBabies()
         }
         
-        switch type {
-        case .switchBaby:
-            tableView.separatorStyle = .none
-            view.backgroundColor = .clear
+        switch viewType {
         case .activityLog:
-            navigationItem.titleView = babyNavigationItemView
-            tableView.tableFooterView = UIView()
-            backgroundView.isHidden = true
-        }
-        
-        [backgroundView, tableView].forEach {
-            view.addSubview($0)
-            $0.addConstraints({ $0.equalSafeAreaEdges() })
+            navigationItem.titleView = navigationView
+        case .switchBaby:
+            break
         }
     }
-}
-
-//MARK: - UITableViewDataSource
-extension BabyMonitorGeneralViewController: UITableViewDataSource {
     
+    //MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows(for: section)
     }
@@ -98,11 +67,8 @@ extension BabyMonitorGeneralViewController: UITableViewDataSource {
         headerConfigurableViewModel.configure(headerCell: headerCell, for: section)
         return headerCell
     }
-}
 
-//MARK: - UITableViewDelegate
-extension BabyMonitorGeneralViewController: UITableViewDelegate {
-    
+    //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? BabyMonitorCell,
             let cellSelectableViewModel = viewModel as? BabyMonitorCellSelectable else {
