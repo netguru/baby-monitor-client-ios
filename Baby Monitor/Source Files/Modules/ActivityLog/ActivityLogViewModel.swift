@@ -8,6 +8,7 @@ import UIKit
 
 protocol ActivityLogViewModelCoordinatorDelegate: class {
     
+    /// This function informs coordinator about selecting show babies view action
     func didSelectShowBabies()
 }
 

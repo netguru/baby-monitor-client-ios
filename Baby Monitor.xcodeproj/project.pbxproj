@@ -11,6 +11,10 @@
 		4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7A2163480C001CD8EA /* SettingsViewController.swift */; };
 		4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */; };
 		4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */; };
+		4E1D2C6321678D5700E92F29 /* BabyMonitorGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C6221678D5600E92F29 /* BabyMonitorGeneralView.swift */; };
+		4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C6421678D9100E92F29 /* TypedViewController.swift */; };
+		4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C66216791AD00E92F29 /* DashboardView.swift */; };
+		4E1D2C692167926500E92F29 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C682167926500E92F29 /* BaseView.swift */; };
 		4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */; };
 		4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7952161FBA1005575E0 /* Coordinator.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
@@ -65,6 +69,10 @@
 		4E075C7A2163480C001CD8EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		4E1D2C6221678D5600E92F29 /* BabyMonitorGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralView.swift; sourceTree = "<group>"; };
+		4E1D2C6421678D9100E92F29 /* TypedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypedViewController.swift; sourceTree = "<group>"; };
+		4E1D2C66216791AD00E92F29 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		4E1D2C682167926500E92F29 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		4E6EA7952161FBA1005575E0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
@@ -150,14 +158,6 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		4E956316216351B100289475 /* Custom Views */ = {
-			isa = PBXGroup;
-			children = (
-				4E9563172163521900289475 /* DashboardButton.swift */,
-			);
-			path = "Custom Views";
-			sourceTree = "<group>";
-		};
 		4E95631921638CE400289475 /* Localizations */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,8 +201,10 @@
 			isa = PBXGroup;
 			children = (
 				4EF36FBB21660F1700257384 /* BabyMonitorGeneral */,
+				4E1D2C6421678D9100E92F29 /* TypedViewController.swift */,
 				4E9563382164F09C00289475 /* BabyNavigationItemView.swift */,
 				4E994BF121624835009C44C5 /* BaseViewController.swift */,
+				4E1D2C682167926500E92F29 /* BaseView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -210,10 +212,11 @@
 		4E994BDB216237CB009C44C5 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				4E956316216351B100289475 /* Custom Views */,
 				4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */,
 				4E994BDC216237D8009C44C5 /* DashboardViewController.swift */,
 				4E994BE021623821009C44C5 /* DashboardViewModel.swift */,
+				4E9563172163521900289475 /* DashboardButton.swift */,
+				4E1D2C66216791AD00E92F29 /* DashboardView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				4E95632A2164CB7900289475 /* BabyMonitorCell.swift */,
 				4E9563282164CAC600289475 /* BabyMonitorGeneralViewController.swift */,
 				4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */,
+				4E1D2C6221678D5600E92F29 /* BabyMonitorGeneralView.swift */,
 			);
 			path = BabyMonitorGeneral;
 			sourceTree = "<group>";
@@ -460,6 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
@@ -472,8 +477,11 @@
 				4EF846E521663057006AB68C /* BabiesViewShowable.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */,
+				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
+				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
 				4E9563292164CAC600289475 /* BabyMonitorGeneralViewController.swift in Sources */,
+				4E1D2C6321678D5700E92F29 /* BabyMonitorGeneralView.swift in Sources */,
 				4E994BE121623821009C44C5 /* DashboardViewModel.swift in Sources */,
 				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
