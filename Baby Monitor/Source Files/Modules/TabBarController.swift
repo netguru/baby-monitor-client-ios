@@ -20,12 +20,8 @@ final class TabBarController: UITabBarController {
         guard let viewControllers = viewControllers else {
             return
         }
-        
-        for (index, viewController) in viewControllers.enumerated() {
-            guard index < viewControllersTitles.count else {
-                return
-            }
-            viewController.tabBarItem.title = viewControllersTitles[index]
+        for (controller, title) in zip(viewControllers, viewControllersTitles) {
+            controller.tabBarItem.title = title
         }
     }
 }
