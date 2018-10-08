@@ -7,7 +7,6 @@
 import Foundation
 
 protocol LullabiesViewModelCoordinatorDelegate: class {
-    
     func didSelectShowBabiesView()
 }
 
@@ -20,9 +19,7 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
     
     weak var coordinatorDelegate: LullabiesViewModelCoordinatorDelegate?
     
-    var numberOfSections: Int {
-        return 2
-    }
+    let numberOfSections = 2
     
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
         cell.type = .lullaby
