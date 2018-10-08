@@ -11,7 +11,7 @@ final class ActivityLogCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
-    private var switchBabyTableViewController: BabyMonitorGeneralViewController?
+    private var switchBabyViewController: BabyMonitorGeneralViewController?
     private var activityLogViewController: BabyMonitorGeneralViewController?
     
     init(_ navigationController: UINavigationController) {
@@ -34,14 +34,14 @@ final class ActivityLogCoordinator: Coordinator {
 extension ActivityLogCoordinator: ActivityLogViewModelCoordinatorDelegate {
     
     func didSelectShowBabies() {
-        if let switchBabyTableViewController = switchBabyTableViewController {
-            switchBabyTableViewController.removeFromParent()
-            self.switchBabyTableViewController = nil
+        if let switchBabyViewController = switchBabyViewController {
+            switchBabyViewController.removeFromParent()
+            self.switchBabyViewController = nil
             return
         }
         
-        let switchBabyTableViewViewModel = SwitchBabyViewModel()
-        self.switchBabyTableViewController = BabyMonitorGeneralViewController(viewModel: switchBabyTableViewViewModel, type: .switchBaby)
-        activityLogViewController?.addChild(self.switchBabyTableViewController!)
+        let switchBabyViewModel = SwitchBabyViewModel()
+        self.switchBabyViewController = BabyMonitorGeneralViewController(viewModel: switchBabyViewModel, type: .switchBaby)
+        activityLogViewController?.addChild(self.switchBabyViewController!)
     }
 }

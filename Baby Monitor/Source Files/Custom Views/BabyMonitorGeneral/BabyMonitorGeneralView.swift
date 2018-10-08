@@ -38,7 +38,7 @@ final class BabyMonitorGeneralView: BaseView {
             tableView.separatorStyle = .none
             backgroundColor = .clear
             tableView.backgroundColor = .clear
-        case .activityLog:
+        case .activityLog, .lullaby:
             tableView.tableFooterView = UIView()
             backgroundView.isHidden = true
             tableView.backgroundColor = .white

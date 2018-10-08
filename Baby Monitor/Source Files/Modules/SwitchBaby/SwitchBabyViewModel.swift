@@ -9,7 +9,7 @@ import Foundation
 final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorCellSelectable {
     
     var numberOfSections: Int {
-        return 0
+        return 1
     }
     
     private var babies: [Baby] = [Baby(name: "Franuś")] //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67

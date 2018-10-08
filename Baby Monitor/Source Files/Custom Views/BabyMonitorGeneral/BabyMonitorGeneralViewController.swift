@@ -11,6 +11,7 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
     enum ViewType {
         case switchBaby
         case activityLog
+        case lullaby
     }
     
     private let viewModel: BabyMonitorGeneralViewModelProtocol
@@ -40,7 +41,7 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
         }
         
         switch viewType {
-        case .activityLog:
+        case .activityLog, .lullaby:
             navigationItem.titleView = navigationView
         case .switchBaby:
             break
@@ -50,6 +51,10 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
     //MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows(for: section)
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
