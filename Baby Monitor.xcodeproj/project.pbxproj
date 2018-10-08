@@ -21,6 +21,7 @@
 		4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */; };
 		4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7952161FBA1005575E0 /* Coordinator.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
+		4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */; };
 		4E931330216635B700AEE942 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93132F216635B700AEE942 /* TabBarController.swift */; };
 		4E9563182163521900289475 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563172163521900289475 /* DashboardButton.swift */; };
 		4E95631B21638D1500289475 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95631A21638D1500289475 /* Localizable.swift */; };
@@ -82,6 +83,7 @@
 		4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		4E6EA7952161FBA1005575E0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		4E93132F216635B700AEE942 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4E9563172163521900289475 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		4E95631A21638D1500289475 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				4E1D2C5C21673FF800E92F29 /* CameraPreviewViewController.swift */,
 				4E1D2C5E216751F400E92F29 /* CameraPreviewViewModel.swift */,
+				4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */,
 			);
 			path = CameraPreview;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
 				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
 				4E9563262164BA4600289475 /* WindowInitializable.swift in Sources */,
+				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
 				4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */,
 				4E9563342164E75700289475 /* Identifiable.swift in Sources */,
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
