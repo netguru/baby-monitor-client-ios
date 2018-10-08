@@ -12,7 +12,7 @@ final class DashboardCoordinator: Coordinator {
     var navigationController: UINavigationController
     
     private var dashboardViewController: DashboardViewController?
-    private var switchBabyTableViewController: SwitchBabyViewController?
+    private var switchBabyTableViewController: BabyMonitorGeneralViewController?
     
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -30,6 +30,7 @@ final class DashboardCoordinator: Coordinator {
     }
 }
 
+
 //MARK: - DashboardViewModelCoordinatorDelegate
 extension DashboardCoordinator: DashboardViewModelCoordinatorDelegate {
     
@@ -40,8 +41,8 @@ extension DashboardCoordinator: DashboardViewModelCoordinatorDelegate {
             return
         }
         
-        let switchBabyTableViewViewModel = SwitchBabyTableViewModel()
-        self.switchBabyTableViewController = SwitchBabyViewController(viewModel: switchBabyTableViewViewModel)
+        let switchBabyTableViewViewModel = SwitchBabyViewModel()
+        self.switchBabyTableViewController = BabyMonitorGeneralViewController(viewModel: switchBabyTableViewViewModel, type: .switchBaby)
         dashboardViewController?.addChild(self.switchBabyTableViewController!)
     }
 }

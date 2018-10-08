@@ -7,6 +7,7 @@
 import Foundation
 
 final class Baby {
+    
     let name: String
     
     init(name: String) {

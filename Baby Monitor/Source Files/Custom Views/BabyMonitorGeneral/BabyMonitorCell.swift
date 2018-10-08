@@ -30,7 +30,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
     private let mainLabel = UILabel()
     private let secondaryLabel: UILabel = {
         let label = UILabel()
-        label.font = label.font.withSize(5)
+        label.font = label.font.withSize(15)
         return label
     }()
     
@@ -90,6 +90,14 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
     /// Updates main image
     func update(image: UIImage) {
         photoImageView.image = image
+    }
+    
+    /// Configures cell to look like a header
+    func configureAsHeader() {
+        [secondaryLabel, photoImageView, additionalButton].forEach {
+            $0.isHidden = true
+        }
+        mainLabel.font = mainLabel.font.withSize(30)
     }
     
     //MARK: - Private functions

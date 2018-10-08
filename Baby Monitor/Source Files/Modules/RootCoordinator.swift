@@ -17,7 +17,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
     
     var window: UIWindow
     
-    private let tabBarController = UITabBarController()
+    private let tabBarController = TabBarController()
     
     init(_ window: UIWindow) {
         self.window = window
@@ -33,6 +33,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
     private func setup() {
         let tabViewControllers = childCoordinators.map { $0.navigationController }
         tabBarController.setViewControllers(tabViewControllers, animated: false)
+        tabBarController.setupTitles()
         window.rootViewController = tabBarController
     }
 }

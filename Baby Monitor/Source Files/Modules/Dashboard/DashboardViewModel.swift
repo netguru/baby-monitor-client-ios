@@ -6,7 +6,6 @@
 
 import Foundation
 
-/// Protocol for coordinator delegate of Dashboard view
 protocol DashboardViewModelCoordinatorDelegate: class {
     
     /// Function that informs coordinator delegate about selecting show babies action
