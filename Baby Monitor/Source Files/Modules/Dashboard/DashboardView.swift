@@ -12,6 +12,9 @@ class DashboardView: BaseView {
         static let mainOffset: CGFloat = 20
     }
     
+    let liveCameraButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.liveCamera)
+    let talkButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.talk)
+    let playLullabyButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.playLullaby)
     let babyNavigationItemView = BabyNavigationItemView(babyName: "Franuś") //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
     let editProfileBarButtonItem = UIBarButtonItem(title: Localizable.Dashboard.editProfile,
                                                    style: .plain,
@@ -51,9 +54,6 @@ class DashboardView: BaseView {
     }()
     
     private let layoutView = UIView() // only for centering stack view vertically
-    private let liveCameraButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.liveCamera)
-    private let talkButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.talk)
-    private let playLullabyButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.playLullaby)
     
     override init() {
         super.init()

@@ -6,18 +6,19 @@
 
 import Foundation
 
-protocol DashboardViewModelCoordinatorDelegate: class {
-    
-    /// Function that informs coordinator delegate about selecting show babies action
-    func didSelectShowBabies()
-}
-
 final class DashboardViewModel {
     
-    weak var coordinatorDelegate: DashboardViewModelCoordinatorDelegate?
+    //MARK: - Coordinator callback
+    var didSelectShowBabies: (() -> Void)?
+    var didSelectLiveCameraPreview: (() -> Void)?
     
+    //MARK: - Internal functions
     func selectSwitchBaby() {
-        coordinatorDelegate?.didSelectShowBabies()
+        didSelectShowBabies?()
+    }
+    
+    func selectLiveCameraPreview() {
+        didSelectLiveCameraPreview?()
     }
 }
 

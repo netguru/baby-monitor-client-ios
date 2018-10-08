@@ -6,22 +6,18 @@
 
 import UIKit
 
-protocol ActivityLogViewModelCoordinatorDelegate: class {
-    
-    /// This function informs coordinator about selecting show babies view action
-    func didSelectShowBabies()
-}
-
-final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewShowable {
-    
-    weak var coordinatorDelegate: ActivityLogViewModelCoordinatorDelegate?
+final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
     
     var numberOfSections: Int {
         return 1
     }
     
+    //MARK: - Coordinator callback
+    var didSelectShowBabies: (() -> Void)?
+    
+    //MARK: - Internal functions
     func selectShowBabies() {
-        coordinatorDelegate?.didSelectShowBabies()
+        didSelectShowBabies?()
     }
     
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {

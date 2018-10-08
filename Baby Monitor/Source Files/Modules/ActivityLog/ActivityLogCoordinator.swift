@@ -6,12 +6,12 @@
 
 import UIKit
 
-final class ActivityLogCoordinator: Coordinator {
+final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
     
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
+    var switchBabyViewController: BabyMonitorGeneralViewController?
     
-    private var switchBabyViewController: BabyMonitorGeneralViewController?
     private var activityLogViewController: BabyMonitorGeneralViewController?
     
     init(_ navigationController: UINavigationController) {
@@ -25,23 +25,13 @@ final class ActivityLogCoordinator: Coordinator {
     //MARK: - private functions
     private func showActivityLog() {
         let viewModel = ActivityLogViewModel()
-        viewModel.coordinatorDelegate = self
+        viewModel.didSelectShowBabies = { [weak self] in
+            guard let activityLogViewController = self?.activityLogViewController else {
+                return
+            }
+            self?.toggleSwitchBabiesView(on: activityLogViewController)
+        }
         activityLogViewController = BabyMonitorGeneralViewController(viewModel: viewModel, type: .activityLog)
         navigationController.pushViewController(activityLogViewController!, animated: false)
-    }
-}
-
-extension ActivityLogCoordinator: ActivityLogViewModelCoordinatorDelegate {
-    
-    func didSelectShowBabies() {
-        if let switchBabyViewController = switchBabyViewController {
-            switchBabyViewController.removeFromParent()
-            self.switchBabyViewController = nil
-            return
-        }
-        
-        let switchBabyViewModel = SwitchBabyViewModel()
-        self.switchBabyViewController = BabyMonitorGeneralViewController(viewModel: switchBabyViewModel, type: .switchBaby)
-        activityLogViewController?.addChild(self.switchBabyViewController!)
     }
 }

@@ -21,7 +21,7 @@ final class DashboardViewController: TypedViewController<DashboardView> {
     }
     
     //MARK: - Selectors
-    @objc private func onTouchEditProfileButton() {
+    @objc private func didTouchEditProfileButton() {
         //TODO: add implementation
     }
     
@@ -31,6 +31,9 @@ final class DashboardViewController: TypedViewController<DashboardView> {
         navigationItem.titleView = customView.babyNavigationItemView
         customView.babyNavigationItemView.onSelectArrow = { [weak self] in
             self?.viewModel.selectSwitchBaby()
+        }
+        customView.liveCameraButton.onSelect = { [weak self] in
+            self?.viewModel.selectLiveCameraPreview()
         }
     }
 }

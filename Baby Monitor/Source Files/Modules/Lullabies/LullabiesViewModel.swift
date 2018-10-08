@@ -6,21 +6,19 @@
 
 import Foundation
 
-protocol LullabiesViewModelCoordinatorDelegate: class {
-    func didSelectShowBabiesView()
-}
-
-final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewShowable {
+final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
     
     private enum Constants {
         static let bmLibrarySection = 0
         static let yourLullabiesSection = 1
     }
     
-    weak var coordinatorDelegate: LullabiesViewModelCoordinatorDelegate?
-    
     let numberOfSections = 2
     
+    //MARK: - Coordinator callback
+    var didSelectShowBabiesView: (() -> Void)?
+    
+    //MARK: - Internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
         cell.type = .lullaby
         //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
@@ -34,7 +32,7 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
     }
     
     func selectShowBabies() {
-        coordinatorDelegate?.didSelectShowBabiesView()
+        didSelectShowBabiesView?()
     }
     
     func configure(headerCell: BabyMonitorCell, for section: Int) {

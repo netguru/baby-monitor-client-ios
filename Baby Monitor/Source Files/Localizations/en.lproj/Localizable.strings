@@ -3,6 +3,9 @@
   Baby Monitor
 */
 
+//MARK: - General
+"general.cancel" = "Cancel";
+
 //MARK: - Dashboard
 "dashboard.button.live-camera" = "LIVE CAMERA";
 "dashboard.button.talk" = "TALK";

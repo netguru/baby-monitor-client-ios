@@ -34,7 +34,7 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
         customView.tableView.delegate = self
         let navigationView = customView.babyNavigationItemView
         navigationView.onSelectArrow = { [weak self] in
-            guard let babiesViewShowableViewModel = self?.viewModel as? BabiesViewShowable else {
+            guard let babiesViewShowableViewModel = self?.viewModel as? BabiesViewSelectable else {
                 return
             }
             babiesViewShowableViewModel.selectShowBabies()

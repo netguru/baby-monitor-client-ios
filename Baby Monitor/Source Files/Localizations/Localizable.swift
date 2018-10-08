@@ -8,6 +8,10 @@ import Foundation
 
 struct Localizable {
     
+    struct General {
+        static let cancel = localized("general.cancel")
+    }
+    
     struct TabBar {
         static let dashboard = localized("tab-bar.dashboard")
         static let activityLog = localized("tab-bar.activity-log")
