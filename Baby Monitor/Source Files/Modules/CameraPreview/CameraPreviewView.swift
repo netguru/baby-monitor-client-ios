@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class CameraPreviewView: UIView {
+final class CameraPreviewView: BaseView {
     
     let babyNavigationItemView = BabyNavigationItemView(babyName: "Franuś") //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
     let cancelItemButton = UIBarButtonItem(barButtonSystemItem: .cancel,
@@ -23,6 +23,10 @@ final class CameraPreviewView: UIView {
     private let microphoneButton = UIButton()
     private let stopButton = UIButton()
     
+    override init() {
+        super.init()
+        setup()
+    }
     
     //MARK: - Private functions
     private func setup() {

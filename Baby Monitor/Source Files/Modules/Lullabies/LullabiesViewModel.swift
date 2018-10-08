@@ -13,9 +13,7 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
         static let yourLullabiesSection = 1
     }
     
-    var numberOfSections: Int {
-        return 2
-    }
+    let numberOfSections = 2
     
     //MARK: - Coordinator callback
     var didSelectShowBabiesView: (() -> Void)?
