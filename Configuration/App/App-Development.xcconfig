@@ -1,0 +1,13 @@
+//
+//  App-Development.xcconfig
+//  Baby Monitor
+//
+
+#include "App-Base.xcconfig"
+#include ".../Pods/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.development.xcconfig"
+
+__BUNDLE_IDENTIFIER_SUFFIX = .development
+
+_CODESIGN_DEVELOPMENT_TEAM = 9HJ69C5G9K
+_CODESIGN_IDENTITY = iPhone Developer
+_CODESIGN_PROFILE_SPECIFIER = BabyMonitor Development

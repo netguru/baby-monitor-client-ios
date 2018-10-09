@@ -1,0 +1,15 @@
+//
+//  Tests-Base.xcconfig
+//  Baby Monitor
+//
+
+#include ".../Carthage/Checkouts/xcconfigs/Platforms/iOS.xcconfig"
+#include ".../Carthage/Checkouts/xcconfigs/Targets/Tests.xcconfig"
+
+_BUNDLE_NAME = BabyMonitor
+_PRODUCT_NAME = Baby Monitor Tests
+_BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Baby MonitorTests/Supporting Files/Info.plist
+_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor.test
+
+TEST_HOST = $(BUILT_PRODUCTS_DIR)/BabyMonitor.app/BabyMonitor
+BUNDLE_LOADER = $(TEST_HOST)

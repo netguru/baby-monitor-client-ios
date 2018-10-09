@@ -1,0 +1,13 @@
+//
+//  App-Release.xcconfig
+//  Baby Monitor
+//
+
+#include "App-Base.xcconfig"
+#include ".../Pods/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.production.xcconfig"
+
+__BUNDLE_IDENTIFIER_SUFFIX = .production
+
+_CODESIGN_DEVELOPMENT_TEAM = SK8PDF7SG9
+_CODESIGN_IDENTITY = iPhone Distribution
+_CODESIGN_PROFILE_SPECIFIER = BabyMonitor Production
