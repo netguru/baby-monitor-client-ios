@@ -12,6 +12,11 @@ struct Localizable {
         static let cancel = localized("general.cancel")
     }
     
+    struct Onboarding {
+        static let startClient = localized("onboarding.button.start-client")
+        static let startServer = localized("onboarding.button.start-server")
+    }
+    
     struct TabBar {
         static let dashboard = localized("tab-bar.dashboard")
         static let activityLog = localized("tab-bar.activity-log")
