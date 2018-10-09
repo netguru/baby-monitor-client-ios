@@ -47,8 +47,6 @@
 		4EF846E121662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */; };
 		4EF846E321662A81006AB68C /* BabyMonitorCellSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */; };
 		4EF846E521663057006AB68C /* BabiesViewSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E421663057006AB68C /* BabiesViewSelectable.swift */; };
-		5C751CEFC8023F170587714D /* libPods-Baby Monitor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 289363E712574942D9E1CC10 /* libPods-Baby Monitor.a */; };
-		6C1E9E25831D0A15065E8E60 /* libPods-Baby MonitorTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6228E64CDEFE41C3D99C135A /* libPods-Baby MonitorTests.a */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
@@ -69,7 +67,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		289363E712574942D9E1CC10 /* libPods-Baby Monitor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Baby Monitor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCoordinator.swift; sourceTree = "<group>"; };
 		4E075C7A2163480C001CD8EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -112,14 +109,10 @@
 		4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Production.xcconfig"; sourceTree = "<group>"; };
 		4EA662F8216CBDEA009AD3B6 /* App-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Base.xcconfig"; sourceTree = "<group>"; };
-		4EA662FA216CC1D2009AD3B6 /* Tests-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Development.xcconfig"; sourceTree = "<group>"; };
-		4EA662FB216CC224009AD3B6 /* Tests-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Staging.xcconfig"; sourceTree = "<group>"; };
-		4EA662FC216CC231009AD3B6 /* Tests-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Production.xcconfig"; sourceTree = "<group>"; };
 		4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorHeaderCellConfigurable.swift; sourceTree = "<group>"; };
 		4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellSelectable.swift; sourceTree = "<group>"; };
 		4EF846E421663057006AB68C /* BabiesViewSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabiesViewSelectable.swift; sourceTree = "<group>"; };
-		6228E64CDEFE41C3D99C135A /* libPods-Baby MonitorTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Baby MonitorTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -138,7 +131,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C751CEFC8023F170587714D /* libPods-Baby Monitor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,29 +138,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C1E9E25831D0A15065E8E60 /* libPods-Baby MonitorTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		154977C0F0092F839118C5F5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		248581281BEE305A158C4D45 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				289363E712574942D9E1CC10 /* libPods-Baby Monitor.a */,
-				6228E64CDEFE41C3D99C135A /* libPods-Baby MonitorTests.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		4E1D2C5B21673FE200E92F29 /* CameraPreview */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +152,36 @@
 				4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */,
 			);
 			path = CameraPreview;
+			sourceTree = "<group>";
+		};
+		4E56C7E8216CEE9000379FB4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4EA662F8216CBDEA009AD3B6 /* App-Base.xcconfig */,
+				ECB146DB213EA45E00C504FD /* App-Development.xcconfig */,
+				ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */,
+				ECB146DA213EA45E00C504FD /* App-Production.xcconfig */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4E56C7E9216CEE9000379FB4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4EA662F4216CBA36009AD3B6 /* Common-Base.xcconfig */,
+				4EA662F5216CBC8A009AD3B6 /* Common-Development.xcconfig */,
+				4EA662F6216CBCEC009AD3B6 /* Common-Staging.xcconfig */,
+				4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4E56C7EA216CEE9000379FB4 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		4E5BEB13215E5EC60056E5CC /* Extensions */ = {
@@ -296,39 +301,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		4ED7B938216CE01900D847C3 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				4EA662F4216CBA36009AD3B6 /* Common-Base.xcconfig */,
-				4EA662F5216CBC8A009AD3B6 /* Common-Development.xcconfig */,
-				4EA662F6216CBCEC009AD3B6 /* Common-Staging.xcconfig */,
-				4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		4ED7B939216CE02200D847C3 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				4EA662F8216CBDEA009AD3B6 /* App-Base.xcconfig */,
-				ECB146DB213EA45E00C504FD /* App-Development.xcconfig */,
-				ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */,
-				ECB146DA213EA45E00C504FD /* App-Production.xcconfig */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		4ED7B93A216CE02C00D847C3 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */,
-				4EA662FA216CC1D2009AD3B6 /* Tests-Development.xcconfig */,
-				4EA662FB216CC224009AD3B6 /* Tests-Staging.xcconfig */,
-				4EA662FC216CC231009AD3B6 /* Tests-Production.xcconfig */,
-			);
-			path = Test;
-			sourceTree = "<group>";
-		};
 		4EF36FBB21660F1700257384 /* BabyMonitorGeneral */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,8 +319,6 @@
 				EC82B558213EA072005CA395 /* Baby Monitor */,
 				EC82B56D213EA074005CA395 /* Baby MonitorTests */,
 				EC82B557213EA072005CA395 /* Products */,
-				154977C0F0092F839118C5F5 /* Pods */,
-				248581281BEE305A158C4D45 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -430,9 +400,9 @@
 		ECB146D9213EA44C00C504FD /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				4ED7B939216CE02200D847C3 /* App */,
-				4ED7B938216CE01900D847C3 /* Common */,
-				4ED7B93A216CE02C00D847C3 /* Test */,
+				4E56C7E8216CEE9000379FB4 /* App */,
+				4E56C7E9216CEE9000379FB4 /* Common */,
+				4E56C7EA216CEE9000379FB4 /* Tests */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -444,7 +414,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC82B573213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby Monitor" */;
 			buildPhases = (
-				31D3D743ED31B26C782328B3 /* [CP] Check Pods Manifest.lock */,
 				EC82B552213EA072005CA395 /* Sources */,
 				EC82B553213EA072005CA395 /* Frameworks */,
 				EC82B554213EA072005CA395 /* Resources */,
@@ -541,24 +510,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		31D3D743ED31B26C782328B3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Baby Monitor-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E321451CD81F8FAB001BF947 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -695,14 +646,14 @@
 		};
 		EC82B577213EA074005CA395 /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EA662FA216CC1D2009AD3B6 /* Tests-Development.xcconfig */;
+			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
 			buildSettings = {
 			};
 			name = Development;
 		};
 		EC82B578213EA074005CA395 /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EA662FC216CC231009AD3B6 /* Tests-Production.xcconfig */;
+			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
 			buildSettings = {
 			};
 			name = Production;
@@ -723,7 +674,7 @@
 		};
 		EC82B585213EA3E5005CA395 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EA662FB216CC224009AD3B6 /* Tests-Staging.xcconfig */;
+			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
 			buildSettings = {
 			};
 			name = Staging;

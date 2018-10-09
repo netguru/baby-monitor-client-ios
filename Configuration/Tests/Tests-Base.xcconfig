@@ -3,8 +3,8 @@
 //  Baby Monitor
 //
 
-#include ".../Carthage/Checkouts/xcconfigs/Platforms/iOS.xcconfig"
-#include ".../Carthage/Checkouts/xcconfigs/Targets/Tests.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Platforms/iOS.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Targets/Tests.xcconfig"
 
 _BUNDLE_NAME = BabyMonitor
 _PRODUCT_NAME = Baby Monitor Tests

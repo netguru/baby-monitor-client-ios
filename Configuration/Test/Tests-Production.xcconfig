@@ -1,6 +1,0 @@
-//
-//  Tests-Production.xcconfig
-//  Baby Monitor
-//
-#include "Tests-Base.xcconfig"
-#include ".../Pods/Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.production.xcconfig"

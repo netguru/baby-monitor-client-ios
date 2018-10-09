@@ -4,6 +4,6 @@
 //
 
 #include "Common-Base.xcconfig"
-#include ".../Carthage/Checkouts/xcconfigs/Configurations/Release.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Configurations/Release.xcconfig"
 
 _ENVIRONMENTS = ENV_PRODUCTION

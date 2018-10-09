@@ -4,6 +4,6 @@
 //
 
 #include "Common-Base.xcconfig"
-#include ".../Carthage/Checkouts/xcconfigs/Configurations/Debug.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Configurations/Debug.xcconfig"
 
 _ENVIRONMENTS = ENV_DEVELOPMENT
