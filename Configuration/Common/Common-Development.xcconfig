@@ -7,3 +7,5 @@
 #include "../../Carthage/Checkouts/xcconfigs/Configurations/Debug.xcconfig"
 
 _ENVIRONMENTS = ENV_DEVELOPMENT
+
+DEBUG_INFORMATION_FORMAT = dwarf

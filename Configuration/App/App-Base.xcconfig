@@ -15,3 +15,5 @@ _BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor$(__BUNDLE_IDENTIFIER_SUFFIX
 _ASSET_ICON = AppIcon
 
 _CODESIGN_STYLE = Manual
+
+_COMPILER_SWIFT_BRIDGING_HEADER_PATH = $(SRCROOT)/Baby Monitor/Resources/Bridging-Header.h

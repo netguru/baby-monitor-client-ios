@@ -1,0 +1,16 @@
+PODS:
+  - MobileVLCKit (3.1.5)
+
+DEPENDENCIES:
+  - MobileVLCKit (~> 3.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MobileVLCKit
+
+SPEC CHECKSUMS:
+  MobileVLCKit: 4d44e56380d0ee41c76f9ec7015d3a4b62a963a3
+
+PODFILE CHECKSUM: a23265e29dfe3e27ea089748d46c3139e59920e0
+
+COCOAPODS: 1.5.3

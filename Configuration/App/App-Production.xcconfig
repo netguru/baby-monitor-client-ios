@@ -4,6 +4,7 @@
 //
 
 #include "App-Base.xcconfig"
+#include "../../Pods/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.production.xcconfig"
 
 __BUNDLE_IDENTIFIER_SUFFIX = .production
 
