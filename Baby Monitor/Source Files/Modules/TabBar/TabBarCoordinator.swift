@@ -28,6 +28,7 @@ final class TabBarCoordinator: Coordinator {
     }
     
     func start() {
+        navigationController.isNavigationBarHidden = true
         navigationController.pushViewController(tabBarController, animated: true)
         childCoordinators.forEach { $0.start() }
     }
