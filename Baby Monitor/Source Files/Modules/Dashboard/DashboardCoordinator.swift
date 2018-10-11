@@ -7,6 +7,8 @@
 import UIKit
 
 final class DashboardCoordinator: Coordinator, BabiesViewShowable {
+
+    var onEnding: (() -> Void)?
     
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController

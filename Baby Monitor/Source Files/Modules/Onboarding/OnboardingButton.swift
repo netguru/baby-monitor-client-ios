@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class OnboardingButtonView: UIView {
+final class OnboardingButtonView: BaseView {
     
     private let button: UIButton = {
         let button = UIButton()
@@ -17,15 +17,10 @@ final class OnboardingButtonView: UIView {
     var onSelect: (() -> Void)?
     
     init(text: String) {
-        super.init(frame: .zero)
+        super.init()
         
         button.setTitle(text, for: .normal)
         setup()
-    }
-    
-    @available(*, unavailable, message: "Use init(text:) instead")
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: - Selectors

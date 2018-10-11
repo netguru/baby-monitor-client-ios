@@ -7,13 +7,14 @@
 import UIKit
 
 final class OnboardingCoordinator: Coordinator {
+
+    var onEnding: (() -> Void)?
     
-    var childCoordinators: [Coordinator] = [
-        TabBarCoordinator(UINavigationController())
-    ]
+    var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
     private weak var initialSetupViewController: InitialSetupViewController?
+    private weak var clientSetupViewController: ClientSetupViewController?
     
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -24,17 +25,28 @@ final class OnboardingCoordinator: Coordinator {
     }
     
     private func showInitialSetup() {
-        let viewModel = InitialSetupViewModel()
+        let initialSetupViewModel = InitialSetupViewModel()
         
-        viewModel.didSelectStartClient = { [weak self] in
-            self?.childCoordinators.first?.start()
-            self?.navigationController.present((self?.childCoordinators.first as! TabBarCoordinator).tabBarController, animated: true, completion: nil)
+        initialSetupViewModel.didSelectStartClient = { [weak self] in
+            let clientSetupViewModel = ClientSetupViewModel()
+            clientSetupViewModel.didSelectSetupAddress = { (address) in
+                //TODO: Connect to the address
+            }
+            clientSetupViewModel.didSelectStartDiscovering = {
+                //TODO: Search for devices and connect
+                
+                self?.onEnding?()
+            }
+            
+            let clientSetupViewController = ClientSetupViewController(viewModel: clientSetupViewModel)
+            self?.clientSetupViewController = clientSetupViewController
+            self?.navigationController.pushViewController(clientSetupViewController, animated: true)
         }
-//        viewModel.didSelectStartServer = { [weak self] in
-//
-//        }
+        initialSetupViewModel.didSelectStartServer = {
+            //TODO: Start broadcasting
+        }
 
-        let initialSetupViewController = InitialSetupViewController(viewModel: viewModel)
+        let initialSetupViewController = InitialSetupViewController(viewModel: initialSetupViewModel)
         self.initialSetupViewController = initialSetupViewController
         navigationController.pushViewController(initialSetupViewController, animated: false)
     }

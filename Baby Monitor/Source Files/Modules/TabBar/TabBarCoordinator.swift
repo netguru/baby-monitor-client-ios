@@ -7,6 +7,8 @@
 import UIKit
 
 final class TabBarCoordinator: Coordinator {
+
+    var onEnding: (() -> Void)?
     
     var navigationController: UINavigationController
     
@@ -26,6 +28,7 @@ final class TabBarCoordinator: Coordinator {
     }
     
     func start() {
+        navigationController.pushViewController(tabBarController, animated: true)
         childCoordinators.forEach { $0.start() }
     }
     

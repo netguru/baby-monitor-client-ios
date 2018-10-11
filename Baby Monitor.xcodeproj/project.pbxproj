@@ -51,6 +51,9 @@
 		EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC7216C9876003FA220 /* InitialSetupView.swift */; };
 		EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */; };
 		EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */; };
+		EC6179DD216F2A36004BD7E0 /* ClientSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */; };
+		EC6179DF216F2A4E004BD7E0 /* ClientSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */; };
+		EC6179E1216F2ADD004BD7E0 /* ClientSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
@@ -119,6 +122,9 @@
 		EC468BC7216C9876003FA220 /* InitialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupView.swift; sourceTree = "<group>"; };
 		EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewModel.swift; sourceTree = "<group>"; };
 		EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupViewController.swift; sourceTree = "<group>"; };
+		EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupViewModel.swift; sourceTree = "<group>"; };
+		EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupView.swift; sourceTree = "<group>"; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 			children = (
 				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
 				EC468BC4216C9797003FA220 /* InitialSetup */,
+				EC6179DB216F2A0F004BD7E0 /* ClientSetup */,
 				EC4C9945216B944B0093EDFC /* Onboarding */,
 				4E994BE221623EC3009C44C5 /* ActivityLog */,
 				4E1D2C5B21673FE200E92F29 /* CameraPreview */,
@@ -298,8 +305,8 @@
 			isa = PBXGroup;
 			children = (
 				EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */,
-				EC468BC7216C9876003FA220 /* InitialSetupView.swift */,
 				EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */,
+				EC468BC7216C9876003FA220 /* InitialSetupView.swift */,
 			);
 			path = InitialSetup;
 			sourceTree = "<group>";
@@ -311,6 +318,16 @@
 				EC8C9434216CA58700E3B478 /* OnboardingButton.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		EC6179DB216F2A0F004BD7E0 /* ClientSetup */ = {
+			isa = PBXGroup;
+			children = (
+				EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */,
+				EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */,
+				EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */,
+			);
+			path = ClientSetup;
 			sourceTree = "<group>";
 		};
 		EC82B54D213EA072005CA395 = {
@@ -540,6 +557,7 @@
 				4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */,
 				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
+				EC6179E1216F2ADD004BD7E0 /* ClientSetupView.swift in Sources */,
 				4EF846E521663057006AB68C /* BabiesViewSelectable.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */,
@@ -560,6 +578,7 @@
 				EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
+				EC6179DF216F2A4E004BD7E0 /* ClientSetupViewModel.swift in Sources */,
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
@@ -573,6 +592,7 @@
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 				4EF846E121662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
 				4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */,
+				EC6179DD216F2A36004BD7E0 /* ClientSetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

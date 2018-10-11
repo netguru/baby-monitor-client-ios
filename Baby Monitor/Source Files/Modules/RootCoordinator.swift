@@ -8,6 +8,8 @@ import UIKit
 
 final class RootCoordinator: RootCoordinatorProtocol {
 
+    var onEnding: (() -> Void)?
+    
     enum Launch {
         case first
         case next
@@ -15,10 +17,8 @@ final class RootCoordinator: RootCoordinatorProtocol {
 
     var launch = Launch.first
 
-    var childCoordinators: [Coordinator] = [
-        OnboardingCoordinator(UINavigationController()),
-        TabBarCoordinator(UINavigationController())
-    ]
+    var childCoordinators: [Coordinator] = []
+    private let navigationController = UINavigationController()
 
     var window: UIWindow
 
@@ -39,11 +39,17 @@ final class RootCoordinator: RootCoordinatorProtocol {
 
     // MARK: - private functions
     private func setup() {
-        switch launch {
-        case .first:
-            window.rootViewController = childCoordinators[0].navigationController
-        case .next:
-            window.rootViewController = (childCoordinators[1] as! TabBarCoordinator).tabBarController
+        window.rootViewController = navigationController
+
+        let onboardingCoordinator = OnboardingCoordinator(navigationController)
+        childCoordinators.append(onboardingCoordinator)
+        
+        let tabBarCoordinator = TabBarCoordinator(navigationController)
+        childCoordinators.append(tabBarCoordinator)
+
+        onboardingCoordinator.onEnding = { [weak self] in
+            self?.navigationController.setViewControllers([], animated: false)
+            tabBarCoordinator.start()
         }
     }
 }

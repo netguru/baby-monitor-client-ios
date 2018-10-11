@@ -7,6 +7,8 @@
 import UIKit
 
 final class LullabiesCoordinator: Coordinator, BabiesViewShowable {
+
+    var onEnding: (() -> Void)?
     
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
