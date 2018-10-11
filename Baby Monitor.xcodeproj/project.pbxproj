@@ -54,8 +54,6 @@
 		ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */; };
 		ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */; };
 		ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */; };
-		ECB146E2213EA45E00C504FD /* App-Common.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DD213EA45E00C504FD /* App-Common.xcconfig */; };
-		ECB146E3213EA45E00C504FD /* Test-Common.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +103,12 @@
 		4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewModel.swift; sourceTree = "<group>"; };
 		4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewModel.swift; sourceTree = "<group>"; };
 		4E994BF121624835009C44C5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		4EA662F4216CBA36009AD3B6 /* Common-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Base.xcconfig"; sourceTree = "<group>"; };
+		4EA662F5216CBC8A009AD3B6 /* Common-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Development.xcconfig"; sourceTree = "<group>"; };
+		4EA662F6216CBCEC009AD3B6 /* Common-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Staging.xcconfig"; sourceTree = "<group>"; };
+		4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Production.xcconfig"; sourceTree = "<group>"; };
+		4EA662F8216CBDEA009AD3B6 /* App-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
+		4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Base.xcconfig"; sourceTree = "<group>"; };
 		4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorHeaderCellConfigurable.swift; sourceTree = "<group>"; };
 		4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellSelectable.swift; sourceTree = "<group>"; };
@@ -114,14 +118,12 @@
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC82B563213EA074005CA395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC82B565213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baby Monitor Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC82B56A213EA074005CA395 /* Baby Monitor.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baby Monitor.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8389B6213FD7F500F00B83 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
 		ECB146DB213EA45E00C504FD /* App-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Development.xcconfig"; sourceTree = "<group>"; };
 		ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Staging.xcconfig"; sourceTree = "<group>"; };
-		ECB146DD213EA45E00C504FD /* App-Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Common.xcconfig"; sourceTree = "<group>"; };
-		ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Test-Common.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,36 @@
 				4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */,
 			);
 			path = CameraPreview;
+			sourceTree = "<group>";
+		};
+		4E56C7E8216CEE9000379FB4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4EA662F8216CBDEA009AD3B6 /* App-Base.xcconfig */,
+				ECB146DB213EA45E00C504FD /* App-Development.xcconfig */,
+				ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */,
+				ECB146DA213EA45E00C504FD /* App-Production.xcconfig */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4E56C7E9216CEE9000379FB4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4EA662F4216CBA36009AD3B6 /* Common-Base.xcconfig */,
+				4EA662F5216CBC8A009AD3B6 /* Common-Development.xcconfig */,
+				4EA662F6216CBCEC009AD3B6 /* Common-Staging.xcconfig */,
+				4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4E56C7EA216CEE9000379FB4 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		4E5BEB13215E5EC60056E5CC /* Extensions */ = {
@@ -294,7 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				EC82B556213EA072005CA395 /* BabyMonitor.app */,
-				EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */,
+				EC82B56A213EA074005CA395 /* Baby Monitor.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -368,11 +400,9 @@
 		ECB146D9213EA44C00C504FD /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				ECB146DD213EA45E00C504FD /* App-Common.xcconfig */,
-				ECB146DB213EA45E00C504FD /* App-Development.xcconfig */,
-				ECB146DA213EA45E00C504FD /* App-Production.xcconfig */,
-				ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */,
-				ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */,
+				4E56C7E8216CEE9000379FB4 /* App */,
+				4E56C7E9216CEE9000379FB4 /* Common */,
+				4E56C7EA216CEE9000379FB4 /* Tests */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -412,7 +442,7 @@
 			);
 			name = "Baby MonitorTests";
 			productName = "Baby MonitorTests";
-			productReference = EC82B56A213EA074005CA395 /* Baby Monitor Tests.xctest */;
+			productReference = EC82B56A213EA074005CA395 /* Baby Monitor.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -427,6 +457,7 @@
 				TargetAttributes = {
 					EC82B555213EA072005CA395 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 					EC82B569213EA074005CA395 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -462,10 +493,8 @@
 				ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */,
 				EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */,
 				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
-				ECB146E2213EA45E00C504FD /* App-Common.xcconfig in Resources */,
 				EC82B561213EA074005CA395 /* Assets.xcassets in Resources */,
 				4E95631E21638E2200289475 /* Localizable.strings in Resources */,
-				ECB146E3213EA45E00C504FD /* Test-Common.xcconfig in Resources */,
 				ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,14 +596,14 @@
 /* Begin XCBuildConfiguration section */
 		EC82B571213EA074005CA395 /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECB146DD213EA45E00C504FD /* App-Common.xcconfig */;
+			baseConfigurationReference = 4EA662F5216CBC8A009AD3B6 /* Common-Development.xcconfig */;
 			buildSettings = {
 			};
 			name = Development;
 		};
 		EC82B572213EA074005CA395 /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECB146DD213EA45E00C504FD /* App-Common.xcconfig */;
+			baseConfigurationReference = 4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */;
 			buildSettings = {
 			};
 			name = Production;
@@ -595,21 +624,21 @@
 		};
 		EC82B577213EA074005CA395 /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
+			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
 			buildSettings = {
 			};
 			name = Development;
 		};
 		EC82B578213EA074005CA395 /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
+			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
 			buildSettings = {
 			};
 			name = Production;
 		};
 		EC82B583213EA3E5005CA395 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECB146DD213EA45E00C504FD /* App-Common.xcconfig */;
+			baseConfigurationReference = 4EA662F6216CBCEC009AD3B6 /* Common-Staging.xcconfig */;
 			buildSettings = {
 			};
 			name = Staging;
@@ -623,7 +652,7 @@
 		};
 		EC82B585213EA3E5005CA395 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECB146DE213EA45E00C504FD /* Test-Common.xcconfig */;
+			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
 			buildSettings = {
 			};
 			name = Staging;
