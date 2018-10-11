@@ -1,0 +1,12 @@
+//
+//  Common-Base.xcconfig
+//  Baby Monitor
+//
+
+#include "../../Carthage/Checkouts/xcconfigs/Common/Common.xcconfig"
+
+_COMPILER_SWIFT_VERSION = 4.2
+_DEPLOYMENT_TARGET_IOS = 11.0
+
+_BUILD_VERSION = 0.4
+_BUILD_NUMBER = 1

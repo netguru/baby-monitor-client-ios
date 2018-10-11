@@ -1,0 +1,17 @@
+//
+//  App-Base.xcconfig
+//  Baby Monitor
+//
+
+#include "../../Carthage/Checkouts/xcconfigs/Platforms/iOS.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Targets/Application.xcconfig"
+
+
+_BUNDLE_NAME = BabyMonitor
+_PRODUCT_NAME = Baby Monitor
+_BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Baby Monitor/Supporting Files/Info.plist
+_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor$(__BUNDLE_IDENTIFIER_SUFFIX)
+
+_ASSET_ICON = AppIcon
+
+_CODESIGN_STYLE = Manual
