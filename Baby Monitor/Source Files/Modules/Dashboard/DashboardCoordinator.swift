@@ -8,6 +8,7 @@ import UIKit
 
 final class DashboardCoordinator: Coordinator, BabiesViewShowable {
     
+    var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     weak var switchBabyViewController: BabyMonitorGeneralViewController?
@@ -15,8 +16,9 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
     private weak var dashboardViewController: DashboardViewController?
     private weak var cameraPreviewViewController: CameraPreviewViewController?
     
-    init(_ navigationController: UINavigationController) {
+    init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
+        self.appDependencies = appDependencies
     }
     
     func start() {
@@ -32,7 +34,11 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
             self?.toggleSwitchBabiesView(on: dashboardViewController)
         }
         viewModel.didSelectLiveCameraPreview = { [weak self] in
-            let viewModel = CameraPreviewViewModel()
+            guard let self = self else {
+                return
+            }
+            
+            let viewModel = CameraPreviewViewModel(mediaPlayer: self.appDependencies.mediaPlayer)
             viewModel.didSelectCancel = { [weak self] in
                 self?.navigationController.dismiss(animated: true, completion: nil)
             }
@@ -43,9 +49,9 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
                 self?.toggleSwitchBabiesView(on: cameraPreviewViewController)
             }
             let cameraPreviewViewController = CameraPreviewViewController(viewModel: viewModel)
-            self?.cameraPreviewViewController = cameraPreviewViewController
+            self.cameraPreviewViewController = cameraPreviewViewController
             let navigationController = UINavigationController(rootViewController: cameraPreviewViewController)
-            self?.navigationController.present(navigationController, animated: true, completion: nil)
+            self.navigationController.present(navigationController, animated: true, completion: nil)
         }
         let dashboardViewController = DashboardViewController(viewModel: viewModel)
         self.dashboardViewController = dashboardViewController

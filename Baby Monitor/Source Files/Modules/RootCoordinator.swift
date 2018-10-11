@@ -8,20 +8,21 @@ import UIKit
 
 final class RootCoordinator: RootCoordinatorProtocol {
     
-    var childCoordinators: [Coordinator] = [
-        DashboardCoordinator(UINavigationController()),
-        ActivityLogCoordinator(UINavigationController()),
-        LullabiesCoordinator(UINavigationController()),
-        SettingsCoordinator(UINavigationController())
+    var appDependencies: AppDependencies
+    lazy var childCoordinators: [Coordinator] = [
+        DashboardCoordinator(UINavigationController(), appDependencies: appDependencies),
+        ActivityLogCoordinator(UINavigationController(), appDependencies: appDependencies),
+        LullabiesCoordinator(UINavigationController(), appDependencies: appDependencies),
+        SettingsCoordinator(UINavigationController(), appDependencies: appDependencies)
     ]
     
     var window: UIWindow
     
     private let tabBarController = TabBarController()
     
-    init(_ window: UIWindow) {
+    init(_ window: UIWindow, appDependencies: AppDependencies) {
         self.window = window
-        
+        self.appDependencies = appDependencies
         setup()
     }
     

@@ -26,8 +26,8 @@
 		4E9563182163521900289475 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563172163521900289475 /* DashboardButton.swift */; };
 		4E95631B21638D1500289475 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95631A21638D1500289475 /* Localizable.swift */; };
 		4E95631E21638E2200289475 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E95632021638E2200289475 /* Localizable.strings */; };
-		4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */; };
-		4E9563262164BA4600289475 /* WindowInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563252164BA4600289475 /* WindowInitializable.swift */; };
+		4E9563232164B8A600289475 /* HasNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563222164B8A600289475 /* HasNavigationController.swift */; };
+		4E9563262164BA4600289475 /* HasWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563252164BA4600289475 /* HasWindow.swift */; };
 		4E9563292164CAC600289475 /* BabyMonitorGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563282164CAC600289475 /* BabyMonitorGeneralViewController.swift */; };
 		4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95632A2164CB7900289475 /* BabyMonitorCell.swift */; };
 		4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95632C2164DB7500289475 /* SwitchBabyViewModel.swift */; };
@@ -43,6 +43,9 @@
 		4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */; };
 		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
+		4EEFE767216F483600E3793B /* MediaPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFE766216F483600E3793B /* MediaPlayerProtocol.swift */; };
+		4EEFE769216F491900E3793B /* VLCMediaPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFE768216F491900E3793B /* VLCMediaPlayerService.swift */; };
+		4EEFE76B216F4F3000E3793B /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFE76A216F4F3000E3793B /* AppDependencies.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
 		4EF846E121662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */; };
 		4EF846E321662A81006AB68C /* BabyMonitorCellSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */; };
@@ -89,8 +92,8 @@
 		4E9563172163521900289475 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		4E95631A21638D1500289475 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		4E95631F21638E2200289475 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerInitializable.swift; sourceTree = "<group>"; };
-		4E9563252164BA4600289475 /* WindowInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowInitializable.swift; sourceTree = "<group>"; };
+		4E9563222164B8A600289475 /* HasNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasNavigationController.swift; sourceTree = "<group>"; };
+		4E9563252164BA4600289475 /* HasWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasWindow.swift; sourceTree = "<group>"; };
 		4E9563282164CAC600289475 /* BabyMonitorGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewController.swift; sourceTree = "<group>"; };
 		4E95632A2164CB7900289475 /* BabyMonitorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCell.swift; sourceTree = "<group>"; };
 		4E95632C2164DB7500289475 /* SwitchBabyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchBabyViewModel.swift; sourceTree = "<group>"; };
@@ -115,6 +118,9 @@
 		4EBB487A216DDD5D0084FB43 /* Tests-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Development.xcconfig"; sourceTree = "<group>"; };
 		4EBB487B216DDDD70084FB43 /* Tests-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Staging.xcconfig"; sourceTree = "<group>"; };
 		4EBB487C216DDDE50084FB43 /* Tests-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Production.xcconfig"; sourceTree = "<group>"; };
+		4EEFE766216F483600E3793B /* MediaPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerProtocol.swift; sourceTree = "<group>"; };
+		4EEFE768216F491900E3793B /* VLCMediaPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCMediaPlayerService.swift; sourceTree = "<group>"; };
+		4EEFE76A216F4F3000E3793B /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
 		4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorHeaderCellConfigurable.swift; sourceTree = "<group>"; };
 		4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellSelectable.swift; sourceTree = "<group>"; };
@@ -231,19 +237,19 @@
 			path = Localizations;
 			sourceTree = "<group>";
 		};
-		4E9563242164BA2900289475 /* Protocols */ = {
+		4E9563242164BA2900289475 /* Other Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				4E6EA7952161FBA1005575E0 /* Coordinator.swift */,
-				4E9563222164B8A600289475 /* NavigationControllerInitializable.swift */,
-				4E9563252164BA4600289475 /* WindowInitializable.swift */,
+				4E9563222164B8A600289475 /* HasNavigationController.swift */,
+				4E9563252164BA4600289475 /* HasWindow.swift */,
 				4E9563332164E75700289475 /* Identifiable.swift */,
 				4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */,
 				4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */,
 				4EF846E421663057006AB68C /* BabiesViewSelectable.swift */,
 				4E1D2C6021675FCC00E92F29 /* BabiesViewShowable.swift */,
 			);
-			path = Protocols;
+			path = "Other Protocols";
 			sourceTree = "<group>";
 		};
 		4E9563272164CAB000289475 /* SwitchBaby */ = {
@@ -312,6 +318,23 @@
 				4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		4EEFE762216F474D00E3793B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4EEFE763216F476F00E3793B /* MediaPlayer */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4EEFE763216F476F00E3793B /* MediaPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				4EEFE766216F483600E3793B /* MediaPlayerProtocol.swift */,
+				4EEFE768216F491900E3793B /* VLCMediaPlayerService.swift */,
+			);
+			path = MediaPlayer;
 			sourceTree = "<group>";
 		};
 		4EF36FBB21660F1700257384 /* BabyMonitorGeneral */ = {
@@ -387,10 +410,12 @@
 			isa = PBXGroup;
 			children = (
 				EC82B559213EA072005CA395 /* AppDelegate.swift */,
+				4EEFE76A216F4F3000E3793B /* AppDependencies.swift */,
 				4E6EA7932161FB81005575E0 /* Modules */,
 				4E9563372164F07A00289475 /* Custom Views */,
 				4E9563302164DDB000289475 /* Models */,
-				4E9563242164BA2900289475 /* Protocols */,
+				4E9563242164BA2900289475 /* Other Protocols */,
+				4EEFE762216F474D00E3793B /* Services */,
 				4E95631921638CE400289475 /* Localizations */,
 			);
 			path = "Source Files";
@@ -605,6 +630,7 @@
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
 				4E9563292164CAC600289475 /* BabyMonitorGeneralViewController.swift in Sources */,
+				4EEFE767216F483600E3793B /* MediaPlayerProtocol.swift in Sources */,
 				4E1D2C6321678D5700E92F29 /* BabyMonitorGeneralView.swift in Sources */,
 				4E994BE121623821009C44C5 /* DashboardViewModel.swift in Sources */,
 				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
@@ -616,16 +642,18 @@
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
+				4EEFE769216F491900E3793B /* VLCMediaPlayerService.swift in Sources */,
 				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
-				4E9563262164BA4600289475 /* WindowInitializable.swift in Sources */,
+				4E9563262164BA4600289475 /* HasWindow.swift in Sources */,
 				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
 				4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */,
 				4E9563342164E75700289475 /* Identifiable.swift in Sources */,
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
+				4EEFE76B216F4F3000E3793B /* AppDependencies.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 				4EF846E121662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
-				4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */,
+				4E9563232164B8A600289475 /* HasNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,7 +713,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
-				SWIFT_INCLUDE_PATHS = "";
 			};
 			name = Development;
 		};
@@ -693,7 +720,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */;
 			buildSettings = {
-				SWIFT_INCLUDE_PATHS = "";
 			};
 			name = Production;
 		};
@@ -722,7 +748,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */;
 			buildSettings = {
-				SWIFT_INCLUDE_PATHS = "";
 			};
 			name = Staging;
 		};

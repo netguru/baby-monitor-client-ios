@@ -6,11 +6,17 @@
 
 import UIKit
 
-typealias RootCoordinatorProtocol = PartialCoordinator & WindowInitializable
-typealias Coordinator = PartialCoordinator & NavigationControllerInitializable
+protocol RootCoordinatorProtocol: PartialCoordinator, HasWindow {
+    init(_ window: UIWindow, appDependencies: AppDependencies)
+}
+
+protocol Coordinator: PartialCoordinator, HasNavigationController {
+    init(_ navigationController: UINavigationController, appDependencies: AppDependencies)
+}
 
 protocol PartialCoordinator: class {
     var childCoordinators: [Coordinator] { get set }
+    var appDependencies: AppDependencies { get set }
     
     /// Starts coordinator work. Should be called only once.
     func start()

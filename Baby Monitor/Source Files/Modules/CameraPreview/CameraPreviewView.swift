@@ -8,6 +8,7 @@ import UIKit
 
 final class CameraPreviewView: BaseView {
     
+    let mediaView = UIView()
     let babyNavigationItemView = BabyNavigationItemView(babyName: "Franuś") //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
     let cancelItemButton = UIBarButtonItem(barButtonSystemItem: .cancel,
                                                              target: nil,
@@ -32,6 +33,7 @@ final class CameraPreviewView: BaseView {
     private func setup() {
         backgroundColor = .gray
         
+        addSubview(mediaView)
         addSubview(buttonsStackView)
         //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-65
         [changeCameraButton, stopButton, microphoneButton].forEach {
@@ -42,6 +44,7 @@ final class CameraPreviewView: BaseView {
     }
     
     private func setupConstraints() {
+        mediaView.addConstraints { $0.equalSafeAreaEdges() }
         [changeCameraButton, microphoneButton].forEach {
             $0.addConstraints {[
                 $0.equalConstant(.width, 40),

@@ -8,12 +8,14 @@ import UIKit
 
 final class LullabiesCoordinator: Coordinator, BabiesViewShowable {
     
+    var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var switchBabyViewController: BabyMonitorGeneralViewController?
     
-    init(_ navigationController: UINavigationController) {
+    init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
+        self.appDependencies = appDependencies
     }
     
     private var lullabiesViewController: BabyMonitorGeneralViewController?
