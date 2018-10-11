@@ -2,4 +2,4 @@
 # Cartfile
 #
 
-github "netguru/xcconfigs" == 0.5
+github "netguru/xcconfigs" == 0.6
