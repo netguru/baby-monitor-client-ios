@@ -7,33 +7,38 @@
 import UIKit
 
 final class RootCoordinator: RootCoordinatorProtocol {
+
+    var childCoordinators: [Coordinator] = []
     
-    var childCoordinators: [Coordinator] = [
-        DashboardCoordinator(UINavigationController()),
-        ActivityLogCoordinator(UINavigationController()),
-        LullabiesCoordinator(UINavigationController()),
-        SettingsCoordinator(UINavigationController())
-    ]
-    
+    var onEnding: (() -> Void)?
+
     var window: UIWindow
     
-    private let tabBarController = TabBarController()
-    
+    private let navigationController = UINavigationController()
+
     init(_ window: UIWindow) {
         self.window = window
-        
+
         setup()
     }
-    
+
     func start() {
-        childCoordinators.forEach { $0.start() }
+        childCoordinators.first?.start()
     }
-    
+
     // MARK: - private functions
     private func setup() {
-        let tabViewControllers = childCoordinators.map { $0.navigationController }
-        tabBarController.setViewControllers(tabViewControllers, animated: false)
-        tabBarController.setupTitles()
-        window.rootViewController = tabBarController
+        window.rootViewController = navigationController
+
+        let onboardingCoordinator = OnboardingCoordinator(navigationController)
+        childCoordinators.append(onboardingCoordinator)
+        
+        let tabBarCoordinator = TabBarCoordinator(navigationController)
+        childCoordinators.append(tabBarCoordinator)
+
+        onboardingCoordinator.onEnding = { [weak self] in
+            self?.navigationController.setViewControllers([], animated: false)
+            tabBarCoordinator.start()
+        }
     }
 }

@@ -12,11 +12,13 @@ final class LullabiesCoordinator: Coordinator, BabiesViewShowable {
     var navigationController: UINavigationController
     var switchBabyViewController: BabyMonitorGeneralViewController?
     
+    var onEnding: (() -> Void)?
+    
+    private var lullabiesViewController: BabyMonitorGeneralViewController?
+    
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
-    private var lullabiesViewController: BabyMonitorGeneralViewController?
     
     func start() {
         showLullabies()

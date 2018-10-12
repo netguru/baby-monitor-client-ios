@@ -11,6 +11,8 @@ final class SettingsCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
+    var onEnding: (() -> Void)?
+    
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
     }

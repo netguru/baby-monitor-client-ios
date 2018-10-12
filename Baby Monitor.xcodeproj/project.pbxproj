@@ -47,10 +47,18 @@
 		4EF846E121662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */; };
 		4EF846E321662A81006AB68C /* BabyMonitorCellSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */; };
 		4EF846E521663057006AB68C /* BabiesViewSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E421663057006AB68C /* BabiesViewSelectable.swift */; };
+		EC468BC6216C97BD003FA220 /* InitialSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */; };
+		EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC7216C9876003FA220 /* InitialSetupView.swift */; };
+		EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */; };
+		EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */; };
+		EC6179DD216F2A36004BD7E0 /* ClientSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */; };
+		EC6179DF216F2A4E004BD7E0 /* ClientSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */; };
+		EC6179E1216F2ADD004BD7E0 /* ClientSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
 		EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8389B6213FD7F500F00B83 /* MathTests.swift */; };
+		EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */; };
 		ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */; };
 		ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */; };
 		ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */; };
@@ -113,6 +121,13 @@
 		4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorHeaderCellConfigurable.swift; sourceTree = "<group>"; };
 		4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellSelectable.swift; sourceTree = "<group>"; };
 		4EF846E421663057006AB68C /* BabiesViewSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabiesViewSelectable.swift; sourceTree = "<group>"; };
+		EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewController.swift; sourceTree = "<group>"; };
+		EC468BC7216C9876003FA220 /* InitialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupView.swift; sourceTree = "<group>"; };
+		EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewModel.swift; sourceTree = "<group>"; };
+		EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupViewController.swift; sourceTree = "<group>"; };
+		EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupViewModel.swift; sourceTree = "<group>"; };
+		EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupView.swift; sourceTree = "<group>"; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,6 +136,7 @@
 		EC82B56A213EA074005CA395 /* Baby Monitor.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baby Monitor.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8389B6213FD7F500F00B83 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
+		EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
 		ECB146DB213EA45E00C504FD /* App-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Development.xcconfig"; sourceTree = "<group>"; };
 		ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Staging.xcconfig"; sourceTree = "<group>"; };
@@ -198,13 +214,16 @@
 			isa = PBXGroup;
 			children = (
 				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
+				EC468BC4216C9797003FA220 /* InitialSetup */,
+				EC6179DB216F2A0F004BD7E0 /* ClientSetup */,
+				EC4C9945216B944B0093EDFC /* Onboarding */,
 				4E994BE221623EC3009C44C5 /* ActivityLog */,
 				4E1D2C5B21673FE200E92F29 /* CameraPreview */,
 				4E994BDB216237CB009C44C5 /* Dashboard */,
 				4E994BE5216240CD009C44C5 /* Lullabies */,
 				4E994BE6216240DA009C44C5 /* Settings */,
 				4E9563272164CAB000289475 /* SwitchBaby */,
-				4E93132F216635B700AEE942 /* TabBarController.swift */,
+				EC8C943C216CBFCE00E3B478 /* TabBar */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -312,6 +331,34 @@
 			path = BabyMonitorGeneral;
 			sourceTree = "<group>";
 		};
+		EC468BC4216C9797003FA220 /* InitialSetup */ = {
+			isa = PBXGroup;
+			children = (
+				EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */,
+				EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */,
+				EC468BC7216C9876003FA220 /* InitialSetupView.swift */,
+			);
+			path = InitialSetup;
+			sourceTree = "<group>";
+		};
+		EC4C9945216B944B0093EDFC /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		EC6179DB216F2A0F004BD7E0 /* ClientSetup */ = {
+			isa = PBXGroup;
+			children = (
+				EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */,
+				EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */,
+				EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */,
+			);
+			path = ClientSetup;
+			sourceTree = "<group>";
+		};
 		EC82B54D213EA072005CA395 = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +368,7 @@
 				EC82B557213EA072005CA395 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		EC82B557213EA072005CA395 /* Products */ = {
 			isa = PBXGroup;
@@ -395,6 +443,15 @@
 				EC82B570213EA074005CA395 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC8C943C216CBFCE00E3B478 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4E93132F216635B700AEE942 /* TabBarController.swift */,
+				EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		ECB146D9213EA44C00C504FD /* Configuration */ = {
@@ -515,6 +572,7 @@
 			files = (
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
 				4E1D2C6121675FCC00E92F29 /* BabiesViewShowable.swift in Sources */,
+				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
@@ -525,21 +583,27 @@
 				4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */,
 				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
+				EC6179E1216F2ADD004BD7E0 /* ClientSetupView.swift in Sources */,
 				4EF846E521663057006AB68C /* BabiesViewSelectable.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
+				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
 				4E9563292164CAC600289475 /* BabyMonitorGeneralViewController.swift in Sources */,
 				4E1D2C6321678D5700E92F29 /* BabyMonitorGeneralView.swift in Sources */,
 				4E994BE121623821009C44C5 /* DashboardViewModel.swift in Sources */,
 				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
+				EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
 				4EF846E321662A81006AB68C /* BabyMonitorCellSelectable.swift in Sources */,
+				EC468BC6216C97BD003FA220 /* InitialSetupViewController.swift in Sources */,
+				EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
+				EC6179DF216F2A4E004BD7E0 /* ClientSetupViewModel.swift in Sources */,
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
@@ -553,6 +617,7 @@
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 				4EF846E121662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
 				4E9563232164B8A600289475 /* NavigationControllerInitializable.swift in Sources */,
+				EC6179DD216F2A36004BD7E0 /* ClientSetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
