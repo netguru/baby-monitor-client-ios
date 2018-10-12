@@ -28,6 +28,9 @@
 		4E5731A42170BA9D00DEAF0B /* VLCMediaPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731A22170BA9D00DEAF0B /* VLCMediaPlayerService.swift */; };
 		4E5731A52170BA9D00DEAF0B /* MediaPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731A32170BA9D00DEAF0B /* MediaPlayerProtocol.swift */; };
 		4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731A62170BAE000DEAF0B /* AppDependencies.swift */; };
+		4E5731AB2170C1A200DEAF0B /* Tests-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E5731A82170C1A200DEAF0B /* Tests-Development.xcconfig */; };
+		4E5731AC2170C1A200DEAF0B /* Tests-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E5731A92170C1A200DEAF0B /* Tests-Production.xcconfig */; };
+		4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */; };
 		4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
 		4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */; };
@@ -50,6 +53,8 @@
 		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
+		887D8A0862005C8A38DB3199 /* Pods_Baby_MonitorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1ECD1458C6922D9EB09B97 /* Pods_Baby_MonitorTests.framework */; };
+		E557EC9748B4E1AAF5804CA4 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E1DB8C336FC3D3C6E57778B /* Pods_Baby_Monitor.framework */; };
 		EC468BC6216C97BD003FA220 /* InitialSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */; };
 		EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC7216C9876003FA220 /* InitialSetupView.swift */; };
 		EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */; };
@@ -78,6 +83,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E1DB8C336FC3D3C6E57778B /* Pods_Baby_Monitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_Monitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C1ECD1458C6922D9EB09B97 /* Pods_Baby_MonitorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_MonitorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCoordinator.swift; sourceTree = "<group>"; };
 		4E075C7A2163480C001CD8EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -99,6 +106,9 @@
 		4E5731A22170BA9D00DEAF0B /* VLCMediaPlayerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLCMediaPlayerService.swift; sourceTree = "<group>"; };
 		4E5731A32170BA9D00DEAF0B /* MediaPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayerProtocol.swift; sourceTree = "<group>"; };
 		4E5731A62170BAE000DEAF0B /* AppDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
+		4E5731A82170C1A200DEAF0B /* Tests-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Development.xcconfig"; sourceTree = "<group>"; };
+		4E5731A92170C1A200DEAF0B /* Tests-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Production.xcconfig"; sourceTree = "<group>"; };
+		4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Staging.xcconfig"; sourceTree = "<group>"; };
 		4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
@@ -153,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E557EC9748B4E1AAF5804CA4 /* Pods_Baby_Monitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,12 +171,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887D8A0862005C8A38DB3199 /* Pods_Baby_MonitorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32E1A5FFF4127A8A91456890 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E1DB8C336FC3D3C6E57778B /* Pods_Baby_Monitor.framework */,
+				3C1ECD1458C6922D9EB09B97 /* Pods_Baby_MonitorTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4E1D2C5B21673FE200E92F29 /* CameraPreview */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +222,9 @@
 		4E56C7EA216CEE9000379FB4 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4E5731A82170C1A200DEAF0B /* Tests-Development.xcconfig */,
+				4E5731A92170C1A200DEAF0B /* Tests-Production.xcconfig */,
+				4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */,
 				4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */,
 			);
 			path = Tests;
@@ -354,6 +378,13 @@
 			path = BabyMonitorGeneral;
 			sourceTree = "<group>";
 		};
+		9DA43A98F5BED5807D8FFD78 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EC468BC4216C9797003FA220 /* InitialSetup */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,6 +420,8 @@
 				EC82B558213EA072005CA395 /* Baby Monitor */,
 				EC82B56D213EA074005CA395 /* Baby MonitorTests */,
 				EC82B557213EA072005CA395 /* Products */,
+				9DA43A98F5BED5807D8FFD78 /* Pods */,
+				32E1A5FFF4127A8A91456890 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -496,6 +529,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC82B573213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby Monitor" */;
 			buildPhases = (
+				965F9F71672277B51C9861C6 /* [CP] Check Pods Manifest.lock */,
 				EC82B552213EA072005CA395 /* Sources */,
 				EC82B553213EA072005CA395 /* Frameworks */,
 				EC82B554213EA072005CA395 /* Resources */,
@@ -513,6 +547,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC82B576213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby MonitorTests" */;
 			buildPhases = (
+				E8BC4871215ED64DB18FC8A8 /* [CP] Check Pods Manifest.lock */,
 				EC82B566213EA074005CA395 /* Sources */,
 				EC82B567213EA074005CA395 /* Frameworks */,
 				EC82B568213EA074005CA395 /* Resources */,
@@ -573,11 +608,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */,
+				4E5731AB2170C1A200DEAF0B /* Tests-Development.xcconfig in Resources */,
 				EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */,
+				4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */,
 				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
 				EC82B561213EA074005CA395 /* Assets.xcassets in Resources */,
 				4E95631E21638E2200289475 /* Localizable.strings in Resources */,
 				ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */,
+				4E5731AC2170C1A200DEAF0B /* Tests-Production.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,6 +627,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		965F9F71672277B51C9861C6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Baby Monitor-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8BC4871215ED64DB18FC8A8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Baby MonitorTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EC82B552213EA072005CA395 /* Sources */ = {
@@ -717,14 +794,14 @@
 		};
 		EC82B577213EA074005CA395 /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
+			baseConfigurationReference = 4E5731A82170C1A200DEAF0B /* Tests-Development.xcconfig */;
 			buildSettings = {
 			};
 			name = Development;
 		};
 		EC82B578213EA074005CA395 /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
+			baseConfigurationReference = 4E5731A92170C1A200DEAF0B /* Tests-Production.xcconfig */;
 			buildSettings = {
 			};
 			name = Production;
@@ -745,7 +822,7 @@
 		};
 		EC82B585213EA3E5005CA395 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
+			baseConfigurationReference = 4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */;
 			buildSettings = {
 			};
 			name = Staging;
