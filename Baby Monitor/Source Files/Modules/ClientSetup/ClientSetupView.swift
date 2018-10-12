@@ -18,8 +18,8 @@ final class ClientSetupView: BaseView {
         return stackView
     }()
     
-    let setupAddressButton = OnboardingButtonView(text: Localizable.Onboarding.setupAddress)
-    let startDiscoveringButton = OnboardingButtonView(text: Localizable.Onboarding.startDiscovering)
+    let setupAddressButton = UIButton()
+    let startDiscoveringButton = UIButton()
     lazy var addressField: UITextField = {
         let textField = UITextField()
         textField.placeholder = Localizable.Onboarding.addressPlaceholder
@@ -38,7 +38,17 @@ final class ClientSetupView: BaseView {
             addSubview($0)
         }
         
+        setupButtons()
         setupConstraints()
+    }
+    
+    private func setupButtons() {
+        [setupAddressButton, startDiscoveringButton].forEach {
+            $0.backgroundColor = .blue
+        }
+        
+        setupAddressButton.setTitle(Localizable.Onboarding.setupAddress, for: .normal)
+        startDiscoveringButton.setTitle(Localizable.Onboarding.startDiscovering, for: .normal)
     }
     
     private func setupConstraints() {
@@ -47,6 +57,13 @@ final class ClientSetupView: BaseView {
             $0.equal(.width, multiplier: 0.8),
             $0.equalTo(self, .bottom, .safeAreaBottom, constant: -20)
         ]}
+        
+        [setupAddressButton, startDiscoveringButton].forEach {
+            $0.addConstraints {[
+                $0.equalConstant(.width, 150),
+                $0.equalConstant(.height, 40),
+            ]}
+        }
         
         addressField.addConstraints {[
             $0.equal(.centerX),

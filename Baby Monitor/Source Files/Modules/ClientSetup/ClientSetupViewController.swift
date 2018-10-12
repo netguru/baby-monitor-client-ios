@@ -20,14 +20,19 @@ final class ClientSetupViewController: TypedViewController<ClientSetupView>, UIT
         setup()
     }
     
+    //MARK: - Selectors
+    @objc private func didTouchSetupAddressButton() {
+        viewModel.selectSetupAddress(customView.addressField.text)
+    }
+    
+    @objc private func didTouchStartDiscoveringButton() {
+        viewModel.selectStartDiscovering()
+    }
+    
     //MARK: - Private functions
     private func setup() {
-        customView.setupAddressButton.onSelect = { [weak self] in
-            self?.viewModel.selectSetupAddress(self?.customView.addressField.text)
-        }
-        customView.startDiscoveringButton.onSelect = { [weak self] in
-            self?.viewModel.selectStartDiscovering()
-        }
+        customView.setupAddressButton.addTarget(self, action: #selector(didTouchSetupAddressButton), for: .touchUpInside)
+        customView.startDiscoveringButton.addTarget(self, action: #selector(didTouchStartDiscoveringButton), for: .touchUpInside)
         
         customView.addressField.delegate = self
     }

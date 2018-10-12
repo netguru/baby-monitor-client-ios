@@ -58,7 +58,6 @@
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
 		EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8389B6213FD7F500F00B83 /* MathTests.swift */; };
-		EC8C9435216CA58700E3B478 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C9434216CA58700E3B478 /* OnboardingButton.swift */; };
 		EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */; };
 		ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */; };
 		ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */; };
@@ -137,7 +136,6 @@
 		EC82B56A213EA074005CA395 /* Baby Monitor.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baby Monitor.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8389B6213FD7F500F00B83 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
-		EC8C9434216CA58700E3B478 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
 		ECB146DB213EA45E00C504FD /* App-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Development.xcconfig"; sourceTree = "<group>"; };
@@ -347,7 +345,6 @@
 			isa = PBXGroup;
 			children = (
 				EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */,
-				EC8C9434216CA58700E3B478 /* OnboardingButton.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -593,7 +590,6 @@
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
-				EC8C9435216CA58700E3B478 /* OnboardingButton.swift in Sources */,
 				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
 				4E9563292164CAC600289475 /* BabyMonitorGeneralViewController.swift in Sources */,
 				4E1D2C6321678D5700E92F29 /* BabyMonitorGeneralView.swift in Sources */,

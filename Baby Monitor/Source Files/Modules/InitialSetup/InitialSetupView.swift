@@ -9,8 +9,8 @@ import UIKit
 final class InitialSetupView: BaseView {
     
     let cancelItemButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
-    let startClientButton = OnboardingButtonView(text: Localizable.Onboarding.startClient)
-    let startServerButton = OnboardingButtonView(text: Localizable.Onboarding.startServer)
+    let startClientButton = UIButton()
+    let startServerButton = UIButton()
 
     private lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [startClientButton, startServerButton])
@@ -31,7 +31,17 @@ final class InitialSetupView: BaseView {
     private func setup() {
         addSubview(buttonsStackView)
         
+        setupButtons()
         setupConstraints()
+    }
+    
+    private func setupButtons() {
+        [startClientButton, startServerButton].forEach {
+            $0.backgroundColor = .blue
+        }
+        
+        startClientButton.setTitle(Localizable.Onboarding.startClient, for: .normal)
+        startServerButton.setTitle(Localizable.Onboarding.startServer, for: .normal)
     }
     
     private func setupConstraints() {        
@@ -40,5 +50,12 @@ final class InitialSetupView: BaseView {
             $0.equal(.width, multiplier: 0.8),
             $0.equalTo(self, .bottom, .safeAreaBottom, constant: -20)
         ]}
+        
+        [startClientButton, startServerButton].forEach {
+            $0.addConstraints {[
+                $0.equalConstant(.width, 150),
+                $0.equalConstant(.height, 40),
+            ]}
+        }
     }
 }
