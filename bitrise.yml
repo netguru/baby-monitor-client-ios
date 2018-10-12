@@ -82,7 +82,7 @@ trigger_map:
 
 app:
   envs:
-    - XCODEBUILD_PROJECT: ./Baby Monitor.xcodeproj
+    - XCODEBUILD_PROJECT: ./Baby Monitor.xcworkspace
     - XCODEBUILD_OPTIONS: _BUILD_NUMBER=$BITRISE_BUILD_NUMBER
 
 # Workflow declarations.
@@ -104,7 +104,7 @@ workflows:
     before_run:
       - cache-pull
       - bootstrap-carthage
-      # - bootstrap-cocoapods
+      - bootstrap-cocoapods
       - test-xcode
       - bootstrap-code-signing
       - archive-xcode
@@ -127,7 +127,7 @@ workflows:
     before_run:
       - cache-pull
       - bootstrap-carthage
-      # - bootstrap-cocoapods
+      - bootstrap-cocoapods
       - test-xcode
       - bootstrap-code-signing
       - archive-xcode
@@ -148,7 +148,7 @@ workflows:
     before_run:
       - cache-pull
       - bootstrap-carthage
-      # - bootstrap-cocoapods
+      - bootstrap-cocoapods
       - test-xcode
     after_run:
       - cache-push
@@ -191,9 +191,9 @@ workflows:
   #
   # If you don't use this package manager, you can remove this workflow.
 
-  # bootstrap-cocoapods:
-  #   steps:
-  #     - cocoapods-install: {}
+  bootstrap-cocoapods:
+    steps:
+      - cocoapods-install: {}
 
   # Bootstrap code signing by installing certificates and provisioning profiles.
 
