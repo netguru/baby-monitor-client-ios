@@ -6,9 +6,11 @@
 
 import UIKit
 
-final class CameraPreviewViewController: TypedViewController<CameraPreviewView> {
+final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource {
     
     private let viewModel: CameraPreviewViewModel
+    
+    lazy var videoView = customView.mediaView
     
     init(viewModel: CameraPreviewViewModel) {
         self.viewModel = viewModel
@@ -27,6 +29,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     
     //MARK: - Private functions
     private func setup() {
+        viewModel.videoDataSource = self
         navigationItem.leftBarButtonItem = customView.cancelItemButton
         navigationItem.titleView = customView.babyNavigationItemView
         customView.babyNavigationItemView.onSelectArrow = { [weak self] in

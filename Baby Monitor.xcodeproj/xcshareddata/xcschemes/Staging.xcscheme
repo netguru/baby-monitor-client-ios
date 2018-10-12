@@ -26,6 +26,7 @@
       buildConfiguration = "Development"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -33,7 +34,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EC82B569213EA074005CA395"
-               BuildableName = "BabyMonitor.xctest"
+               BuildableName = "Baby Monitor.xctest"
                BlueprintName = "Baby MonitorTests"
                ReferencedContainer = "container:Baby Monitor.xcodeproj">
             </BuildableReference>

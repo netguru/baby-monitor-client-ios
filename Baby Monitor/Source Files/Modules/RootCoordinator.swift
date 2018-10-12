@@ -7,18 +7,18 @@
 import UIKit
 
 final class RootCoordinator: RootCoordinatorProtocol {
-
-    var childCoordinators: [Coordinator] = []
     
+    var childCoordinators: [Coordinator] = []
     var onEnding: (() -> Void)?
 
     var window: UIWindow
+    var appDependencies: AppDependencies
     
     private let navigationController = UINavigationController()
 
-    init(_ window: UIWindow) {
+    init(_ window: UIWindow, appDependencies: AppDependencies) {
         self.window = window
-
+        self.appDependencies = appDependencies
         setup()
     }
 
@@ -30,10 +30,10 @@ final class RootCoordinator: RootCoordinatorProtocol {
     private func setup() {
         window.rootViewController = navigationController
 
-        let onboardingCoordinator = OnboardingCoordinator(navigationController)
+        let onboardingCoordinator = OnboardingCoordinator(navigationController, appDependencies: appDependencies)
         childCoordinators.append(onboardingCoordinator)
         
-        let tabBarCoordinator = TabBarCoordinator(navigationController)
+        let tabBarCoordinator = TabBarCoordinator(navigationController, appDependencies: appDependencies)
         childCoordinators.append(tabBarCoordinator)
 
         onboardingCoordinator.onEnding = { [weak self] in

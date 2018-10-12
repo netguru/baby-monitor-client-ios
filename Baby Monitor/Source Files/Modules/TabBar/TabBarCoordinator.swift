@@ -8,24 +8,24 @@ import UIKit
 
 final class TabBarCoordinator: Coordinator {
     
+    var appDependencies: AppDependencies
     var navigationController: UINavigationController
-    
-    var childCoordinators: [Coordinator] = [
-        DashboardCoordinator(UINavigationController()),
-        ActivityLogCoordinator(UINavigationController()),
-        LullabiesCoordinator(UINavigationController()),
-        SettingsCoordinator(UINavigationController())
+    lazy var childCoordinators: [Coordinator] = [
+        DashboardCoordinator(UINavigationController(), appDependencies: appDependencies),
+        ActivityLogCoordinator(UINavigationController(), appDependencies: appDependencies),
+        LullabiesCoordinator(UINavigationController(), appDependencies: appDependencies),
+        SettingsCoordinator(UINavigationController(), appDependencies: appDependencies)
     ]
-    
     var onEnding: (() -> Void)?
     
-    private let tabBarController = TabBarController()
     
-    init(_ navigationController: UINavigationController) {
+    init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
-        
+        self.appDependencies = appDependencies
         setup()
     }
+    
+    private let tabBarController = TabBarController()
     
     func start() {
         navigationController.isNavigationBarHidden = true

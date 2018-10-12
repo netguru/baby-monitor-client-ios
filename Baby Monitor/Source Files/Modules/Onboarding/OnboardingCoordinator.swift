@@ -8,16 +8,17 @@ import UIKit
 
 final class OnboardingCoordinator: Coordinator {
     
+    var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    
     var onEnding: (() -> Void)?
     
     private weak var initialSetupViewController: InitialSetupViewController?
     private weak var clientSetupViewController: ClientSetupViewController?
     
-    init(_ navigationController: UINavigationController) {
+    init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
+        self.appDependencies = appDependencies
     }
     
     func start() {

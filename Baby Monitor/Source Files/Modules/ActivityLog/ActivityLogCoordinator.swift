@@ -8,6 +8,7 @@ import UIKit
 
 final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
     
+    var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var switchBabyViewController: BabyMonitorGeneralViewController?
@@ -16,7 +17,8 @@ final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
 
     private var activityLogViewController: BabyMonitorGeneralViewController?
     
-    init(_ navigationController: UINavigationController) {
+    init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
+        self.appDependencies = appDependencies
         self.navigationController = navigationController
     }
     
