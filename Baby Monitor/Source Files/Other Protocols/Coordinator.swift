@@ -18,6 +18,8 @@ protocol PartialCoordinator: class {
     var childCoordinators: [Coordinator] { get set }
     var appDependencies: AppDependencies { get set }
     
+    var onEnding: (() -> Void)? { get set }
+    
     /// Starts coordinator work. Should be called only once.
     func start()
 }

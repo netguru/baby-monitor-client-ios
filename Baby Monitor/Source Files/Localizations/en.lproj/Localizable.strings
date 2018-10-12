@@ -6,6 +6,13 @@
 //MARK: - General
 "general.cancel" = "Cancel";
 
+//MARK: - Onboarding
+"onboarding.button.start-client" = "Start Client";
+"onboarding.button.start-server" = "Start Server";
+"onboarding.button.setup-address" = "Setup Address";
+"onboarding.button.start-discovering" = "Start Discovering";
+"onboarding.text-field-placeholder.address" = "Type address...";
+
 //MARK: - Dashboard
 "dashboard.button.live-camera" = "LIVE CAMERA";
 "dashboard.button.talk" = "TALK";

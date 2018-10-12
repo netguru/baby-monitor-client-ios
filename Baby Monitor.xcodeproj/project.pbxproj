@@ -13,26 +13,32 @@
 		4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */; };
 		4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C5C21673FF800E92F29 /* CameraPreviewViewController.swift */; };
 		4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C5E216751F400E92F29 /* CameraPreviewViewModel.swift */; };
-		4E1D2C6121675FCC00E92F29 /* BabiesViewShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C6021675FCC00E92F29 /* BabiesViewShowable.swift */; };
 		4E1D2C6321678D5700E92F29 /* BabyMonitorGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C6221678D5600E92F29 /* BabyMonitorGeneralView.swift */; };
 		4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C6421678D9100E92F29 /* TypedViewController.swift */; };
 		4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C66216791AD00E92F29 /* DashboardView.swift */; };
 		4E1D2C692167926500E92F29 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C682167926500E92F29 /* BaseView.swift */; };
+		4E5731982170BA7400DEAF0B /* BabiesViewSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731902170BA7400DEAF0B /* BabiesViewSelectable.swift */; };
+		4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731912170BA7400DEAF0B /* BabiesViewShowable.swift */; };
+		4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731922170BA7400DEAF0B /* HasNavigationController.swift */; };
+		4E57319B2170BA7400DEAF0B /* HasWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731932170BA7400DEAF0B /* HasWindow.swift */; };
+		4E57319C2170BA7400DEAF0B /* BabyMonitorCellSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731942170BA7400DEAF0B /* BabyMonitorCellSelectable.swift */; };
+		4E57319D2170BA7400DEAF0B /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731952170BA7400DEAF0B /* Identifiable.swift */; };
+		4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731962170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift */; };
+		4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731972170BA7400DEAF0B /* Coordinator.swift */; };
+		4E5731A42170BA9D00DEAF0B /* VLCMediaPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731A22170BA9D00DEAF0B /* VLCMediaPlayerService.swift */; };
+		4E5731A52170BA9D00DEAF0B /* MediaPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731A32170BA9D00DEAF0B /* MediaPlayerProtocol.swift */; };
+		4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731A62170BAE000DEAF0B /* AppDependencies.swift */; };
 		4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */; };
-		4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7952161FBA1005575E0 /* Coordinator.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
 		4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */; };
 		4E931330216635B700AEE942 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93132F216635B700AEE942 /* TabBarController.swift */; };
 		4E9563182163521900289475 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563172163521900289475 /* DashboardButton.swift */; };
 		4E95631B21638D1500289475 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95631A21638D1500289475 /* Localizable.swift */; };
 		4E95631E21638E2200289475 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E95632021638E2200289475 /* Localizable.strings */; };
-		4E9563232164B8A600289475 /* HasNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563222164B8A600289475 /* HasNavigationController.swift */; };
-		4E9563262164BA4600289475 /* HasWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563252164BA4600289475 /* HasWindow.swift */; };
 		4E9563292164CAC600289475 /* BabyMonitorGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563282164CAC600289475 /* BabyMonitorGeneralViewController.swift */; };
 		4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95632A2164CB7900289475 /* BabyMonitorCell.swift */; };
 		4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95632C2164DB7500289475 /* SwitchBabyViewModel.swift */; };
 		4E9563322164DDC100289475 /* Baby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563312164DDC100289475 /* Baby.swift */; };
-		4E9563342164E75700289475 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563332164E75700289475 /* Identifiable.swift */; };
 		4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563352164E77100289475 /* UITableView+Dequeue.swift */; };
 		4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563382164F09C00289475 /* BabyNavigationItemView.swift */; };
 		4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95633A2164F6D500289475 /* UIViewController+ChildViewController.swift */; };
@@ -43,22 +49,22 @@
 		4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */; };
 		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
-		4EEFE767216F483600E3793B /* MediaPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFE766216F483600E3793B /* MediaPlayerProtocol.swift */; };
-		4EEFE769216F491900E3793B /* VLCMediaPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFE768216F491900E3793B /* VLCMediaPlayerService.swift */; };
-		4EEFE76B216F4F3000E3793B /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFE76A216F4F3000E3793B /* AppDependencies.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
-		4EF846E121662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */; };
-		4EF846E321662A81006AB68C /* BabyMonitorCellSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */; };
-		4EF846E521663057006AB68C /* BabiesViewSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF846E421663057006AB68C /* BabiesViewSelectable.swift */; };
-		552A89CD705651155ED40BB2 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E95536FA283F224909A30A8 /* Pods_Baby_Monitor.framework */; };
+		EC468BC6216C97BD003FA220 /* InitialSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */; };
+		EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC7216C9876003FA220 /* InitialSetupView.swift */; };
+		EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */; };
+		EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */; };
+		EC6179DD216F2A36004BD7E0 /* ClientSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */; };
+		EC6179DF216F2A4E004BD7E0 /* ClientSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */; };
+		EC6179E1216F2ADD004BD7E0 /* ClientSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
 		EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8389B6213FD7F500F00B83 /* MathTests.swift */; };
+		EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */; };
 		ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */; };
 		ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */; };
 		ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */; };
-		F9A10FA8B5847A3CA097706F /* Pods_Baby_MonitorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C80B97D23FD82962DD8070A6 /* Pods_Baby_MonitorTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,27 +84,32 @@
 		4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		4E1D2C5C21673FF800E92F29 /* CameraPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewViewController.swift; sourceTree = "<group>"; };
 		4E1D2C5E216751F400E92F29 /* CameraPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewViewModel.swift; sourceTree = "<group>"; };
-		4E1D2C6021675FCC00E92F29 /* BabiesViewShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabiesViewShowable.swift; sourceTree = "<group>"; };
 		4E1D2C6221678D5600E92F29 /* BabyMonitorGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralView.swift; sourceTree = "<group>"; };
 		4E1D2C6421678D9100E92F29 /* TypedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypedViewController.swift; sourceTree = "<group>"; };
 		4E1D2C66216791AD00E92F29 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		4E1D2C682167926500E92F29 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		4E5731902170BA7400DEAF0B /* BabiesViewSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesViewSelectable.swift; sourceTree = "<group>"; };
+		4E5731912170BA7400DEAF0B /* BabiesViewShowable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesViewShowable.swift; sourceTree = "<group>"; };
+		4E5731922170BA7400DEAF0B /* HasNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasNavigationController.swift; sourceTree = "<group>"; };
+		4E5731932170BA7400DEAF0B /* HasWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasWindow.swift; sourceTree = "<group>"; };
+		4E5731942170BA7400DEAF0B /* BabyMonitorCellSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellSelectable.swift; sourceTree = "<group>"; };
+		4E5731952170BA7400DEAF0B /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
+		4E5731962170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabyMonitorHeaderCellConfigurable.swift; sourceTree = "<group>"; };
+		4E5731972170BA7400DEAF0B /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4E5731A22170BA9D00DEAF0B /* VLCMediaPlayerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLCMediaPlayerService.swift; sourceTree = "<group>"; };
+		4E5731A32170BA9D00DEAF0B /* MediaPlayerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayerProtocol.swift; sourceTree = "<group>"; };
+		4E5731A62170BAE000DEAF0B /* AppDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
 		4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
-		4E6EA7952161FBA1005575E0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
-		4E900B5D216DF6730028F3EE /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		4E93132F216635B700AEE942 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4E9563172163521900289475 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		4E95631A21638D1500289475 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		4E95631F21638E2200289475 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4E9563222164B8A600289475 /* HasNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasNavigationController.swift; sourceTree = "<group>"; };
-		4E9563252164BA4600289475 /* HasWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasWindow.swift; sourceTree = "<group>"; };
 		4E9563282164CAC600289475 /* BabyMonitorGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewController.swift; sourceTree = "<group>"; };
 		4E95632A2164CB7900289475 /* BabyMonitorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCell.swift; sourceTree = "<group>"; };
 		4E95632C2164DB7500289475 /* SwitchBabyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchBabyViewModel.swift; sourceTree = "<group>"; };
 		4E9563312164DDC100289475 /* Baby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baby.swift; sourceTree = "<group>"; };
-		4E9563332164E75700289475 /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		4E9563352164E77100289475 /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
 		4E9563382164F09C00289475 /* BabyNavigationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyNavigationItemView.swift; sourceTree = "<group>"; };
 		4E95633A2164F6D500289475 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
@@ -115,18 +126,14 @@
 		4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Production.xcconfig"; sourceTree = "<group>"; };
 		4EA662F8216CBDEA009AD3B6 /* App-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Base.xcconfig"; sourceTree = "<group>"; };
-		4EBB487A216DDD5D0084FB43 /* Tests-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Development.xcconfig"; sourceTree = "<group>"; };
-		4EBB487B216DDDD70084FB43 /* Tests-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Staging.xcconfig"; sourceTree = "<group>"; };
-		4EBB487C216DDDE50084FB43 /* Tests-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Production.xcconfig"; sourceTree = "<group>"; };
-		4EEFE766216F483600E3793B /* MediaPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerProtocol.swift; sourceTree = "<group>"; };
-		4EEFE768216F491900E3793B /* VLCMediaPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCMediaPlayerService.swift; sourceTree = "<group>"; };
-		4EEFE76A216F4F3000E3793B /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
 		4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
-		4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorHeaderCellConfigurable.swift; sourceTree = "<group>"; };
-		4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellSelectable.swift; sourceTree = "<group>"; };
-		4EF846E421663057006AB68C /* BabiesViewSelectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabiesViewSelectable.swift; sourceTree = "<group>"; };
-		7E95536FA283F224909A30A8 /* Pods_Baby_Monitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_Monitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C80B97D23FD82962DD8070A6 /* Pods_Baby_MonitorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_MonitorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewController.swift; sourceTree = "<group>"; };
+		EC468BC7216C9876003FA220 /* InitialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupView.swift; sourceTree = "<group>"; };
+		EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewModel.swift; sourceTree = "<group>"; };
+		EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupViewController.swift; sourceTree = "<group>"; };
+		EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupViewModel.swift; sourceTree = "<group>"; };
+		EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupView.swift; sourceTree = "<group>"; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -135,6 +142,7 @@
 		EC82B56A213EA074005CA395 /* Baby Monitor.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baby Monitor.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8389B6213FD7F500F00B83 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
+		EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
 		ECB146DB213EA45E00C504FD /* App-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Development.xcconfig"; sourceTree = "<group>"; };
 		ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Staging.xcconfig"; sourceTree = "<group>"; };
@@ -145,7 +153,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				552A89CD705651155ED40BB2 /* Pods_Baby_Monitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +160,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9A10FA8B5847A3CA097706F /* Pods_Baby_MonitorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,11 +202,40 @@
 			isa = PBXGroup;
 			children = (
 				4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */,
-				4EBB487A216DDD5D0084FB43 /* Tests-Development.xcconfig */,
-				4EBB487B216DDDD70084FB43 /* Tests-Staging.xcconfig */,
-				4EBB487C216DDDE50084FB43 /* Tests-Production.xcconfig */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		4E57318F2170BA7400DEAF0B /* Other Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4E5731902170BA7400DEAF0B /* BabiesViewSelectable.swift */,
+				4E5731912170BA7400DEAF0B /* BabiesViewShowable.swift */,
+				4E5731922170BA7400DEAF0B /* HasNavigationController.swift */,
+				4E5731932170BA7400DEAF0B /* HasWindow.swift */,
+				4E5731942170BA7400DEAF0B /* BabyMonitorCellSelectable.swift */,
+				4E5731952170BA7400DEAF0B /* Identifiable.swift */,
+				4E5731962170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift */,
+				4E5731972170BA7400DEAF0B /* Coordinator.swift */,
+			);
+			path = "Other Protocols";
+			sourceTree = "<group>";
+		};
+		4E5731A02170BA9D00DEAF0B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4E5731A12170BA9D00DEAF0B /* MediaPlayer */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4E5731A12170BA9D00DEAF0B /* MediaPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				4E5731A22170BA9D00DEAF0B /* VLCMediaPlayerService.swift */,
+				4E5731A32170BA9D00DEAF0B /* MediaPlayerProtocol.swift */,
+			);
+			path = MediaPlayer;
 			sourceTree = "<group>";
 		};
 		4E5BEB13215E5EC60056E5CC /* Extensions */ = {
@@ -217,13 +252,16 @@
 			isa = PBXGroup;
 			children = (
 				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
+				EC468BC4216C9797003FA220 /* InitialSetup */,
+				EC6179DB216F2A0F004BD7E0 /* ClientSetup */,
+				EC4C9945216B944B0093EDFC /* Onboarding */,
 				4E994BE221623EC3009C44C5 /* ActivityLog */,
 				4E1D2C5B21673FE200E92F29 /* CameraPreview */,
 				4E994BDB216237CB009C44C5 /* Dashboard */,
 				4E994BE5216240CD009C44C5 /* Lullabies */,
 				4E994BE6216240DA009C44C5 /* Settings */,
 				4E9563272164CAB000289475 /* SwitchBaby */,
-				4E93132F216635B700AEE942 /* TabBarController.swift */,
+				EC8C943C216CBFCE00E3B478 /* TabBar */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -235,21 +273,6 @@
 				4E95632021638E2200289475 /* Localizable.strings */,
 			);
 			path = Localizations;
-			sourceTree = "<group>";
-		};
-		4E9563242164BA2900289475 /* Other Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				4E6EA7952161FBA1005575E0 /* Coordinator.swift */,
-				4E9563222164B8A600289475 /* HasNavigationController.swift */,
-				4E9563252164BA4600289475 /* HasWindow.swift */,
-				4E9563332164E75700289475 /* Identifiable.swift */,
-				4EF846E021662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift */,
-				4EF846E221662A81006AB68C /* BabyMonitorCellSelectable.swift */,
-				4EF846E421663057006AB68C /* BabiesViewSelectable.swift */,
-				4E1D2C6021675FCC00E92F29 /* BabiesViewShowable.swift */,
-			);
-			path = "Other Protocols";
 			sourceTree = "<group>";
 		};
 		4E9563272164CAB000289475 /* SwitchBaby */ = {
@@ -320,23 +343,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		4EEFE762216F474D00E3793B /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				4EEFE763216F476F00E3793B /* MediaPlayer */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		4EEFE763216F476F00E3793B /* MediaPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				4EEFE766216F483600E3793B /* MediaPlayerProtocol.swift */,
-				4EEFE768216F491900E3793B /* VLCMediaPlayerService.swift */,
-			);
-			path = MediaPlayer;
-			sourceTree = "<group>";
-		};
 		4EF36FBB21660F1700257384 /* BabyMonitorGeneral */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,20 +354,32 @@
 			path = BabyMonitorGeneral;
 			sourceTree = "<group>";
 		};
-		6FEA35B73D46EFBC211DE1DD /* Pods */ = {
+		EC468BC4216C9797003FA220 /* InitialSetup */ = {
 			isa = PBXGroup;
 			children = (
+				EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */,
+				EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */,
+				EC468BC7216C9876003FA220 /* InitialSetupView.swift */,
 			);
-			name = Pods;
+			path = InitialSetup;
 			sourceTree = "<group>";
 		};
-		747CC7BE292A89BB8C672DAE /* Frameworks */ = {
+		EC4C9945216B944B0093EDFC /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				7E95536FA283F224909A30A8 /* Pods_Baby_Monitor.framework */,
-				C80B97D23FD82962DD8070A6 /* Pods_Baby_MonitorTests.framework */,
+				EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */,
 			);
-			name = Frameworks;
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		EC6179DB216F2A0F004BD7E0 /* ClientSetup */ = {
+			isa = PBXGroup;
+			children = (
+				EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */,
+				EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */,
+				EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */,
+			);
+			path = ClientSetup;
 			sourceTree = "<group>";
 		};
 		EC82B54D213EA072005CA395 = {
@@ -371,10 +389,9 @@
 				EC82B558213EA072005CA395 /* Baby Monitor */,
 				EC82B56D213EA074005CA395 /* Baby MonitorTests */,
 				EC82B557213EA072005CA395 /* Products */,
-				6FEA35B73D46EFBC211DE1DD /* Pods */,
-				747CC7BE292A89BB8C672DAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		EC82B557213EA072005CA395 /* Products */ = {
 			isa = PBXGroup;
@@ -409,13 +426,13 @@
 		EC82B579213EA0CB005CA395 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
+				4E5731A62170BAE000DEAF0B /* AppDependencies.swift */,
 				EC82B559213EA072005CA395 /* AppDelegate.swift */,
-				4EEFE76A216F4F3000E3793B /* AppDependencies.swift */,
 				4E6EA7932161FB81005575E0 /* Modules */,
 				4E9563372164F07A00289475 /* Custom Views */,
+				4E5731A02170BA9D00DEAF0B /* Services */,
+				4E57318F2170BA7400DEAF0B /* Other Protocols */,
 				4E9563302164DDB000289475 /* Models */,
-				4E9563242164BA2900289475 /* Other Protocols */,
-				4EEFE762216F474D00E3793B /* Services */,
 				4E95631921638CE400289475 /* Localizations */,
 			);
 			path = "Source Files";
@@ -433,7 +450,6 @@
 			isa = PBXGroup;
 			children = (
 				EC82B560213EA074005CA395 /* Assets.xcassets */,
-				4E900B5D216DF6730028F3EE /* Bridging-Header.h */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -454,11 +470,20 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EC8C943C216CBFCE00E3B478 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4E93132F216635B700AEE942 /* TabBarController.swift */,
+				EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		ECB146D9213EA44C00C504FD /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				4E56C7E9216CEE9000379FB4 /* Common */,
 				4E56C7E8216CEE9000379FB4 /* App */,
+				4E56C7E9216CEE9000379FB4 /* Common */,
 				4E56C7EA216CEE9000379FB4 /* Tests */,
 			);
 			path = Configuration;
@@ -471,7 +496,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC82B573213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby Monitor" */;
 			buildPhases = (
-				4A1A1C7CABCC9936042C2ABA /* [CP] Check Pods Manifest.lock */,
 				EC82B552213EA072005CA395 /* Sources */,
 				EC82B553213EA072005CA395 /* Frameworks */,
 				EC82B554213EA072005CA395 /* Resources */,
@@ -489,7 +513,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC82B576213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby MonitorTests" */;
 			buildPhases = (
-				0F922B1D220C7E7CAEEE1BBD /* [CP] Check Pods Manifest.lock */,
 				EC82B566213EA074005CA395 /* Sources */,
 				EC82B567213EA074005CA395 /* Frameworks */,
 				EC82B568213EA074005CA395 /* Resources */,
@@ -567,52 +590,14 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0F922B1D220C7E7CAEEE1BBD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Baby MonitorTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4A1A1C7CABCC9936042C2ABA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Baby Monitor-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		EC82B552213EA072005CA395 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
-				4E1D2C6121675FCC00E92F29 /* BabiesViewShowable.swift in Sources */,
+				4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */,
+				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
@@ -622,38 +607,45 @@
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
 				4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */,
 				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
+				4E57319C2170BA7400DEAF0B /* BabyMonitorCellSelectable.swift in Sources */,
+				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
-				4EF846E521663057006AB68C /* BabiesViewSelectable.swift in Sources */,
+				EC6179E1216F2ADD004BD7E0 /* ClientSetupView.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
+				4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
 				4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */,
+				4E5731A52170BA9D00DEAF0B /* MediaPlayerProtocol.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
+				4E5731982170BA7400DEAF0B /* BabiesViewSelectable.swift in Sources */,
+				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
+				4E57319B2170BA7400DEAF0B /* HasWindow.swift in Sources */,
 				4E9563292164CAC600289475 /* BabyMonitorGeneralViewController.swift in Sources */,
-				4EEFE767216F483600E3793B /* MediaPlayerProtocol.swift in Sources */,
 				4E1D2C6321678D5700E92F29 /* BabyMonitorGeneralView.swift in Sources */,
 				4E994BE121623821009C44C5 /* DashboardViewModel.swift in Sources */,
 				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
+				EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,
+				4E5731A42170BA9D00DEAF0B /* VLCMediaPlayerService.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
-				4EF846E321662A81006AB68C /* BabyMonitorCellSelectable.swift in Sources */,
+				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
+				EC468BC6216C97BD003FA220 /* InitialSetupViewController.swift in Sources */,
+				EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
+				EC6179DF216F2A4E004BD7E0 /* ClientSetupViewModel.swift in Sources */,
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
+				4E57319D2170BA7400DEAF0B /* Identifiable.swift in Sources */,
+				4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
-				4EEFE769216F491900E3793B /* VLCMediaPlayerService.swift in Sources */,
 				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
-				4E9563262164BA4600289475 /* HasWindow.swift in Sources */,
 				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
-				4E6EA7962161FBA1005575E0 /* Coordinator.swift in Sources */,
-				4E9563342164E75700289475 /* Identifiable.swift in Sources */,
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
-				4EEFE76B216F4F3000E3793B /* AppDependencies.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
-				4EF846E121662948006AB68C /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
-				4E9563232164B8A600289475 /* HasNavigationController.swift in Sources */,
+				EC6179DD216F2A36004BD7E0 /* ClientSetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,14 +717,14 @@
 		};
 		EC82B577213EA074005CA395 /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EBB487A216DDD5D0084FB43 /* Tests-Development.xcconfig */;
+			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
 			buildSettings = {
 			};
 			name = Development;
 		};
 		EC82B578213EA074005CA395 /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EBB487C216DDDE50084FB43 /* Tests-Production.xcconfig */;
+			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
 			buildSettings = {
 			};
 			name = Production;
@@ -753,7 +745,7 @@
 		};
 		EC82B585213EA3E5005CA395 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EBB487B216DDDD70084FB43 /* Tests-Staging.xcconfig */;
+			baseConfigurationReference = 4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */;
 			buildSettings = {
 			};
 			name = Staging;

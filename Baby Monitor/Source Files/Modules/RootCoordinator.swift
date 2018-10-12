@@ -8,33 +8,37 @@ import UIKit
 
 final class RootCoordinator: RootCoordinatorProtocol {
     
-    var appDependencies: AppDependencies
-    lazy var childCoordinators: [Coordinator] = [
-        DashboardCoordinator(UINavigationController(), appDependencies: appDependencies),
-        ActivityLogCoordinator(UINavigationController(), appDependencies: appDependencies),
-        LullabiesCoordinator(UINavigationController(), appDependencies: appDependencies),
-        SettingsCoordinator(UINavigationController(), appDependencies: appDependencies)
-    ]
-    
+    var childCoordinators: [Coordinator] = []
+    var onEnding: (() -> Void)?
+
     var window: UIWindow
+    var appDependencies: AppDependencies
     
-    private let tabBarController = TabBarController()
-    
+    private let navigationController = UINavigationController()
+
     init(_ window: UIWindow, appDependencies: AppDependencies) {
         self.window = window
         self.appDependencies = appDependencies
         setup()
     }
-    
+
     func start() {
-        childCoordinators.forEach { $0.start() }
+        childCoordinators.first?.start()
     }
-    
+
     // MARK: - private functions
     private func setup() {
-        let tabViewControllers = childCoordinators.map { $0.navigationController }
-        tabBarController.setViewControllers(tabViewControllers, animated: false)
-        tabBarController.setupTitles()
-        window.rootViewController = tabBarController
+        window.rootViewController = navigationController
+
+        let onboardingCoordinator = OnboardingCoordinator(navigationController, appDependencies: appDependencies)
+        childCoordinators.append(onboardingCoordinator)
+        
+        let tabBarCoordinator = TabBarCoordinator(navigationController, appDependencies: appDependencies)
+        childCoordinators.append(tabBarCoordinator)
+
+        onboardingCoordinator.onEnding = { [weak self] in
+            self?.navigationController.setViewControllers([], animated: false)
+            tabBarCoordinator.start()
+        }
     }
 }

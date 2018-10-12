@@ -20,7 +20,7 @@ extension BabiesViewShowable {
     
     func toggleSwitchBabiesView(on viewController: UIViewController) {
         if let switchBabyViewController = self.switchBabyViewController {
-            switchBabyViewController.removeFromParent()
+            switchBabyViewController.removeFromParentViewController()
             self.switchBabyViewController = nil
             return
         }
@@ -28,7 +28,7 @@ extension BabiesViewShowable {
         let switchBabyViewModel = SwitchBabyViewModel()
         let switchBabyViewController = BabyMonitorGeneralViewController(viewModel: switchBabyViewModel, type: .switchBaby)
         self.switchBabyViewController = switchBabyViewController
-        viewController.addChild(switchBabyViewController)
+        viewController.addChildViewController(switchBabyViewController)
 
     }
 }
