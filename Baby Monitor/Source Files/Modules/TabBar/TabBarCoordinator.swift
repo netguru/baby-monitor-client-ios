@@ -7,8 +7,6 @@
 import UIKit
 
 final class TabBarCoordinator: Coordinator {
-
-    var onEnding: (() -> Void)?
     
     var navigationController: UINavigationController
     
@@ -20,6 +18,8 @@ final class TabBarCoordinator: Coordinator {
     ]
     
     let tabBarController = TabBarController()
+    
+    var onEnding: (() -> Void)?
     
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController

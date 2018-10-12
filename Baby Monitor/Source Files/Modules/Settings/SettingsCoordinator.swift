@@ -7,11 +7,11 @@
 import UIKit
 
 final class SettingsCoordinator: Coordinator {
-
-    var onEnding: (() -> Void)?
     
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
+    
+    var onEnding: (() -> Void)?
     
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController

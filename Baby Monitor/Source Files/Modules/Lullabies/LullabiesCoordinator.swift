@@ -7,18 +7,18 @@
 import UIKit
 
 final class LullabiesCoordinator: Coordinator, BabiesViewShowable {
-
-    var onEnding: (() -> Void)?
     
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var switchBabyViewController: BabyMonitorGeneralViewController?
     
+    private var lullabiesViewController: BabyMonitorGeneralViewController?
+    
+    var onEnding: (() -> Void)?
+    
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
-    private var lullabiesViewController: BabyMonitorGeneralViewController?
     
     func start() {
         showLullabies()

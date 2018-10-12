@@ -13,6 +13,10 @@ final class ClientSetupViewModel {
     var didSelectStartDiscovering: (() -> Void)?
     
     //MARK: - Internal functions
+
+    /// Sets up the address of an available baby (server) to connect to.
+    ///
+    /// - Parameter address: The address of a server device.
     func selectSetupAddress(_ address: String?) {
         didSelectSetupAddress?(address)
     }

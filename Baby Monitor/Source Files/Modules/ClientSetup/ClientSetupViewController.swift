@@ -20,11 +20,6 @@ final class ClientSetupViewController: TypedViewController<ClientSetupView>, UIT
         setup()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        customView.endEditing(true)
-        return false
-    }
-    
     //MARK: - Private functions
     private func setup() {
         customView.setupAddressButton.onSelect = { [weak self] in
@@ -35,5 +30,11 @@ final class ClientSetupViewController: TypedViewController<ClientSetupView>, UIT
         }
         
         customView.addressField.delegate = self
+    }
+    
+    //MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        customView.endEditing(true)
+        return false
     }
 }

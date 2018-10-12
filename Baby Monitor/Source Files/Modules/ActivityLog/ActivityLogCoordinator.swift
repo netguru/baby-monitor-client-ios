@@ -7,14 +7,14 @@
 import UIKit
 
 final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
-
-    var onEnding: (() -> Void)?
     
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var switchBabyViewController: BabyMonitorGeneralViewController?
-    
+
     private var activityLogViewController: BabyMonitorGeneralViewController?
+    
+    var onEnding: (() -> Void)?
     
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController

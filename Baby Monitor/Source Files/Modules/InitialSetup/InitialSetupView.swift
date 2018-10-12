@@ -9,6 +9,9 @@ import UIKit
 final class InitialSetupView: BaseView {
     
     let cancelItemButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
+    let startClientButton = OnboardingButtonView(text: Localizable.Onboarding.startClient)
+    let startServerButton = OnboardingButtonView(text: Localizable.Onboarding.startServer)
+
     private lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [startClientButton, startServerButton])
         stackView.distribution = .equalSpacing
@@ -18,9 +21,6 @@ final class InitialSetupView: BaseView {
 
         return stackView
     }()
-    
-    let startClientButton = OnboardingButtonView(text: Localizable.Onboarding.startClient)
-    let startServerButton = OnboardingButtonView(text: Localizable.Onboarding.startServer)
     
     override init() {
         super.init()

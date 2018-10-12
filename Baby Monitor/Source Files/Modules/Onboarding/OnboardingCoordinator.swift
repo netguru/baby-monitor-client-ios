@@ -7,14 +7,14 @@
 import UIKit
 
 final class OnboardingCoordinator: Coordinator {
-
-    var onEnding: (() -> Void)?
     
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
     private weak var initialSetupViewController: InitialSetupViewController?
     private weak var clientSetupViewController: ClientSetupViewController?
+    
+    var onEnding: (() -> Void)?
     
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -30,10 +30,10 @@ final class OnboardingCoordinator: Coordinator {
         initialSetupViewModel.didSelectStartClient = { [weak self] in
             let clientSetupViewModel = ClientSetupViewModel()
             clientSetupViewModel.didSelectSetupAddress = { (address) in
-                //TODO: Connect to the address
+                //TODO: Connect to the address, ticket: https://netguru.atlassian.net/browse/BM-80
             }
             clientSetupViewModel.didSelectStartDiscovering = {
-                //TODO: Search for devices and connect
+                //TODO: Search for devices and connect, ticket: https://netguru.atlassian.net/browse/BM-79
                 
                 self?.onEnding?()
             }
@@ -43,7 +43,7 @@ final class OnboardingCoordinator: Coordinator {
             self?.navigationController.pushViewController(clientSetupViewController, animated: true)
         }
         initialSetupViewModel.didSelectStartServer = {
-            //TODO: Start broadcasting
+            //TODO: Start broadcasting, ticket: https://netguru.atlassian.net/browse/BM-60
         }
 
         let initialSetupViewController = InitialSetupViewController(viewModel: initialSetupViewModel)

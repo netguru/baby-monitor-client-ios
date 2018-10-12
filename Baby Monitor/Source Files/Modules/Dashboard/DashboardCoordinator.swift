@@ -7,8 +7,6 @@
 import UIKit
 
 final class DashboardCoordinator: Coordinator, BabiesViewShowable {
-
-    var onEnding: (() -> Void)?
     
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -16,6 +14,8 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
     
     private weak var dashboardViewController: DashboardViewController?
     private weak var cameraPreviewViewController: CameraPreviewViewController?
+    
+    var onEnding: (() -> Void)?
     
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
