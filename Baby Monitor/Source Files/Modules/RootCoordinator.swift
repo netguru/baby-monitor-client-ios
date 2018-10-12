@@ -9,11 +9,12 @@ import UIKit
 final class RootCoordinator: RootCoordinatorProtocol {
 
     var childCoordinators: [Coordinator] = []
-    private let navigationController = UINavigationController()
     
     var onEnding: (() -> Void)?
 
     var window: UIWindow
+    
+    private let navigationController = UINavigationController()
 
     init(_ window: UIWindow) {
         self.window = window

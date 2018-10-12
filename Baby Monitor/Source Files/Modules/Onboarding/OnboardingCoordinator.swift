@@ -11,10 +11,10 @@ final class OnboardingCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
+    var onEnding: (() -> Void)?
+    
     private weak var initialSetupViewController: InitialSetupViewController?
     private weak var clientSetupViewController: ClientSetupViewController?
-    
-    var onEnding: (() -> Void)?
     
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController

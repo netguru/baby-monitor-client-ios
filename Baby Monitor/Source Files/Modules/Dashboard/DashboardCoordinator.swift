@@ -12,10 +12,10 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
     var navigationController: UINavigationController
     weak var switchBabyViewController: BabyMonitorGeneralViewController?
     
+    var onEnding: (() -> Void)?
+    
     private weak var dashboardViewController: DashboardViewController?
     private weak var cameraPreviewViewController: CameraPreviewViewController?
-    
-    var onEnding: (() -> Void)?
     
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController

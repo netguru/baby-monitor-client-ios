@@ -11,10 +11,10 @@ final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var switchBabyViewController: BabyMonitorGeneralViewController?
-
-    private var activityLogViewController: BabyMonitorGeneralViewController?
     
     var onEnding: (() -> Void)?
+
+    private var activityLogViewController: BabyMonitorGeneralViewController?
     
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
