@@ -8,6 +8,15 @@ import UIKit
 
 final class ClientSetupView: BaseView {
     
+    let setupAddressButton = UIButton()
+    let startDiscoveringButton = UIButton()
+    lazy var addressField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = Localizable.Onboarding.addressPlaceholder
+        
+        return textField
+    }()
+    
     private lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [setupAddressButton, startDiscoveringButton])
         stackView.distribution = .equalSpacing
@@ -16,15 +25,6 @@ final class ClientSetupView: BaseView {
         stackView.spacing = 20
         
         return stackView
-    }()
-    
-    let setupAddressButton = UIButton()
-    let startDiscoveringButton = UIButton()
-    lazy var addressField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = Localizable.Onboarding.addressPlaceholder
-        
-        return textField
     }()
     
     override init() {
@@ -43,6 +43,7 @@ final class ClientSetupView: BaseView {
     }
     
     private func setupButtons() {
+        //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
         [setupAddressButton, startDiscoveringButton].forEach {
             $0.backgroundColor = .blue
         }

@@ -36,6 +36,7 @@ final class InitialSetupView: BaseView {
     }
     
     private func setupButtons() {
+        //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
         [startClientButton, startServerButton].forEach {
             $0.backgroundColor = .blue
         }

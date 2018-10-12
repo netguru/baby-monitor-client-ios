@@ -17,7 +17,7 @@ final class TabBarCoordinator: Coordinator {
         SettingsCoordinator(UINavigationController())
     ]
     
-    let tabBarController = TabBarController()
+    private let tabBarController = TabBarController()
     
     var onEnding: (() -> Void)?
     
