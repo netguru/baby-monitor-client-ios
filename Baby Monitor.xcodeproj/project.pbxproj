@@ -457,8 +457,8 @@
 		ECB146D9213EA44C00C504FD /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				4E56C7E8216CEE9000379FB4 /* App */,
 				4E56C7E9216CEE9000379FB4 /* Common */,
+				4E56C7E8216CEE9000379FB4 /* App */,
 				4E56C7EA216CEE9000379FB4 /* Tests */,
 			);
 			path = Configuration;
