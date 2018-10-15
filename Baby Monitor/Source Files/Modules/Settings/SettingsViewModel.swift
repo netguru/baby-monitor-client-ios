@@ -19,8 +19,7 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
     
     //MARK: - Internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
-        cell.type = .setting
-
+        cell.type = .settings
         switch indexPath.row {
         case Constants.switchToServerCell:
             //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67

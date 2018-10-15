@@ -12,7 +12,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         case switchBaby(SwitchBabyType)
         case lullaby
         case activityLog
-        case setting
+        case settings
     }
     
     enum SwitchBabyType {
@@ -146,7 +146,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
             [secondaryLabel, additionalButton].forEach {
                 $0.isHidden = false
             }
-        case .setting:
+        case .settings:
             additionalButton.isHidden = false
         }
     }

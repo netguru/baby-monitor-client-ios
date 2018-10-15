@@ -36,7 +36,9 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
         }
 
         settingsViewController = BabyMonitorGeneralViewController(viewModel: viewModel, type: .settings)
-        navigationController.pushViewController(settingsViewController!, animated: false)
+        if let settingsViewController = settingsViewController {
+            navigationController.pushViewController(settingsViewController, animated: false)
+        }
     }
 }
 

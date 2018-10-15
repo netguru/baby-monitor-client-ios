@@ -40,7 +40,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
                 //TODO: add implementation
                 break
             }
-        case .activityLog, .lullaby, .setting:
+        case .activityLog, .lullaby, .settings:
             break
         }
     }
