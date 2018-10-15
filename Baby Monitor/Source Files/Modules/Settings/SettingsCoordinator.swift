@@ -14,7 +14,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     var switchBabyViewController: BabyMonitorGeneralViewController?
     var onEnding: (() -> Void)?
     
-    private var settingsViewController: BabyMonitorGeneralViewController?
+    private weak var settingsViewController: BabyMonitorGeneralViewController?
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.appDependencies = appDependencies
@@ -35,10 +35,9 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
             self?.toggleSwitchBabiesView(on: settingsViewController)
         }
 
-        settingsViewController = BabyMonitorGeneralViewController(viewModel: viewModel, type: .settings)
-        if let settingsViewController = settingsViewController {
-            navigationController.pushViewController(settingsViewController, animated: false)
-        }
+        let settingsViewController = BabyMonitorGeneralViewController(viewModel: viewModel, type: .settings)
+        self.settingsViewController = settingsViewController
+        navigationController.pushViewController(settingsViewController, animated: false)
     }
 }
 
