@@ -12,6 +12,7 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
         case switchBaby
         case activityLog
         case lullaby
+        case settings
     }
     
     private let viewModel: BabyMonitorGeneralViewModelProtocol
@@ -41,7 +42,7 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
         }
         
         switch viewType {
-        case .activityLog, .lullaby:
+        case .activityLog, .lullaby, .settings:
             navigationItem.titleView = navigationView
         case .switchBaby:
             break
