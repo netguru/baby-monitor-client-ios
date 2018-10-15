@@ -42,6 +42,10 @@ struct Localizable {
         static let bmLibrary = localized("lullabies.bm-library")
         static let yourLullabies = localized("lullabies.your-lullabies")
     }
+    
+    struct Settings {
+        static let switchToServer = localized("settings.cell.switch-to-server")
+    }
 }
 
 private func localized(_ value: String) -> String {

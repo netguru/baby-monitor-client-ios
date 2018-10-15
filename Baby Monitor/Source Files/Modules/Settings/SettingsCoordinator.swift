@@ -6,12 +6,15 @@
 
 import UIKit
 
-final class SettingsCoordinator: Coordinator {
+final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     
     var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
+    var switchBabyViewController: BabyMonitorGeneralViewController?
     var onEnding: (() -> Void)?
+    
+    private var settingsViewController: BabyMonitorGeneralViewController?
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.appDependencies = appDependencies
@@ -19,14 +22,21 @@ final class SettingsCoordinator: Coordinator {
     }
     
     func start() {
-        showLullabies()
+        showSettings()
     }
     
     //MARK: - private functions
-    private func showLullabies() {
+    private func showSettings() {
         let viewModel = SettingsViewModel()
-        let viewController = SettingsViewController(viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: false)
+        viewModel.didSelectShowBabiesView = { [weak self] in
+            guard let settingsViewController = self?.settingsViewController else {
+                return
+            }
+            self?.toggleSwitchBabiesView(on: settingsViewController)
+        }
+
+        settingsViewController = BabyMonitorGeneralViewController(viewModel: viewModel, type: .settings)
+        navigationController.pushViewController(settingsViewController!, animated: false)
     }
 }
 
