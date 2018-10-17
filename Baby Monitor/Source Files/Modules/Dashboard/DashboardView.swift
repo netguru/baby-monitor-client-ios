@@ -80,7 +80,7 @@ class DashboardView: BaseView {
         dashboardButtonsStackView.addConstraints {[
             $0.equalTo(layoutView, .centerY, .centerY),
             $0.equal(.centerX),
-            $0.equalTo(self, .width, .width, multiplier: 0.9),
+            $0.equalTo(self, .width, .width, multiplier: 0.9)
         ]}
         
         descriptionLabel.addConstraints {[

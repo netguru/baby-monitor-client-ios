@@ -6,6 +6,6 @@
 
 import UIKit
 
-protocol HasWindow: class {
+protocol HasWindow: AnyObject {
     var window: UIWindow { get set }
 }

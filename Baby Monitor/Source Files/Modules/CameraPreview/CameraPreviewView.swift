@@ -48,13 +48,13 @@ final class CameraPreviewView: BaseView {
         [changeCameraButton, microphoneButton].forEach {
             $0.addConstraints {[
                 $0.equalConstant(.width, 40),
-                $0.equalConstant(.height, 40),
+                $0.equalConstant(.height, 40)
             ]}
         }
         
         stopButton.addConstraints {[
             $0.equalConstant(.width, 60),
-            $0.equalConstant(.height, 60),
+            $0.equalConstant(.height, 60)
         ]}
         
         buttonsStackView.addConstraints {[

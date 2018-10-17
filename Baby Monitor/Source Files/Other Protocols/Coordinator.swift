@@ -14,7 +14,7 @@ protocol Coordinator: PartialCoordinator, HasNavigationController {
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies)
 }
 
-protocol PartialCoordinator: class {
+protocol PartialCoordinator: AnyObject {
     var childCoordinators: [Coordinator] { get set }
     var appDependencies: AppDependencies { get set }
     

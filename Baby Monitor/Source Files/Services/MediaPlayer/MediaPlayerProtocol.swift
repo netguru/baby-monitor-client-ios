@@ -6,14 +6,14 @@
 
 import UIKit
 
-protocol MediaPlayerDataSource: class {
+protocol MediaPlayerDataSource: AnyObject {
     
     /// View that is needed to render video
     var videoView: UIView { get set }
 }
 
 /// Protocol that should be conformed by every new class of media player service
-protocol MediaPlayerProtocol: class {
+protocol MediaPlayerProtocol: AnyObject {
     
     var dataSource: MediaPlayerDataSource? { get set }
     

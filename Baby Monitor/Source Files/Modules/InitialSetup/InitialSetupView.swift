@@ -55,7 +55,7 @@ final class InitialSetupView: BaseView {
         [startClientButton, startServerButton].forEach {
             $0.addConstraints {[
                 $0.equalConstant(.width, 150),
-                $0.equalConstant(.height, 40),
+                $0.equalConstant(.height, 40)
             ]}
         }
     }

@@ -40,4 +40,3 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
         navigationController.pushViewController(settingsViewController, animated: false)
     }
 }
-

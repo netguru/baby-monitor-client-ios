@@ -62,7 +62,7 @@ final class ClientSetupView: BaseView {
         [setupAddressButton, startDiscoveringButton].forEach {
             $0.addConstraints {[
                 $0.equalConstant(.width, 150),
-                $0.equalConstant(.height, 40),
+                $0.equalConstant(.height, 40)
             ]}
         }
         
@@ -70,7 +70,7 @@ final class ClientSetupView: BaseView {
             $0.equal(.centerX),
             $0.equal(.centerY),
             $0.equalConstant(.height, 50),
-            $0.equalConstant(.width, 150),
+            $0.equalConstant(.width, 150)
         ]}
     }
 }
