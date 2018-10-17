@@ -15,7 +15,7 @@ final class RealmBabiesRepository: BabiesRepository {
         self.realm = realm
     }
     
-    func save(baby: Baby) {
+    func save(baby: Baby) throws {
         let realmBaby = RealmBaby(with: baby)
         try! realm.write {
             realm.add(realmBaby, update: true)

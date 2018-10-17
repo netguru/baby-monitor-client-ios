@@ -11,7 +11,7 @@ protocol BabiesRepository {
     /// Persists baby in repository
     ///
     /// - Parameter baby: object to persist
-    func save(baby: Baby)
+    func save(baby: Baby) throws
     
     /// Returns all persisted babies
     ///

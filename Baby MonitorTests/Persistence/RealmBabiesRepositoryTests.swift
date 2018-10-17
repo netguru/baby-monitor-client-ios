@@ -19,7 +19,7 @@ class RealmBabiesRepositoryTests: XCTestCase {
         let baby = Baby(name: "test")
         
         // When
-        sut.save(baby: baby)
+        try! sut.save(baby: baby)
         
         // Then
         let results = realm.objects(RealmBaby.self)
@@ -36,8 +36,8 @@ class RealmBabiesRepositoryTests: XCTestCase {
         let newBaby = Baby(id: "1", name: "test2")
         
         // When
-        sut.save(baby: baby)
-        sut.save(baby: newBaby)
+        try! sut.save(baby: baby)
+        try! sut.save(baby: newBaby)
         
         // Then
         let results = realm.objects(RealmBaby.self)
