@@ -7,6 +7,7 @@
 target 'Baby Monitor' do
 
 	pod 'MobileVLCKit', '~> 3.1'
+    pod 'RealmSwift', '~> 3.11.0'
 
   target 'Baby MonitorTests' do
     inherit! :search_paths
