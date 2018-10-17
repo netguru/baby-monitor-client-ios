@@ -27,4 +27,16 @@ final class RealmBabiesRepository: BabiesRepository {
             .map { $0.toBaby() }
         return Array(babies)
     }
+    
+    func fetchBaby(id: String) -> Baby? {
+        return realm.object(ofType: RealmBaby.self, forPrimaryKey: id)?
+            .toBaby()
+    }
+    
+    func fetchBabies(name: String) -> [Baby] {
+        let babies = realm.objects(RealmBaby.self)
+            .filter { $0.name == name }
+            .map { $0.toBaby() }
+        return Array(babies)
+    }
 }

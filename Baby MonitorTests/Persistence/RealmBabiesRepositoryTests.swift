@@ -73,6 +73,76 @@ class RealmBabiesRepositoryTests: XCTestCase {
         
         // Then
         XCTAssertEqual(1, results.count, "The result size isn't proper")
-        XCTAssertEqual(baby, results[0])
+        XCTAssertEqual(baby, results[0], "The babies doesn't match")
+    }
+    
+    func testShouldFetchNilForNonexistentBabyId() {
+        // Given
+        let realm = try! Realm(configuration: config)
+        let sut = RealmBabiesRepository(realm: realm)
+        let baby = Baby(id: "1", name: "test1")
+        try! realm.write {
+            realm.add(RealmBaby(with: baby))
+        }
+        
+        // When
+        let result = sut.fetchBaby(id: "2")
+        
+        // Then
+        XCTAssertNil(result)
+    }
+    
+    func testShouldFetchBabyWithSpecifiedId() {
+        // Given
+        let realm = try! Realm(configuration: config)
+        let sut = RealmBabiesRepository(realm: realm)
+        let baby = Baby(id: "1", name: "test1")
+        try! realm.write {
+            realm.add(RealmBaby(with: baby))
+        }
+        
+        // When
+        let result = sut.fetchBaby(id: "1")
+        
+        // Then
+        XCTAssertEqual(baby, result)
+    }
+
+    func testShouldFetchEmptyArrayForNonexistentBabyName() {
+        // Given
+        let realm = try! Realm(configuration: config)
+        let sut = RealmBabiesRepository(realm: realm)
+        let baby = Baby(id: "1", name: "test2")
+        try! realm.write {
+            realm.add(RealmBaby(with: baby))
+        }
+        
+        // When
+        let results = sut.fetchBabies(name: "test1")
+        
+        // Then
+        XCTAssertTrue(results.isEmpty)
+    }
+    
+    func testShouldFetchBabiesWithSpecifiedName() {
+        // Given
+        let realm = try! Realm(configuration: config)
+        let sut = RealmBabiesRepository(realm: realm)
+        let name = "test1"
+        let baby = Baby(id: "1", name: name)
+        let secondBaby = Baby(id: "2", name: name)
+        try! realm.write {
+            realm.add(RealmBaby(with: baby))
+            realm.add(RealmBaby(with: secondBaby))
+        }
+        
+        // When
+        let results = sut.fetchBabies(name: name)
+        
+        // Then
+        XCTAssertEqual(2, results.count, "The results count doesn't match")
+        results.forEach {
+            XCTAssertEqual(name, $0.name, "The baby with id: \($0.id) has different name: \($0.name)")
+        }
     }
 }
