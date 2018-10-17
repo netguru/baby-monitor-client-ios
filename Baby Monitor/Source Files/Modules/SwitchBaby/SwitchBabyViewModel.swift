@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
 final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorCellSelectable {
@@ -14,7 +13,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
     
     private var babies: [Baby] = [Baby(name: "Franuś")] //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
     
-    //MARK: - internal functions
+    // MARK: - internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
         if indexPath.row == babies.count {
             cell.type = .switchBaby(.addAnother)

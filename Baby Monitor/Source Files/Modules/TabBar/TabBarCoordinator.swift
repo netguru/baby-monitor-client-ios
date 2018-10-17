@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class TabBarCoordinator: Coordinator {
@@ -17,7 +16,6 @@ final class TabBarCoordinator: Coordinator {
         SettingsCoordinator(UINavigationController(), appDependencies: appDependencies)
     ]
     var onEnding: (() -> Void)?
-    
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController

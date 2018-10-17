@@ -1,5 +1,6 @@
 PODS:
   - MobileVLCKit (3.1.5)
+  - SwiftLint (0.27.0)
   - Realm (3.11.0):
     - Realm/Headers (= 3.11.0)
   - Realm/Headers (3.11.0)
@@ -8,6 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - MobileVLCKit (~> 3.1)
+  - SwiftLint (~> 0.27.0)
   - RealmSwift (~> 3.11.0)
 
 SPEC REPOS:
@@ -15,8 +17,10 @@ SPEC REPOS:
     - MobileVLCKit
     - Realm
     - RealmSwift
-
+    - SwiftLint
+    
 SPEC CHECKSUMS:
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   MobileVLCKit: 4d44e56380d0ee41c76f9ec7015d3a4b62a963a3
   Realm: 92f09a102692b96a9a10e9617f214f15c5ab85fc
   RealmSwift: 5f0481cd658bb751c509314b964a35eaa264d2cf

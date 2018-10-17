@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
 final class SwitchBabyTableViewModel {
@@ -14,7 +13,7 @@ final class SwitchBabyTableViewModel {
         return babies.count + 1
     }
     
-    //MARK: - internal functions
+    // MARK: - internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
         if indexPath.row == babies.count {
             cell.type = .switchBaby(.addAnother)

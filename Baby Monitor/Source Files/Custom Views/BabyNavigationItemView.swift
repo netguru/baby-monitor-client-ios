@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class BabyNavigationItemView: UIView {
@@ -51,12 +50,12 @@ final class BabyNavigationItemView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     @objc private func onTouchArrowButton() {
         onSelectArrow?()
     }
     
-    //MARK: - View setup
+    // MARK: - View setup
     private func setup() {
         addSubview(stackView)
         stackView.addConstraints {
@@ -67,11 +66,13 @@ final class BabyNavigationItemView: UIView {
             $0.equalTo(self, .height, .height, multiplier: 0.8),
             $0.equalTo($0, .width, .height),
             $0.equalConstant(.width, 20)
-        ]}
+        ]
+        }
         
         arrowButton.addConstraints {[
             $0.equalTo(self, .height, .height, multiplier: 0.2),
             $0.equalConstant(.width, 5)
-        ]}
+        ]
+        }
     }
 }
