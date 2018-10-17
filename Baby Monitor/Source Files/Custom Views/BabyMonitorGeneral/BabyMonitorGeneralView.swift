@@ -28,7 +28,7 @@ final class BabyMonitorGeneralView: BaseView {
         setup(type: type)
     }
     
-    //MARK: - private functions
+    // MARK: - private functions
     private func setup(type: BabyMonitorGeneralViewController.ViewType) {
         tableView.separatorStyle = .singleLine
         

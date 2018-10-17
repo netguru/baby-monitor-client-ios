@@ -82,6 +82,16 @@ opt_in_rules:
   - vertical_whitespace
   - yoda_condition
   - xctfail_message
+  - convenience_type
+  - first_where
+  - implicit_getter
+  - is_disjoint
+  - mark
+  - protocol_property_accessors_order
+  - redundant_optional_initialization
+  - sorted_first_last
+  - toggle_bool
+  - unused_enumerated
 
 # Configuration of rule that lints length of type names.
 type_name:
@@ -159,17 +169,5 @@ disabled_rules:
   - quick_discouraged_call
   - quick_discouraged_focused_test
   - quick_discouraged_pending_test
-
-  # Disabled lowest importance rules
-  - convenience_type
-  - first_where
-  - implicit_getter
-  - is_disjoint
-  - mark
-  - protocol_property_accessors_order
-  - redundant_optional_initialization
-  - sorted_first_last
-  - toggle_bool
-  - unused_enumerated
 
 # Remember that you can customize this configuration file as much as you want.

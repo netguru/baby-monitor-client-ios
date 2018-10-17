@@ -11,10 +11,10 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
         return 1
     }
     
-    //MARK: - Coordinator callback
+    // MARK: - Coordinator callback
     var didSelectShowBabies: (() -> Void)?
     
-    //MARK: - Internal functions
+    // MARK: - Internal functions
     func selectShowBabies() {
         didSelectShowBabies?()
     }

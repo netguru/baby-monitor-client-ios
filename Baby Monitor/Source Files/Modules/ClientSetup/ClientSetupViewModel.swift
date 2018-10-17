@@ -7,11 +7,11 @@ import Foundation
 
 final class ClientSetupViewModel {
     
-    //MARK: - Coordinator callback
+    // MARK: - Coordinator callback
     var didSelectSetupAddress: ((_ address: String?) -> Void)?
     var didSelectStartDiscovering: (() -> Void)?
     
-    //MARK: - Internal functions
+    // MARK: - Internal functions
 
     /// Sets up the address of an available baby (server) to connect to.
     ///

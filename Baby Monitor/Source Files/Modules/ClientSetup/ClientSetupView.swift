@@ -31,7 +31,7 @@ final class ClientSetupView: BaseView {
         setup()
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         [addressField, buttonsStackView].forEach {
             addSubview($0)

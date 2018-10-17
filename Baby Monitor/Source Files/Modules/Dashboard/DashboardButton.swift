@@ -42,12 +42,12 @@ final class DashboardButtonView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     @objc private func onTouchButton() {
         onSelect?()
     }
     
-    //MARK: - private functions
+    // MARK: - private functions
     private func setup() {
         [button, imageView, textLabel].forEach {
             addSubview($0)

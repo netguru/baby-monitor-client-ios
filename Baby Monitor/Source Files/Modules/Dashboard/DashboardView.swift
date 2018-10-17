@@ -59,7 +59,7 @@ class DashboardView: BaseView {
         setupLayout()
     }
     
-    //MARK: - private functions
+    // MARK: - private functions
     private func setupLayout() {
         [layoutView, photoImageView, nameLabel, descriptionLabel, dashboardButtonsStackView].forEach {
             addSubview($0)

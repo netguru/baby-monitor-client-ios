@@ -28,7 +28,7 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
         setup()
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         customView.tableView.dataSource = self
         customView.tableView.delegate = self
@@ -48,7 +48,7 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
         }
     }
     
-    //MARK: - UITableViewDataSource
+    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows(for: section)
     }
@@ -73,7 +73,7 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
         return headerCell
     }
 
-    //MARK: - UITableViewDelegate
+    // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? BabyMonitorCell,
             let cellSelectableViewModel = viewModel as? BabyMonitorCellSelectable else {

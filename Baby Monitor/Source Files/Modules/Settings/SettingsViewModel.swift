@@ -9,14 +9,14 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
 
     let numberOfSections = 1
     
-    //MARK: - Coordinator callback
+    // MARK: - Coordinator callback
     var didSelectShowBabiesView: (() -> Void)?
     
     private enum Constants {
         static let switchToServerCell = 0
     }
     
-    //MARK: - Internal functions
+    // MARK: - Internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
         cell.type = .settings
         switch indexPath.row {

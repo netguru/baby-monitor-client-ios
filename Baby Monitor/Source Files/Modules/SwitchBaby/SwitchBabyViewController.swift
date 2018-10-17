@@ -38,7 +38,7 @@ final class SwitchBabyViewController: BaseViewController {
         setup()
     }
     
-    //MARK: - private functions
+    // MARK: - private functions
     private func setup() {
         view.backgroundColor = .clear
         [backgroundView, tableView].forEach {
@@ -48,7 +48,7 @@ final class SwitchBabyViewController: BaseViewController {
     }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension SwitchBabyViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,7 +62,7 @@ extension SwitchBabyViewController: UITableViewDataSource {
     }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension SwitchBabyViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -50,12 +50,12 @@ final class BabyNavigationItemView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     @objc private func onTouchArrowButton() {
         onSelectArrow?()
     }
     
-    //MARK: - View setup
+    // MARK: - View setup
     private func setup() {
         addSubview(stackView)
         stackView.addConstraints {

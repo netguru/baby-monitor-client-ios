@@ -19,12 +19,12 @@ final class DashboardViewController: TypedViewController<DashboardView> {
         setup()
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     @objc private func didTouchEditProfileButton() {
         //TODO: add implementation
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         navigationItem.rightBarButtonItem = customView.editProfileBarButtonItem
         navigationItem.titleView = customView.babyNavigationItemView

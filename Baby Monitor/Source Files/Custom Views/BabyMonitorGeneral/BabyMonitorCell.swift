@@ -75,7 +75,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Internal functions
+    // MARK: Internal functions
     
     /// Updates main text
     func update(mainText: String) {
@@ -100,7 +100,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         mainLabel.font = mainLabel.font.withSize(30)
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         selectionStyle = .none
         contentView.addSubview(mainStackView)

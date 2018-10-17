@@ -19,7 +19,7 @@ final class ClientSetupViewController: TypedViewController<ClientSetupView>, UIT
         setup()
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     @objc private func didTouchSetupAddressButton() {
         viewModel.selectSetupAddress(customView.addressField.text)
     }
@@ -28,7 +28,7 @@ final class ClientSetupViewController: TypedViewController<ClientSetupView>, UIT
         viewModel.selectStartDiscovering()
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         customView.setupAddressButton.addTarget(self, action: #selector(didTouchSetupAddressButton), for: .touchUpInside)
         customView.startDiscoveringButton.addTarget(self, action: #selector(didTouchStartDiscoveringButton), for: .touchUpInside)
@@ -36,7 +36,7 @@ final class ClientSetupViewController: TypedViewController<ClientSetupView>, UIT
         customView.addressField.delegate = self
     }
     
-    //MARK: - UITextFieldDelegate
+    // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         customView.endEditing(true)
         return false

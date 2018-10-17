@@ -28,7 +28,7 @@ final class CameraPreviewView: BaseView {
         setup()
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         backgroundColor = .gray
         

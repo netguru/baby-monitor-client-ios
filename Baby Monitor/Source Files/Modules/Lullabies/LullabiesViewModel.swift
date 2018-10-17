@@ -14,10 +14,10 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
     
     let numberOfSections = 2
     
-    //MARK: - Coordinator callback
+    // MARK: - Coordinator callback
     var didSelectShowBabiesView: (() -> Void)?
     
-    //MARK: - Internal functions
+    // MARK: - Internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
         cell.type = .lullaby
         //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67

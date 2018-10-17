@@ -19,7 +19,7 @@ final class InitialSetupViewController: TypedViewController<InitialSetupView> {
         setup()
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     @objc private func didTouchstartClientButton() {
         viewModel.selectStartClient()
     }
@@ -28,7 +28,7 @@ final class InitialSetupViewController: TypedViewController<InitialSetupView> {
         viewModel.selectStartServer()
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         customView.startClientButton.addTarget(self, action: #selector(didTouchstartClientButton), for: .touchUpInside)
         customView.startServerButton.addTarget(self, action: #selector(didTouchStartServerButton), for: .touchUpInside)

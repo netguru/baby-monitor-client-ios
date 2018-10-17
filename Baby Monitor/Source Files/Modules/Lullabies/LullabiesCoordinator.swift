@@ -24,7 +24,7 @@ final class LullabiesCoordinator: Coordinator, BabiesViewShowable {
         showLullabies()
     }
     
-    //MARK: - private functions
+    // MARK: - private functions
     private func showLullabies() {
         let viewModel = LullabiesViewModel()
         viewModel.didSelectShowBabiesView = { [weak self] in

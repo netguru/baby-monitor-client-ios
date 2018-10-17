@@ -24,7 +24,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
         showSettings()
     }
     
-    //MARK: - private functions
+    // MARK: - private functions
     private func showSettings() {
         let viewModel = SettingsViewModel()
         viewModel.didSelectShowBabiesView = { [weak self] in

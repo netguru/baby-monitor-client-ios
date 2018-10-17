@@ -26,7 +26,7 @@ final class InitialSetupView: BaseView {
         setup()
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         addSubview(buttonsStackView)
         
