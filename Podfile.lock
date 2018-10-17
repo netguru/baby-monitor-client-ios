@@ -1,16 +1,26 @@
 PODS:
   - MobileVLCKit (3.1.5)
+  - Realm (3.11.0):
+    - Realm/Headers (= 3.11.0)
+  - Realm/Headers (3.11.0)
+  - RealmSwift (3.11.0):
+    - Realm (= 3.11.0)
 
 DEPENDENCIES:
   - MobileVLCKit (~> 3.1)
+  - RealmSwift (~> 3.11.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - MobileVLCKit
+    - Realm
+    - RealmSwift
 
 SPEC CHECKSUMS:
   MobileVLCKit: 4d44e56380d0ee41c76f9ec7015d3a4b62a963a3
+  Realm: 92f09a102692b96a9a10e9617f214f15c5ab85fc
+  RealmSwift: 5f0481cd658bb751c509314b964a35eaa264d2cf
 
-PODFILE CHECKSUM: 488fcb570e083c39b623fba961840edd26cbcd54
+PODFILE CHECKSUM: 736e58f1bf1b656b9eacaf7a625913079c94066b
 
 COCOAPODS: 1.5.3

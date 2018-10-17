@@ -6,11 +6,13 @@
 
 import Foundation
 
-final class Baby {
+struct Baby: Equatable {
     
     let name: String
+    let id: String
     
-    init(name: String) {
+    init(id: String = UUID().uuidString, name: String) {
+        self.id = id
         self.name = name
     }
 }
