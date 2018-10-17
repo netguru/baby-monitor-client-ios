@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class InitialSetupView: BaseView {
@@ -50,13 +49,15 @@ final class InitialSetupView: BaseView {
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.8),
             $0.equalTo(self, .bottom, .safeAreaBottom, constant: -20)
-        ]}
+        ]
+        }
         
         [startClientButton, startServerButton].forEach {
             $0.addConstraints {[
                 $0.equalConstant(.width, 150),
                 $0.equalConstant(.height, 40)
-            ]}
+            ]
+            }
         }
     }
 }

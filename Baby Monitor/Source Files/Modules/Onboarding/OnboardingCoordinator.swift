@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class OnboardingCoordinator: Coordinator {
@@ -30,7 +29,7 @@ final class OnboardingCoordinator: Coordinator {
         
         initialSetupViewModel.didSelectStartClient = { [weak self] in
             let clientSetupViewModel = ClientSetupViewModel()
-            clientSetupViewModel.didSelectSetupAddress = { (address) in
+            clientSetupViewModel.didSelectSetupAddress = { address in
                 //TODO: Connect to the address, ticket: https://netguru.atlassian.net/browse/BM-80
             }
             clientSetupViewModel.didSelectStartDiscovering = {

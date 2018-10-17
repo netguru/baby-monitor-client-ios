@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class InitialSetupViewController: TypedViewController<InitialSetupView> {

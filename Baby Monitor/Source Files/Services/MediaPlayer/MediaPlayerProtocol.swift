@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 protocol MediaPlayerDataSource: AnyObject {

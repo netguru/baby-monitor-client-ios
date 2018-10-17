@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 typealias Constraint = (_ layoutView: UIView) -> NSLayoutConstraint
@@ -19,7 +18,7 @@ extension UIView {
     func addConstraints(_ constraintDescription: (UIView) -> [Constraint]) -> [NSLayoutConstraint] {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraints: [Constraint] = constraintDescription(self)
-        let nsLayoutConstraints = constraints.map { $0(self)  }
+        let nsLayoutConstraints = constraints.map { $0(self) }
         NSLayoutConstraint.activate(nsLayoutConstraints)
         return nsLayoutConstraints
     }

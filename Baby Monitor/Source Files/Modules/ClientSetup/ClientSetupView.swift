@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class ClientSetupView: BaseView {
@@ -57,13 +56,15 @@ final class ClientSetupView: BaseView {
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.8),
             $0.equalTo(self, .bottom, .safeAreaBottom, constant: -20)
-        ]}
+        ]
+        }
         
         [setupAddressButton, startDiscoveringButton].forEach {
             $0.addConstraints {[
                 $0.equalConstant(.width, 150),
                 $0.equalConstant(.height, 40)
-            ]}
+            ]
+            }
         }
         
         addressField.addConstraints {[
@@ -71,6 +72,7 @@ final class ClientSetupView: BaseView {
             $0.equal(.centerY),
             $0.equalConstant(.height, 50),
             $0.equalConstant(.width, 150)
-        ]}
+        ]
+        }
     }
 }

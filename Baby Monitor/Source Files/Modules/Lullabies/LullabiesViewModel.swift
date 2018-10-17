@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
 final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {

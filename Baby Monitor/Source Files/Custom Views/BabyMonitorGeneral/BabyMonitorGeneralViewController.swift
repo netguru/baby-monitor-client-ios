@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralView>, UITableViewDataSource, UITableViewDelegate {

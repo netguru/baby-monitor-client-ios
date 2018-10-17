@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 class DashboardView: BaseView {
@@ -75,30 +74,35 @@ class DashboardView: BaseView {
             $0.equalTo(descriptionLabel, .top, .bottom),
             $0.equal(.leading),
             $0.equal(.trailing)
-        ]}
+        ]
+        }
         
         dashboardButtonsStackView.addConstraints {[
             $0.equalTo(layoutView, .centerY, .centerY),
             $0.equal(.centerX),
             $0.equalTo(self, .width, .width, multiplier: 0.9)
-        ]}
+        ]
+        }
         
         descriptionLabel.addConstraints {[
             $0.equal(.centerX),
             $0.equal(.centerY),
             $0.equal(.width, multiplier: 0.9),
             $0.equalTo(nameLabel, .top, .bottom, constant: Constants.mainOffset)
-        ]}
+        ]
+        }
         
         nameLabel.addConstraints {[
             $0.equal(.centerX),
             $0.equalTo(photoImageView, .top, .bottom, constant: Constants.mainOffset)
-        ]}
+        ]
+        }
         
         photoImageView.addConstraints {[
             $0.equalTo(self, .top, .safeAreaTop, constant: Constants.mainOffset),
             $0.equalTo($0, .width, .height),
             $0.equal(.centerX)
-        ]}
+        ]
+        }
     }
 }

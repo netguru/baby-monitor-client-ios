@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class DashboardButtonView: UIView {
@@ -68,13 +67,15 @@ final class DashboardButtonView: UIView {
             $0.equal(.centerX),
             $0.equal(.top),
             $0.equalTo(textLabel, .bottom, .top, constant: -5)
-        ]}
+        ]
+        }
         
         textLabel.addConstraints {[
             $0.equal(.bottom),
             $0.equal(.leading),
             $0.equal(.trailing),
             $0.greaterThanOrEqualTo(imageView, .width, .width)
-        ]}
+        ]
+        }
     }
 }
