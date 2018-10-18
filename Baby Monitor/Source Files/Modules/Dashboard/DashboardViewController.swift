@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class DashboardViewController: TypedViewController<DashboardView> {
+final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     private let viewModel: DashboardViewModel
     
@@ -18,6 +18,23 @@ final class DashboardViewController: TypedViewController<DashboardView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        viewModel.babyService?.addObserver(self)
+    }
+    
+    //MARK: - UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        viewModel.babyService?.setPhoto(image)
+
+        viewModel.selectDismissImagePicker()
+    }
+    
+    //MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        viewModel.babyService?.setName(textField.text!)
+        
+        customView.endEditing(true)
+        return false
     }
     
     //MARK: - Selectors
@@ -35,5 +52,27 @@ final class DashboardViewController: TypedViewController<DashboardView> {
         customView.liveCameraButton.onSelect = { [weak self] in
             self?.viewModel.selectLiveCameraPreview()
         }
+        customView.photoButtonView.onSelect = { [weak self] in
+            self?.viewModel.selectAddPhoto()
+        }
+        customView.nameField.text = viewModel.babyService?.dataSource.babies.first?.name
+        customView.photoButtonView.setPhoto(viewModel.babyService?.dataSource.babies.first?.image)
+        customView.babyNavigationItemView.setBabyName(viewModel.babyService?.dataSource.babies.first?.name)
+        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService?.dataSource.babies.first?.image)
+        
+        customView.nameField.delegate = self
+    }
+}
+
+extension DashboardViewController: BabyServiceObserver {
+    
+    func babyService(_ service: BabyService, didChangePhotoOf baby: Baby) {
+        customView.photoButtonView.setPhoto(baby.image)
+        customView.babyNavigationItemView.setBabyPhoto(baby.image)
+    }
+    
+    func babyService(_ service: BabyService, didChangeNameOf baby: Baby) {
+        customView.nameField.text = baby.name
+        customView.babyNavigationItemView.setBabyName(baby.name)
     }
 }

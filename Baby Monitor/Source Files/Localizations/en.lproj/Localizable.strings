@@ -18,6 +18,11 @@
 "dashboard.button.talk" = "TALK";
 "dashboard.button.play-lullaby" = "PLAY LULLABY";
 "dashboard.bar-button-item.edit-profile" = "Edit profile";
+"dashboard.button.add-photo" = "Add photo";
+"dashboard.action.choose-image" = "Choose image source";
+"dashboard.action-button.camera" = "Camera";
+"dashboard.action-button.photoLibrary" = "Photo library";
+"dashboard.text-field-placeholder.add-name" = "Type your baby's name";
 
 //MARK: - TabBar
 "tab-bar.dashboard" = "Dashboard";

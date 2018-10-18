@@ -8,6 +8,8 @@ import Foundation
 
 final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
     
+    var babyService: BabyService
+    
     private enum Constants {
         static let bmLibrarySection = 0
         static let yourLullabiesSection = 1
@@ -17,6 +19,10 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
     
     //MARK: - Coordinator callback
     var didSelectShowBabiesView: (() -> Void)?
+    
+    init(babyService: BabyService) {
+        self.babyService = babyService
+    }
     
     //MARK: - Internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {

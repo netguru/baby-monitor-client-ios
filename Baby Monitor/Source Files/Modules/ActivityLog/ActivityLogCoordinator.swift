@@ -15,7 +15,7 @@ final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
     
     var onEnding: (() -> Void)?
 
-    private var activityLogViewController: BabyMonitorGeneralViewController?
+    private var activityLogViewController: ActivityLogViewController?
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.appDependencies = appDependencies
@@ -28,14 +28,14 @@ final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
     
     //MARK: - private functions
     private func showActivityLog() {
-        let viewModel = ActivityLogViewModel()
+        let viewModel = ActivityLogViewModel(babyService: appDependencies.babyService)
         viewModel.didSelectShowBabies = { [weak self] in
-            guard let activityLogViewController = self?.activityLogViewController else {
+            guard let self = self, let activityLogViewController = self.activityLogViewController else {
                 return
             }
-            self?.toggleSwitchBabiesView(on: activityLogViewController)
+            self.toggleSwitchBabiesView(on: activityLogViewController, babyService: self.appDependencies.babyService)
         }
-        activityLogViewController = BabyMonitorGeneralViewController(viewModel: viewModel, type: .activityLog)
+        activityLogViewController = ActivityLogViewController(viewModel: viewModel)
         navigationController.pushViewController(activityLogViewController!, animated: false)
     }
 }

@@ -7,6 +7,8 @@
 import UIKit
 
 protocol BabyMonitorGeneralViewModelProtocol {
+    
+    var babyService: BabyService { get set }
 
     var numberOfSections: Int { get }
     

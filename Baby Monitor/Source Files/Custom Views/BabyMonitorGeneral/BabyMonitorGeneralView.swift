@@ -15,7 +15,7 @@ final class BabyMonitorGeneralView: BaseView {
         return tableView
     }()
     
-    private(set) lazy var babyNavigationItemView = BabyNavigationItemView(babyName: "Franuś") //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
+    private(set) lazy var babyNavigationItemView = BabyNavigationItemView()
     
     private let backgroundView: UIView = {
         let view = UIView()

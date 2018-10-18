@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralView>, UITableViewDataSource, UITableViewDelegate {
+class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralView>, UITableViewDataSource, UITableViewDelegate {
     
     enum ViewType {
         case switchBaby
@@ -29,6 +29,11 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
         setup()
     }
     
+    func updateNavigationView() {
+        customView.babyNavigationItemView.setBabyName(viewModel.babyService.dataSource.babies.first?.name)
+        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService.dataSource.babies.first?.image)
+    }
+    
     //MARK: - Private functions
     private func setup() {
         customView.tableView.dataSource = self
@@ -40,6 +45,7 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
             }
             babiesViewShowableViewModel.selectShowBabies()
         }
+        updateNavigationView()
         
         switch viewType {
         case .activityLog, .lullaby, .settings:
@@ -93,5 +99,17 @@ final class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGen
             return 0
         }
         return 70
+    }
+}
+
+//MARK: - BabyServiceObserver
+extension BabyMonitorGeneralViewController: BabyServiceObserver {
+
+    func babyService(_ service: BabyService, didChangePhotoOf baby: Baby) {
+        customView.babyNavigationItemView.setBabyPhoto(baby.image)
+    }
+
+    func babyService(_ service: BabyService, didChangeNameOf baby: Baby) {
+        customView.babyNavigationItemView.setBabyName(baby.name)
     }
 }

@@ -35,7 +35,7 @@ final class OnboardingCoordinator: Coordinator {
             }
             clientSetupViewModel.didSelectStartDiscovering = {
                 //TODO: Search for devices and connect, ticket: https://netguru.atlassian.net/browse/BM-79
-                
+                self?.appDependencies.babyService.setCurrent(baby: Baby(name: "NO NAME"))
                 self?.onEnding?()
             }
             

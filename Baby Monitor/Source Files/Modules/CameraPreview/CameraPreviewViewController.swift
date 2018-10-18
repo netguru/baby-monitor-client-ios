@@ -20,6 +20,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        viewModel.babyService?.addObserver(self)
     }
     
     //MARK: - Selectors
@@ -35,7 +36,23 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
         customView.babyNavigationItemView.onSelectArrow = { [weak self] in
             self?.viewModel.selectShowBabies()
         }
+        customView.babyNavigationItemView.setBabyName(viewModel.babyService?.dataSource.babies.first?.name)
+        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService?.dataSource.babies.first?.image)
         customView.cancelItemButton.target = self
         customView.cancelItemButton.action = #selector(didTouchCancelButton)
+    }
+}
+
+extension CameraPreviewViewController: BabyServiceObserver {
+    
+    func babyService(_ service: BabyService, didChangePhotoOf baby: Baby) {
+        guard let newImage = baby.image else { return }
+        customView.babyNavigationItemView.setBabyPhoto(newImage)
+        print("CHANGE PHOTO IN CAMERA PREVIEW")
+    }
+    
+    func babyService(_ service: BabyService, didChangeNameOf baby: Baby) {
+        guard let newName = baby.name else { return }
+        customView.babyNavigationItemView.setBabyName(newName)
     }
 }

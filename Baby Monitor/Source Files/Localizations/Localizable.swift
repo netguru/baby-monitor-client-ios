@@ -32,6 +32,11 @@ struct Localizable {
         static let talk = localized("dashboard.button.talk")
         static let playLullaby = localized("dashboard.button.play-lullaby")
         static let editProfile = localized("dashboard.bar-button-item.edit-profile")
+        static let addPhoto = localized("dashboard.button.add-photo")
+        static let chooseImage = localized("dashboard.action.choose-image")
+        static let camera = localized("dashboard.action-button.camera")
+        static let photoLibrary = localized("dashboard.action-button.photoLibrary")
+        static let addName = localized("dashboard.text-field-placeholder.add-name")
     }
     
     struct SwitchBaby {

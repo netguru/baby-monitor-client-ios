@@ -10,9 +10,11 @@ final class BabyNavigationItemView: UIView {
     
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
-        imageView.backgroundColor = .gray
+        imageView.backgroundColor = .lightGray
         return imageView
     }()
     
@@ -40,15 +42,25 @@ final class BabyNavigationItemView: UIView {
     
     var onSelectArrow: (() -> Void)?
     
-    init(babyName: String) {
+    init(baby: Baby? = nil) {
         super.init(frame: .zero)
-        nameLabel.text = babyName
+        nameLabel.text = baby?.name
+        photoImageView.image = baby?.image
+
         setup()
     }
     
     @available(*, unavailable, message: "Use init() instead")
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setBabyPhoto(_ image: UIImage?) {
+        photoImageView.image = image
+    }
+    
+    func setBabyName(_ name: String?) {
+        nameLabel.text = name
     }
     
     //MARK: - Selectors
