@@ -16,9 +16,15 @@ protocol MediaPlayerProtocol: AnyObject {
     
     var dataSource: MediaPlayerDataSource? { get set }
     
-    /// Play video
-    func play()
+    /// Plays video
+    func playVideo()
     
-    /// Pause video
-    func pause()
+    /// Pauses currently played video
+    func pauseVideo()
+    
+    /// Stops currently played video
+    func stopVideo()
+    
+    /// Starts initial configuration. Must be called before other methods.
+    func startupConfiguration()
 }

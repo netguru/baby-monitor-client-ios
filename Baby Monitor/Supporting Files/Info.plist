@@ -5,7 +5,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To select a photo for your baby </string>
 	<key>NSCameraUsageDescription</key>
-	<string>To take a photo for your baby</string>
+	<string>To take a photo for your baby or streaming video</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
