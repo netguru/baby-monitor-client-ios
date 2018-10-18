@@ -9,15 +9,15 @@ Pod::Spec.new do |spec|
 
   spec.name = 'RTSPServer'
   spec.version = '0.0.1'
-  spec.summary = 'Q'
-  spec.homepage = 'Q'
+  spec.summary = 'RTSPServer for iOS apps for streaming video'
+  spec.homepage = 'https://github.com/OpenWatch/H264-RTSP-Server-iOS'
 
-  spec.author = 'X'
-  spec.license = 'Q'
+  spec.author = 'chrisballinger'
+  spec.license = 'MIT'
 
   # Sources
 
- spec.source = { git: 'https://github.com/netguru/xxxxxxx.git', tag: spec.version.to_s }
+ spec.source = { git: 'https://github.com/OpenWatch/H264-RTSP-Server-iOS', tag: spec.version.to_s }
 
   spec.source_files = 'RTSPServer/*.{h,m,mm,cpp}'
 

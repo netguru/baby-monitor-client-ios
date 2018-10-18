@@ -25,7 +25,7 @@ final class ServerViewModel {
     }
     
     deinit {
-        mediaPlayerStreamingService.stop()
+        mediaPlayerStreamingService.stopStreaming()
     }
 }
 

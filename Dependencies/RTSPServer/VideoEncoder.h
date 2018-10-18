@@ -21,9 +21,9 @@
 
 @property NSString* path;
 
-+ (VideoEncoder*) encoderForPath:(NSString*) path Height:(int) height andWidth:(int) width;
++ (VideoEncoder*) encoderForPath:(NSString*) path height:(int) height andWidth:(int) width;
 
-- (void) initPath:(NSString*)path Height:(int) height andWidth:(int) width;
+- (void) initPath:(NSString*)path height:(int) height andWidth:(int) width;
 - (void) finishWithCompletionHandler:(void (^)(void))handler;
 - (BOOL) encodeFrame:(CMSampleBufferRef) sampleBuffer;
 

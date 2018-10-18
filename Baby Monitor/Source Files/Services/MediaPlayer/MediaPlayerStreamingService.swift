@@ -13,7 +13,7 @@ protocol VideoStreamingService: AnyObject {
     /// Starts video streaming
     func startStreaming()
     /// Stops video streaming
-    func stop()
+    func stopStreaming()
 }
 
 protocol VideoStreamingServiceDataSource: AnyObject {
@@ -45,7 +45,7 @@ final class MediaPlayerStreamingService: VideoStreamingService {
         netServiceServer.publish()
     }
     
-    func stop() {
+    func stopStreaming() {
         cameraServer.shutdown()
         netServiceServer.stop()
     }

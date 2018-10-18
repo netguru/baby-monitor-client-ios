@@ -103,7 +103,7 @@ static unsigned int to_host(unsigned char* p)
 
 @implementation AVEncoder
 
-@synthesize bitspersecond = _bitspersecond;
+@synthesize bitsPerSecond = _bitsPerSecond;
 
 + (AVEncoder*) encoderForHeight:(int) height andWidth:(int) width
 {
@@ -123,12 +123,12 @@ static unsigned int to_host(unsigned char* p)
     _height = height;
     _width = width;
     NSString* path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"params.mp4"];
-    _headerWriter = [VideoEncoder encoderForPath:path Height:height andWidth:width];
+    _headerWriter = [VideoEncoder encoderForPath:path height:height andWidth:width];
     _times = [NSMutableArray arrayWithCapacity:10];
     
     // swap between 3 filenames
     _currentFile = 1;
-    _writer = [VideoEncoder encoderForPath:[self makeFilename] Height:height andWidth:width];
+    _writer = [VideoEncoder encoderForPath:[self makeFilename] height:height andWidth:width];
 }
 
 - (void) encodeWithBlock:(encoder_handler_t) block onParams: (param_handler_t) paramsHandler
@@ -289,7 +289,7 @@ static unsigned int to_host(unsigned char* p)
                     _currentFile = 1;
                 }
                 NSLog(@"Swap to file %d", _currentFile);
-                _writer = [VideoEncoder encoderForPath:[self makeFilename] Height:_height andWidth:_width];
+                _writer = [VideoEncoder encoderForPath:[self makeFilename] height:_height andWidth:_width];
                 
                 
                 // to do this seamlessly requires a few steps in the right order

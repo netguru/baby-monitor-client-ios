@@ -28,6 +28,6 @@ typedef int (^param_handler_t)(NSData* params);
 - (void) shutdown;
 
 
-@property (readonly, atomic) int bitspersecond;
+@property (readonly, atomic) int bitsPerSecond;
 
 @end
