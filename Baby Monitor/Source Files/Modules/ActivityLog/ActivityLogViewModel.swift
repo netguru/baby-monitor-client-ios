@@ -31,7 +31,7 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
         cell.update(secondaryText: "24 minutes ago")
         if let currentBaby = babyService.dataSource.babies.first {
             cell.update(image: currentBaby.photo ?? UIImage())
-            cell.update(mainText: "\(currentBaby.name ?? "No name") was crying!")
+            cell.update(mainText: "\(currentBaby.name) was crying!")
         }
     }
 

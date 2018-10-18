@@ -13,7 +13,7 @@ final class RealmBaby: Object {
     convenience init(with baby: Baby) {
         self.init()
         self.id = baby.id
-        self.name = baby.name!
+        self.name = baby.name
     }
     
     func toBaby() -> Baby {

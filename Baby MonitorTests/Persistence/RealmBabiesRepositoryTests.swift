@@ -141,7 +141,7 @@ class RealmBabiesRepositoryTests: XCTestCase {
         // Then
         XCTAssertEqual(2, results.count, "The results count doesn't match")
         results.forEach {
-            XCTAssertEqual(name, $0.name, "The baby with id: \($0.id) has different name: \($0.name!)")
+            XCTAssertEqual(name, $0.name, "The baby with id: \($0.id) has different name: \($0.name)")
         }
     }
 }

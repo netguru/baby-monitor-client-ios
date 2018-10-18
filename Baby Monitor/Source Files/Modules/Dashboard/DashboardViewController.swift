@@ -17,20 +17,20 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        viewModel.babyService?.addObserver(self)
+        viewModel.babyService.addObserver(self)
     }
     
     // MARK: - UIImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        viewModel.babyService?.setPhoto(image)
+        viewModel.babyService.setPhoto(image)
 
         viewModel.selectDismissImagePicker()
     }
     
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        viewModel.babyService?.setName(textField.text!)
+        viewModel.babyService.setName(textField.text!)
         
         customView.endEditing(true)
         return false
@@ -54,10 +54,10 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
         customView.photoButtonView.onSelect = { [weak self] in
             self?.viewModel.selectAddPhoto()
         }
-        customView.nameField.text = viewModel.babyService?.dataSource.babies.first?.name
-        customView.photoButtonView.setPhoto(viewModel.babyService?.dataSource.babies.first?.photo)
-        customView.babyNavigationItemView.setBabyName(viewModel.babyService?.dataSource.babies.first?.name)
-        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService?.dataSource.babies.first?.photo)
+        customView.nameField.text = viewModel.babyService.dataSource.babies.first?.name
+        customView.photoButtonView.setPhoto(viewModel.babyService.dataSource.babies.first?.photo)
+        customView.babyNavigationItemView.setBabyName(viewModel.babyService.dataSource.babies.first?.name)
+        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService.dataSource.babies.first?.photo)
         
         customView.nameField.delegate = self
     }

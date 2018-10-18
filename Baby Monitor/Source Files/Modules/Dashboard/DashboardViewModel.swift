@@ -7,7 +7,7 @@ import Foundation
 
 final class DashboardViewModel {
 
-    weak var babyService: BabyService?
+    var babyService: BabyService
 
     // MARK: - Coordinator callback
     var didSelectShowBabies: (() -> Void)?

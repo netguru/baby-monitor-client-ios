@@ -26,8 +26,8 @@ final class BabyService: BabyServiceProtocol {
     
     func setPhoto(_ photo: UIImage) {
         // TODO: - Implement updating saved baby, ticket: https://netguru.atlassian.net/browse/BM-91
-        let oldBaby = dataSource.babies.first
-        let newBaby = Baby(name: oldBaby?.name, photo: photo)
+        let oldBaby = dataSource.babies.first!
+        let newBaby = Baby(name: oldBaby.name, photo: photo)
         dataSource.babies[0] = newBaby
         babyDidChange(updateType: .image(newBaby))
     }
