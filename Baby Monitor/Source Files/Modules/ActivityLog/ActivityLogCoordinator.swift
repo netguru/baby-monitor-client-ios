@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
@@ -26,7 +25,7 @@ final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
         showActivityLog()
     }
     
-    //MARK: - private functions
+    // MARK: - private functions
     private func showActivityLog() {
         let viewModel = ActivityLogViewModel(babyService: appDependencies.babyService)
         viewModel.didSelectShowBabies = { [weak self] in

@@ -3,7 +3,6 @@
 //  Baby MonitorTests
 //
 
-
 import XCTest
 
 final class MathTests: XCTestCase {

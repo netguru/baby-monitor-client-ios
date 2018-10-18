@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource {
@@ -23,12 +22,12 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
         viewModel.babyService?.addObserver(self)
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     @objc private func didTouchCancelButton() {
         viewModel.selectCancel()
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         viewModel.videoDataSource = self
         navigationItem.leftBarButtonItem = customView.cancelItemButton

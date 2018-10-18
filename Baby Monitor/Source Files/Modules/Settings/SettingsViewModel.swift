@@ -3,27 +3,26 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
 final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSelectable {
-    
+
     var babyService: BabyService
 
     let numberOfSections = 1
-    
-    //MARK: - Coordinator callback
+
+    // MARK: - Coordinator callback
     var didSelectShowBabiesView: (() -> Void)?
-    
+
     private enum Constants {
         static let switchToServerCell = 0
     }
-    
+
     init(babyService: BabyService) {
         self.babyService = babyService
     }
-    
-    //MARK: - Internal functions
+
+    // MARK: - Internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
         cell.type = .settings
         switch indexPath.row {
@@ -34,11 +33,11 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
             break
         }
     }
-    
+
     func numberOfRows(for section: Int) -> Int {
         return 1
     }
-    
+
     func selectShowBabies() {
         didSelectShowBabiesView?()
     }

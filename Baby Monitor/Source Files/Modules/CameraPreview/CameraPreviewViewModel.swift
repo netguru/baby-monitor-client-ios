@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
 final class CameraPreviewViewModel {
@@ -22,11 +21,11 @@ final class CameraPreviewViewModel {
         self.babyService = babyService
     }
     
-    //MARK: - Coordinator callback
+    // MARK: - Coordinator callback
     var didSelectShowBabies: (() -> Void)?
     var didSelectCancel: (() -> Void)?
     
-    //MARK: - Internal functions
+    // MARK: - Internal functions
     func selectCancel() {
         didSelectCancel?()
     }

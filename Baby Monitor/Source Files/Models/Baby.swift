@@ -3,15 +3,16 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
-final class Baby {
-    
+struct Baby: Equatable {
+
     var name: String?
     var image: UIImage?
-    
-    init(name: String?, photo: UIImage? = nil) {
+    let id: String
+
+    init(id: String = UUID().uuidString, name: String, photo: UIImage? = nil) {
+        self.id = id
         self.name = name
         self.image = photo
     }

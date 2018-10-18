@@ -3,9 +3,8 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
-protocol HasNavigationController: class {
+protocol HasNavigationController: AnyObject {
     var navigationController: UINavigationController { get set }
 }

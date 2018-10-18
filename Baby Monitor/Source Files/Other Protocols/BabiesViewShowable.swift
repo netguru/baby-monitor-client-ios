@@ -3,10 +3,9 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
-protocol BabiesViewShowable: class {
+protocol BabiesViewShowable: AnyObject {
     
     var switchBabyViewController: BabyMonitorGeneralViewController? { get set }
     

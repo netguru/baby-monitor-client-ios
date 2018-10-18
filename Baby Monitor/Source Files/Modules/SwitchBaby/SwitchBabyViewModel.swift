@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
 final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorCellSelectable {
@@ -18,7 +17,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
         self.babyService = babyService
     }
     
-    //MARK: - internal functions
+    // MARK: - internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
         if indexPath.row == babyService.dataSource.babies.count {
             cell.type = .switchBaby(.addAnother)

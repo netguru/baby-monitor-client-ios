@@ -15,7 +15,7 @@ final class BabyService: BabyServiceProtocol {
         case image(Baby)
     }
     
-    private var observations = [ObjectIdentifier : Observation]()
+    private var observations = [ObjectIdentifier: Observation]()
     
     init(dataSource: BabyServiceDataSource) {
         self.dataSource = dataSource
@@ -26,12 +26,12 @@ final class BabyService: BabyServiceProtocol {
     }
     
     func setPhoto(_ photo: UIImage) {
-        dataSource.babies.first?.image = photo
+//        dataSource.babies.first?.image = photo
         babyDidChange(updateType: .image(dataSource.babies.first!))
     }
     
     func setName(_ name: String) {
-        dataSource.babies.first?.name = name
+//        dataSource.babies.first?.name = name
         babyDidChange(updateType: .name(dataSource.babies.first!))
     }
 }

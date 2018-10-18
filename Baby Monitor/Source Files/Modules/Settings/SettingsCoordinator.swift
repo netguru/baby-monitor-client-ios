@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class SettingsCoordinator: Coordinator, BabiesViewShowable {
@@ -25,7 +24,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
         showSettings()
     }
     
-    //MARK: - private functions
+    // MARK: - private functions
     private func showSettings() {
         let viewModel = SettingsViewModel(babyService: appDependencies.babyService)
         viewModel.didSelectShowBabiesView = { [weak self] in
@@ -40,4 +39,3 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
         navigationController.pushViewController(settingsViewController, animated: false)
     }
 }
-
