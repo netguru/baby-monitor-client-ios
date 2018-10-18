@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class DashboardButtonView: UIView {
@@ -43,12 +42,12 @@ final class DashboardButtonView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     @objc private func onTouchButton() {
         onSelect?()
     }
     
-    //MARK: - private functions
+    // MARK: - private functions
     private func setup() {
         [button, imageView, textLabel].forEach {
             addSubview($0)
@@ -68,13 +67,15 @@ final class DashboardButtonView: UIView {
             $0.equal(.centerX),
             $0.equal(.top),
             $0.equalTo(textLabel, .bottom, .top, constant: -5)
-        ]}
+        ]
+        }
         
         textLabel.addConstraints {[
             $0.equal(.bottom),
             $0.equal(.leading),
             $0.equal(.trailing),
             $0.greaterThanOrEqualTo(imageView, .width, .width)
-        ]}
+        ]
+        }
     }
 }

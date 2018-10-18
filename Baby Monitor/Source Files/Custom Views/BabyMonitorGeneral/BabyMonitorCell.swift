@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 class BabyMonitorCell: UITableViewCell, Identifiable {
@@ -12,6 +11,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         case switchBaby(SwitchBabyType)
         case lullaby
         case activityLog
+        case settings
     }
     
     enum SwitchBabyType {
@@ -75,7 +75,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Internal functions
+    // MARK: Internal functions
     
     /// Updates main text
     func update(mainText: String) {
@@ -100,7 +100,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         mainLabel.font = mainLabel.font.withSize(30)
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         selectionStyle = .none
         contentView.addSubview(mainStackView)
@@ -108,19 +108,22 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         photoImageView.addConstraints {[
             $0.equalConstant(.height, 40),
             $0.equalConstant(.width, 40)
-        ]}
+        ]
+        }
         
         additionalButton.addConstraints {[
             $0.equalConstant(.height, 40),
             $0.equalConstant(.width, 40)
-        ]}
+        ]
+        }
         
         mainStackView.addConstraints {[
             $0.equal(.top),
             $0.equal(.bottom),
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.8)
-        ]}
+        ]
+        }
     }
     
     private func updateViews() {
@@ -145,6 +148,8 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
             [secondaryLabel, additionalButton].forEach {
                 $0.isHidden = false
             }
+        case .settings:
+            additionalButton.isHidden = false
         }
     }
 }

@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
 final class VLCMediaPlayerService: MediaPlayerProtocol {

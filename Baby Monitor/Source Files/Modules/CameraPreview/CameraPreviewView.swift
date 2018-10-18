@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class CameraPreviewView: BaseView {
@@ -11,8 +10,8 @@ final class CameraPreviewView: BaseView {
     let mediaView = UIView()
     let babyNavigationItemView = BabyNavigationItemView(babyName: "Franuś") //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
     let cancelItemButton = UIBarButtonItem(barButtonSystemItem: .cancel,
-                                                             target: nil,
-                                                             action: nil)
+                                           target: nil,
+                                           action: nil)
     private lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [changeCameraButton, stopButton, microphoneButton])
         stackView.distribution = .equalSpacing
@@ -29,7 +28,7 @@ final class CameraPreviewView: BaseView {
         setup()
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         backgroundColor = .gray
         
@@ -48,19 +47,22 @@ final class CameraPreviewView: BaseView {
         [changeCameraButton, microphoneButton].forEach {
             $0.addConstraints {[
                 $0.equalConstant(.width, 40),
-                $0.equalConstant(.height, 40),
-            ]}
+                $0.equalConstant(.height, 40)
+            ]
+            }
         }
         
         stopButton.addConstraints {[
             $0.equalConstant(.width, 60),
-            $0.equalConstant(.height, 60),
-        ]}
+            $0.equalConstant(.height, 60)
+        ]
+        }
         
         buttonsStackView.addConstraints {[
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.8),
             $0.equalTo(self, .bottom, .safeAreaBottom, constant: -20)
-        ]}
+        ]
+        }
     }
 }

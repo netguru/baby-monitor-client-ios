@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class BabyMonitorGeneralView: BaseView {
@@ -29,7 +28,7 @@ final class BabyMonitorGeneralView: BaseView {
         setup(type: type)
     }
     
-    //MARK: - private functions
+    // MARK: - private functions
     private func setup(type: BabyMonitorGeneralViewController.ViewType) {
         tableView.separatorStyle = .singleLine
         
@@ -38,7 +37,7 @@ final class BabyMonitorGeneralView: BaseView {
             tableView.separatorStyle = .none
             backgroundColor = .clear
             tableView.backgroundColor = .clear
-        case .activityLog, .lullaby:
+        case .activityLog, .lullaby, .settings:
             tableView.tableFooterView = UIView()
             backgroundView.isHidden = true
             tableView.backgroundColor = .white

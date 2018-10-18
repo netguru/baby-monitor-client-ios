@@ -3,10 +3,9 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
-protocol VideoStreamingService: AnyObject{
+protocol VideoStreamingService: AnyObject {
     
     /// Video streaming data source
     var dataSource: VideoStreamingServiceDataSource? { get set }

@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
 protocol NetServiceClientProtocol: AnyObject {
@@ -58,7 +57,7 @@ extension NetServiceClient: NetServiceDelegate {
         }
     }
     
-    func netService(_ sender: NetService, didNotResolve errorDict: [String : NSNumber]) {
+    func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {
         //TODO: implement error handling
     }
 }

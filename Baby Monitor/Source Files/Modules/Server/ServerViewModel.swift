@@ -17,6 +17,10 @@ final class ServerViewModel {
     
     init(mediaPlayerStreamingService: VideoStreamingService) {
         self.mediaPlayerStreamingService = mediaPlayerStreamingService
+    }
+    
+    /// Starts streaming
+    func startStreaming() {
         mediaPlayerStreamingService.startStreaming()
     }
     

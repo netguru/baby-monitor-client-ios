@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
 protocol BabiesViewSelectable {

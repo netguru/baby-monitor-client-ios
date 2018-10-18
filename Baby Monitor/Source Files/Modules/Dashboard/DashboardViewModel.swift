@@ -3,16 +3,15 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
 final class DashboardViewModel {
     
-    //MARK: - Coordinator callback
+    // MARK: - Coordinator callback
     var didSelectShowBabies: (() -> Void)?
     var didSelectLiveCameraPreview: (() -> Void)?
     
-    //MARK: - Internal functions
+    // MARK: - Internal functions
     func selectSwitchBaby() {
         didSelectShowBabies?()
     }
@@ -21,4 +20,3 @@ final class DashboardViewModel {
         didSelectLiveCameraPreview?()
     }
 }
-

@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 import RTSPServer
 
@@ -19,9 +18,10 @@ final class ServerViewController: BaseViewController {
     }
     
     private func setup() {
-        viewModel.videoDataSource = self
         view.addSubview(cameraView)
         cameraView.addConstraints { $0.equalSafeAreaEdges() }
+        viewModel.videoDataSource = self
+        viewModel.startStreaming()
     }
 }
 

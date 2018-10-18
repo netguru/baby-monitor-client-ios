@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
 
   spec.name = 'RTSPServer'
   spec.version = '0.0.1'
-  spec.summary = ''
+  spec.summary = 'Q'
   spec.homepage = 'Q'
 
   spec.author = 'X'
