@@ -101,7 +101,7 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
     }
 }
 
-//MARK: - BabyServiceObserver
+// MARK: - BabyServiceObserver
 extension BabyMonitorGeneralViewController: BabyServiceObserver {
 
     func babyService(_ service: BabyService, didChangePhotoOf baby: Baby) {

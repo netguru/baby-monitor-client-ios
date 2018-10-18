@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class DashboardPhotoButtonView: BaseView {
@@ -33,12 +32,12 @@ final class DashboardPhotoButtonView: BaseView {
         updateImage(image)
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     @objc private func onTouchButton() {
         onSelect?()
     }
     
-    //MARK: - private functions
+    // MARK: - private functions
     private func setup() {
         [button].forEach {
             addSubview($0)
@@ -53,7 +52,8 @@ final class DashboardPhotoButtonView: BaseView {
             $0.equalConstant(.width, 180),
             $0.equal(.centerX),
             $0.equal(.top, constant: 30)
-        ]}
+        ]
+        }
     }
     
     private func updateTitle() {

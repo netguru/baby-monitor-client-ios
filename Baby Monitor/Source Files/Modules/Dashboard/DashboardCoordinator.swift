@@ -79,14 +79,14 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
         alertController.addAction(cancelAction)
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraAction = UIAlertAction(title: Localizable.Dashboard.camera, style: .default, handler: { (action) in
+            let cameraAction = UIAlertAction(title: Localizable.Dashboard.camera, style: .default, handler: { action in
                 imagePickerController.sourceType = .camera
                 self.navigationController.present(imagePickerController, animated: true, completion: nil)
             })
             alertController.addAction(cameraAction)
         }
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let photoLibraryAction = UIAlertAction(title: Localizable.Dashboard.photoLibrary, style: .default, handler: { (action) in
+            let photoLibraryAction = UIAlertAction(title: Localizable.Dashboard.photoLibrary, style: .default, handler: { action in
                 imagePickerController.sourceType = .photoLibrary
                 self.navigationController.present(imagePickerController, animated: true, completion: nil)
             })

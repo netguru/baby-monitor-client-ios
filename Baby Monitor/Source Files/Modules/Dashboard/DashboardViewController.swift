@@ -20,15 +20,15 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
         viewModel.babyService?.addObserver(self)
     }
     
-    //MARK: - UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    // MARK: - UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         viewModel.babyService?.setPhoto(image)
 
         viewModel.selectDismissImagePicker()
     }
     
-    //MARK: - UITextFieldDelegate
+    // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         viewModel.babyService?.setName(textField.text!)
         

@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import UIKit
 
 final class SettingsViewController: BabyMonitorGeneralViewController {
@@ -21,7 +20,7 @@ final class SettingsViewController: BabyMonitorGeneralViewController {
         viewModel.babyService.addObserver(self)
     }
     
-    //MARK: - Private functions
+    // MARK: - Private functions
     private func setup() {
         navigationItem.titleView = customView.babyNavigationItemView
         customView.babyNavigationItemView.onSelectArrow = { [weak self] in
