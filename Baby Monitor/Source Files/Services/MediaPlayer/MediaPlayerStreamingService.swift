@@ -7,22 +7,16 @@ import Foundation
 
 protocol VideoStreamingService: AnyObject {
     
-    /// Video streaming data source
-    var dataSource: VideoStreamingServiceDataSource? { get set }
-    
     /// Starts video streaming
-    func startStreaming()
+    ///
+    /// - Parameter videoView: view on which video will be displayed
+    func startStreaming(videoView: UIView)
+    
     /// Stops video streaming
     func stopStreaming()
 }
 
-protocol VideoStreamingServiceDataSource: AnyObject {
-    var videoView: UIView { get }
-}
-
 final class MediaPlayerStreamingService: VideoStreamingService {
-    
-    weak var dataSource: VideoStreamingServiceDataSource?
     
     private let cameraServer: CameraServerProtocol
     private let netServiceServer: NetServiceServerProtocol
@@ -32,16 +26,15 @@ final class MediaPlayerStreamingService: VideoStreamingService {
         self.cameraServer = cameraServer
     }
     
-    func startStreaming() {
+    func startStreaming(videoView: UIView) {
         cameraServer.startup()
-        let previewLayer = cameraServer.getPreviewLayer()
-        guard let layer = previewLayer else {
+        guard let previewLayer = cameraServer.getPreviewLayer() else {
             return
         }
-        layer.removeFromSuperlayer()
-        layer.frame = UIScreen.main.bounds
-        layer.connection?.videoOrientation = .portrait
-        dataSource?.videoView.layer.addSublayer(layer)
+        previewLayer.removeFromSuperlayer()
+        previewLayer.frame = UIScreen.main.bounds
+        previewLayer.connection?.videoOrientation = .portrait
+        videoView.layer.addSublayer(previewLayer)
         netServiceServer.publish()
     }
     

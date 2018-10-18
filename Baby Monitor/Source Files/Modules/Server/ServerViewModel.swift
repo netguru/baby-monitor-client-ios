@@ -8,11 +8,6 @@ import RTSPServer
 
 final class ServerViewModel {
     
-    weak var videoDataSource: VideoStreamingServiceDataSource? {
-        didSet {
-            mediaPlayerStreamingService.dataSource = videoDataSource
-        }
-    }
     private let mediaPlayerStreamingService: VideoStreamingService
     
     init(mediaPlayerStreamingService: VideoStreamingService) {
@@ -20,8 +15,8 @@ final class ServerViewModel {
     }
     
     /// Starts streaming
-    func startStreaming() {
-        mediaPlayerStreamingService.startStreaming()
+    func startStreaming(videoView: UIView) {
+        mediaPlayerStreamingService.startStreaming(videoView: videoView)
     }
     
     deinit {

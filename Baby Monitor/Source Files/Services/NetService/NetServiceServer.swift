@@ -12,7 +12,14 @@ protocol NetServiceServerProtocol {
 
 final class NetServiceServer: NSObject, NetServiceServerProtocol {
     
-    private let netService = NetService(domain: "local.", type: "_http._tcp.", name: "Baby Monitor Service", port: 554)
+    private let netService: NetService
+    
+    init(netService: NetService = NetService(domain: Constants.domain,
+                                             type: Constants.netServiceType,
+                                             name: Constants.netServiceName,
+                                             port: 554)) {
+        self.netService = netService
+    }
     
     func publish() {
         netService.publish()

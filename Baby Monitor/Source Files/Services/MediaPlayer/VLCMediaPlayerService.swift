@@ -24,6 +24,9 @@ final class VLCMediaPlayerService: MediaPlayerProtocol {
     
     init(netServiceClient: NetServiceClientProtocol) {
         self.netServiceClient = netServiceClient
+    }
+    
+    func startupConfiguration() {
         netServiceClient.findService()
         netServiceClient.didFindServiceWith = { [weak self] ip, port in
             guard let self = self,
@@ -36,15 +39,15 @@ final class VLCMediaPlayerService: MediaPlayerProtocol {
         }
     }
     
-    func play() {
+    func playVideo() {
         mediaPlayer.play()
     }
     
-    func pause() {
+    func pauseVideo() {
         mediaPlayer.pause()
     }
     
-    func stop() {
+    func stopVideo() {
         mediaPlayer.stop()
     }
 }

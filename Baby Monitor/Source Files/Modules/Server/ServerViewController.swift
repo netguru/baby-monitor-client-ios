@@ -20,14 +20,6 @@ final class ServerViewController: BaseViewController {
     private func setup() {
         view.addSubview(cameraView)
         cameraView.addConstraints { $0.equalSafeAreaEdges() }
-        viewModel.videoDataSource = self
-        viewModel.startStreaming()
-    }
-}
-
-// MARK: - VideoStreamingServiceDataSource
-extension ServerViewController: VideoStreamingServiceDataSource {
-    var videoView: UIView {
-        return self.cameraView
+        viewModel.startStreaming(videoView: cameraView)
     }
 }

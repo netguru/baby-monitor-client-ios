@@ -6,17 +6,14 @@
 import Foundation
 
 protocol NetServiceClientProtocol: AnyObject {
-    typealias IP = String
-    typealias Port = String
-    
-    var didFindServiceWith: ((IP, Port) -> Void)? { get set }
+    var didFindServiceWith: ((_ ip: String, _ port: String) -> Void)? { get set }
     
     func findService()
 }
 
 final class NetServiceClient: NSObject, NetServiceClientProtocol {
     
-    var didFindServiceWith: ((NetServiceClient.IP, NetServiceClient.Port) -> Void)?
+    var didFindServiceWith: ((String, String) -> Void)?
     
     private var service: NetService?
     private let netServiceBrowser = NetServiceBrowser()
@@ -27,7 +24,7 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
     }
     
     func findService() {
-        netServiceBrowser.searchForServices(ofType: "_http._tcp.", inDomain: "local.")
+        netServiceBrowser.searchForServices(ofType: Constants.netServiceType, inDomain: Constants.domain)
     }
 }
 
@@ -45,19 +42,22 @@ extension NetServiceClient: NetServiceBrowserDelegate {
 extension NetServiceClient: NetServiceDelegate {
     
     func netServiceDidResolveAddress(_ sender: NetService) {
-        guard let addressData = sender.addresses?.first else {
+        guard let addressData = sender.addresses?.first,
+        let ip = getIP(from: addressData) else {
             return
         }
-        let theAddress = NSData(data: addressData)
+        didFindServiceWith?(ip, "\(sender.port)")
+    }
+    
+    private func getIP(from data: Data) -> String? {
+        let theAddress = NSData(data: data)
         var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
         let pointer = theAddress.bytes.assumingMemoryBound(to: sockaddr.self)
         if getnameinfo(pointer, socklen_t(theAddress.length), &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST) == 0 {
-            let numAddress = String(cString: hostname)
-            didFindServiceWith?(numAddress, "\(sender.port)")
+            return String(cString: hostname)
+        } else {
+            return nil
         }
     }
-    
-    func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {
-        //TODO: implement error handling
-    }
+
 }
