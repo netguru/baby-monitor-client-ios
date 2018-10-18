@@ -1,16 +1,23 @@
 PODS:
   - MobileVLCKit (3.1.5)
+  - RTSPServer (0.0.1)
 
 DEPENDENCIES:
   - MobileVLCKit (~> 3.1)
+  - RTSPServer (from `Dependencies/RTSPServer.podspec`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - MobileVLCKit
 
+EXTERNAL SOURCES:
+  RTSPServer:
+    :path: Dependencies/RTSPServer.podspec
+
 SPEC CHECKSUMS:
   MobileVLCKit: 4d44e56380d0ee41c76f9ec7015d3a4b62a963a3
+  RTSPServer: 12b837e083aee8d7da271a266926704675b1b610
 
-PODFILE CHECKSUM: 488fcb570e083c39b623fba961840edd26cbcd54
+PODFILE CHECKSUM: dfc5aef06cad684e23fc8caf16ebb179d496ce97
 
 COCOAPODS: 1.5.3

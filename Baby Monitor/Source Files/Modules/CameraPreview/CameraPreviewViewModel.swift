@@ -20,6 +20,10 @@ final class CameraPreviewViewModel {
         self.mediaPlayer = mediaPlayer
     }
     
+    deinit {
+        mediaPlayer.stop()
+    }
+    
     //MARK: - Coordinator callback
     var didSelectShowBabies: (() -> Void)?
     var didSelectCancel: (() -> Void)?
@@ -27,6 +31,10 @@ final class CameraPreviewViewModel {
     //MARK: - Internal functions
     func selectCancel() {
         didSelectCancel?()
+    }
+    
+    func play() {
+        mediaPlayer.play()
     }
     
     func selectShowBabies() {

@@ -11,12 +11,17 @@
 		4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7A2163480C001CD8EA /* SettingsViewController.swift */; };
 		4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */; };
 		4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */; };
+		4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CF816217856C500F48706 /* ServerViewModel.swift */; };
+		4E1CF81921785C7800F48706 /* MediaPlayerStreamingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CF81821785C7800F48706 /* MediaPlayerStreamingService.swift */; };
 		4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C5C21673FF800E92F29 /* CameraPreviewViewController.swift */; };
 		4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C5E216751F400E92F29 /* CameraPreviewViewModel.swift */; };
 		4E1D2C6321678D5700E92F29 /* BabyMonitorGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C6221678D5600E92F29 /* BabyMonitorGeneralView.swift */; };
 		4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C6421678D9100E92F29 /* TypedViewController.swift */; };
 		4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C66216791AD00E92F29 /* DashboardView.swift */; };
 		4E1D2C692167926500E92F29 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C682167926500E92F29 /* BaseView.swift */; };
+		4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E221D8A217716CF003D8531 /* ServerViewController.swift */; };
+		4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3943302175D4AD00AD7582 /* NetServiceClient.swift */; };
+		4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3943322175E50200AD7582 /* NetServiceServer.swift */; };
 		4E5731982170BA7400DEAF0B /* BabiesViewSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731902170BA7400DEAF0B /* BabiesViewSelectable.swift */; };
 		4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731912170BA7400DEAF0B /* BabiesViewShowable.swift */; };
 		4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731922170BA7400DEAF0B /* HasNavigationController.swift */; };
@@ -89,12 +94,18 @@
 		4E075C7A2163480C001CD8EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		4E1CF816217856C500F48706 /* ServerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewModel.swift; sourceTree = "<group>"; };
+		4E1CF81821785C7800F48706 /* MediaPlayerStreamingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerStreamingService.swift; sourceTree = "<group>"; };
 		4E1D2C5C21673FF800E92F29 /* CameraPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewViewController.swift; sourceTree = "<group>"; };
 		4E1D2C5E216751F400E92F29 /* CameraPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewViewModel.swift; sourceTree = "<group>"; };
 		4E1D2C6221678D5600E92F29 /* BabyMonitorGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralView.swift; sourceTree = "<group>"; };
 		4E1D2C6421678D9100E92F29 /* TypedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypedViewController.swift; sourceTree = "<group>"; };
 		4E1D2C66216791AD00E92F29 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		4E1D2C682167926500E92F29 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		4E221D8A217716CF003D8531 /* ServerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
+		4E221D8C21771946003D8531 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		4E3943302175D4AD00AD7582 /* NetServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceClient.swift; sourceTree = "<group>"; };
+		4E3943322175E50200AD7582 /* NetServiceServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceServer.swift; sourceTree = "<group>"; };
 		4E5731902170BA7400DEAF0B /* BabiesViewSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesViewSelectable.swift; sourceTree = "<group>"; };
 		4E5731912170BA7400DEAF0B /* BabiesViewShowable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesViewShowable.swift; sourceTree = "<group>"; };
 		4E5731922170BA7400DEAF0B /* HasNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasNavigationController.swift; sourceTree = "<group>"; };
@@ -197,6 +208,24 @@
 			path = CameraPreview;
 			sourceTree = "<group>";
 		};
+		4E221D89217714D7003D8531 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				4E221D8A217716CF003D8531 /* ServerViewController.swift */,
+				4E1CF816217856C500F48706 /* ServerViewModel.swift */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
+		4E39432F2175D48C00AD7582 /* NetService */ = {
+			isa = PBXGroup;
+			children = (
+				4E3943302175D4AD00AD7582 /* NetServiceClient.swift */,
+				4E3943322175E50200AD7582 /* NetServiceServer.swift */,
+			);
+			path = NetService;
+			sourceTree = "<group>";
+		};
 		4E56C7E8216CEE9000379FB4 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +277,7 @@
 		4E5731A02170BA9D00DEAF0B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4E39432F2175D48C00AD7582 /* NetService */,
 				4E5731A12170BA9D00DEAF0B /* MediaPlayer */,
 			);
 			path = Services;
@@ -258,6 +288,7 @@
 			children = (
 				4E5731A22170BA9D00DEAF0B /* VLCMediaPlayerService.swift */,
 				4E5731A32170BA9D00DEAF0B /* MediaPlayerProtocol.swift */,
+				4E1CF81821785C7800F48706 /* MediaPlayerStreamingService.swift */,
 			);
 			path = MediaPlayer;
 			sourceTree = "<group>";
@@ -284,6 +315,7 @@
 				4E994BDB216237CB009C44C5 /* Dashboard */,
 				4E994BE5216240CD009C44C5 /* Lullabies */,
 				4E994BE6216240DA009C44C5 /* Settings */,
+				4E221D89217714D7003D8531 /* Server */,
 				4E9563272164CAB000289475 /* SwitchBaby */,
 				EC8C943C216CBFCE00E3B478 /* TabBar */,
 			);
@@ -482,6 +514,7 @@
 		EC82B57E213EA142005CA395 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E221D8C21771946003D8531 /* Bridging-Header.h */,
 				EC82B560213EA074005CA395 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -533,6 +566,7 @@
 				EC82B552213EA072005CA395 /* Sources */,
 				EC82B553213EA072005CA395 /* Frameworks */,
 				EC82B554213EA072005CA395 /* Resources */,
+				7BD5B98C2763B3A8B228A5DA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -629,6 +663,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7BD5B98C2763B3A8B228A5DA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RTSPServer/RTSPServer.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTSPServer.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		965F9F71672277B51C9861C6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -679,6 +731,7 @@
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
+				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
@@ -692,6 +745,8 @@
 				4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
 				4E075C7B2163480C001CD8EA /* SettingsViewController.swift in Sources */,
 				4E5731A52170BA9D00DEAF0B /* MediaPlayerProtocol.swift in Sources */,
+				4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */,
+				4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
@@ -702,10 +757,12 @@
 				4E1D2C6321678D5700E92F29 /* BabyMonitorGeneralView.swift in Sources */,
 				4E994BE121623821009C44C5 /* DashboardViewModel.swift in Sources */,
 				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
+				4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */,
 				EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,
 				4E5731A42170BA9D00DEAF0B /* VLCMediaPlayerService.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
+				4E1CF81921785C7800F48706 /* MediaPlayerStreamingService.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
 				EC468BC6216C97BD003FA220 /* InitialSetupViewController.swift in Sources */,
 				EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */,
@@ -782,6 +839,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
+
 			};
 			name = Development;
 		};

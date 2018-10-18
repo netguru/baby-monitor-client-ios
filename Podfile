@@ -7,6 +7,8 @@
 target 'Baby Monitor' do
 
 	pod 'MobileVLCKit', '~> 3.1'
+	
+	pod 'RTSPServer', path: 'Dependencies/RTSPServer.podspec'
 
   target 'Baby MonitorTests' do
     inherit! :search_paths

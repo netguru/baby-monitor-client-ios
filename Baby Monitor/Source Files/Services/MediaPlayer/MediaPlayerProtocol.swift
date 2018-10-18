@@ -17,9 +17,12 @@ protocol MediaPlayerProtocol: class {
     
     var dataSource: MediaPlayerDataSource? { get set }
     
-    /// Play video
+    /// Plays video
     func play()
     
-    /// Pause video
+    /// Pauses video
     func pause()
+    
+    /// Stops video
+    func stop()
 }

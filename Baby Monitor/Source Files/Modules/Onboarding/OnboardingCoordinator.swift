@@ -43,10 +43,14 @@ final class OnboardingCoordinator: Coordinator {
             self?.clientSetupViewController = clientSetupViewController
             self?.navigationController.pushViewController(clientSetupViewController, animated: true)
         }
-        initialSetupViewModel.didSelectStartServer = {
-            //TODO: Start broadcasting, ticket: https://netguru.atlassian.net/browse/BM-60
+        initialSetupViewModel.didSelectStartServer = { [weak self] in
+            guard let self = self else {
+                return
+            }
+            let viewModel = ServerViewModel(mediaPlayerStreamingService: self.appDependencies.mediaPlayerStreamingService)
+            self.navigationController.pushViewController(ServerViewController(viewModel: viewModel), animated: true)
         }
-
+        
         let initialSetupViewController = InitialSetupViewController(viewModel: initialSetupViewModel)
         self.initialSetupViewController = initialSetupViewController
         navigationController.pushViewController(initialSetupViewController, animated: false)
