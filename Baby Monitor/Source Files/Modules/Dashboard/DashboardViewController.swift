@@ -55,9 +55,9 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
             self?.viewModel.selectAddPhoto()
         }
         customView.nameField.text = viewModel.babyService?.dataSource.babies.first?.name
-        customView.photoButtonView.setPhoto(viewModel.babyService?.dataSource.babies.first?.image)
+        customView.photoButtonView.setPhoto(viewModel.babyService?.dataSource.babies.first?.photo)
         customView.babyNavigationItemView.setBabyName(viewModel.babyService?.dataSource.babies.first?.name)
-        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService?.dataSource.babies.first?.image)
+        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService?.dataSource.babies.first?.photo)
         
         customView.nameField.delegate = self
     }
@@ -66,8 +66,8 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
 extension DashboardViewController: BabyServiceObserver {
     
     func babyService(_ service: BabyService, didChangePhotoOf baby: Baby) {
-        customView.photoButtonView.setPhoto(baby.image)
-        customView.babyNavigationItemView.setBabyPhoto(baby.image)
+        customView.photoButtonView.setPhoto(baby.photo)
+        customView.babyNavigationItemView.setBabyPhoto(baby.photo)
     }
     
     func babyService(_ service: BabyService, didChangeNameOf baby: Baby) {

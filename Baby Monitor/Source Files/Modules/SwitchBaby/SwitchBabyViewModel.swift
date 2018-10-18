@@ -24,7 +24,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
         } else {
             let baby = babyService.dataSource.babies[indexPath.row]
             cell.update(mainText: baby.name!)
-            if let babyImage = baby.image {
+            if let babyImage = baby.photo {
                 cell.update(image: babyImage)
             }
             cell.type = .switchBaby(.baby)

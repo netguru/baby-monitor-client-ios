@@ -30,7 +30,7 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
 
     func updateNavigationView() {
         customView.babyNavigationItemView.setBabyName(viewModel.babyService.dataSource.babies.first?.name)
-        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService.dataSource.babies.first?.image)
+        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService.dataSource.babies.first?.photo)
     }
 
     // MARK: - Private functions
@@ -105,7 +105,7 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
 extension BabyMonitorGeneralViewController: BabyServiceObserver {
 
     func babyService(_ service: BabyService, didChangePhotoOf baby: Baby) {
-        customView.babyNavigationItemView.setBabyPhoto(baby.image)
+        customView.babyNavigationItemView.setBabyPhoto(baby.photo)
     }
 
     func babyService(_ service: BabyService, didChangeNameOf baby: Baby) {

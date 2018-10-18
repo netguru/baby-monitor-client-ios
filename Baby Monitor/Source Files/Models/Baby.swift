@@ -8,12 +8,12 @@ import Foundation
 struct Baby: Equatable {
 
     var name: String?
-    var image: UIImage?
+    var photo: UIImage?
     let id: String
 
-    init(id: String = UUID().uuidString, name: String, photo: UIImage? = nil) {
+    init(id: String = UUID().uuidString, name: String?, photo: UIImage? = nil) {
         self.id = id
         self.name = name
-        self.image = photo
+        self.photo = photo
     }
 }

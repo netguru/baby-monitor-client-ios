@@ -7,11 +7,11 @@ import Foundation
 
 protocol BabyServiceDataSource: AnyObject {
     
-    /// Data to be used
+    // TODO: - connect to the database, ticket: https://netguru.atlassian.net/browse/BM-91
     var babies: [Baby] { get set }
 }
 
-/// Protocol that should be conformed by every new class of baby service
+// Protocol that should be conformed by every new class of baby service
 protocol BabyServiceProtocol: AnyObject {
     
     var dataSource: BabyServiceDataSource { get set }

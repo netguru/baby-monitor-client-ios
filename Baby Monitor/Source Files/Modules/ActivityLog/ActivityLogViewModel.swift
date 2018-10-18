@@ -27,10 +27,10 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
 
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
         cell.type = .activityLog
-        //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
+        // TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
         cell.update(secondaryText: "24 minutes ago")
         if let currentBaby = babyService.dataSource.babies.first {
-            cell.update(image: currentBaby.image ?? UIImage())
+            cell.update(image: currentBaby.photo ?? UIImage())
             cell.update(mainText: "\(currentBaby.name ?? "No name") was crying!")
         }
     }

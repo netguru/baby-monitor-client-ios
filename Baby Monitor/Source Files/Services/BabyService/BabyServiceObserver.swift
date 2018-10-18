@@ -3,9 +3,9 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 
+// Protocol for notifying view controllers about updating babies: e.g. name or photo
 protocol BabyServiceObserver: AnyObject {
 
     func babyService(_ service: BabyService, didChangePhotoOf baby: Baby)

@@ -25,13 +25,19 @@ final class BabyService: BabyServiceProtocol {
     }
     
     func setPhoto(_ photo: UIImage) {
-//        dataSource.babies.first?.image = photo
-        babyDidChange(updateType: .image(dataSource.babies.first!))
+        // TODO: - Implement updating saved baby, ticket: https://netguru.atlassian.net/browse/BM-91
+        let oldBaby = dataSource.babies.first
+        let newBaby = Baby(name: oldBaby?.name, photo: photo)
+        dataSource.babies[0] = newBaby
+        babyDidChange(updateType: .image(newBaby))
     }
     
     func setName(_ name: String) {
-//        dataSource.babies.first?.name = name
-        babyDidChange(updateType: .name(dataSource.babies.first!))
+        // TODO: - Implement updating saved baby, ticket: https://netguru.atlassian.net/browse/BM-91
+        let oldBaby = dataSource.babies.first
+        let newBaby = Baby(name: name, photo: oldBaby?.photo)
+        dataSource.babies[0] = newBaby
+        babyDidChange(updateType: .name(newBaby))
     }
 }
 

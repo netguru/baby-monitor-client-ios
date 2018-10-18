@@ -25,7 +25,7 @@ final class DashboardPhotoButtonView: BaseView {
         super.init()
         
         setup()
-        updateImage(baby?.image)
+        updateImage(baby?.photo)
     }
     
     func setPhoto(_ image: UIImage?) {

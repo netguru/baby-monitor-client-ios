@@ -26,8 +26,10 @@ final class BabyNavigationItemView: UIView {
     private lazy var stackView: UIStackView = {
        let stackView = UIStackView(arrangedSubviews: [photoImageView, nameLabel, arrowButton])
         stackView.axis = .horizontal
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
         stackView.alignment = .center
+        stackView.spacing = 5
+        
         return stackView
     }()
 
@@ -44,7 +46,7 @@ final class BabyNavigationItemView: UIView {
     init(baby: Baby? = nil) {
         super.init(frame: .zero)
         nameLabel.text = baby?.name
-        photoImageView.image = baby?.image
+        photoImageView.image = baby?.photo
 
         setup()
     }

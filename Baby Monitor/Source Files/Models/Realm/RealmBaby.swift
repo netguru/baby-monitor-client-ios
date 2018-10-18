@@ -17,7 +17,8 @@ final class RealmBaby: Object {
     }
     
     func toBaby() -> Baby {
-        return Baby(id: id, name: self.name)
+        // TODO: add handling photo, ticket: https://netguru.atlassian.net/browse/BM-91
+        return Baby(id: id, name: self.name, photo: nil)
     }
     
     override static func primaryKey() -> String? {

@@ -36,7 +36,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
             self?.viewModel.selectShowBabies()
         }
         customView.babyNavigationItemView.setBabyName(viewModel.babyService?.dataSource.babies.first?.name)
-        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService?.dataSource.babies.first?.image)
+        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService?.dataSource.babies.first?.photo)
         customView.cancelItemButton.target = self
         customView.cancelItemButton.action = #selector(didTouchCancelButton)
     }
@@ -45,13 +45,10 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
 extension CameraPreviewViewController: BabyServiceObserver {
     
     func babyService(_ service: BabyService, didChangePhotoOf baby: Baby) {
-        guard let newImage = baby.image else { return }
-        customView.babyNavigationItemView.setBabyPhoto(newImage)
-        print("CHANGE PHOTO IN CAMERA PREVIEW")
+        customView.babyNavigationItemView.setBabyPhoto(baby.photo)
     }
     
     func babyService(_ service: BabyService, didChangeNameOf baby: Baby) {
-        guard let newName = baby.name else { return }
-        customView.babyNavigationItemView.setBabyName(newName)
+        customView.babyNavigationItemView.setBabyName(baby.name)
     }
 }
