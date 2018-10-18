@@ -17,6 +17,11 @@ final class CameraPreviewViewModel {
     
     init(mediaPlayer: MediaPlayerProtocol) {
         self.mediaPlayer = mediaPlayer
+        mediaPlayer.startupConfiguration()
+    }
+    
+    deinit {
+        mediaPlayer.stopVideo()
     }
     
     // MARK: - Coordinator callback
@@ -26,6 +31,10 @@ final class CameraPreviewViewModel {
     // MARK: - Internal functions
     func selectCancel() {
         didSelectCancel?()
+    }
+    
+    func play() {
+        mediaPlayer.playVideo()
     }
     
     func selectShowBabies() {

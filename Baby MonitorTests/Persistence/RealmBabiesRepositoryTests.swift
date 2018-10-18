@@ -3,7 +3,6 @@
 //  Baby MonitorTests
 //
 
-
 import XCTest
 import RealmSwift
 @testable import BabyMonitor
