@@ -20,6 +20,10 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
         viewModel.babyService.addObserver(self)
     }
     
+    deinit {
+        viewModel.babyService.removeObserver(self)
+    }
+    
     // MARK: - UIImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
@@ -31,7 +35,6 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         viewModel.babyService.setName(textField.text!)
-        
         customView.endEditing(true)
         return false
     }

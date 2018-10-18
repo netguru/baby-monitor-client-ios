@@ -15,7 +15,6 @@ final class DashboardPhotoButtonView: BaseView {
         button.setTitleColor(.darkText, for: .normal)
         button.imageView?.contentMode = .scaleAspectFill
         button.clipsToBounds = true
-        
         return button
     }()
     

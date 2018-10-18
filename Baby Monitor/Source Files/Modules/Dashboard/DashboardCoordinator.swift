@@ -55,7 +55,7 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
             self.navigationController.present(navigationController, animated: true, completion: nil)
         }
         viewModel.didSelectAddPhoto = { [weak self] in
-            self?.showImagePicker()
+            self?.showImagePickerAlert()
         }
         viewModel.didSelectDismissImagePicker = { [weak self] in
             guard let dashboardViewController = self?.dashboardViewController else {
@@ -69,7 +69,8 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
         navigationController.pushViewController(dashboardViewController, animated: false)
     }
     
-    private func showImagePicker() {
+    // Show alert with camera or photo library options, after choosing show image picker or camera
+    private func showImagePickerAlert() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate = dashboardViewController

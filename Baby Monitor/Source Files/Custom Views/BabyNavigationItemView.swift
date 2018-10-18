@@ -43,11 +43,8 @@ final class BabyNavigationItemView: UIView {
 
     var onSelectArrow: (() -> Void)?
 
-    init(baby: Baby? = nil) {
+    init() {
         super.init(frame: .zero)
-        nameLabel.text = baby?.name
-        photoImageView.image = baby?.photo
-
         setup()
     }
 

@@ -20,6 +20,10 @@ final class LullabiesViewController: BabyMonitorGeneralViewController {
         viewModel.babyService.addObserver(self)
     }
     
+    deinit {
+        viewModel.babyService.removeObserver(self)
+    }
+    
     // MARK: - Private functions
     private func setup() {
         navigationItem.titleView = customView.babyNavigationItemView
