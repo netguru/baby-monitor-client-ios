@@ -27,6 +27,14 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
     }
     
     private func showDashboard() {
+        let viewModel = createDashboardViewModel()
+        let dashboardViewController = DashboardViewController(viewModel: viewModel)
+        self.dashboardViewController = dashboardViewController
+        navigationController.pushViewController(dashboardViewController, animated: false)
+    }
+    
+    // Prepare DashboardViewModel
+    private func createDashboardViewModel() -> DashboardViewModel {
         let viewModel = DashboardViewModel(babyService: appDependencies.babyService)
         viewModel.didSelectShowBabies = { [weak self] in
             guard let self = self, let dashboardViewController = self.dashboardViewController else {
@@ -38,17 +46,7 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
             guard let self = self else {
                 return
             }
-            
-            let viewModel = CameraPreviewViewModel(mediaPlayer: self.appDependencies.mediaPlayer, babyService: self.appDependencies.babyService)
-            viewModel.didSelectCancel = { [weak self] in
-                self?.navigationController.dismiss(animated: true, completion: nil)
-            }
-            viewModel.didSelectShowBabies = { [weak self] in
-                guard let self = self, let cameraPreviewViewController = self.cameraPreviewViewController else {
-                    return
-                }
-                self.toggleSwitchBabiesView(on: cameraPreviewViewController, babyService: self.appDependencies.babyService)
-            }
+            let viewModel = self.createCameraPreviewViewModel()
             let cameraPreviewViewController = CameraPreviewViewController(viewModel: viewModel)
             self.cameraPreviewViewController = cameraPreviewViewController
             let navigationController = UINavigationController(rootViewController: cameraPreviewViewController)
@@ -63,10 +61,22 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
             }
             dashboardViewController.dismiss(animated: true, completion: nil)
         }
-        
-        let dashboardViewController = DashboardViewController(viewModel: viewModel)
-        self.dashboardViewController = dashboardViewController
-        navigationController.pushViewController(dashboardViewController, animated: false)
+        return viewModel
+    }
+    
+    // Prepare CameraPreviewViewModel
+    private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
+        let viewModel = CameraPreviewViewModel(mediaPlayer: self.appDependencies.mediaPlayer, babyService: self.appDependencies.babyService)
+        viewModel.didSelectCancel = { [weak self] in
+            self?.navigationController.dismiss(animated: true, completion: nil)
+        }
+        viewModel.didSelectShowBabies = { [weak self] in
+            guard let self = self, let cameraPreviewViewController = self.cameraPreviewViewController else {
+                return
+            }
+            self.toggleSwitchBabiesView(on: cameraPreviewViewController, babyService: self.appDependencies.babyService)
+        }
+        return viewModel
     }
     
     // Show alert with camera or photo library options, after choosing show image picker or camera
