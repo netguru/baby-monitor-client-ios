@@ -7,9 +7,15 @@ import Foundation
 
 final class ClientSetupViewModel {
     
+    var babyService: BabyServiceProtocol
+    
     // MARK: - Coordinator callback
     var didSelectSetupAddress: ((_ address: String?) -> Void)?
     var didSelectStartDiscovering: (() -> Void)?
+    
+    init(babyService: BabyServiceProtocol) {
+        self.babyService = babyService
+    }
     
     // MARK: - Internal functions
 
@@ -22,5 +28,6 @@ final class ClientSetupViewModel {
     
     func selectStartDiscovering() {
         didSelectStartDiscovering?()
+        babyService.setCurrent(baby: Baby(name: "NO NAME"))
     }
 }
