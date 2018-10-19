@@ -93,8 +93,8 @@ static unsigned int to_host(unsigned char* p)
     param_handler_t _paramsBlock;
     
     // estimate bitrate over first second
-    int _bitspersecond;
-    double _firstpts;
+    int _bitsPerSecond;
+    double _firstPts;
 }
 
 - (void) initForHeight:(int) height andWidth:(int) width;
@@ -137,8 +137,8 @@ static unsigned int to_host(unsigned char* p)
     _paramsBlock = paramsHandler;
     _needParams = YES;
     _pendingNALU = nil;
-    _firstpts = -1;
-    _bitspersecond = 0;
+    _firstPts = -1;
+    _bitsPerSecond = 0;
 }
 
 - (BOOL) parseParams:(NSString*) path
@@ -416,18 +416,18 @@ static unsigned int to_host(unsigned char* p)
 - (void) deliverFrame: (NSArray*) frame withTime:(double) pts
 {
     
-    if (_firstpts < 0)
+    if (_firstPts < 0)
     {
-        _firstpts = pts;
+        _firstPts = pts;
     }
-    if ((pts - _firstpts) < 1)
+    if ((pts - _firstPts) < 1)
     {
         int bytes = 0;
         for (NSData* data in frame)
         {
             bytes += [data length];
         }
-        _bitspersecond += (bytes * 8);
+        _bitsPerSecond += (bytes * 8);
     }
     
     if (_outputBlock != nil)

@@ -12,15 +12,14 @@
 
 @synthesize path = _path;
 
-+ (VideoEncoder*) encoderForPath:(NSString*) path Height:(int) height andWidth:(int) width
++ (VideoEncoder*) encoderForPath:(NSString*) path height:(int) height andWidth:(int) width
 {
     VideoEncoder* enc = [VideoEncoder alloc];
-    [enc initPath:path Height:height andWidth:width];
+    [enc initPath:path height:height andWidth:width];
     return enc;
 }
 
-
-- (void) initPath:(NSString*)path Height:(int) height andWidth:(int) width
+- (void) initPath:(NSString*)path height:(int) height andWidth:(int) width
 {
     self.path = path;
     
