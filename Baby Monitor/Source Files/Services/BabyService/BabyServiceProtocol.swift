@@ -16,7 +16,12 @@ protocol BabyServiceProtocol: AnyObject {
     
     var dataSource: BabyServiceDataSource { get set }
     
+    // Set or update current baby
     func setCurrent(baby: Baby)
     func setPhoto(_ photo: UIImage)
     func setName(_ name: String)
+    
+    // Functions for observation of changes to babies
+    func addObserver(_ observer: BabyServiceObserver)
+    func removeObserver(_ observer: BabyServiceObserver)
 }

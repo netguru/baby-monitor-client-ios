@@ -104,11 +104,11 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
 // MARK: - BabyServiceObserver
 extension BabyMonitorGeneralViewController: BabyServiceObserver {
 
-    func babyService(_ service: BabyService, didChangePhotoOf baby: Baby) {
+    func babyService(_ service: BabyServiceProtocol, didChangePhotoOf baby: Baby) {
         customView.babyNavigationItemView.setBabyPhoto(baby.photo)
     }
 
-    func babyService(_ service: BabyService, didChangeNameOf baby: Baby) {
+    func babyService(_ service: BabyServiceProtocol, didChangeNameOf baby: Baby) {
         customView.babyNavigationItemView.setBabyName(baby.name)
     }
 }

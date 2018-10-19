@@ -68,12 +68,12 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
 
 extension DashboardViewController: BabyServiceObserver {
     
-    func babyService(_ service: BabyService, didChangePhotoOf baby: Baby) {
+    func babyService(_ service: BabyServiceProtocol, didChangePhotoOf baby: Baby) {
         customView.photoButtonView.setPhoto(baby.photo)
         customView.babyNavigationItemView.setBabyPhoto(baby.photo)
     }
     
-    func babyService(_ service: BabyService, didChangeNameOf baby: Baby) {
+    func babyService(_ service: BabyServiceProtocol, didChangeNameOf baby: Baby) {
         customView.nameField.text = baby.name
         customView.babyNavigationItemView.setBabyName(baby.name)
     }

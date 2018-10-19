@@ -14,9 +14,9 @@ final class CameraPreviewViewModel {
             mediaPlayer.dataSource = videoDataSource
         }
     }
-    weak var babyService: BabyService?
+    weak var babyService: BabyServiceProtocol?
 
-    init(mediaPlayer: MediaPlayerProtocol, babyService: BabyService) {
+    init(mediaPlayer: MediaPlayerProtocol, babyService: BabyServiceProtocol) {
         self.mediaPlayer = mediaPlayer
         self.babyService = babyService
         mediaPlayer.startupConfiguration()

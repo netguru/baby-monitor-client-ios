@@ -7,13 +7,13 @@ import UIKit
 
 final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
 
-    var babyService: BabyService
+    var babyService: BabyServiceProtocol
 
     var numberOfSections: Int {
         return 1
     }
 
-    init(babyService: BabyService) {
+    init(babyService: BabyServiceProtocol) {
         self.babyService = babyService
     }
 

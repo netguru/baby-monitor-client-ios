@@ -7,7 +7,7 @@ import Foundation
 
 final class DashboardViewModel {
 
-    var babyService: BabyService
+    var babyService: BabyServiceProtocol
 
     // MARK: - Coordinator callback
     var didSelectShowBabies: (() -> Void)?
@@ -15,7 +15,7 @@ final class DashboardViewModel {
     var didSelectAddPhoto: (() -> Void)?
     var didSelectDismissImagePicker: (() -> Void)?
 
-    init(babyService: BabyService) {
+    init(babyService: BabyServiceProtocol) {
         self.babyService = babyService
     }
 

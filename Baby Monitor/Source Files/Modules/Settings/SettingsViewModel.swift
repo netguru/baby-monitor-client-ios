@@ -7,7 +7,7 @@ import Foundation
 
 final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSelectable {
 
-    var babyService: BabyService
+    var babyService: BabyServiceProtocol
 
     let numberOfSections = 1
 
@@ -18,7 +18,7 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
         static let switchToServerCell = 0
     }
 
-    init(babyService: BabyService) {
+    init(babyService: BabyServiceProtocol) {
         self.babyService = babyService
     }
 
