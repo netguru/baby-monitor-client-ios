@@ -9,12 +9,10 @@ enum DeviceSearchError: Error {
     case timeout
 }
 
-enum DeviceSearchResult {
+enum DeviceSearchResult: Equatable {
     case success
     case failure(DeviceSearchError)
 }
-
-extension DeviceSearchResult: Equatable {}
 
 final class ClientSetupViewModel {
     
