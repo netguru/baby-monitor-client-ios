@@ -28,19 +28,8 @@ final class OnboardingCoordinator: Coordinator {
         let initialSetupViewModel = InitialSetupViewModel()
         
         initialSetupViewModel.didSelectStartClient = { [weak self] in
-            let clientSetupViewModel = ClientSetupViewModel()
-            clientSetupViewModel.didSelectSetupAddress = { address in
-                //TODO: Connect to the address, ticket: https://netguru.atlassian.net/browse/BM-80
-            }
-            clientSetupViewModel.didSelectStartDiscovering = {
-                //TODO: Search for devices and connect, ticket: https://netguru.atlassian.net/browse/BM-79
-                
-                self?.onEnding?()
-            }
-            
-            let clientSetupViewController = ClientSetupViewController(viewModel: clientSetupViewModel)
-            self?.clientSetupViewController = clientSetupViewController
-            self?.navigationController.pushViewController(clientSetupViewController, animated: true)
+            guard let `self` = self else { return }
+            self.showClientSetup()
         }
         initialSetupViewModel.didSelectStartServer = { [weak self] in
             guard let self = self else {
@@ -53,5 +42,17 @@ final class OnboardingCoordinator: Coordinator {
         let initialSetupViewController = InitialSetupViewController(viewModel: initialSetupViewModel)
         self.initialSetupViewController = initialSetupViewController
         navigationController.pushViewController(initialSetupViewController, animated: false)
+    }
+    
+    private func showClientSetup() {
+        let clientSetupViewModel = ClientSetupViewModel(netServiceClient: self.appDependencies.netServiceClient, rtspConfiguration: self.appDependencies.rtspConfiguration)
+        
+        let clientSetupViewController = ClientSetupViewController(viewModel: clientSetupViewModel, coordinator: self)
+        self.clientSetupViewController = clientSetupViewController
+        self.navigationController.pushViewController(clientSetupViewController, animated: true)
+    }
+    
+    func showDashboard() {
+        onEnding?()
     }
 }

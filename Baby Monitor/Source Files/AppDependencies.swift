@@ -13,7 +13,9 @@ struct AppDependencies {
     /// Media player for streaming video
     private(set) lazy var mediaPlayerStreamingService: VideoStreamingService = MediaPlayerStreamingService(netServiceServer: netServiceServer, cameraServer: cameraServer)
     
-    private lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
+    private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
     private lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
     private lazy var cameraServer: CameraServerProtocol = CameraServer().server()
+    
+    private(set) lazy var rtspConfiguration: RTSPConfiguration = UserDefaultsRTSPConfiguration()
 }
