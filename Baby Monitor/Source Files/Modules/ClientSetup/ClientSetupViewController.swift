@@ -8,11 +8,11 @@ import UIKit
 final class ClientSetupViewController: TypedViewController<ClientSetupView>, UITextFieldDelegate {
     
     private let viewModel: ClientSetupViewModel
-    private weak var coordinator: OnboardingCoordinator?
     
-    init(viewModel: ClientSetupViewModel, coordinator: OnboardingCoordinator) {
+    var didRequestShowDashboard: (() -> Void)?
+    
+    init(viewModel: ClientSetupViewModel) {
         self.viewModel = viewModel
-        self.coordinator = coordinator
         super.init(viewMaker: ClientSetupView())
         setupViewModel()
     }
@@ -43,14 +43,8 @@ final class ClientSetupViewController: TypedViewController<ClientSetupView>, UIT
         viewModel.didStartDeviceSearch = { [weak self] in
             self?.customView.showSearchIndicator()
         }
-        viewModel.didEndDeviceSearch = { [weak self] searchResult in
+        viewModel.didEndDeviceSearch = { [weak self] _ in
             self?.customView.hideSearchIndicator()
-            switch searchResult {
-            case .success:
-                self?.coordinator?.showDashboard()
-            default:
-                break
-            }
         }
     }
     

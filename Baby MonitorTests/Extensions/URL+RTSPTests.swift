@@ -16,7 +16,7 @@ class URLRTSPTests: XCTestCase {
         let expectedUrls = testCases.map { ip, port in URL(string: "rtsp://\(ip):\(port)") }
         
         // When
-        let actualUrls = testCases.map { ip, port in URL.rtspUrl(fromIp: ip, andPort: port) }
+        let actualUrls = testCases.map { ip, port in URL.rtsp(ip: ip, port: port) }
         
         // Then
         zip(expectedUrls, actualUrls).forEach { expectedUrl, actualUrl in

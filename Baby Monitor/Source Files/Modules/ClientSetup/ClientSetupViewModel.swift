@@ -14,21 +14,7 @@ enum DeviceSearchResult {
     case failure(DeviceSearchError)
 }
 
-extension DeviceSearchResult: Equatable {
-    public static func == (lhs: DeviceSearchResult, rhs: DeviceSearchResult) -> Bool {
-        switch (lhs, rhs) {
-        case (.success, .success):
-            return true
-        case (.failure(let lerror), .failure(let rerror)):
-            switch (lerror, rerror) {
-            case (.timeout, .timeout):
-                return true
-            }
-        default:
-            return false
-        }
-    }
-}
+extension DeviceSearchResult: Equatable {}
 
 final class ClientSetupViewModel {
     
@@ -64,7 +50,7 @@ final class ClientSetupViewModel {
         })
         netServiceClient.didFindServiceWith = { [weak self] ip, port in
             guard let `self` = self,
-                let serverUrl = URL.rtspUrl(fromIp: ip, andPort: port) else {
+                let serverUrl = URL.rtsp(ip: ip, port: port) else {
                 return
             }
             self.searchCancelTimer?.invalidate()

@@ -28,7 +28,7 @@ final class OnboardingCoordinator: Coordinator {
         let initialSetupViewModel = InitialSetupViewModel()
         
         initialSetupViewModel.didSelectStartClient = { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.showClientSetup()
         }
         initialSetupViewModel.didSelectStartServer = { [weak self] in
@@ -47,12 +47,15 @@ final class OnboardingCoordinator: Coordinator {
     private func showClientSetup() {
         let clientSetupViewModel = ClientSetupViewModel(netServiceClient: self.appDependencies.netServiceClient, rtspConfiguration: self.appDependencies.rtspConfiguration)
         
-        let clientSetupViewController = ClientSetupViewController(viewModel: clientSetupViewModel, coordinator: self)
+        let clientSetupViewController = ClientSetupViewController(viewModel: clientSetupViewModel)
+        clientSetupViewController.didRequestShowDashboard = { [weak self] in
+            self?.showDashboard()
+        }
         self.clientSetupViewController = clientSetupViewController
         self.navigationController.pushViewController(clientSetupViewController, animated: true)
     }
     
-    func showDashboard() {
+    private func showDashboard() {
         onEnding?()
     }
 }
