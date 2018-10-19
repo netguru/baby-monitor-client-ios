@@ -38,7 +38,10 @@ final class ClientSetupViewModel {
     ///
     /// - Parameter address: The address of a server device.
     func selectSetupAddress(_ address: String?) {
-        didSelectSetupAddress?(address)
+        guard let address = address else { return }
+        let url = URL(string: address)
+        rtspConfiguration.url = url
+        didEndDeviceSearch?(.success)
     }
     
     func selectStartDiscovering(withTimeout timeout: TimeInterval = 5.0) {
@@ -47,7 +50,7 @@ final class ClientSetupViewModel {
             self?.searchCancelTimer = nil
         })
         netServiceClient.didFindServiceWith = { [weak self] ip, port in
-            guard let `self` = self,
+            guard let self = self,
                 let serverUrl = URL.rtsp(ip: ip, port: port) else {
                 return
             }
