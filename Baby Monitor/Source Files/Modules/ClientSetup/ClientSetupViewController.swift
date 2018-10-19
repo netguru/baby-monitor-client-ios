@@ -43,8 +43,14 @@ final class ClientSetupViewController: TypedViewController<ClientSetupView>, UIT
         viewModel.didStartDeviceSearch = { [weak self] in
             self?.customView.showSearchIndicator()
         }
-        viewModel.didEndDeviceSearch = { [weak self] _ in
+        viewModel.didEndDeviceSearch = { [weak self] searchResult in
             self?.customView.hideSearchIndicator()
+            switch searchResult {
+            case .success:
+                self?.didRequestShowDashboard?()
+            default:
+                break
+            }
         }
     }
     
