@@ -9,9 +9,12 @@ final class ClientSetupViewController: TypedViewController<ClientSetupView>, UIT
     
     private let viewModel: ClientSetupViewModel
     
+    var didRequestShowDashboard: (() -> Void)?
+    
     init(viewModel: ClientSetupViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: ClientSetupView())
+        setupViewModel()
     }
     
     override func viewDidLoad() {
@@ -34,6 +37,15 @@ final class ClientSetupViewController: TypedViewController<ClientSetupView>, UIT
         customView.startDiscoveringButton.addTarget(self, action: #selector(didTouchStartDiscoveringButton), for: .touchUpInside)
         
         customView.addressField.delegate = self
+    }
+    
+    private func setupViewModel() {
+        viewModel.didStartDeviceSearch = { [weak self] in
+            self?.customView.showSearchIndicator()
+        }
+        viewModel.didEndDeviceSearch = { [weak self] _ in
+            self?.customView.hideSearchIndicator()
+        }
     }
     
     // MARK: - UITextFieldDelegate
