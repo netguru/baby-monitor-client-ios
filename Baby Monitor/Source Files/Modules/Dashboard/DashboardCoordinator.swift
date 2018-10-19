@@ -61,6 +61,9 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
             }
             dashboardViewController.dismiss(animated: true, completion: nil)
         }
+        viewModel.didLoadBabies = { [weak self] babies in
+            self?.dashboardViewController?.updateViews(with: babies)
+        }
         return viewModel
     }
     
