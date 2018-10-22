@@ -26,9 +26,25 @@ final class ClientSetupView: BaseView {
         return stackView
     }()
     
+    private lazy var searchIndicator: UIActivityIndicatorView = {
+        let searchIndicator = UIActivityIndicatorView()
+        searchIndicator.style = .gray
+        
+        return searchIndicator
+    }()
+    
     override init() {
         super.init()
         setup()
+    }
+    
+    // MARK: - Public methods
+    func showSearchIndicator() {
+        self.searchIndicator.startAnimating()
+    }
+    
+    func hideSearchIndicator() {
+        self.searchIndicator.stopAnimating()
     }
     
     // MARK: - Private functions
@@ -36,6 +52,7 @@ final class ClientSetupView: BaseView {
         [addressField, buttonsStackView].forEach {
             addSubview($0)
         }
+        addSubview(searchIndicator)
         
         setupButtons()
         setupConstraints()
@@ -52,27 +69,29 @@ final class ClientSetupView: BaseView {
     }
     
     private func setupConstraints() {
-        buttonsStackView.addConstraints {[
-            $0.equal(.centerX),
+        buttonsStackView.addConstraints {
+            [$0.equal(.centerX),
             $0.equal(.width, multiplier: 0.8),
-            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -20)
-        ]
+            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -20)]
         }
         
         [setupAddressButton, startDiscoveringButton].forEach {
-            $0.addConstraints {[
-                $0.equalConstant(.width, 150),
-                $0.equalConstant(.height, 40)
-            ]
+            $0.addConstraints {
+                [$0.equalConstant(.width, 150),
+                $0.equalConstant(.height, 40)]
             }
         }
         
-        addressField.addConstraints {[
-            $0.equal(.centerX),
+        addressField.addConstraints {
+            [$0.equal(.centerX),
             $0.equal(.centerY),
             $0.equalConstant(.height, 50),
-            $0.equalConstant(.width, 150)
-        ]
+            $0.equalConstant(.width, 150)]
+        }
+        
+        searchIndicator.addConstraints {
+            [$0.equal(.centerX),
+             $0.equal(.centerY)]
         }
     }
 }
