@@ -68,6 +68,6 @@ final class ClientSetupViewModel {
     }
     
     private func setupBaby() {
-        babyService.setCurrent(baby: Baby(name: "NO NAME"))
+        babyService.setCurrent(baby: Baby(name: "Anonymous"))
     }
 }
