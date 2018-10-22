@@ -13,7 +13,8 @@ class ClientSetupViewModelTests: XCTestCase {
         let exp = expectation(description: "Should find device")
         let netServiceClient = NetServiceClientMock()
         let configuration = RTSPConfigurationMock()
-        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration)
+        let babyService = BabyService(dataSource: BabyData())
+        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyService: babyService)
         sut.didEndDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -32,7 +33,8 @@ class ClientSetupViewModelTests: XCTestCase {
         let port = "port"
         let netServiceClient = NetServiceClientMock(ip: ip, port: port)
         let configuration = RTSPConfigurationMock()
-        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration)
+        let babyService = BabyService(dataSource: BabyData())
+        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyService: babyService)
         sut.didEndDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -50,7 +52,8 @@ class ClientSetupViewModelTests: XCTestCase {
         let exp = expectation(description: "Should find device")
         let netServiceClient = NetServiceClientMock()
         let configuration = RTSPConfigurationMock()
-        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration)
+        let babyService = BabyService(dataSource: BabyData())
+        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyService: babyService)
         sut.didEndDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -68,7 +71,8 @@ class ClientSetupViewModelTests: XCTestCase {
         let startFindExp = expectation(description: "Should start device search")
         let netServiceClient = NetServiceClientMock()
         let configuration = RTSPConfigurationMock()
-        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration)
+        let babyService = BabyService(dataSource: BabyData())
+        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyService: babyService)
         sut.didEndDeviceSearch = { _ in exp.fulfill() }
         sut.didStartDeviceSearch = { startFindExp.fulfill() }
         
@@ -87,7 +91,8 @@ class ClientSetupViewModelTests: XCTestCase {
         let startFindExp = expectation(description: "Should start device search")
         let netServiceClient = NetServiceClientMock(findServiceDelay: 20.0)
         let configuration = RTSPConfigurationMock()
-        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration)
+        let babyService = BabyService(dataSource: BabyData())
+        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyService: babyService)
         sut.didEndDeviceSearch = { result in
             XCTAssertEqual(result, DeviceSearchResult.failure(.timeout))
             exp.fulfill()
