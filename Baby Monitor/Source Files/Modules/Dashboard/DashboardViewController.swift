@@ -17,6 +17,7 @@ final class DashboardViewController: TypedViewController<DashboardView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupViewModel()
     }
     
     // MARK: - Selectors
@@ -33,6 +34,21 @@ final class DashboardViewController: TypedViewController<DashboardView> {
         }
         customView.liveCameraButton.onSelect = { [weak self] in
             self?.viewModel.selectLiveCameraPreview()
+        }
+    }
+    
+    private func setupViewModel() {
+        viewModel.didUpdateStatus = { [weak self] status in
+            self?.handleConnectionStatusChange(status: status)
+        }
+    }
+    
+    private func handleConnectionStatusChange(status: ConnectionStatus) {
+        switch status {
+        case .connected:
+            customView.showIsConnected()
+        case .disconnected:
+            customView.showIsDisconnected()
         }
     }
 }

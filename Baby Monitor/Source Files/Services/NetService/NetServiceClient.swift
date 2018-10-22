@@ -9,6 +9,8 @@ protocol NetServiceClientProtocol: AnyObject {
     var didFindServiceWith: ((_ ip: String, _ port: String) -> Void)? { get set }
     
     func findService()
+    
+    func stopFinding()
 }
 
 final class NetServiceClient: NSObject, NetServiceClientProtocol {
@@ -24,7 +26,14 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
     }
     
     func findService() {
-        netServiceBrowser.searchForServices(ofType: Constants.netServiceType, inDomain: Constants.domain)
+        // Apparently net service browser doesn't allow to call stop/searchForDevices in quick succession, hence the delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.netServiceBrowser.searchForServices(ofType: Constants.netServiceType, inDomain: Constants.domain)
+        }
+    }
+    
+    func stopFinding() {
+        netServiceBrowser.stop()
     }
 }
 
@@ -43,10 +52,11 @@ extension NetServiceClient: NetServiceDelegate {
     
     func netServiceDidResolveAddress(_ sender: NetService) {
         guard let addressData = sender.addresses?.first,
-        let ip = getIP(from: addressData) else {
+        let ip = getIP(from: addressData), sender.port == 5006 || sender.port == 554 else {
             return
         }
         didFindServiceWith?(ip, "\(sender.port)")
+        netServiceBrowser.stop()
     }
     
     private func getIP(from data: Data) -> String? {

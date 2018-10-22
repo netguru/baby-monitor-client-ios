@@ -27,7 +27,7 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
     }
     
     private func showDashboard() {
-        let viewModel = DashboardViewModel()
+        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker)
         viewModel.didSelectShowBabies = { [weak self] in
             guard let dashboardViewController = self?.dashboardViewController else {
                 return

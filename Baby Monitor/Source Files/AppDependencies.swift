@@ -17,5 +17,7 @@ struct AppDependencies {
     private lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
     private lazy var cameraServer: CameraServerProtocol = CameraServer().server()
     
+    private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, rtspConfiguration: rtspConfiguration)
+    
     private(set) lazy var rtspConfiguration: RTSPConfiguration = UserDefaultsRTSPConfiguration()
 }
