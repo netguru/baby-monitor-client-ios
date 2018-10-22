@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BabyServiceUpdatable {
     
     private let viewModel: DashboardViewModel
     
@@ -17,21 +17,20 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        viewModel.addObserver(to: self)
+        setupViewModel()
     }
     
     deinit {
-        viewModel.removeObserver(to: self)
+        viewModel.removeObserver(self)
     }
     
-    func updateViews(with babies: [Baby]) {
-        updateName(babies.first!.name)
-        updatePhoto(babies.first!.photo)
+    func updateViews(with baby: Baby) {
+        updateName(baby.name)
+        updatePhoto(baby.photo)
     }
     
     func updateName(_ name: String) {
-        customView.nameField.text = name
-        customView.babyNavigationItemView.setBabyName(name)
+        customView.updateName(name)
     }
     
     func updatePhoto(_ photo: UIImage?) {
@@ -44,13 +43,6 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         viewModel.updatePhoto(image)
         viewModel.selectDismissImagePicker()
-    }
-    
-    // MARK: - UITextFieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        viewModel.updateName(textField.text!)
-        customView.endEditing(true)
-        return false
     }
     
     // MARK: - Selectors
@@ -71,7 +63,16 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
         customView.photoButtonView.onSelect = { [weak self] in
             self?.viewModel.selectAddPhoto()
         }
-        customView.nameField.delegate = self
+        customView.didUpdateName = { [weak self] name in
+            self?.viewModel.updateName(name)
+        }
+    }
+    
+    private func setupViewModel() {
+        viewModel.addObserver(self)
+        viewModel.didLoadBabies = { [weak self] baby in
+            self?.updateViews(with: baby)
+        }
         viewModel.loadBabies()
     }
 }

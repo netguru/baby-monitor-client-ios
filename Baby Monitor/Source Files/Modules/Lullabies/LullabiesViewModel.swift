@@ -7,7 +7,7 @@ import Foundation
 
 final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
 
-    var babyService: BabyServiceProtocol
+    private let babyService: BabyServiceProtocol
 
     private enum Constants {
         static let bmLibrarySection = 0
@@ -18,6 +18,7 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
 
     // MARK: - Coordinator callback
     var didSelectShowBabiesView: (() -> Void)?
+    var didLoadBabies: ((_ baby: Baby) -> Void)?
 
     init(babyService: BabyServiceProtocol) {
         self.babyService = babyService
@@ -50,5 +51,24 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
         default:
             break
         }
+    }
+    
+    func loadBabies() {
+        guard let baby = babyService.dataSource.babies.first else { return }
+        didLoadBabies?(baby)
+    }
+    
+    /// Sets observer to react to changes in the baby.
+    ///
+    /// - Parameter controller: A controller conformed to BabyServiceObserver.
+    func addObserver(_ observer: BabyServiceObserver) {
+        babyService.addObserver(observer)
+    }
+    
+    /// Removes observer to react to changes in the baby.
+    ///
+    /// - Parameter controller: A controller conformed to BabyServiceObserver.
+    func removeObserver(_ observer: BabyServiceObserver) {
+        babyService.removeObserver(observer)
     }
 }

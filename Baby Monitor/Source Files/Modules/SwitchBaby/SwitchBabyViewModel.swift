@@ -7,11 +7,13 @@ import Foundation
 
 final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorCellSelectable {
     
-    var babyService: BabyServiceProtocol
+    private let babyService: BabyServiceProtocol
     
     var numberOfSections: Int {
         return 1
     }
+    
+    var didLoadBabies: ((_ baby: Baby) -> Void)?
     
     init(babyService: BabyServiceProtocol) {
         self.babyService = babyService
@@ -49,5 +51,10 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
         case .activityLog, .lullaby, .settings:
             break
         }
+    }
+    
+    func loadBabies() {
+        guard let baby = babyService.dataSource.babies.first else { return }
+        didLoadBabies?(baby)
     }
 }

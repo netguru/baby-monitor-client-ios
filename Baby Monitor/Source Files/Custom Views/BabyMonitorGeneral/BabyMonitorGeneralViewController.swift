@@ -25,12 +25,13 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewModel()
         setup()
     }
 
-    func updateNavigationView() {
-        customView.babyNavigationItemView.setBabyName(viewModel.babyService.dataSource.babies.first?.name)
-        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService.dataSource.babies.first?.photo)
+    func updateNavigationView(with baby: Baby) {
+        customView.babyNavigationItemView.setBabyPhoto(baby.photo)
+        customView.babyNavigationItemView.setBabyName(baby.name)
     }
 
     // MARK: - Private functions
@@ -44,13 +45,20 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
             }
             babiesViewShowableViewModel.selectShowBabies()
         }
-        updateNavigationView()
 
         switch viewType {
         case .activityLog, .lullaby, .settings:
             navigationItem.titleView = navigationView
         case .switchBaby:
             break
+        }
+        
+        viewModel.loadBabies()
+    }
+    
+    private func setupViewModel() {
+        viewModel.didLoadBabies = { [weak self] baby in
+            self?.updateNavigationView(with: baby)
         }
     }
 

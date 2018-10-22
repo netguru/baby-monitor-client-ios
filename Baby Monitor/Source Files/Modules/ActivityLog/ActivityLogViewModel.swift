@@ -7,7 +7,7 @@ import UIKit
 
 final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
 
-    var babyService: BabyServiceProtocol
+    private let babyService: BabyServiceProtocol
 
     var numberOfSections: Int {
         return 1
@@ -19,6 +19,7 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
 
     // MARK: - Coordinator callback
     var didSelectShowBabies: (() -> Void)?
+    var didLoadBabies: ((_ baby: Baby) -> Void)?
 
     // MARK: - Internal functions
     func selectShowBabies() {
@@ -42,5 +43,24 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
 
     func numberOfRows(for section: Int) -> Int {
         return 5 //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
+    }
+    
+    func loadBabies() {
+        guard let baby = babyService.dataSource.babies.first else { return }
+        didLoadBabies?(baby)
+    }
+    
+    /// Sets observer to react to changes in the baby.
+    ///
+    /// - Parameter controller: A controller conformed to BabyServiceObserver.
+    func addObserver(_ observer: BabyServiceObserver) {
+        babyService.addObserver(observer)
+    }
+    
+    /// Removes observer to react to changes in the baby.
+    ///
+    /// - Parameter controller: A controller conformed to BabyServiceObserver.
+    func removeObserver(_ observer: BabyServiceObserver) {
+        babyService.removeObserver(observer)
     }
 }

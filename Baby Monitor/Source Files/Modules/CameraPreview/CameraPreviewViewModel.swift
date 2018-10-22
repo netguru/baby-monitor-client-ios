@@ -14,7 +14,7 @@ final class CameraPreviewViewModel {
             mediaPlayer.dataSource = videoDataSource
         }
     }
-    weak var babyService: BabyServiceProtocol?
+    private let babyService: BabyServiceProtocol
 
     init(mediaPlayer: MediaPlayerProtocol, babyService: BabyServiceProtocol) {
         self.mediaPlayer = mediaPlayer
@@ -29,6 +29,7 @@ final class CameraPreviewViewModel {
     // MARK: - Coordinator callback
     var didSelectShowBabies: (() -> Void)?
     var didSelectCancel: (() -> Void)?
+    var didLoadBabies: ((_ baby: Baby) -> Void)?
 
     // MARK: - Internal functions
     func selectCancel() {
@@ -41,5 +42,24 @@ final class CameraPreviewViewModel {
 
     func selectShowBabies() {
         didSelectShowBabies?()
+    }
+    
+    func loadBabies() {
+        guard let baby = babyService.dataSource.babies.first else { return }
+        didLoadBabies?(baby)
+    }
+    
+    /// Sets observer to react to changes in the baby.
+    ///
+    /// - Parameter controller: A controller conformed to BabyServiceObserver.
+    func addObserver(_ observer: BabyServiceObserver) {
+        babyService.addObserver(observer)
+    }
+    
+    /// Removes observer to react to changes in the baby.
+    ///
+    /// - Parameter controller: A controller conformed to BabyServiceObserver.
+    func removeObserver(_ observer: BabyServiceObserver) {
+        babyService.removeObserver(observer)
     }
 }

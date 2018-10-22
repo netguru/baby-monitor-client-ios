@@ -7,7 +7,7 @@ import Foundation
 
 final class ClientSetupViewModel {
     
-    var babyService: BabyServiceProtocol
+    private let babyService: BabyServiceProtocol
     
     // MARK: - Coordinator callback
     var didSelectSetupAddress: ((_ address: String?) -> Void)?

@@ -17,6 +17,8 @@ class DashboardView: BaseView {
     let babyNavigationItemView = BabyNavigationItemView()
     let editProfileBarButtonItem = UIBarButtonItem(title: Localizable.Dashboard.editProfile, style: .plain, target: nil, action: nil)
     let photoButtonView = DashboardPhotoButtonView()
+    
+    var didUpdateName: ((String) -> Void)?
 
     private lazy var dashboardButtonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [liveCameraButton, talkButton, playLullabyButton])
@@ -26,7 +28,7 @@ class DashboardView: BaseView {
         return stackView
     }()
 
-    let nameField: UITextField = {
+    private let nameField: UITextField = {
         let textField = UITextField()
         textField.placeholder = Localizable.Dashboard.addName
         textField.textAlignment = .center
@@ -49,6 +51,12 @@ class DashboardView: BaseView {
     override init() {
         super.init()
         setupLayout()
+        setup()
+    }
+    
+    func updateName(_ text: String?) {
+        nameField.text = text
+        babyNavigationItemView.setBabyName(text)
     }
 
     // MARK: - private functions
@@ -96,5 +104,20 @@ class DashboardView: BaseView {
             $0.equal(.centerX)
         ]
         }
+    }
+    
+    private func setup() {
+        nameField.delegate = self
+    }
+}
+
+extension DashboardView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let name = textField.text else {
+            return false
+        }
+        didUpdateName?(name)
+        endEditing(true)
+        return false
     }
 }

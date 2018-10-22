@@ -17,11 +17,11 @@ final class SettingsViewController: BabyMonitorGeneralViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        viewModel.babyService.addObserver(self)
+        viewModel.addObserver(self)
     }
     
     deinit {
-        viewModel.babyService.removeObserver(self)
+        viewModel.removeObserver(self)
     }
     
     // MARK: - Private functions
@@ -30,6 +30,5 @@ final class SettingsViewController: BabyMonitorGeneralViewController {
         customView.babyNavigationItemView.onSelectArrow = { [weak self] in
             self?.viewModel.selectShowBabies()
         }
-        updateNavigationView()
     }
 }

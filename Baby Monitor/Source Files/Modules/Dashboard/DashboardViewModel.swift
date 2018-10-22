@@ -7,14 +7,14 @@ import Foundation
 
 final class DashboardViewModel {
 
-    private var babyService: BabyServiceProtocol
+    private let babyService: BabyServiceProtocol
 
     // MARK: - Coordinator callback
     var didSelectShowBabies: (() -> Void)?
     var didSelectLiveCameraPreview: (() -> Void)?
     var didSelectAddPhoto: (() -> Void)?
     var didSelectDismissImagePicker: (() -> Void)?
-    var didLoadBabies: ((_ babies: [Baby]) -> Void)?
+    var didLoadBabies: ((_ baby: Baby) -> Void)?
 
     init(babyService: BabyServiceProtocol) {
         self.babyService = babyService
@@ -38,8 +38,8 @@ final class DashboardViewModel {
     }
     
     func loadBabies() {
-        let babies = babyService.dataSource.babies
-        didLoadBabies?(babies)
+        guard let baby = babyService.dataSource.babies.first else { return }
+        didLoadBabies?(baby)
     }
     
     /// Sets a new photo for the current baby.
@@ -59,14 +59,14 @@ final class DashboardViewModel {
     /// Sets observer to react to changes in the baby.
     ///
     /// - Parameter controller: A controller conformed to BabyServiceObserver.
-    func addObserver(to controller: BabyServiceObserver) {
-        babyService.addObserver(controller)
+    func addObserver(_ observer: BabyServiceObserver) {
+        babyService.addObserver(observer)
     }
     
     /// Removes observer to react to changes in the baby.
     ///
     /// - Parameter controller: A controller conformed to BabyServiceObserver.
-    func removeObserver(to controller: BabyServiceObserver) {
-        babyService.removeObserver(controller)
+    func removeObserver(_ observer: BabyServiceObserver) {
+        babyService.removeObserver(observer)
     }
 }

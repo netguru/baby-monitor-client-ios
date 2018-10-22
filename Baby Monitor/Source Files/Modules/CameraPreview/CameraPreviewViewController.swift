@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource {
+final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource, BabyServiceUpdatable {
     
     private let viewModel: CameraPreviewViewModel
     
@@ -19,7 +19,20 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        viewModel.babyService?.addObserver(self)
+        setupViewModel()
+    }
+    
+    func updateViews(with baby: Baby) {
+        updateName(baby.name)
+        updatePhoto(baby.photo)
+    }
+    
+    func updateName(_ name: String) {
+        customView.babyNavigationItemView.setBabyName(name)
+    }
+    
+    func updatePhoto(_ photo: UIImage?) {
+        customView.babyNavigationItemView.setBabyPhoto(photo)
     }
     
     // MARK: - Selectors
@@ -29,26 +42,20 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
     
     // MARK: - Private functions
     private func setup() {
-        viewModel.videoDataSource = self
         navigationItem.leftBarButtonItem = customView.cancelItemButton
         navigationItem.titleView = customView.babyNavigationItemView
         customView.babyNavigationItemView.onSelectArrow = { [weak self] in
             self?.viewModel.selectShowBabies()
         }
-        customView.babyNavigationItemView.setBabyName(viewModel.babyService?.dataSource.babies.first?.name)
-        customView.babyNavigationItemView.setBabyPhoto(viewModel.babyService?.dataSource.babies.first?.photo)
         customView.cancelItemButton.target = self
         customView.cancelItemButton.action = #selector(didTouchCancelButton)
     }
-}
-
-extension CameraPreviewViewController: BabyServiceObserver {
     
-    func babyService(_ service: BabyServiceProtocol, didChangePhotoOf baby: Baby) {
-        customView.babyNavigationItemView.setBabyPhoto(baby.photo)
-    }
-    
-    func babyService(_ service: BabyServiceProtocol, didChangeNameOf baby: Baby) {
-        customView.babyNavigationItemView.setBabyName(baby.name)
+    private func setupViewModel() {
+        viewModel.videoDataSource = self
+        viewModel.didLoadBabies = { [weak self] baby in
+            self?.updateViews(with: baby)
+        }
+        viewModel.loadBabies()
     }
 }
