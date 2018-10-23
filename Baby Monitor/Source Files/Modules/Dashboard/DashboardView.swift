@@ -11,9 +11,9 @@ class DashboardView: BaseView {
         static let mainOffset: CGFloat = 20
     }
     
-    let liveCameraButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.liveCamera)
-    let talkButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.talk)
-    let playLullabyButton = DashboardButtonView(image: UIImage(), text: Localizable.Dashboard.playLullaby)
+    let liveCameraButton = DashboardButtonView(role: .liveCamera)
+    let talkButton = DashboardButtonView(role: .talk)
+    let playLullabyButton = DashboardButtonView(role: .playLullaby)
     let babyNavigationItemView = BabyNavigationItemView(babyName: "Franuś") //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
     let editProfileBarButtonItem = UIBarButtonItem(title: Localizable.Dashboard.editProfile,
                                                    style: .plain,
@@ -32,7 +32,7 @@ class DashboardView: BaseView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .gray
         return imageView
     }()
     

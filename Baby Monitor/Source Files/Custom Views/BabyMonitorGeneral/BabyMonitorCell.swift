@@ -19,11 +19,16 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         case addAnother
     }
     
+    private enum Constants {
+        static let mainWidthHeight: CGFloat = 40
+    }
+    
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         imageView.backgroundColor = .gray
+        imageView.layer.cornerRadius = Constants.mainWidthHeight / 2
         return imageView
     }()
     
@@ -37,7 +42,8 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
     private let additionalButton: UIButton = {
         let button = UIButton()
         //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
-        button.backgroundColor = .green
+        button.backgroundColor = .blue
+        button.layer.cornerRadius = Constants.mainWidthHeight / 2
         return button
     }()
     
@@ -106,14 +112,14 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         contentView.addSubview(mainStackView)
         
         photoImageView.addConstraints {[
-            $0.equalConstant(.height, 40),
-            $0.equalConstant(.width, 40)
+            $0.equalConstant(.height, Constants.mainWidthHeight),
+            $0.equalConstant(.width, Constants.mainWidthHeight)
         ]
         }
         
         additionalButton.addConstraints {[
-            $0.equalConstant(.height, 40),
-            $0.equalConstant(.width, 40)
+            $0.equalConstant(.height, Constants.mainWidthHeight),
+            $0.equalConstant(.width, Constants.mainWidthHeight)
         ]
         }
         
@@ -139,6 +145,8 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
                 break
             case .addAnother:
                 mainLabel.text = Localizable.SwitchBaby.addAnotherBaby
+                photoImageView.backgroundColor = .blue
+                photoImageView.image = #imageLiteral(resourceName: "add")
             }
         case .activityLog:
             [photoImageView, secondaryLabel].forEach {

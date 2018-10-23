@@ -32,8 +32,8 @@ final class BabyNavigationItemView: UIView {
     private let arrowButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(onTouchArrowButton), for: .touchUpInside)
-        //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
-        button.backgroundColor = .red
+        button.imageView?.contentMode = .scaleToFill
+        button.setImage(#imageLiteral(resourceName: "arrowDown"), for: .normal)
         return button
     }()
     
@@ -65,7 +65,7 @@ final class BabyNavigationItemView: UIView {
         photoImageView.addConstraints {[
             $0.equalTo(self, .height, .height, multiplier: 0.8),
             $0.equalTo($0, .width, .height),
-            $0.equalConstant(.width, 20)
+            $0.equalConstant(.width, 30)
         ]
         }
         

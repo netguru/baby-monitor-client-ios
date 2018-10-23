@@ -37,6 +37,11 @@
 		4E5731AC2170C1A200DEAF0B /* Tests-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E5731A92170C1A200DEAF0B /* Tests-Production.xcconfig */; };
 		4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */; };
 		4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */; };
+		4E626690217F1A6300FA542F /* GeneralOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62668F217F1A6300FA542F /* GeneralOnboardingViewController.swift */; };
+		4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */; };
+		4E626694217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626693217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift */; };
+		4E626696217F1B4000FA542F /* InitialOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626695217F1B4000FA542F /* InitialOnboardingViewModel.swift */; };
+		4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626697217F2B8400FA542F /* OnboardingView.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
 		4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */; };
 		4E931330216635B700AEE942 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93132F216635B700AEE942 /* TabBarController.swift */; };
@@ -74,13 +79,7 @@
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
 		8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */; };
 		E557EC9748B4E1AAF5804CA4 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E1DB8C336FC3D3C6E57778B /* Pods_Baby_Monitor.framework */; };
-		EC468BC6216C97BD003FA220 /* InitialSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */; };
-		EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC7216C9876003FA220 /* InitialSetupView.swift */; };
-		EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */; };
 		EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */; };
-		EC6179DD216F2A36004BD7E0 /* ClientSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */; };
-		EC6179DF216F2A4E004BD7E0 /* ClientSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */; };
-		EC6179E1216F2ADD004BD7E0 /* ClientSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
@@ -135,6 +134,11 @@
 		4E5731A92170C1A200DEAF0B /* Tests-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Production.xcconfig"; sourceTree = "<group>"; };
 		4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Staging.xcconfig"; sourceTree = "<group>"; };
 		4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		4E62668F217F1A6300FA542F /* GeneralOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralOnboardingViewController.swift; sourceTree = "<group>"; };
+		4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupOnboardingViewModel.swift; sourceTree = "<group>"; };
+		4E626693217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDiscoveringOnboardingViewModel.swift; sourceTree = "<group>"; };
+		4E626695217F1B4000FA542F /* InitialOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialOnboardingViewModel.swift; sourceTree = "<group>"; };
+		4E626697217F2B8400FA542F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		4E93132F216635B700AEE942 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -176,13 +180,7 @@
 		8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB52177371B003E756F /* RealmBaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaby.swift; sourceTree = "<group>"; };
 		8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepositoryTests.swift; sourceTree = "<group>"; };
-		EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewController.swift; sourceTree = "<group>"; };
-		EC468BC7216C9876003FA220 /* InitialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupView.swift; sourceTree = "<group>"; };
-		EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewModel.swift; sourceTree = "<group>"; };
 		EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
-		EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupViewController.swift; sourceTree = "<group>"; };
-		EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupViewModel.swift; sourceTree = "<group>"; };
-		EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupView.swift; sourceTree = "<group>"; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC82B560213EA074005CA395 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -337,8 +335,6 @@
 			isa = PBXGroup;
 			children = (
 				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
-				EC468BC4216C9797003FA220 /* InitialSetup */,
-				EC6179DB216F2A0F004BD7E0 /* ClientSetup */,
 				EC4C9945216B944B0093EDFC /* Onboarding */,
 				4E994BE221623EC3009C44C5 /* ActivityLog */,
 				4E1D2C5B21673FE200E92F29 /* CameraPreview */,
@@ -510,32 +506,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		EC468BC4216C9797003FA220 /* InitialSetup */ = {
-			isa = PBXGroup;
-			children = (
-				EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */,
-				EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */,
-				EC468BC7216C9876003FA220 /* InitialSetupView.swift */,
-			);
-			path = InitialSetup;
-			sourceTree = "<group>";
-		};
 		EC4C9945216B944B0093EDFC /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
 				EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */,
+				4E62668F217F1A6300FA542F /* GeneralOnboardingViewController.swift */,
+				4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */,
+				4E626693217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift */,
+				4E626695217F1B4000FA542F /* InitialOnboardingViewModel.swift */,
+				4E626697217F2B8400FA542F /* OnboardingView.swift */,
 			);
 			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		EC6179DB216F2A0F004BD7E0 /* ClientSetup */ = {
-			isa = PBXGroup;
-			children = (
-				EC6179DC216F2A36004BD7E0 /* ClientSetupViewController.swift */,
-				EC6179DE216F2A4E004BD7E0 /* ClientSetupViewModel.swift */,
-				EC6179E0216F2ADD004BD7E0 /* ClientSetupView.swift */,
-			);
-			path = ClientSetup;
 			sourceTree = "<group>";
 		};
 		EC82B54D213EA072005CA395 = {
@@ -840,6 +821,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E626690217F1A6300FA542F /* GeneralOnboardingViewController.swift in Sources */,
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
 				4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */,
 				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
@@ -857,10 +839,10 @@
 				4E57319C2170BA7400DEAF0B /* BabyMonitorCellSelectable.swift in Sources */,
 				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
-				EC6179E1216F2ADD004BD7E0 /* ClientSetupView.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
 				4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
+				4E626694217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift in Sources */,
 				4E5731A52170BA9D00DEAF0B /* MediaPlayerProtocol.swift in Sources */,
 				8A42DB092179D65900BF5F1B /* UserDefaultsRTSPConfiguration.swift in Sources */,
 				4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */,
@@ -868,6 +850,7 @@
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
+				4E626696217F1B4000FA542F /* InitialOnboardingViewModel.swift in Sources */,
 				4E5731982170BA7400DEAF0B /* BabiesViewSelectable.swift in Sources */,
 				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
 				4E57319B2170BA7400DEAF0B /* HasWindow.swift in Sources */,
@@ -878,31 +861,28 @@
 				4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */,
 				8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */,
 				8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */,
-				EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,
 				4E5731A42170BA9D00DEAF0B /* VLCMediaPlayerService.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
 				4E1CF81921785C7800F48706 /* MediaPlayerStreamingService.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
-				EC468BC6216C97BD003FA220 /* InitialSetupViewController.swift in Sources */,
-				EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
-				EC6179DF216F2A4E004BD7E0 /* ClientSetupViewModel.swift in Sources */,
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
 				8AEAFBB1217735D4003E756F /* BabiesRepository.swift in Sources */,
 				4E57319D2170BA7400DEAF0B /* Identifiable.swift in Sources */,
 				4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */,
+				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* RTSPConfiguration.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+RTSP.swift in Sources */,
+				4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */,
 				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
 				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
-				EC6179DD216F2A36004BD7E0 /* ClientSetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
