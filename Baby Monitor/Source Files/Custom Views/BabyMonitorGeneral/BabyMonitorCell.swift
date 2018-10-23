@@ -67,6 +67,8 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         }
     }
     
+    var didTap: (() -> Void)?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -107,25 +109,29 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         selectionStyle = .none
         contentView.addSubview(mainStackView)
         
-        photoImageView.addConstraints {[
-            $0.equalConstant(.height, 40),
-            $0.equalConstant(.width, 40)
-        ]
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCell))
+        addGestureRecognizer(tapRecognizer)
+        
+        photoImageView.addConstraints {
+            [$0.equalConstant(.height, 40),
+            $0.equalConstant(.width, 40)]
         }
         
-        additionalButton.addConstraints {[
-            $0.equalConstant(.height, 40),
-            $0.equalConstant(.width, 40)
-        ]
+        additionalButton.addConstraints {
+            [$0.equalConstant(.height, 40),
+            $0.equalConstant(.width, 40)]
         }
         
-        mainStackView.addConstraints {[
-            $0.equal(.top),
+        mainStackView.addConstraints {
+            [$0.equal(.top),
             $0.equal(.bottom),
             $0.equal(.centerX),
-            $0.equal(.width, multiplier: 0.8)
-        ]
+            $0.equal(.width, multiplier: 0.8)]
         }
+    }
+    
+    @objc private func didTapCell() {
+        didTap?()
     }
     
     private func updateViews() {
