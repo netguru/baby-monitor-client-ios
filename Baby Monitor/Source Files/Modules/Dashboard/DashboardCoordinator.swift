@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class DashboardCoordinator: Coordinator, BabiesViewShowable {    
+final class DashboardCoordinator: Coordinator, BabiesViewShowable {
 
     var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
