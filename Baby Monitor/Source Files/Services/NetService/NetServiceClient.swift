@@ -20,14 +20,17 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
     private var service: NetService?
     private let netServiceBrowser = NetServiceBrowser()
     
+    private static let androidPort = 5006
+    private static let iosPort = 554
+    
     override init() {
         super.init()
         netServiceBrowser.delegate = self
     }
     
     func findService() {
-        // Apparently net service browser doesn't allow to call stop/searchForDevices in quick succession, hence the delay
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+        // Apparently net service browser doesn't allow to call stop/searchForDevices in quick succession, hence the async
+        DispatchQueue.main.async { [weak self] in
             self?.netServiceBrowser.searchForServices(ofType: Constants.netServiceType, inDomain: Constants.domain)
         }
     }
@@ -52,7 +55,7 @@ extension NetServiceClient: NetServiceDelegate {
     
     func netServiceDidResolveAddress(_ sender: NetService) {
         guard let addressData = sender.addresses?.first,
-        let ip = getIP(from: addressData), sender.port == 5006 || sender.port == 554 else {
+        let ip = getIP(from: addressData), [NetServiceClient.androidPort, NetServiceClient.iosPort].contains(sender.port) else {
             return
         }
         didFindServiceWith?(ip, "\(sender.port)")
