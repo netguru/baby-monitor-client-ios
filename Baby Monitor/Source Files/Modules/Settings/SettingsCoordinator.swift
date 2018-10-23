@@ -33,9 +33,22 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
             }
             self.toggleSwitchBabiesView(on: settingsViewController, babyService: self.appDependencies.babyService)
         }
+        viewModel.didSelectChangeServer = { [weak self] in
+            self?.showClientSetup()
+        }
 
         let settingsViewController = SettingsViewController(viewModel: viewModel)
         self.settingsViewController = settingsViewController
         navigationController.pushViewController(settingsViewController, animated: false)
+    }
+    
+    private func showClientSetup() {
+        let clientSetupViewModel = ClientSetupViewModel(netServiceClient: self.appDependencies.netServiceClient, rtspConfiguration: self.appDependencies.rtspConfiguration)
+        
+        let clientSetupViewController = ClientSetupViewController(viewModel: clientSetupViewModel)
+        clientSetupViewController.didRequestShowDashboard = { [weak self] in
+            _ = self?.navigationController.popViewController(animated: true)
+        }
+        self.navigationController.pushViewController(clientSetupViewController, animated: true)
     }
 }
