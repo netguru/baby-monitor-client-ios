@@ -7,7 +7,7 @@ import UIKit
 
 final class BabyNavigationItemView: UIView {
 
-    private var isShown = false
+    private var isVisible = false
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -64,8 +64,8 @@ final class BabyNavigationItemView: UIView {
 
     // MARK: - Selectors
     @objc private func onTouchArrowButton() {
-        isShown.toggle()
-        let arrowImage = isShown ? #imageLiteral(resourceName: "arrowUp") : #imageLiteral(resourceName: "arrowDown")
+        isVisible.toggle()
+        let arrowImage = isVisible ? #imageLiteral(resourceName: "arrowUp") : #imageLiteral(resourceName: "arrowDown")
         arrowButton.setImage(arrowImage, for: .normal)
         onSelectArrow?()
     }
