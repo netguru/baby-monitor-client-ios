@@ -20,11 +20,9 @@ final class DashboardPhotoButtonView: BaseView {
     
     var onSelect: (() -> Void)?
     
-    init(baby: Baby? = nil) {
+    override init() {
         super.init()
-        
         setup()
-        updateImage(baby?.photo)
     }
     
     func setPhoto(_ image: UIImage?) {
