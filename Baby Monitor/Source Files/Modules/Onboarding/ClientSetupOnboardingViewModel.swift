@@ -24,15 +24,18 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
     private let rtspConfiguration: RTSPConfiguration
+    private let babyService: BabyServiceProtocol
     
-    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration) {
+    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, babyService: BabyServiceProtocol) {
         self.netServiceClient = netServiceClient
         self.rtspConfiguration = rtspConfiguration
+        self.babyService = babyService
     }
     
     func startDiscovering(withTimeout timeout: TimeInterval = 5.0) {
         searchCancelTimer = Timer.scheduledTimer(withTimeInterval: timeout, repeats: false, block: { [weak self] _ in
             self?.didFinishDeviceSearch?(.failure(.timeout))
+            self?.netServiceClient.stopFinding()
             self?.searchCancelTimer = nil
         })
         netServiceClient.didFindServiceWith = { [weak self] ip, port in
@@ -42,8 +45,14 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
             }
             self.searchCancelTimer?.invalidate()
             self.rtspConfiguration.url = serverUrl
+            self.netServiceClient.stopFinding()
             self.didFinishDeviceSearch?(.success)
+            self.setupBaby()
         }
         netServiceClient.findService()
+    }
+    
+    private func setupBaby() {
+        babyService.setCurrent(baby: Baby(name: "Anonymous"))
     }
 }

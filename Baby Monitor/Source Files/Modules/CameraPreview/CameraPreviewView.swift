@@ -13,7 +13,7 @@ final class CameraPreviewView: BaseView {
     }
     
     let mediaView = UIView()
-    let babyNavigationItemView = BabyNavigationItemView(babyName: "Franuś") //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
+    let babyNavigationItemView = BabyNavigationItemView()
     let cancelItemButton = UIBarButtonItem(barButtonSystemItem: .cancel,
                                            target: nil,
                                            action: nil)

@@ -10,6 +10,7 @@ final class NetServiceClientMock: NetServiceClientProtocol {
     private let findServiceDelay: Double
     private let ip: String
     private let port: String
+    private var timer: Timer?
     
     init(findServiceDelay: Double = 0.0, ip: String = "ip", port: String = "port") {
         self.findServiceDelay = findServiceDelay
@@ -21,7 +22,20 @@ final class NetServiceClientMock: NetServiceClientProtocol {
     
     func findService() {
         didCallFindService = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + findServiceDelay) { [unowned self] in
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: findServiceDelay, repeats: false, block: { [unowned self] _ in
+            self.didFindServiceWith?(self.ip, self.port)
+        })
+    }
+    
+    func stopFinding() {
+        timer?.invalidate()
+        didFindServiceWith = nil
+    }
+    
+    func forceFind(delay: Double = 0.0) {
+        timer?.invalidate()
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             self.didFindServiceWith?(self.ip, self.port)
         }
     }

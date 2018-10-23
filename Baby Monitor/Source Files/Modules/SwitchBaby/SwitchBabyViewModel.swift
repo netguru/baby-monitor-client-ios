@@ -7,25 +7,34 @@ import Foundation
 
 final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorCellSelectable {
     
+    private let babyService: BabyServiceProtocol
+    
     var numberOfSections: Int {
         return 1
     }
     
-    private var babies: [Baby] = [Baby(name: "Franuś")] //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
+    var didLoadBabies: ((_ baby: Baby) -> Void)?
+    
+    init(babyService: BabyServiceProtocol) {
+        self.babyService = babyService
+    }
     
     // MARK: - internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
-        if indexPath.row == babies.count {
+        if indexPath.row == babyService.dataSource.babies.count {
             cell.type = .switchBaby(.addAnother)
         } else {
-            let baby = babies[indexPath.row]
+            let baby = babyService.dataSource.babies[indexPath.row]
             cell.update(mainText: baby.name)
+            if let babyImage = baby.photo {
+                cell.update(image: babyImage)
+            }
             cell.type = .switchBaby(.baby)
         }
     }
     
     func numberOfRows(for section: Int) -> Int {
-        return babies.count + 1
+        return babyService.dataSource.babies.count + 1
     }
     
     func select(cell: BabyMonitorCell) {
@@ -42,5 +51,10 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
         case .activityLog, .lullaby, .settings:
             break
         }
+    }
+    
+    func loadBabies() {
+        guard let baby = babyService.dataSource.babies.first else { return }
+        didLoadBabies?(baby)
     }
 }

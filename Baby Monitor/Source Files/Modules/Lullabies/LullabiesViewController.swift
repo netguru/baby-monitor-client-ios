@@ -1,17 +1,17 @@
 //
-//  ActivityLogViewController.swift
+//  LullabiesViewController.swift
 //  Baby Monitor
 //
 
 import UIKit
 
-final class ActivityLogViewController: BabyMonitorGeneralViewController {
+final class LullabiesViewController: BabyMonitorGeneralViewController {
     
-    private let viewModel: ActivityLogViewModel
+    private let viewModel: LullabiesViewModel
     
-    init(viewModel: ActivityLogViewModel) {
+    init(viewModel: LullabiesViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel, type: .activityLog)
+        super.init(viewModel: viewModel, type: .lullaby)
     }
     
     override func viewDidLoad() {

@@ -25,9 +25,11 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
     
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 20
         //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
-        imageView.backgroundColor = .gray
+        imageView.backgroundColor = .lightGray
         imageView.layer.cornerRadius = Constants.mainWidthHeight / 2
         return imageView
     }()
@@ -70,6 +72,8 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
             updateViews()
         }
     }
+    
+    var didTap: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -123,13 +127,19 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         ]
         }
         
-        mainStackView.addConstraints {[
-            $0.equal(.top),
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCell))
+        addGestureRecognizer(tapRecognizer)
+        
+        mainStackView.addConstraints {
+            [$0.equal(.top),
             $0.equal(.bottom),
             $0.equal(.centerX),
-            $0.equal(.width, multiplier: 0.8)
-        ]
+            $0.equal(.width, multiplier: 0.8)]
         }
+    }
+    
+    @objc private func didTapCell() {
+        didTap?()
     }
     
     private func updateViews() {
@@ -153,11 +163,12 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
                 $0.isHidden = false
             }
         case .lullaby:
+            additionalButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             [secondaryLabel, additionalButton].forEach {
                 $0.isHidden = false
             }
         case .settings:
-            additionalButton.isHidden = false
+            additionalButton.isHidden = true
         }
     }
 }

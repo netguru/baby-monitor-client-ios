@@ -6,7 +6,7 @@
 import UIKit
 
 final class OnboardingCoordinator: Coordinator {
-    
+
     var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -16,13 +16,12 @@ final class OnboardingCoordinator: Coordinator {
         self.navigationController = navigationController
         self.appDependencies = appDependencies
     }
-    
+
     func start() {
         showInitialSetup()
     }
-    
+
     private func showInitialSetup() {
-        
         let viewModel = InitialOnboardingViewModel()
         viewModel.didSelectBabyMonitorServer = { [weak self] in
             self?.showServerView()
@@ -42,9 +41,9 @@ final class OnboardingCoordinator: Coordinator {
         let viewController = GeneralOnboardingViewController(viewModel: viewModel, role: .startDiscovering)
         navigationController.pushViewController(viewController, animated: true)
     }
-    
+
     private func showClientSetup() {
-        let viewModel = ClientSetupOnboardingViewModel(netServiceClient: self.appDependencies.netServiceClient, rtspConfiguration: self.appDependencies.rtspConfiguration)
+        let viewModel = ClientSetupOnboardingViewModel(netServiceClient: self.appDependencies.netServiceClient, rtspConfiguration: self.appDependencies.rtspConfiguration, babyService: self.appDependencies.babyService)
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success:
@@ -53,7 +52,6 @@ final class OnboardingCoordinator: Coordinator {
                 // TODO: add error handling
                 break
             }
-            
         }
         let viewController = GeneralOnboardingViewController(viewModel: viewModel, role: .clientSetup)
         navigationController.pushViewController(viewController, animated: true)
@@ -63,7 +61,7 @@ final class OnboardingCoordinator: Coordinator {
         let viewModel = ServerViewModel(mediaPlayerStreamingService: appDependencies.mediaPlayerStreamingService)
         navigationController.pushViewController(ServerViewController(viewModel: viewModel), animated: true)
     }
-    
+
     private func showDashboard() {
         onEnding?()
     }
