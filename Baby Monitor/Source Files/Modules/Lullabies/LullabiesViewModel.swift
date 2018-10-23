@@ -60,14 +60,14 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
     
     /// Sets observer to react to changes in the baby.
     ///
-    /// - Parameter controller: A controller conformed to BabyRepoObserver.
+    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
     func addObserver(_ observer: BabyRepoObserver) {
         babyRepo.addObserver(observer)
     }
     
     /// Removes observer to react to changes in the baby.
     ///
-    /// - Parameter controller: A controller conformed to BabyRepoObserver.
+    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
     func removeObserver(_ observer: BabyRepoObserver) {
         babyRepo.removeObserver(observer)
     }
