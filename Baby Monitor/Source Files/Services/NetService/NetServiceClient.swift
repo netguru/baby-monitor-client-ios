@@ -9,6 +9,8 @@ protocol NetServiceClientProtocol: AnyObject {
     var didFindServiceWith: ((_ ip: String, _ port: String) -> Void)? { get set }
     
     func findService()
+    
+    func stopFinding()
 }
 
 final class NetServiceClient: NSObject, NetServiceClientProtocol {
@@ -18,13 +20,23 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
     private var service: NetService?
     private let netServiceBrowser = NetServiceBrowser()
     
+    private static let androidPort = 5006
+    private static let iosPort = 554
+    
     override init() {
         super.init()
         netServiceBrowser.delegate = self
     }
     
     func findService() {
-        netServiceBrowser.searchForServices(ofType: Constants.netServiceType, inDomain: Constants.domain)
+        // Apparently net service browser doesn't allow to call stop/searchForDevices in quick succession, hence the async
+        DispatchQueue.main.async { [weak self] in
+            self?.netServiceBrowser.searchForServices(ofType: Constants.netServiceType, inDomain: Constants.domain)
+        }
+    }
+    
+    func stopFinding() {
+        netServiceBrowser.stop()
     }
 }
 
@@ -43,10 +55,11 @@ extension NetServiceClient: NetServiceDelegate {
     
     func netServiceDidResolveAddress(_ sender: NetService) {
         guard let addressData = sender.addresses?.first,
-        let ip = getIP(from: addressData) else {
+        let ip = getIP(from: addressData), [NetServiceClient.androidPort, NetServiceClient.iosPort].contains(sender.port) else {
             return
         }
         didFindServiceWith?(ip, "\(sender.port)")
+        netServiceBrowser.stop()
     }
     
     private func getIP(from data: Data) -> String? {

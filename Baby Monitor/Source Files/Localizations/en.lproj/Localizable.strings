@@ -5,6 +5,7 @@
 
 //MARK: - General
 "general.cancel" = "Cancel";
+"general.disconnected" = "Disconnected";
 
 //MARK: - Onboarding
 "onboarding.button.start-client" = "Start Client";
