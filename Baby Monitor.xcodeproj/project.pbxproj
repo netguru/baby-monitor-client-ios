@@ -69,6 +69,9 @@
 		8A42DB142179DCAC00BF5F1B /* URL+RTSP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB132179DCAC00BF5F1B /* URL+RTSP.swift */; };
 		8A42DB172179DD9C00BF5F1B /* URL+RTSPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB162179DD9C00BF5F1B /* URL+RTSPTests.swift */; };
 		8A42DB192179E0AD00BF5F1B /* RTSPConfigurationMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB182179E0AD00BF5F1B /* RTSPConfigurationMock.swift */; };
+		8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DAFC217DD1D000E3004D /* ConnectionChecker.swift */; };
+		8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */; };
+		8A43DB04217DD89300E3004D /* NetServiceConnectionCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */; };
 		8AEAFBB1217735D4003E756F /* BabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB0217735D4003E756F /* BabiesRepository.swift */; };
 		8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */; };
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
@@ -181,6 +184,9 @@
 		8A42DB132179DCAC00BF5F1B /* URL+RTSP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+RTSP.swift"; sourceTree = "<group>"; };
 		8A42DB162179DD9C00BF5F1B /* URL+RTSPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+RTSPTests.swift"; sourceTree = "<group>"; };
 		8A42DB182179E0AD00BF5F1B /* RTSPConfigurationMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTSPConfigurationMock.swift; sourceTree = "<group>"; };
+		8A43DAFC217DD1D000E3004D /* ConnectionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionChecker.swift; sourceTree = "<group>"; };
+		8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionChecker.swift; sourceTree = "<group>"; };
+		8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionCheckerTests.swift; sourceTree = "<group>"; };
 		8AEAFBB0217735D4003E756F /* BabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB52177371B003E756F /* RealmBaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaby.swift; sourceTree = "<group>"; };
@@ -324,6 +330,7 @@
 		4E5731A02170BA9D00DEAF0B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8A43DAFB217DD1C300E3004D /* Connection */,
 				4E39432F2175D48C00AD7582 /* NetService */,
 				8AEAFBAF217735B3003E756F /* Persistence */,
 				4E5731A12170BA9D00DEAF0B /* MediaPlayer */,
@@ -498,6 +505,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8A43DAFB217DD1C300E3004D /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				8A43DAFC217DD1D000E3004D /* ConnectionChecker.swift */,
+				8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		8A43DAFE217DD2C600E3004D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		8AEAFBAF217735B3003E756F /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -610,6 +634,7 @@
 		EC82B56D213EA074005CA395 /* Baby MonitorTests */ = {
 			isa = PBXGroup;
 			children = (
+				8A43DAFE217DD2C600E3004D /* Networking */,
 				8A42DB152179DD8600BF5F1B /* Extensions */,
 				8A42DAFF2179C07C00BF5F1B /* Mocks */,
 				8A42DAFB2179BF8200BF5F1B /* Modules */,
@@ -896,6 +921,7 @@
 				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
 				EC6179E1216F2ADD004BD7E0 /* ClientSetupView.swift in Sources */,
+				8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
 				4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
@@ -935,6 +961,7 @@
 				4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* RTSPConfiguration.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
+				8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
 				EC2A353E2178771B00D07471 /* LullabiesViewController.swift in Sources */,
 				EC3A67A02177318D00BD3851 /* BabyServiceProtocol.swift in Sources */,
@@ -955,6 +982,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A42DB122179D9A300BF5F1B /* UserDefaultsRTSPConfiguration.swift in Sources */,
+				8A43DB04217DD89300E3004D /* NetServiceConnectionCheckerTests.swift in Sources */,
 				8A42DB192179E0AD00BF5F1B /* RTSPConfigurationMock.swift in Sources */,
 				8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */,
 				8A42DB0E2179D8FB00BF5F1B /* URLUserDefaultsMock.swift in Sources */,

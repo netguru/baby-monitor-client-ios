@@ -50,8 +50,9 @@ final class ClientSetupViewModel {
 
     func selectStartDiscovering(withTimeout timeout: TimeInterval = 5.0) {
         searchCancelTimer = Timer.scheduledTimer(withTimeInterval: timeout, repeats: false, block: { [weak self] _ in
-            self?.didEndDeviceSearch?(.failure(.timeout))
+            self?.netServiceClient.stopFinding()
             self?.searchCancelTimer = nil
+            self?.didEndDeviceSearch?(.failure(.timeout))
         })
         netServiceClient.didFindServiceWith = { [weak self] ip, port in
             guard let self = self,
@@ -60,6 +61,7 @@ final class ClientSetupViewModel {
             }
             self.searchCancelTimer?.invalidate()
             self.rtspConfiguration.url = serverUrl
+            self.netServiceClient.stopFinding()
             self.didEndDeviceSearch?(.success)
             self.setupBaby()
         }
