@@ -7,7 +7,7 @@ import Foundation
 
 final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorCellSelectable {
     
-    private let babyService: BabyServiceProtocol
+    private let babyRepo: BabiesRepository
     
     var numberOfSections: Int {
         return 1
@@ -15,16 +15,16 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
     
     var didLoadBabies: ((_ baby: Baby) -> Void)?
     
-    init(babyService: BabyServiceProtocol) {
-        self.babyService = babyService
+    init(babyRepo: BabiesRepository) {
+        self.babyRepo = babyRepo
     }
     
     // MARK: - internal functions
     func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
-        if indexPath.row == babyService.dataSource.babies.count {
+        if indexPath.row == babyRepo.fetchAllBabies().count {
             cell.type = .switchBaby(.addAnother)
         } else {
-            let baby = babyService.dataSource.babies[indexPath.row]
+            let baby = babyRepo.fetchAllBabies()[indexPath.row]
             cell.update(mainText: baby.name)
             if let babyImage = baby.photo {
                 cell.update(image: babyImage)
@@ -34,7 +34,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
     }
     
     func numberOfRows(for section: Int) -> Int {
-        return babyService.dataSource.babies.count + 1
+        return babyRepo.fetchAllBabies().count + 1
     }
     
     func select(cell: BabyMonitorCell) {
@@ -54,7 +54,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
     }
     
     func loadBabies() {
-        guard let baby = babyService.dataSource.babies.first else { return }
+        guard let baby = babyRepo.fetchAllBabies().first else { return }
         didLoadBabies?(baby)
     }
 }

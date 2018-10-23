@@ -14,11 +14,11 @@ final class CameraPreviewViewModel {
             mediaPlayer.dataSource = videoDataSource
         }
     }
-    private let babyService: BabyServiceProtocol
+    private let babyRepo: BabiesRepository
 
-    init(mediaPlayer: MediaPlayerProtocol, babyService: BabyServiceProtocol) {
+    init(mediaPlayer: MediaPlayerProtocol, babyRepo: BabiesRepository) {
         self.mediaPlayer = mediaPlayer
-        self.babyService = babyService
+        self.babyRepo = babyRepo
         mediaPlayer.startupConfiguration()
     }
 
@@ -45,21 +45,21 @@ final class CameraPreviewViewModel {
     }
     
     func loadBabies() {
-        guard let baby = babyService.dataSource.babies.first else { return }
+        guard let baby = babyRepo.fetchAllBabies().first else { return }
         didLoadBabies?(baby)
     }
     
     /// Sets observer to react to changes in the baby.
     ///
-    /// - Parameter controller: A controller conformed to BabyServiceObserver.
-    func addObserver(_ observer: BabyServiceObserver) {
-        babyService.addObserver(observer)
+    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
+    func addObserver(_ observer: BabyRepoObserver) {
+        babyRepo.addObserver(observer)
     }
     
     /// Removes observer to react to changes in the baby.
     ///
-    /// - Parameter controller: A controller conformed to BabyServiceObserver.
-    func removeObserver(_ observer: BabyServiceObserver) {
-        babyService.removeObserver(observer)
+    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
+    func removeObserver(_ observer: BabyRepoObserver) {
+        babyRepo.removeObserver(observer)
     }
 }
