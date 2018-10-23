@@ -8,10 +8,10 @@
 "general.disconnected" = "Disconnected";
 
 //MARK: - Onboarding
-"onboarding.button.start-client" = "Start Client";
-"onboarding.button.start-server" = "Start Server";
+"onboarding.button.start-client" = "START BABY MONITOR CLIENT";
+"onboarding.button.start-server" = "START BABY MONITOR SERVER";
 "onboarding.button.setup-address" = "Setup Address";
-"onboarding.button.start-discovering" = "Start Discovering";
+"onboarding.button.start-discovering" = "START DISCOVERING SERVICES";
 "onboarding.text-field-placeholder.address" = "Type address...";
 
 //MARK: - Dashboard

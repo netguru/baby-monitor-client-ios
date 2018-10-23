@@ -63,10 +63,10 @@ final class OnboardingView: BaseView {
         spinner.isHidden = true
         switch role {
         case .begin:
-            firstButton.setTitle("START BABY MONITOR SERVER", for: .normal)
-            secondButton.setTitle("START BABY MONITOR CLIENT", for: .normal)
+            firstButton.setTitle(Localizable.Onboarding.startServer, for: .normal)
+            secondButton.setTitle(Localizable.Onboarding.startClient, for: .normal)
         case .startDiscovering:
-            firstButton.setTitle("START DISCOVERING SERVICES", for: .normal)
+            firstButton.setTitle(Localizable.Onboarding.startDiscovering, for: .normal)
             secondButton.isHidden = true
         case .clientSetup:
             buttonsStackView.isHidden = true
@@ -78,6 +78,7 @@ final class OnboardingView: BaseView {
             addSubview($0)
         }
         [firstButton, secondButton].forEach {
+            $0.titleLabel?.font = .boldSystemFont(ofSize: 15)
             $0.layer.cornerRadius = Constants.buttonHeight / 2
         }
         setupConstraints()
@@ -105,7 +106,7 @@ final class OnboardingView: BaseView {
         buttonsStackView.addConstraints {[
             $0.equal(.centerX),
             $0.equalTo(spinner, .top, .bottom, constant: 40),
-            $0.equal(.width, multiplier: 0.8)
+            $0.equal(.width, multiplier: 0.7)
         ]
         }
     }
