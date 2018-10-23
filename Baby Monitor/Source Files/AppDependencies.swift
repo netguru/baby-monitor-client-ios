@@ -20,5 +20,6 @@ struct AppDependencies {
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, rtspConfiguration: rtspConfiguration)
     
     private(set) var rtspConfiguration: RTSPConfiguration = UserDefaultsRTSPConfiguration()
+    /// Baby service for getting and adding babies throughout the app
     private(set) var babyService: BabyService = BabyService(dataSource: BabyData())
 }
