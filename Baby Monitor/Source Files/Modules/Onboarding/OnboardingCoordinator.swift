@@ -43,7 +43,10 @@ final class OnboardingCoordinator: Coordinator {
     }
 
     private func showClientSetup() {
-        let viewModel = ClientSetupOnboardingViewModel(netServiceClient: self.appDependencies.netServiceClient, rtspConfiguration: self.appDependencies.rtspConfiguration, babyService: self.appDependencies.babyService)
+        let viewModel = ClientSetupOnboardingViewModel(
+            netServiceClient: appDependencies.netServiceClient,
+            rtspConfiguration: appDependencies.rtspConfiguration,
+            babyRepo: appDependencies.babyRepo)
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success:

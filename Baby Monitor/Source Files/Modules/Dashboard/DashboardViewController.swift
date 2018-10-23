@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BabyServiceUpdatable {
+final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BabyRepoUpdatable {
 
     private let viewModel: DashboardViewModel
 
@@ -69,13 +69,13 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
     }
 }
 
-extension DashboardViewController: BabyServiceObserver {
+extension DashboardViewController: BabyRepoObserver {
 
-    func babyService(_ service: BabyServiceProtocol, didChangePhotoOf baby: Baby) {
+    func babyRepo(_ repo: BabiesRepository, didChangePhotoOf baby: Baby) {
         updatePhoto(baby.photo)
     }
 
-    func babyService(_ service: BabyServiceProtocol, didChangeNameOf baby: Baby) {
+    func babyRepo(_ repo: BabiesRepository, didChangeNameOf baby: Baby) {
         updateName(baby.name)
     }
 

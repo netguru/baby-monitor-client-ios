@@ -26,12 +26,12 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     
     // MARK: - private functions
     private func showSettings() {
-        let viewModel = SettingsViewModel(babyService: appDependencies.babyService)
+        let viewModel = SettingsViewModel(babyRepo: appDependencies.babyRepo)
         viewModel.didSelectShowBabiesView = { [weak self] in
             guard let self = self, let settingsViewController = self.settingsViewController else {
                 return
             }
-            self.toggleSwitchBabiesView(on: settingsViewController, babyService: self.appDependencies.babyService)
+            self.toggleSwitchBabiesView(on: settingsViewController, babyRepo: self.appDependencies.babyRepo)
         }
         viewModel.didSelectChangeServer = { [weak self] in
             self?.showClientSetup()
@@ -44,9 +44,9 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     
     private func showClientSetup() {
         let clientSetupViewModel = ClientSetupOnboardingViewModel(
-            netServiceClient: self.appDependencies.netServiceClient,
-            rtspConfiguration: self.appDependencies.rtspConfiguration,
-            babyService: self.appDependencies.babyService)
+            netServiceClient: appDependencies.netServiceClient,
+            rtspConfiguration: appDependencies.rtspConfiguration,
+            babyRepo: appDependencies.babyRepo)
         
         let clientSetupViewController = GeneralOnboardingViewController(viewModel: clientSetupViewModel, role: .clientSetup)
         clientSetupViewModel.didFinishDeviceSearch = { [weak self] result in

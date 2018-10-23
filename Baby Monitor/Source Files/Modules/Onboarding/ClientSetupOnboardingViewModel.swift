@@ -24,12 +24,12 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
     private let rtspConfiguration: RTSPConfiguration
-    private let babyService: BabyServiceProtocol
+    private let babyRepo: BabiesRepository
     
-    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, babyService: BabyServiceProtocol) {
+    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, babyRepo: BabiesRepository) {
         self.netServiceClient = netServiceClient
         self.rtspConfiguration = rtspConfiguration
-        self.babyService = babyService
+        self.babyRepo = babyRepo
     }
     
     func startDiscovering(withTimeout timeout: TimeInterval = 5.0) {
@@ -53,6 +53,8 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
     }
     
     private func setupBaby() {
-        babyService.setCurrent(baby: Baby(name: "Anonymous"))
+        if babyRepo.fetchAllBabies().first == nil {
+            try! babyRepo.save(baby: Baby(name: "Anonymous"))
+        }
     }
 }

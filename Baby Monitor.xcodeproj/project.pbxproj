@@ -85,11 +85,8 @@
 		EC2A353A21786D8600D07471 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353921786D8600D07471 /* SettingsViewController.swift */; };
 		EC2A353E2178771B00D07471 /* LullabiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353D2178771B00D07471 /* LullabiesViewController.swift */; };
 		EC2A3540217877E400D07471 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353F217877E400D07471 /* ActivityLogViewController.swift */; };
-		EC3A67A02177318D00BD3851 /* BabyServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A679F2177318D00BD3851 /* BabyServiceProtocol.swift */; };
-		EC3A67A221773FC800BD3851 /* Babies.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A67A121773FC800BD3851 /* Babies.swift */; };
 		EC3A67A421774B4500BD3851 /* BabyServiceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */; };
 		EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */; };
-		EC431F5F2175FB680099858C /* BabyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC431F5E2175FB680099858C /* BabyService.swift */; };
 		EC468BC6216C97BD003FA220 /* InitialSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */; };
 		EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC7216C9876003FA220 /* InitialSetupView.swift */; };
 		EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */; };
@@ -201,11 +198,8 @@
 		EC2A353921786D8600D07471 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		EC2A353D2178771B00D07471 /* LullabiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewController.swift; sourceTree = "<group>"; };
 		EC2A353F217877E400D07471 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
-		EC3A679F2177318D00BD3851 /* BabyServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyServiceProtocol.swift; sourceTree = "<group>"; };
-		EC3A67A121773FC800BD3851 /* Babies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Babies.swift; sourceTree = "<group>"; };
 		EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyServiceObserver.swift; sourceTree = "<group>"; };
 		EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPhotoButton.swift; sourceTree = "<group>"; };
-		EC431F5E2175FB680099858C /* BabyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyService.swift; sourceTree = "<group>"; };
 		EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewController.swift; sourceTree = "<group>"; };
 		EC468BC7216C9876003FA220 /* InitialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupView.swift; sourceTree = "<group>"; };
 		EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewModel.swift; sourceTree = "<group>"; };
@@ -327,6 +321,7 @@
 				4E5731962170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift */,
 				4E5731972170BA7400DEAF0B /* Coordinator.swift */,
 				EC92C1D8217A0C7900F7EC9B /* BabyServiceUpdatable.swift */,
+				EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */,
 			);
 			path = "Other Protocols";
 			sourceTree = "<group>";
@@ -338,7 +333,6 @@
 				4E39432F2175D48C00AD7582 /* NetService */,
 				8AEAFBAF217735B3003E756F /* Persistence */,
 				4E5731A12170BA9D00DEAF0B /* MediaPlayer */,
-				EC3A679E2177316B00BD3851 /* BabyService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -558,17 +552,6 @@
 			children = (
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		EC3A679E2177316B00BD3851 /* BabyService */ = {
-			isa = PBXGroup;
-			children = (
-				EC431F5E2175FB680099858C /* BabyService.swift */,
-				EC3A679F2177318D00BD3851 /* BabyServiceProtocol.swift */,
-				EC3A67A121773FC800BD3851 /* Babies.swift */,
-				EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */,
-			);
-			path = BabyService;
 			sourceTree = "<group>";
 		};
 		EC468BC4216C9797003FA220 /* InitialSetup */ = {
@@ -903,11 +886,9 @@
 				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
-				EC3A67A221773FC800BD3851 /* Babies.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
 				EC2A3540217877E400D07471 /* ActivityLogViewController.swift in Sources */,
-				EC431F5F2175FB680099858C /* BabyService.swift in Sources */,
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				8A42DB0B2179D7D700BF5F1B /* URLUserDefaults.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
@@ -961,7 +942,6 @@
 				8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
 				EC2A353E2178771B00D07471 /* LullabiesViewController.swift in Sources */,
-				EC3A67A02177318D00BD3851 /* BabyServiceProtocol.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+RTSP.swift in Sources */,
 				4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */,
 				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
