@@ -27,9 +27,12 @@ final class NetServiceConnectionChecker: ConnectionChecker {
             self?.didUpdateStatus?(.disconnected)
         })
         netServiceClient.didFindServiceWith = { [weak self] ip, port in
+            guard let url = URL.rtsp(ip: ip, port: port), url == self?.rtspConfiguration.url else {
+                return
+            }
             self?.stop()
             self?.start()
-            self?.handleService(ip: ip, port: port)
+            self?.didUpdateStatus?(.connected)
         }
         netServiceClient.findService()
     }
@@ -37,14 +40,5 @@ final class NetServiceConnectionChecker: ConnectionChecker {
     func stop() {
         timer?.invalidate()
         netServiceClient.stopFinding()
-    }
-    
-    private func handleService(ip: String, port: String) {
-        guard let url = URL.rtsp(ip: ip, port: port) else {
-            return
-        }
-        if url == rtspConfiguration.url {
-            didUpdateStatus?(.connected)
-        }
     }
 }

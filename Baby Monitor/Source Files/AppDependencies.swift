@@ -19,5 +19,5 @@ struct AppDependencies {
     
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, rtspConfiguration: rtspConfiguration)
     
-    private(set) lazy var rtspConfiguration: RTSPConfiguration = UserDefaultsRTSPConfiguration()
+    private(set) var rtspConfiguration: RTSPConfiguration = UserDefaultsRTSPConfiguration()
 }

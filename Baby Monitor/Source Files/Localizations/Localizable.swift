@@ -45,6 +45,7 @@ enum Localizable {
     
     enum Settings {
         static let switchToServer = localized("settings.cell.switch-to-server")
+        static let changeServer = localized("settings.cell.change-server")
     }
 }
 

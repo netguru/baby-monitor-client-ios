@@ -35,3 +35,4 @@
 
 //MARK: - Settings
 "settings.cell.switch-to-server" = "Switch to Server application";
+"settings.cell.change-server" = "Change server address";
