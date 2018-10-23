@@ -7,6 +7,11 @@ import UIKit
 
 final class CameraPreviewView: BaseView {
     
+    private enum Constants {
+        static let mainButtonWidthHeight: CGFloat = 70
+        static let secondaryButtonWidthHeight: CGFloat = 50
+    }
+    
     let mediaView = UIView()
     let babyNavigationItemView = BabyNavigationItemView()
     let cancelItemButton = UIBarButtonItem(barButtonSystemItem: .cancel,
@@ -34,10 +39,15 @@ final class CameraPreviewView: BaseView {
         
         addSubview(mediaView)
         addSubview(buttonsStackView)
-        //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-65
-        [changeCameraButton, stopButton, microphoneButton].forEach {
+        [stopButton, microphoneButton, changeCameraButton].forEach {
+            $0.layer.cornerRadius = Constants.secondaryButtonWidthHeight / 2
             $0.backgroundColor = .blue
         }
+        stopButton.layer.cornerRadius = Constants.mainButtonWidthHeight / 2
+        changeCameraButton.backgroundColor = .gray
+        changeCameraButton.setImage(#imageLiteral(resourceName: "switchCamera"), for: .normal)
+        stopButton.setImage(#imageLiteral(resourceName: "stop"), for: .normal)
+        microphoneButton.setImage(#imageLiteral(resourceName: "microphone"), for: .normal)
         
         setupConstraints()
     }
@@ -46,15 +56,15 @@ final class CameraPreviewView: BaseView {
         mediaView.addConstraints { $0.equalSafeAreaEdges() }
         [changeCameraButton, microphoneButton].forEach {
             $0.addConstraints {[
-                $0.equalConstant(.width, 40),
-                $0.equalConstant(.height, 40)
+                $0.equalConstant(.width, Constants.secondaryButtonWidthHeight),
+                $0.equalConstant(.height, Constants.secondaryButtonWidthHeight)
             ]
             }
         }
         
         stopButton.addConstraints {[
-            $0.equalConstant(.width, 60),
-            $0.equalConstant(.height, 60)
+            $0.equalConstant(.width, Constants.mainButtonWidthHeight),
+            $0.equalConstant(.height, Constants.mainButtonWidthHeight)
         ]
         }
         

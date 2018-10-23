@@ -50,7 +50,7 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
         case .activityLog, .lullaby, .settings:
             navigationItem.titleView = navigationView
         case .switchBaby:
-            break
+            view.backgroundColor = .clear
         }
         
         viewModel.loadBabies()

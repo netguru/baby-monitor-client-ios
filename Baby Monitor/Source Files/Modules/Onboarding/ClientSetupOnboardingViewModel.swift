@@ -1,5 +1,5 @@
 //
-//  ClientSetupViewModel.swift
+//  ClientSetupOnboardingViewModel.swift
 //  Baby Monitor
 //
 
@@ -14,58 +14,42 @@ enum DeviceSearchResult: Equatable {
     case failure(DeviceSearchError)
 }
 
-final class ClientSetupViewModel {
-
+final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, ServiceDiscoverable {
+    var selectFirstAction: (() -> Void)?
+    var selectSecondAction: (() -> Void)?
+    
     // MARK: - Coordinator callback
-    var didSelectSetupAddress: ((_ address: String?) -> Void)?
-    var didEndDeviceSearch: ((DeviceSearchResult) -> Void)?
-    var didStartDeviceSearch: (() -> Void)?
-
-    // MARK: - Private properties
-
+    var didFinishDeviceSearch: ((DeviceSearchResult) -> Void)?
+    
+    private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
     private let rtspConfiguration: RTSPConfiguration
-    private var searchCancelTimer: Timer?
     private let babyRepo: BabiesRepository
-
+    
     init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, babyRepo: BabiesRepository) {
         self.netServiceClient = netServiceClient
         self.rtspConfiguration = rtspConfiguration
         self.babyRepo = babyRepo
     }
-
-    // MARK: - Internal functions
-
-    /// Sets up the address of an available baby (server) to connect to.
-    ///
-    /// - Parameter address: The address of a server device.
-    func selectSetupAddress(_ address: String?) {
-        guard let address = address else { return }
-        let url = URL(string: address)
-        rtspConfiguration.url = url
-        didEndDeviceSearch?(.success)
-        self.setupBaby()
-    }
-
-    func selectStartDiscovering(withTimeout timeout: TimeInterval = 5.0) {
+    
+    func startDiscovering(withTimeout timeout: TimeInterval = 5.0) {
         searchCancelTimer = Timer.scheduledTimer(withTimeInterval: timeout, repeats: false, block: { [weak self] _ in
+            self?.didFinishDeviceSearch?(.failure(.timeout))
             self?.netServiceClient.stopFinding()
             self?.searchCancelTimer = nil
-            self?.didEndDeviceSearch?(.failure(.timeout))
         })
         netServiceClient.didFindServiceWith = { [weak self] ip, port in
             guard let self = self,
                 let serverUrl = URL.rtsp(ip: ip, port: port) else {
-                return
+                    return
             }
             self.searchCancelTimer?.invalidate()
             self.rtspConfiguration.url = serverUrl
             self.netServiceClient.stopFinding()
-            self.didEndDeviceSearch?(.success)
+            self.didFinishDeviceSearch?(.success)
             self.setupBaby()
         }
         netServiceClient.findService()
-        didStartDeviceSearch?()
     }
     
     private func setupBaby() {

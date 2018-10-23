@@ -7,6 +7,36 @@ import UIKit
 
 final class DashboardButtonView: UIView {
     
+    enum Role {
+        case liveCamera, talk, playLullaby
+        
+        var text: String {
+            switch self {
+            case .liveCamera:
+                return Localizable.Dashboard.liveCamera
+            case .playLullaby:
+                return Localizable.Dashboard.playLullaby
+            case .talk:
+                return Localizable.Dashboard.talk
+            }
+        }
+        
+        var image: UIImage {
+            switch self {
+            case .liveCamera:
+                return #imageLiteral(resourceName: "videoCamera")
+            case .playLullaby:
+                return #imageLiteral(resourceName: "microphone")
+            case .talk:
+                return #imageLiteral(resourceName: "musicNote")
+            }
+        }
+    }
+    
+    private enum Constants {
+        static let imageViewHeightWidth: CGFloat = 50
+    }
+    
     private let button: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(onTouchButton), for: .touchUpInside)
@@ -15,26 +45,26 @@ final class DashboardButtonView: UIView {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .center
         //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         imageView.backgroundColor = .blue
+        imageView.layer.cornerRadius = Constants.imageViewHeightWidth / 2
         return imageView
     }()
     
     private let textLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .blue
+        label.font = label.font.withSize(15)
         return label
     }()
     
     var onSelect: (() -> Void)?
     
-    init(image: UIImage, text: String) {
+    init(role: Role) {
         super.init(frame: .zero)
-        
-        imageView.image = image
-        textLabel.text = text
-        setup()
+        setup(role: role)
     }
     
     @available(*, unavailable, message: "Use init(image:text:) instead")
@@ -48,7 +78,11 @@ final class DashboardButtonView: UIView {
     }
     
     // MARK: - private functions
-    private func setup() {
+    private func setup(role: Role) {
+        
+        imageView.image = role.image
+        textLabel.text = role.text
+        
         [button, imageView, textLabel].forEach {
             addSubview($0)
         }
@@ -62,8 +96,8 @@ final class DashboardButtonView: UIView {
         }
         
         imageView.addConstraints {[
-            $0.equalConstant(.height, 50),
-            $0.equalConstant(.width, 50),
+            $0.equalConstant(.height, Constants.imageViewHeightWidth),
+            $0.equalConstant(.width, Constants.imageViewHeightWidth),
             $0.equal(.centerX),
             $0.equal(.top),
             $0.equalTo(textLabel, .bottom, .top, constant: -5)
