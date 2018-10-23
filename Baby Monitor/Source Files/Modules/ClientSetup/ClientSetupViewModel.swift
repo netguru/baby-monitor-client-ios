@@ -15,24 +15,27 @@ enum DeviceSearchResult: Equatable {
 }
 
 final class ClientSetupViewModel {
-    
+
+    private let babyService: BabyServiceProtocol
+
     // MARK: - Coordinator callback
     var didSelectSetupAddress: ((_ address: String?) -> Void)?
     var didEndDeviceSearch: ((DeviceSearchResult) -> Void)?
     var didStartDeviceSearch: (() -> Void)?
-    
+
     // MARK: - Private properties
-    
+
     private let netServiceClient: NetServiceClientProtocol
     private let rtspConfiguration: RTSPConfiguration
     private var searchCancelTimer: Timer?
-    
-    // MARK: - Internal functions
-    
-    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration) {
+
+    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, babyService: BabyServiceProtocol) {
         self.netServiceClient = netServiceClient
         self.rtspConfiguration = rtspConfiguration
+        self.babyService = babyService
     }
+
+    // MARK: - Internal functions
 
     /// Sets up the address of an available baby (server) to connect to.
     ///
@@ -42,8 +45,9 @@ final class ClientSetupViewModel {
         let url = URL(string: address)
         rtspConfiguration.url = url
         didEndDeviceSearch?(.success)
+        self.setupBaby()
     }
-    
+
     func selectStartDiscovering(withTimeout timeout: TimeInterval = 5.0) {
         searchCancelTimer = Timer.scheduledTimer(withTimeInterval: timeout, repeats: false, block: { [weak self] _ in
             self?.netServiceClient.stopFinding()
@@ -59,8 +63,13 @@ final class ClientSetupViewModel {
             self.rtspConfiguration.url = serverUrl
             self.netServiceClient.stopFinding()
             self.didEndDeviceSearch?(.success)
+            self.setupBaby()
         }
         netServiceClient.findService()
         didStartDeviceSearch?()
+    }
+    
+    private func setupBaby() {
+        babyService.setCurrent(baby: Baby(name: "Anonymous"))
     }
 }

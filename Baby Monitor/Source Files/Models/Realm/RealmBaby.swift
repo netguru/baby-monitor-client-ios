@@ -17,6 +17,7 @@ final class RealmBaby: Object {
     }
     
     func toBaby() -> Baby {
+        // TODO: add handling photo, ticket: https://netguru.atlassian.net/browse/BM-91
         return Baby(id: id, name: self.name)
     }
     

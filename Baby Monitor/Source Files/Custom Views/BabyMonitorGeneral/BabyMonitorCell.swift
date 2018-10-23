@@ -21,9 +21,11 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
     
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 20
         //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
-        imageView.backgroundColor = .gray
+        imageView.backgroundColor = .lightGray
         return imageView
     }()
     

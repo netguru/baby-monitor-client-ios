@@ -13,7 +13,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     var switchBabyViewController: BabyMonitorGeneralViewController?
     var onEnding: (() -> Void)?
     
-    private weak var settingsViewController: BabyMonitorGeneralViewController?
+    private weak var settingsViewController: SettingsViewController?
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.appDependencies = appDependencies
@@ -26,18 +26,18 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     
     // MARK: - private functions
     private func showSettings() {
-        let viewModel = SettingsViewModel()
+        let viewModel = SettingsViewModel(babyService: appDependencies.babyService)
         viewModel.didSelectShowBabiesView = { [weak self] in
-            guard let settingsViewController = self?.settingsViewController else {
+            guard let self = self, let settingsViewController = self.settingsViewController else {
                 return
             }
-            self?.toggleSwitchBabiesView(on: settingsViewController)
+            self.toggleSwitchBabiesView(on: settingsViewController, babyService: self.appDependencies.babyService)
         }
         viewModel.didSelectChangeServer = { [weak self] in
             self?.showClientSetup()
         }
 
-        let settingsViewController = BabyMonitorGeneralViewController(viewModel: viewModel, type: .settings)
+        let settingsViewController = SettingsViewController(viewModel: viewModel)
         self.settingsViewController = settingsViewController
         navigationController.pushViewController(settingsViewController, animated: false)
     }
