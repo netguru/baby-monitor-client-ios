@@ -16,8 +16,6 @@ enum DeviceSearchResult: Equatable {
 
 final class ClientSetupViewModel {
 
-    private let babyService: BabyServiceProtocol
-
     // MARK: - Coordinator callback
     var didSelectSetupAddress: ((_ address: String?) -> Void)?
     var didEndDeviceSearch: ((DeviceSearchResult) -> Void)?
@@ -28,11 +26,12 @@ final class ClientSetupViewModel {
     private let netServiceClient: NetServiceClientProtocol
     private let rtspConfiguration: RTSPConfiguration
     private var searchCancelTimer: Timer?
+    private let babyRepo: BabiesRepository
 
-    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, babyService: BabyServiceProtocol) {
+    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, babyRepo: BabiesRepository) {
         self.netServiceClient = netServiceClient
         self.rtspConfiguration = rtspConfiguration
-        self.babyService = babyService
+        self.babyRepo = babyRepo
     }
 
     // MARK: - Internal functions
@@ -70,6 +69,8 @@ final class ClientSetupViewModel {
     }
     
     private func setupBaby() {
-        babyService.setCurrent(baby: Baby(name: "Anonymous"))
+        if babyRepo.fetchAllBabies().first == nil {
+            try! babyRepo.save(baby: Baby(name: "Anonymous"))
+        }
     }
 }

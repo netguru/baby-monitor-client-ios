@@ -7,7 +7,7 @@ import Foundation
 
 final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSelectable {
 
-    private let babyService: BabyServiceProtocol
+    private let babyRepo: BabiesRepository
 
     let numberOfSections = 1
 
@@ -19,8 +19,8 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
         static let switchToServerCell = 0
     }
 
-    init(babyService: BabyServiceProtocol) {
-        self.babyService = babyService
+    init(babyRepo: BabiesRepository) {
+        self.babyRepo = babyRepo
     }
 
     // MARK: - Internal functions
@@ -44,21 +44,21 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
     }
     
     func loadBabies() {
-        guard let baby = babyService.dataSource.babies.first else { return }
+        guard let baby = babyRepo.fetchAllBabies().first else { return }
         didLoadBabies?(baby)
     }
     
     /// Sets observer to react to changes in the baby.
     ///
-    /// - Parameter controller: A controller conformed to BabyServiceObserver.
-    func addObserver(_ observer: BabyServiceObserver) {
-        babyService.addObserver(observer)
+    /// - Parameter controller: A controller conformed to BabyRepoObserver.
+    func addObserver(_ observer: BabyRepoObserver) {
+        babyRepo.addObserver(observer)
     }
     
     /// Removes observer to react to changes in the baby.
     ///
-    /// - Parameter controller: A controller conformed to BabyServiceObserver.
-    func removeObserver(_ observer: BabyServiceObserver) {
-        babyService.removeObserver(observer)
+    /// - Parameter controller: A controller conformed to BabyRepoObserver.
+    func removeObserver(_ observer: BabyRepoObserver) {
+        babyRepo.removeObserver(observer)
     }
 }

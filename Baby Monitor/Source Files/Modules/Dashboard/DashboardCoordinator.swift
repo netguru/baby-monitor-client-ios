@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class DashboardCoordinator: Coordinator, BabiesViewShowable {
+final class DashboardCoordinator: Coordinator, BabiesViewShowable {    
 
     var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
@@ -35,12 +35,12 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
 
     // Prepare DashboardViewModel
     private func createDashboardViewModel() -> DashboardViewModel {
-        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyService: appDependencies.babyService)
+        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyRepo: appDependencies.babyRepo)
         viewModel.didSelectShowBabies = { [weak self] in
             guard let self = self, let dashboardViewController = self.dashboardViewController else {
                 return
             }
-            self.toggleSwitchBabiesView(on: dashboardViewController, babyService: self.appDependencies.babyService)
+            self.toggleSwitchBabiesView(on: dashboardViewController, babyRepo: self.appDependencies.babyRepo)
         }
         viewModel.didSelectLiveCameraPreview = { [weak self] in
             guard let self = self else {
@@ -66,7 +66,7 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
 
     // Prepare CameraPreviewViewModel
     private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
-        let viewModel = CameraPreviewViewModel(mediaPlayer: self.appDependencies.mediaPlayer, babyService: self.appDependencies.babyService)
+        let viewModel = CameraPreviewViewModel(mediaPlayer: self.appDependencies.mediaPlayer, babyRepo: appDependencies.babyRepo)
         viewModel.didSelectCancel = { [weak self] in
             self?.navigationController.dismiss(animated: true, completion: nil)
         }
@@ -74,7 +74,7 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
             guard let self = self, let cameraPreviewViewController = self.cameraPreviewViewController else {
                 return
             }
-            self.toggleSwitchBabiesView(on: cameraPreviewViewController, babyService: self.appDependencies.babyService)
+            self.toggleSwitchBabiesView(on: cameraPreviewViewController, babyRepo: self.appDependencies.babyRepo)
         }
         return viewModel
     }

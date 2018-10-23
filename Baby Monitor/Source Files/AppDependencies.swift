@@ -5,6 +5,7 @@
 
 import Foundation
 import RTSPServer
+import RealmSwift
 
 struct AppDependencies {
 
@@ -22,5 +23,5 @@ struct AppDependencies {
     private(set) lazy var rtspConfiguration: RTSPConfiguration = UserDefaultsRTSPConfiguration()
 
     /// Baby service for getting and adding babies throughout the app
-    private(set) var babyService: BabyService = BabyService(dataSource: BabyData())
+    private(set) var babyRepo: BabiesRepository = RealmBabiesRepository(realm: try! Realm())
 }

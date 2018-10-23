@@ -43,7 +43,7 @@ final class OnboardingCoordinator: Coordinator {
     }
 
     private func showClientSetup() {
-        let clientSetupViewModel = ClientSetupViewModel(netServiceClient: self.appDependencies.netServiceClient, rtspConfiguration: self.appDependencies.rtspConfiguration, babyService: self.appDependencies.babyService)
+        let clientSetupViewModel = ClientSetupViewModel(netServiceClient: self.appDependencies.netServiceClient, rtspConfiguration: self.appDependencies.rtspConfiguration, babyRepo: appDependencies.babyRepo)
 
         let clientSetupViewController = ClientSetupViewController(viewModel: clientSetupViewModel)
         clientSetupViewController.didRequestShowDashboard = { [weak self] in
