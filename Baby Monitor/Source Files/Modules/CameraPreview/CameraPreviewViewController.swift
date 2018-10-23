@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource {
+final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource, BabyServiceUpdatable {
     
     private let viewModel: CameraPreviewViewModel
     
@@ -19,6 +19,20 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupViewModel()
+    }
+    
+    func updateViews(with baby: Baby) {
+        updateName(baby.name)
+        updatePhoto(baby.photo)
+    }
+    
+    func updateName(_ name: String) {
+        customView.babyNavigationItemView.setBabyName(name)
+    }
+    
+    func updatePhoto(_ photo: UIImage?) {
+        customView.babyNavigationItemView.setBabyPhoto(photo)
     }
     
     // MARK: - Selectors
@@ -28,7 +42,6 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
     
     // MARK: - Private functions
     private func setup() {
-        viewModel.videoDataSource = self
         navigationItem.leftBarButtonItem = customView.cancelItemButton
         navigationItem.titleView = customView.babyNavigationItemView
         customView.babyNavigationItemView.onSelectArrow = { [weak self] in
@@ -36,5 +49,13 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
         }
         customView.cancelItemButton.target = self
         customView.cancelItemButton.action = #selector(didTouchCancelButton)
+    }
+    
+    private func setupViewModel() {
+        viewModel.videoDataSource = self
+        viewModel.didLoadBabies = { [weak self] baby in
+            self?.updateViews(with: baby)
+        }
+        viewModel.loadBabies()
     }
 }

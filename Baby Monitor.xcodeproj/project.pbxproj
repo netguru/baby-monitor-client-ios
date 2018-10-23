@@ -77,6 +77,14 @@
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
 		8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */; };
 		E557EC9748B4E1AAF5804CA4 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E1DB8C336FC3D3C6E57778B /* Pods_Baby_Monitor.framework */; };
+		EC2A353A21786D8600D07471 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353921786D8600D07471 /* SettingsViewController.swift */; };
+		EC2A353E2178771B00D07471 /* LullabiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353D2178771B00D07471 /* LullabiesViewController.swift */; };
+		EC2A3540217877E400D07471 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353F217877E400D07471 /* ActivityLogViewController.swift */; };
+		EC3A67A02177318D00BD3851 /* BabyServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A679F2177318D00BD3851 /* BabyServiceProtocol.swift */; };
+		EC3A67A221773FC800BD3851 /* Babies.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A67A121773FC800BD3851 /* Babies.swift */; };
+		EC3A67A421774B4500BD3851 /* BabyServiceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */; };
+		EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */; };
+		EC431F5F2175FB680099858C /* BabyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC431F5E2175FB680099858C /* BabyService.swift */; };
 		EC468BC6216C97BD003FA220 /* InitialSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */; };
 		EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC7216C9876003FA220 /* InitialSetupView.swift */; };
 		EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */; };
@@ -89,6 +97,7 @@
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
 		EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8389B6213FD7F500F00B83 /* MathTests.swift */; };
 		EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */; };
+		EC92C1D9217A0C7900F7EC9B /* BabyServiceUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC92C1D8217A0C7900F7EC9B /* BabyServiceUpdatable.swift */; };
 		ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */; };
 		ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */; };
 		ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */; };
@@ -182,6 +191,14 @@
 		8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB52177371B003E756F /* RealmBaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaby.swift; sourceTree = "<group>"; };
 		8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepositoryTests.swift; sourceTree = "<group>"; };
+		EC2A353921786D8600D07471 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		EC2A353D2178771B00D07471 /* LullabiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewController.swift; sourceTree = "<group>"; };
+		EC2A353F217877E400D07471 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
+		EC3A679F2177318D00BD3851 /* BabyServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyServiceProtocol.swift; sourceTree = "<group>"; };
+		EC3A67A121773FC800BD3851 /* Babies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Babies.swift; sourceTree = "<group>"; };
+		EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyServiceObserver.swift; sourceTree = "<group>"; };
+		EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPhotoButton.swift; sourceTree = "<group>"; };
+		EC431F5E2175FB680099858C /* BabyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyService.swift; sourceTree = "<group>"; };
 		EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewController.swift; sourceTree = "<group>"; };
 		EC468BC7216C9876003FA220 /* InitialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupView.swift; sourceTree = "<group>"; };
 		EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewModel.swift; sourceTree = "<group>"; };
@@ -198,6 +215,7 @@
 		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8389B6213FD7F500F00B83 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
 		EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		EC92C1D8217A0C7900F7EC9B /* BabyServiceUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyServiceUpdatable.swift; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
 		ECB146DB213EA45E00C504FD /* App-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Development.xcconfig"; sourceTree = "<group>"; };
 		ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Staging.xcconfig"; sourceTree = "<group>"; };
@@ -304,6 +322,7 @@
 				4E5731952170BA7400DEAF0B /* Identifiable.swift */,
 				4E5731962170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift */,
 				4E5731972170BA7400DEAF0B /* Coordinator.swift */,
+				EC92C1D8217A0C7900F7EC9B /* BabyServiceUpdatable.swift */,
 			);
 			path = "Other Protocols";
 			sourceTree = "<group>";
@@ -315,6 +334,7 @@
 				4E39432F2175D48C00AD7582 /* NetService */,
 				8AEAFBAF217735B3003E756F /* Persistence */,
 				4E5731A12170BA9D00DEAF0B /* MediaPlayer */,
+				EC3A679E2177316B00BD3851 /* BabyService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -403,8 +423,9 @@
 				4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */,
 				4E994BDC216237D8009C44C5 /* DashboardViewController.swift */,
 				4E994BE021623821009C44C5 /* DashboardViewModel.swift */,
-				4E9563172163521900289475 /* DashboardButton.swift */,
 				4E1D2C66216791AD00E92F29 /* DashboardView.swift */,
+				4E9563172163521900289475 /* DashboardButton.swift */,
+				EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -412,8 +433,9 @@
 		4E994BE221623EC3009C44C5 /* ActivityLog */ = {
 			isa = PBXGroup;
 			children = (
-				4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */,
 				4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */,
+				EC2A353F217877E400D07471 /* ActivityLogViewController.swift */,
+				4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */,
 			);
 			path = ActivityLog;
 			sourceTree = "<group>";
@@ -422,6 +444,7 @@
 			isa = PBXGroup;
 			children = (
 				4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */,
+				EC2A353D2178771B00D07471 /* LullabiesViewController.swift */,
 				4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */,
 			);
 			path = Lullabies;
@@ -431,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */,
+				EC2A353921786D8600D07471 /* SettingsViewController.swift */,
 				4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */,
 			);
 			path = Settings;
@@ -532,6 +556,17 @@
 			children = (
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		EC3A679E2177316B00BD3851 /* BabyService */ = {
+			isa = PBXGroup;
+			children = (
+				EC431F5E2175FB680099858C /* BabyService.swift */,
+				EC3A679F2177318D00BD3851 /* BabyServiceProtocol.swift */,
+				EC3A67A121773FC800BD3851 /* Babies.swift */,
+				EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */,
+			);
+			path = BabyService;
 			sourceTree = "<group>";
 		};
 		EC468BC4216C9797003FA220 /* InitialSetup */ = {
@@ -870,8 +905,11 @@
 				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
+				EC3A67A221773FC800BD3851 /* Babies.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
+				EC2A3540217877E400D07471 /* ActivityLogViewController.swift in Sources */,
+				EC431F5F2175FB680099858C /* BabyService.swift in Sources */,
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				8A42DB0B2179D7D700BF5F1B /* URLUserDefaults.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
@@ -893,7 +931,9 @@
 				4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
+				EC2A353A21786D8600D07471 /* SettingsViewController.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
+				EC92C1D9217A0C7900F7EC9B /* BabyServiceUpdatable.swift in Sources */,
 				4E5731982170BA7400DEAF0B /* BabiesViewSelectable.swift in Sources */,
 				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
 				4E57319B2170BA7400DEAF0B /* HasWindow.swift in Sources */,
@@ -923,9 +963,13 @@
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
+				EC2A353E2178771B00D07471 /* LullabiesViewController.swift in Sources */,
+				EC3A67A02177318D00BD3851 /* BabyServiceProtocol.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+RTSP.swift in Sources */,
 				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
+				EC3A67A421774B4500BD3851 /* BabyServiceObserver.swift in Sources */,
 				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
+				EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */,
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,

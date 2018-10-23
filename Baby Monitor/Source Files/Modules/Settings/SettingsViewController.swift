@@ -1,17 +1,17 @@
 //
-//  ActivityLogViewController.swift
+//  SettingsViewController.swift
 //  Baby Monitor
 //
 
 import UIKit
 
-final class ActivityLogViewController: BabyMonitorGeneralViewController {
+final class SettingsViewController: BabyMonitorGeneralViewController {
     
-    private let viewModel: ActivityLogViewModel
+    private let viewModel: SettingsViewModel
     
-    init(viewModel: ActivityLogViewModel) {
+    init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel, type: .activityLog)
+        super.init(viewModel: viewModel, type: .settings)
     }
     
     override func viewDidLoad() {

@@ -13,7 +13,7 @@ final class LullabiesCoordinator: Coordinator, BabiesViewShowable {
     var switchBabyViewController: BabyMonitorGeneralViewController?
     var onEnding: (() -> Void)?
     
-    private var lullabiesViewController: BabyMonitorGeneralViewController?
+    private var lullabiesViewController: LullabiesViewController?
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
@@ -26,14 +26,14 @@ final class LullabiesCoordinator: Coordinator, BabiesViewShowable {
     
     // MARK: - private functions
     private func showLullabies() {
-        let viewModel = LullabiesViewModel()
+        let viewModel = LullabiesViewModel(babyService: appDependencies.babyService)
         viewModel.didSelectShowBabiesView = { [weak self] in
-            guard let lullabiesViewController = self?.lullabiesViewController else {
+            guard let self = self, let lullabiesViewController = self.lullabiesViewController else {
                 return
             }
-            self?.toggleSwitchBabiesView(on: lullabiesViewController)
+            self.toggleSwitchBabiesView(on: lullabiesViewController, babyService: self.appDependencies.babyService)
         }
-        lullabiesViewController = BabyMonitorGeneralViewController(viewModel: viewModel, type: .lullaby)
+        lullabiesViewController = LullabiesViewController(viewModel: viewModel)
         navigationController.pushViewController(lullabiesViewController!, animated: false)
     }
 }
