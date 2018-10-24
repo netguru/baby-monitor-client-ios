@@ -4,12 +4,15 @@
 //
 
 import UIKit
+import RxSwift
 
 final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource, BabyServiceUpdatable {
     
     private let viewModel: CameraPreviewViewModel
     
     lazy var videoView = customView.mediaView
+    
+    private let bag = DisposeBag()
     
     init(viewModel: CameraPreviewViewModel) {
         self.viewModel = viewModel
@@ -44,9 +47,11 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
     private func setup() {
         navigationItem.leftBarButtonItem = customView.cancelItemButton
         navigationItem.titleView = customView.babyNavigationItemView
-        customView.babyNavigationItemView.onSelectArrow = { [weak self] in
-            self?.viewModel.selectShowBabies()
-        }
+        customView.rx.switchBabiesTap
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.selectShowBabies()
+            })
+            .disposed(by: bag)
         customView.cancelItemButton.target = self
         customView.cancelItemButton.action = #selector(didTouchCancelButton)
     }

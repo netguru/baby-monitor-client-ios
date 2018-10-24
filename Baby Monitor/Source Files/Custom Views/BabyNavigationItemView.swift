@@ -4,6 +4,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class BabyNavigationItemView: UIView {
 
@@ -33,15 +35,12 @@ final class BabyNavigationItemView: UIView {
         return stackView
     }()
 
-    private let arrowButton: UIButton = {
+    fileprivate let arrowButton: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(onTouchArrowButton), for: .touchUpInside)
         //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         button.backgroundColor = .red
         return button
     }()
-
-    var onSelectArrow: (() -> Void)?
 
     init() {
         super.init(frame: .zero)
@@ -60,12 +59,7 @@ final class BabyNavigationItemView: UIView {
     func setBabyName(_ name: String?) {
         nameLabel.text = name
     }
-
-    // MARK: - Selectors
-    @objc private func onTouchArrowButton() {
-        onSelectArrow?()
-    }
-
+    
     // MARK: - View setup
     private func setup() {
         addSubview(stackView)
@@ -85,5 +79,11 @@ final class BabyNavigationItemView: UIView {
             $0.equalConstant(.width, 5)
         ]
         }
+    }
+}
+
+extension Reactive where Base: BabyNavigationItemView {
+    var tap: ControlEvent<Void> {
+        return base.arrowButton.rx.tap
     }
 }

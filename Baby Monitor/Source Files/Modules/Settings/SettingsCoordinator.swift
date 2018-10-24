@@ -43,12 +43,12 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     }
     
     private func showClientSetup() {
-        let clientSetupViewModel = ClientSetupViewModel(netServiceClient: self.appDependencies.netServiceClient, rtspConfiguration: self.appDependencies.rtspConfiguration)
+        let clientSetupViewModel = ClientSetupViewModel(netServiceClient: appDependencies.netServiceClient, rtspConfiguration: appDependencies.rtspConfiguration, babyService: appDependencies.babyService)
         
         let clientSetupViewController = ClientSetupViewController(viewModel: clientSetupViewModel)
         clientSetupViewController.didRequestShowDashboard = { [weak self] in
             _ = self?.navigationController.popViewController(animated: true)
         }
-        self.navigationController.pushViewController(clientSetupViewController, animated: true)
+        navigationController.pushViewController(clientSetupViewController, animated: true)
     }
 }

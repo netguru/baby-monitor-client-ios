@@ -4,18 +4,26 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 
 final class DashboardViewModel {
 
     private let babyService: BabyServiceProtocol
 
     // MARK: - Coordinator callback
-    var didSelectShowBabies: (() -> Void)?
-    var didSelectLiveCameraPreview: (() -> Void)?
-    var didSelectAddPhoto: (() -> Void)?
-    var didSelectDismissImagePicker: (() -> Void)?
-    var didLoadBabies: ((_ baby: Baby) -> Void)?
-    var didUpdateStatus: ((ConnectionStatus) -> Void)?
+    private(set) var showBabies: Observable<Void>?
+    private(set) var liveCameraPreview: Observable<Void>?
+    private(set) var addPhoto: Observable<Void>?
+    lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
+    
+    private let dismissImagePickerSubject = PublishRelay<Void>()
+    
+    // TODO: Remove publisher and assign baby observable directly from service when it's done https://netguru.atlassian.net/browse/BM-119
+    lazy var baby: Observable<Baby> = babyPublisher.asObservable()
+    private let babyPublisher = PublishRelay<Baby>()
+    lazy var connectionStatus: Observable<ConnectionStatus> = connectionStatusPublisher.asObservable()
+    private let connectionStatusPublisher = PublishRelay<ConnectionStatus>()
 
     // MARK: - Private properties
     private let connectionChecker: ConnectionChecker
@@ -30,28 +38,27 @@ final class DashboardViewModel {
         connectionChecker.stop()
     }
 
-    // MARK: - Internal functions
-    func selectSwitchBaby() {
-        didSelectShowBabies?()
-    }
-
-    func selectLiveCameraPreview() {
-        didSelectLiveCameraPreview?()
-    }
-
-    func selectAddPhoto() {
-        didSelectAddPhoto?()
-    }
-
-    func selectDismissImagePicker() {
-        didSelectDismissImagePicker?()
-    }
-
+    // TODO: Remove when baby service is done https://netguru.atlassian.net/browse/BM-119
     func loadBabies() {
         guard let baby = babyService.dataSource.babies.first else { return }
-        didLoadBabies?(baby)
+        babyPublisher.accept(baby)
+    }
+    
+    func selectDismissImagePicker() {
+        dismissImagePickerSubject.accept(())
+    }
+    
+    // TODO: Bind name to baby service when it's done https://netguru.atlassian.net/browse/BM-119
+    func attachInput(switchBabyTap: Observable<Void>,
+                     liveCameraTap: Observable<Void>,
+                     addPhotoTap: Observable<Void>,
+                     name: Observable<String>) {
+        self.showBabies = switchBabyTap
+        self.liveCameraPreview = liveCameraTap
+        self.addPhoto = addPhotoTap
     }
 
+    // TODO: Remove when baby service is done https://netguru.atlassian.net/browse/BM-119
     /// Sets a new photo for the current baby.
     ///
     /// - Parameter photo: A new photo for baby.
@@ -82,9 +89,6 @@ final class DashboardViewModel {
 
     // MARK: - Private functions
     private func setup() {
-        connectionChecker.didUpdateStatus = { [weak self] status in
-            self?.didUpdateStatus?(status)
-        }
         connectionChecker.start()
     }
 }

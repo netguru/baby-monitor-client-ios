@@ -6,12 +6,23 @@ PODS:
   - RealmSwift (3.11.0):
     - Realm (= 3.11.0)
   - RTSPServer (0.0.1)
+  - RxBlocking (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxCocoa (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.3.1)
+  - RxTest (4.3.1):
+    - RxSwift (~> 4.0)
   - SwiftLint (0.27.0)
 
 DEPENDENCIES:
   - MobileVLCKit (~> 3.1)
   - RealmSwift (~> 3.11.0)
   - RTSPServer (from `Dependencies/RTSPServer.podspec`)
+  - RxBlocking (~> 4.0)
+  - RxCocoa (~> 4.0)
+  - RxSwift (~> 4.0)
+  - RxTest (~> 4.0)
   - SwiftLint (~> 0.27.0)
 
 SPEC REPOS:
@@ -19,6 +30,10 @@ SPEC REPOS:
     - MobileVLCKit
     - Realm
     - RealmSwift
+    - RxBlocking
+    - RxCocoa
+    - RxSwift
+    - RxTest
     - SwiftLint
 
 EXTERNAL SOURCES:
@@ -30,8 +45,12 @@ SPEC CHECKSUMS:
   Realm: 92f09a102692b96a9a10e9617f214f15c5ab85fc
   RealmSwift: 5f0481cd658bb751c509314b964a35eaa264d2cf
   RTSPServer: 579316efe2e442031cae3ecfa879a295c545e6d5
+  RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 36cbf1c6f1309ce055105265be3b812a3d7c13c0
+PODFILE CHECKSUM: 73b2566e59b6c8129bce387dff3cae4029ba97c9
 
 COCOAPODS: 1.5.3
