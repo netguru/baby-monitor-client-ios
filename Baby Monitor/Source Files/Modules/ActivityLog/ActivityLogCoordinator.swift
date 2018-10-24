@@ -27,12 +27,12 @@ final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
     
     // MARK: - private functions
     private func showActivityLog() {
-        let viewModel = ActivityLogViewModel(babyService: appDependencies.babyService)
+        let viewModel = ActivityLogViewModel(babyRepo: appDependencies.babyRepo)
         viewModel.didSelectShowBabies = { [weak self] in
             guard let self = self, let activityLogViewController = self.activityLogViewController else {
                 return
             }
-            self.toggleSwitchBabiesView(on: activityLogViewController, babyService: self.appDependencies.babyService)
+            self.toggleSwitchBabiesView(on: activityLogViewController, babyRepo: self.appDependencies.babyRepo)
         }
         activityLogViewController = ActivityLogViewController(viewModel: viewModel)
         navigationController.pushViewController(activityLogViewController!, animated: false)

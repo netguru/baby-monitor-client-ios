@@ -6,7 +6,7 @@
 import UIKit
 import RxSwift
 
-final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BabyServiceUpdatable {
+final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BabyRepoUpdatable {
 
     private let viewModel: DashboardViewModel
     private let bag = DisposeBag()
@@ -89,13 +89,13 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
 }
 
 // TODO: Remove when rx is integrated into baby service https://netguru.atlassian.net/browse/BM-119
-extension DashboardViewController: BabyServiceObserver {
-
-    func babyService(_ service: BabyServiceProtocol, didChangePhotoOf baby: Baby) {
+extension DashboardViewController: BabyRepoObserver {
+    
+    func babyRepo(_ repo: BabiesRepository, didChangePhotoOf baby: Baby) {
         updatePhoto(baby.photo)
     }
-
-    func babyService(_ service: BabyServiceProtocol, didChangeNameOf baby: Baby) {
+    
+    func babyRepo(_ repo: BabiesRepository, didChangeNameOf baby: Baby) {
         updateName(baby.name)
     }
 }

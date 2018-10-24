@@ -4,6 +4,7 @@
 //
 
 import XCTest
+import RealmSwift
 @testable import BabyMonitor
 
 class ClientSetupViewModelTests: XCTestCase {
@@ -13,12 +14,12 @@ class ClientSetupViewModelTests: XCTestCase {
         let exp = expectation(description: "Should find device")
         let netServiceClient = NetServiceClientMock()
         let configuration = RTSPConfigurationMock()
-        let babyService = BabyService(dataSource: BabyData())
-        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyService: babyService)
-        sut.didEndDeviceSearch = { _ in exp.fulfill() }
-        
+        let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyRepo: babyRepo)
+        sut.didFinishDeviceSearch = { _ in exp.fulfill() }
+
         // When
-        sut.selectStartDiscovering()
+        sut.startDiscovering()
         
         // Then
         waitForExpectations(timeout: 0.1) { _ in
@@ -33,12 +34,12 @@ class ClientSetupViewModelTests: XCTestCase {
         let port = "port"
         let netServiceClient = NetServiceClientMock(ip: ip, port: port)
         let configuration = RTSPConfigurationMock()
-        let babyService = BabyService(dataSource: BabyData())
-        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyService: babyService)
-        sut.didEndDeviceSearch = { _ in exp.fulfill() }
+        let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyRepo: babyRepo)
+        sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
-        sut.selectStartDiscovering()
+        sut.startDiscovering()
         
         // Then
         waitForExpectations(timeout: 0.1) { _ in
@@ -52,12 +53,12 @@ class ClientSetupViewModelTests: XCTestCase {
         let exp = expectation(description: "Should find device")
         let netServiceClient = NetServiceClientMock()
         let configuration = RTSPConfigurationMock()
-        let babyService = BabyService(dataSource: BabyData())
-        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyService: babyService)
-        sut.didEndDeviceSearch = { _ in exp.fulfill() }
+        let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyRepo: babyRepo)
+        sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
-        sut.selectStartDiscovering()
+        sut.startDiscovering()
         
         // Then
         waitForExpectations(timeout: 0.1) { _ in
@@ -68,16 +69,14 @@ class ClientSetupViewModelTests: XCTestCase {
     func testShouldCallDidStartFindingDeviceAfterSelect() {
         // Given
         let exp = expectation(description: "Should find device")
-        let startFindExp = expectation(description: "Should start device search")
         let netServiceClient = NetServiceClientMock()
         let configuration = RTSPConfigurationMock()
-        let babyService = BabyService(dataSource: BabyData())
-        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyService: babyService)
-        sut.didEndDeviceSearch = { _ in exp.fulfill() }
-        sut.didStartDeviceSearch = { startFindExp.fulfill() }
+        let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyRepo: babyRepo)
+        sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
-        sut.selectStartDiscovering()
+        sut.startDiscovering()
         
         // Then
         waitForExpectations(timeout: 0.1) { _ in
@@ -88,19 +87,17 @@ class ClientSetupViewModelTests: XCTestCase {
     func testShouldEndSearchWithFailureAfterGivenTime() {
         // Given
         let exp = expectation(description: "Should find device")
-        let startFindExp = expectation(description: "Should start device search")
         let netServiceClient = NetServiceClientMock(findServiceDelay: 20.0)
         let configuration = RTSPConfigurationMock()
-        let babyService = BabyService(dataSource: BabyData())
-        let sut = ClientSetupViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyService: babyService)
-        sut.didEndDeviceSearch = { result in
+        let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyRepo: babyRepo)
+        sut.didFinishDeviceSearch = { result in
             XCTAssertEqual(result, DeviceSearchResult.failure(.timeout))
             exp.fulfill()
         }
-        sut.didStartDeviceSearch = { startFindExp.fulfill() }
         
         // When
-        sut.selectStartDiscovering(withTimeout: 0.1)
+        sut.startDiscovering(withTimeout: 0.1)
         
         // Then
         waitForExpectations(timeout: 0.2) { _ in

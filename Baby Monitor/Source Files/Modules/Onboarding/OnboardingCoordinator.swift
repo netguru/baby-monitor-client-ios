@@ -11,10 +11,7 @@ final class OnboardingCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var onEnding: (() -> Void)?
-
-    private weak var initialSetupViewController: InitialSetupViewController?
-    private weak var clientSetupViewController: ClientSetupViewController?
-
+    
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
         self.appDependencies = appDependencies
@@ -25,32 +22,47 @@ final class OnboardingCoordinator: Coordinator {
     }
 
     private func showInitialSetup() {
-        let initialSetupViewModel = InitialSetupViewModel()
-
-        initialSetupViewModel.didSelectStartClient = { [weak self] in
-            guard let self = self else { return }
-            self.showClientSetup()
+        let viewModel = InitialOnboardingViewModel()
+        viewModel.didSelectBabyMonitorServer = { [weak self] in
+            self?.showServerView()
         }
-        initialSetupViewModel.didSelectStartServer = { [weak self] in
-            guard let self = self else { return }
-            let viewModel = ServerViewModel(mediaPlayerStreamingService: self.appDependencies.mediaPlayerStreamingService)
-            self.navigationController.pushViewController(ServerViewController(viewModel: viewModel), animated: true)
+        viewModel.didSelectBabyMonitorClient = { [weak self] in
+            self?.showStartDiscoveringView()
         }
-
-        let initialSetupViewController = InitialSetupViewController(viewModel: initialSetupViewModel)
-        self.initialSetupViewController = initialSetupViewController
-        navigationController.pushViewController(initialSetupViewController, animated: false)
+        let viewController = GeneralOnboardingViewController(viewModel: viewModel, role: .begin)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    private func showStartDiscoveringView() {
+        let viewModel = StartDiscoveringOnboardingViewModel()
+        viewModel.didSelectStartDiscovering = { [weak self] in
+            self?.showClientSetup()
+        }
+        let viewController = GeneralOnboardingViewController(viewModel: viewModel, role: .startDiscovering)
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     private func showClientSetup() {
-        let clientSetupViewModel = ClientSetupViewModel(netServiceClient: self.appDependencies.netServiceClient, rtspConfiguration: self.appDependencies.rtspConfiguration, babyService: self.appDependencies.babyService)
-
-        let clientSetupViewController = ClientSetupViewController(viewModel: clientSetupViewModel)
-        clientSetupViewController.didRequestShowDashboard = { [weak self] in
-            self?.showDashboard()
+        let viewModel = ClientSetupOnboardingViewModel(
+            netServiceClient: appDependencies.netServiceClient,
+            rtspConfiguration: appDependencies.rtspConfiguration,
+            babyRepo: appDependencies.babyRepo)
+        viewModel.didFinishDeviceSearch = { [weak self] result in
+            switch result {
+            case .success:
+                self?.showDashboard()
+            case .failure:
+                // TODO: add error handling
+                break
+            }
         }
-        self.clientSetupViewController = clientSetupViewController
-        self.navigationController.pushViewController(clientSetupViewController, animated: true)
+        let viewController = GeneralOnboardingViewController(viewModel: viewModel, role: .clientSetup)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    private func showServerView() {
+        let viewModel = ServerViewModel(mediaPlayerStreamingService: appDependencies.mediaPlayerStreamingService)
+        navigationController.pushViewController(ServerViewController(viewModel: viewModel), animated: true)
     }
 
     private func showDashboard() {

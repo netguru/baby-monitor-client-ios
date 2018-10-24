@@ -6,7 +6,7 @@
 import UIKit
 import RxSwift
 
-final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource, BabyServiceUpdatable {
+final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource, BabyRepoUpdatable {
     
     private let viewModel: CameraPreviewViewModel
     

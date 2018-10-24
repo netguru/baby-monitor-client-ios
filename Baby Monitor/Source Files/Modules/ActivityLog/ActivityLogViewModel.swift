@@ -7,14 +7,14 @@ import UIKit
 
 final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
 
-    private let babyService: BabyServiceProtocol
+    private let babyRepo: BabiesRepository
 
     var numberOfSections: Int {
         return 1
     }
 
-    init(babyService: BabyServiceProtocol) {
-        self.babyService = babyService
+    init(babyRepo: BabiesRepository) {
+        self.babyRepo = babyRepo
     }
 
     // MARK: - Coordinator callback
@@ -30,7 +30,7 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
         cell.type = .activityLog
         // TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
         cell.update(secondaryText: "24 minutes ago")
-        if let currentBaby = babyService.dataSource.babies.first {
+        if let currentBaby = babyRepo.fetchAllBabies().first {
             cell.update(image: currentBaby.photo ?? UIImage())
             cell.update(mainText: "\(currentBaby.name) was crying!")
         }
@@ -46,21 +46,21 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
     }
     
     func loadBabies() {
-        guard let baby = babyService.dataSource.babies.first else { return }
+        guard let baby = babyRepo.fetchAllBabies().first else { return }
         didLoadBabies?(baby)
     }
     
     /// Sets observer to react to changes in the baby.
     ///
-    /// - Parameter controller: A controller conformed to BabyServiceObserver.
-    func addObserver(_ observer: BabyServiceObserver) {
-        babyService.addObserver(observer)
+    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
+    func addObserver(_ observer: BabyRepoObserver) {
+        babyRepo.addObserver(observer)
     }
     
     /// Removes observer to react to changes in the baby.
     ///
-    /// - Parameter controller: A controller conformed to BabyServiceObserver.
-    func removeObserver(_ observer: BabyServiceObserver) {
-        babyService.removeObserver(observer)
+    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
+    func removeObserver(_ observer: BabyRepoObserver) {
+        babyRepo.removeObserver(observer)
     }
 }

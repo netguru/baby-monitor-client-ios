@@ -53,7 +53,7 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
         case .activityLog, .lullaby, .settings:
             navigationItem.titleView = customView.babyNavigationItemView
         case .switchBaby:
-            break
+            view.backgroundColor = .clear
         }
         
         viewModel.loadBabies()
@@ -112,14 +112,16 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
     }
 }
 
-// MARK: - BabyServiceObserver
-extension BabyMonitorGeneralViewController: BabyServiceObserver {
+// MARK: - BabyRepoObserver
+extension BabyMonitorGeneralViewController: BabyRepoObserver {
 
-    func babyService(_ service: BabyServiceProtocol, didChangePhotoOf baby: Baby) {
+    func babyRepo(_ service: BabiesRepository, didChangePhotoOf baby: Baby) {
         customView.babyNavigationItemView.setBabyPhoto(baby.photo)
+        customView.tableView.reloadData()
     }
 
-    func babyService(_ service: BabyServiceProtocol, didChangeNameOf baby: Baby) {
+    func babyRepo(_ service: BabiesRepository, didChangeNameOf baby: Baby) {
         customView.babyNavigationItemView.setBabyName(baby.name)
+        customView.tableView.reloadData()
     }
 }

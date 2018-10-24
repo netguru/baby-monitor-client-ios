@@ -19,6 +19,10 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         case addAnother
     }
     
+    private enum Constants {
+        static let mainWidthHeight: CGFloat = 40
+    }
+    
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -26,6 +30,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         imageView.layer.cornerRadius = 20
         //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         imageView.backgroundColor = .lightGray
+        imageView.layer.cornerRadius = Constants.mainWidthHeight / 2
         return imageView
     }()
     
@@ -39,7 +44,8 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
     private let additionalButton: UIButton = {
         let button = UIButton()
         //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
-        button.backgroundColor = .green
+        button.backgroundColor = .blue
+        button.layer.cornerRadius = Constants.mainWidthHeight / 2
         return button
     }()
     
@@ -109,18 +115,20 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
         selectionStyle = .none
         contentView.addSubview(mainStackView)
         
+        photoImageView.addConstraints {[
+            $0.equalConstant(.height, Constants.mainWidthHeight),
+            $0.equalConstant(.width, Constants.mainWidthHeight)
+        ]
+        }
+        
+        additionalButton.addConstraints {[
+            $0.equalConstant(.height, Constants.mainWidthHeight),
+            $0.equalConstant(.width, Constants.mainWidthHeight)
+        ]
+        }
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCell))
         addGestureRecognizer(tapRecognizer)
-        
-        photoImageView.addConstraints {
-            [$0.equalConstant(.height, 40),
-            $0.equalConstant(.width, 40)]
-        }
-        
-        additionalButton.addConstraints {
-            [$0.equalConstant(.height, 40),
-            $0.equalConstant(.width, 40)]
-        }
         
         mainStackView.addConstraints {
             [$0.equal(.top),
@@ -147,17 +155,20 @@ class BabyMonitorCell: UITableViewCell, Identifiable {
                 break
             case .addAnother:
                 mainLabel.text = Localizable.SwitchBaby.addAnotherBaby
+                photoImageView.backgroundColor = .blue
+                photoImageView.image = #imageLiteral(resourceName: "add")
             }
         case .activityLog:
             [photoImageView, secondaryLabel].forEach {
                 $0.isHidden = false
             }
         case .lullaby:
+            additionalButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             [secondaryLabel, additionalButton].forEach {
                 $0.isHidden = false
             }
         case .settings:
-            additionalButton.isHidden = false
+            additionalButton.isHidden = true
         }
     }
 }

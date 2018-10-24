@@ -9,6 +9,7 @@ import RxSwift
 
 final class BabyNavigationItemView: UIView {
 
+    fileprivate var isVisible = false
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -37,8 +38,8 @@ final class BabyNavigationItemView: UIView {
 
     fileprivate let arrowButton: UIButton = {
         let button = UIButton()
-        //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
-        button.backgroundColor = .red
+        button.imageView?.contentMode = .scaleToFill
+        button.setImage(#imageLiteral(resourceName: "arrowDown"), for: .normal)
         return button
     }()
 
@@ -70,13 +71,13 @@ final class BabyNavigationItemView: UIView {
         photoImageView.addConstraints {[
             $0.equalTo(self, .height, .height, multiplier: 0.8),
             $0.equalTo($0, .width, .height),
-            $0.equalConstant(.width, 20)
+            $0.equalConstant(.width, 30)
         ]
         }
 
         arrowButton.addConstraints {[
-            $0.equalTo(self, .height, .height, multiplier: 0.2),
-            $0.equalConstant(.width, 5)
+            $0.equalTo(self, .height, .height, multiplier: 0.5),
+            $0.equalTo(arrowButton, .width, .height, multiplier: 0.8)
         ]
         }
     }
@@ -84,6 +85,11 @@ final class BabyNavigationItemView: UIView {
 
 extension Reactive where Base: BabyNavigationItemView {
     var tap: ControlEvent<Void> {
-        return base.arrowButton.rx.tap
+        return ControlEvent(events: base.arrowButton.rx.tap
+            .do(onNext: { _ in
+                self.base.isVisible.toggle()
+                let arrowImage = self.base.isVisible ? #imageLiteral(resourceName: "arrowUp") : #imageLiteral(resourceName: "arrowDown")
+                self.base.arrowButton.setImage(arrowImage, for: .normal)
+            }))
     }
 }

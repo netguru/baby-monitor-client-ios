@@ -9,7 +9,7 @@ import RxSwift
 
 final class DashboardViewModel {
 
-    private let babyService: BabyServiceProtocol
+    private let babyRepo: BabiesRepository
 
     // MARK: - Coordinator callback
     private(set) var showBabies: Observable<Void>?
@@ -28,9 +28,9 @@ final class DashboardViewModel {
     // MARK: - Private properties
     private let connectionChecker: ConnectionChecker
 
-    init(connectionChecker: ConnectionChecker, babyService: BabyServiceProtocol) {
+    init(connectionChecker: ConnectionChecker, babyRepo: BabiesRepository) {
         self.connectionChecker = connectionChecker
-        self.babyService = babyService
+        self.babyRepo = babyRepo
         setup()
     }
 
@@ -40,7 +40,7 @@ final class DashboardViewModel {
 
     // TODO: Remove when baby service is done https://netguru.atlassian.net/browse/BM-119
     func loadBabies() {
-        guard let baby = babyService.dataSource.babies.first else { return }
+        guard let baby = babyRepo.fetchAllBabies().first else { return }
         babyPublisher.accept(baby)
     }
     
@@ -63,28 +63,30 @@ final class DashboardViewModel {
     ///
     /// - Parameter photo: A new photo for baby.
     func updatePhoto(_ photo: UIImage) {
-        babyService.setPhoto(photo)
+        guard let baby = babyRepo.fetchAllBabies().first else { return }
+        babyRepo.setPhoto(photo, id: baby.id)
     }
 
     /// Sets a new name for the current baby.
     ///
     /// - Parameter name: A new name for baby.
     func updateName(_ name: String) {
-        babyService.setName(name)
+        guard let baby = babyRepo.fetchAllBabies().first else { return }
+        babyRepo.setName(name, id: baby.id)
     }
 
     /// Sets observer to react to changes in the baby.
     ///
-    /// - Parameter controller: A controller conformed to BabyServiceObserver.
-    func addObserver(_ observer: BabyServiceObserver) {
-        babyService.addObserver(observer)
+    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
+    func addObserver(_ observer: BabyRepoObserver) {
+        babyRepo.addObserver(observer)
     }
 
     /// Removes observer to react to changes in the baby.
     ///
-    /// - Parameter controller: A controller conformed to BabyServiceObserver.
-    func removeObserver(_ observer: BabyServiceObserver) {
-        babyService.removeObserver(observer)
+    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
+    func removeObserver(_ observer: BabyRepoObserver) {
+        babyRepo.removeObserver(observer)
     }
 
     // MARK: - Private functions
