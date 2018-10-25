@@ -4,8 +4,12 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol BabiesRepository {
+    
+    /// Current baby observable
+    var babyUpdateObservable: Observable<Baby> { get }
     
     /// Persists baby in repository
     ///

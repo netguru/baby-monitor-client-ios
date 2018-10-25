@@ -4,9 +4,12 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 protocol NetServiceClientProtocol: AnyObject {
-    var didFindServiceWith: ((_ ip: String, _ port: String) -> Void)? { get set }
+    var service: Observable<(ip: String, port: String)> { get }
+    //    var didFindServiceWith: ((_ ip: String, _ port: String) -> Void)? { get set }
     
     func findService()
     
@@ -15,9 +18,15 @@ protocol NetServiceClientProtocol: AnyObject {
 
 final class NetServiceClient: NSObject, NetServiceClientProtocol {
     
-    var didFindServiceWith: ((String, String) -> Void)?
+    var service: Observable<(ip: String, port: String)> {
+        return servicePublisher.asObservable()
+    }
     
-    private var service: NetService?
+    private let servicePublisher = PublishRelay<(ip: String, port: String)>()
+    
+    //    var didFindServiceWith: ((ip: String, port: String) -> Void)?
+    
+    private var netService: NetService?
     private let netServiceBrowser = NetServiceBrowser()
     
     private static let androidPort = 5006
@@ -45,7 +54,7 @@ extension NetServiceClient: NetServiceBrowserDelegate {
     
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
         service.delegate = self
-        self.service = service
+        self.netService = service
         service.resolve(withTimeout: 5)
     }
 }
@@ -55,11 +64,12 @@ extension NetServiceClient: NetServiceDelegate {
     
     func netServiceDidResolveAddress(_ sender: NetService) {
         guard let addressData = sender.addresses?.first,
-        let ip = getIP(from: addressData), [NetServiceClient.androidPort, NetServiceClient.iosPort].contains(sender.port) else {
-            return
+            let ip = getIP(from: addressData), [NetServiceClient.androidPort, NetServiceClient.iosPort].contains(sender.port) else {
+                return
         }
-        didFindServiceWith?(ip, "\(sender.port)")
-        netServiceBrowser.stop()
+        servicePublisher.accept((ip, "\(sender.port)"))
+        stopFinding()
+        findService()
     }
     
     private func getIP(from data: Data) -> String? {
@@ -72,5 +82,5 @@ extension NetServiceClient: NetServiceDelegate {
             return nil
         }
     }
-
+    
 }

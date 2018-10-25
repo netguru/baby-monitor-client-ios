@@ -4,9 +4,14 @@
 //
 
 @testable import BabyMonitor
+import RxSwift
+import RxCocoa
 
 final class NetServiceClientMock: NetServiceClientProtocol {
-    var didFindServiceWith: ((_ ip: String, _ port: String) -> Void)?
+    var service: Observable<(ip: String, port: String)> {
+        return servicePublisher.asObservable()
+    }
+    private let servicePublisher = PublishRelay<(ip: String, port: String)>()
     private let findServiceDelay: Double
     private let ip: String
     private let port: String
@@ -23,20 +28,20 @@ final class NetServiceClientMock: NetServiceClientProtocol {
     func findService() {
         didCallFindService = true
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: findServiceDelay, repeats: false, block: { [unowned self] _ in
-            self.didFindServiceWith?(self.ip, self.port)
+        timer = Timer.scheduledTimer(withTimeInterval: findServiceDelay, repeats: true, block: { [weak self] _ in
+            guard let self = self else { return }
+            self.servicePublisher.accept((self.ip, self.port))
         })
     }
     
     func stopFinding() {
         timer?.invalidate()
-        didFindServiceWith = nil
     }
     
     func forceFind(delay: Double = 0.0) {
         timer?.invalidate()
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            self.didFindServiceWith?(self.ip, self.port)
+            self.servicePublisher.accept((self.ip, self.port))
         }
     }
 }

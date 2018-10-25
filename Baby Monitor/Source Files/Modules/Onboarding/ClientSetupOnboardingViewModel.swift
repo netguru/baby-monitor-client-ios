@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import RxSwift
 
 enum DeviceSearchError: Error {
     case timeout
@@ -25,6 +26,7 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
     private let netServiceClient: NetServiceClientProtocol
     private let rtspConfiguration: RTSPConfiguration
     private let babyRepo: BabiesRepository
+    private let disposeBag = DisposeBag()
     
     init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, babyRepo: BabiesRepository) {
         self.netServiceClient = netServiceClient
@@ -38,17 +40,29 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
             self?.netServiceClient.stopFinding()
             self?.searchCancelTimer = nil
         })
-        netServiceClient.didFindServiceWith = { [weak self] ip, port in
-            guard let self = self,
-                let serverUrl = URL.rtsp(ip: ip, port: port) else {
-                    return
-            }
+        netServiceClient.service.subscribe(onNext: { ip, port in
             self.searchCancelTimer?.invalidate()
+            guard let serverUrl = URL.rtsp(ip: ip, port: port) else {
+                return
+            }
             self.rtspConfiguration.url = serverUrl
             self.netServiceClient.stopFinding()
             self.didFinishDeviceSearch?(.success)
             self.setupBaby()
-        }
+        })
+        .disposed(by: disposeBag)
+        //TODO: implement Rx subscribing, ticket: https://netguru.atlassian.net/browse/BM-120
+//        netServiceClient.didFindServiceWith = { [weak self] ip, port in
+//            guard let self = self,
+//                let serverUrl = URL.rtsp(ip: ip, port: port) else {
+//                    return
+//            }
+//            self.searchCancelTimer?.invalidate()
+//            self.rtspConfiguration.url = serverUrl
+//            self.netServiceClient.stopFinding()
+//            self.didFinishDeviceSearch?(.success)
+//            self.setupBaby()
+//        }
         netServiceClient.findService()
     }
     

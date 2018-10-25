@@ -3,15 +3,16 @@
 //  Baby Monitor
 //
 
+import RxSwift
+
 final class NetServiceConnectionChecker: ConnectionChecker {
     
     var didUpdateStatus: ((ConnectionStatus) -> Void)?
+    lazy var connectionStatus: Observable<ConnectionStatus> = createStatus()
     
     private let netServiceClient: NetServiceClientProtocol
     private let rtspConfiguration: RTSPConfiguration
     private let delay: TimeInterval
-    
-    private var timer: Timer?
     
     init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, delay: TimeInterval = 2.0) {
         self.netServiceClient = netServiceClient
@@ -20,25 +21,23 @@ final class NetServiceConnectionChecker: ConnectionChecker {
     }
     
     func start() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false, block: { [weak self] timer in
-            self?.stop()
-            self?.start()
-            self?.didUpdateStatus?(.disconnected)
-        })
-        netServiceClient.didFindServiceWith = { [weak self] ip, port in
-            guard let url = URL.rtsp(ip: ip, port: port), url == self?.rtspConfiguration.url else {
-                return
-            }
-            self?.stop()
-            self?.start()
-            self?.didUpdateStatus?(.connected)
-        }
         netServiceClient.findService()
     }
     
     func stop() {
-        timer?.invalidate()
         netServiceClient.stopFinding()
+    }
+    
+    private func createStatus() -> Observable<ConnectionStatus> {
+        let status = netServiceClient.service
+            .filter { ip, port in
+                URL.rtsp(ip: ip, port: port) == self.rtspConfiguration.url
+            }
+            .buffer(timeSpan: delay, count: 1, scheduler: MainScheduler.asyncInstance)
+            .map { !($0.isEmpty) }
+            .map { isServiceAvailable in
+                isServiceAvailable ? ConnectionStatus.connected : ConnectionStatus.disconnected
+            }
+        return status
     }
 }
