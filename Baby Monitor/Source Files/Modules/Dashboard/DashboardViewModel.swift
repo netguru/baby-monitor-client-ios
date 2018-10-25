@@ -53,9 +53,9 @@ final class DashboardViewModel {
                      liveCameraTap: Observable<Void>,
                      addPhotoTap: Observable<Void>,
                      name: Observable<String>) {
-        self.showBabies = switchBabyTap
-        self.liveCameraPreview = liveCameraTap
-        self.addPhoto = addPhotoTap
+        showBabies = switchBabyTap
+        liveCameraPreview = liveCameraTap
+        addPhoto = addPhotoTap
     }
 
     // TODO: Remove when baby service is done https://netguru.atlassian.net/browse/BM-119
