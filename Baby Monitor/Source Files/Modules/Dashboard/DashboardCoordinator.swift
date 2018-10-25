@@ -51,17 +51,14 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
     
     private func connect(toDashboardViewModel viewModel: DashboardViewModel) {
         viewModel.showBabies?
-            .subscribe(onNext: { [weak self] in
-                guard let self = self, let dashboardViewController = self.dashboardViewController else {
+            .subscribe(onNext: { [unowned self] in
+                guard let dashboardViewController = self.dashboardViewController else {
                     return
                 }
                 self.toggleSwitchBabiesView(on: dashboardViewController, babyRepo: self.appDependencies.babyRepo)
             })
             .disposed(by: bag)
-        viewModel.liveCameraPreview?.subscribe(onNext: { [weak self] in
-                guard let self = self else {
-                    return
-                }
+        viewModel.liveCameraPreview?.subscribe(onNext: { [unowned self] in
                 let viewModel = self.createCameraPreviewViewModel()
                 let cameraPreviewViewController = CameraPreviewViewController(viewModel: viewModel)
                 self.cameraPreviewViewController = cameraPreviewViewController
@@ -69,12 +66,12 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
                 self.navigationController.present(navigationController, animated: true, completion: nil)
             })
             .disposed(by: bag)
-        viewModel.addPhoto?.subscribe(onNext: { [weak self] in
-                self?.showImagePickerAlert()
+        viewModel.addPhoto?.subscribe(onNext: { [unowned self] in
+                self.showImagePickerAlert()
             })
             .disposed(by: bag)
-        viewModel.dismissImagePicker.subscribe(onNext: { [weak self] in
-                guard let dashboardViewController = self?.dashboardViewController else {
+        viewModel.dismissImagePicker.subscribe(onNext: { [unowned self] in
+                guard let dashboardViewController = self.dashboardViewController else {
                     return
                 }
                 dashboardViewController.dismiss(animated: true, completion: nil)

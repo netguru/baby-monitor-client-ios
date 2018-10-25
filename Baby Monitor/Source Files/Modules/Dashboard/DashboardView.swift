@@ -154,21 +154,27 @@ class DashboardView: BaseView {
 }
 
 extension Reactive where Base: DashboardView {
+    
     var liveCameraTap: ControlEvent<Void> {
         return base.liveCameraButton.rx.tap
     }
+    
     var talkTap: ControlEvent<Void> {
         return base.talkButton.rx.tap
     }
+    
     var playLullabyTap: ControlEvent<Void> {
         return base.playLullabyButton.rx.tap
     }
+    
     var switchBabyTap: ControlEvent<Void> {
         return base.babyNavigationItemView.rx.tap
     }
+    
     var addPhotoTap: ControlEvent<Void> {
         return base.photoButtonView.rx.tap
     }
+    
     var babyName: ControlProperty<String> {
         let name = base.nameField.rx.controlEvent(.editingDidEndOnExit)
             .withLatestFrom(base.nameField.rx.text)
@@ -178,6 +184,7 @@ extension Reactive where Base: DashboardView {
         }
         return ControlProperty(values: name, valueSink: binder)
     }
+    
     var babyPhoto: Binder<UIImage?> {
         return base.photoButtonView.rx.photo
     }

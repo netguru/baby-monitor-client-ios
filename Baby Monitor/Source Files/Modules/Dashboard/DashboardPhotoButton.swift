@@ -62,9 +62,11 @@ final class DashboardPhotoButtonView: BaseView {
 }
 
 extension Reactive where Base: DashboardPhotoButtonView {
+    
     var tap: ControlEvent<Void> {
         return base.button.rx.tap
     }
+    
     var photo: Binder<UIImage?> {
         return base.button.rx.image(for: .normal)
     }

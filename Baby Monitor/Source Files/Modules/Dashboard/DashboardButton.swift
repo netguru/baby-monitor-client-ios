@@ -105,6 +105,7 @@ final class DashboardButtonView: UIView {
 }
 
 extension Reactive where Base: DashboardButtonView {
+    
     var tap: ControlEvent<Void> {
         return base.button.rx.tap
     }
