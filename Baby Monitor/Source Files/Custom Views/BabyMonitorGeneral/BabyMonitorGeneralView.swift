@@ -4,6 +4,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class BabyMonitorGeneralView: BaseView {
     
@@ -47,5 +49,11 @@ final class BabyMonitorGeneralView: BaseView {
             addSubview($0)
             $0.addConstraints({ $0.equalSafeAreaEdges() })
         }
+    }
+}
+
+extension Reactive where Base: BabyMonitorGeneralView {
+    var switchBabiesTap: ControlEvent<Void> {
+        return base.babyNavigationItemView.rx.tap
     }
 }

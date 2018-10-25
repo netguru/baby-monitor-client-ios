@@ -4,10 +4,12 @@
 //
 
 import UIKit
+import RxSwift
 
 final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BabyRepoUpdatable {
 
     private let viewModel: DashboardViewModel
+    private let bag = DisposeBag()
 
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
@@ -34,8 +36,7 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
     }
 
     func updatePhoto(_ photo: UIImage?) {
-        customView.photoButtonView.setPhoto(photo)
-        customView.babyNavigationItemView.setBabyPhoto(photo)
+        customView.updatePhoto(photo)
     }
 
     // MARK: - UIImagePickerControllerDelegate
@@ -54,42 +55,29 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
     private func setup() {
         navigationItem.rightBarButtonItem = customView.editProfileBarButtonItem
         navigationItem.titleView = customView.babyNavigationItemView
-        customView.babyNavigationItemView.onSelectArrow = { [weak self] in
-            self?.viewModel.selectSwitchBaby()
-        }
-        customView.liveCameraButton.onSelect = { [weak self] in
-            self?.viewModel.selectLiveCameraPreview()
-        }
-        customView.photoButtonView.onSelect = { [weak self] in
-            self?.viewModel.selectAddPhoto()
-        }
-        customView.didUpdateName = { [weak self] name in
-            self?.viewModel.updateName(name)
-        }
     }
-}
-
-extension DashboardViewController: BabyRepoObserver {
-
-    func babyRepo(_ repo: BabiesRepository, didChangePhotoOf baby: Baby) {
-        updatePhoto(baby.photo)
-    }
-
-    func babyRepo(_ repo: BabiesRepository, didChangeNameOf baby: Baby) {
-        updateName(baby.name)
-    }
-
+    
     private func setupViewModel() {
         viewModel.addObserver(self)
-        viewModel.didLoadBabies = { [weak self] baby in
-            self?.updateViews(with: baby)
-        }
+        viewModel.attachInput(switchBabyTap: customView.rx.switchBabyTap.asObservable(), liveCameraTap: customView.rx.liveCameraTap.asObservable(), addPhotoTap: customView.rx.addPhotoTap.asObservable(), name: customView.rx.babyName.asObservable())
+        // TODO: Remove imperative call to babies fetching https://netguru.atlassian.net/browse/BM-119c
         viewModel.loadBabies()
-        viewModel.didUpdateStatus = { [weak self] status in
-            self?.handleConnectionStatusChange(status: status)
-        }
+        viewModel.baby
+            .map { $0.name }
+            .bind(to: customView.rx.babyName)
+            .disposed(by: bag)
+        viewModel.baby
+            .map { $0.photo }
+            .bind(to: customView.rx.babyPhoto)
+            .disposed(by: bag)
+        viewModel.connectionStatus
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] status in
+                self?.handleConnectionStatusChange(status: status)
+            })
+            .disposed(by: bag)
     }
-
+    
     private func handleConnectionStatusChange(status: ConnectionStatus) {
         switch status {
         case .connected:
@@ -97,5 +85,17 @@ extension DashboardViewController: BabyRepoObserver {
         case .disconnected:
             customView.showIsDisconnected()
         }
+    }
+}
+
+// TODO: Remove when rx is integrated into baby service https://netguru.atlassian.net/browse/BM-119
+extension DashboardViewController: BabyRepoObserver {
+    
+    func babyRepo(_ repo: BabiesRepository, didChangePhotoOf baby: Baby) {
+        updatePhoto(baby.photo)
+    }
+    
+    func babyRepo(_ repo: BabiesRepository, didChangeNameOf baby: Baby) {
+        updateName(baby.name)
     }
 }

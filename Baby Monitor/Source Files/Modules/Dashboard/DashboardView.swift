@@ -4,6 +4,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class DashboardView: BaseView {
     
@@ -12,18 +14,16 @@ class DashboardView: BaseView {
         static let disconnectedLabelHeight: CGFloat = 40
     }
     
-    var didUpdateName: ((String) -> Void)?
-
-    let liveCameraButton = DashboardButtonView(role: .liveCamera)
-    let talkButton = DashboardButtonView(role: .talk)
-    let playLullabyButton = DashboardButtonView(role: .playLullaby)
+    fileprivate let liveCameraButton = DashboardButtonView(role: .liveCamera)
+    fileprivate let talkButton = DashboardButtonView(role: .talk)
+    fileprivate let playLullabyButton = DashboardButtonView(role: .playLullaby)
     let babyNavigationItemView = BabyNavigationItemView()
     let editProfileBarButtonItem = UIBarButtonItem(title: Localizable.Dashboard.editProfile,
                                                    style: .plain,
                                                    target: nil,
                                                    action: nil)
     
-    let photoButtonView = DashboardPhotoButtonView()
+    fileprivate let photoButtonView = DashboardPhotoButtonView()
     
     private lazy var disconnectedLabel: UILabel = {
         let label = UILabel()
@@ -42,8 +42,8 @@ class DashboardView: BaseView {
         stackView.alignment = .center
         return stackView
     }()
-    
-    private let nameField: UITextField = {
+
+    fileprivate let nameField: UITextField = {
         let textField = UITextField()
         textField.placeholder = Localizable.Dashboard.addName
         textField.textAlignment = .center
@@ -67,14 +67,18 @@ class DashboardView: BaseView {
     override init() {
         super.init()
         setupLayout()
-        setup()
     }
     
     func updateName(_ text: String?) {
         nameField.text = text
         babyNavigationItemView.setBabyName(text)
     }
-    
+
+    func updatePhoto(_ photo: UIImage?) {
+        photoButtonView.setPhoto(photo)
+        babyNavigationItemView.setBabyPhoto(photo)
+    }
+
     // MARK: - private functions
     private func setupLayout() {
         [layoutView, photoButtonView, nameField, descriptionLabel, dashboardButtonsStackView, disconnectedLabel].forEach {
@@ -147,19 +151,41 @@ class DashboardView: BaseView {
             self.layoutIfNeeded()
         }
     }
-    
-    private func setup() {
-        nameField.delegate = self
-    }
 }
 
-extension DashboardView: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let name = textField.text else {
-            return false
+extension Reactive where Base: DashboardView {
+    
+    var liveCameraTap: ControlEvent<Void> {
+        return base.liveCameraButton.rx.tap
+    }
+    
+    var talkTap: ControlEvent<Void> {
+        return base.talkButton.rx.tap
+    }
+    
+    var playLullabyTap: ControlEvent<Void> {
+        return base.playLullabyButton.rx.tap
+    }
+    
+    var switchBabyTap: ControlEvent<Void> {
+        return base.babyNavigationItemView.rx.tap
+    }
+    
+    var addPhotoTap: ControlEvent<Void> {
+        return base.photoButtonView.rx.tap
+    }
+    
+    var babyName: ControlProperty<String> {
+        let name = base.nameField.rx.controlEvent(.editingDidEndOnExit)
+            .withLatestFrom(base.nameField.rx.text)
+            .map { $0 ?? "" }
+        let binder = Binder<String>(base.nameField) { nameField, name in
+            nameField.text = name
         }
-        didUpdateName?(name)
-        endEditing(true)
-        return false
+        return ControlProperty(values: name, valueSink: binder)
+    }
+    
+    var babyPhoto: Binder<UIImage?> {
+        return base.photoButtonView.rx.photo
     }
 }

@@ -4,9 +4,12 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class DashboardButtonView: UIView {
     
+    fileprivate let button: UIButton = UIButton()
     enum Role {
         case liveCamera, talk, playLullaby
         
@@ -37,12 +40,6 @@ final class DashboardButtonView: UIView {
         static let imageViewHeightWidth: CGFloat = 50
     }
     
-    private let button: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(onTouchButton), for: .touchUpInside)
-        return button
-    }()
-    
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .center
@@ -60,8 +57,6 @@ final class DashboardButtonView: UIView {
         return label
     }()
     
-    var onSelect: (() -> Void)?
-    
     init(role: Role) {
         super.init(frame: .zero)
         setup(role: role)
@@ -70,11 +65,6 @@ final class DashboardButtonView: UIView {
     @available(*, unavailable, message: "Use init(image:text:) instead")
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Selectors
-    @objc private func onTouchButton() {
-        onSelect?()
     }
     
     // MARK: - private functions
@@ -111,5 +101,12 @@ final class DashboardButtonView: UIView {
             $0.greaterThanOrEqualTo(imageView, .width, .width)
         ]
         }
+    }
+}
+
+extension Reactive where Base: DashboardButtonView {
+    
+    var tap: ControlEvent<Void> {
+        return base.button.rx.tap
     }
 }

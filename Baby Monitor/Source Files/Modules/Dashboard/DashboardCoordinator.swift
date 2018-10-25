@@ -4,6 +4,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class DashboardCoordinator: Coordinator, BabiesViewShowable {
 
@@ -16,6 +18,8 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
 
     private weak var dashboardViewController: DashboardViewController?
     private weak var cameraPreviewViewController: CameraPreviewViewController?
+    
+    private let bag = DisposeBag()
 
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
@@ -30,38 +34,49 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
         let viewModel = createDashboardViewModel()
         let dashboardViewController = DashboardViewController(viewModel: viewModel)
         self.dashboardViewController = dashboardViewController
+
+        dashboardViewController.rx.viewDidLoad
+            .subscribe(onNext: { [weak self] _ in
+                self?.connect(toDashboardViewModel: viewModel)
+            })
+            .disposed(by: bag)
         navigationController.pushViewController(dashboardViewController, animated: false)
     }
 
     // Prepare DashboardViewModel
     private func createDashboardViewModel() -> DashboardViewModel {
         let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyRepo: appDependencies.babyRepo)
-        viewModel.didSelectShowBabies = { [weak self] in
-            guard let self = self, let dashboardViewController = self.dashboardViewController else {
-                return
-            }
-            self.toggleSwitchBabiesView(on: dashboardViewController, babyRepo: self.appDependencies.babyRepo)
-        }
-        viewModel.didSelectLiveCameraPreview = { [weak self] in
-            guard let self = self else {
-                return
-            }
-            let viewModel = self.createCameraPreviewViewModel()
-            let cameraPreviewViewController = CameraPreviewViewController(viewModel: viewModel)
-            self.cameraPreviewViewController = cameraPreviewViewController
-            let navigationController = UINavigationController(rootViewController: cameraPreviewViewController)
-            self.navigationController.present(navigationController, animated: true, completion: nil)
-        }
-        viewModel.didSelectAddPhoto = { [weak self] in
-            self?.showImagePickerAlert()
-        }
-        viewModel.didSelectDismissImagePicker = { [weak self] in
-            guard let dashboardViewController = self?.dashboardViewController else {
-                return
-            }
-            dashboardViewController.dismiss(animated: true, completion: nil)
-        }
         return viewModel
+    }
+    
+    private func connect(toDashboardViewModel viewModel: DashboardViewModel) {
+        viewModel.showBabies?
+            .subscribe(onNext: { [unowned self] in
+                guard let dashboardViewController = self.dashboardViewController else {
+                    return
+                }
+                self.toggleSwitchBabiesView(on: dashboardViewController, babyRepo: self.appDependencies.babyRepo)
+            })
+            .disposed(by: bag)
+        viewModel.liveCameraPreview?.subscribe(onNext: { [unowned self] in
+                let viewModel = self.createCameraPreviewViewModel()
+                let cameraPreviewViewController = CameraPreviewViewController(viewModel: viewModel)
+                self.cameraPreviewViewController = cameraPreviewViewController
+                let navigationController = UINavigationController(rootViewController: cameraPreviewViewController)
+                self.navigationController.present(navigationController, animated: true, completion: nil)
+            })
+            .disposed(by: bag)
+        viewModel.addPhoto?.subscribe(onNext: { [unowned self] in
+                self.showImagePickerAlert()
+            })
+            .disposed(by: bag)
+        viewModel.dismissImagePicker.subscribe(onNext: { [unowned self] in
+                guard let dashboardViewController = self.dashboardViewController else {
+                    return
+                }
+                dashboardViewController.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: bag)
     }
 
     // Prepare CameraPreviewViewModel

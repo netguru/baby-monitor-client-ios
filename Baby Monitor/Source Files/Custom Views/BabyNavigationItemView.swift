@@ -4,10 +4,12 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class BabyNavigationItemView: UIView {
 
-    private var isVisible = false
+    fileprivate var isVisible = false
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -34,15 +36,12 @@ final class BabyNavigationItemView: UIView {
         return stackView
     }()
 
-    private let arrowButton: UIButton = {
+    fileprivate let arrowButton: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(onTouchArrowButton), for: .touchUpInside)
         button.imageView?.contentMode = .scaleToFill
         button.setImage(#imageLiteral(resourceName: "arrowDown"), for: .normal)
         return button
     }()
-
-    var onSelectArrow: (() -> Void)?
 
     init() {
         super.init(frame: .zero)
@@ -61,15 +60,7 @@ final class BabyNavigationItemView: UIView {
     func setBabyName(_ name: String?) {
         nameLabel.text = name
     }
-
-    // MARK: - Selectors
-    @objc private func onTouchArrowButton() {
-        isVisible.toggle()
-        let arrowImage = isVisible ? #imageLiteral(resourceName: "arrowUp") : #imageLiteral(resourceName: "arrowDown")
-        arrowButton.setImage(arrowImage, for: .normal)
-        onSelectArrow?()
-    }
-
+    
     // MARK: - View setup
     private func setup() {
         addSubview(stackView)
@@ -89,5 +80,16 @@ final class BabyNavigationItemView: UIView {
             $0.equalTo(arrowButton, .width, .height, multiplier: 0.8)
         ]
         }
+    }
+}
+
+extension Reactive where Base: BabyNavigationItemView {
+    var tap: ControlEvent<Void> {
+        return ControlEvent(events: base.arrowButton.rx.tap
+            .do(onNext: { _ in
+                self.base.isVisible.toggle()
+                let arrowImage = self.base.isVisible ? #imageLiteral(resourceName: "arrowUp") : #imageLiteral(resourceName: "arrowDown")
+                self.base.arrowButton.setImage(arrowImage, for: .normal)
+            }))
     }
 }
