@@ -58,6 +58,6 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
                 break
             }
         }
-        self.navigationController.pushViewController(clientSetupViewController, animated: true)
+        navigationController.pushViewController(clientSetupViewController, animated: true)
     }
 }

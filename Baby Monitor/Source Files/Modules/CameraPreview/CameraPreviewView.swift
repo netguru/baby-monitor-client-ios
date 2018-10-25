@@ -4,6 +4,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class CameraPreviewView: BaseView {
     
@@ -74,5 +76,11 @@ final class CameraPreviewView: BaseView {
             $0.equalTo(self, .bottom, .safeAreaBottom, constant: -20)
         ]
         }
+    }
+}
+
+extension Reactive where Base: CameraPreviewView {
+    var switchBabiesTap: ControlEvent<Void> {
+        return base.babyNavigationItemView.rx.tap
     }
 }

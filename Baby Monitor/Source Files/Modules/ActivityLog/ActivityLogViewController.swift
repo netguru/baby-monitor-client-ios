@@ -4,10 +4,12 @@
 //
 
 import UIKit
+import RxSwift
 
 final class ActivityLogViewController: BabyMonitorGeneralViewController {
     
     private let viewModel: ActivityLogViewModel
+    private let bag = DisposeBag()
     
     init(viewModel: ActivityLogViewModel) {
         self.viewModel = viewModel
@@ -27,8 +29,10 @@ final class ActivityLogViewController: BabyMonitorGeneralViewController {
     // MARK: - Private functions
     private func setup() {
         navigationItem.titleView = customView.babyNavigationItemView
-        customView.babyNavigationItemView.onSelectArrow = { [weak self] in
-            self?.viewModel.selectShowBabies()
-        }
+        customView.rx.switchBabiesTap
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.selectShowBabies()
+            })
+            .disposed(by: bag)
     }
 }

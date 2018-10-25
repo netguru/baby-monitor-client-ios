@@ -4,12 +4,13 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class DashboardPhotoButtonView: BaseView {
     
-    private let button: UIButton = {
+    fileprivate let button: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(onTouchButton), for: .touchUpInside)
         button.layer.cornerRadius = 90
         button.backgroundColor = .lightGray
         button.setTitleColor(.darkText, for: .normal)
@@ -18,8 +19,6 @@ final class DashboardPhotoButtonView: BaseView {
         return button
     }()
     
-    var onSelect: (() -> Void)?
-    
     override init() {
         super.init()
         setup()
@@ -27,11 +26,6 @@ final class DashboardPhotoButtonView: BaseView {
     
     func setPhoto(_ image: UIImage?) {
         updateImage(image)
-    }
-    
-    // MARK: - Selectors
-    @objc private func onTouchButton() {
-        onSelect?()
     }
     
     // MARK: - private functions
@@ -64,5 +58,16 @@ final class DashboardPhotoButtonView: BaseView {
     private func updateImage(_ image: UIImage?) {
         button.setImage(image, for: .normal)
         updateTitle()
+    }
+}
+
+extension Reactive where Base: DashboardPhotoButtonView {
+    
+    var tap: ControlEvent<Void> {
+        return base.button.rx.tap
+    }
+    
+    var photo: Binder<UIImage?> {
+        return base.button.rx.image(for: .normal)
     }
 }

@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralView>, UITableViewDataSource, UITableViewDelegate {
 
@@ -16,6 +17,7 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
 
     private let viewModel: BabyMonitorGeneralViewModelProtocol
     private let viewType: ViewType
+    private let bag = DisposeBag()
 
     init(viewModel: BabyMonitorGeneralViewModelProtocol, type: ViewType) {
         self.viewModel = viewModel
@@ -38,17 +40,18 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
     private func setup() {
         customView.tableView.dataSource = self
         customView.tableView.delegate = self
-        let navigationView = customView.babyNavigationItemView
-        navigationView.onSelectArrow = { [weak self] in
-            guard let babiesViewShowableViewModel = self?.viewModel as? BabiesViewSelectable else {
-                return
-            }
-            babiesViewShowableViewModel.selectShowBabies()
-        }
+        customView.rx.switchBabiesTap
+            .subscribe(onNext: { [weak self] _ in
+                guard let babiesViewShowableViewModel = self?.viewModel as? BabiesViewSelectable else {
+                    return
+                }
+                babiesViewShowableViewModel.selectShowBabies()
+            })
+            .disposed(by: bag)
 
         switch viewType {
         case .activityLog, .lullaby, .settings:
-            navigationItem.titleView = navigationView
+            navigationItem.titleView = customView.babyNavigationItemView
         case .switchBaby:
             view.backgroundColor = .clear
         }
