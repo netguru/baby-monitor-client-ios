@@ -51,18 +51,6 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
             self.setupBaby()
         })
         .disposed(by: disposeBag)
-        //TODO: implement Rx subscribing, ticket: https://netguru.atlassian.net/browse/BM-120
-//        netServiceClient.didFindServiceWith = { [weak self] ip, port in
-//            guard let self = self,
-//                let serverUrl = URL.rtsp(ip: ip, port: port) else {
-//                    return
-//            }
-//            self.searchCancelTimer?.invalidate()
-//            self.rtspConfiguration.url = serverUrl
-//            self.netServiceClient.stopFinding()
-//            self.didFinishDeviceSearch?(.success)
-//            self.setupBaby()
-//        }
         netServiceClient.findService()
     }
     
