@@ -5,17 +5,36 @@
 
 import Foundation
 import RealmSwift
+import RxSwift
+import RxCocoa
 
-final class RealmBabiesRepository: BabiesRepository {
+final class RealmBabiesRepository: BabiesRepositoryProtocol {
     
     enum UpdateType {
         case name(Baby)
         case image(Baby)
     }
     
+    lazy var babyUpdateObservable = babyPublisher.asObservable()
+    var currentBabyId: String? {
+        didSet {
+            guard let currentBabyId = currentBabyId else {
+                return
+            }
+            let realmBaby = realm.object(ofType: RealmBaby.self, forPrimaryKey: currentBabyId)
+            currentBabyToken = realmBaby?.observe({ _ in
+                guard let baby = self.realm.object(ofType: RealmBaby.self, forPrimaryKey: currentBabyId)?.toBaby() else {
+                    return
+                }
+                self.babyPublisher.accept(baby)
+            })
+        }
+    }
+    
+    private var babyPublisher = PublishRelay<Baby>()
     private let realm: Realm
     private var observations = [ObjectIdentifier: Observation]()
-    var currentBabyId: String?
+    private var currentBabyToken: NotificationToken?
     
     init(realm: Realm) {
         self.realm = realm
@@ -55,17 +74,15 @@ final class RealmBabiesRepository: BabiesRepository {
     func setPhoto(_ photo: UIImage, id: String) {
         try! realm.write {
             guard let photoData = photo.jpegData(compressionQuality: 1) else { return }
-            let updatedBaby = realm.create(RealmBaby.self, value: ["id": id, "photoData": photoData], update: true)
+            _ = realm.create(RealmBaby.self, value: ["id": id, "photoData": photoData], update: true)
                 .toBaby()
-            babyDidChange(updateType: .image(updatedBaby))
         }
     }
     
     func setName(_ name: String, id: String) {
         try! realm.write {
-            let updatedBaby = realm.create(RealmBaby.self, value: ["id": id, "name": name], update: true)
+            _ = realm.create(RealmBaby.self, value: ["id": id, "name": name], update: true)
                 .toBaby()
-            babyDidChange(updateType: .name(updatedBaby))
         }
     }
 }

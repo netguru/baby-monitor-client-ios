@@ -7,7 +7,7 @@ import Foundation
 
 final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
 
-    private let babyRepo: BabiesRepository
+    private let babyRepo: BabiesRepositoryProtocol
 
     private enum Constants {
         static let bmLibrarySection = 0
@@ -20,7 +20,7 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
     var didSelectShowBabiesView: (() -> Void)?
     var didLoadBabies: ((_ baby: Baby) -> Void)?
 
-    init(babyRepo: BabiesRepository) {
+    init(babyRepo: BabiesRepositoryProtocol) {
         self.babyRepo = babyRepo
     }
 

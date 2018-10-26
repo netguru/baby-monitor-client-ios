@@ -1,11 +1,15 @@
 //
-//  BabiesRepository.swift
+//  BabiesRepositoryProtocol.swift
 //  Baby Monitor
 //
 
 import Foundation
+import RxSwift
 
-protocol BabiesRepository {
+protocol BabiesRepositoryProtocol {
+    
+    /// Current baby observable
+    var babyUpdateObservable: Observable<Baby> { get }
     
     /// Persists baby in repository
     ///

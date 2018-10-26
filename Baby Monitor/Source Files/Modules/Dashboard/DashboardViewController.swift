@@ -91,11 +91,11 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
 // TODO: Remove when rx is integrated into baby service https://netguru.atlassian.net/browse/BM-119
 extension DashboardViewController: BabyRepoObserver {
     
-    func babyRepo(_ repo: BabiesRepository, didChangePhotoOf baby: Baby) {
+    func babyRepo(_ repo: BabiesRepositoryProtocol, didChangePhotoOf baby: Baby) {
         updatePhoto(baby.photo)
     }
     
-    func babyRepo(_ repo: BabiesRepository, didChangeNameOf baby: Baby) {
+    func babyRepo(_ repo: BabiesRepositoryProtocol, didChangeNameOf baby: Baby) {
         updateName(baby.name)
     }
 }

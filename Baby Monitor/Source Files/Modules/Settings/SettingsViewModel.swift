@@ -7,7 +7,7 @@ import Foundation
 
 final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSelectable {
 
-    private let babyRepo: BabiesRepository
+    private let babyRepo: BabiesRepositoryProtocol
 
     let numberOfSections = 1
 
@@ -23,7 +23,7 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
         }
     }
 
-    init(babyRepo: BabiesRepository) {
+    init(babyRepo: BabiesRepositoryProtocol) {
         self.babyRepo = babyRepo
     }
 

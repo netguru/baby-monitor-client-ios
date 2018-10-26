@@ -12,12 +12,12 @@ protocol BabiesViewShowable: AnyObject {
     /// Adds/removes switchBabiesViewController to another view controller
     ///
     /// - Parameter viewController: view controller that will add switchBabyViewController if it wasn't added before
-    func toggleSwitchBabiesView(on viewController: UIViewController, babyRepo: BabiesRepository)
+    func toggleSwitchBabiesView(on viewController: UIViewController, babyRepo: BabiesRepositoryProtocol)
 }
 
 extension BabiesViewShowable {
     
-    func toggleSwitchBabiesView(on viewController: UIViewController, babyRepo: BabiesRepository) {
+    func toggleSwitchBabiesView(on viewController: UIViewController, babyRepo: BabiesRepositoryProtocol) {
         if let switchBabyViewController = self.switchBabyViewController {
             switchBabyViewController.removeFromParentViewController()
             self.switchBabyViewController = nil

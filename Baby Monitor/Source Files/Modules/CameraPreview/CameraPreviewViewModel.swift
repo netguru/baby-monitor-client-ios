@@ -14,9 +14,9 @@ final class CameraPreviewViewModel {
             mediaPlayer.dataSource = videoDataSource
         }
     }
-    private let babyRepo: BabiesRepository
+    private let babyRepo: BabiesRepositoryProtocol
 
-    init(mediaPlayer: MediaPlayerProtocol, babyRepo: BabiesRepository) {
+    init(mediaPlayer: MediaPlayerProtocol, babyRepo: BabiesRepositoryProtocol) {
         self.mediaPlayer = mediaPlayer
         self.babyRepo = babyRepo
         mediaPlayer.startupConfiguration()

@@ -4,24 +4,23 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 protocol NetServiceClientProtocol: AnyObject {
-    var didFindServiceWith: ((_ ip: String, _ port: String) -> Void)? { get set }
-    
+    var serviceObservable: Observable<(ip: String, port: String)> { get }
     func findService()
-    
     func stopFinding()
 }
 
 final class NetServiceClient: NSObject, NetServiceClientProtocol {
     
-    var didFindServiceWith: ((String, String) -> Void)?
+    lazy var serviceObservable = servicePublisher.asObservable()
     
-    private var service: NetService?
+    private var netService: NetService?
+    
+    private let servicePublisher = PublishRelay<(ip: String, port: String)>()
     private let netServiceBrowser = NetServiceBrowser()
-    
-    private static let androidPort = 5006
-    private static let iosPort = 554
     
     override init() {
         super.init()
@@ -45,7 +44,7 @@ extension NetServiceClient: NetServiceBrowserDelegate {
     
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
         service.delegate = self
-        self.service = service
+        self.netService = service
         service.resolve(withTimeout: 5)
     }
 }
@@ -55,11 +54,12 @@ extension NetServiceClient: NetServiceDelegate {
     
     func netServiceDidResolveAddress(_ sender: NetService) {
         guard let addressData = sender.addresses?.first,
-        let ip = getIP(from: addressData), [NetServiceClient.androidPort, NetServiceClient.iosPort].contains(sender.port) else {
-            return
+            let ip = getIP(from: addressData) else {
+                return
         }
-        didFindServiceWith?(ip, "\(sender.port)")
-        netServiceBrowser.stop()
+        servicePublisher.accept((ip, "\(sender.port)"))
+        stopFinding()
+        findService()
     }
     
     private func getIP(from data: Data) -> String? {
@@ -72,5 +72,5 @@ extension NetServiceClient: NetServiceDelegate {
             return nil
         }
     }
-
+    
 }

@@ -115,12 +115,12 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
 // MARK: - BabyRepoObserver
 extension BabyMonitorGeneralViewController: BabyRepoObserver {
 
-    func babyRepo(_ service: BabiesRepository, didChangePhotoOf baby: Baby) {
+    func babyRepo(_ service: BabiesRepositoryProtocol, didChangePhotoOf baby: Baby) {
         customView.babyNavigationItemView.setBabyPhoto(baby.photo)
         customView.tableView.reloadData()
     }
 
-    func babyRepo(_ service: BabiesRepository, didChangeNameOf baby: Baby) {
+    func babyRepo(_ service: BabiesRepositoryProtocol, didChangeNameOf baby: Baby) {
         customView.babyNavigationItemView.setBabyName(baby.name)
         customView.tableView.reloadData()
     }

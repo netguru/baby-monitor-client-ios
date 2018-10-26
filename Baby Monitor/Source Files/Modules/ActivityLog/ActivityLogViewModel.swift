@@ -7,13 +7,13 @@ import UIKit
 
 final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
 
-    private let babyRepo: BabiesRepository
+    private let babyRepo: BabiesRepositoryProtocol
 
     var numberOfSections: Int {
         return 1
     }
 
-    init(babyRepo: BabiesRepository) {
+    init(babyRepo: BabiesRepositoryProtocol) {
         self.babyRepo = babyRepo
     }
 
