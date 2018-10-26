@@ -3,8 +3,6 @@
 //  Baby Monitor
 //
 
-import RxSwift
-
 final class UserDefaultsRTSPConfiguration: RTSPConfiguration {
     
     private var cachedUrl: URL?

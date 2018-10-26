@@ -29,7 +29,7 @@ final class NetServiceConnectionChecker: ConnectionChecker {
     }
     
     private func createStatus() -> Observable<ConnectionStatus> {
-        let status = netServiceClient.service
+        let status = netServiceClient.serviceObservable
             .filter { ip, port in
                 URL.rtsp(ip: ip, port: port) == self.rtspConfiguration.url
             }

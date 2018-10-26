@@ -9,7 +9,7 @@ import RxSwift
 
 final class DashboardViewModel {
 
-    private let babyRepo: BabiesRepository
+    private let babyRepo: BabiesRepositoryProtocol
 
     // MARK: - Coordinator callback
     private(set) var showBabies: Observable<Void>?
@@ -28,7 +28,7 @@ final class DashboardViewModel {
     // MARK: - Private properties
     private let connectionChecker: ConnectionChecker
 
-    init(connectionChecker: ConnectionChecker, babyRepo: BabiesRepository) {
+    init(connectionChecker: ConnectionChecker, babyRepo: BabiesRepositoryProtocol) {
         self.connectionChecker = connectionChecker
         self.babyRepo = babyRepo
         setup()

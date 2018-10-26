@@ -8,7 +8,7 @@ import RxSwift
 import RxCocoa
 
 final class NetServiceClientMock: NetServiceClientProtocol {
-    var service: Observable<(ip: String, port: String)> {
+    var serviceObservable: Observable<(ip: String, port: String)> {
         return servicePublisher.asObservable()
     }
     private let servicePublisher = PublishRelay<(ip: String, port: String)>()

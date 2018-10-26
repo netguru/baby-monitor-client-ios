@@ -182,7 +182,7 @@ class RealmBabiesRepositoryTests: XCTestCase {
         let sut = RealmBabiesRepository(realm: realm)
         let currentBabyId = "1"
         let currentBaby = Baby(id: currentBabyId, name: "test")
-        let imageToSave = UIImage(data: #imageLiteral(resourceName: "dashboard").pngData()!)!
+        let imageToSave = UIImage(data: #imageLiteral(resourceName: "dashboard").jpegData(compressionQuality: 1)!)!
         try! sut.save(baby: currentBaby)
         sut.currentBabyId = currentBabyId
         var changedBabyImage: UIImage?
@@ -199,8 +199,8 @@ class RealmBabiesRepositoryTests: XCTestCase {
 
         //Then
         waitForExpectations(timeout: 0.1) { _ in
-            let firstImageData = imageToSave.pngData()!
-            let secondImageData = changedBabyImage!.pngData()!
+            let firstImageData = imageToSave.jpegData(compressionQuality: 1)!
+            let secondImageData = changedBabyImage!.jpegData(compressionQuality: 1)!
             XCTAssertEqual(firstImageData, secondImageData)
         }
 

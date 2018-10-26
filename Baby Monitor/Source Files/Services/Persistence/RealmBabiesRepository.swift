@@ -8,7 +8,7 @@ import RealmSwift
 import RxSwift
 import RxCocoa
 
-final class RealmBabiesRepository: BabiesRepository {
+final class RealmBabiesRepository: BabiesRepositoryProtocol {
     
     enum UpdateType {
         case name(Baby)
@@ -73,7 +73,7 @@ final class RealmBabiesRepository: BabiesRepository {
     
     func setPhoto(_ photo: UIImage, id: String) {
         try! realm.write {
-            guard let photoData = photo.pngData() else { return }
+            guard let photoData = photo.jpegData(compressionQuality: 1) else { return }
             _ = realm.create(RealmBaby.self, value: ["id": id, "photoData": photoData], update: true)
                 .toBaby()
         }

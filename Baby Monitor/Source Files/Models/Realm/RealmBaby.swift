@@ -15,7 +15,7 @@ final class RealmBaby: Object {
         self.init()
         self.id = baby.id
         self.name = baby.name
-        self.photoData = baby.photo?.pngData()
+        self.photoData = baby.photo?.jpegData(compressionQuality: 1)
     }
     
     func toBaby() -> Baby {

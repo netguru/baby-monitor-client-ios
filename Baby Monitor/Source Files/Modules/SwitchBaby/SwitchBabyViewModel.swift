@@ -7,7 +7,7 @@ import Foundation
 
 final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorCellSelectable {
     
-    private let babyRepo: BabiesRepository
+    private let babyRepo: BabiesRepositoryProtocol
     
     var numberOfSections: Int {
         return 1
@@ -15,7 +15,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
     
     var didLoadBabies: ((_ baby: Baby) -> Void)?
     
-    init(babyRepo: BabiesRepository) {
+    init(babyRepo: BabiesRepositoryProtocol) {
         self.babyRepo = babyRepo
     }
     

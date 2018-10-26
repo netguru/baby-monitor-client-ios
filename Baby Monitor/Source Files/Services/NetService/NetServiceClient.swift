@@ -8,29 +8,19 @@ import RxSwift
 import RxCocoa
 
 protocol NetServiceClientProtocol: AnyObject {
-    var service: Observable<(ip: String, port: String)> { get }
-    //    var didFindServiceWith: ((_ ip: String, _ port: String) -> Void)? { get set }
-    
+    var serviceObservable: Observable<(ip: String, port: String)> { get }
     func findService()
-    
     func stopFinding()
 }
 
 final class NetServiceClient: NSObject, NetServiceClientProtocol {
     
-    var service: Observable<(ip: String, port: String)> {
-        return servicePublisher.asObservable()
-    }
-    
-    private let servicePublisher = PublishRelay<(ip: String, port: String)>()
-    
-    //    var didFindServiceWith: ((ip: String, port: String) -> Void)?
+    lazy var serviceObservable = servicePublisher.asObservable()
     
     private var netService: NetService?
-    private let netServiceBrowser = NetServiceBrowser()
     
-    private static let androidPort = 5006
-    private static let iosPort = 554
+    private let servicePublisher = PublishRelay<(ip: String, port: String)>()
+    private let netServiceBrowser = NetServiceBrowser()
     
     override init() {
         super.init()
@@ -64,7 +54,7 @@ extension NetServiceClient: NetServiceDelegate {
     
     func netServiceDidResolveAddress(_ sender: NetService) {
         guard let addressData = sender.addresses?.first,
-            let ip = getIP(from: addressData), [NetServiceClient.androidPort, NetServiceClient.iosPort].contains(sender.port) else {
+            let ip = getIP(from: addressData) else {
                 return
         }
         servicePublisher.accept((ip, "\(sender.port)"))
