@@ -78,19 +78,16 @@
 		8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */; };
 		8A43DB04217DD89300E3004D /* NetServiceConnectionCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */; };
 		8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB082180971D00E3004D /* UIViewController+Rx.swift */; };
+		8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB1E2181D1E700E3004D /* GeneralSection.swift */; };
 		8AEAFBB1217735D4003E756F /* BabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB0217735D4003E756F /* BabiesRepository.swift */; };
 		8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */; };
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
 		8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */; };
+		8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DF82182F07700729615 /* Lullaby.swift */; };
+		8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */; };
 		E557EC9748B4E1AAF5804CA4 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E1DB8C336FC3D3C6E57778B /* Pods_Baby_Monitor.framework */; };
-		EC2A353A21786D8600D07471 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353921786D8600D07471 /* SettingsViewController.swift */; };
-		EC2A353E2178771B00D07471 /* LullabiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353D2178771B00D07471 /* LullabiesViewController.swift */; };
-		EC2A3540217877E400D07471 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353F217877E400D07471 /* ActivityLogViewController.swift */; };
 		EC3A67A421774B4500BD3851 /* BabyServiceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */; };
 		EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */; };
-		EC468BC6216C97BD003FA220 /* InitialSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */; };
-		EC468BC8216C9876003FA220 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC7216C9876003FA220 /* InitialSetupView.swift */; };
-		EC468BCA216C9B31003FA220 /* InitialSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */; };
 		EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
@@ -193,18 +190,15 @@
 		8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionChecker.swift; sourceTree = "<group>"; };
 		8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionCheckerTests.swift; sourceTree = "<group>"; };
 		8A43DB082180971D00E3004D /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		8A43DB1E2181D1E700E3004D /* GeneralSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSection.swift; sourceTree = "<group>"; };
 		8AEAFBB0217735D4003E756F /* BabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB52177371B003E756F /* RealmBaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaby.swift; sourceTree = "<group>"; };
 		8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepositoryTests.swift; sourceTree = "<group>"; };
-		EC2A353921786D8600D07471 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		EC2A353D2178771B00D07471 /* LullabiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewController.swift; sourceTree = "<group>"; };
-		EC2A353F217877E400D07471 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
+		8AFE3DF82182F07700729615 /* Lullaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lullaby.swift; sourceTree = "<group>"; };
+		8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyServiceObserver.swift; sourceTree = "<group>"; };
 		EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPhotoButton.swift; sourceTree = "<group>"; };
-		EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewController.swift; sourceTree = "<group>"; };
-		EC468BC7216C9876003FA220 /* InitialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupView.swift; sourceTree = "<group>"; };
-		EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupViewModel.swift; sourceTree = "<group>"; };
 		EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -400,6 +394,9 @@
 			children = (
 				8AEAFBB42177370F003E756F /* Realm */,
 				4E9563312164DDC100289475 /* Baby.swift */,
+				8A43DB1E2181D1E700E3004D /* GeneralSection.swift */,
+				8AFE3DF82182F07700729615 /* Lullaby.swift */,
+				8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -433,7 +430,6 @@
 			isa = PBXGroup;
 			children = (
 				4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */,
-				EC2A353F217877E400D07471 /* ActivityLogViewController.swift */,
 				4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */,
 			);
 			path = ActivityLog;
@@ -443,7 +439,6 @@
 			isa = PBXGroup;
 			children = (
 				4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */,
-				EC2A353D2178771B00D07471 /* LullabiesViewController.swift */,
 				4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */,
 			);
 			path = Lullabies;
@@ -453,7 +448,6 @@
 			isa = PBXGroup;
 			children = (
 				4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */,
-				EC2A353921786D8600D07471 /* SettingsViewController.swift */,
 				4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */,
 			);
 			path = Settings;
@@ -555,16 +549,6 @@
 			children = (
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		EC468BC4216C9797003FA220 /* InitialSetup */ = {
-			isa = PBXGroup;
-			children = (
-				EC468BC5216C97BD003FA220 /* InitialSetupViewController.swift */,
-				EC468BC9216C9B31003FA220 /* InitialSetupViewModel.swift */,
-				EC468BC7216C9876003FA220 /* InitialSetupView.swift */,
-			);
-			path = InitialSetup;
 			sourceTree = "<group>";
 		};
 		EC4C9945216B944B0093EDFC /* Onboarding */ = {
@@ -870,18 +854,22 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/RTSPServer/RTSPServer.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTSPServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -922,8 +910,6 @@
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
-				EC2A3540217877E400D07471 /* ActivityLogViewController.swift in Sources */,
-				EC431F5F2175FB680099858C /* BabyService.swift in Sources */,
 				8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */,
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				8A42DB0B2179D7D700BF5F1B /* URLUserDefaults.swift in Sources */,
@@ -935,7 +921,6 @@
 				4E57319C2170BA7400DEAF0B /* BabyMonitorCellSelectable.swift in Sources */,
 				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
-				EC6179E1216F2ADD004BD7E0 /* ClientSetupView.swift in Sources */,
 				8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
@@ -947,7 +932,6 @@
 				4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
-				EC2A353A21786D8600D07471 /* SettingsViewController.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
 				4E626696217F1B4000FA542F /* InitialOnboardingViewModel.swift in Sources */,
 				EC92C1D9217A0C7900F7EC9B /* BabyServiceUpdatable.swift in Sources */,
@@ -963,6 +947,7 @@
 				8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,
 				4E5731A42170BA9D00DEAF0B /* VLCMediaPlayerService.swift in Sources */,
+				8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
 				4E1CF81921785C7800F48706 /* MediaPlayerStreamingService.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
@@ -977,8 +962,8 @@
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
-				EC2A353E2178771B00D07471 /* LullabiesViewController.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+RTSP.swift in Sources */,
+				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
 				4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */,
 				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
 				EC3A67A421774B4500BD3851 /* BabyServiceObserver.swift in Sources */,
@@ -986,6 +971,7 @@
 				EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */,
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
+				8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

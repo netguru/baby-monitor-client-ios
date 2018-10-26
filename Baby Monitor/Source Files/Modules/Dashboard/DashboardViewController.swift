@@ -61,13 +61,14 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
         viewModel.addObserver(self)
         viewModel.attachInput(switchBabyTap: customView.rx.switchBabyTap.asObservable(), liveCameraTap: customView.rx.liveCameraTap.asObservable(), addPhotoTap: customView.rx.addPhotoTap.asObservable(), name: customView.rx.babyName.asObservable())
         // TODO: Remove imperative call to babies fetching https://netguru.atlassian.net/browse/BM-119c
-        viewModel.loadBabies()
         viewModel.baby
             .map { $0.name }
+            .distinctUntilChanged()
             .bind(to: customView.rx.babyName)
             .disposed(by: bag)
         viewModel.baby
             .map { $0.photo }
+            .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
         viewModel.connectionStatus
@@ -76,6 +77,7 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
                 self?.handleConnectionStatusChange(status: status)
             })
             .disposed(by: bag)
+        viewModel.loadBabies()
     }
     
     private func handleConnectionStatusChange(status: ConnectionStatus) {

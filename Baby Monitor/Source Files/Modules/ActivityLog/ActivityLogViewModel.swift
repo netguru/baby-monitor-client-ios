@@ -4,36 +4,42 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
-
+    
+    typealias DataType = Baby
+    
     private let babyRepo: BabiesRepository
-
-    var numberOfSections: Int {
-        return 1
-    }
 
     init(babyRepo: BabiesRepository) {
         self.babyRepo = babyRepo
     }
 
     // MARK: - Coordinator callback
-    var didSelectShowBabies: (() -> Void)?
-    var didLoadBabies: ((_ baby: Baby) -> Void)?
-
-    // MARK: - Internal functions
-    func selectShowBabies() {
-        didSelectShowBabies?()
+    private(set) var showBabies: Observable<Void>?
+    var baby: Observable<Baby> {
+        return babyPublisher.asObservable()
     }
-
-    func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
+    private let babyPublisher = PublishRelay<Baby>()
+    var sections: Observable<[GeneralSection<Baby>]> {
+        return Observable.just(babyRepo.fetchAllBabies())
+            .map { [GeneralSection(title: "", items: $0)] }
+    }
+    
+    // MARK: - Internal functions
+    func attachInput(showBabiesTap: ControlEvent<Void>) {
+        showBabies = showBabiesTap.asObservable()
+    }
+    
+    func configure(cell: BabyMonitorCell, for data: Baby) {
         cell.type = .activityLog
+        let baby = data
         // TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
         cell.update(secondaryText: "24 minutes ago")
-        if let currentBaby = babyRepo.fetchAllBabies().first {
-            cell.update(image: currentBaby.photo ?? UIImage())
-            cell.update(mainText: "\(currentBaby.name) was crying!")
-        }
+        cell.update(image: baby.photo ?? UIImage())
+        cell.update(mainText: "\(baby.name) was crying!")
     }
 
     func configure(headerCell: BabyMonitorCell, for section: Int) {
@@ -41,13 +47,9 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
         headerCell.update(mainText: "Yesterday")
     }
 
-    func numberOfRows(for section: Int) -> Int {
-        return 5 //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
-    }
-    
     func loadBabies() {
         guard let baby = babyRepo.fetchAllBabies().first else { return }
-        didLoadBabies?(baby)
+        babyPublisher.accept(baby)
     }
     
     /// Sets observer to react to changes in the baby.

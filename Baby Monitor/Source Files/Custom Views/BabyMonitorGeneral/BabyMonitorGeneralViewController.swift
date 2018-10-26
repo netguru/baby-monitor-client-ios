@@ -5,21 +5,22 @@
 
 import UIKit
 import RxSwift
+import RxDataSources
 
-class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralView>, UITableViewDataSource, UITableViewDelegate {
+enum BabyMonitorGeneralViewType {
+    case switchBaby
+    case activityLog
+    case lullaby
+    case settings
+}
 
-    enum ViewType {
-        case switchBaby
-        case activityLog
-        case lullaby
-        case settings
-    }
+class BabyMonitorGeneralViewController<T>: TypedViewController<BabyMonitorGeneralView>, UITableViewDelegate {
 
-    private let viewModel: BabyMonitorGeneralViewModelProtocol
-    private let viewType: ViewType
+    private let viewModel: AnyBabyMonitorGeneralViewModelProtocol<T>
+    private let viewType: BabyMonitorGeneralViewType
     private let bag = DisposeBag()
 
-    init(viewModel: BabyMonitorGeneralViewModelProtocol, type: ViewType) {
+    init(viewModel: AnyBabyMonitorGeneralViewModelProtocol<T>, type: BabyMonitorGeneralViewType) {
         self.viewModel = viewModel
         self.viewType = type
         super.init(viewMaker: BabyMonitorGeneralView(type: type))
@@ -31,23 +32,9 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
         setup()
     }
 
-    func updateNavigationView(with baby: Baby) {
-        customView.babyNavigationItemView.setBabyPhoto(baby.photo)
-        customView.babyNavigationItemView.setBabyName(baby.name)
-    }
-
     // MARK: - Private functions
     private func setup() {
-        customView.tableView.dataSource = self
         customView.tableView.delegate = self
-        customView.rx.switchBabiesTap
-            .subscribe(onNext: { [weak self] _ in
-                guard let babiesViewShowableViewModel = self?.viewModel as? BabiesViewSelectable else {
-                    return
-                }
-                babiesViewShowableViewModel.selectShowBabies()
-            })
-            .disposed(by: bag)
 
         switch viewType {
         case .activityLog, .lullaby, .settings:
@@ -60,34 +47,26 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
     }
     
     private func setupViewModel() {
-        viewModel.didLoadBabies = { [weak self] baby in
-            self?.updateNavigationView(with: baby)
-        }
-    }
-
-    // MARK: - UITableViewDataSource
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows(for: section)
-    }
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.numberOfSections
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath) as BabyMonitorCell
-        viewModel.configure(cell: cell, for: indexPath)
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerConfigurableViewModel = viewModel as? BabyMonitorHeaderCellConfigurable else {
-            return nil
-        }
-
-        let headerCell = tableView.dequeueReusableCell() as BabyMonitorCell
-        headerConfigurableViewModel.configure(headerCell: headerCell, for: section)
-        return headerCell
+        viewModel.attachInput?(customView.rx.switchBabiesTap)
+        let dataSource = RxTableViewSectionedReloadDataSource<GeneralSection<T>>(
+            configureCell: { dataSource, tableView, indexPath, item in
+                let cell = tableView.dequeueReusableCell(for: indexPath) as BabyMonitorCell
+                self.viewModel.configure(cell: cell, for: item)
+                return cell
+            })
+        viewModel.sections
+            .bind(to: customView.tableView.rx.items(dataSource: dataSource))
+            .disposed(by: bag)
+        viewModel.baby
+            .map { $0.name }
+            .distinctUntilChanged()
+            .bind(to: customView.babyNavigationItemView.rx.babyName)
+            .disposed(by: bag)
+        viewModel.baby
+            .map { $0.photo }
+            .distinctUntilChanged()
+            .bind(to: customView.babyNavigationItemView.rx.babyPhoto)
+            .disposed(by: bag)
     }
 
     // MARK: - UITableViewDelegate
@@ -99,16 +78,30 @@ class BabyMonitorGeneralViewController: TypedViewController<BabyMonitorGeneralVi
 
         cellSelectableViewModel.select(cell: cell)
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard viewModel.isBabyMonitorHeaderCellConfigurable else {
+            return nil
+        }
+        
+        let headerCell = tableView.dequeueReusableCell() as BabyMonitorCell
+        viewModel.configure?(headerCell, section)
+        return headerCell
+    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let _ = viewModel as? BabyMonitorHeaderCellConfigurable else {
-            return 0
+        guard viewModel.isBabyMonitorHeaderCellConfigurable else {
+            return CGFloat.leastNormalMagnitude
         }
         return 70
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
 }
 

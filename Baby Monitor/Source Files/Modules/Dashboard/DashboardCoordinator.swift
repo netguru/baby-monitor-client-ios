@@ -12,7 +12,7 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
     var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    weak var switchBabyViewController: BabyMonitorGeneralViewController?
+    weak var switchBabyViewController: BabyMonitorGeneralViewController<SwitchBabyViewModel.Cell>?
 
     var onEnding: (() -> Void)?
 

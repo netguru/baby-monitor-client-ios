@@ -4,16 +4,18 @@
 //
 
 import UIKit
+import RxSwift
 
 final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     
     var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    var switchBabyViewController: BabyMonitorGeneralViewController?
+    var switchBabyViewController: BabyMonitorGeneralViewController<SwitchBabyViewModel.Cell>?
     var onEnding: (() -> Void)?
     
-    private weak var settingsViewController: SettingsViewController?
+    private let bag = DisposeBag()
+    private weak var settingsViewController: BabyMonitorGeneralViewController<SettingsViewModel.Cell>?
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.appDependencies = appDependencies
@@ -27,19 +29,29 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     // MARK: - private functions
     private func showSettings() {
         let viewModel = SettingsViewModel(babyRepo: appDependencies.babyRepo)
-        viewModel.didSelectShowBabiesView = { [weak self] in
-            guard let self = self, let settingsViewController = self.settingsViewController else {
-                return
-            }
-            self.toggleSwitchBabiesView(on: settingsViewController, babyRepo: self.appDependencies.babyRepo)
-        }
+
+        let settingsViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<SettingsViewModel.Cell>(viewModel: viewModel), type: .settings)
+        settingsViewController.rx.viewDidLoad
+            .subscribe(onNext: { [weak self] _ in
+                self?.connect(toSettingsViewModel: viewModel)
+            })
+            .disposed(by: bag)
+        self.settingsViewController = settingsViewController
+        navigationController.pushViewController(settingsViewController, animated: false)
+    }
+    
+    private func connect(toSettingsViewModel viewModel: SettingsViewModel) {
+        viewModel.showBabies?
+            .subscribe(onNext: { [weak self] in
+                guard let self = self, let settingsViewController = self.settingsViewController else {
+                    return
+                }
+                self.toggleSwitchBabiesView(on: settingsViewController, babyRepo: self.appDependencies.babyRepo)
+            })
+            .disposed(by: bag)
         viewModel.didSelectChangeServer = { [weak self] in
             self?.showClientSetup()
         }
-
-        let settingsViewController = SettingsViewController(viewModel: viewModel)
-        self.settingsViewController = settingsViewController
-        navigationController.pushViewController(settingsViewController, animated: false)
     }
     
     private func showClientSetup() {
@@ -49,7 +61,17 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
             babyRepo: appDependencies.babyRepo)
         
         let clientSetupViewController = GeneralOnboardingViewController(viewModel: clientSetupViewModel, role: .clientSetup)
-        clientSetupViewModel.didFinishDeviceSearch = { [weak self] result in
+        clientSetupViewController.rx.viewDidLoad
+            .subscribe(onNext: { [weak self] _ in
+                self?.connect(toClientSetupViewModel: clientSetupViewModel)
+            })
+            .disposed(by: bag)
+        
+        navigationController.pushViewController(clientSetupViewController, animated: true)
+    }
+    
+    private func connect(toClientSetupViewModel viewModel: ClientSetupOnboardingViewModel) {
+        viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success:
                 _ = self?.navigationController.popViewController(animated: true)
@@ -58,6 +80,5 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
                 break
             }
         }
-        navigationController.pushViewController(clientSetupViewController, animated: true)
     }
 }

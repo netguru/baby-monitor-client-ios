@@ -4,37 +4,53 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorCellSelectable {
     
+    typealias DataType = Cell
+    
     private let babyRepo: BabiesRepository
     
-    var numberOfSections: Int {
-        return 1
+    enum Cell {
+        case baby(Baby)
+        case addAnother
     }
     
-    var didLoadBabies: ((_ baby: Baby) -> Void)?
-    
+    private(set) var showBabies: Observable<Void>?
+    var baby: Observable<Baby> {
+        return babyPublisher.asObservable()
+    }
+    private let babyPublisher = PublishRelay<Baby>()
+    lazy private(set) var sections: Observable<[GeneralSection]> = {
+        return Observable.just(babyRepo.fetchAllBabies())
+            .map { cells in
+                cells.map { Cell.baby($0) }
+            }
+            .map { $0 + [Cell.addAnother] }
+            .map { cells in
+                [GeneralSection(title: "", items: cells)]
+            }
+    }()
+
     init(babyRepo: BabiesRepository) {
         self.babyRepo = babyRepo
     }
     
     // MARK: - internal functions
-    func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
-        if indexPath.row == babyRepo.fetchAllBabies().count {
-            cell.type = .switchBaby(.addAnother)
-        } else {
-            let baby = babyRepo.fetchAllBabies()[indexPath.row]
+    func configure(cell: BabyMonitorCell, for data: Cell) {
+        let cellData = data
+        switch cellData {
+        case .baby(let baby):
             cell.update(mainText: baby.name)
             if let babyImage = baby.photo {
                 cell.update(image: babyImage)
             }
             cell.type = .switchBaby(.baby)
+        case .addAnother:
+            cell.type = .switchBaby(.addAnother)
         }
-    }
-    
-    func numberOfRows(for section: Int) -> Int {
-        return babyRepo.fetchAllBabies().count + 1
     }
     
     func select(cell: BabyMonitorCell) {
@@ -55,6 +71,6 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
     
     func loadBabies() {
         guard let baby = babyRepo.fetchAllBabies().first else { return }
-        didLoadBabies?(baby)
+        babyPublisher.accept(baby)
     }
 }

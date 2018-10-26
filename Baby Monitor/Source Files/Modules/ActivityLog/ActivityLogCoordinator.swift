@@ -4,17 +4,19 @@
 //
 
 import UIKit
+import RxSwift
 
 final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
     
     var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    var switchBabyViewController: BabyMonitorGeneralViewController?
+    var switchBabyViewController: BabyMonitorGeneralViewController<SwitchBabyViewModel.Cell>?
     
     var onEnding: (() -> Void)?
 
-    private var activityLogViewController: ActivityLogViewController?
+    private var activityLogViewController: BabyMonitorGeneralViewController<Baby>?
+    private let bag = DisposeBag()
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.appDependencies = appDependencies
@@ -28,13 +30,24 @@ final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
     // MARK: - private functions
     private func showActivityLog() {
         let viewModel = ActivityLogViewModel(babyRepo: appDependencies.babyRepo)
-        viewModel.didSelectShowBabies = { [weak self] in
-            guard let self = self, let activityLogViewController = self.activityLogViewController else {
-                return
-            }
-            self.toggleSwitchBabiesView(on: activityLogViewController, babyRepo: self.appDependencies.babyRepo)
-        }
-        activityLogViewController = ActivityLogViewController(viewModel: viewModel)
+        
+        activityLogViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<Baby>(viewModel: viewModel), type: .activityLog)
+        activityLogViewController?.rx.viewDidLoad
+            .subscribe(onNext: { [weak self] _ in
+                self?.connect(toActivityLogViewModel: viewModel)
+            })
+            .disposed(by: bag)
         navigationController.pushViewController(activityLogViewController!, animated: false)
+    }
+    
+    private func connect(toActivityLogViewModel viewModel: ActivityLogViewModel) {
+        viewModel.showBabies?
+            .subscribe(onNext: { [weak self] in
+                guard let self = self, let activityLogViewController = self.activityLogViewController else {
+                    return
+                }
+                self.toggleSwitchBabiesView(on: activityLogViewController, babyRepo: self.appDependencies.babyRepo)
+            })
+            .disposed(by: bag)
     }
 }

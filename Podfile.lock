@@ -1,14 +1,19 @@
 PODS:
+  - Differentiator (3.1.0)
   - MobileVLCKit (3.1.5)
-  - Realm (3.11.0):
-    - Realm/Headers (= 3.11.0)
-  - Realm/Headers (3.11.0)
-  - RealmSwift (3.11.0):
-    - Realm (= 3.11.0)
+  - Realm (3.11.1):
+    - Realm/Headers (= 3.11.1)
+  - Realm/Headers (3.11.1)
+  - RealmSwift (3.11.1):
+    - Realm (= 3.11.1)
   - RTSPServer (0.0.1)
   - RxBlocking (4.3.1):
     - RxSwift (~> 4.0)
   - RxCocoa (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.3.1)
   - RxTest (4.3.1):
@@ -21,17 +26,20 @@ DEPENDENCIES:
   - RTSPServer (from `Dependencies/RTSPServer.podspec`)
   - RxBlocking (~> 4.0)
   - RxCocoa (~> 4.0)
+  - RxDataSources (~> 3.0)
   - RxSwift (~> 4.0)
   - RxTest (~> 4.0)
   - SwiftLint (~> 0.27.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Differentiator
     - MobileVLCKit
     - Realm
     - RealmSwift
     - RxBlocking
     - RxCocoa
+    - RxDataSources
     - RxSwift
     - RxTest
     - SwiftLint
@@ -41,16 +49,18 @@ EXTERNAL SOURCES:
     :path: Dependencies/RTSPServer.podspec
 
 SPEC CHECKSUMS:
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   MobileVLCKit: 4d44e56380d0ee41c76f9ec7015d3a4b62a963a3
-  Realm: 92f09a102692b96a9a10e9617f214f15c5ab85fc
-  RealmSwift: 5f0481cd658bb751c509314b964a35eaa264d2cf
+  Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
+  RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
   RTSPServer: 579316efe2e442031cae3ecfa879a295c545e6d5
   RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 73b2566e59b6c8129bce387dff3cae4029ba97c9
+PODFILE CHECKSUM: 74e1f82571813505d5046cae8888a358fd2dbe6d
 
 COCOAPODS: 1.5.3

@@ -11,6 +11,7 @@ target 'Baby Monitor' do
   pod 'RealmSwift', '~> 3.11.0'
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
+  pod 'RxDataSources', '~> 3.0'
   pod 'RTSPServer', path: 'Dependencies/RTSPServer.podspec'
 
   target 'Baby MonitorTests' do

@@ -4,15 +4,20 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxDataSources
 
 protocol BabyMonitorGeneralViewModelProtocol: AnyObject {
-
-    var numberOfSections: Int { get }
     
-    var didLoadBabies: ((_ baby: Baby) -> Void)? { get set }
+    associatedtype DataType
     
-    func configure(cell: BabyMonitorCell, for indexPath: IndexPath)
-    func numberOfRows(for section: Int) -> Int
+    var showBabies: Observable<Void>? { get }
+    
+    var baby: Observable<Baby> { get }
+    
+    var sections: Observable<[GeneralSection<DataType>]> { get }
+    func configure(cell: BabyMonitorCell, for data: DataType)
     
     func loadBabies()
 }
