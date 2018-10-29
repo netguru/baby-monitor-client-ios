@@ -10,8 +10,8 @@ import RxCocoa
 final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
     
     typealias DataType = Lullaby
-    
-    private let babyRepo: BabiesRepository
+
+    private let babyRepo: BabiesRepositoryProtocol
 
     private enum Constants {
         enum Section: Int, CaseIterable {
@@ -38,12 +38,9 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
 
     // MARK: - Coordinator callback
     private(set) var showBabies: Observable<Void>?
-    var baby: Observable<Baby> {
-        return babyPublisher.asObservable()
-    }
-    private let babyPublisher = PublishRelay<Baby>()
+    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
 
-    init(babyRepo: BabiesRepository) {
+    init(babyRepo: BabiesRepositoryProtocol) {
         self.babyRepo = babyRepo
     }
 
@@ -71,24 +68,5 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
         case Constants.Section.yourLullabies:
             headerCell.update(mainText: Localizable.Lullabies.yourLullabies)
         }
-    }
-    
-    func loadBabies() {
-        guard let baby = babyRepo.fetchAllBabies().first else { return }
-        babyPublisher.accept(baby)
-    }
-    
-    /// Sets observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func addObserver(_ observer: BabyRepoObserver) {
-        babyRepo.addObserver(observer)
-    }
-    
-    /// Removes observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func removeObserver(_ observer: BabyRepoObserver) {
-        babyRepo.removeObserver(observer)
     }
 }

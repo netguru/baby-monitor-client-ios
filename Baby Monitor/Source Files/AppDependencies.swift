@@ -22,5 +22,5 @@ struct AppDependencies {
     
     private(set) var rtspConfiguration: RTSPConfiguration = UserDefaultsRTSPConfiguration()
     /// Baby service for getting and adding babies throughout the app
-    private(set) var babyRepo: BabiesRepository = RealmBabiesRepository(realm: try! Realm())
+    private(set) var babyRepo: BabiesRepositoryProtocol = RealmBabiesRepository(realm: try! Realm())
 }

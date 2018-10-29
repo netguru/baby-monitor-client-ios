@@ -3,19 +3,43 @@
 //  Baby Monitor
 //
 
-import Foundation
 import RealmSwift
+import RxSwift
+import RxCocoa
 
-final class RealmBabiesRepository: BabiesRepository {
+final class RealmBabiesRepository: BabiesRepositoryProtocol {
     
     enum UpdateType {
         case name(Baby)
         case image(Baby)
     }
     
+    lazy var babyUpdateObservable = babyPublisher
+        .filter { $0 != nil }
+        .map { $0! }
+    
+    var currentBabyId: String? {
+        didSet {
+            guard let currentBabyId = currentBabyId else {
+                babyPublisher.accept(nil)
+                return
+            }
+            let realmBaby = realm.object(ofType: RealmBaby.self, forPrimaryKey: currentBabyId)
+            if let baby = realmBaby?.toBaby() {
+                self.babyPublisher.accept(baby)
+            }
+            currentBabyToken = realmBaby?.observe({ _ in
+                guard let baby = self.realm.object(ofType: RealmBaby.self, forPrimaryKey: currentBabyId)?.toBaby() else {
+                    return
+                }
+                self.babyPublisher.accept(baby)
+            })
+        }
+    }
+    
+    private var babyPublisher = BehaviorRelay<Baby?>(value: nil)
     private let realm: Realm
-    private var observations = [ObjectIdentifier: Observation]()
-    var currentBabyId: String?
+    private var currentBabyToken: NotificationToken?
     
     init(realm: Realm) {
         self.realm = realm
@@ -26,6 +50,10 @@ final class RealmBabiesRepository: BabiesRepository {
         try! realm.write {
             realm.add(realmBaby, update: true)
         }
+    }
+    
+    func setCurrentBaby(baby: Baby) {
+        currentBabyId = baby.id
     }
     
     func fetchAllBabies() -> [Baby] {
@@ -55,55 +83,29 @@ final class RealmBabiesRepository: BabiesRepository {
     func setPhoto(_ photo: UIImage, id: String) {
         try! realm.write {
             guard let photoData = photo.jpegData(compressionQuality: 1) else { return }
-            let updatedBaby = realm.create(RealmBaby.self, value: ["id": id, "photoData": photoData], update: true)
+            _ = realm.create(RealmBaby.self, value: ["id": id, "photoData": photoData], update: true)
                 .toBaby()
-            babyDidChange(updateType: .image(updatedBaby))
         }
     }
     
     func setName(_ name: String, id: String) {
         try! realm.write {
-            let updatedBaby = realm.create(RealmBaby.self, value: ["id": id, "name": name], update: true)
+            _ = realm.create(RealmBaby.self, value: ["id": id, "name": name], update: true)
                 .toBaby()
-            babyDidChange(updateType: .name(updatedBaby))
         }
     }
-}
-
-extension RealmBabiesRepository {
     
-    func addObserver(_ observer: BabyRepoObserver) {
-        let id = ObjectIdentifier(observer)
-        observations[id] = Observation(observer: observer)
-    }
-    
-    func removeObserver(_ observer: BabyRepoObserver) {
-        let id = ObjectIdentifier(observer)
-        observations.removeValue(forKey: id)
-    }
-}
-
-private extension RealmBabiesRepository {
-    
-    struct Observation {
-        weak var observer: BabyRepoObserver?
-    }
-    
-    func babyDidChange(updateType: UpdateType) {
-        for (id, observation) in observations {
-            // If the observer is no longer in memory, we
-            // can clean up the observation for its ID
-            guard let observer = observation.observer else {
-                observations.removeValue(forKey: id)
-                continue
-            }
-            
-            switch updateType {
-            case .image(let baby):
-                observer.babyRepo(self, didChangePhotoOf: baby)
-            case .name(let baby):
-                observer.babyRepo(self, didChangeNameOf: baby)
-            }
+    func setCurrentPhoto(_ photo: UIImage) {
+        guard let currentId = currentBabyId else {
+            return
         }
+        setPhoto(photo, id: currentId)
+    }
+    
+    func setCurrentName(_ name: String) {
+        guard let currentId = currentBabyId else {
+            return
+        }
+        setName(name, id: currentId)
     }
 }

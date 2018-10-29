@@ -3,9 +3,10 @@
 //  Baby MonitorTests
 //
 
+@testable import BabyMonitor
 import XCTest
 import RealmSwift
-@testable import BabyMonitor
+import RxSwift
 
 class RealmBabiesRepositoryTests: XCTestCase {
     
@@ -24,7 +25,7 @@ class RealmBabiesRepositoryTests: XCTestCase {
         let results = realm.objects(RealmBaby.self)
             .filter { $0.id == baby.id }
         XCTAssertEqual(1, results.count, "The result size isn't proper")
-        XCTAssertEqual(baby.id, results[0].id, "The result id doesn't match")
+        XCTAssertEqual(baby.id, results.first!.id, "The result id doesn't match")
     }
     
     func testShouldSaveNewBabyInPlaceOfOld() {
@@ -143,5 +144,65 @@ class RealmBabiesRepositoryTests: XCTestCase {
         results.forEach {
             XCTAssertEqual(name, $0.name, "The baby with id: \($0.id) has different name: \($0.name)")
         }
+    }
+    
+    func testShouldNotifyObserverAboutBabyNameChange() {
+        //Given
+        let disposeBag = DisposeBag()
+        let realm = try! Realm(configuration: config)
+        let exp = expectation(description: "Should update baby name")
+        let sut = RealmBabiesRepository(realm: realm)
+        let currentBabyId = "1"
+        let currentBaby = Baby(id: currentBabyId, name: "test")
+        try! sut.save(baby: currentBaby)
+        sut.currentBabyId = currentBabyId
+        var changedBabyName: String?
+        sut.babyUpdateObservable.skip(1).subscribe(
+            onNext: {
+                exp.fulfill()
+                changedBabyName = $0.name
+            }
+            )
+        .disposed(by: disposeBag)
+
+        //When
+        sut.setName("Adrian", id: currentBabyId)
+
+        //Then
+        waitForExpectations(timeout: 0.1) { _ in
+            XCTAssertTrue(changedBabyName! == "Adrian")
+        }
+    }
+
+    func testShouldNotifyObserverAboutBabyPhotoChange() {
+        //Given
+        let disposeBag = DisposeBag()
+        let realm = try! Realm(configuration: config)
+        let exp = expectation(description: "Should update baby photo")
+        let sut = RealmBabiesRepository(realm: realm)
+        let currentBabyId = "1"
+        let currentBaby = Baby(id: currentBabyId, name: "test")
+        let imageToSave = UIImage(data: #imageLiteral(resourceName: "dashboard").jpegData(compressionQuality: 1)!)!
+        try! sut.save(baby: currentBaby)
+        sut.currentBabyId = currentBabyId
+        var changedBabyImage: UIImage?
+        sut.babyUpdateObservable.skip(1).subscribe(
+            onNext: {
+                exp.fulfill()
+                changedBabyImage = $0.photo
+            }
+            )
+            .disposed(by: disposeBag)
+
+        //When
+        sut.setPhoto(imageToSave, id: currentBabyId)
+
+        //Then
+        waitForExpectations(timeout: 0.1) { _ in
+            let firstImageData = imageToSave.jpegData(compressionQuality: 1)!
+            let secondImageData = changedBabyImage!.jpegData(compressionQuality: 1)!
+            XCTAssertEqual(firstImageData, secondImageData)
+        }
+
     }
 }

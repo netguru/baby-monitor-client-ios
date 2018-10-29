@@ -18,6 +18,4 @@ protocol BabyMonitorGeneralViewModelProtocol: AnyObject {
     
     var sections: Observable<[GeneralSection<DataType>]> { get }
     func configure(cell: BabyMonitorCell, for data: DataType)
-    
-    func loadBabies()
 }

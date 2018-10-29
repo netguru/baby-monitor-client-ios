@@ -67,8 +67,4 @@ final class AnyBabyMonitorGeneralViewModelProtocol<ConcreteDataType>: BabyMonito
     func configure(cell: BabyMonitorCell, for data: ConcreteDataType) {
         _configure(cell, data)
     }
-    
-    func loadBabies() {
-        
-    }
 }

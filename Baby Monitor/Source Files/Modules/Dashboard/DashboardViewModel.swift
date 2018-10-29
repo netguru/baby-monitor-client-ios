@@ -9,7 +9,9 @@ import RxSwift
 
 final class DashboardViewModel {
 
-    private let babyRepo: BabiesRepository
+    private let babyRepo: BabiesRepositoryProtocol
+    
+    private let bag = DisposeBag()
 
     // MARK: - Coordinator callback
     private(set) var showBabies: Observable<Void>?
@@ -19,16 +21,13 @@ final class DashboardViewModel {
     
     private let dismissImagePickerSubject = PublishRelay<Void>()
     
-    // TODO: Remove publisher and assign baby observable directly from service when it's done https://netguru.atlassian.net/browse/BM-119
-    lazy var baby: Observable<Baby> = babyPublisher.asObservable()
-    private let babyPublisher = PublishRelay<Baby>()
-    lazy var connectionStatus: Observable<ConnectionStatus> = connectionStatusPublisher.asObservable()
-    private let connectionStatusPublisher = PublishRelay<ConnectionStatus>()
+    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
+    lazy var connectionStatus: Observable<ConnectionStatus> = connectionChecker.connectionStatus
 
     // MARK: - Private properties
     private let connectionChecker: ConnectionChecker
 
-    init(connectionChecker: ConnectionChecker, babyRepo: BabiesRepository) {
+    init(connectionChecker: ConnectionChecker, babyRepo: BabiesRepositoryProtocol) {
         self.connectionChecker = connectionChecker
         self.babyRepo = babyRepo
         setup()
@@ -37,18 +36,11 @@ final class DashboardViewModel {
     deinit {
         connectionChecker.stop()
     }
-
-    // TODO: Remove when baby service is done https://netguru.atlassian.net/browse/BM-119
-    func loadBabies() {
-        guard let baby = babyRepo.fetchAllBabies().first else { return }
-        babyPublisher.accept(baby)
-    }
     
     func selectDismissImagePicker() {
         dismissImagePickerSubject.accept(())
     }
     
-    // TODO: Bind name to baby service when it's done https://netguru.atlassian.net/browse/BM-119
     func attachInput(switchBabyTap: Observable<Void>,
                      liveCameraTap: Observable<Void>,
                      addPhotoTap: Observable<Void>,
@@ -56,6 +48,10 @@ final class DashboardViewModel {
         showBabies = switchBabyTap
         liveCameraPreview = liveCameraTap
         addPhoto = addPhotoTap
+        name.subscribe(onNext: { [weak self] name in
+            self?.babyRepo.setCurrentName(name)
+        })
+            .disposed(by: bag)
     }
 
     // TODO: Remove when baby service is done https://netguru.atlassian.net/browse/BM-119
@@ -66,29 +62,7 @@ final class DashboardViewModel {
         guard let baby = babyRepo.fetchAllBabies().first else { return }
         babyRepo.setPhoto(photo, id: baby.id)
     }
-
-    /// Sets a new name for the current baby.
-    ///
-    /// - Parameter name: A new name for baby.
-    func updateName(_ name: String) {
-        guard let baby = babyRepo.fetchAllBabies().first else { return }
-        babyRepo.setName(name, id: baby.id)
-    }
-
-    /// Sets observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func addObserver(_ observer: BabyRepoObserver) {
-        babyRepo.addObserver(observer)
-    }
-
-    /// Removes observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func removeObserver(_ observer: BabyRepoObserver) {
-        babyRepo.removeObserver(observer)
-    }
-
+    
     // MARK: - Private functions
     private func setup() {
         connectionChecker.start()

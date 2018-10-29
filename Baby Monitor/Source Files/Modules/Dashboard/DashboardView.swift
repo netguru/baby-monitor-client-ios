@@ -190,4 +190,10 @@ extension Reactive where Base: DashboardView {
             dashboardView.updatePhoto(photo)
         }
     }
+    
+    var connectionStatus: Binder<Bool> {
+        return Binder(base) { dashboardView, isConnection in
+            isConnection ? dashboardView.showIsConnected() : dashboardView.showIsDisconnected()
+        }
+    }
 }

@@ -41,9 +41,7 @@ class BabyMonitorGeneralViewController<T>: TypedViewController<BabyMonitorGenera
             navigationItem.titleView = customView.babyNavigationItemView
         case .switchBaby:
             view.backgroundColor = .clear
-        }
-        
-        viewModel.loadBabies()
+        }        
     }
     
     private func setupViewModel() {
@@ -102,19 +100,5 @@ class BabyMonitorGeneralViewController<T>: TypedViewController<BabyMonitorGenera
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat.leastNormalMagnitude
-    }
-}
-
-// MARK: - BabyRepoObserver
-extension BabyMonitorGeneralViewController: BabyRepoObserver {
-
-    func babyRepo(_ service: BabiesRepository, didChangePhotoOf baby: Baby) {
-        customView.babyNavigationItemView.setBabyPhoto(baby.photo)
-        customView.tableView.reloadData()
-    }
-
-    func babyRepo(_ service: BabiesRepository, didChangeNameOf baby: Baby) {
-        customView.babyNavigationItemView.setBabyName(baby.name)
-        customView.tableView.reloadData()
     }
 }

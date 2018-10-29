@@ -11,7 +11,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
     
     typealias DataType = Cell
     
-    private let babyRepo: BabiesRepository
+    private let babyRepo: BabiesRepositoryProtocol
     
     enum Cell {
         case baby(Baby)
@@ -19,14 +19,11 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
     }
     
     private(set) var showBabies: Observable<Void>?
-    var baby: Observable<Baby> {
-        return babyPublisher.asObservable()
-    }
-    private let babyPublisher = PublishRelay<Baby>()
+    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
     lazy private(set) var sections: Observable<[GeneralSection]> = {
-        return Observable.just(babyRepo.fetchAllBabies())
-            .map { cells in
-                cells.map { Cell.baby($0) }
+        return baby.map { [$0] }
+            .map { babies in
+                babies.map { Cell.baby($0) }
             }
             .map { $0 + [Cell.addAnother] }
             .map { cells in
@@ -34,7 +31,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
             }
     }()
 
-    init(babyRepo: BabiesRepository) {
+    init(babyRepo: BabiesRepositoryProtocol) {
         self.babyRepo = babyRepo
     }
     
@@ -67,10 +64,5 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
         case .activityLog, .lullaby, .settings:
             break
         }
-    }
-    
-    func loadBabies() {
-        guard let baby = babyRepo.fetchAllBabies().first else { return }
-        babyPublisher.accept(baby)
     }
 }

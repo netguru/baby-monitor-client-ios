@@ -6,7 +6,7 @@
 import UIKit
 import RxSwift
 
-final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BabyRepoUpdatable {
+final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     private let viewModel: DashboardViewModel
     private let bag = DisposeBag()
@@ -20,23 +20,6 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
         super.viewDidLoad()
         setup()
         setupViewModel()
-    }
-
-    deinit {
-        viewModel.removeObserver(self)
-    }
-
-    func updateViews(with baby: Baby) {
-        updateName(baby.name)
-        updatePhoto(baby.photo)
-    }
-
-    func updateName(_ name: String) {
-        customView.updateName(name)
-    }
-
-    func updatePhoto(_ photo: UIImage?) {
-        customView.updatePhoto(photo)
     }
 
     // MARK: - UIImagePickerControllerDelegate
@@ -58,9 +41,7 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
     }
     
     private func setupViewModel() {
-        viewModel.addObserver(self)
         viewModel.attachInput(switchBabyTap: customView.rx.switchBabyTap.asObservable(), liveCameraTap: customView.rx.liveCameraTap.asObservable(), addPhotoTap: customView.rx.addPhotoTap.asObservable(), name: customView.rx.babyName.asObservable())
-        // TODO: Remove imperative call to babies fetching https://netguru.atlassian.net/browse/BM-119c
         viewModel.baby
             .map { $0.name }
             .distinctUntilChanged()
@@ -73,31 +54,8 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
             .disposed(by: bag)
         viewModel.connectionStatus
             .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] status in
-                self?.handleConnectionStatusChange(status: status)
-            })
+            .map { $0 == .connected }
+            .bind(to: customView.rx.connectionStatus)
             .disposed(by: bag)
-        viewModel.loadBabies()
-    }
-    
-    private func handleConnectionStatusChange(status: ConnectionStatus) {
-        switch status {
-        case .connected:
-            customView.showIsConnected()
-        case .disconnected:
-            customView.showIsDisconnected()
-        }
-    }
-}
-
-// TODO: Remove when rx is integrated into baby service https://netguru.atlassian.net/browse/BM-119
-extension DashboardViewController: BabyRepoObserver {
-    
-    func babyRepo(_ repo: BabiesRepository, didChangePhotoOf baby: Baby) {
-        updatePhoto(baby.photo)
-    }
-    
-    func babyRepo(_ repo: BabiesRepository, didChangeNameOf baby: Baby) {
-        updateName(baby.name)
     }
 }

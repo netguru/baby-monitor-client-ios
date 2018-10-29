@@ -11,21 +11,19 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
     
     typealias DataType = Baby
     
-    private let babyRepo: BabiesRepository
+    private let babyRepo: BabiesRepositoryProtocol
 
-    init(babyRepo: BabiesRepository) {
+    init(babyRepo: BabiesRepositoryProtocol) {
         self.babyRepo = babyRepo
+        self.baby = babyRepo.babyUpdateObservable
     }
 
     // MARK: - Coordinator callback
     private(set) var showBabies: Observable<Void>?
-    var baby: Observable<Baby> {
-        return babyPublisher.asObservable()
-    }
-    private let babyPublisher = PublishRelay<Baby>()
+    private(set) var baby: Observable<Baby>
     var sections: Observable<[GeneralSection<Baby>]> {
-        return Observable.just(babyRepo.fetchAllBabies())
-            .map { [GeneralSection(title: "", items: $0)] }
+        return baby
+            .map { [GeneralSection(title: "", items: [$0])] }
     }
     
     // MARK: - Internal functions
@@ -45,24 +43,5 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
     func configure(headerCell: BabyMonitorCell, for section: Int) {
         headerCell.configureAsHeader()
         headerCell.update(mainText: "Yesterday")
-    }
-
-    func loadBabies() {
-        guard let baby = babyRepo.fetchAllBabies().first else { return }
-        babyPublisher.accept(baby)
-    }
-    
-    /// Sets observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func addObserver(_ observer: BabyRepoObserver) {
-        babyRepo.addObserver(observer)
-    }
-    
-    /// Removes observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func removeObserver(_ observer: BabyRepoObserver) {
-        babyRepo.removeObserver(observer)
     }
 }

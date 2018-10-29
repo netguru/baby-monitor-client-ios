@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import RxSwift
 
 enum DeviceSearchError: Error {
     case timeout
@@ -24,9 +25,10 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
     private let rtspConfiguration: RTSPConfiguration
-    private let babyRepo: BabiesRepository
+    private let babyRepo: BabiesRepositoryProtocol
+    private let disposeBag = DisposeBag()
     
-    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, babyRepo: BabiesRepository) {
+    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, babyRepo: BabiesRepositoryProtocol) {
         self.netServiceClient = netServiceClient
         self.rtspConfiguration = rtspConfiguration
         self.babyRepo = babyRepo
@@ -38,23 +40,30 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
             self?.netServiceClient.stopFinding()
             self?.searchCancelTimer = nil
         })
-        netServiceClient.didFindServiceWith = { [weak self] ip, port in
-            guard let self = self,
-                let serverUrl = URL.rtsp(ip: ip, port: port) else {
-                    return
+        netServiceClient.serviceObservable
+            .take(1)
+            .subscribe(onNext: { [weak self] ip, port in
+            self?.searchCancelTimer?.invalidate()
+            guard let serverUrl = URL.rtsp(ip: ip, port: port),
+                let self = self else {
+                return
             }
-            self.searchCancelTimer?.invalidate()
             self.rtspConfiguration.url = serverUrl
             self.netServiceClient.stopFinding()
             self.didFinishDeviceSearch?(.success)
             self.setupBaby()
-        }
+        })
+        .disposed(by: disposeBag)
         netServiceClient.findService()
     }
     
     private func setupBaby() {
-        if babyRepo.fetchAllBabies().first == nil {
+        if let baby = babyRepo.fetchAllBabies().first {
+            babyRepo.setCurrentBaby(baby: baby)
+        } else {
+            let baby = Baby(name: "Anonymous")
             try! babyRepo.save(baby: Baby(name: "Anonymous"))
+            babyRepo.setCurrentBaby(baby: baby)
         }
     }
 }

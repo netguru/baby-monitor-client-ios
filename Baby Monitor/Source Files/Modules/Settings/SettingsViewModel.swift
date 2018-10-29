@@ -8,17 +8,14 @@ import RxCocoa
 
 final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSelectable {
 
-    private let babyRepo: BabiesRepository
+    private let babyRepo: BabiesRepositoryProtocol
 
     typealias DataType = Cell
     
     // MARK: - Coordinator callback
     var didSelectChangeServer: (() -> Void)?
     private(set) var showBabies: Observable<Void>?
-    var baby: Observable<Baby> {
-        return babyPublisher.asObservable()
-    }
-    private let babyPublisher = PublishRelay<Baby>()
+    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
     
     private(set) lazy var sections: Observable<[GeneralSection]> = {
         return Observable.just(Cell.allCases)
@@ -32,7 +29,7 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
         case changeServer
     }
 
-    init(babyRepo: BabiesRepository) {
+    init(babyRepo: BabiesRepositoryProtocol) {
         self.babyRepo = babyRepo
     }
 
@@ -53,24 +50,5 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
                 self?.didSelectChangeServer?()
             }
         }
-    }
-    
-    func loadBabies() {
-        guard let baby = babyRepo.fetchAllBabies().first else { return }
-        babyPublisher.accept(baby)
-    }
-    
-    /// Sets observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func addObserver(_ observer: BabyRepoObserver) {
-        babyRepo.addObserver(observer)
-    }
-    
-    /// Removes observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func removeObserver(_ observer: BabyRepoObserver) {
-        babyRepo.removeObserver(observer)
     }
 }
