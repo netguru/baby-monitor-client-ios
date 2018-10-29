@@ -12,9 +12,7 @@ enum ConnectionStatus {
 
 protocol ConnectionChecker: AnyObject {
     
-    /// Called every time connection checker updates information about connection status
-    var didUpdateStatus: ((ConnectionStatus) -> Void)? { get set }
-    
+    /// Observable emitting connection status changes
     var connectionStatus: Observable<ConnectionStatus> { get }
     
     /// Starts connection checking

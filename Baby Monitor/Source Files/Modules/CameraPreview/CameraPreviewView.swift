@@ -83,4 +83,16 @@ extension Reactive where Base: CameraPreviewView {
     var switchBabiesTap: ControlEvent<Void> {
         return base.babyNavigationItemView.rx.tap
     }
+    
+    var babyName: Binder<String> {
+        return Binder(base.babyNavigationItemView, binding: { navigationView, name in
+            navigationView.setBabyName(name)
+        })
+    }
+    
+    var babyPhoto: Binder<UIImage?> {
+        return Binder(base.babyNavigationItemView, binding: { navigationView, photo in
+            navigationView.setBabyPhoto(photo)
+        })
+    }
 }

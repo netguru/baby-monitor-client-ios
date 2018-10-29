@@ -6,7 +6,7 @@
 import UIKit
 import RxSwift
 
-final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource, BabyRepoUpdatable {
+final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource {
     
     private let viewModel: CameraPreviewViewModel
     
@@ -23,19 +23,6 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
         super.viewDidLoad()
         setup()
         setupViewModel()
-    }
-    
-    func updateViews(with baby: Baby) {
-        updateName(baby.name)
-        updatePhoto(baby.photo)
-    }
-    
-    func updateName(_ name: String) {
-        customView.babyNavigationItemView.setBabyName(name)
-    }
-    
-    func updatePhoto(_ photo: UIImage?) {
-        customView.babyNavigationItemView.setBabyPhoto(photo)
     }
     
     // MARK: - Selectors
@@ -58,9 +45,13 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
     
     private func setupViewModel() {
         viewModel.videoDataSource = self
-        viewModel.didLoadBabies = { [weak self] baby in
-            self?.updateViews(with: baby)
-        }
-        viewModel.loadBabies()
+        viewModel.baby
+            .map { $0.name }
+            .bind(to: customView.rx.babyName)
+            .disposed(by: bag)
+        viewModel.baby
+            .map { $0.photo }
+            .bind(to: customView.rx.babyPhoto)
+            .disposed(by: bag)
     }
 }

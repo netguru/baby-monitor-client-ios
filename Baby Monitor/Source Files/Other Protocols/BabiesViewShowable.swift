@@ -7,7 +7,7 @@ import UIKit
 
 protocol BabiesViewShowable: AnyObject {
     
-    var switchBabyViewController: BabyMonitorGeneralViewController? { get set }
+    var switchBabyViewController: BabyMonitorGeneralViewController<SwitchBabyViewModel.Cell>? { get set }
     
     /// Adds/removes switchBabiesViewController to another view controller
     ///
@@ -25,7 +25,7 @@ extension BabiesViewShowable {
         }
         
         let switchBabyViewModel = SwitchBabyViewModel(babyRepo: babyRepo)
-        let switchBabyViewController = BabyMonitorGeneralViewController(viewModel: switchBabyViewModel, type: .switchBaby)
+        let switchBabyViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<SwitchBabyViewModel.Cell>(viewModel: switchBabyViewModel), type: .switchBaby)
         self.switchBabyViewController = switchBabyViewController
         viewController.addChildViewController(switchBabyViewController)
 

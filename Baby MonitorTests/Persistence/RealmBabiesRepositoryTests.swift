@@ -157,7 +157,7 @@ class RealmBabiesRepositoryTests: XCTestCase {
         try! sut.save(baby: currentBaby)
         sut.currentBabyId = currentBabyId
         var changedBabyName: String?
-        sut.babyUpdateObservable.subscribe(
+        sut.babyUpdateObservable.skip(1).subscribe(
             onNext: {
                 exp.fulfill()
                 changedBabyName = $0.name
@@ -186,7 +186,7 @@ class RealmBabiesRepositoryTests: XCTestCase {
         try! sut.save(baby: currentBaby)
         sut.currentBabyId = currentBabyId
         var changedBabyImage: UIImage?
-        sut.babyUpdateObservable.subscribe(
+        sut.babyUpdateObservable.skip(1).subscribe(
             onNext: {
                 exp.fulfill()
                 changedBabyImage = $0.photo

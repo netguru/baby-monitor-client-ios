@@ -179,13 +179,21 @@ extension Reactive where Base: DashboardView {
         let name = base.nameField.rx.controlEvent(.editingDidEndOnExit)
             .withLatestFrom(base.nameField.rx.text)
             .map { $0 ?? "" }
-        let binder = Binder<String>(base.nameField) { nameField, name in
-            nameField.text = name
+        let binder = Binder<String>(base) { dashboardView, name in
+            dashboardView.updateName(name)
         }
         return ControlProperty(values: name, valueSink: binder)
     }
     
     var babyPhoto: Binder<UIImage?> {
-        return base.photoButtonView.rx.photo
+        return Binder(base) { dashboardView, photo in
+            dashboardView.updatePhoto(photo)
+        }
+    }
+    
+    var connectionStatus: Binder<Bool> {
+        return Binder(base) { dashboardView, isConnection in
+            isConnection ? dashboardView.showIsConnected() : dashboardView.showIsDisconnected()
+        }
     }
 }

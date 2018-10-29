@@ -25,22 +25,23 @@ final class BabyMonitorGeneralView: BaseView {
         return view
     }()
     
-    init(type: BabyMonitorGeneralViewController.ViewType) {
+    init(type: BabyMonitorGeneralViewType) {
         super.init()
         setup(type: type)
     }
     
     // MARK: - private functions
-    private func setup(type: BabyMonitorGeneralViewController.ViewType) {
+    private func setup(type: BabyMonitorGeneralViewType) {
         tableView.separatorStyle = .singleLine
         
+        tableView.tableHeaderView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 0, height: CGFloat.leastNormalMagnitude)))
+        tableView.tableFooterView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 0, height: CGFloat.leastNormalMagnitude)))
         switch type {
         case .switchBaby:
             tableView.separatorStyle = .none
             backgroundColor = .clear
             tableView.backgroundColor = .clear
         case .activityLog, .lullaby, .settings:
-            tableView.tableFooterView = UIView()
             backgroundView.isHidden = true
             tableView.backgroundColor = .white
         }
@@ -53,6 +54,7 @@ final class BabyMonitorGeneralView: BaseView {
 }
 
 extension Reactive where Base: BabyMonitorGeneralView {
+    
     var switchBabiesTap: ControlEvent<Void> {
         return base.babyNavigationItemView.rx.tap
     }

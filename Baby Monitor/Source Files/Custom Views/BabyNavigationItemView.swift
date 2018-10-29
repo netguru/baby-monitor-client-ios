@@ -10,7 +10,7 @@ import RxSwift
 final class BabyNavigationItemView: UIView {
 
     fileprivate var isVisible = false
-    private let photoImageView: UIImageView = {
+    fileprivate let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
@@ -20,7 +20,7 @@ final class BabyNavigationItemView: UIView {
         return imageView
     }()
 
-    private let nameLabel: UILabel = {
+    fileprivate let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         return label
@@ -91,5 +91,15 @@ extension Reactive where Base: BabyNavigationItemView {
                 let arrowImage = self.base.isVisible ? #imageLiteral(resourceName: "arrowUp") : #imageLiteral(resourceName: "arrowDown")
                 self.base.arrowButton.setImage(arrowImage, for: .normal)
             }))
+    }
+    
+    var babyPhoto: Binder<UIImage?> {
+        return base.photoImageView.rx.image
+    }
+    
+    var babyName: Binder<String> {
+        return Binder(base.nameLabel, binding: { nameLabel, name in
+            nameLabel.text = name
+        })
     }
 }

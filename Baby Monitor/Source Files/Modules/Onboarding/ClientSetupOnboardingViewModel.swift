@@ -40,7 +40,9 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
             self?.netServiceClient.stopFinding()
             self?.searchCancelTimer = nil
         })
-        netServiceClient.serviceObservable.subscribe(onNext: { [weak self] ip, port in
+        netServiceClient.serviceObservable
+            .take(1)
+            .subscribe(onNext: { [weak self] ip, port in
             self?.searchCancelTimer?.invalidate()
             guard let serverUrl = URL.rtsp(ip: ip, port: port),
                 let self = self else {
@@ -56,8 +58,12 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
     }
     
     private func setupBaby() {
-        if babyRepo.fetchAllBabies().first == nil {
+        if let baby = babyRepo.fetchAllBabies().first {
+            babyRepo.setCurrentBaby(baby: baby)
+        } else {
+            let baby = Baby(name: "Anonymous")
             try! babyRepo.save(baby: Baby(name: "Anonymous"))
+            babyRepo.setCurrentBaby(baby: baby)
         }
     }
 }

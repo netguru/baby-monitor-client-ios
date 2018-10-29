@@ -14,7 +14,13 @@ protocol BabiesRepositoryProtocol {
     /// Persists baby in repository
     ///
     /// - Parameter baby: object to persist
+    /// - Parameter setCurrent: flag indicating whether baby should be set as current
     func save(baby: Baby) throws
+    
+    /// Sets baby as current one
+    ///
+    /// - Parameter baby: object to set as current
+    func setCurrentBaby(baby: Baby)
     
     /// Returns all persisted babies
     ///
@@ -40,9 +46,14 @@ protocol BabiesRepositoryProtocol {
     func setPhoto(_ photo: UIImage, id: String)
     func setName(_ name: String, id: String)
     
-    // Functions for observation of changes to babies
+    /// Change current baby photo to provided one
     ///
-    /// - Parameter observer: class conformed to BabyRepoObserver protocol
-    func addObserver(_ observer: BabyRepoObserver)
-    func removeObserver(_ observer: BabyRepoObserver)
+    /// - Parameter photo: Photo to set
+    func setCurrentPhoto(_ photo: UIImage)
+    
+    
+    /// Change current baby name to provided one
+    ///
+    /// - Parameter name: Name to set
+    func setCurrentName(_ name: String)
 }

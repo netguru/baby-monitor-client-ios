@@ -7,7 +7,6 @@ import RxSwift
 
 final class NetServiceConnectionChecker: ConnectionChecker {
     
-    var didUpdateStatus: ((ConnectionStatus) -> Void)?
     lazy var connectionStatus: Observable<ConnectionStatus> = createStatus()
     
     private let netServiceClient: NetServiceClientProtocol

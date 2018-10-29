@@ -3,7 +3,7 @@
 //  Baby Monitor
 //
 
-import Foundation
+import RxSwift
 
 final class CameraPreviewViewModel {
 
@@ -15,6 +15,7 @@ final class CameraPreviewViewModel {
         }
     }
     private let babyRepo: BabiesRepositoryProtocol
+    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
 
     init(mediaPlayer: MediaPlayerProtocol, babyRepo: BabiesRepositoryProtocol) {
         self.mediaPlayer = mediaPlayer
@@ -29,7 +30,6 @@ final class CameraPreviewViewModel {
     // MARK: - Coordinator callback
     var didSelectShowBabies: (() -> Void)?
     var didSelectCancel: (() -> Void)?
-    var didLoadBabies: ((_ baby: Baby) -> Void)?
 
     // MARK: - Internal functions
     func selectCancel() {
@@ -42,24 +42,5 @@ final class CameraPreviewViewModel {
 
     func selectShowBabies() {
         didSelectShowBabies?()
-    }
-    
-    func loadBabies() {
-        guard let baby = babyRepo.fetchAllBabies().first else { return }
-        didLoadBabies?(baby)
-    }
-    
-    /// Sets observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func addObserver(_ observer: BabyRepoObserver) {
-        babyRepo.addObserver(observer)
-    }
-    
-    /// Removes observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func removeObserver(_ observer: BabyRepoObserver) {
-        babyRepo.removeObserver(observer)
     }
 }

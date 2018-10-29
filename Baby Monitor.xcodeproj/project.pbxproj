@@ -78,16 +78,15 @@
 		8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */; };
 		8A43DB04217DD89300E3004D /* NetServiceConnectionCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */; };
 		8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB082180971D00E3004D /* UIViewController+Rx.swift */; };
-		8AEAFBB1217735D4003E756F /* BabiesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB0217735D4003E756F /* BabiesRepositoryProtocol.swift */; };
+		8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB1E2181D1E700E3004D /* GeneralSection.swift */; };
+		8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */; };
 		8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */; };
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
 		8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */; };
+		8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DF82182F07700729615 /* Lullaby.swift */; };
+		8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */; };
 		B7517BD464A64050343AE8FF /* Pods_Baby_MonitorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A7F3CDA8A65C434713C156 /* Pods_Baby_MonitorTests.framework */; };
 		D20FD825EE66D985BA4F0062 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C32F58E9FB0FFEC15A412C4 /* Pods_Baby_Monitor.framework */; };
-		EC2A353A21786D8600D07471 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353921786D8600D07471 /* SettingsViewController.swift */; };
-		EC2A353E2178771B00D07471 /* LullabiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353D2178771B00D07471 /* LullabiesViewController.swift */; };
-		EC2A3540217877E400D07471 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A353F217877E400D07471 /* ActivityLogViewController.swift */; };
-		EC3A67A421774B4500BD3851 /* BabyServiceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */; };
 		EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */; };
 		EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
@@ -95,7 +94,6 @@
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
 		EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8389B6213FD7F500F00B83 /* MathTests.swift */; };
 		EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */; };
-		EC92C1D9217A0C7900F7EC9B /* BabyServiceUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC92C1D8217A0C7900F7EC9B /* BabyServiceUpdatable.swift */; };
 		ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */; };
 		ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */; };
 		ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */; };
@@ -195,16 +193,15 @@
 		8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionChecker.swift; sourceTree = "<group>"; };
 		8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionCheckerTests.swift; sourceTree = "<group>"; };
 		8A43DB082180971D00E3004D /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
-		8AEAFBB0217735D4003E756F /* BabiesRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabiesRepositoryProtocol.swift; sourceTree = "<group>"; };
+		8A43DB1E2181D1E700E3004D /* GeneralSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSection.swift; sourceTree = "<group>"; };
+		8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesRepositoryProtocol.swift; sourceTree = "<group>"; };
 		8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB52177371B003E756F /* RealmBaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaby.swift; sourceTree = "<group>"; };
 		8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepositoryTests.swift; sourceTree = "<group>"; };
+		8AFE3DF82182F07700729615 /* Lullaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lullaby.swift; sourceTree = "<group>"; };
+		8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		C46B52316314871E37269EB6 /* Pods-Baby Monitor.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.production.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.production.xcconfig"; sourceTree = "<group>"; };
 		D91627A5904084A858297E87 /* Pods-Baby MonitorTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.development.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"; sourceTree = "<group>"; };
-		EC2A353921786D8600D07471 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		EC2A353D2178771B00D07471 /* LullabiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewController.swift; sourceTree = "<group>"; };
-		EC2A353F217877E400D07471 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
-		EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyServiceObserver.swift; sourceTree = "<group>"; };
 		EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPhotoButton.swift; sourceTree = "<group>"; };
 		EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,7 +213,6 @@
 		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8389B6213FD7F500F00B83 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
 		EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
-		EC92C1D8217A0C7900F7EC9B /* BabyServiceUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyServiceUpdatable.swift; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
 		ECB146DB213EA45E00C504FD /* App-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Development.xcconfig"; sourceTree = "<group>"; };
 		ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Staging.xcconfig"; sourceTree = "<group>"; };
@@ -337,8 +333,6 @@
 				4E5731952170BA7400DEAF0B /* Identifiable.swift */,
 				4E5731962170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift */,
 				4E5731972170BA7400DEAF0B /* Coordinator.swift */,
-				EC92C1D8217A0C7900F7EC9B /* BabyServiceUpdatable.swift */,
-				EC3A67A321774B4500BD3851 /* BabyServiceObserver.swift */,
 			);
 			path = "Other Protocols";
 			sourceTree = "<group>";
@@ -415,6 +409,9 @@
 			children = (
 				8AEAFBB42177370F003E756F /* Realm */,
 				4E9563312164DDC100289475 /* Baby.swift */,
+				8A43DB1E2181D1E700E3004D /* GeneralSection.swift */,
+				8AFE3DF82182F07700729615 /* Lullaby.swift */,
+				8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -448,7 +445,6 @@
 			isa = PBXGroup;
 			children = (
 				4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */,
-				EC2A353F217877E400D07471 /* ActivityLogViewController.swift */,
 				4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */,
 			);
 			path = ActivityLog;
@@ -458,7 +454,6 @@
 			isa = PBXGroup;
 			children = (
 				4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */,
-				EC2A353D2178771B00D07471 /* LullabiesViewController.swift */,
 				4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */,
 			);
 			path = Lullabies;
@@ -468,7 +463,6 @@
 			isa = PBXGroup;
 			children = (
 				4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */,
-				EC2A353921786D8600D07471 /* SettingsViewController.swift */,
 				4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */,
 			);
 			path = Settings;
@@ -540,7 +534,7 @@
 		8AEAFBAF217735B3003E756F /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				8AEAFBB0217735D4003E756F /* BabiesRepositoryProtocol.swift */,
+				8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */,
 				8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */,
 				8A42DB062179D61B00BF5F1B /* RTSPConfiguration.swift */,
 				8A42DB082179D65900BF5F1B /* UserDefaultsRTSPConfiguration.swift */,
@@ -876,20 +870,24 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/RTSPServer/RTSPServer.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTSPServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -934,10 +932,10 @@
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
-				EC2A3540217877E400D07471 /* ActivityLogViewController.swift in Sources */,
 				8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */,
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				8A42DB0B2179D7D700BF5F1B /* URLUserDefaults.swift in Sources */,
+				8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
@@ -957,10 +955,8 @@
 				4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
-				EC2A353A21786D8600D07471 /* SettingsViewController.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
 				4E626696217F1B4000FA542F /* InitialOnboardingViewModel.swift in Sources */,
-				EC92C1D9217A0C7900F7EC9B /* BabyServiceUpdatable.swift in Sources */,
 				4E5731982170BA7400DEAF0B /* BabiesViewSelectable.swift in Sources */,
 				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
 				4E57319B2170BA7400DEAF0B /* HasWindow.swift in Sources */,
@@ -973,13 +969,13 @@
 				8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,
 				4E5731A42170BA9D00DEAF0B /* VLCMediaPlayerService.swift in Sources */,
+				8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
 				4E1CF81921785C7800F48706 /* MediaPlayerStreamingService.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
-				8AEAFBB1217735D4003E756F /* BabiesRepositoryProtocol.swift in Sources */,
 				4E57319D2170BA7400DEAF0B /* Identifiable.swift in Sources */,
 				4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */,
 				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
@@ -987,15 +983,15 @@
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
-				EC2A353E2178771B00D07471 /* LullabiesViewController.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+RTSP.swift in Sources */,
+				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
 				4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */,
 				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
-				EC3A67A421774B4500BD3851 /* BabyServiceObserver.swift in Sources */,
 				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
 				EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */,
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
+				8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

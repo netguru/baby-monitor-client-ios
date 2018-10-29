@@ -4,71 +4,69 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
+    
+    typealias DataType = Lullaby
 
     private let babyRepo: BabiesRepositoryProtocol
 
     private enum Constants {
-        static let bmLibrarySection = 0
-        static let yourLullabiesSection = 1
+        enum Section: Int, CaseIterable {
+            case bmLibrary = 0
+            case yourLullabies = 1
+            
+            var title: String {
+                switch self {
+                case .bmLibrary:
+                    return Localizable.Lullabies.bmLibrary
+                case .yourLullabies:
+                    return Localizable.Lullabies.yourLullabies
+                }
+            }
+        }
     }
 
-    let numberOfSections = 2
+    var sections: Observable<[GeneralSection<Lullaby>]> {
+        return Observable.just(Constants.Section.allCases)
+            .map { sections in
+                return sections.map { GeneralSection(title: $0.title, items: [Lullaby(name: "Lullaby#1"), Lullaby(name: "Lullaby#2")]) }
+            }
+    }
 
     // MARK: - Coordinator callback
-    var didSelectShowBabiesView: (() -> Void)?
-    var didLoadBabies: ((_ baby: Baby) -> Void)?
+    private(set) var showBabies: Observable<Void>?
+    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
 
     init(babyRepo: BabiesRepositoryProtocol) {
         self.babyRepo = babyRepo
     }
 
     // MARK: - Internal functions
-    func configure(cell: BabyMonitorCell, for indexPath: IndexPath) {
+    func attachInput(showBabiesTap: ControlEvent<Void>) {
+        self.showBabies = showBabiesTap.asObservable()
+    }
+    
+    func configure(cell: BabyMonitorCell, for data: Lullaby) {
         cell.type = .lullaby
+        let lullaby = data
         //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
-        cell.update(mainText: "Sleep My Baby")
-        cell.update(secondaryText: "2:30 mins")
-    }
-
-    func numberOfRows(for section: Int) -> Int {
-        //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
-        return 3
-    }
-
-    func selectShowBabies() {
-        didSelectShowBabiesView?()
+        cell.update(mainText: lullaby.name)
+        cell.update(secondaryText: lullaby.name)
     }
 
     func configure(headerCell: BabyMonitorCell, for section: Int) {
-        headerCell.configureAsHeader()
-        switch section {
-        case Constants.bmLibrarySection:
-            headerCell.update(mainText: Localizable.Lullabies.bmLibrary)
-        case Constants.yourLullabiesSection:
-            headerCell.update(mainText: Localizable.Lullabies.yourLullabies)
-        default:
-            break
+        guard let typedSection = Constants.Section(rawValue: section) else {
+            return
         }
-    }
-    
-    func loadBabies() {
-        guard let baby = babyRepo.fetchAllBabies().first else { return }
-        didLoadBabies?(baby)
-    }
-    
-    /// Sets observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func addObserver(_ observer: BabyRepoObserver) {
-        babyRepo.addObserver(observer)
-    }
-    
-    /// Removes observer to react to changes in the baby.
-    ///
-    /// - Parameter observer: An object conformed to BabyRepoObserver protocol.
-    func removeObserver(_ observer: BabyRepoObserver) {
-        babyRepo.removeObserver(observer)
+        headerCell.configureAsHeader()
+        switch typedSection {
+        case Constants.Section.bmLibrary:
+            headerCell.update(mainText: Localizable.Lullabies.bmLibrary)
+        case Constants.Section.yourLullabies:
+            headerCell.update(mainText: Localizable.Lullabies.yourLullabies)
+        }
     }
 }
