@@ -5,7 +5,7 @@
 
 import RxDataSources
 
-struct GeneralSection<T> {
+struct GeneralSection<T: Equatable>: Equatable {
     var title: String
     var items: [T]
 }

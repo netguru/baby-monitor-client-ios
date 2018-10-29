@@ -14,7 +14,7 @@ enum BabyMonitorGeneralViewType {
     case settings
 }
 
-class BabyMonitorGeneralViewController<T>: TypedViewController<BabyMonitorGeneralView>, UITableViewDelegate {
+class BabyMonitorGeneralViewController<T: Equatable>: TypedViewController<BabyMonitorGeneralView>, UITableViewDelegate {
 
     private let viewModel: AnyBabyMonitorGeneralViewModelProtocol<T>
     private let viewType: BabyMonitorGeneralViewType

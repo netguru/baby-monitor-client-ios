@@ -31,7 +31,7 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
         showBabies = showBabiesTap.asObservable()
     }
     
-    func configure(cell: BabyMonitorCell, for data: Baby) {
+    func configure(cell: BabyMonitorCellProtocol, for data: Baby) {
         cell.type = .activityLog
         let baby = data
         // TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
@@ -40,7 +40,7 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
         cell.update(mainText: "\(baby.name) was crying!")
     }
 
-    func configure(headerCell: BabyMonitorCell, for section: Int) {
+    func configure(headerCell: BabyMonitorCellProtocol, for section: Int) {
         headerCell.configureAsHeader()
         headerCell.update(mainText: "Yesterday")
     }

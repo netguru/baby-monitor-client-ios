@@ -5,7 +5,7 @@
 
 import UIKit
 
-class BabyMonitorCell: UITableViewCell, Identifiable {
+class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
     
     enum `Type` {
         case switchBaby(SwitchBabyType)

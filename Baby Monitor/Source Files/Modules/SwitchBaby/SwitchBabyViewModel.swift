@@ -13,7 +13,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
     
     private let babyRepo: BabiesRepositoryProtocol
     
-    enum Cell {
+    enum Cell: Equatable {
         case baby(Baby)
         case addAnother
     }
@@ -36,7 +36,7 @@ final class SwitchBabyViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonito
     }
     
     // MARK: - internal functions
-    func configure(cell: BabyMonitorCell, for data: Cell) {
+    func configure(cell: BabyMonitorCellProtocol, for data: Cell) {
         let cellData = data
         switch cellData {
         case .baby(let baby):

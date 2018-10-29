@@ -13,27 +13,26 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
 
     private let babyRepo: BabiesRepositoryProtocol
 
-    private enum Constants {
-        enum Section: Int, CaseIterable {
-            case bmLibrary = 0
-            case yourLullabies = 1
-            
-            var title: String {
-                switch self {
-                case .bmLibrary:
-                    return Localizable.Lullabies.bmLibrary
-                case .yourLullabies:
-                    return Localizable.Lullabies.yourLullabies
-                }
+    enum Section: Int, CaseIterable {
+        case bmLibrary = 0
+        case yourLullabies = 1
+        
+        var title: String {
+            switch self {
+            case .bmLibrary:
+                return Localizable.Lullabies.bmLibrary
+            case .yourLullabies:
+                return Localizable.Lullabies.yourLullabies
             }
         }
     }
 
     var sections: Observable<[GeneralSection<Lullaby>]> {
-        return Observable.just(Constants.Section.allCases)
+        return Observable.just(Section.allCases)
             .map { sections in
                 return sections.map { GeneralSection(title: $0.title, items: [Lullaby(name: "Lullaby#1"), Lullaby(name: "Lullaby#2")]) }
             }
+            .concat(Observable.never())
     }
 
     // MARK: - Coordinator callback
@@ -49,7 +48,7 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
         self.showBabies = showBabiesTap.asObservable()
     }
     
-    func configure(cell: BabyMonitorCell, for data: Lullaby) {
+    func configure(cell: BabyMonitorCellProtocol, for data: Lullaby) {
         cell.type = .lullaby
         let lullaby = data
         //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
@@ -57,15 +56,15 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
         cell.update(secondaryText: lullaby.name)
     }
 
-    func configure(headerCell: BabyMonitorCell, for section: Int) {
-        guard let typedSection = Constants.Section(rawValue: section) else {
+    func configure(headerCell: BabyMonitorCellProtocol, for section: Int) {
+        guard let typedSection = Section(rawValue: section) else {
             return
         }
         headerCell.configureAsHeader()
         switch typedSection {
-        case Constants.Section.bmLibrary:
+        case Section.bmLibrary:
             headerCell.update(mainText: Localizable.Lullabies.bmLibrary)
-        case Constants.Section.yourLullabies:
+        case Section.yourLullabies:
             headerCell.update(mainText: Localizable.Lullabies.yourLullabies)
         }
     }

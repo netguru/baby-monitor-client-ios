@@ -20,7 +20,7 @@ private extension BabyMonitorGeneralViewModelProtocol {
     }
 }
 
-final class AnyBabyMonitorGeneralViewModelProtocol<ConcreteDataType>: BabyMonitorGeneralViewModelProtocol {
+final class AnyBabyMonitorGeneralViewModelProtocol<ConcreteDataType: Equatable>: BabyMonitorGeneralViewModelProtocol {
     
     var showBabies: Observable<Void>? {
         return _getShowBabies()
@@ -37,7 +37,7 @@ final class AnyBabyMonitorGeneralViewModelProtocol<ConcreteDataType>: BabyMonito
     }
     private let _getSections: () -> Observable<[GeneralSection<ConcreteDataType>]>
     
-    private let _configure: (BabyMonitorCell, ConcreteDataType) -> Void
+    private let _configure: (BabyMonitorCellProtocol, ConcreteDataType) -> Void
     
     // MARK: - BabiesViewSelectable thunk
     let attachInput: ((_ showBabiesTap: ControlEvent<Void>) -> Void)?
@@ -64,7 +64,7 @@ final class AnyBabyMonitorGeneralViewModelProtocol<ConcreteDataType>: BabyMonito
         }
     }
     
-    func configure(cell: BabyMonitorCell, for data: ConcreteDataType) {
+    func configure(cell: BabyMonitorCellProtocol, for data: ConcreteDataType) {
         _configure(cell, data)
     }
 }

@@ -22,9 +22,10 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
             .map { cells in
                 return [GeneralSection(title: "", items: cells)]
             }
+            .concat(Observable.never())
     }()
 
-    enum Cell: CaseIterable {
+    enum Cell: CaseIterable, Equatable {
         case switchToServer
         case changeServer
     }
@@ -38,7 +39,7 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
         showBabies = showBabiesTap.asObservable()
     }
     
-    func configure(cell: BabyMonitorCell, for data: Cell) {
+    func configure(cell: BabyMonitorCellProtocol, for data: Cell) {
         cell.type = .settings
         switch data {
         case Cell.switchToServer:

@@ -59,8 +59,7 @@ final class DashboardViewModel {
     ///
     /// - Parameter photo: A new photo for baby.
     func updatePhoto(_ photo: UIImage) {
-        guard let baby = babyRepo.fetchAllBabies().first else { return }
-        babyRepo.setPhoto(photo, id: baby.id)
+        babyRepo.setCurrentPhoto(photo)
     }
     
     // MARK: - Private functions

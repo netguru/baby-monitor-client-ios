@@ -12,5 +12,5 @@ protocol BabyMonitorHeaderCellConfigurable {
     /// - Parameters:
     ///   - headerCell: baby cell for configuring
     ///   - section: header section
-    func configure(headerCell: BabyMonitorCell, for section: Int)
+    func configure(headerCell: BabyMonitorCellProtocol, for section: Int)
 }
