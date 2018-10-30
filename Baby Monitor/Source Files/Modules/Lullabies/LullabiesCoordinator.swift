@@ -29,9 +29,7 @@ final class LullabiesCoordinator: Coordinator, BabiesViewShowable {
     // MARK: - private functions
     private func showLullabies() {
         let viewModel = LullabiesViewModel(babyRepo: appDependencies.babyRepo)
-        
         lullabiesViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<Lullaby>(viewModel: viewModel), type: .lullaby)
-        
         lullabiesViewController?.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
                 self?.connect(toLullabiesViewModel: viewModel)
