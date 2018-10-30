@@ -11,11 +11,12 @@ import RxCocoa
 
 class LullabyViewModelTests: XCTestCase {
 
-    private let bag = DisposeBag()
+    private var bag = DisposeBag()
     private var showBabiesTap = PublishSubject<Void>()
     
     override func setUp() {
         showBabiesTap = PublishSubject<Void>()
+        bag = DisposeBag()
     }
     
     func testShouldForwardSwitchBabyTap() {

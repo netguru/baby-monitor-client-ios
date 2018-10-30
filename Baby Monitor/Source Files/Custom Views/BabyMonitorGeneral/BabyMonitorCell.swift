@@ -7,18 +7,6 @@ import UIKit
 
 class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
     
-    enum `Type` {
-        case switchBaby(SwitchBabyType)
-        case lullaby
-        case activityLog
-        case settings
-    }
-    
-    enum SwitchBabyType {
-        case baby
-        case addAnother
-    }
-    
     private enum Constants {
         static let mainWidthHeight: CGFloat = 40
     }
@@ -67,7 +55,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
         return stackView
     }()
     
-    var type: Type = .activityLog {
+    var type: BabyMonitorCellType = .activityLog {
         didSet {
             updateViews()
         }

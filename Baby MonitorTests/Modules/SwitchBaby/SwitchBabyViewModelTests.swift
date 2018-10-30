@@ -10,7 +10,11 @@ import RxTest
 
 class SwitchBabyViewModelTests: XCTestCase {
     
-    private let bag = DisposeBag()
+    private var bag = DisposeBag()
+    
+    override func setUp() {
+        bag = DisposeBag()
+    }
     
     func testShouldReturnProperSections() {
         // Given

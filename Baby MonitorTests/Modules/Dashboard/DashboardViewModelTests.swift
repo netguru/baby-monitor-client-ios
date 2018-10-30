@@ -15,13 +15,14 @@ class DashboardViewModelTests: XCTestCase {
     private var addPhotoTap = PublishSubject<Void>()
     private var namePublisher = PublishSubject<String>()
     
-    private let bag = DisposeBag()
+    private var bag = DisposeBag()
     
     override func setUp() {
         switchBabyTap = PublishSubject<Void>()
         liveCameraTap = PublishSubject<Void>()
         addPhotoTap = PublishSubject<Void>()
         namePublisher = PublishSubject<String>()
+        bag = DisposeBag()
     }
 
     func testShouldStartConnectionCheckingOnCreation() {

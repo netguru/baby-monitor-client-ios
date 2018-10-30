@@ -9,7 +9,7 @@ final class BabyMonitorCellMock: BabyMonitorCellProtocol {
     
     var didTap: (() -> Void)?
     
-    var type: BabyMonitorCell.`Type` = .activityLog
+    var type: BabyMonitorCellType = .activityLog
     
     private(set) var mainText: String?
     private(set) var secondaryText: String?

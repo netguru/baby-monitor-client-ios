@@ -12,10 +12,11 @@ import RxCocoa
 class ActivityLogViewModelTests: XCTestCase {
 
     private var showBabiesTap = PublishSubject<Void>()
-    private let bag = DisposeBag()
+    private var bag = DisposeBag()
     
     override func setUp() {
         showBabiesTap = PublishSubject<Void>()
+        bag = DisposeBag()
     }
     
     func testShouldConfigureCell() {
