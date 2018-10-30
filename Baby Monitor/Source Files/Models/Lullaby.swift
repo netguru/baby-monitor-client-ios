@@ -3,6 +3,6 @@
 //  Baby Monitor
 //
 
-struct Lullaby {
+struct Lullaby: Equatable {
     let name: String
 }

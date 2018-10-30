@@ -51,7 +51,6 @@ protocol BabiesRepositoryProtocol {
     /// - Parameter photo: Photo to set
     func setCurrentPhoto(_ photo: UIImage)
     
-    
     /// Change current baby name to provided one
     ///
     /// - Parameter name: Name to set

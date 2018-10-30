@@ -8,7 +8,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-protocol BabyMonitorGeneralViewModelProtocol: AnyObject {
+protocol BabyMonitorGeneralViewModelProtocol: AnyObject where DataType: Equatable {
     
     /// Data type for sections data
     associatedtype DataType
@@ -21,11 +21,11 @@ protocol BabyMonitorGeneralViewModelProtocol: AnyObject {
     
     /// Observable emitting sections of data
     var sections: Observable<[GeneralSection<DataType>]> { get }
-    
+
     /// Configures cell with provided data
     ///
     /// - Parameters:
     ///   - cell: Cell to configure
     ///   - data: Data to configure cell with
-    func configure(cell: BabyMonitorCell, for data: DataType)
+    func configure(cell: BabyMonitorCellProtocol, for data: DataType)
 }

@@ -80,6 +80,15 @@
 		8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB082180971D00E3004D /* UIViewController+Rx.swift */; };
 		8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB1E2181D1E700E3004D /* GeneralSection.swift */; };
 		8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */; };
+		8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */; };
+		8AA7CBBE2187103600FCF62A /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */; };
+		8AA7CBC02187105600FCF62A /* BabyMonitorCellMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBF2187105600FCF62A /* BabyMonitorCellMock.swift */; };
+		8AA7CBC42187117200FCF62A /* BabiesRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBC32187117200FCF62A /* BabiesRepositoryMock.swift */; };
+		8AA7CBCA21871AE300FCF62A /* DashboardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBC921871AE300FCF62A /* DashboardViewModelTests.swift */; };
+		8AA7CBCC21871B3E00FCF62A /* ConnectionCheckerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBCB21871B3E00FCF62A /* ConnectionCheckerMock.swift */; };
+		8AA7CBCF2187401700FCF62A /* ActivityLogViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBCE2187401700FCF62A /* ActivityLogViewModelTests.swift */; };
+		8AA7CBD421874FD000FCF62A /* SwitchBabyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBD321874FD000FCF62A /* SwitchBabyViewModelTests.swift */; };
+		8AA7CBD72187521500FCF62A /* LullabyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBD62187521500FCF62A /* LullabyViewModelTests.swift */; };
 		8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */; };
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
 		8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */; };
@@ -195,6 +204,15 @@
 		8A43DB082180971D00E3004D /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		8A43DB1E2181D1E700E3004D /* GeneralSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSection.swift; sourceTree = "<group>"; };
 		8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesRepositoryProtocol.swift; sourceTree = "<group>"; };
+		8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellProtocol.swift; sourceTree = "<group>"; };
+		8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
+		8AA7CBBF2187105600FCF62A /* BabyMonitorCellMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellMock.swift; sourceTree = "<group>"; };
+		8AA7CBC32187117200FCF62A /* BabiesRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabiesRepositoryMock.swift; sourceTree = "<group>"; };
+		8AA7CBC921871AE300FCF62A /* DashboardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModelTests.swift; sourceTree = "<group>"; };
+		8AA7CBCB21871B3E00FCF62A /* ConnectionCheckerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCheckerMock.swift; sourceTree = "<group>"; };
+		8AA7CBCE2187401700FCF62A /* ActivityLogViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewModelTests.swift; sourceTree = "<group>"; };
+		8AA7CBD321874FD000FCF62A /* SwitchBabyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchBabyViewModelTests.swift; sourceTree = "<group>"; };
+		8AA7CBD62187521500FCF62A /* LullabyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabyViewModelTests.swift; sourceTree = "<group>"; };
 		8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB52177371B003E756F /* RealmBaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaby.swift; sourceTree = "<group>"; };
 		8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepositoryTests.swift; sourceTree = "<group>"; };
@@ -475,6 +493,7 @@
 				4E9563282164CAC600289475 /* BabyMonitorGeneralViewController.swift */,
 				4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */,
 				4E1D2C6221678D5600E92F29 /* BabyMonitorGeneralView.swift */,
+				8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */,
 			);
 			path = BabyMonitorGeneral;
 			sourceTree = "<group>";
@@ -482,6 +501,11 @@
 		8A42DAFB2179BF8200BF5F1B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8AA7CBD52187520700FCF62A /* Lullaby */,
+				8AA7CBD021874F1E00FCF62A /* SwitchBaby */,
+				8AA7CBCD2187400400FCF62A /* ActivityLog */,
+				8AA7CBC621871AB700FCF62A /* Dashboard */,
+				8AA7CBBC2187100F00FCF62A /* Settings */,
 				8A42DAFC2179BF8C00BF5F1B /* ClientSetup */,
 			);
 			path = Modules;
@@ -501,6 +525,9 @@
 				8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */,
 				8A42DB0D2179D8FB00BF5F1B /* URLUserDefaultsMock.swift */,
 				8A42DB182179E0AD00BF5F1B /* RTSPConfigurationMock.swift */,
+				8AA7CBBF2187105600FCF62A /* BabyMonitorCellMock.swift */,
+				8AA7CBC32187117200FCF62A /* BabiesRepositoryMock.swift */,
+				8AA7CBCB21871B3E00FCF62A /* ConnectionCheckerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -529,6 +556,46 @@
 				8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		8AA7CBBC2187100F00FCF62A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8AA7CBC621871AB700FCF62A /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				8AA7CBC921871AE300FCF62A /* DashboardViewModelTests.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		8AA7CBCD2187400400FCF62A /* ActivityLog */ = {
+			isa = PBXGroup;
+			children = (
+				8AA7CBCE2187401700FCF62A /* ActivityLogViewModelTests.swift */,
+			);
+			path = ActivityLog;
+			sourceTree = "<group>";
+		};
+		8AA7CBD021874F1E00FCF62A /* SwitchBaby */ = {
+			isa = PBXGroup;
+			children = (
+				8AA7CBD321874FD000FCF62A /* SwitchBabyViewModelTests.swift */,
+			);
+			path = SwitchBaby;
+			sourceTree = "<group>";
+		};
+		8AA7CBD52187520700FCF62A /* Lullaby */ = {
+			isa = PBXGroup;
+			children = (
+				8AA7CBD62187521500FCF62A /* LullabyViewModelTests.swift */,
+			);
+			path = Lullaby;
 			sourceTree = "<group>";
 		};
 		8AEAFBAF217735B3003E756F /* Persistence */ = {
@@ -992,6 +1059,7 @@
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
 				8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */,
+				8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1004,12 +1072,20 @@
 				8A43DB04217DD89300E3004D /* NetServiceConnectionCheckerTests.swift in Sources */,
 				8A42DB192179E0AD00BF5F1B /* RTSPConfigurationMock.swift in Sources */,
 				8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */,
+				8AA7CBCC21871B3E00FCF62A /* ConnectionCheckerMock.swift in Sources */,
+				8AA7CBC02187105600FCF62A /* BabyMonitorCellMock.swift in Sources */,
+				8AA7CBCA21871AE300FCF62A /* DashboardViewModelTests.swift in Sources */,
 				8A42DB0E2179D8FB00BF5F1B /* URLUserDefaultsMock.swift in Sources */,
+				8AA7CBD72187521500FCF62A /* LullabyViewModelTests.swift in Sources */,
+				8AA7CBCF2187401700FCF62A /* ActivityLogViewModelTests.swift in Sources */,
+				8AA7CBC42187117200FCF62A /* BabiesRepositoryMock.swift in Sources */,
 				8A42DB172179DD9C00BF5F1B /* URL+RTSPTests.swift in Sources */,
 				8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */,
 				8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */,
 				4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */,
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
+				8AA7CBD421874FD000FCF62A /* SwitchBabyViewModelTests.swift in Sources */,
+				8AA7CBBE2187103600FCF62A /* SettingsViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
