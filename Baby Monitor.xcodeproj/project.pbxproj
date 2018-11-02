@@ -101,6 +101,10 @@
 		8AA7CBF3218C62E600FCF62A /* prettyLittleHorses.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEE218C62E600FCF62A /* prettyLittleHorses.mp3 */; };
 		8AA7CBF4218C62E600FCF62A /* hushLittleBaby.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEF218C62E600FCF62A /* hushLittleBaby.mp3 */; };
 		8AA7CBF6218C635200FCF62A /* test2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBF5218C635200FCF62A /* test2.mp3 */; };
+		8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */; };
+		8AA7CBFC218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBFB218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift */; };
+		8AA7CBFE218C70B400FCF62A /* RealmLullabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */; };
+		8AA7CC00218C72D600FCF62A /* RealmLullaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBFF218C72D600FCF62A /* RealmLullaby.swift */; };
 		8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */; };
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
 		8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */; };
@@ -237,6 +241,10 @@
 		8AA7CBEE218C62E600FCF62A /* prettyLittleHorses.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = prettyLittleHorses.mp3; sourceTree = "<group>"; };
 		8AA7CBEF218C62E600FCF62A /* hushLittleBaby.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hushLittleBaby.mp3; sourceTree = "<group>"; };
 		8AA7CBF5218C635200FCF62A /* test2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = test2.mp3; path = ../../../../Downloads/test2.mp3; sourceTree = "<group>"; };
+		8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesRepositoryProtocol.swift; sourceTree = "<group>"; };
+		8AA7CBFB218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLullabiesRepositoryTests.swift; sourceTree = "<group>"; };
+		8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLullabiesRepository.swift; sourceTree = "<group>"; };
+		8AA7CBFF218C72D600FCF62A /* RealmLullaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLullaby.swift; sourceTree = "<group>"; };
 		8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB52177371B003E756F /* RealmBaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaby.swift; sourceTree = "<group>"; };
 		8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepositoryTests.swift; sourceTree = "<group>"; };
@@ -663,6 +671,8 @@
 				8A42DB062179D61B00BF5F1B /* RTSPConfiguration.swift */,
 				8A42DB082179D65900BF5F1B /* UserDefaultsRTSPConfiguration.swift */,
 				8A42DB0A2179D7D700BF5F1B /* URLUserDefaults.swift */,
+				8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */,
+				8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -671,6 +681,7 @@
 			isa = PBXGroup;
 			children = (
 				8AEAFBB52177371B003E756F /* RealmBaby.swift */,
+				8AA7CBFF218C72D600FCF62A /* RealmLullaby.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -680,6 +691,7 @@
 			children = (
 				8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */,
 				8A42DB112179D9A300BF5F1B /* UserDefaultsRTSPConfiguration.swift */,
+				8AA7CBFB218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -1063,6 +1075,7 @@
 				4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */,
 				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
+				8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */,
 				8AA7CBDE218C55C500FCF62A /* LullabyPlayer.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
@@ -1108,6 +1121,7 @@
 				4E5731A42170BA9D00DEAF0B /* VLCMediaPlayerService.swift in Sources */,
 				8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
+				8AA7CC00218C72D600FCF62A /* RealmLullaby.swift in Sources */,
 				4E1CF81921785C7800F48706 /* MediaPlayerStreamingService.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
@@ -1118,6 +1132,7 @@
 				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* RTSPConfiguration.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
+				8AA7CBFE218C70B400FCF62A /* RealmLullabiesRepository.swift in Sources */,
 				8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+RTSP.swift in Sources */,
@@ -1138,6 +1153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA7CBFC218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift in Sources */,
 				8A42DB122179D9A300BF5F1B /* UserDefaultsRTSPConfiguration.swift in Sources */,
 				8AA7CBE4218C5A5100FCF62A /* URLMediaPlayerMock.swift in Sources */,
 				8A43DB04217DD89300E3004D /* NetServiceConnectionCheckerTests.swift in Sources */,

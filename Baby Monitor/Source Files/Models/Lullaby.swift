@@ -36,7 +36,7 @@ enum BMLibraryEntry: String, CaseIterable {
     }
 }
 
-enum LullabyType {
+enum LullabyType: String {
     case bmLibrary
     case yourLullabies
 }
