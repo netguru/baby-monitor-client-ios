@@ -28,10 +28,9 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
     }
 
     var sections: Observable<[GeneralSection<Lullaby>]> {
-        return Observable.just(Section.allCases)
-            .map { sections in
-                return sections.map { GeneralSection(title: $0.title, items: [Lullaby(name: "Lullaby#1"), Lullaby(name: "Lullaby#2")]) }
-            }
+        let bmLibrarySection = GeneralSection(title: Section.bmLibrary.title, items: BMLibraryEntry.allLullabies)
+        let yourLullabiesSection = GeneralSection<Lullaby>(title: Section.yourLullabies.title, items: [])
+        return Observable.just([bmLibrarySection, yourLullabiesSection])
             .concat(Observable.never())
     }
 

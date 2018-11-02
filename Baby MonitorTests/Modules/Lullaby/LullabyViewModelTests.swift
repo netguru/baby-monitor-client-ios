@@ -51,15 +51,17 @@ class LullabyViewModelTests: XCTestCase {
         
         // Then
         let actualTitles = observer.events.first!.value.element!.map { $0.title }
+        let bmLibraryLullabies = observer.events.first!.value.element!.map { $0.items }.first!
         XCTAssertEqual(1, observer.events.count)
         XCTAssertEqual([Localizable.Lullabies.bmLibrary, Localizable.Lullabies.yourLullabies], actualTitles)
+        XCTAssertEqual(BMLibraryEntry.allLullabies, bmLibraryLullabies)
     }
     
     func testShouldConfigureCell() {
         // Given
         let babiesRepository = BabiesRepositoryMock()
         let sut = LullabiesViewModel(babyRepo: babiesRepository)
-        let lullaby = Lullaby(name: "lullaby")
+        let lullaby = Lullaby(name: "lullaby", identifier: "id", type: .bmLibrary)
         let cell = BabyMonitorCellMock()
         
         // When
