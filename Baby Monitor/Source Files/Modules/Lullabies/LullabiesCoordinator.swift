@@ -36,17 +36,8 @@ final class LullabiesCoordinator: NSObject, Coordinator, BabiesViewShowable {
         lullabiesViewController?.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
                 self?.connect(toLullabiesViewModel: viewModel)
-            })
-            .disposed(by: bag)
-        lullabiesViewController?.rx.viewDidAppear
-            .subscribe(onNext: { [weak self] _ in
                 let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self?.didTapAddButton(_:)))
                 self?.lullabiesViewController?.navigationItem.rightBarButtonItems = [button]
-            })
-            .disposed(by: bag)
-        lullabiesViewController?.rx.viewDidDisappear
-            .subscribe(onNext: { [weak self] _ in
-                self?.lullabiesViewController?.navigationItem.rightBarButtonItems?.removeLast()
             })
             .disposed(by: bag)
         navigationController.pushViewController(lullabiesViewController!, animated: false)

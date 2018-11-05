@@ -77,6 +77,11 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
         return Section(rawValue: indexPath.section) == .yourLullabies
     }
     
+    // MARK: - CRUD methods
+    
+    /// Saves lullabies to the repository
+    ///
+    /// - Parameter lullabies: lullabies to save
     func save(lullabies: [Lullaby]) {
         lullabies.forEach {
             try? lullabiesRepo.save(lullaby: $0)

@@ -32,7 +32,7 @@ enum BMLibraryEntry: String, CaseIterable {
     }
     
     var identifier: String {
-        return "rawValue"
+        return rawValue
     }
 }
 
