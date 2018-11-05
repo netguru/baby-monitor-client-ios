@@ -52,6 +52,9 @@ class BabyMonitorGeneralViewController<T: Equatable>: TypedViewController<BabyMo
                 self.viewModel.configure(cell: cell, for: item)
                 return cell
             })
+        dataSource.canEditRowAtIndexPath = { [unowned self] _, indexPath in
+            return self.viewModel.canDelete?(indexPath) ?? false
+        }
         viewModel.sections
             .bind(to: customView.tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
@@ -64,6 +67,11 @@ class BabyMonitorGeneralViewController<T: Equatable>: TypedViewController<BabyMo
             .map { $0.photo }
             .distinctUntilChanged()
             .bind(to: customView.babyNavigationItemView.rx.babyPhoto)
+            .disposed(by: bag)
+        customView.tableView.rx.modelDeleted(T.self)
+            .subscribe(onNext: { [unowned self] model in
+                self.viewModel.delete(model: model)
+            })
             .disposed(by: bag)
     }
 

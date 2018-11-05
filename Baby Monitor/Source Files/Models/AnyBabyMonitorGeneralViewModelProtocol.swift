@@ -32,6 +32,8 @@ final class AnyBabyMonitorGeneralViewModelProtocol<ConcreteDataType: Equatable>:
     }
     private let _getBaby: () -> Observable<Baby>
     
+    private let _delete: ((_ model: ConcreteDataType) -> Void)?
+    
     var sections: Observable<[GeneralSection<ConcreteDataType>]> {
         return _getSections()
     }
@@ -44,27 +46,26 @@ final class AnyBabyMonitorGeneralViewModelProtocol<ConcreteDataType: Equatable>:
     // MARK: - BabyMonitorHeaderCellConfigurable thunk
     let configure: ((_ headerCell: BabyMonitorCell, _ section: Int) -> Void)?
     let isBabyMonitorHeaderCellConfigurable: Bool
+    // MARK: - BabyMonitorCellDeletable thunk
+    let canDelete: ((_ indexPath: IndexPath) -> Bool)?
     
     required init<ViewModelProtocol: BabyMonitorGeneralViewModelProtocol>(viewModel: ViewModelProtocol) where ViewModelProtocol.DataType == ConcreteDataType {
         self._getShowBabies = viewModel.getShowBabies
         self._getBaby = viewModel.getBaby
         self._getSections = viewModel.getSections
         self._configure = viewModel.configure
-        if let viewModel = viewModel as? BabiesViewSelectable {
-            self.attachInput = viewModel.attachInput
-        } else {
-            self.attachInput = nil
-        }
-        if let viewModel = viewModel as? BabyMonitorHeaderCellConfigurable {
-            self.configure = viewModel.configure
-            self.isBabyMonitorHeaderCellConfigurable = true
-        } else {
-            self.configure = nil
-            self.isBabyMonitorHeaderCellConfigurable = false
-        }
+        self._delete = viewModel.delete
+        self.attachInput = (viewModel as? BabiesViewSelectable)?.attachInput
+        self.configure = (viewModel as? BabyMonitorHeaderCellConfigurable)?.configure
+        self.isBabyMonitorHeaderCellConfigurable = (viewModel as? BabyMonitorHeaderCellConfigurable) != nil
+        self.canDelete = (viewModel as? BabyMonitorCellDeletable)?.canDelete
     }
     
     func configure(cell: BabyMonitorCellProtocol, for data: ConcreteDataType) {
         _configure(cell, data)
+    }
+    
+    func delete(model: ConcreteDataType) {
+        _delete?(model)
     }
 }

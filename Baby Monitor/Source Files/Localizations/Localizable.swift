@@ -10,6 +10,7 @@ enum Localizable {
     enum General {
         static let cancel = localized("general.cancel")
         static let disconnected = localized("general.disconnected")
+        static let delete = localized("general.delete")
     }
     
     enum Onboarding {
@@ -46,6 +47,11 @@ enum Localizable {
     enum Lullabies {
         static let bmLibrary = localized("lullabies.bm-library")
         static let yourLullabies = localized("lullabies.your-lullabies")
+        static let hushLittleBaby = localized("lullabies.library.hush-little-baby")
+        static let lullabyGoodnight = localized("lullabies.library.lullaby-goodnight")
+        static let prettyLittleHorses = localized("lullabies.library.pretty-little-horses")
+        static let rockAByeBaby = localized("lullabies.library.rock-a-bye-baby")
+        static let twinkleTwinkleLittleStar = localized("lullabies.library.twinkle-twinkle-little-star")
     }
     
     enum Settings {

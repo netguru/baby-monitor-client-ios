@@ -79,6 +79,7 @@
 		8A43DB04217DD89300E3004D /* NetServiceConnectionCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */; };
 		8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB082180971D00E3004D /* UIViewController+Rx.swift */; };
 		8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB1E2181D1E700E3004D /* GeneralSection.swift */; };
+		8A87305221906A780045E25D /* test2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A87305121906A780045E25D /* test2.mp3 */; };
 		8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */; };
 		8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */; };
 		8AA7CBBE2187103600FCF62A /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */; };
@@ -89,9 +90,26 @@
 		8AA7CBCF2187401700FCF62A /* ActivityLogViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBCE2187401700FCF62A /* ActivityLogViewModelTests.swift */; };
 		8AA7CBD421874FD000FCF62A /* SwitchBabyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBD321874FD000FCF62A /* SwitchBabyViewModelTests.swift */; };
 		8AA7CBD72187521500FCF62A /* LullabyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBD62187521500FCF62A /* LullabyViewModelTests.swift */; };
+		8AA7CBDA218C54BE00FCF62A /* LullabyPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBD9218C54BE00FCF62A /* LullabyPlayerTests.swift */; };
+		8AA7CBDC218C559000FCF62A /* LullabyPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBDB218C559000FCF62A /* LullabyPlayerProtocol.swift */; };
+		8AA7CBDE218C55C500FCF62A /* LullabyPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBDD218C55C500FCF62A /* LullabyPlayer.swift */; };
+		8AA7CBE2218C576D00FCF62A /* URLMediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */; };
+		8AA7CBE4218C5A5100FCF62A /* URLMediaPlayerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE3218C5A5100FCF62A /* URLMediaPlayerMock.swift */; };
+		8AA7CBE9218C626200FCF62A /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE8218C626200FCF62A /* test.mp3 */; };
+		8AA7CBF0218C62E600FCF62A /* rockAByeBaby.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEB218C62E500FCF62A /* rockAByeBaby.mp3 */; };
+		8AA7CBF1218C62E600FCF62A /* twinkleTwinkleLittleStar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEC218C62E500FCF62A /* twinkleTwinkleLittleStar.mp3 */; };
+		8AA7CBF2218C62E600FCF62A /* lullabyGoodnight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBED218C62E600FCF62A /* lullabyGoodnight.mp3 */; };
+		8AA7CBF3218C62E600FCF62A /* prettyLittleHorses.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEE218C62E600FCF62A /* prettyLittleHorses.mp3 */; };
+		8AA7CBF4218C62E600FCF62A /* hushLittleBaby.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEF218C62E600FCF62A /* hushLittleBaby.mp3 */; };
+		8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */; };
+		8AA7CBFC218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBFB218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift */; };
+		8AA7CBFE218C70B400FCF62A /* RealmLullabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */; };
+		8AA7CC00218C72D600FCF62A /* RealmLullaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBFF218C72D600FCF62A /* RealmLullaby.swift */; };
 		8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */; };
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
 		8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */; };
+		8AED3178218C89D200FEFE8A /* LullabiesRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED3177218C89D200FEFE8A /* LullabiesRepositoryMock.swift */; };
+		8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED318D219045AD00FEFE8A /* BabyMonitorCellDeletable.swift */; };
 		8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DF82182F07700729615 /* Lullaby.swift */; };
 		8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */; };
 		B7517BD464A64050343AE8FF /* Pods_Baby_MonitorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A7F3CDA8A65C434713C156 /* Pods_Baby_MonitorTests.framework */; };
@@ -203,6 +221,7 @@
 		8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionCheckerTests.swift; sourceTree = "<group>"; };
 		8A43DB082180971D00E3004D /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		8A43DB1E2181D1E700E3004D /* GeneralSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSection.swift; sourceTree = "<group>"; };
+		8A87305121906A780045E25D /* test2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test2.mp3; sourceTree = "<group>"; };
 		8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesRepositoryProtocol.swift; sourceTree = "<group>"; };
 		8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellProtocol.swift; sourceTree = "<group>"; };
 		8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
@@ -213,9 +232,26 @@
 		8AA7CBCE2187401700FCF62A /* ActivityLogViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewModelTests.swift; sourceTree = "<group>"; };
 		8AA7CBD321874FD000FCF62A /* SwitchBabyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchBabyViewModelTests.swift; sourceTree = "<group>"; };
 		8AA7CBD62187521500FCF62A /* LullabyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabyViewModelTests.swift; sourceTree = "<group>"; };
+		8AA7CBD9218C54BE00FCF62A /* LullabyPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabyPlayerTests.swift; sourceTree = "<group>"; };
+		8AA7CBDB218C559000FCF62A /* LullabyPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabyPlayerProtocol.swift; sourceTree = "<group>"; };
+		8AA7CBDD218C55C500FCF62A /* LullabyPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabyPlayer.swift; sourceTree = "<group>"; };
+		8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLMediaPlayer.swift; sourceTree = "<group>"; };
+		8AA7CBE3218C5A5100FCF62A /* URLMediaPlayerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLMediaPlayerMock.swift; sourceTree = "<group>"; };
+		8AA7CBE8218C626200FCF62A /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
+		8AA7CBEB218C62E500FCF62A /* rockAByeBaby.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rockAByeBaby.mp3; sourceTree = "<group>"; };
+		8AA7CBEC218C62E500FCF62A /* twinkleTwinkleLittleStar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = twinkleTwinkleLittleStar.mp3; sourceTree = "<group>"; };
+		8AA7CBED218C62E600FCF62A /* lullabyGoodnight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lullabyGoodnight.mp3; sourceTree = "<group>"; };
+		8AA7CBEE218C62E600FCF62A /* prettyLittleHorses.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = prettyLittleHorses.mp3; sourceTree = "<group>"; };
+		8AA7CBEF218C62E600FCF62A /* hushLittleBaby.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hushLittleBaby.mp3; sourceTree = "<group>"; };
+		8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesRepositoryProtocol.swift; sourceTree = "<group>"; };
+		8AA7CBFB218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLullabiesRepositoryTests.swift; sourceTree = "<group>"; };
+		8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLullabiesRepository.swift; sourceTree = "<group>"; };
+		8AA7CBFF218C72D600FCF62A /* RealmLullaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLullaby.swift; sourceTree = "<group>"; };
 		8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB52177371B003E756F /* RealmBaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaby.swift; sourceTree = "<group>"; };
 		8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepositoryTests.swift; sourceTree = "<group>"; };
+		8AED3177218C89D200FEFE8A /* LullabiesRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesRepositoryMock.swift; sourceTree = "<group>"; };
+		8AED318D219045AD00FEFE8A /* BabyMonitorCellDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellDeletable.swift; sourceTree = "<group>"; };
 		8AFE3DF82182F07700729615 /* Lullaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lullaby.swift; sourceTree = "<group>"; };
 		8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		C46B52316314871E37269EB6 /* Pods-Baby Monitor.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.production.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.production.xcconfig"; sourceTree = "<group>"; };
@@ -351,6 +387,7 @@
 				4E5731952170BA7400DEAF0B /* Identifiable.swift */,
 				4E5731962170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift */,
 				4E5731972170BA7400DEAF0B /* Coordinator.swift */,
+				8AED318D219045AD00FEFE8A /* BabyMonitorCellDeletable.swift */,
 			);
 			path = "Other Protocols";
 			sourceTree = "<group>";
@@ -372,6 +409,9 @@
 				4E5731A22170BA9D00DEAF0B /* VLCMediaPlayerService.swift */,
 				4E5731A32170BA9D00DEAF0B /* MediaPlayerProtocol.swift */,
 				4E1CF81821785C7800F48706 /* MediaPlayerStreamingService.swift */,
+				8AA7CBDB218C559000FCF62A /* LullabyPlayerProtocol.swift */,
+				8AA7CBDD218C55C500FCF62A /* LullabyPlayer.swift */,
+				8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */,
 			);
 			path = MediaPlayer;
 			sourceTree = "<group>";
@@ -528,6 +568,8 @@
 				8AA7CBBF2187105600FCF62A /* BabyMonitorCellMock.swift */,
 				8AA7CBC32187117200FCF62A /* BabiesRepositoryMock.swift */,
 				8AA7CBCB21871B3E00FCF62A /* ConnectionCheckerMock.swift */,
+				8AA7CBE3218C5A5100FCF62A /* URLMediaPlayerMock.swift */,
+				8AED3177218C89D200FEFE8A /* LullabiesRepositoryMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -598,6 +640,35 @@
 			path = Lullaby;
 			sourceTree = "<group>";
 		};
+		8AA7CBD8218C549D00FCF62A /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				8AA7CBD9218C54BE00FCF62A /* LullabyPlayerTests.swift */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		8AA7CBE5218C5DF400FCF62A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8A87305121906A780045E25D /* test2.mp3 */,
+				8AA7CBE8218C626200FCF62A /* test.mp3 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8AA7CBEA218C62D500FCF62A /* Lullabies */ = {
+			isa = PBXGroup;
+			children = (
+				8AA7CBEF218C62E600FCF62A /* hushLittleBaby.mp3 */,
+				8AA7CBED218C62E600FCF62A /* lullabyGoodnight.mp3 */,
+				8AA7CBEE218C62E600FCF62A /* prettyLittleHorses.mp3 */,
+				8AA7CBEB218C62E500FCF62A /* rockAByeBaby.mp3 */,
+				8AA7CBEC218C62E500FCF62A /* twinkleTwinkleLittleStar.mp3 */,
+			);
+			path = Lullabies;
+			sourceTree = "<group>";
+		};
 		8AEAFBAF217735B3003E756F /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +677,8 @@
 				8A42DB062179D61B00BF5F1B /* RTSPConfiguration.swift */,
 				8A42DB082179D65900BF5F1B /* UserDefaultsRTSPConfiguration.swift */,
 				8A42DB0A2179D7D700BF5F1B /* URLUserDefaults.swift */,
+				8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */,
+				8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -614,6 +687,7 @@
 			isa = PBXGroup;
 			children = (
 				8AEAFBB52177371B003E756F /* RealmBaby.swift */,
+				8AA7CBFF218C72D600FCF62A /* RealmLullaby.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -623,6 +697,7 @@
 			children = (
 				8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */,
 				8A42DB112179D9A300BF5F1B /* UserDefaultsRTSPConfiguration.swift */,
+				8AA7CBFB218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -677,6 +752,8 @@
 		EC82B56D213EA074005CA395 /* Baby MonitorTests */ = {
 			isa = PBXGroup;
 			children = (
+				8AA7CBE5218C5DF400FCF62A /* Resources */,
+				8AA7CBD8218C549D00FCF62A /* Media */,
 				8A43DAFE217DD2C600E3004D /* Networking */,
 				8A42DB152179DD8600BF5F1B /* Extensions */,
 				8A42DAFF2179C07C00BF5F1B /* Mocks */,
@@ -714,6 +791,7 @@
 		EC82B57E213EA142005CA395 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8AA7CBEA218C62D500FCF62A /* Lullabies */,
 				4E221D8C21771946003D8531 /* Bridging-Header.h */,
 				EC82B560213EA074005CA395 /* Assets.xcassets */,
 				4E190CA221789E820004ED79 /* Constants.swift */,
@@ -849,10 +927,15 @@
 				EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */,
 				4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */,
 				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
+				8AA7CBF3218C62E600FCF62A /* prettyLittleHorses.mp3 in Resources */,
 				EC82B561213EA074005CA395 /* Assets.xcassets in Resources */,
+				8AA7CBF2218C62E600FCF62A /* lullabyGoodnight.mp3 in Resources */,
+				8AA7CBF0218C62E600FCF62A /* rockAByeBaby.mp3 in Resources */,
 				4E95631E21638E2200289475 /* Localizable.strings in Resources */,
 				ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */,
 				4E5731AC2170C1A200DEAF0B /* Tests-Production.xcconfig in Resources */,
+				8AA7CBF4218C62E600FCF62A /* hushLittleBaby.mp3 in Resources */,
+				8AA7CBF1218C62E600FCF62A /* twinkleTwinkleLittleStar.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,6 +943,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA7CBE9218C626200FCF62A /* test.mp3 in Resources */,
+				8A87305221906A780045E25D /* test2.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,6 +1081,9 @@
 				4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */,
 				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
+				8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */,
+				8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */,
+				8AA7CBDE218C55C500FCF62A /* LullabyPlayer.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
@@ -1015,7 +1103,9 @@
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
 				4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
+				8AA7CBE2218C576D00FCF62A /* URLMediaPlayer.swift in Sources */,
 				4E626694217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift in Sources */,
+				8AA7CBDC218C559000FCF62A /* LullabyPlayerProtocol.swift in Sources */,
 				4E5731A52170BA9D00DEAF0B /* MediaPlayerProtocol.swift in Sources */,
 				8A42DB092179D65900BF5F1B /* UserDefaultsRTSPConfiguration.swift in Sources */,
 				4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */,
@@ -1038,6 +1128,7 @@
 				4E5731A42170BA9D00DEAF0B /* VLCMediaPlayerService.swift in Sources */,
 				8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
+				8AA7CC00218C72D600FCF62A /* RealmLullaby.swift in Sources */,
 				4E1CF81921785C7800F48706 /* MediaPlayerStreamingService.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
@@ -1048,6 +1139,7 @@
 				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* RTSPConfiguration.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
+				8AA7CBFE218C70B400FCF62A /* RealmLullabiesRepository.swift in Sources */,
 				8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+RTSP.swift in Sources */,
@@ -1068,7 +1160,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA7CBFC218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift in Sources */,
 				8A42DB122179D9A300BF5F1B /* UserDefaultsRTSPConfiguration.swift in Sources */,
+				8AA7CBE4218C5A5100FCF62A /* URLMediaPlayerMock.swift in Sources */,
 				8A43DB04217DD89300E3004D /* NetServiceConnectionCheckerTests.swift in Sources */,
 				8A42DB192179E0AD00BF5F1B /* RTSPConfigurationMock.swift in Sources */,
 				8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */,
@@ -1081,11 +1175,13 @@
 				8AA7CBC42187117200FCF62A /* BabiesRepositoryMock.swift in Sources */,
 				8A42DB172179DD9C00BF5F1B /* URL+RTSPTests.swift in Sources */,
 				8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */,
+				8AED3178218C89D200FEFE8A /* LullabiesRepositoryMock.swift in Sources */,
 				8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */,
 				4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */,
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
 				8AA7CBD421874FD000FCF62A /* SwitchBabyViewModelTests.swift in Sources */,
 				8AA7CBBE2187103600FCF62A /* SettingsViewModelTests.swift in Sources */,
+				8AA7CBDA218C54BE00FCF62A /* LullabyPlayerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,6 +1233,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 9HJ69C5G9K;
+				PROVISIONING_PROFILE_SPECIFIER = "BabyMonitor Development";
 			};
 			name = Development;
 		};

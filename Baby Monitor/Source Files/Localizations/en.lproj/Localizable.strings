@@ -6,6 +6,7 @@
 //MARK: - General
 "general.cancel" = "Cancel";
 "general.disconnected" = "Disconnected";
+"general.delete" = "Delete";
 
 //MARK: - Onboarding
 "onboarding.button.start-client" = "START BABY MONITOR CLIENT";
@@ -37,6 +38,11 @@
 //MARK: - Lullabies
 "lullabies.bm-library" = "BM library";
 "lullabies.your-lullabies" = "Your lullabies";
+"lullabies.library.hush-little-baby" = "Hush, Little Baby";
+"lullabies.library.lullaby-goodnight" = "Lullaby Goodnight";
+"lullabies.library.pretty-little-horses" = "Pretty Little Horses";
+"lullabies.library.rock-a-bye-baby" = "Rock-a-bye Baby";
+"lullabies.library.twinkle-twinkle-little-star" = "Twinkle, Twinkle, Little Star";
 
 //MARK: - Settings
 "settings.cell.switch-to-server" = "Switch to Server application";
