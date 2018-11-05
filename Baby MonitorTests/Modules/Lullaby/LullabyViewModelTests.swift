@@ -55,7 +55,7 @@ class LullabyViewModelTests: XCTestCase {
         
         // Then
         let actualTitles = observer.events.first!.value.element!.map { $0.title }
-        let bmLibraryLullabies = observer.events.first!.value.element!.map { $0.items }.first!
+        let bmLibraryLullabies = observer.events.first!.value.element!.map { $0.items }[0]
         let yourLullabies = observer.events.first!.value.element!.map { $0.items }[1]
         XCTAssertEqual(1, observer.events.count)
         XCTAssertEqual([Localizable.Lullabies.bmLibrary, Localizable.Lullabies.yourLullabies], actualTitles)

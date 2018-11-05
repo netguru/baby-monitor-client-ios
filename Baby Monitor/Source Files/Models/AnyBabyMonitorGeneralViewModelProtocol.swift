@@ -55,23 +55,10 @@ final class AnyBabyMonitorGeneralViewModelProtocol<ConcreteDataType: Equatable>:
         self._getSections = viewModel.getSections
         self._configure = viewModel.configure
         self._delete = viewModel.delete
-        if let viewModel = viewModel as? BabiesViewSelectable {
-            self.attachInput = viewModel.attachInput
-        } else {
-            self.attachInput = nil
-        }
-        if let viewModel = viewModel as? BabyMonitorHeaderCellConfigurable {
-            self.configure = viewModel.configure
-            self.isBabyMonitorHeaderCellConfigurable = true
-        } else {
-            self.configure = nil
-            self.isBabyMonitorHeaderCellConfigurable = false
-        }
-        if let viewModel = viewModel as? BabyMonitorCellDeletable {
-            self.canDelete = viewModel.canDelete
-        } else {
-            self.canDelete = nil
-        }
+        self.attachInput = (viewModel as? BabiesViewSelectable)?.attachInput
+        self.configure = (viewModel as? BabyMonitorHeaderCellConfigurable)?.configure
+        self.isBabyMonitorHeaderCellConfigurable = (viewModel as? BabyMonitorHeaderCellConfigurable) != nil
+        self.canDelete = (viewModel as? BabyMonitorCellDeletable)?.canDelete
     }
     
     func configure(cell: BabyMonitorCellProtocol, for data: ConcreteDataType) {

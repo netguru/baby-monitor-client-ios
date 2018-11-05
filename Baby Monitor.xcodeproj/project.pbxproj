@@ -79,6 +79,7 @@
 		8A43DB04217DD89300E3004D /* NetServiceConnectionCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */; };
 		8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB082180971D00E3004D /* UIViewController+Rx.swift */; };
 		8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB1E2181D1E700E3004D /* GeneralSection.swift */; };
+		8A87305221906A780045E25D /* test2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A87305121906A780045E25D /* test2.mp3 */; };
 		8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */; };
 		8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */; };
 		8AA7CBBE2187103600FCF62A /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */; };
@@ -100,7 +101,6 @@
 		8AA7CBF2218C62E600FCF62A /* lullabyGoodnight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBED218C62E600FCF62A /* lullabyGoodnight.mp3 */; };
 		8AA7CBF3218C62E600FCF62A /* prettyLittleHorses.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEE218C62E600FCF62A /* prettyLittleHorses.mp3 */; };
 		8AA7CBF4218C62E600FCF62A /* hushLittleBaby.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEF218C62E600FCF62A /* hushLittleBaby.mp3 */; };
-		8AA7CBF6218C635200FCF62A /* test2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBF5218C635200FCF62A /* test2.mp3 */; };
 		8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */; };
 		8AA7CBFC218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBFB218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift */; };
 		8AA7CBFE218C70B400FCF62A /* RealmLullabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */; };
@@ -221,6 +221,7 @@
 		8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionCheckerTests.swift; sourceTree = "<group>"; };
 		8A43DB082180971D00E3004D /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		8A43DB1E2181D1E700E3004D /* GeneralSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSection.swift; sourceTree = "<group>"; };
+		8A87305121906A780045E25D /* test2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test2.mp3; sourceTree = "<group>"; };
 		8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesRepositoryProtocol.swift; sourceTree = "<group>"; };
 		8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellProtocol.swift; sourceTree = "<group>"; };
 		8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
@@ -242,7 +243,6 @@
 		8AA7CBED218C62E600FCF62A /* lullabyGoodnight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lullabyGoodnight.mp3; sourceTree = "<group>"; };
 		8AA7CBEE218C62E600FCF62A /* prettyLittleHorses.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = prettyLittleHorses.mp3; sourceTree = "<group>"; };
 		8AA7CBEF218C62E600FCF62A /* hushLittleBaby.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hushLittleBaby.mp3; sourceTree = "<group>"; };
-		8AA7CBF5218C635200FCF62A /* test2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = test2.mp3; path = ../../../../Downloads/test2.mp3; sourceTree = "<group>"; };
 		8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesRepositoryProtocol.swift; sourceTree = "<group>"; };
 		8AA7CBFB218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLullabiesRepositoryTests.swift; sourceTree = "<group>"; };
 		8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLullabiesRepository.swift; sourceTree = "<group>"; };
@@ -651,7 +651,7 @@
 		8AA7CBE5218C5DF400FCF62A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8AA7CBF5218C635200FCF62A /* test2.mp3 */,
+				8A87305121906A780045E25D /* test2.mp3 */,
 				8AA7CBE8218C626200FCF62A /* test.mp3 */,
 			);
 			path = Resources;
@@ -943,8 +943,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AA7CBF6218C635200FCF62A /* test2.mp3 in Resources */,
 				8AA7CBE9218C626200FCF62A /* test.mp3 in Resources */,
+				8A87305221906A780045E25D /* test2.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

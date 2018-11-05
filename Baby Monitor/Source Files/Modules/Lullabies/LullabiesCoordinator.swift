@@ -36,7 +36,7 @@ final class LullabiesCoordinator: NSObject, Coordinator, BabiesViewShowable {
         lullabiesViewController?.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
                 self?.connect(toLullabiesViewModel: viewModel)
-                let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self?.didTapAddButton(_:)))
+                let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self?.didTapAddButton))
                 self?.lullabiesViewController?.navigationItem.rightBarButtonItems = [button]
             })
             .disposed(by: bag)
@@ -44,7 +44,7 @@ final class LullabiesCoordinator: NSObject, Coordinator, BabiesViewShowable {
     }
     
     @objc
-    private func didTapAddButton(_ sender: UIBarButtonItem) {
+    private func didTapAddButton() {
         let mediaPickerController = MPMediaPickerController(mediaTypes: .music)
         mediaPickerController.delegate = self
         navigationController.present(mediaPickerController, animated: true)
