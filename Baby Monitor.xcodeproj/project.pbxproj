@@ -108,6 +108,8 @@
 		8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */; };
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
 		8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */; };
+		8AED3178218C89D200FEFE8A /* LullabiesRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED3177218C89D200FEFE8A /* LullabiesRepositoryMock.swift */; };
+		8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED318D219045AD00FEFE8A /* BabyMonitorCellDeletable.swift */; };
 		8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DF82182F07700729615 /* Lullaby.swift */; };
 		8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */; };
 		B7517BD464A64050343AE8FF /* Pods_Baby_MonitorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A7F3CDA8A65C434713C156 /* Pods_Baby_MonitorTests.framework */; };
@@ -248,6 +250,8 @@
 		8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB52177371B003E756F /* RealmBaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaby.swift; sourceTree = "<group>"; };
 		8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepositoryTests.swift; sourceTree = "<group>"; };
+		8AED3177218C89D200FEFE8A /* LullabiesRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesRepositoryMock.swift; sourceTree = "<group>"; };
+		8AED318D219045AD00FEFE8A /* BabyMonitorCellDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellDeletable.swift; sourceTree = "<group>"; };
 		8AFE3DF82182F07700729615 /* Lullaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lullaby.swift; sourceTree = "<group>"; };
 		8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		C46B52316314871E37269EB6 /* Pods-Baby Monitor.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.production.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.production.xcconfig"; sourceTree = "<group>"; };
@@ -383,6 +387,7 @@
 				4E5731952170BA7400DEAF0B /* Identifiable.swift */,
 				4E5731962170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift */,
 				4E5731972170BA7400DEAF0B /* Coordinator.swift */,
+				8AED318D219045AD00FEFE8A /* BabyMonitorCellDeletable.swift */,
 			);
 			path = "Other Protocols";
 			sourceTree = "<group>";
@@ -564,6 +569,7 @@
 				8AA7CBC32187117200FCF62A /* BabiesRepositoryMock.swift */,
 				8AA7CBCB21871B3E00FCF62A /* ConnectionCheckerMock.swift */,
 				8AA7CBE3218C5A5100FCF62A /* URLMediaPlayerMock.swift */,
+				8AED3177218C89D200FEFE8A /* LullabiesRepositoryMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1075,6 +1081,7 @@
 				4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */,
 				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
+				8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */,
 				8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */,
 				8AA7CBDE218C55C500FCF62A /* LullabyPlayer.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
@@ -1168,6 +1175,7 @@
 				8AA7CBC42187117200FCF62A /* BabiesRepositoryMock.swift in Sources */,
 				8A42DB172179DD9C00BF5F1B /* URL+RTSPTests.swift in Sources */,
 				8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */,
+				8AED3178218C89D200FEFE8A /* LullabiesRepositoryMock.swift in Sources */,
 				8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */,
 				4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */,
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
@@ -1225,6 +1233,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 9HJ69C5G9K;
+				PROVISIONING_PROFILE_SPECIFIER = "BabyMonitor Development";
 			};
 			name = Development;
 		};

@@ -7,11 +7,13 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
+final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable, BabyMonitorCellDeletable {
     
     typealias DataType = Lullaby
+    typealias DeletedModelType = Lullaby
 
     private let babyRepo: BabiesRepositoryProtocol
+    private let lullabiesRepo: LullabiesRepositoryProtocol
 
     enum Section: Int, CaseIterable {
         case bmLibrary = 0
@@ -28,18 +30,20 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
     }
 
     var sections: Observable<[GeneralSection<Lullaby>]> {
-        let bmLibrarySection = GeneralSection(title: Section.bmLibrary.title, items: BMLibraryEntry.allLullabies)
-        let yourLullabiesSection = GeneralSection<Lullaby>(title: Section.yourLullabies.title, items: [])
-        return Observable.just([bmLibrarySection, yourLullabiesSection])
-            .concat(Observable.never())
+        let bmLibrarySection = Observable.just(GeneralSection(title: Section.bmLibrary.title, items: BMLibraryEntry.allLullabies))
+        let yourLullabiesSection = lullabiesRepo.lullabies.map { GeneralSection<Lullaby>(title: Section.yourLullabies.title, items: $0) }
+        return Observable.combineLatest(bmLibrarySection, yourLullabiesSection, resultSelector: { bmLibrary, yourLullabies -> [GeneralSection<Lullaby>] in
+            return [bmLibrary, yourLullabies]
+        })
     }
 
     // MARK: - Coordinator callback
     private(set) var showBabies: Observable<Void>?
     lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
 
-    init(babyRepo: BabiesRepositoryProtocol) {
+    init(babyRepo: BabiesRepositoryProtocol, lullabiesRepo: LullabiesRepositoryProtocol) {
         self.babyRepo = babyRepo
+        self.lullabiesRepo = lullabiesRepo
     }
 
     // MARK: - Internal functions
@@ -66,5 +70,20 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
         case Section.yourLullabies:
             headerCell.update(mainText: Localizable.Lullabies.yourLullabies)
         }
+    }
+    
+    // MARK: - BabyMonitorCellDeletable implementation
+    func canDelete(rowAt indexPath: IndexPath) -> Bool {
+        return Section(rawValue: indexPath.section) == .yourLullabies
+    }
+    
+    func save(lullabies: [Lullaby]) {
+        lullabies.forEach {
+            try? lullabiesRepo.save(lullaby: $0)
+        }
+    }
+    
+    func delete(model: Lullaby) {
+        try? lullabiesRepo.remove(lullaby: model)
     }
 }

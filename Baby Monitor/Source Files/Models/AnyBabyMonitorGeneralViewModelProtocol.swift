@@ -32,6 +32,8 @@ final class AnyBabyMonitorGeneralViewModelProtocol<ConcreteDataType: Equatable>:
     }
     private let _getBaby: () -> Observable<Baby>
     
+    private let _delete: ((_ model: ConcreteDataType) -> Void)?
+    
     var sections: Observable<[GeneralSection<ConcreteDataType>]> {
         return _getSections()
     }
@@ -44,12 +46,15 @@ final class AnyBabyMonitorGeneralViewModelProtocol<ConcreteDataType: Equatable>:
     // MARK: - BabyMonitorHeaderCellConfigurable thunk
     let configure: ((_ headerCell: BabyMonitorCell, _ section: Int) -> Void)?
     let isBabyMonitorHeaderCellConfigurable: Bool
+    // MARK: - BabyMonitorCellDeletable thunk
+    let canDelete: ((_ indexPath: IndexPath) -> Bool)?
     
     required init<ViewModelProtocol: BabyMonitorGeneralViewModelProtocol>(viewModel: ViewModelProtocol) where ViewModelProtocol.DataType == ConcreteDataType {
         self._getShowBabies = viewModel.getShowBabies
         self._getBaby = viewModel.getBaby
         self._getSections = viewModel.getSections
         self._configure = viewModel.configure
+        self._delete = viewModel.delete
         if let viewModel = viewModel as? BabiesViewSelectable {
             self.attachInput = viewModel.attachInput
         } else {
@@ -62,9 +67,18 @@ final class AnyBabyMonitorGeneralViewModelProtocol<ConcreteDataType: Equatable>:
             self.configure = nil
             self.isBabyMonitorHeaderCellConfigurable = false
         }
+        if let viewModel = viewModel as? BabyMonitorCellDeletable {
+            self.canDelete = viewModel.canDelete
+        } else {
+            self.canDelete = nil
+        }
     }
     
     func configure(cell: BabyMonitorCellProtocol, for data: ConcreteDataType) {
         _configure(cell, data)
+    }
+    
+    func delete(model: ConcreteDataType) {
+        _delete?(model)
     }
 }

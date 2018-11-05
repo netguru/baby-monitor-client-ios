@@ -6,11 +6,24 @@
 import AVKit
 
 private extension Lullaby {
+    
     func playerItem(for bundle: Bundle) -> AVPlayerItem? {
-        guard let url = bundle.url(forResource: identifier, withExtension: ".mp3") else {
+        guard let url = type.url(identifier: identifier, for: bundle) else {
             return nil
         }
         return AVPlayerItem(url: url)
+    }
+}
+
+private extension LullabyType {
+    
+    func url(identifier: String, for bundle: Bundle) -> URL? {
+        switch self {
+        case .bmLibrary:
+            return bundle.url(forResource: identifier, withExtension: ".mp3")
+        case .yourLullabies:
+            return URL(string: identifier)
+        }
     }
 }
 

@@ -10,6 +10,7 @@ enum Localizable {
     enum General {
         static let cancel = localized("general.cancel")
         static let disconnected = localized("general.disconnected")
+        static let delete = localized("general.delete")
     }
     
     enum Onboarding {

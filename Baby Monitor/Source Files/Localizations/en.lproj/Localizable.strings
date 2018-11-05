@@ -6,6 +6,7 @@
 //MARK: - General
 "general.cancel" = "Cancel";
 "general.disconnected" = "Disconnected";
+"general.delete" = "Delete";
 
 //MARK: - Onboarding
 "onboarding.button.start-client" = "START BABY MONITOR CLIENT";

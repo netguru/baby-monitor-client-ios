@@ -28,4 +28,14 @@ protocol BabyMonitorGeneralViewModelProtocol: AnyObject where DataType: Equatabl
     ///   - cell: Cell to configure
     ///   - data: Data to configure cell with
     func configure(cell: BabyMonitorCellProtocol, for data: DataType)
+    
+    /// Deletes given model
+    ///
+    /// - Parameter model: object to be deleted
+    func delete(model: DataType)
+}
+
+extension BabyMonitorGeneralViewModelProtocol where DataType: Equatable {
+    
+    func delete(model: DataType) {}
 }
