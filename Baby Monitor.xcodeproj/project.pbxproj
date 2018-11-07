@@ -10,6 +10,7 @@
 		4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */; };
 		4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */; };
 		4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */; };
+		4E08670E218C8ECB00E27DEF /* CryingDetectionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08670D218C8ECB00E27DEF /* CryingDetectionServiceTests.swift */; };
 		4E190CA321789E820004ED79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E190CA221789E820004ED79 /* Constants.swift */; };
 		4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CF816217856C500F48706 /* ServerViewModel.swift */; };
 		4E1CF81921785C7800F48706 /* MediaPlayerStreamingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CF81821785C7800F48706 /* MediaPlayerStreamingService.swift */; };
@@ -63,6 +64,9 @@
 		4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */; };
 		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
+		4E9AFD6B218C58EE007D92BE /* CryingDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AFD6A218C58EE007D92BE /* CryingDetectionService.swift */; };
+		4E9AFD71218C849D007D92BE /* MicrophoneTrackerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AFD70218C849D007D92BE /* MicrophoneTrackerMock.swift */; };
+		4EDAE4852193267E001BFDFE /* MicrophoneTrackerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAE4842193267E001BFDFE /* MicrophoneTrackerProtocol.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
 		8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DAFD2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift */; };
 		8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */; };
@@ -142,6 +146,7 @@
 		4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCoordinator.swift; sourceTree = "<group>"; };
 		4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		4E08670D218C8ECB00E27DEF /* CryingDetectionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingDetectionServiceTests.swift; sourceTree = "<group>"; };
 		4E190CA221789E820004ED79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4E1CF816217856C500F48706 /* ServerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewModel.swift; sourceTree = "<group>"; };
 		4E1CF81821785C7800F48706 /* MediaPlayerStreamingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerStreamingService.swift; sourceTree = "<group>"; };
@@ -196,12 +201,15 @@
 		4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewModel.swift; sourceTree = "<group>"; };
 		4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewModel.swift; sourceTree = "<group>"; };
 		4E994BF121624835009C44C5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		4E9AFD6A218C58EE007D92BE /* CryingDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingDetectionService.swift; sourceTree = "<group>"; };
+		4E9AFD70218C849D007D92BE /* MicrophoneTrackerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneTrackerMock.swift; sourceTree = "<group>"; };
 		4EA662F4216CBA36009AD3B6 /* Common-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F5216CBC8A009AD3B6 /* Common-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Development.xcconfig"; sourceTree = "<group>"; };
 		4EA662F6216CBCEC009AD3B6 /* Common-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Staging.xcconfig"; sourceTree = "<group>"; };
 		4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Production.xcconfig"; sourceTree = "<group>"; };
 		4EA662F8216CBDEA009AD3B6 /* App-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Base.xcconfig"; sourceTree = "<group>"; };
+		4EDAE4842193267E001BFDFE /* MicrophoneTrackerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneTrackerProtocol.swift; sourceTree = "<group>"; };
 		4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		52AE542681572A0DED24114E /* Pods-Baby MonitorTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.production.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.production.xcconfig"; sourceTree = "<group>"; };
 		7601A7C7DF10E33566E2969D /* Pods-Baby MonitorTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.staging.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -388,6 +396,7 @@
 				4E5731962170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift */,
 				4E5731972170BA7400DEAF0B /* Coordinator.swift */,
 				8AED318D219045AD00FEFE8A /* BabyMonitorCellDeletable.swift */,
+				4EDAE4842193267E001BFDFE /* MicrophoneTrackerProtocol.swift */,
 			);
 			path = "Other Protocols";
 			sourceTree = "<group>";
@@ -395,6 +404,7 @@
 		4E5731A02170BA9D00DEAF0B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4E9AFD69218C58DC007D92BE /* CryingDetection */,
 				8A43DAFB217DD1C300E3004D /* Connection */,
 				4E39432F2175D48C00AD7582 /* NetService */,
 				8AEAFBAF217735B3003E756F /* Persistence */,
@@ -526,6 +536,23 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		4E9AFD69218C58DC007D92BE /* CryingDetection */ = {
+			isa = PBXGroup;
+			children = (
+				4E9AFD6A218C58EE007D92BE /* CryingDetectionService.swift */,
+			);
+			path = CryingDetection;
+			sourceTree = "<group>";
+		};
+		4E9AFD6D218C8336007D92BE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */,
+				4E08670D218C8ECB00E27DEF /* CryingDetectionServiceTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		4EF36FBB21660F1700257384 /* BabyMonitorGeneral */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +597,7 @@
 				8AA7CBCB21871B3E00FCF62A /* ConnectionCheckerMock.swift */,
 				8AA7CBE3218C5A5100FCF62A /* URLMediaPlayerMock.swift */,
 				8AED3177218C89D200FEFE8A /* LullabiesRepositoryMock.swift */,
+				4E9AFD70218C849D007D92BE /* MicrophoneTrackerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -590,14 +618,6 @@
 				8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */,
 			);
 			path = Connection;
-			sourceTree = "<group>";
-		};
-		8A43DAFE217DD2C600E3004D /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */,
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 		8AA7CBBC2187100F00FCF62A /* Settings */ = {
@@ -754,7 +774,7 @@
 			children = (
 				8AA7CBE5218C5DF400FCF62A /* Resources */,
 				8AA7CBD8218C549D00FCF62A /* Media */,
-				8A43DAFE217DD2C600E3004D /* Networking */,
+				4E9AFD6D218C8336007D92BE /* Services */,
 				8A42DB152179DD8600BF5F1B /* Extensions */,
 				8A42DAFF2179C07C00BF5F1B /* Mocks */,
 				8A42DAFB2179BF8200BF5F1B /* Modules */,
@@ -1078,6 +1098,7 @@
 			files = (
 				4E626690217F1A6300FA542F /* GeneralOnboardingViewController.swift in Sources */,
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
+				4E9AFD6B218C58EE007D92BE /* CryingDetectionService.swift in Sources */,
 				4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */,
 				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
@@ -1139,6 +1160,7 @@
 				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* RTSPConfiguration.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
+				4EDAE4852193267E001BFDFE /* MicrophoneTrackerProtocol.swift in Sources */,
 				8AA7CBFE218C70B400FCF62A /* RealmLullabiesRepository.swift in Sources */,
 				8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
@@ -1167,8 +1189,10 @@
 				8A42DB192179E0AD00BF5F1B /* RTSPConfigurationMock.swift in Sources */,
 				8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */,
 				8AA7CBCC21871B3E00FCF62A /* ConnectionCheckerMock.swift in Sources */,
+				4E08670E218C8ECB00E27DEF /* CryingDetectionServiceTests.swift in Sources */,
 				8AA7CBC02187105600FCF62A /* BabyMonitorCellMock.swift in Sources */,
 				8AA7CBCA21871AE300FCF62A /* DashboardViewModelTests.swift in Sources */,
+				4E9AFD71218C849D007D92BE /* MicrophoneTrackerMock.swift in Sources */,
 				8A42DB0E2179D8FB00BF5F1B /* URLUserDefaultsMock.swift in Sources */,
 				8AA7CBD72187521500FCF62A /* LullabyViewModelTests.swift in Sources */,
 				8AA7CBCF2187401700FCF62A /* ActivityLogViewModelTests.swift in Sources */,

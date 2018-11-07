@@ -15,6 +15,7 @@ target 'Baby Monitor' do
   pod 'RTSPServer', path: 'Dependencies/RTSPServer.podspec'
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
+  pod 'AudioKit', '~> 4.5' 
 
   target 'Baby MonitorTests' do
     inherit! :search_paths

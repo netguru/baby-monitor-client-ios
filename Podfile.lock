@@ -1,4 +1,10 @@
 PODS:
+  - AudioKit (4.5.3):
+    - AudioKit/Core (= 4.5.3)
+    - AudioKit/UI (= 4.5.3)
+  - AudioKit/Core (4.5.3)
+  - AudioKit/UI (4.5.3):
+    - AudioKit/Core
   - Differentiator (3.1.0)
   - MobileVLCKit (3.1.5)
   - Realm (3.11.1):
@@ -21,6 +27,7 @@ PODS:
   - SwiftLint (0.27.0)
 
 DEPENDENCIES:
+  - AudioKit (~> 4.5)
   - MobileVLCKit (~> 3.1)
   - RealmSwift (~> 3.11.0)
   - RTSPServer (from `Dependencies/RTSPServer.podspec`)
@@ -33,6 +40,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AudioKit
     - Differentiator
     - MobileVLCKit
     - Realm
@@ -49,6 +57,7 @@ EXTERNAL SOURCES:
     :path: Dependencies/RTSPServer.podspec
 
 SPEC CHECKSUMS:
+  AudioKit: 086927b955ed65d9d3398006eaa7a5c39ae8a7f1
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   MobileVLCKit: 4d44e56380d0ee41c76f9ec7015d3a4b62a963a3
   Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
@@ -61,6 +70,6 @@ SPEC CHECKSUMS:
   RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: f22db614a755bab1c9bd5ec8dc9fbf015db9e005
+PODFILE CHECKSUM: 84867df0a678b5e28a17240e2dd65052cffbad86
 
 COCOAPODS: 1.6.0.beta.2
