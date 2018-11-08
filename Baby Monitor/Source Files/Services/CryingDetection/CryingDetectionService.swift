@@ -23,7 +23,7 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
     
     lazy var cryingDetectionObservable: Observable<Void> = {
         return Observable<Int>.timer(0, period: 0.5, scheduler: MainScheduler.asyncInstance)
-            .map { _ in self.microphoneTracker.frequency }
+            .map { [unowned self] _ in self.microphoneTracker.frequency }
             .filter { $0 > 1000 }
             .buffer(timeSpan: 10, count: 6, scheduler: MainScheduler.asyncInstance)
             .filter { $0.count > 5 }
