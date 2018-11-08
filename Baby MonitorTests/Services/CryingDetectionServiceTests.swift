@@ -49,8 +49,7 @@ class CryingDetectionServiceTests: XCTestCase {
         microphoneTrackerMock.start()
         cryingDetectionService.cryingDetectionObservable.subscribe(onNext: { _ in
             exp.fulfill()
-        })
-        .disposed(by: bag)
+        }).disposed(by: bag)
         let result = XCTWaiter.wait(for: [exp], timeout: 10)
         
         //Then
@@ -68,8 +67,7 @@ class CryingDetectionServiceTests: XCTestCase {
         //When
         microphoneTrackerMock.start()
         cryingDetectionService.cryingDetectionObservable.fulfill(expectation: exp, afterEventCount: 2, bag: bag)
-        cryingDetectionService.cryingDetectionObservable.subscribe(observer)
-            .disposed(by: bag)
+        cryingDetectionService.cryingDetectionObservable.subscribe(observer).disposed(by: bag)
         
         //Then
         wait(for: [exp], timeout: 6.0)

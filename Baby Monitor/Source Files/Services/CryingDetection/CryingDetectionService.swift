@@ -9,6 +9,7 @@ import RxSwift
 import RxCocoa
 
 protocol CryingDetectionServiceProtocol: Any {
+    
     /// Observable that informs about detection of baby's cry
     var cryingDetectionObservable: Observable<Void> { get }
     
@@ -18,7 +19,7 @@ protocol CryingDetectionServiceProtocol: Any {
     func stopAnalysis()
 }
 
-final class CryingDetectionService {
+final class CryingDetectionService: CryingDetectionServiceProtocol {
     
     lazy var cryingDetectionObservable: Observable<Void> = {
         return Observable<Int>.timer(0, period: 0.5, scheduler: MainScheduler.asyncInstance)
