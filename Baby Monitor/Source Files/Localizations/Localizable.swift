@@ -57,6 +57,10 @@ enum Localizable {
     enum Settings {
         static let switchToServer = localized("settings.cell.switch-to-server")
         static let changeServer = localized("settings.cell.change-server")
+        static let useML = localized("settings.cell.use-ml")
+        static let useStaticCryingDetection = localized("settings.cell.use-static-crying-detection")
+        static let main = localized("settings.header.main")
+        static let cryingDetectionMethod = localized("settings.header.crying-detection-method")
     }
 }
 
