@@ -90,6 +90,15 @@ class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
         photoImageView.image = image
     }
     
+    /// Updates selected state
+    func showCheckmark(_ showing: Bool) {
+        if showing {
+            accessoryType = .checkmark
+        } else {
+            accessoryType = .none
+        }
+    }
+    
     /// Configures cell to look like a header
     func configureAsHeader() {
         [secondaryLabel, photoImageView, additionalButton].forEach {

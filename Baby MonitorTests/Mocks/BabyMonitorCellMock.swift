@@ -15,6 +15,7 @@ final class BabyMonitorCellMock: BabyMonitorCellProtocol {
     private(set) var secondaryText: String?
     private(set) var image: UIImage?
     private(set) var isConfiguredAsHeader = false
+    private(set) var accessoryType: UITableViewCell.AccessoryType = .none
     
     func update(mainText: String) {
         self.mainText = mainText
@@ -26,6 +27,14 @@ final class BabyMonitorCellMock: BabyMonitorCellProtocol {
     
     func update(image: UIImage) {
         self.image = image
+    }
+    
+    func showCheckmark(_ showing: Bool) {
+        if showing {
+            accessoryType = .checkmark
+        } else {
+            accessoryType = .none
+        }
     }
     
     func configureAsHeader() {

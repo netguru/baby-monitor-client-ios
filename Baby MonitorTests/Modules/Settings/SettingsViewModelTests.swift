@@ -56,7 +56,10 @@ class SettingsViewModelTests: XCTestCase {
         let observer = scheduler.createObserver([GeneralSection<SettingsViewModel.Cell>].self)
         let babiesRepository = BabiesRepositoryMock()
         let sut = SettingsViewModel(babyRepo: babiesRepository)
-        let expectedSection = [GeneralSection<SettingsViewModel.Cell>(title: "", items: [SettingsViewModel.Cell.switchToServer, SettingsViewModel.Cell.changeServer])]
+        let expectedSection = [
+            GeneralSection<SettingsViewModel.Cell>(title: Localizable.Settings.main, items: [SettingsViewModel.Cell.switchToServer, SettingsViewModel.Cell.changeServer]),
+            GeneralSection<SettingsViewModel.Cell>(title: Localizable.Settings.cryingDetectionMethod, items: [SettingsViewModel.Cell.useML, SettingsViewModel.Cell.useStaticCryingDetection])
+        ]
         
         // When
         sut.sections
