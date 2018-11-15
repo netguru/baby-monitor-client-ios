@@ -45,7 +45,7 @@ final class OnboardingCoordinator: Coordinator {
     private func showClientSetup() {
         let viewModel = ClientSetupOnboardingViewModel(
             netServiceClient: appDependencies.netServiceClient,
-            rtspConfiguration: appDependencies.rtspConfiguration,
+            urlConfiguration: appDependencies.urlConfiguration,
             babyRepo: appDependencies.babyRepo)
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
@@ -61,7 +61,7 @@ final class OnboardingCoordinator: Coordinator {
     }
     
     private func showServerView() {
-        let viewModel = ServerViewModel(mediaPlayerStreamingService: appDependencies.mediaPlayerStreamingService)
+        let viewModel = ServerViewModel(webRtcServerManager: appDependencies.webRtcServer, messageServer: appDependencies.messageServer, netServiceServer: appDependencies.netServiceServer, decoders: appDependencies.webRtcMessageDecoders)
         navigationController.pushViewController(ServerViewController(viewModel: viewModel), animated: true)
     }
 

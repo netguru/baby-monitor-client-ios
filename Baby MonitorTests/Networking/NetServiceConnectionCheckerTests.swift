@@ -16,10 +16,10 @@ class NetServiceConnectionCheckerTests: XCTestCase {
         let bag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(ConnectionStatus.self)
-        let configuration = RTSPConfigurationMock()
-        configuration.url = URL(string: "rtsp://ip:port")
+        let configuration = URLConfigurationMock()
+        configuration.url = URL(string: "ws://ip:port")
         let clientMock = NetServiceClientMock(findServiceDelay: 0.1, ip: "ip", port: "port")
-        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, rtspConfiguration: configuration)
+        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, urlConfiguration: configuration)
         let connection = sut.connectionStatus.share(replay: 1, scope: .whileConnected)
         
         // When
@@ -42,10 +42,10 @@ class NetServiceConnectionCheckerTests: XCTestCase {
         let bag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(ConnectionStatus.self)
-        let configuration = RTSPConfigurationMock()
+        let configuration = URLConfigurationMock()
         configuration.url = URL(string: "rtsp://ip:port")
         let clientMock = NetServiceClientMock(findServiceDelay: 20, ip: "ip", port: "port")
-        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, rtspConfiguration: configuration, delay: 0.1)
+        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, urlConfiguration: configuration, delay: 0.1)
         let connection = sut.connectionStatus.share(replay: 1, scope: .whileConnected)
         
         // When
@@ -69,10 +69,10 @@ class NetServiceConnectionCheckerTests: XCTestCase {
         let bag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(ConnectionStatus.self)
-        let configuration = RTSPConfigurationMock()
-        configuration.url = URL(string: "rtsp://ip:port")
+        let configuration = URLConfigurationMock()
+        configuration.url = URL(string: "ws://ip:port")
         let clientMock = NetServiceClientMock(findServiceDelay: 0.1, ip: "ip", port: "port")
-        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, rtspConfiguration: configuration, delay: 0.2)
+        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, urlConfiguration: configuration, delay: 0.2)
         let connection = sut.connectionStatus.share(replay: 1, scope: .whileConnected)
         
         // When
@@ -97,10 +97,10 @@ class NetServiceConnectionCheckerTests: XCTestCase {
         let bag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(ConnectionStatus.self)
-        let configuration = RTSPConfigurationMock()
-        configuration.url = URL(string: "rtsp://ip:port")
+        let configuration = URLConfigurationMock()
+        configuration.url = URL(string: "ws://ip:port")
         let clientMock = NetServiceClientMock(findServiceDelay: 0.1, ip: "ip", port: "port")
-        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, rtspConfiguration: configuration, delay: 0.15)
+        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, urlConfiguration: configuration, delay: 0.15)
         let connection = sut.connectionStatus.share(replay: 1, scope: .whileConnected)
         
         // When
@@ -127,10 +127,10 @@ class NetServiceConnectionCheckerTests: XCTestCase {
         let bag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(ConnectionStatus.self)
-        let configuration = RTSPConfigurationMock()
-        configuration.url = URL(string: "rtsp://ip:port")
+        let configuration = URLConfigurationMock()
+        configuration.url = URL(string: "ws://ip:port")
         let clientMock = NetServiceClientMock(findServiceDelay: 5.0, ip: "ip", port: "port")
-        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, rtspConfiguration: configuration, delay: 0.15)
+        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, urlConfiguration: configuration, delay: 0.15)
         let connection = sut.connectionStatus.share(replay: 1, scope: .whileConnected)
         
         // When

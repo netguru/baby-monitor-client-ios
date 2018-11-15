@@ -4,11 +4,12 @@
 //
 
 import UIKit
-import RTSPServer
+import WebRTC
 
 final class ServerViewController: BaseViewController {
     
-    private let cameraView = UIView()
+    private let localView = RTCEAGLVideoView()
+    private var localVideoTrack: RTCVideoTrack?
     private let viewModel: ServerViewModel
     
     init(viewModel: ServerViewModel) {
@@ -18,8 +19,18 @@ final class ServerViewController: BaseViewController {
     }
     
     private func setup() {
-        view.addSubview(cameraView)
-        cameraView.addConstraints { $0.equalSafeAreaEdges() }
-        viewModel.startStreaming(videoView: cameraView)
+        view.addSubview(localView)
+        localView.addConstraints { $0.equalSafeAreaEdges() }
+        viewModel.didLoadLocalStream = { [unowned self] stream in
+            self.attach(stream: stream)
+        }
+        viewModel.startStreaming()
+    }
+    
+    private func attach(stream: RTCMediaStream) {
+        localVideoTrack = stream.videoTracks[0] as? RTCVideoTrack
+        localVideoTrack?.remove(localView)
+        localView.renderFrame(nil)
+        localVideoTrack?.add(localView)
     }
 }

@@ -10,12 +10,12 @@ final class NetServiceConnectionChecker: ConnectionChecker {
     lazy var connectionStatus: Observable<ConnectionStatus> = createStatus()
     
     private let netServiceClient: NetServiceClientProtocol
-    private let rtspConfiguration: RTSPConfiguration
+    private let urlConfiguration: URLConfiguration
     private let delay: TimeInterval
     
-    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, delay: TimeInterval = 2.0) {
+    init(netServiceClient: NetServiceClientProtocol, urlConfiguration: URLConfiguration, delay: TimeInterval = 2.0) {
         self.netServiceClient = netServiceClient
-        self.rtspConfiguration = rtspConfiguration
+        self.urlConfiguration = urlConfiguration
         self.delay = delay
     }
     
@@ -30,7 +30,7 @@ final class NetServiceConnectionChecker: ConnectionChecker {
     private func createStatus() -> Observable<ConnectionStatus> {
         let status = netServiceClient.serviceObservable
             .filter { ip, port in
-                URL.rtsp(ip: ip, port: port) == self.rtspConfiguration.url
+                URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix) == self.urlConfiguration.url
             }
             .buffer(timeSpan: delay, count: 1, scheduler: MainScheduler.asyncInstance)
             .map { !($0.isEmpty) }
