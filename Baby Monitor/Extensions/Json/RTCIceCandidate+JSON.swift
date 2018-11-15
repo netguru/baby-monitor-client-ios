@@ -3,33 +3,22 @@
 //  Baby Monitor
 //
 
-import WebRTC
-
-private enum Keys: String {
-    case type
-    case candidate
-    case label
-    case id
-}
-
-extension IceCandidateProtocol {
-
+extension RTCICECandidate {
+    
     func jsonDictionary() -> [AnyHashable: Any] {
-        return [Keys.type.rawValue: Keys.candidate.rawValue,
-                Keys.label.rawValue: sdpMLineIndex,
-                Keys.id.rawValue: sdpMid ?? "",
-                Keys.candidate.rawValue: sdp]
+        return ["type": "candidate",
+                "label": sdpMLineIndex,
+                "id": sdpMid,
+                "candidate": sdp]
     }
-}
-
-extension RTCIceCandidate {
+    
     convenience init?(dictionary: [AnyHashable: Any]) {
-        guard dictionary[Keys.type.rawValue] as? String == Keys.candidate.rawValue,
-            let label = dictionary[Keys.label.rawValue] as? Int,
-            let id = dictionary[Keys.id.rawValue] as? String,
-            let candidate = dictionary[Keys.candidate.rawValue] as? String else {
+        guard dictionary["type"] as? String == "candidate",
+            let label = dictionary["label"] as? Int,
+            let id = dictionary["id"] as? String,
+            let candidate = dictionary["candidate"] as? String else {
                 return nil
         }
-        self.init(sdp: candidate, sdpMLineIndex: Int32(label), sdpMid: id)
+        self.init(mid: id, index: label, sdp: candidate)
     }
 }

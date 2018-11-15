@@ -43,17 +43,17 @@ final class ClientSetupOnboardingViewModel {
         netServiceClient.serviceObservable
             .take(1)
             .subscribe(onNext: { [weak self] ip, port in
-            self?.searchCancelTimer?.invalidate()
-            guard let serverUrl = URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix),
-                let self = self else {
-                return
-            }
-            self.urlConfiguration.url = serverUrl
-            self.netServiceClient.stopFinding()
-            self.didFinishDeviceSearch?(.success)
-            self.setupBaby()
-        })
-        .disposed(by: disposeBag)
+                self?.searchCancelTimer?.invalidate()
+                guard let serverUrl = URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix),
+                    let self = self else {
+                        return
+                }
+                self.urlConfiguration.url = serverUrl
+                self.netServiceClient.stopFinding()
+                self.didFinishDeviceSearch?(.success)
+                self.setupBaby()
+            })
+            .disposed(by: disposeBag)
         netServiceClient.findService()
     }
     

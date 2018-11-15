@@ -4,7 +4,6 @@
 //
 
 import UIKit
-import WebRTC
 import PocketSocket
 import RxSwift
 
@@ -24,6 +23,7 @@ final class ServerViewController: BaseViewController {
     }
     
     private func setup() {
+//<<<<<<< HEAD
         viewModel.localStream
             .subscribe(onNext: { [unowned self] stream in
                 self.attach(stream: stream)
@@ -39,6 +39,20 @@ final class ServerViewController: BaseViewController {
         localVideoTrack?.remove(localView)
         localView.renderFrame(nil)
         localVideoTrack = stream.videoTracks[0]
+//=======
+//        view.addSubview(localView)
+//        localView.addConstraints { $0.equalSafeAreaEdges() }
+//        viewModel.didLoadLocalStream = { [unowned self] stream in
+//            self.attach(stream: stream)
+//        }
+//        viewModel.startStreaming()
+//    }
+//
+//    private func attach(stream: RTCMediaStream) {
+//        localVideoTrack = stream.videoTracks[0] as? RTCVideoTrack
+//        localVideoTrack?.remove(localView)
+//        localView.renderFrame(nil)
+//>>>>>>> d2863fb... Replaced RTSP with WebRTC
         localVideoTrack?.add(localView)
     }
 }

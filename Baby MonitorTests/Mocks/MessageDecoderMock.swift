@@ -16,6 +16,11 @@ final class MessageDecoderMock: MessageDecoderProtocol {
     }
     
     func decode(message: String) -> Bool? {
+<<<<<<< HEAD
         return words.contains(message) ? true : nil
+=======
+        if words.contains(message) { return true }
+        return nil
+>>>>>>> d2863fb... Replaced RTSP with WebRTC
     }
 }

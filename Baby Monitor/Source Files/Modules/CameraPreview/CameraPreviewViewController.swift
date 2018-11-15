@@ -6,15 +6,13 @@
 import UIKit
 import RxSwift
 import AVKit
-import WebRTC
 
 final class CameraPreviewViewController: TypedViewController<CameraPreviewView> {
     
-    private let viewModel: CameraPreviewViewModel
-    
     lazy var videoView = customView.mediaView
+    
     private var videoTrack: RTCVideoTrack?
-
+    private let viewModel: CameraPreviewViewModel
     private let bag = DisposeBag()
     
     init(viewModel: CameraPreviewViewModel) {

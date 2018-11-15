@@ -81,7 +81,11 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
 
     // Prepare CameraPreviewViewModel
     private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
+<<<<<<< HEAD
         let viewModel = CameraPreviewViewModel(webRtcClientManager: appDependencies.webRtcClient, babyRepo: appDependencies.babiesRepository)
+=======
+        let viewModel = CameraPreviewViewModel(webRtcClientManager: appDependencies.webRtcClient, webSocket: appDependencies.webSocket, babyRepo: appDependencies.babyRepo, decoders: appDependencies.webRtcMessageDecoders)
+>>>>>>> d2863fb... Replaced RTSP with WebRTC
         viewModel.didSelectCancel = { [weak self] in
             self?.navigationController.dismiss(animated: true, completion: nil)
         }
