@@ -30,9 +30,12 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     
     private let socket: PSWebSocket
     
-    init(socket: PSWebSocket) {
+    init(socket: PSWebSocket, assignDelegate: Bool = true) {
         self.socket = socket
         super.init()
+        guard assignDelegate else {
+            return
+        }
         socket.delegate = self
     }
     

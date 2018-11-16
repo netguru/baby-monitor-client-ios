@@ -67,7 +67,7 @@ extension PSWebSocketServerWrapper: PSWebSocketServerDelegate {
     func server(_ server: PSWebSocketServer, didFailWithError error: Error) {}
     
     func server(_ server: PSWebSocketServer, webSocketDidOpen webSocket: PSWebSocket) {
-        connectedSocketPublisher.accept(PSWebSocketWrapper(socket: webSocket))
+        connectedSocketPublisher.accept(PSWebSocketWrapper(socket: webSocket, assignDelegate: false))
     }
     
     func server(_ server: PSWebSocketServer, webSocket: PSWebSocket, didReceiveMessage message: Any) {
@@ -81,6 +81,6 @@ extension PSWebSocketServerWrapper: PSWebSocketServerDelegate {
     func server(_ server: PSWebSocketServer, webSocket: PSWebSocket, didFailWithError error: Error) {}
     
     func server(_ server: PSWebSocketServer, webSocket: PSWebSocket, didCloseWithCode code: Int, reason: String, wasClean: Bool) {
-        disconnectedSocketPublisher.accept(PSWebSocketWrapper(socket: webSocket))
+        disconnectedSocketPublisher.accept(PSWebSocketWrapper(socket: webSocket, assignDelegate: false))
     }
 }

@@ -24,6 +24,7 @@ final class ServerViewModel {
         self.netServiceServer = netServiceServer
         self.decoders = decoders
         webRtcServerManager.delegate = self
+        setup()
     }
     
     private func setup() {
