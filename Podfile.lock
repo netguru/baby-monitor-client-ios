@@ -1,28 +1,32 @@
 PODS:
-  - AudioKit (4.5.3):
-    - AudioKit/Core (= 4.5.3)
-    - AudioKit/UI (= 4.5.3)
-  - AudioKit/Core (4.5.3)
-  - AudioKit/UI (4.5.3):
+  - AudioKit (4.5.4):
+    - AudioKit/Core (= 4.5.4)
+    - AudioKit/UI (= 4.5.4)
+  - AudioKit/Core (4.5.4)
+  - AudioKit/UI (4.5.4):
     - AudioKit/Core
   - Differentiator (3.1.0)
   - MobileVLCKit (3.1.5)
-  - Realm (3.11.1):
-    - Realm/Headers (= 3.11.1)
-  - Realm/Headers (3.11.1)
-  - RealmSwift (3.11.1):
-    - Realm (= 3.11.1)
+  - Realm (3.11.2):
+    - Realm/Headers (= 3.11.2)
+  - Realm/Headers (3.11.2)
+  - RealmSwift (3.11.2):
+    - Realm (= 3.11.2)
   - RTSPServer (0.0.1)
-  - RxBlocking (4.3.1):
+  - RxAtomic (4.4.0)
+  - RxBlocking (4.4.0):
+    - RxAtomic (~> 4.4)
     - RxSwift (~> 4.0)
-  - RxCocoa (4.3.1):
+  - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
   - RxDataSources (3.1.0):
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxSwift (4.3.1)
-  - RxTest (4.3.1):
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
+  - RxTest (4.4.0):
+    - RxAtomic (~> 4.4)
     - RxSwift (~> 4.0)
   - SwiftLint (0.27.0)
 
@@ -45,6 +49,7 @@ SPEC REPOS:
     - MobileVLCKit
     - Realm
     - RealmSwift
+    - RxAtomic
     - RxBlocking
     - RxCocoa
     - RxDataSources
@@ -57,19 +62,20 @@ EXTERNAL SOURCES:
     :path: Dependencies/RTSPServer.podspec
 
 SPEC CHECKSUMS:
-  AudioKit: 086927b955ed65d9d3398006eaa7a5c39ae8a7f1
+  AudioKit: af3f5b73e22f85f3cd03076fea8afbb9658f0938
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   MobileVLCKit: 4d44e56380d0ee41c76f9ec7015d3a4b62a963a3
-  Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
-  RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
+  Realm: 864477d028db77f7c5a0cba64a4892ad53db128a
+  RealmSwift: 12b8262fc08020b47de4fd88eb3d5c9425b34ec7
   RTSPServer: 650a8019b93cdda0f3e71384840fe6b57fe51bd2
-  RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
-  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxBlocking: 138ad53217434444d6eeeb4fb406a45431d92e31
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
-  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
-  RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 84867df0a678b5e28a17240e2dd65052cffbad86
+PODFILE CHECKSUM: 673d9922645fd9819d0868e5d1f1c5cb9d8f05d9
 
 COCOAPODS: 1.6.0.beta.2
