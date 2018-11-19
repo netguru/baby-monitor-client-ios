@@ -10,14 +10,16 @@ final class TabBarController: UITabBarController {
     private let viewControllersTitles = [
         Localizable.TabBar.dashboard,
         Localizable.TabBar.activityLog,
-        Localizable.TabBar.lullabies,
+        // TODO: Hidden for MVP
+        // Localizable.TabBar.lullabies,
         Localizable.TabBar.settings
     ]
     
     private let viewControllersImages = [
         #imageLiteral(resourceName: "dashboard"),
         #imageLiteral(resourceName: "activityLog"),
-        #imageLiteral(resourceName: "musicNote"),
+        // TODO: Hidden for MVP
+        // #imageLiteral(resourceName: "musicNote"),
         #imageLiteral(resourceName: "settings")
     ]
     
