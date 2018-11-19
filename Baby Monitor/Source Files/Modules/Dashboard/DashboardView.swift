@@ -36,7 +36,8 @@ class DashboardView: BaseView {
         return label
     }()
     private lazy var dashboardButtonsStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [liveCameraButton, talkButton, playLullabyButton])
+        // TODO: playLullabyButton hidden for MVP
+        let stackView = UIStackView(arrangedSubviews: [liveCameraButton, talkButton])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .center
@@ -163,9 +164,10 @@ extension Reactive where Base: DashboardView {
         return base.talkButton.rx.tap
     }
     
-    var playLullabyTap: ControlEvent<Void> {
-        return base.playLullabyButton.rx.tap
-    }
+    // TODO: Hidden for MVP
+    // var playLullabyTap: ControlEvent<Void> {
+        // return base.playLullabyButton.rx.tap
+    // }
     
     var switchBabyTap: ControlEvent<Void> {
         return base.babyNavigationItemView.rx.tap
