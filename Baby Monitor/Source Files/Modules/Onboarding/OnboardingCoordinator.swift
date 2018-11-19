@@ -55,8 +55,7 @@ final class OnboardingCoordinator: Coordinator {
                 self?.appDependencies.errorHandler.showAlert(
                     title: Localizable.Errors.errorOccured,
                     message: Localizable.Errors.unableToFind,
-                    presenter: self?.navigationController,
-                    secondAction: nil
+                    presenter: self?.navigationController
                 )
             }
         }

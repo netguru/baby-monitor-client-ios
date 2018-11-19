@@ -16,9 +16,21 @@ protocol ErrorHandlerProtocol {
     func showAlert(title: String, message: String, presenter: UIViewController?, secondAction: UIAlertAction?)
 }
 
+extension ErrorHandlerProtocol {
+    
+    /// Shows an alert with details of an error
+    ///
+    /// - Parameter title: General title for the alert
+    /// - Parameter message: Main text with error details
+    /// - Parameter presenter: A view controller which is responsible for presenting the alert
+    func showAlert(title: String, message: String, presenter: UIViewController?) {
+        showAlert(title: title, message: message, presenter: presenter, secondAction: nil)
+    }
+}
+
 final class ErrorHandler: ErrorHandlerProtocol {
     
-    func showAlert(title: String, message: String, presenter: UIViewController?, secondAction: UIAlertAction?) {
+    func showAlert(title: String, message: String, presenter: UIViewController?, secondAction: UIAlertAction? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: Localizable.General.ok, style: .default, handler: nil)
         alert.addAction(okAction)
