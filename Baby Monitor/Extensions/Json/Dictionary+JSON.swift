@@ -11,4 +11,8 @@ extension Dictionary where Key == String, Value == [AnyHashable: Any] {
         }
         return jsonString
     }
+    
+    var jsonData: Data? {
+        return try? JSONSerialization.data(withJSONObject: self, options: JSONSerialization.WritingOptions.prettyPrinted)
+    }
 }

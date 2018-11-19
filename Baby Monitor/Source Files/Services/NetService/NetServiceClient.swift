@@ -22,7 +22,7 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
     private let servicePublisher = PublishRelay<(ip: String, port: String)>()
     private let netServiceBrowser = NetServiceBrowser()
     
-    private static let androidPort = 5006
+    private static let androidPort = 55555
     private static let iosPort = 554
     
     override init() {
@@ -57,7 +57,6 @@ extension NetServiceClient: NetServiceDelegate {
     
     func netServiceDidResolveAddress(_ sender: NetService) {
         guard let addressData = sender.addresses?.first,
-            [NetServiceClient.androidPort, NetServiceClient.iosPort].contains(sender.port),
             let ip = getIP(from: addressData) else {
                 return
         }

@@ -50,6 +50,7 @@ opt_in_rules:
   - weak_delegate
 
   # Medium importance rules
+  - trailing_whitespace
   - array_init
   - closing_brace
   - closure_end_indentation
@@ -105,7 +106,6 @@ identifier_name:
 
 # Disabled rules.
 disabled_rules:
-  - trailing_whitespace
   - line_length
   - todo
   - attributes

@@ -28,8 +28,8 @@ struct AppDependencies {
         let webSocketServer = PSWebSocketServer(host: nil, port: UInt(Constants.websocketPort))!
         return PSWebSocketServerWrapper(server: webSocketServer)
     }()
-    private(set) lazy var webSocket: WebSocketProtocol? = {
-        guard let url = urlConfiguration.url else {
+    private(set) lazy var webSocket: (URL?) -> WebSocketProtocol? = { url in
+        guard let url = url else {
                 return nil
         }
         let urlRequest = URLRequest(url: url)
@@ -37,5 +37,5 @@ struct AppDependencies {
             return nil
         }
         return PSWebSocketWrapper(socket: webSocket)
-    }()
+    }
 }

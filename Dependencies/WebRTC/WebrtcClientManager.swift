@@ -24,11 +24,11 @@ public class WebrtcClientManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
   
   override public init() {
     super.init()
+    peerConnectionFactory = RTCPeerConnectionFactory()
+    peerConnection = peerConnectionFactory?.peerConnection(withICEServers: [], constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [RTCPair(key: "DtlsSrtpKeyAgreement", value: "true")]), delegate: self)
   }
   
   public func startWebrtcConnection() {
-    peerConnectionFactory = RTCPeerConnectionFactory()
-    peerConnection = peerConnectionFactory?.peerConnection(withICEServers: [], constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [RTCPair(key: "DtlsSrtpKeyAgreement", value: "true")]), delegate: self)
       self.createOffer()
   }
   

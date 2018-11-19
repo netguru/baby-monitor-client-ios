@@ -6,6 +6,7 @@
 import UIKit
 import RxSwift
 import WebRTC
+import AVKit
 
 final class CameraPreviewViewController: TypedViewController<CameraPreviewView> {
     
@@ -26,6 +27,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         super.viewDidLoad()
         setup()
         setupViewModel()
+        viewModel.play()
     }
     
     // MARK: - Selectors
@@ -64,6 +66,16 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         DispatchQueue.main.async {
             self.remoteVideoTrack = stream.videoTracks[0] as? RTCVideoTrack
             self.remoteVideoTrack?.add(self.videoView)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { () -> Void in
+                let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
+                do {
+                    try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+                } catch {
+                    print("Audio Port Error");
+                }
+            }
+            UIView.animate(withDuration: 0.4, animations: { () -> Void in
+            })
         }
     }
 }
