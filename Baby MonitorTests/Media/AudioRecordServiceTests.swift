@@ -33,14 +33,12 @@ class AudioRecordServiceTests: XCTestCase {
     
     func testShouldStopRecording() {
         //When
-//        sut.isRecording = true
         sut.startRecording()
         recorderMock.isRecording = true
         sut.stopRecording()
         
         //Then
         XCTAssertFalse(recorderMock.isRecording)
-//        XCTAssertFalse(sut.isRecording)
     }
     
     func testShouldPublishAudioFile() {
@@ -66,7 +64,6 @@ class AudioRecordServiceTests: XCTestCase {
             exp.fulfill()
         }).disposed(by: disposeBag)
         recorderMock.shouldReturnNilForAudioFile = true
-//        sut.isRecording = true
         sut.stopRecording()
         
         //Then

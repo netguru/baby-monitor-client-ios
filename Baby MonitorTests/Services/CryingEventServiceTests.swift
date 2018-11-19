@@ -89,7 +89,7 @@ class CryingEventServiceTests: XCTestCase {
     }
     
     func testShouldNotifyAboutCryingDetectionOnlyOnce() {
-        //Given TODO
+        //Given
         let disposeBag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(Bool.self)
