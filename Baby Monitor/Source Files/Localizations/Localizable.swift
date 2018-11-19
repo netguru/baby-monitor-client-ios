@@ -11,6 +11,7 @@ enum Localizable {
         static let cancel = localized("general.cancel")
         static let disconnected = localized("general.disconnected")
         static let delete = localized("general.delete")
+        static let ok = localized("general.ok")
     }
     
     enum Onboarding {
@@ -61,6 +62,11 @@ enum Localizable {
         static let useStaticCryingDetection = localized("settings.cell.use-static-crying-detection")
         static let main = localized("settings.header.main")
         static let cryingDetectionMethod = localized("settings.header.crying-detection-method")
+    }
+    
+    enum Errors {
+        static let errorOccured = localized("errors.title.error-occured")
+        static let unableToFind = localized("errors.message.unable-to-find")
     }
 }
 

@@ -24,4 +24,6 @@ struct AppDependencies {
     /// Baby service for getting and adding babies throughout the app
     private(set) var babyRepo: BabiesRepositoryProtocol = RealmBabiesRepository(realm: try! Realm())
     private(set) var lullabiesRepo: LullabiesRepositoryProtocol = RealmLullabiesRepository(realm: try! Realm())
+    /// Service for handling errors and showing error alerts
+    private(set) var errorHandler: ErrorHandlerProtocol = ErrorHandler()
 }
