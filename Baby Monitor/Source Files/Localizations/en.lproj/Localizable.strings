@@ -7,6 +7,7 @@
 "general.cancel" = "Cancel";
 "general.disconnected" = "Disconnected";
 "general.delete" = "Delete";
+"general.ok" = "OK";
 
 //MARK: - Onboarding
 "onboarding.button.start-client" = "START BABY MONITOR CLIENT";
@@ -47,3 +48,11 @@
 //MARK: - Settings
 "settings.cell.switch-to-server" = "Switch to Server application";
 "settings.cell.change-server" = "Change server address";
+"settings.cell.use-ml" = "Use Machine Learning";
+"settings.cell.use-static-crying-detection" = "Use Static Crying Detection";
+"settings.header.main" = "Main";
+"settings.header.crying-detection-method" = "Crying Detection Method";
+
+//MARK: - Errors
+"errors.title.error-occured" = "Error occured";
+"errors.message.unable-to-find" = "Unable to find a device for connection";

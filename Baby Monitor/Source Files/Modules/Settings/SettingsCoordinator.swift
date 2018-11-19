@@ -76,8 +76,11 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
             case .success:
                 _ = self?.navigationController.popViewController(animated: true)
             case .failure:
-                //TODO: add error handling
-                break
+                self?.appDependencies.errorHandler.showAlert(
+                    title: Localizable.Errors.errorOccured,
+                    message: Localizable.Errors.unableToFind,
+                    presenter: self?.navigationController
+                )
             }
         }
     }

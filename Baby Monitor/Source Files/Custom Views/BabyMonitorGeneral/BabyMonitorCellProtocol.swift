@@ -32,6 +32,9 @@ protocol BabyMonitorCellProtocol: AnyObject {
     /// Updates main image
     func update(image: UIImage)
     
+    /// Updates selected state
+    func showCheckmark(_ showing: Bool)
+    
     /// Configures cell to look like a header
     func configureAsHeader()
 }
