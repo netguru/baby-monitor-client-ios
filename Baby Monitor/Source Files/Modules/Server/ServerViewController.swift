@@ -20,6 +20,6 @@ final class ServerViewController: BaseViewController {
     private func setup() {
         view.addSubview(cameraView)
         cameraView.addConstraints { $0.equalSafeAreaEdges() }
-        viewModel.startStreaming(videoView: cameraView)
+        viewModel.start(videoView: cameraView)
     }
 }

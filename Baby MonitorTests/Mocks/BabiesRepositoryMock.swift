@@ -39,6 +39,10 @@ final class BabiesRepositoryMock: BabiesRepositoryProtocol {
         currentBabyId = baby.id
     }
     
+    func getCurrentBaby() -> Baby {
+        return Baby(name: "Anonymous")
+    }
+    
     func fetchAllBabies() -> [Baby] {
         return Array(babies.values)
     }

@@ -45,7 +45,7 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
 
     // Prepare DashboardViewModel
     private func createDashboardViewModel() -> DashboardViewModel {
-        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyRepo: appDependencies.babyRepo)
+        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyRepo: appDependencies.babiesRepository)
         return viewModel
     }
     
@@ -55,7 +55,7 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
                 guard let dashboardViewController = self.dashboardViewController else {
                     return
                 }
-                self.toggleSwitchBabiesView(on: dashboardViewController, babyRepo: self.appDependencies.babyRepo)
+                self.toggleSwitchBabiesView(on: dashboardViewController, babyRepo: self.appDependencies.babiesRepository)
             })
             .disposed(by: bag)
         viewModel.liveCameraPreview?.subscribe(onNext: { [unowned self] in
@@ -81,7 +81,7 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
 
     // Prepare CameraPreviewViewModel
     private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
-        let viewModel = CameraPreviewViewModel(mediaPlayer: self.appDependencies.mediaPlayer, babyRepo: appDependencies.babyRepo)
+        let viewModel = CameraPreviewViewModel(mediaPlayer: self.appDependencies.mediaPlayer, babyRepo: appDependencies.babiesRepository)
         viewModel.didSelectCancel = { [weak self] in
             self?.navigationController.dismiss(animated: true, completion: nil)
         }
@@ -89,7 +89,7 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
             guard let self = self, let cameraPreviewViewController = self.cameraPreviewViewController else {
                 return
             }
-            self.toggleSwitchBabiesView(on: cameraPreviewViewController, babyRepo: self.appDependencies.babyRepo)
+            self.toggleSwitchBabiesView(on: cameraPreviewViewController, babyRepo: self.appDependencies.babiesRepository)
         }
         return viewModel
     }

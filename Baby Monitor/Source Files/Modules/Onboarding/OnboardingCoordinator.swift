@@ -46,7 +46,7 @@ final class OnboardingCoordinator: Coordinator {
         let viewModel = ClientSetupOnboardingViewModel(
             netServiceClient: appDependencies.netServiceClient,
             rtspConfiguration: appDependencies.rtspConfiguration,
-            babyRepo: appDependencies.babyRepo)
+            babyRepo: appDependencies.babiesRepository)
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success:
@@ -61,8 +61,16 @@ final class OnboardingCoordinator: Coordinator {
     }
     
     private func showServerView() {
-        let viewModel = ServerViewModel(mediaPlayerStreamingService: appDependencies.mediaPlayerStreamingService)
-        navigationController.pushViewController(ServerViewController(viewModel: viewModel), animated: true)
+        let viewModel = ServerViewModel(mediaPlayerStreamingService: appDependencies.mediaPlayerStreamingService, cryingService: appDependencies.cryingEventService, babiesRepository: appDependencies.babiesRepository)
+        let serverViewController = ServerViewController(viewModel: viewModel)
+        viewModel.onCryingEventOccurence = { isBabyCrying in
+            let title = isBabyCrying ? "Baby is crying!" : "Baby stopped crying!"
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+            alertController.addAction(alertAction)
+            serverViewController.present(alertController, animated: true, completion: nil)
+        }
+        navigationController.pushViewController(serverViewController, animated: true)
     }
 
     private func showDashboard() {

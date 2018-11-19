@@ -28,7 +28,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     
     // MARK: - private functions
     private func showSettings() {
-        let viewModel = SettingsViewModel(babyRepo: appDependencies.babyRepo)
+        let viewModel = SettingsViewModel(babyRepo: appDependencies.babiesRepository)
 
         let settingsViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<SettingsViewModel.Cell>(viewModel: viewModel), type: .settings)
         settingsViewController.rx.viewDidLoad
@@ -46,7 +46,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
                 guard let self = self, let settingsViewController = self.settingsViewController else {
                     return
                 }
-                self.toggleSwitchBabiesView(on: settingsViewController, babyRepo: self.appDependencies.babyRepo)
+                self.toggleSwitchBabiesView(on: settingsViewController, babyRepo: self.appDependencies.babiesRepository)
             })
             .disposed(by: bag)
         viewModel.didSelectChangeServer = { [weak self] in
@@ -58,7 +58,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
         let clientSetupViewModel = ClientSetupOnboardingViewModel(
             netServiceClient: appDependencies.netServiceClient,
             rtspConfiguration: appDependencies.rtspConfiguration,
-            babyRepo: appDependencies.babyRepo)
+            babyRepo: appDependencies.babiesRepository)
         
         let clientSetupViewController = GeneralOnboardingViewController(viewModel: clientSetupViewModel, role: .clientSetup)
         clientSetupViewController.rx.viewDidLoad

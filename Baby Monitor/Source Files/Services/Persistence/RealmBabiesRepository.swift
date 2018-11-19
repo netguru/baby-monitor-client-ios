@@ -7,7 +7,7 @@ import RealmSwift
 import RxSwift
 import RxCocoa
 
-final class RealmBabiesRepository: BabiesRepositoryProtocol {
+final class RealmBabiesRepository: BabiesRepositoryProtocol & CryingEventsRepositoryProtocol {
     
     enum UpdateType {
         case name(Baby)
@@ -54,6 +54,46 @@ final class RealmBabiesRepository: BabiesRepositoryProtocol {
     
     func setCurrentBaby(baby: Baby) {
         currentBabyId = baby.id
+    }
+    
+    func getCurrentBaby() -> Baby {
+        guard let currentBabyId = currentBabyId,
+            let realmBaby = realm.object(ofType: RealmBaby.self, forPrimaryKey: currentBabyId) else {
+                let baby = Baby(name: "Anonymous")
+                try! save(baby: baby)
+                return baby
+                
+        }
+        return realmBaby.toBaby()
+    }
+    
+    func save(cryingEvent: CryingEvent) {
+        let realmCryingEvent = RealmCryingEvent(with: cryingEvent)
+        guard let currentBabyId = currentBabyId,
+            let realmBaby = realm.object(ofType: RealmBaby.self, forPrimaryKey: currentBabyId) else {
+                return
+        }
+        try! realm.write {
+            realmBaby.cryingEvents.append(realmCryingEvent)
+        }
+    }
+    
+    func fetchAllCryingEvents() -> [CryingEvent] {
+        let cryingEvents = realm.objects(RealmCryingEvent.self)
+            .map { $0.toCryingEvent() }
+        return Array(cryingEvents)
+    }
+    
+    func remove(cryingEvent: CryingEvent) {
+        let allCryingEvents = realm.objects(RealmCryingEvent.self)
+        guard let foundedEvent = allCryingEvents.first(where: { $0.fileName == cryingEvent.fileName
+        }) else {
+            return
+        }
+        try! realm.write {
+            realm.delete(foundedEvent)
+            try? FileManager.default.removeItem(at: FileManager.documentsDirectoryURL.appendingPathComponent(foundedEvent.fileName).appendingPathExtension("caf"))
+        }
     }
     
     func fetchAllBabies() -> [Baby] {
