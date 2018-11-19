@@ -52,8 +52,7 @@ final class OnboardingCoordinator: Coordinator {
             case .success:
                 self?.showDashboard()
             case .failure:
-                // TODO: add error handling
-                break
+                self?.appDependencies.errorHandler.showAlert(title: Localizable.Errors.errorOccured, message: Localizable.Errors.unableToFind, presenter: self?.navigationController, secondAction: nil)
             }
         }
         let viewController = GeneralOnboardingViewController(viewModel: viewModel, role: .clientSetup)
