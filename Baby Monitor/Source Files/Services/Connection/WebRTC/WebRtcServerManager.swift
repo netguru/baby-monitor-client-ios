@@ -12,17 +12,19 @@ import WebRTC
 
 public class WebRtcServerManager: NSObject {
 
-    var peerConnection: RTCPeerConnection?
-    var peerConnectionFactory: RTCPeerConnectionFactory?
-    var localSDP: RTCSessionDescription?
-    var remoteSDP: RTCSessionDescription?
-    public weak var delegate: WebRtcServerManagerDelegate?
+    private var peerConnection: RTCPeerConnection?
+    private let peerConnectionFactory: RTCPeerConnectionFactory?
+    private var localSDP: RTCSessionDescription?
+    private var remoteSDP: RTCSessionDescription?
+    weak var delegate: WebRtcServerManagerDelegate?
 
     override public init() {
+        peerConnectionFactory = RTCPeerConnectionFactory.init()
         super.init()
+        peerConnection = peerConnectionFactory?.peerConnection(with: RTCConfiguration(), constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement.rawValue: "true"]), delegate: self)
     }
   
-    public func addLocalMediaStream() {
+    private func addLocalMediaStream() {
         guard let videoSource = peerConnectionFactory?.videoSource(),
             let videoTrack = peerConnectionFactory?.videoTrack(with: videoSource, trackId: WebRtcStreamId.videoTrack.rawValue),
             let localStream = peerConnectionFactory?.mediaStream(withStreamId: WebRtcStreamId.mediaStream.rawValue),
@@ -36,27 +38,22 @@ public class WebRtcServerManager: NSObject {
         delegate?.localStreamAvailable(stream: localStream)
     }
   
-    public func startWebrtcConnection() {
-        peerConnectionFactory = RTCPeerConnectionFactory.init()
-        peerConnection = peerConnectionFactory?.peerConnection(with: RTCConfiguration(), constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement.rawValue: "true"]), delegate: self)
-    }
-  
-    public func createConstraints() -> RTCMediaConstraints {
+    private func createConstraints() -> RTCMediaConstraints {
         let peerConnectionConstraints = RTCMediaConstraints(mandatoryConstraints: [WebRtcConstraintKey.offerToReceiveAudio.rawValue: "true", WebRtcConstraintKey.offerToReceiveVideo.rawValue: "true"], optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement.rawValue: "true"])
         return peerConnectionConstraints
     }
   
-    public func createAnswer(remoteSDP: RTCSessionDescription) {
+    func createAnswer(remoteSDP: RTCSessionDescription) {
         self.remoteSDP = remoteSDP
         addLocalMediaStream()
         peerConnection?.setRemoteDescription(remoteSDP, completionHandler: nil)
     }
   
-    public func setICECandidates(iceCandidate: RTCIceCandidate) {
+    func setICECandidates(iceCandidate: RTCIceCandidate) {
         peerConnection?.add(iceCandidate)
     }
 
-    public func disconnect() {
+    func disconnect() {
         peerConnection?.close()
     }
 }
@@ -67,7 +64,7 @@ extension WebRtcServerManager: RTCPeerConnectionDelegate {
     public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {}
 
     public func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
-        self.delegate?.iceCandidatesCreated(iceCandidate: candidate)
+        delegate?.iceCandidatesCreated(iceCandidate: candidate)
     }
 
     public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {}

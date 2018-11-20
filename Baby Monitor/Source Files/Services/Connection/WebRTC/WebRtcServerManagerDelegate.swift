@@ -8,7 +8,7 @@
 
 import WebRTC
 
-@objc public protocol WebRtcServerManagerDelegate {
+protocol WebRtcServerManagerDelegate: AnyObject {
     func localStreamAvailable(stream: RTCMediaStream)
     func answerSDPCreated(sdp: RTCSessionDescription)
     func iceCandidatesCreated(iceCandidate: RTCIceCandidate)

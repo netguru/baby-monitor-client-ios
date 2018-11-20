@@ -52,7 +52,6 @@ final class ServerViewModel {
     /// Starts streaming
     func startStreaming() {
         messageServer.start()
-        webRtcServerManager.startWebrtcConnection()
         netServiceServer.publish()
     }
     
