@@ -39,14 +39,14 @@ final class ServerViewModel {
     }
     
     private func handle(message: WebRtcMessage) {
-//        switch message {
-//        case .iceCandidate(let iceCandidate):
-//            webRtcServerManager.setICECandidates(iceCandidate: iceCandidate)
-//        case .sdpOffer(let sdp):
-//            webRtcServerManager.createAnswer(remoteSDP: sdp)
-//        default:
-//            break
-//        }
+        switch message {
+        case .iceCandidate(let iceCandidate):
+            webRtcServerManager.setICECandidates(iceCandidate: iceCandidate as! RTCIceCandidate)
+        case .sdpOffer(let sdp):
+            webRtcServerManager.createAnswer(remoteSDP: sdp as! RTCSessionDescription)
+        default:
+            break
+        }
     }
     
     /// Starts streaming
