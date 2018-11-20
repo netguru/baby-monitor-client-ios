@@ -8,7 +8,7 @@ import RTSPServer
 import RealmSwift
 import AudioKit
 
-struct AppDependencies {
+final class AppDependencies {
     
     /// Service for cleaning too many crying events
     private(set) lazy var memoryCleaner: MemoryCleanerProtocol = MemoryCleaner(cryingEventsRepository: babiesRepository)
@@ -21,7 +21,7 @@ struct AppDependencies {
     /// Service for detecting baby's cry
     private(set) lazy var cryingDetectionService: CryingDetectionServiceProtocol = CryingDetectionService(microphoneTracker: AKMicrophoneTracker())
     /// Service that takes care of appropriate controling: crying detection, audio recording and saving these events to realm database
-    private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(cryingDetectionService: cryingDetectionService, audioRecordService: audioRecordService!, babiesRepository: babiesRepository)
+    private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(cryingDetectionService: cryingDetectionService, audioRecordService: audioRecordService, babiesRepository: babiesRepository)
 
     private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
     private lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()

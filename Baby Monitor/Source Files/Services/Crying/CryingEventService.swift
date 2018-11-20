@@ -11,12 +11,16 @@ protocol CryingEventsServiceProtocol: Any {
     var cryingEventObservable: Observable<Bool> { get }
     
     /// Starts work of crying events service
-    func start()
+    func start() throws
     /// Stops work of crying events service
     func stop()
 }
 
 final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
+    
+    enum CryingEventServiceError: Error {
+        case audioRecordServiceError
+    }
     
     lazy var cryingEventObservable: Observable<Bool> = cryingEventPublisher.asObservable()
     lazy var errorObservable = errorPublisher.asObservable()
@@ -36,8 +40,11 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
         rxSetup()
     }
     
-    func start() {
+    func start() throws {
         cryingDetectionService.startAnalysis()
+        if audioRecordService == nil {
+            throw CryingEventServiceError.audioRecordServiceError
+        }
     }
     
     func stop() {

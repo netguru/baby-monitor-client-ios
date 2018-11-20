@@ -20,12 +20,12 @@ protocol BabiesRepositoryProtocol {
     /// Sets baby as current one
     ///
     /// - Parameter baby: object to set as current
-    func setCurrentBaby(baby: Baby)
+    func setCurrent(baby: Baby)
     
-    /// Gets current baby. If there is no baby in dataBase it saves new one with name "Anonymous"
+    /// Gets current baby if there is one
     ///
     /// - Returns: current baby
-    func getCurrentBaby() -> Baby
+    func getCurrent() -> Baby?
     
     /// Returns all persisted babies
     ///

@@ -24,16 +24,15 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
     lazy var cryingDetectionObservable: Observable<Bool> = Observable<Int>.timer(0, period: 0.2, scheduler: MainScheduler.asyncInstance)
         .map { [unowned self] _ in self.microphoneTracker.frequency }
         .filter { $0 > 1000 }
-        .buffer(timeSpan: 10, count: 10, scheduler: MainScheduler.asyncInstance)
+        .buffer(timeSpan: 10, count: 10, scheduler: ConcurrentDispatchQueueScheduler(queue: bufferQueue))
         .map { $0.count > 9 }
         .distinctUntilChanged()
+        .subscribeOn(MainScheduler.asyncInstance)
         .share()
     
     private var isCryingEventDetected = false
     private let microphoneTracker: MicrophoneTrackerProtocol
-    private var bufferCount: Int {
-        return isCryingEventDetected ? 1000 : 6
-    }
+    private let bufferQueue = DispatchQueue(label: "bufferQueue", attributes: .concurrent)
     
     init(microphoneTracker: MicrophoneTrackerProtocol) {
         self.microphoneTracker = microphoneTracker

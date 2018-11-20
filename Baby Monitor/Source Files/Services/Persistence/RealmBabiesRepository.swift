@@ -52,17 +52,14 @@ final class RealmBabiesRepository: BabiesRepositoryProtocol & CryingEventsReposi
         }
     }
     
-    func setCurrentBaby(baby: Baby) {
+    func setCurrent(baby: Baby) {
         currentBabyId = baby.id
     }
     
-    func getCurrentBaby() -> Baby {
+    func getCurrent() -> Baby? {
         guard let currentBabyId = currentBabyId,
             let realmBaby = realm.object(ofType: RealmBaby.self, forPrimaryKey: currentBabyId) else {
-                let baby = Baby(name: "Anonymous")
-                try! save(baby: baby)
-                return baby
-                
+                return nil
         }
         return realmBaby.toBaby()
     }
@@ -86,13 +83,12 @@ final class RealmBabiesRepository: BabiesRepositoryProtocol & CryingEventsReposi
     
     func remove(cryingEvent: CryingEvent) {
         let allCryingEvents = realm.objects(RealmCryingEvent.self)
-        guard let foundedEvent = allCryingEvents.first(where: { $0.fileName == cryingEvent.fileName
-        }) else {
+        guard let foundEvent = allCryingEvents.first(where: { $0.fileName == cryingEvent.fileName }) else {
             return
         }
         try! realm.write {
-            realm.delete(foundedEvent)
-            try? FileManager.default.removeItem(at: FileManager.documentsDirectoryURL.appendingPathComponent(foundedEvent.fileName).appendingPathExtension("caf"))
+            realm.delete(foundEvent)
+            try? FileManager.default.removeItem(at: FileManager.documentsDirectoryURL.appendingPathComponent(foundEvent.fileName).appendingPathExtension("caf"))
         }
     }
     

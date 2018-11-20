@@ -18,7 +18,7 @@ final class MemoryCleaner: MemoryCleanerProtocol {
     }
     
     func cleanMemoryIfNeeded() {
-        let twoHundredMB = 209715200
+        let twoHundredMB = 200 * 1024 * 1024
         guard let memoryUsage = FileManager.documentsDirectorySize,
             memoryUsage < twoHundredMB else {
                 return

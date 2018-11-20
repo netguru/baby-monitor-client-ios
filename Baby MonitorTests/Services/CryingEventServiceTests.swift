@@ -25,7 +25,7 @@ class CryingEventServiceTests: XCTestCase {
     
     func testShouldStartCryingDetectionAnalysis() {
         //When
-        sut.start()
+        try! sut.start()
         
         //Then
         XCTAssertTrue(cryingDetectionServiceMock.analysisStarted)
@@ -33,7 +33,7 @@ class CryingEventServiceTests: XCTestCase {
     
     func testShouldNotStartRecordingAudio() {
         //When
-        sut.start()
+        try! sut.start()
         
         //Then
         XCTAssertFalse(audioRecordServiceMock.isRecording)
@@ -41,7 +41,7 @@ class CryingEventServiceTests: XCTestCase {
     
     func testShouldStartRecordingAudio() {
         //When
-        sut.start()
+        try! sut.start()
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
         
         //Then
@@ -50,7 +50,7 @@ class CryingEventServiceTests: XCTestCase {
     
     func testShouldSaveCryingEvent() {
         //When
-        sut.start()
+        try! sut.start()
         audioRecordServiceMock.isSaveActionSuccess = true
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
@@ -61,7 +61,7 @@ class CryingEventServiceTests: XCTestCase {
     
     func testShouldNotSaveCryingEvent() {
         //When
-        sut.start()
+        try! sut.start()
         audioRecordServiceMock.isSaveActionSuccess = false
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
@@ -81,30 +81,11 @@ class CryingEventServiceTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         //When
-        sut.start()
+        try! sut.start()
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
         
         //Then
         wait(for: [exp], timeout: 2.0)
-    }
-    
-    func testShouldNotifyAboutCryingDetectionOnlyOnce() {
-        //Given
-        let disposeBag = DisposeBag()
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Bool.self)
-        sut.cryingEventObservable
-            .subscribe(observer)
-            .disposed(by: disposeBag)
-        
-        //When
-        sut.start()
-        [0...10].forEach { _ in
-            cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
-        }
-        
-        //Then
-        XCTAssertRecordedElements(observer.events, [true])
     }
     
     func testShouldNotNotifyAboutStoppedCryingDetecionEvent() {
@@ -118,7 +99,7 @@ class CryingEventServiceTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         //When
-        sut.start()
+        try! sut.start()
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
         
         //Then
@@ -137,7 +118,7 @@ class CryingEventServiceTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         //When
-        sut.start()
+        try! sut.start()
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
         

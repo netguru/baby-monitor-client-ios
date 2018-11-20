@@ -28,10 +28,10 @@ final class AudioRecordService: AudioRecordServiceProtocol, ErrorProducable {
         case saveFailure
     }
     
-    var isRecording = false
     lazy var errorObservable = errorSubject.asObservable()
     lazy var directoryDocumentsSavableObservable = directoryDocumentsSavableSubject.asObservable()
     
+    private(set) var isRecording = false
     private var recorder: RecorderProtocol?
     private let errorSubject = PublishSubject<Error>()
     private let directoryDocumentsSavableSubject = PublishSubject<DirectoryDocumentsSavable>()

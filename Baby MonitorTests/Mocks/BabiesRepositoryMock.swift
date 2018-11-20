@@ -35,11 +35,11 @@ final class BabiesRepositoryMock: BabiesRepositoryProtocol {
         babyUpdatePublisher.onNext(baby)
     }
     
-    func setCurrentBaby(baby: Baby) {
+    func setCurrent(baby: Baby) {
         currentBabyId = baby.id
     }
     
-    func getCurrentBaby() -> Baby {
+    func getCurrent() -> Baby {
         return Baby(name: "Anonymous")
     }
     

@@ -37,7 +37,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>To record your baby while crying</string>
+	<string>To detect your baby&apos;s cry</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

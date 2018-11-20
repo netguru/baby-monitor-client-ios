@@ -10,6 +10,7 @@ import RxSwift
 final class ServerViewModel {
     
     var onCryingEventOccurence: ((Bool) -> Void)?
+    var onAudioRecordServiceError: (() -> Void)?
     
     private let mediaPlayerStreamingService: VideoStreamingServiceProtocol
     private let cryingEventService: CryingEventsServiceProtocol
@@ -33,11 +34,24 @@ final class ServerViewModel {
     /// Starts streaming and detecting crying events
     func start(videoView: UIView) {
         mediaPlayerStreamingService.startStreaming(videoView: videoView)
-        cryingEventService.start()
+        do {
+            try cryingEventService.start()
+        } catch {
+            switch error {
+            case CryingEventService.CryingEventServiceError.audioRecordServiceError:
+                onAudioRecordServiceError?()
+            default:
+                break
+            }
+        }
     }
     
     private func setup() {
-        _ = babiesRepository.getCurrentBaby()
+        if babiesRepository.getCurrent() == nil {
+            let baby = Baby(name: "Anonymous")
+            try! babiesRepository.save(baby: baby)
+            babiesRepository.setCurrent(baby: baby)
+        }
     }
     
     private func rxSetup() {

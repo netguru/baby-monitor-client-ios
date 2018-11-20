@@ -12,6 +12,8 @@ final class OnboardingCoordinator: Coordinator {
     var navigationController: UINavigationController
     var onEnding: (() -> Void)?
     
+    private var isAudioServiceErrorAlreadyShown = false
+    
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
         self.appDependencies = appDependencies
@@ -67,11 +69,17 @@ final class OnboardingCoordinator: Coordinator {
         let viewModel = ServerViewModel(mediaPlayerStreamingService: appDependencies.mediaPlayerStreamingService, cryingService: appDependencies.cryingEventService, babiesRepository: appDependencies.babiesRepository)
         let serverViewController = ServerViewController(viewModel: viewModel)
         viewModel.onCryingEventOccurence = { isBabyCrying in
-            let title = isBabyCrying ? "Baby is crying!" : "Baby stopped crying!"
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-            alertController.addAction(alertAction)
-            serverViewController.present(alertController, animated: true, completion: nil)
+            let title = isBabyCrying ? Localizable.Server.babyIsCrying : Localizable.Server.babyStoppedCrying
+            AlertPresenter.showDefaultAlert(title: title, message: nil, onViewController: serverViewController)
+        }
+        viewModel.onAudioRecordServiceError = { [weak self] in
+            guard let self = self,
+                !self.isAudioServiceErrorAlreadyShown else {
+                    return
+            }
+            self.isAudioServiceErrorAlreadyShown = true
+            let message = Localizable.Server.audioRecordError
+            AlertPresenter.showDefaultAlert(title: nil, message: message, onViewController: serverViewController)
         }
         navigationController.pushViewController(serverViewController, animated: true)
     }

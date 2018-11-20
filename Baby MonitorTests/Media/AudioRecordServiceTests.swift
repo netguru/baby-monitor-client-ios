@@ -28,7 +28,6 @@ class AudioRecordServiceTests: XCTestCase {
         //Then
         XCTAssertTrue(recorderMock.isRecordReset)
         XCTAssertTrue(recorderMock.isRecording)
-//        XCTAssertTrue(sut.isRecording)
     }
     
     func testShouldStopRecording() {
@@ -42,13 +41,15 @@ class AudioRecordServiceTests: XCTestCase {
     }
     
     func testShouldPublishAudioFile() {
-        //When
+        //Given
         let disposeBag = DisposeBag()
         let exp = expectation(description: "Should publish audio file")
         sut.directoryDocumentsSavableObservable.subscribe(onNext: { _ in
             exp.fulfill()
         }).disposed(by: disposeBag)
         recorderMock.shouldReturnNilForAudioFile = false
+        
+        //When
         sut.startRecording()
         sut.stopRecording()
         
@@ -57,13 +58,15 @@ class AudioRecordServiceTests: XCTestCase {
     }
     
     func testShouldNotPublishAudioFile() {
-        //When
+        //Given
         let disposeBag = DisposeBag()
         let exp = expectation(description: "Should not publish audio file")
         sut.directoryDocumentsSavableObservable.subscribe(onNext: { _ in
             exp.fulfill()
         }).disposed(by: disposeBag)
         recorderMock.shouldReturnNilForAudioFile = true
+        
+        //When
         sut.stopRecording()
         
         //Then

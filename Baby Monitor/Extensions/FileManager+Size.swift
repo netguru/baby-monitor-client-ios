@@ -1,5 +1,5 @@
 //
-//  FIleManager+Size.swift
+//  FileManager+Size.swift
 //  Baby Monitor
 //
 
@@ -8,6 +8,10 @@ import Foundation
 // Source: https://stackoverflow.com/questions/2188469/how-can-i-calculate-the-size-of-a-folder
 
 extension FileManager {
+    
+    enum CustomError: Error {
+        case undefined
+    }
     
     /// Calculate the allocated size of a directory and all its contents on the volume.
     ///
@@ -28,10 +32,14 @@ extension FileManager {
         }
         
         // We have to enumerate all directory contents, including subdirectories.
-        let enumerator = self.enumerator(at: directoryURL,
-                                         includingPropertiesForKeys: Array(allocatedSizeResourceKeys),
-                                         options: [],
-                                         errorHandler: errorHandler)!
+        
+        guard let enumerator = self.enumerator(at: directoryURL,
+                                               includingPropertiesForKeys: Array(allocatedSizeResourceKeys),
+                                               options: [],
+                                               errorHandler: errorHandler)
+            else {
+                throw CustomError.undefined
+            }
         
         // We'll sum up content size here:
         var accumulatedSize: UInt64 = 0
