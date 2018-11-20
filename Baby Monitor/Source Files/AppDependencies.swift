@@ -22,7 +22,6 @@ struct AppDependencies {
     /// Baby service for getting and adding babies throughout the app
     private(set) var babyRepo: BabiesRepositoryProtocol = RealmBabiesRepository(realm: try! Realm())
     private(set) var lullabiesRepo: LullabiesRepositoryProtocol = RealmLullabiesRepository(realm: try! Realm())
-    
     private(set) lazy var messageServer = MessageServer(server: webSocketServer)
     private(set) lazy var webSocketServer: WebSocketServerProtocol = {
         let webSocketServer = PSWebSocketServer(host: nil, port: UInt(Constants.websocketPort))!
@@ -38,4 +37,6 @@ struct AppDependencies {
         }
         return PSWebSocketWrapper(socket: webSocket)
     }
+    /// Service for handling errors and showing error alerts
+    private(set) var errorHandler: ErrorHandlerProtocol = ErrorHandler()
 }

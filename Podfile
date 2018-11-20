@@ -16,6 +16,7 @@ target 'Baby Monitor' do
   pod 'RxCocoa', '~> 4.0'
   pod 'PocketSocket', '~> 1.0.1'
   pod 'GoogleWebRTC', '~> 1.1.2'
+  pod 'AudioKit', '~> 4.5' 
 
   target 'Baby MonitorTests' do
     inherit! :search_paths
