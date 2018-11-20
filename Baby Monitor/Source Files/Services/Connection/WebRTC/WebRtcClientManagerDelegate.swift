@@ -9,8 +9,8 @@
 import WebRTC
 
 protocol WebRtcClientManagerDelegate: AnyObject {
-    func offerSDPCreated(sdp: RTCSessionDescription)
+    func offerSDPCreated(sdp: SessionDescriptionProtocol)
     func remoteStreamAvailable(stream: RTCMediaStream)
-    func iceCandidatesCreated(iceCandidate: RTCIceCandidate)
+    func iceCandidatesCreated(iceCandidate: IceCandidateProtocol)
     
 }
