@@ -21,17 +21,17 @@ public class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     var sdpOffer: Observable<SessionDescriptionProtocol> {
         return sdpOfferPublisher.asObservable()
     }
-    let sdpOfferPublisher = PublishRelay<SessionDescriptionProtocol>()
+    private let sdpOfferPublisher = PublishRelay<SessionDescriptionProtocol>()
 
     var iceCandidate: Observable<IceCandidateProtocol> {
         return iceCandidatePublisher.asObservable()
     }
-    let iceCandidatePublisher = PublishRelay<IceCandidateProtocol>()
+    private let iceCandidatePublisher = PublishRelay<IceCandidateProtocol>()
 
     var mediaStream: Observable<RTCMediaStream> {
         return mediaStreamPublisher.asObservable()
     }
-    let mediaStreamPublisher = PublishRelay<RTCMediaStream>()
+    private let mediaStreamPublisher = PublishRelay<RTCMediaStream>()
 
     init(peerConnection: PeerConnectionProtocol) {
         self.peerConnection = peerConnection
@@ -39,7 +39,7 @@ public class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
 
     func setAnswerSDP(sdp: SessionDescriptionProtocol) {
         remoteSdp = sdp
-        peerConnection?.setRemoteDescription(sdp, completionHandler: { _ in })
+        peerConnection?.setRemoteDescription(sdp: sdp, completionHandler: { _ in })
     }
 
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
@@ -61,7 +61,7 @@ public class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
                 return
             }
             self?.localSdp = sdp
-            self?.peerConnection?.setLocalDescription(sdp, completionHandler: { _ in })
+            self?.peerConnection?.setLocalDescription(sdp: sdp, completionHandler: { _ in })
             self?.sdpOfferPublisher.accept(sdp)
         })
     }

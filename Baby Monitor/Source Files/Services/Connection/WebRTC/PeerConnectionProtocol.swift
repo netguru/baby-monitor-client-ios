@@ -6,9 +6,9 @@
 import WebRTC
 
 protocol PeerConnectionProtocol {
-    func setRemoteDescription(_ sdp: SessionDescriptionProtocol, completionHandler: ((Error) -> Void)?)
+    func setRemoteDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?)
 
-    func setLocalDescription(_ sdp: SessionDescriptionProtocol, completionHandler: ((Error) -> Void)?)
+    func setLocalDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?)
 
     func add(_ iceCandidate: IceCandidateProtocol)
 
@@ -35,14 +35,14 @@ extension RTCPeerConnection: PeerConnectionProtocol {
         add(iceCandidate)
     }
 
-    func setRemoteDescription(_ sdp: SessionDescriptionProtocol, completionHandler: ((Error) -> Void)?) {
+    func setRemoteDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?) {
         guard let sdp = sdp as? RTCSessionDescription else {
             return
         }
         setRemoteDescription(sdp, completionHandler: completionHandler)
     }
 
-    func setLocalDescription(_ sdp: SessionDescriptionProtocol, completionHandler: ((Error) -> Void)?) {
+    func setLocalDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?) {
         guard let sdp = sdp as? RTCSessionDescription else {
             return
         }
