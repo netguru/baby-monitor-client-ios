@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AVFoundation
 import WebRTC
 
 public class WebRtcClientManager: NSObject {
