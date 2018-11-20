@@ -75,12 +75,15 @@
 		8A42DB192179E0AD00BF5F1B /* URLConfigurationMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB182179E0AD00BF5F1B /* URLConfigurationMock.swift */; };
 		8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DAFC217DD1D000E3004D /* ConnectionChecker.swift */; };
 		8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */; };
-		8A43DB04217DD89300E3004D /* NetServiceConnectionCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */; };
 		8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB082180971D00E3004D /* UIViewController+Rx.swift */; };
 		8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB1E2181D1E700E3004D /* GeneralSection.swift */; };
 		8A7A608421A4027E00488ED4 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A608321A4027E00488ED4 /* ErrorHandler.swift */; };
 		8A7A608621A4035A00488ED4 /* CryingDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A608521A4035A00488ED4 /* CryingDetectionService.swift */; };
 		8A7A608821A403D500488ED4 /* MicrophoneTrackerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A608721A403D500488ED4 /* MicrophoneTrackerProtocol.swift */; };
+		8A7A60C721A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60C321A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift */; };
+		8A7A60C821A40CF200488ED4 /* DecodersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60C421A40CF200488ED4 /* DecodersTests.swift */; };
+		8A7A60C921A40CF200488ED4 /* MessageStreamProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60C521A40CF200488ED4 /* MessageStreamProtocolTests.swift */; };
+		8A7A60CA21A40CF200488ED4 /* MessageServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60C621A40CF200488ED4 /* MessageServerTests.swift */; };
 		8A87305221906A780045E25D /* test2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A87305121906A780045E25D /* test2.mp3 */; };
 		8A8EF944219C40630098A27B /* RTCSessionDescription+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF943219C40630098A27B /* RTCSessionDescription+JSON.swift */; };
 		8A8EF946219C46AD0098A27B /* SdpOfferDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF945219C46AD0098A27B /* SdpOfferDecoder.swift */; };
@@ -88,7 +91,6 @@
 		8A8EF94A219C47FD0098A27B /* RTCICECandidate+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF949219C47FD0098A27B /* RTCICECandidate+JSON.swift */; };
 		8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF94C219C52480098A27B /* AnyMessageDecoder.swift */; };
 		8A8EF94F219D55B60098A27B /* MessageStreamProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF94E219D55B60098A27B /* MessageStreamProtocol.swift */; };
-		8A8EF953219D57C00098A27B /* MessageStreamProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF952219D57C00098A27B /* MessageStreamProtocolTests.swift */; };
 		8A8EF955219D581D0098A27B /* MessageStreamMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF954219D581D0098A27B /* MessageStreamMock.swift */; };
 		8A8EF98821A329F10098A27B /* WebRtcClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF98421A329EF0098A27B /* WebRtcClientManager.swift */; };
 		8A8EF98921A329F10098A27B /* WebRtcServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF98521A329EF0098A27B /* WebRtcServerManager.swift */; };
@@ -129,7 +131,6 @@
 		8AFAE5AD219AAAAC007013BC /* MessageServerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5AC219AAAAC007013BC /* MessageServerProtocol.swift */; };
 		8AFAE5AF219AAE63007013BC /* WebSocketServerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5AE219AAE63007013BC /* WebSocketServerProtocol.swift */; };
 		8AFAE5B1219AAEC7007013BC /* WebSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5B0219AAEC7007013BC /* WebSocketProtocol.swift */; };
-		8AFAE5B3219AC88F007013BC /* MessageServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5B2219AC88F007013BC /* MessageServerTests.swift */; };
 		8AFAE5B5219ACA5F007013BC /* WebSocketServerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5B4219ACA5F007013BC /* WebSocketServerMock.swift */; };
 		8AFAE5B8219AFF6D007013BC /* WebSocketMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5B7219AFF6D007013BC /* WebSocketMock.swift */; };
 		8AFAE5BA219C0314007013BC /* String+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5B9219C0314007013BC /* String+JSON.swift */; };
@@ -137,7 +138,6 @@
 		8AFAE5BE219C0FF7007013BC /* MessageDecoderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5BD219C0FF7007013BC /* MessageDecoderMock.swift */; };
 		8AFAE5C3219C1FE3007013BC /* SdpAnswerDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5C2219C1FE3007013BC /* SdpAnswerDecoder.swift */; };
 		8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */; };
-		8AFAE5CA219C233C007013BC /* DecodersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5C9219C233C007013BC /* DecodersTests.swift */; };
 		8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */; };
 		8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DF82182F07700729615 /* Lullaby.swift */; };
 		8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */; };
@@ -245,12 +245,15 @@
 		8A42DB182179E0AD00BF5F1B /* URLConfigurationMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfigurationMock.swift; sourceTree = "<group>"; };
 		8A43DAFC217DD1D000E3004D /* ConnectionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionChecker.swift; sourceTree = "<group>"; };
 		8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionChecker.swift; sourceTree = "<group>"; };
-		8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionCheckerTests.swift; sourceTree = "<group>"; };
 		8A43DB082180971D00E3004D /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		8A43DB1E2181D1E700E3004D /* GeneralSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSection.swift; sourceTree = "<group>"; };
 		8A7A608321A4027E00488ED4 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorHandler.swift; path = "Baby Monitor/Source Files/Services/ErrorHandler/ErrorHandler.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A608521A4035A00488ED4 /* CryingDetectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CryingDetectionService.swift; path = CryingDetection/CryingDetectionService.swift; sourceTree = "<group>"; };
 		8A7A608721A403D500488ED4 /* MicrophoneTrackerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophoneTrackerProtocol.swift; sourceTree = "<group>"; };
+		8A7A60C321A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetServiceConnectionCheckerTests.swift; path = "Baby MonitorTests/Services/NetServiceConnectionCheckerTests.swift"; sourceTree = SOURCE_ROOT; };
+		8A7A60C421A40CF200488ED4 /* DecodersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecodersTests.swift; path = "Baby MonitorTests/Services/DecodersTests.swift"; sourceTree = SOURCE_ROOT; };
+		8A7A60C521A40CF200488ED4 /* MessageStreamProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageStreamProtocolTests.swift; path = "Baby MonitorTests/Services/MessageStreamProtocolTests.swift"; sourceTree = SOURCE_ROOT; };
+		8A7A60C621A40CF200488ED4 /* MessageServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageServerTests.swift; path = "Baby MonitorTests/Services/MessageServerTests.swift"; sourceTree = SOURCE_ROOT; };
 		8A87305121906A780045E25D /* test2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test2.mp3; sourceTree = "<group>"; };
 		8A8EF943219C40630098A27B /* RTCSessionDescription+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RTCSessionDescription+JSON.swift"; sourceTree = "<group>"; };
 		8A8EF945219C46AD0098A27B /* SdpOfferDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdpOfferDecoder.swift; sourceTree = "<group>"; };
@@ -258,7 +261,6 @@
 		8A8EF949219C47FD0098A27B /* RTCICECandidate+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RTCICECandidate+JSON.swift"; sourceTree = "<group>"; };
 		8A8EF94C219C52480098A27B /* AnyMessageDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyMessageDecoder.swift; sourceTree = "<group>"; };
 		8A8EF94E219D55B60098A27B /* MessageStreamProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStreamProtocol.swift; sourceTree = "<group>"; };
-		8A8EF952219D57C00098A27B /* MessageStreamProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStreamProtocolTests.swift; sourceTree = "<group>"; };
 		8A8EF954219D581D0098A27B /* MessageStreamMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStreamMock.swift; sourceTree = "<group>"; };
 		8A8EF98421A329EF0098A27B /* WebRtcClientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcClientManager.swift; sourceTree = "<group>"; };
 		8A8EF98521A329EF0098A27B /* WebRtcServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManager.swift; sourceTree = "<group>"; };
@@ -299,7 +301,6 @@
 		8AFAE5AC219AAAAC007013BC /* MessageServerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServerProtocol.swift; sourceTree = "<group>"; };
 		8AFAE5AE219AAE63007013BC /* WebSocketServerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketServerProtocol.swift; sourceTree = "<group>"; };
 		8AFAE5B0219AAEC7007013BC /* WebSocketProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketProtocol.swift; sourceTree = "<group>"; };
-		8AFAE5B2219AC88F007013BC /* MessageServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServerTests.swift; sourceTree = "<group>"; };
 		8AFAE5B4219ACA5F007013BC /* WebSocketServerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketServerMock.swift; sourceTree = "<group>"; };
 		8AFAE5B7219AFF6D007013BC /* WebSocketMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketMock.swift; sourceTree = "<group>"; };
 		8AFAE5B9219C0314007013BC /* String+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+JSON.swift"; sourceTree = "<group>"; };
@@ -307,7 +308,6 @@
 		8AFAE5BD219C0FF7007013BC /* MessageDecoderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDecoderMock.swift; sourceTree = "<group>"; };
 		8AFAE5C2219C1FE3007013BC /* SdpAnswerDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdpAnswerDecoder.swift; sourceTree = "<group>"; };
 		8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcMessage.swift; sourceTree = "<group>"; };
-		8AFAE5C9219C233C007013BC /* DecodersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodersTests.swift; sourceTree = "<group>"; };
 		8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 		8AFE3DF82182F07700729615 /* Lullaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lullaby.swift; sourceTree = "<group>"; };
 		8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -658,10 +658,10 @@
 		8A43DAFE217DD2C600E3004D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */,
-				8AFAE5B2219AC88F007013BC /* MessageServerTests.swift */,
-				8AFAE5C9219C233C007013BC /* DecodersTests.swift */,
-				8A8EF952219D57C00098A27B /* MessageStreamProtocolTests.swift */,
+				8A7A60C421A40CF200488ED4 /* DecodersTests.swift */,
+				8A7A60C621A40CF200488ED4 /* MessageServerTests.swift */,
+				8A7A60C521A40CF200488ED4 /* MessageStreamProtocolTests.swift */,
+				8A7A60C321A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1331,11 +1331,11 @@
 				8AA7CBFC218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift in Sources */,
 				8A42DB122179D9A300BF5F1B /* UserDefaultsURLConfiguration.swift in Sources */,
 				8AA7CBE4218C5A5100FCF62A /* URLMediaPlayerMock.swift in Sources */,
-				8A43DB04217DD89300E3004D /* NetServiceConnectionCheckerTests.swift in Sources */,
 				8A42DB192179E0AD00BF5F1B /* URLConfigurationMock.swift in Sources */,
 				8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */,
 				8AFAE5BE219C0FF7007013BC /* MessageDecoderMock.swift in Sources */,
 				8AFAE5B8219AFF6D007013BC /* WebSocketMock.swift in Sources */,
+				8A7A60CA21A40CF200488ED4 /* MessageServerTests.swift in Sources */,
 				8AA7CBCC21871B3E00FCF62A /* ConnectionCheckerMock.swift in Sources */,
 				8A8EF955219D581D0098A27B /* MessageStreamMock.swift in Sources */,
 				8AA7CBC02187105600FCF62A /* BabyMonitorCellMock.swift in Sources */,
@@ -1343,18 +1343,18 @@
 				8A42DB0E2179D8FB00BF5F1B /* URLUserDefaultsMock.swift in Sources */,
 				8AA7CBD72187521500FCF62A /* LullabyViewModelTests.swift in Sources */,
 				8AA7CBCF2187401700FCF62A /* ActivityLogViewModelTests.swift in Sources */,
-				8A8EF953219D57C00098A27B /* MessageStreamProtocolTests.swift in Sources */,
+				8A7A60C921A40CF200488ED4 /* MessageStreamProtocolTests.swift in Sources */,
 				8AFAE5B5219ACA5F007013BC /* WebSocketServerMock.swift in Sources */,
 				8AA7CBC42187117200FCF62A /* BabiesRepositoryMock.swift in Sources */,
 				8A42DB172179DD9C00BF5F1B /* URL+PrefixTests.swift in Sources */,
 				8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */,
-				8AFAE5B3219AC88F007013BC /* MessageServerTests.swift in Sources */,
 				8AED3178218C89D200FEFE8A /* LullabiesRepositoryMock.swift in Sources */,
+				8A7A60C721A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift in Sources */,
 				8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */,
 				4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */,
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
 				8AA7CBD421874FD000FCF62A /* SwitchBabyViewModelTests.swift in Sources */,
-				8AFAE5CA219C233C007013BC /* DecodersTests.swift in Sources */,
+				8A7A60C821A40CF200488ED4 /* DecodersTests.swift in Sources */,
 				8AA7CBBE2187103600FCF62A /* SettingsViewModelTests.swift in Sources */,
 				8AA7CBDA218C54BE00FCF62A /* LullabyPlayerTests.swift in Sources */,
 			);
