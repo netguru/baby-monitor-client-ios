@@ -16,9 +16,6 @@ extension RTCSdpType {
             return "pranswer"
         }
     }
-}
-
-extension RTCSdpType {
 
     static func type(from canonicalName: String) -> RTCSdpType? {
         switch canonicalName {
@@ -26,6 +23,8 @@ extension RTCSdpType {
             return .answer
         case "offer":
             return .offer
+        case "pranswer":
+            return .prAnswer
         default:
             return nil
         }
@@ -33,16 +32,20 @@ extension RTCSdpType {
 }
 
 extension RTCSessionDescription {
-    
+    private enum Keys: String {
+        case type
+        case sdp
+    }
+
     func jsonDictionary() -> [AnyHashable: Any] {
-        return ["type": type.canonicalName,
-                "sdp": sdp]
+        return [RTCSessionDescription.Keys.type.rawValue: type.canonicalName,
+                RTCSessionDescription.Keys.sdp.rawValue: sdp]
     }
     
     convenience init?(dictionary: [AnyHashable: Any]) {
-        guard let typeString = dictionary["type"] as? String,
+        guard let typeString = dictionary[RTCSessionDescription.Keys.type.rawValue] as? String,
             let type = RTCSdpType.type(from: typeString),
-            let sdp = dictionary["sdp"] as? String else {
+            let sdp = dictionary[RTCSessionDescription.Keys.sdp.rawValue] as? String else {
                 return nil
         }
         self.init(type: type, sdp: sdp)

@@ -1456,10 +1456,6 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-force_load",
-					"\"$(BUILT_PRODUCTS_DIR)/libWebRTC.a\"",
-					"-ObjC",
-					"-l\"WebRTC\"",
 					"-l\"bz2\"",
 					"-l\"c++\"",
 					"-l\"iconv\"",
@@ -1678,10 +1674,6 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-force_load",
-					"\"$(BUILT_PRODUCTS_DIR)/libWebRTC.a\"",
-					"-ObjC",
-					"-l\"WebRTC\"",
 					"-l\"bz2\"",
 					"-l\"c++\"",
 					"-l\"iconv\"",
