@@ -1,5 +1,6 @@
 PODS:
   - Differentiator (3.1.0)
+  - GoogleWebRTC (1.1.25544)
   - MobileVLCKit (3.1.5)
   - PocketSocket (1.0.1):
     - PocketSocket/Client (= 1.0.1)
@@ -31,9 +32,9 @@ PODS:
     - RxAtomic (~> 4.4)
     - RxSwift (~> 4.0)
   - SwiftLint (0.27.0)
-  - WebRTC (0.0.1)
 
 DEPENDENCIES:
+  - GoogleWebRTC
   - MobileVLCKit (~> 3.1)
   - PocketSocket (~> 1.0.1)
   - RealmSwift (~> 3.11.0)
@@ -43,11 +44,11 @@ DEPENDENCIES:
   - RxSwift (~> 4.0)
   - RxTest (~> 4.0)
   - SwiftLint (~> 0.27.0)
-  - WebRTC (from `Dependencies/WebRTC.podspec`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Differentiator
+    - GoogleWebRTC
     - MobileVLCKit
     - PocketSocket
     - Realm
@@ -60,12 +61,9 @@ SPEC REPOS:
     - RxTest
     - SwiftLint
 
-EXTERNAL SOURCES:
-  WebRTC:
-    :path: Dependencies/WebRTC.podspec
-
 SPEC CHECKSUMS:
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  GoogleWebRTC: b73841295d587468f368d146144753b138ed8014
   MobileVLCKit: 4d44e56380d0ee41c76f9ec7015d3a4b62a963a3
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
   Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
@@ -77,8 +75,7 @@ SPEC CHECKSUMS:
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
-  WebRTC: 250e311b76305d5568bd71d43ab9cbbda560babc
 
-PODFILE CHECKSUM: fc0523a5f2028daa8841bbcf19cc3709ff4666ca
+PODFILE CHECKSUM: 0f457d49faa98c1eab6081c9bbc87f7c18dd80e5
 
 COCOAPODS: 1.6.0.beta.2

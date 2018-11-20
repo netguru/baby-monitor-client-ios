@@ -63,19 +63,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     }
     
     private func attach(stream: RTCMediaStream) {
-        DispatchQueue.main.async {
-            self.remoteVideoTrack = stream.videoTracks[0] as? RTCVideoTrack
-            self.remoteVideoTrack?.add(self.videoView)
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { () -> Void in
-                let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
-                do {
-                    try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
-                } catch {
-                    print("Audio Port Error");
-                }
-            }
-            UIView.animate(withDuration: 0.4, animations: { () -> Void in
-            })
-        }
+        self.remoteVideoTrack = stream.videoTracks[0]
+        self.remoteVideoTrack?.add(self.videoView)
     }
 }

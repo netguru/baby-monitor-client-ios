@@ -8,7 +8,7 @@ import WebRTC
 enum WebRtcMessage: Equatable {
     case sdpAnswer(RTCSessionDescription)
     case sdpOffer(RTCSessionDescription)
-    case iceCandidate(RTCICECandidate)
+    case iceCandidate(RTCIceCandidate)
     
     enum Key: String {
         case offerSDP

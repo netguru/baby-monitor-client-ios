@@ -12,10 +12,10 @@ target 'Baby Monitor' do
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
   pod 'RxDataSources', '~> 3.0'
-  pod 'WebRTC', path: 'Dependencies/WebRTC.podspec'
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
   pod 'PocketSocket', '~> 1.0.1'
+  pod 'GoogleWebRTC', '~> 1.1.2'
 
   target 'Baby MonitorTests' do
     inherit! :search_paths

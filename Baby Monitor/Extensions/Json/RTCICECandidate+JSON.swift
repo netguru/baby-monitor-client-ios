@@ -5,12 +5,12 @@
 
 import WebRTC
 
-extension RTCICECandidate {
+extension RTCIceCandidate {
     
     func jsonDictionary() -> [AnyHashable: Any] {
         return ["type": "candidate",
                 "label": sdpMLineIndex,
-                "id": sdpMid,
+                "id": sdpMid ?? "",
                 "candidate": sdp]
     }
     
@@ -21,6 +21,6 @@ extension RTCICECandidate {
             let candidate = dictionary["candidate"] as? String else {
                 return nil
         }
-        self.init(mid: id, index: label, sdp: candidate)
+        self.init(sdp: candidate, sdpMLineIndex: Int32(label), sdpMid: id)
     }
 }

@@ -12,8 +12,8 @@ struct AppDependencies {
 
     private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
-    private(set) lazy var webRtcServer: WebrtcServerManager = WebrtcServerManager()
-    private(set) lazy var webRtcClient: WebrtcClientManager = WebrtcClientManager()
+    private(set) lazy var webRtcServer: () -> WebRtcServerManager = { WebRtcServerManager() }
+    private(set) lazy var webRtcClient: () -> WebRtcClientManager = { WebRtcClientManager() }
     private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
 
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, urlConfiguration: urlConfiguration)

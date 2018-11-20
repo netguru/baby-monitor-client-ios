@@ -61,7 +61,7 @@ final class OnboardingCoordinator: Coordinator {
     }
     
     private func showServerView() {
-        let viewModel = ServerViewModel(webRtcServerManager: appDependencies.webRtcServer, messageServer: appDependencies.messageServer, netServiceServer: appDependencies.netServiceServer, decoders: appDependencies.webRtcMessageDecoders)
+        let viewModel = ServerViewModel(webRtcServerManager: appDependencies.webRtcServer(), messageServer: appDependencies.messageServer, netServiceServer: appDependencies.netServiceServer, decoders: appDependencies.webRtcMessageDecoders)
         navigationController.pushViewController(ServerViewController(viewModel: viewModel), animated: true)
     }
 

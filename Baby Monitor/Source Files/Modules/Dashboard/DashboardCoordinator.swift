@@ -81,7 +81,7 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
 
     // Prepare CameraPreviewViewModel
     private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
-        let viewModel = CameraPreviewViewModel(webRtcClientManager: appDependencies.webRtcClient, webSocket: appDependencies.webSocket(appDependencies.urlConfiguration.url), babyRepo: appDependencies.babyRepo, decoders: appDependencies.webRtcMessageDecoders)
+        let viewModel = CameraPreviewViewModel(webRtcClientManager: appDependencies.webRtcClient(), webSocket: appDependencies.webSocket(appDependencies.urlConfiguration.url), babyRepo: appDependencies.babyRepo, decoders: appDependencies.webRtcMessageDecoders)
         viewModel.didSelectCancel = { [weak self] in
             self?.navigationController.dismiss(animated: true, completion: nil)
         }

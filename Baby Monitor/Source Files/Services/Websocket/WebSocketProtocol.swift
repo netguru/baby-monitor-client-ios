@@ -29,6 +29,10 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     private let receivedMessagePublisher = PublishRelay<String>()
     
     private let socket: PSWebSocket
+
+    private var buffer: [Any] = []
+
+    private var isConnected = false
     
     init(socket: PSWebSocket, assignDelegate: Bool = true) {
         self.socket = socket
@@ -40,7 +44,11 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     }
     
     func send(message: Any) {
-        socket.send(message)
+        if isConnected {
+            socket.send(message)
+        } else {
+            buffer.append(message)
+        }
     }
     
     func open() {
@@ -54,7 +62,11 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
 
 extension PSWebSocketWrapper: PSWebSocketDelegate {
     
-    func webSocketDidOpen(_ webSocket: PSWebSocket) {}
+    func webSocketDidOpen(_ webSocket: PSWebSocket) {
+        buffer.forEach { webSocket.send($0) }
+        isConnected = true
+        buffer = []
+    }
     
     func webSocket(_ webSocket: PSWebSocket, didFailWithError error: Error) {}
     

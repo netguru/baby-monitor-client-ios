@@ -10,13 +10,13 @@ final class CameraPreviewViewModel {
 
     private let babyRepo: BabiesRepositoryProtocol
     lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
-    private let webRtcClientManager: WebrtcClientManager
+    private let webRtcClientManager: WebRtcClientManager
     private let webSocket: WebSocketProtocol?
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
     private let bag = DisposeBag()
     var didLoadRemoteStream: ((RTCMediaStream) -> Void)?
 
-    init(webRtcClientManager: WebrtcClientManager, webSocket: WebSocketProtocol?, babyRepo: BabiesRepositoryProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>]) {
+    init(webRtcClientManager: WebRtcClientManager, webSocket: WebSocketProtocol?, babyRepo: BabiesRepositoryProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>]) {
         self.webRtcClientManager = webRtcClientManager
         self.webSocket = webSocket
         self.babyRepo = babyRepo
@@ -71,7 +71,7 @@ final class CameraPreviewViewModel {
     }
 }
 
-extension CameraPreviewViewModel: WebrtcClientManagerDelegate {
+extension CameraPreviewViewModel: WebRtcClientManagerDelegate {
     func offerSDPCreated(sdp: RTCSessionDescription) {
         let json = [WebRtcMessage.Key.offerSDP.rawValue: sdp.jsonDictionary()]
         guard let jsonString = json.jsonString else {
@@ -84,13 +84,12 @@ extension CameraPreviewViewModel: WebrtcClientManagerDelegate {
         didLoadRemoteStream?(stream)
     }
     
-    func iceCandidatesCreated(iceCandidate: RTCICECandidate) {
+    func iceCandidatesCreated(iceCandidate: RTCIceCandidate) {
         let json = [WebRtcMessage.Key.iceCandidate.rawValue: iceCandidate.jsonDictionary()]
         guard let jsonString = json.jsonString else {
             return
         }
         webSocket?.send(message: jsonString)
     }
-    
-    func dataReceivedInChannel(data: NSData) {}
+
 }

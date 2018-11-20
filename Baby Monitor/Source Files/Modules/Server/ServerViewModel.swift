@@ -9,7 +9,7 @@ import RxSwift
 
 final class ServerViewModel {
     
-    private let webRtcServerManager: WebrtcServerManager
+    private let webRtcServerManager: WebRtcServerManager
     private let messageServer: MessageServerProtocol
     private let netServiceServer: NetServiceServerProtocol
     var didLoadLocalStream: ((RTCMediaStream) -> Void)?
@@ -18,7 +18,7 @@ final class ServerViewModel {
     
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
     
-    init(webRtcServerManager: WebrtcServerManager, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>]) {
+    init(webRtcServerManager: WebRtcServerManager, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>]) {
         self.webRtcServerManager = webRtcServerManager
         self.messageServer = messageServer
         self.netServiceServer = netServiceServer
@@ -63,7 +63,7 @@ final class ServerViewModel {
     }
 }
 
-extension ServerViewModel: WebrtcServerManagerDelegate {
+extension ServerViewModel: WebRtcServerManagerDelegate {
     
     func localStreamAvailable(stream: RTCMediaStream) {
         didLoadLocalStream?(stream)
@@ -77,7 +77,7 @@ extension ServerViewModel: WebrtcServerManagerDelegate {
         messageServer.send(message: jsonString)
     }
     
-    func iceCandidatesCreated(iceCandidate: RTCICECandidate) {
+    func iceCandidatesCreated(iceCandidate: RTCIceCandidate) {
         let json = [WebRtcMessage.Key.iceCandidate.rawValue: iceCandidate.jsonDictionary()]
         guard let jsonString = json.jsonString else {
             return
