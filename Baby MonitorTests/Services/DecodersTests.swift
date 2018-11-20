@@ -12,7 +12,7 @@ class DecodersTests: XCTestCase {
     func testShouldDecodeSdpAnswer() {
         // Given
         let sut = SdpAnswerDecoder()
-        let sdp = RTCSessionDescription(type: "test", sdp: "test")!
+        let sdp = RTCSessionDescription(type: RTCSdpType.answer, sdp: "test")
         let sdpJson = sdp.jsonDictionary()
         let sdpNetworkJson = [WebRtcMessage.Key.answerSDP.rawValue: sdpJson]
         let jsonString = sdpNetworkJson.jsonString!
@@ -32,7 +32,7 @@ class DecodersTests: XCTestCase {
     func testShouldDecodeSdpOffer() {
         // Given
         let sut = SdpOfferDecoder()
-        let sdp = RTCSessionDescription(type: "test", sdp: "test")!
+        let sdp = RTCSessionDescription(type: RTCSdpType.offer, sdp: "test")
         let sdpJson = sdp.jsonDictionary()
         let sdpNetworkJson = [WebRtcMessage.Key.offerSDP.rawValue: sdpJson]
         let jsonString = sdpNetworkJson.jsonString!
@@ -52,7 +52,7 @@ class DecodersTests: XCTestCase {
     func testShouldDecodeIceCandidate() {
         // Given
         let sut = IceCandidateDecoder()
-        let ice = RTCICECandidate(mid: "mid", index: 0, sdp: "sdp")!
+        let ice = RTCIceCandidate(sdp: "sdp", sdpMLineIndex: Int32(0), sdpMid: "sdpMid")
         let iceJson = ice.jsonDictionary()
         let iceNetworkJson = [WebRtcMessage.Key.iceCandidate.rawValue: iceJson]
         let jsonString = iceNetworkJson.jsonString!

@@ -18,7 +18,7 @@ extension RTCIceCandidate {
         return [RTCIceCandidate.Keys.type.rawValue: RTCIceCandidate.Keys.candidate.rawValue,
                 RTCIceCandidate.Keys.label.rawValue: sdpMLineIndex,
                 RTCIceCandidate.Keys.id.rawValue: sdpMid ?? "",
-                RTCIceCandidate.Keys.type.rawValue: sdp]
+                RTCIceCandidate.Keys.candidate.rawValue: sdp]
     }
     
     convenience init?(dictionary: [AnyHashable: Any]) {
