@@ -7,21 +7,50 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class DashboardPhotoButtonView: BaseView {
+final class DashboardPhotoButtonView: UIView {
     
     fileprivate let button: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 90
-        button.backgroundColor = .lightGray
-        button.setTitleColor(.darkText, for: .normal)
+        button.setTitleColor(UIColor(named: "darkPurple"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFill
         button.clipsToBounds = true
         return button
     }()
+    private let buttonPlaceholder: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "child"))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    private let buttonTitle: UILabel = {
+        let label = UILabel()
+        label.text = Localizable.Dashboard.addPhoto
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
+    private let backgoundView: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "oval"))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    private lazy var placeholderStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [buttonPlaceholder, buttonTitle])
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.spacing = 10
+        return stackView
+    }()
     
-    override init() {
-        super.init()
+    init() {
+        super.init(frame: .zero)
         setup()
+    }
+    
+    @available(*, unavailable, message: "Use init(image:text:) instead")
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setPhoto(_ image: UIImage?) {
@@ -30,19 +59,33 @@ final class DashboardPhotoButtonView: BaseView {
     
     // MARK: - private functions
     private func setup() {
-        [button].forEach {
-            addSubview($0)
-        }
-        
+        backgoundView.addSubview(button)
+        button.addSubview(placeholderStackView)
+        addSubview(backgoundView)
         setupConstraints()
     }
     
     private func setupConstraints() {
+        backgoundView.addConstraints {[
+            $0.equal(.centerX)
+        ]
+        }
+        backgoundView.addConstraints {
+            $0.equalEdges()
+        }
+        
         button.addConstraints {[
-            $0.equalConstant(.height, 180),
-            $0.equalConstant(.width, 180),
+            $0.equalTo(self, .width, .width, multiplier: 0.75),
+            $0.equalTo($0, .width, .height),
             $0.equal(.centerX),
-            $0.equal(.top, constant: 30)
+            $0.equal(.centerY)
+        ]
+        }
+        
+        placeholderStackView.addConstraints {[
+            $0.equal(.centerX),
+            $0.equal(.centerY),
+            $0.equalTo(button, .width, .width)
         ]
         }
     }
