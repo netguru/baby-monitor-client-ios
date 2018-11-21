@@ -16,7 +16,6 @@ final class MessageDecoderMock: MessageDecoderProtocol {
     }
     
     func decode(message: String) -> Bool? {
-        if words.contains(message) { return true }
-        return nil
+        return words.contains(message) ? true : nil
     }
 }
