@@ -36,6 +36,6 @@ final class TabBarCoordinator: Coordinator {
     private func setup() {
         let tabViewControllers = childCoordinators.map { $0.navigationController }
         tabBarController.setViewControllers(tabViewControllers, animated: false)
-        tabBarController.setupTitles()
+        tabBarController.setupTabBarItems()
     }
 }
