@@ -44,7 +44,7 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
             .take(1)
             .subscribe(onNext: { [weak self] ip, port in
             self?.searchCancelTimer?.invalidate()
-                guard let serverUrl = URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix),
+            guard let serverUrl = URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix),
                 let self = self else {
                 return
             }

@@ -36,7 +36,7 @@ final class AppDependencies {
     }()
     private(set) lazy var webSocket: (URL?) -> WebSocketProtocol? = { url in
         guard let url = url else {
-                return nil
+            return nil
         }
         let urlRequest = URLRequest(url: url)
         guard let webSocket = PSWebSocket.clientSocket(with: urlRequest) else {

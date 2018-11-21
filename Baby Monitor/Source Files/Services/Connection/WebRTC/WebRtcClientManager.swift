@@ -9,7 +9,7 @@
 import Foundation
 import WebRTC
 
-public class WebRtcClientManager: NSObject {
+class WebRtcClientManager: NSObject {
 
     private var peerConnection: RTCPeerConnection?
     private let peerConnectionFactory: RTCPeerConnectionFactory?
