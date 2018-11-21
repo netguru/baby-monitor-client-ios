@@ -92,9 +92,9 @@ final class DashboardPhotoButtonView: UIView {
     
     private func updateTitle() {
         if button.image(for: .normal) == nil {
-            button.setTitle(Localizable.Dashboard.addPhoto, for: .normal)
+            placeholderStackView.isHidden = false
         } else {
-            button.setTitle(nil, for: .normal)
+            placeholderStackView.isHidden = true
         }
     }
     
