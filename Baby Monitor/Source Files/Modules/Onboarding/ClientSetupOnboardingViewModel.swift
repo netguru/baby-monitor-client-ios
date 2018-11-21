@@ -24,13 +24,13 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
     
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
-    private let rtspConfiguration: RTSPConfiguration
+    private let urlConfiguration: URLConfiguration
     private let babyRepo: BabiesRepositoryProtocol
     private let disposeBag = DisposeBag()
     
-    init(netServiceClient: NetServiceClientProtocol, rtspConfiguration: RTSPConfiguration, babyRepo: BabiesRepositoryProtocol) {
+    init(netServiceClient: NetServiceClientProtocol, urlConfiguration: URLConfiguration, babyRepo: BabiesRepositoryProtocol) {
         self.netServiceClient = netServiceClient
-        self.rtspConfiguration = rtspConfiguration
+        self.urlConfiguration = urlConfiguration
         self.babyRepo = babyRepo
     }
     
@@ -44,11 +44,11 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
             .take(1)
             .subscribe(onNext: { [weak self] ip, port in
             self?.searchCancelTimer?.invalidate()
-            guard let serverUrl = URL.rtsp(ip: ip, port: port),
+            guard let serverUrl = URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix),
                 let self = self else {
                 return
             }
-            self.rtspConfiguration.url = serverUrl
+            self.urlConfiguration.url = serverUrl
             self.netServiceClient.stopFinding()
             self.didFinishDeviceSearch?(.success)
             self.setupBaby()

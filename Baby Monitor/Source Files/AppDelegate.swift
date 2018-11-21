@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        appDependencies.memoryCleaner.cleanMemoryIfNeeded()
+        #if REGULAR_BUILD
+            appDependencies.memoryCleaner.cleanMemoryIfNeeded()
+        #endif
     }
     
     private func setupAppearance() {

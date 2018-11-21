@@ -5,12 +5,16 @@
 
 import UIKit
 import RxSwift
+import WebRTC
+import AVKit
 
-final class CameraPreviewViewController: TypedViewController<CameraPreviewView>, MediaPlayerDataSource {
+final class CameraPreviewViewController: TypedViewController<CameraPreviewView> {
     
     private let viewModel: CameraPreviewViewModel
     
     lazy var videoView = customView.mediaView
+    
+    private var remoteVideoTrack: RTCVideoTrack?
     
     private let bag = DisposeBag()
     
@@ -23,6 +27,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
         super.viewDidLoad()
         setup()
         setupViewModel()
+        viewModel.play()
     }
     
     // MARK: - Selectors
@@ -44,7 +49,9 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
     }
     
     private func setupViewModel() {
-        viewModel.videoDataSource = self
+        viewModel.didLoadRemoteStream = { [unowned self] stream in
+            self.attach(stream: stream)
+        }
         viewModel.baby
             .map { $0.name }
             .bind(to: customView.rx.babyName)
@@ -53,5 +60,10 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView>,
             .map { $0.photo }
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
+    }
+    
+    private func attach(stream: RTCMediaStream) {
+        self.remoteVideoTrack = stream.videoTracks[0]
+        self.remoteVideoTrack?.add(self.videoView)
     }
 }

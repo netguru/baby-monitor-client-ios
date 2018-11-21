@@ -4,36 +4,67 @@
 //
 
 import Foundation
-import RTSPServer
+import WebRTC
 import RxSwift
 
 final class ServerViewModel {
     
+    private let webRtcServerManager: WebRtcServerManager
+    private let messageServer: MessageServerProtocol
+    private let netServiceServer: NetServiceServerProtocol
+    var didLoadLocalStream: ((RTCMediaStream) -> Void)?
     var onCryingEventOccurence: ((Bool) -> Void)?
     var onAudioRecordServiceError: (() -> Void)?
-    
-    private let mediaPlayerStreamingService: VideoStreamingServiceProtocol
     private let cryingEventService: CryingEventsServiceProtocol
     private let babiesRepository: BabiesRepositoryProtocol
-    private let disposeBag = DisposeBag()
     
-    init(mediaPlayerStreamingService: VideoStreamingServiceProtocol, cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol) {
-        self.mediaPlayerStreamingService = mediaPlayerStreamingService
+    private let bag = DisposeBag()
+    
+    private let decoders: [AnyMessageDecoder<WebRtcMessage>]
+
+    init(webRtcServerManager: WebRtcServerManager, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol) {
         self.cryingEventService = cryingService
         self.babiesRepository = babiesRepository
-        
+        self.webRtcServerManager = webRtcServerManager
+        self.messageServer = messageServer
+        self.netServiceServer = netServiceServer
+        self.decoders = decoders
+        webRtcServerManager.delegate = self
         setup()
         rxSetup()
     }
-    
-    deinit {
-        mediaPlayerStreamingService.stopStreaming()
-        cryingEventService.stop()
+
+    private func setup() {
+        messageServer.decodedMessage(using: decoders)
+            .subscribe(onNext: { [unowned self] message in
+                guard let message = message else {
+                    return
+                }
+                self.handle(message: message)
+            })
+            .disposed(by: bag)
+        if babiesRepository.getCurrent() == nil {
+            let baby = Baby(name: "Anonymous")
+            try! babiesRepository.save(baby: baby)
+            babiesRepository.setCurrent(baby: baby)
+        }
     }
     
-    /// Starts streaming and detecting crying events
-    func start(videoView: UIView) {
-        mediaPlayerStreamingService.startStreaming(videoView: videoView)
+    private func handle(message: WebRtcMessage) {
+        switch message {
+        case .iceCandidate(let iceCandidate):
+            webRtcServerManager.setICECandidates(iceCandidate: iceCandidate)
+        case .sdpOffer(let sdp):
+            webRtcServerManager.createAnswer(remoteSDP: sdp)
+        default:
+            break
+        }
+    }
+    
+    /// Starts streaming
+    func startStreaming() {
+        messageServer.start()
+        netServiceServer.publish()
         do {
             try cryingEventService.start()
         } catch {
@@ -46,31 +77,43 @@ final class ServerViewModel {
         }
     }
     
-    private func setup() {
-        if babiesRepository.getCurrent() == nil {
-            let baby = Baby(name: "Anonymous")
-            try! babiesRepository.save(baby: baby)
-            babiesRepository.setCurrent(baby: baby)
-        }
+    deinit {
+        netServiceServer.stop()
+        messageServer.stop()
+        webRtcServerManager.disconnect()
+        cryingEventService.stop()
     }
-    
+
     private func rxSetup() {
         cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] isCrying in
             self?.onCryingEventOccurence?(isCrying)
-        }).disposed(by: disposeBag)
+        }).disposed(by: bag)
     }
 }
 
-protocol CameraServerProtocol {
+extension ServerViewModel: WebRtcServerManagerDelegate {
     
-    /// Starts camera server. Must be called before 'getPreviewLayer' function
-    func startup()
-    /// Shutdowns camera server
-    func shutdown()
-    /// Gets video layer that should be added to another view
-    ///
-    /// - Returns: video layer
-    func getPreviewLayer() -> AVCaptureVideoPreviewLayer!
+    func localStreamAvailable(stream: RTCMediaStream) {
+        didLoadLocalStream?(stream)
+    }
+    
+    func answerSDPCreated(sdp: RTCSessionDescription) {
+        let json = [WebRtcMessage.Key.answerSDP.rawValue: sdp.jsonDictionary()]
+        guard let jsonString = json.jsonString else {
+            return
+        }
+        messageServer.send(message: jsonString)
+    }
+    
+    func iceCandidatesCreated(iceCandidate: RTCIceCandidate) {
+        let json = [WebRtcMessage.Key.iceCandidate.rawValue: iceCandidate.jsonDictionary()]
+        guard let jsonString = json.jsonString else {
+            return
+        }
+        messageServer.send(message: jsonString)
+    }
+    
+    func dataReceivedInChannel(data: NSData) {
+        
+    }
 }
-
-extension CameraServer: CameraServerProtocol { }
