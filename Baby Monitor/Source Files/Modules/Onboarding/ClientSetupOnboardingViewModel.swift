@@ -59,11 +59,11 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
     
     private func setupBaby() {
         if let baby = babyRepo.fetchAllBabies().first {
-            babyRepo.setCurrentBaby(baby: baby)
+            babyRepo.setCurrent(baby: baby)
         } else {
             let baby = Baby(name: "Anonymous")
             try! babyRepo.save(baby: Baby(name: "Anonymous"))
-            babyRepo.setCurrentBaby(baby: baby)
+            babyRepo.setCurrent(baby: baby)
         }
     }
 }

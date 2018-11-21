@@ -5,22 +5,59 @@
 
 import Foundation
 import RTSPServer
+import RxSwift
 
 final class ServerViewModel {
     
-    private let mediaPlayerStreamingService: VideoStreamingService
+    var onCryingEventOccurence: ((Bool) -> Void)?
+    var onAudioRecordServiceError: (() -> Void)?
     
-    init(mediaPlayerStreamingService: VideoStreamingService) {
+    private let mediaPlayerStreamingService: VideoStreamingServiceProtocol
+    private let cryingEventService: CryingEventsServiceProtocol
+    private let babiesRepository: BabiesRepositoryProtocol
+    private let disposeBag = DisposeBag()
+    
+    init(mediaPlayerStreamingService: VideoStreamingServiceProtocol, cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol) {
         self.mediaPlayerStreamingService = mediaPlayerStreamingService
-    }
-    
-    /// Starts streaming
-    func startStreaming(videoView: UIView) {
-        mediaPlayerStreamingService.startStreaming(videoView: videoView)
+        self.cryingEventService = cryingService
+        self.babiesRepository = babiesRepository
+        
+        setup()
+        rxSetup()
     }
     
     deinit {
         mediaPlayerStreamingService.stopStreaming()
+        cryingEventService.stop()
+    }
+    
+    /// Starts streaming and detecting crying events
+    func start(videoView: UIView) {
+        mediaPlayerStreamingService.startStreaming(videoView: videoView)
+        do {
+            try cryingEventService.start()
+        } catch {
+            switch error {
+            case CryingEventService.CryingEventServiceError.audioRecordServiceError:
+                onAudioRecordServiceError?()
+            default:
+                break
+            }
+        }
+    }
+    
+    private func setup() {
+        if babiesRepository.getCurrent() == nil {
+            let baby = Baby(name: "Anonymous")
+            try! babiesRepository.save(baby: baby)
+            babiesRepository.setCurrent(baby: baby)
+        }
+    }
+    
+    private func rxSetup() {
+        cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] isCrying in
+            self?.onCryingEventOccurence?(isCrying)
+        }).disposed(by: disposeBag)
     }
 }
 

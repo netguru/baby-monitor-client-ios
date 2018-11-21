@@ -30,7 +30,7 @@ final class LullabiesCoordinator: NSObject, Coordinator, BabiesViewShowable {
     
     // MARK: - private functions
     private func showLullabies() {
-        let viewModel = LullabiesViewModel(babyRepo: appDependencies.babyRepo, lullabiesRepo: appDependencies.lullabiesRepo)
+        let viewModel = LullabiesViewModel(babyRepo: appDependencies.babiesRepository, lullabiesRepo: appDependencies.lullabiesRepository)
         lullabiesViewModel = viewModel
         lullabiesViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<Lullaby>(viewModel: viewModel), type: .lullaby)
         lullabiesViewController?.rx.viewDidLoad
@@ -56,7 +56,7 @@ final class LullabiesCoordinator: NSObject, Coordinator, BabiesViewShowable {
                 guard let self = self, let lullabiesViewController = self.lullabiesViewController else {
                     return
                 }
-                self.toggleSwitchBabiesView(on: lullabiesViewController, babyRepo: self.appDependencies.babyRepo)
+                self.toggleSwitchBabiesView(on: lullabiesViewController, babyRepo: self.appDependencies.babiesRepository)
             })
             .disposed(by: bag)
     }
