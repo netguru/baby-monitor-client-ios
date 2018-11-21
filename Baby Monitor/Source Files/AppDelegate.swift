@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootCoordinator = RootCoordinator(window!, appDependencies: appDependencies)
         rootCoordinator?.start()
         window?.makeKeyAndVisible()
+        setupAppearance()
         return true
     }
     
@@ -25,4 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             appDependencies.memoryCleaner.cleanMemoryIfNeeded()
         #endif
     }
+    
+    private func setupAppearance() {
+        UITabBar.appearance().tintColor = UIColor(named: "purple")
+        UINavigationBar.appearance().tintColor = UIColor(named: "darkPurple")
+    }
+    
 }
