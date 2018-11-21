@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import AVFoundation
 import WebRTC
 import RxSwift
 import RxCocoa
 
-public class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
+class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
 
     private var peerConnection: PeerConnectionProtocol?
     private var localSdp: SessionDescriptionProtocol?

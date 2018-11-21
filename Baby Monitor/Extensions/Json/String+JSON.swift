@@ -7,10 +7,9 @@ extension String {
     
     var jsonDictionary: [String: [AnyHashable: Any]]? {
         guard let data = data(using: .utf8),
-            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
-        let jsonDictionary = jsonObject as? [String: [AnyHashable: Any]] else {
+            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) else {
                 return nil
         }
-        return jsonDictionary
+        return jsonObject as? [String: [AnyHashable: Any]]
     }
 }

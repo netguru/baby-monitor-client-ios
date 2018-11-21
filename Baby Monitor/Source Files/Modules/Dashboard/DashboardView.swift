@@ -49,19 +49,33 @@ class DashboardView: BaseView {
         textField.placeholder = Localizable.Dashboard.addName
         textField.textAlignment = .center
         textField.returnKeyType = .done
+        textField.font = UIFont.systemFont(ofSize: 18)
         return textField
+    }()
+    private let nameFieldBorder: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "lightGray")
+        return view
     }()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 14)
         //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
-        label.text = "Nothing unusual, Franuś is probably sleeping calmly and dreaming about sheeps and unicorns."
+        label.text = "Your baby is laying in bed, looks likes he is sleeping soundly."
         return label
     }()
-    
-    private let layoutView = UIView() // only for centering stack view vertically
+    private let tipLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
+        label.text = "Take a peek without disturbing them?"
+        return label
+    }()
     
     private var disconnectedLabelTopOffsetConstraint: NSLayoutConstraint?
     
@@ -82,7 +96,7 @@ class DashboardView: BaseView {
 
     // MARK: - private functions
     private func setupLayout() {
-        [layoutView, photoButtonView, nameField, descriptionLabel, dashboardButtonsStackView, disconnectedLabel].forEach {
+        [photoButtonView, nameField, nameFieldBorder, descriptionLabel, tipLabel, dashboardButtonsStackView, disconnectedLabel].forEach {
             addSubview($0)
         }
         
@@ -90,37 +104,46 @@ class DashboardView: BaseView {
     }
     
     private func setupConstraints() {
-        layoutView.addConstraints {
-            [$0.equalTo(self, .bottom, .safeAreaBottom),
-             $0.equalTo(descriptionLabel, .top, .bottom),
-             $0.equal(.leading),
-             $0.equal(.trailing)]
-        }
-        
-        dashboardButtonsStackView.addConstraints {
-            [$0.equalTo(layoutView, .centerY, .centerY),
-             $0.equal(.centerX),
-             $0.equalTo(self, .width, .width, multiplier: 0.9)]
-        }
-        
-        descriptionLabel.addConstraints {[
-            $0.equal(.centerX),
-            $0.equal(.centerY),
-            $0.equal(.width, multiplier: 0.9),
-            $0.equalTo(nameField, .top, .bottom, constant: Constants.mainOffset)
+        photoButtonView.addConstraints {[
+            $0.equalTo(self, .top, .safeAreaTop),
+            $0.equal(.width, multiplier: 0.8),
+            $0.equalTo($0, .width, .height),
+            $0.equal(.centerX)
         ]
         }
         
         nameField.addConstraints {[
             $0.equal(.centerX),
-            $0.equalTo(photoButtonView, .top, .bottom, constant: Constants.mainOffset)
+            $0.equal(.width, multiplier: 0.6),
+            $0.equalTo(photoButtonView, .top, .bottom, constant: -Constants.mainOffset)
+        ]
+        }
+        nameFieldBorder.addConstraints {[
+            $0.equalConstant(.height, 2),
+            $0.equal(.centerX),
+            $0.equalTo(nameField, .width, .width),
+            $0.equalTo(nameField, .top, .bottom, constant: 8)
         ]
         }
         
-        photoButtonView.addConstraints {[
-            $0.equalTo(self, .top, .safeAreaTop, constant: Constants.mainOffset),
-            $0.equalTo($0, .width, .height),
-            $0.equal(.centerX)]
+        descriptionLabel.addConstraints {[
+            $0.equal(.centerX),
+            $0.equal(.width, multiplier: 0.9),
+            $0.equalTo(nameField, .top, .bottom, constant: Constants.mainOffset + 10)
+        ]
+        }
+        
+        tipLabel.addConstraints {[
+            $0.equal(.centerX),
+            $0.equal(.width, multiplier: 0.9),
+            $0.equalTo(dashboardButtonsStackView, .bottom, .top)
+        ]
+        }
+        
+        dashboardButtonsStackView.addConstraints {[
+            $0.equal(.centerX),
+            $0.equalTo(self, .bottom, .safeAreaBottom, constant: Constants.mainOffset * 2)
+        ]
         }
         
         disconnectedLabelTopOffsetConstraint = disconnectedLabel.addConstraints {

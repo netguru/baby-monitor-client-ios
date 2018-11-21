@@ -182,7 +182,7 @@ class RealmBabiesRepositoryTests: XCTestCase {
         let sut = RealmBabiesRepository(realm: realm)
         let currentBabyId = "1"
         let currentBaby = Baby(id: currentBabyId, name: "test")
-        let imageToSave = UIImage(data: #imageLiteral(resourceName: "dashboard").jpegData(compressionQuality: 1)!)!
+        let imageToSave = UIImage(data: #imageLiteral(resourceName: "stop").jpegData(compressionQuality: 1)!)!
         try! sut.save(baby: currentBaby)
         sut.currentBabyId = currentBabyId
         var changedBabyImage: UIImage?

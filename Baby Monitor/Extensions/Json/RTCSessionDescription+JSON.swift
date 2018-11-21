@@ -18,17 +18,10 @@ extension RTCSdpType {
     }
 
     static func type(from canonicalName: String) -> RTCSdpType? {
-        switch canonicalName {
-        case "answer":
-            return .answer
-        case "offer":
-            return .offer
-        case "pranswer":
-            return .prAnswer
-        default:
-            return nil
-        }
+        return RTCSdpType.allCases.first { $0.canonicalName == canonicalName }
     }
+
+    static let allCases: [RTCSdpType] = [.answer, .offer, .prAnswer]
 }
 
 private enum Keys: String {

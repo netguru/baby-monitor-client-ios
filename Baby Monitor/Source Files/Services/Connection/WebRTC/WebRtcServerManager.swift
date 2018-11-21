@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import AVFoundation
 import WebRTC
 
-public class WebRtcServerManager: NSObject {
+class WebRtcServerManager: NSObject {
 
     private var peerConnection: RTCPeerConnection?
     private let peerConnectionFactory: RTCPeerConnectionFactory?
@@ -19,7 +18,7 @@ public class WebRtcServerManager: NSObject {
     weak var delegate: WebRtcServerManagerDelegate?
 
     override public init() {
-        peerConnectionFactory = RTCPeerConnectionFactory.init()
+        peerConnectionFactory = RTCPeerConnectionFactory()
         super.init()
         peerConnection = peerConnectionFactory?.peerConnection(with: RTCConfiguration(), constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement.rawValue: "true"]), delegate: self)
     }

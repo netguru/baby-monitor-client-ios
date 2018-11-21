@@ -44,7 +44,7 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
             .take(1)
             .subscribe(onNext: { [weak self] ip, port in
             self?.searchCancelTimer?.invalidate()
-                guard let serverUrl = URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix),
+            guard let serverUrl = URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix),
                 let self = self else {
                 return
             }
@@ -59,11 +59,11 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
     
     private func setupBaby() {
         if let baby = babyRepo.fetchAllBabies().first {
-            babyRepo.setCurrentBaby(baby: baby)
+            babyRepo.setCurrent(baby: baby)
         } else {
             let baby = Baby(name: "Anonymous")
             try! babyRepo.save(baby: Baby(name: "Anonymous"))
-            babyRepo.setCurrentBaby(baby: baby)
+            babyRepo.setCurrent(baby: baby)
         }
     }
 }
