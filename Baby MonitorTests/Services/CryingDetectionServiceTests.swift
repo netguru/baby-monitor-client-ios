@@ -3,7 +3,6 @@
 //  Baby MonitorTests
 //
 
-
 import XCTest
 import RxSwift
 import RxTest
@@ -35,7 +34,7 @@ class CryingDetectionServiceTests: XCTestCase {
             .disposed(by: bag)
         
         //Then
-        wait(for: [exp], timeout: 5.0)
+        wait(for: [exp], timeout: 10.0)
     }
     
     func testShouldNotDetectCryingAfterTenSeconds() {
@@ -47,8 +46,10 @@ class CryingDetectionServiceTests: XCTestCase {
         
         //When
         microphoneTrackerMock.start()
-        cryingDetectionService.cryingDetectionObservable.subscribe(onNext: { _ in
-            exp.fulfill()
+        cryingDetectionService.cryingDetectionObservable.subscribe(onNext: { isBabyCrying in
+            if isBabyCrying {
+                exp.fulfill()
+            }
         }).disposed(by: bag)
         let result = XCTWaiter.wait(for: [exp], timeout: 10)
         
@@ -56,12 +57,12 @@ class CryingDetectionServiceTests: XCTestCase {
         XCTAssertTrue(result == .timedOut)
     }
     
-    func testShouldDetectCryingTwoTimesAfterSixSeconds() {
+    func testShouldNotifyAboutCryingDetectionOnlyOnce() {
         //Given
         microphoneTrackerMock.simulatedFrequencyStartValue = 1100
         let bag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Void.self)
+        let observer = scheduler.createObserver(Bool.self)
         let exp = expectation(description: "")
         
         //When
@@ -70,6 +71,28 @@ class CryingDetectionServiceTests: XCTestCase {
         cryingDetectionService.cryingDetectionObservable.subscribe(observer).disposed(by: bag)
         
         //Then
-        wait(for: [exp], timeout: 6.0)
+        let result = XCTWaiter.wait(for: [exp], timeout: 5.0)
+        XCTAssertTrue(result == .timedOut)
+        XCTAssertTrue(observer.events.map { $0.value.element! } == [true])
+    }
+    
+    func testShouldNotifyAboutCryingDetectionTwoTimes() {
+        //Given
+        for _ in 0...9 { microphoneTrackerMock.simulatedReturnedValues.append(1100) }
+        for _ in 0...49 { microphoneTrackerMock.simulatedReturnedValues.append(900) }
+        for _ in 0...9 { microphoneTrackerMock.simulatedReturnedValues.append(1100) }
+        let bag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let observer = scheduler.createObserver(Bool.self)
+        let exp = expectation(description: "")
+        
+        //When
+        microphoneTrackerMock.start()
+        cryingDetectionService.cryingDetectionObservable.fulfill(expectation: exp, afterEventCount: 3, bag: bag)
+        cryingDetectionService.cryingDetectionObservable.subscribe(observer).disposed(by: bag)
+        
+        //Then
+        wait(for: [exp], timeout: 20.0)
+        XCTAssertTrue(observer.events.map { $0.value.element! } == [true, false, true])
     }
 }

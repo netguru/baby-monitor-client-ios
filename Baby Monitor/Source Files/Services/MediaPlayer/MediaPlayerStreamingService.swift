@@ -5,7 +5,7 @@
 
 import Foundation
 
-protocol VideoStreamingService: AnyObject {
+protocol VideoStreamingServiceProtocol: AnyObject {
     
     /// Starts video streaming
     ///
@@ -16,7 +16,7 @@ protocol VideoStreamingService: AnyObject {
     func stopStreaming()
 }
 
-final class MediaPlayerStreamingService: VideoStreamingService {
+final class MediaPlayerStreamingService: VideoStreamingServiceProtocol {
     
     private let cameraServer: CameraServerProtocol
     private let netServiceServer: NetServiceServerProtocol

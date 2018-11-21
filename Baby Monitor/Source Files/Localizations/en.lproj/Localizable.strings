@@ -36,6 +36,11 @@
 //MARK - Switch Baby
 "switch-baby.add-another.baby" = "Add another baby";
 
+//MARK: - Server
+"server.baby-stopped-crying" = "Baby stopped crying!";
+"server.baby-is-crying" = "Baby is crying!";
+"server.audio-record-error" = "There is some error with audio recording. Please turn app again.";
+
 //MARK: - Lullabies
 "lullabies.bm-library" = "BM library";
 "lullabies.your-lullabies" = "Your lullabies";

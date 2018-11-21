@@ -29,7 +29,7 @@ final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
     
     // MARK: - private functions
     private func showActivityLog() {
-        let viewModel = ActivityLogViewModel(babyRepo: appDependencies.babyRepo)
+        let viewModel = ActivityLogViewModel(babyRepo: appDependencies.babiesRepository)
         
         activityLogViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<Baby>(viewModel: viewModel), type: .activityLog)
         activityLogViewController?.rx.viewDidLoad
@@ -46,7 +46,7 @@ final class ActivityLogCoordinator: Coordinator, BabiesViewShowable {
                 guard let self = self, let activityLogViewController = self.activityLogViewController else {
                     return
                 }
-                self.toggleSwitchBabiesView(on: activityLogViewController, babyRepo: self.appDependencies.babyRepo)
+                self.toggleSwitchBabiesView(on: activityLogViewController, babyRepo: self.appDependencies.babiesRepository)
             })
             .disposed(by: bag)
     }

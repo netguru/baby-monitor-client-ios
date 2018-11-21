@@ -11,6 +11,7 @@
 		4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */; };
 		4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */; };
 		4E08670E218C8ECB00E27DEF /* CryingDetectionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E08670D218C8ECB00E27DEF /* CryingDetectionServiceTests.swift */; };
+		4E126958219DC1AB009CC31E /* CryingEventsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E126957219DC1AB009CC31E /* CryingEventsRepositoryProtocol.swift */; };
 		4E190CA321789E820004ED79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E190CA221789E820004ED79 /* Constants.swift */; };
 		4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CF816217856C500F48706 /* ServerViewModel.swift */; };
 		4E1CF81921785C7800F48706 /* MediaPlayerStreamingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CF81821785C7800F48706 /* MediaPlayerStreamingService.swift */; };
@@ -21,9 +22,16 @@
 		4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C66216791AD00E92F29 /* DashboardView.swift */; };
 		4E1D2C692167926500E92F29 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C682167926500E92F29 /* BaseView.swift */; };
 		4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E221D8A217716CF003D8531 /* ServerViewController.swift */; };
+		4E25207B2195A7F9001B3795 /* AudioRecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E25207A2195A7F9001B3795 /* AudioRecordService.swift */; };
 		4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2D30292180AC9200722477 /* Rx+Expectations.swift */; };
+		4E31F9B3219AD52B007FE0E9 /* DirectoryDocumentsSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31F9B2219AD52B007FE0E9 /* DirectoryDocumentsSavable.swift */; };
+		4E31F9B5219AD789007FE0E9 /* RealmCryingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31F9B4219AD789007FE0E9 /* RealmCryingEvent.swift */; };
+		4E31F9B7219ADB00007FE0E9 /* RealmCryingEventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31F9B6219ADB00007FE0E9 /* RealmCryingEventsRepository.swift */; };
+		4E31F9B9219B10B5007FE0E9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31F9B8219B10B5007FE0E9 /* Result.swift */; };
 		4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3943302175D4AD00AD7582 /* NetServiceClient.swift */; };
 		4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3943322175E50200AD7582 /* NetServiceServer.swift */; };
+		4E520EE421A4071200738950 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E520EE321A4071200738950 /* AlertPresenter.swift */; };
+		4E52739C219ECB8900E86A53 /* RecorderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52739B219ECB8900E86A53 /* RecorderFactory.swift */; };
 		4E5731982170BA7400DEAF0B /* BabiesViewSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731902170BA7400DEAF0B /* BabiesViewSelectable.swift */; };
 		4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731912170BA7400DEAF0B /* BabiesViewShowable.swift */; };
 		4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731922170BA7400DEAF0B /* HasNavigationController.swift */; };
@@ -66,6 +74,17 @@
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
 		4E9AFD6B218C58EE007D92BE /* CryingDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AFD6A218C58EE007D92BE /* CryingDetectionService.swift */; };
 		4E9AFD71218C849D007D92BE /* MicrophoneTrackerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AFD70218C849D007D92BE /* MicrophoneTrackerMock.swift */; };
+		4E9C2DC421A2D2CD0002EA6F /* DocumentsSavableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C2DC321A2D2CD0002EA6F /* DocumentsSavableMock.swift */; };
+		4E9D0E49219C250F007BEF27 /* FileManager+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9D0E48219C250F007BEF27 /* FileManager+Size.swift */; };
+		4E9D0E4B219C2654007BEF27 /* FileManager+DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9D0E4A219C2654007BEF27 /* FileManager+DocumentsDirectory.swift */; };
+		4E9D0E4D219C3EA4007BEF27 /* MemoryCleaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9D0E4C219C3EA4007BEF27 /* MemoryCleaner.swift */; };
+		4EB2C40F21999D7A00D80006 /* CryingEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB2C40E21999D7A00D80006 /* CryingEventService.swift */; };
+		4EC96DD3219ED7B800D1CBE5 /* AudioRecordServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC96DD2219ED7B800D1CBE5 /* AudioRecordServiceTests.swift */; };
+		4EC96DD5219ED8EC00D1CBE5 /* RecorderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC96DD4219ED8EC00D1CBE5 /* RecorderMock.swift */; };
+		4EC96DD9219EF20F00D1CBE5 /* CryingEventServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC96DD8219EF20F00D1CBE5 /* CryingEventServiceTests.swift */; };
+		4EC96DDB219EF32A00D1CBE5 /* CryingDetectionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC96DDA219EF32A00D1CBE5 /* CryingDetectionServiceMock.swift */; };
+		4EC96DDD219EF97200D1CBE5 /* AudioRecordServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC96DDC219EF97200D1CBE5 /* AudioRecordServiceMock.swift */; };
+		4EC96DDF219EFA3A00D1CBE5 /* CryingEventsRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC96DDE219EFA3A00D1CBE5 /* CryingEventsRepositoryMock.swift */; };
 		4EDAE4852193267E001BFDFE /* MicrophoneTrackerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAE4842193267E001BFDFE /* MicrophoneTrackerProtocol.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
 		8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DAFD2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift */; };
@@ -148,6 +167,7 @@
 		4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		4E08670D218C8ECB00E27DEF /* CryingDetectionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingDetectionServiceTests.swift; sourceTree = "<group>"; };
+		4E126957219DC1AB009CC31E /* CryingEventsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingEventsRepositoryProtocol.swift; sourceTree = "<group>"; };
 		4E190CA221789E820004ED79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4E1CF816217856C500F48706 /* ServerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewModel.swift; sourceTree = "<group>"; };
 		4E1CF81821785C7800F48706 /* MediaPlayerStreamingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerStreamingService.swift; sourceTree = "<group>"; };
@@ -159,9 +179,16 @@
 		4E1D2C682167926500E92F29 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		4E221D8A217716CF003D8531 /* ServerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		4E221D8C21771946003D8531 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		4E25207A2195A7F9001B3795 /* AudioRecordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordService.swift; sourceTree = "<group>"; };
 		4E2D30292180AC9200722477 /* Rx+Expectations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Expectations.swift"; sourceTree = "<group>"; };
+		4E31F9B2219AD52B007FE0E9 /* DirectoryDocumentsSavable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryDocumentsSavable.swift; sourceTree = "<group>"; };
+		4E31F9B4219AD789007FE0E9 /* RealmCryingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCryingEvent.swift; sourceTree = "<group>"; };
+		4E31F9B6219ADB00007FE0E9 /* RealmCryingEventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCryingEventsRepository.swift; sourceTree = "<group>"; };
+		4E31F9B8219B10B5007FE0E9 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		4E3943302175D4AD00AD7582 /* NetServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceClient.swift; sourceTree = "<group>"; };
 		4E3943322175E50200AD7582 /* NetServiceServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceServer.swift; sourceTree = "<group>"; };
+		4E520EE321A4071200738950 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		4E52739B219ECB8900E86A53 /* RecorderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderFactory.swift; sourceTree = "<group>"; };
 		4E5731902170BA7400DEAF0B /* BabiesViewSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesViewSelectable.swift; sourceTree = "<group>"; };
 		4E5731912170BA7400DEAF0B /* BabiesViewShowable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesViewShowable.swift; sourceTree = "<group>"; };
 		4E5731922170BA7400DEAF0B /* HasNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasNavigationController.swift; sourceTree = "<group>"; };
@@ -204,12 +231,23 @@
 		4E994BF121624835009C44C5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4E9AFD6A218C58EE007D92BE /* CryingDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingDetectionService.swift; sourceTree = "<group>"; };
 		4E9AFD70218C849D007D92BE /* MicrophoneTrackerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneTrackerMock.swift; sourceTree = "<group>"; };
+		4E9C2DC321A2D2CD0002EA6F /* DocumentsSavableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsSavableMock.swift; sourceTree = "<group>"; };
+		4E9D0E48219C250F007BEF27 /* FileManager+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Size.swift"; sourceTree = "<group>"; };
+		4E9D0E4A219C2654007BEF27 /* FileManager+DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+DocumentsDirectory.swift"; sourceTree = "<group>"; };
+		4E9D0E4C219C3EA4007BEF27 /* MemoryCleaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCleaner.swift; sourceTree = "<group>"; };
 		4EA662F4216CBA36009AD3B6 /* Common-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F5216CBC8A009AD3B6 /* Common-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Development.xcconfig"; sourceTree = "<group>"; };
 		4EA662F6216CBCEC009AD3B6 /* Common-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Staging.xcconfig"; sourceTree = "<group>"; };
 		4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Production.xcconfig"; sourceTree = "<group>"; };
 		4EA662F8216CBDEA009AD3B6 /* App-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Base.xcconfig"; sourceTree = "<group>"; };
+		4EB2C40E21999D7A00D80006 /* CryingEventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingEventService.swift; sourceTree = "<group>"; };
+		4EC96DD2219ED7B800D1CBE5 /* AudioRecordServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordServiceTests.swift; sourceTree = "<group>"; };
+		4EC96DD4219ED8EC00D1CBE5 /* RecorderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderMock.swift; sourceTree = "<group>"; };
+		4EC96DD8219EF20F00D1CBE5 /* CryingEventServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingEventServiceTests.swift; sourceTree = "<group>"; };
+		4EC96DDA219EF32A00D1CBE5 /* CryingDetectionServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingDetectionServiceMock.swift; sourceTree = "<group>"; };
+		4EC96DDC219EF97200D1CBE5 /* AudioRecordServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordServiceMock.swift; sourceTree = "<group>"; };
+		4EC96DDE219EFA3A00D1CBE5 /* CryingEventsRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingEventsRepositoryMock.swift; sourceTree = "<group>"; };
 		4EDAE4842193267E001BFDFE /* MicrophoneTrackerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneTrackerProtocol.swift; sourceTree = "<group>"; };
 		4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		52AE542681572A0DED24114E /* Pods-Baby MonitorTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.production.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.production.xcconfig"; sourceTree = "<group>"; };
@@ -353,6 +391,14 @@
 			path = NetService;
 			sourceTree = "<group>";
 		};
+		4E520EE221A406FD00738950 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				4E520EE321A4071200738950 /* AlertPresenter.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		4E56C7E8216CEE9000379FB4 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +445,7 @@
 				4E5731972170BA7400DEAF0B /* Coordinator.swift */,
 				8AED318D219045AD00FEFE8A /* BabyMonitorCellDeletable.swift */,
 				4EDAE4842193267E001BFDFE /* MicrophoneTrackerProtocol.swift */,
+				4E31F9B2219AD52B007FE0E9 /* DirectoryDocumentsSavable.swift */,
 			);
 			path = "Other Protocols";
 			sourceTree = "<group>";
@@ -407,10 +454,11 @@
 			isa = PBXGroup;
 			children = (
 				EC0CD466219F07780029FCF2 /* ErrorHandler */,
-				4E9AFD69218C58DC007D92BE /* CryingDetection */,
+				4E9AFD69218C58DC007D92BE /* Crying */,
 				8A43DAFB217DD1C300E3004D /* Connection */,
 				4E39432F2175D48C00AD7582 /* NetService */,
 				8AEAFBAF217735B3003E756F /* Persistence */,
+				4E520EE221A406FD00738950 /* Other */,
 				4E5731A12170BA9D00DEAF0B /* MediaPlayer */,
 			);
 			path = Services;
@@ -425,6 +473,7 @@
 				8AA7CBDB218C559000FCF62A /* LullabyPlayerProtocol.swift */,
 				8AA7CBDD218C55C500FCF62A /* LullabyPlayer.swift */,
 				8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */,
+				4E52739B219ECB8900E86A53 /* RecorderFactory.swift */,
 			);
 			path = MediaPlayer;
 			sourceTree = "<group>";
@@ -437,6 +486,8 @@
 				4E95633A2164F6D500289475 /* UIViewController+ChildViewController.swift */,
 				8A42DB132179DCAC00BF5F1B /* URL+RTSP.swift */,
 				8A43DB082180971D00E3004D /* UIViewController+Rx.swift */,
+				4E9D0E48219C250F007BEF27 /* FileManager+Size.swift */,
+				4E9D0E4A219C2654007BEF27 /* FileManager+DocumentsDirectory.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -483,6 +534,7 @@
 				8A43DB1E2181D1E700E3004D /* GeneralSection.swift */,
 				8AFE3DF82182F07700729615 /* Lullaby.swift */,
 				8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */,
+				4E31F9B8219B10B5007FE0E9 /* Result.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -539,12 +591,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		4E9AFD69218C58DC007D92BE /* CryingDetection */ = {
+		4E9AFD69218C58DC007D92BE /* Crying */ = {
 			isa = PBXGroup;
 			children = (
 				4E9AFD6A218C58EE007D92BE /* CryingDetectionService.swift */,
+				4E25207A2195A7F9001B3795 /* AudioRecordService.swift */,
+				4EB2C40E21999D7A00D80006 /* CryingEventService.swift */,
 			);
-			path = CryingDetection;
+			path = Crying;
 			sourceTree = "<group>";
 		};
 		4E9AFD6D218C8336007D92BE /* Services */ = {
@@ -552,6 +606,7 @@
 			children = (
 				8A43DB03217DD89300E3004D /* NetServiceConnectionCheckerTests.swift */,
 				4E08670D218C8ECB00E27DEF /* CryingDetectionServiceTests.swift */,
+				4EC96DD8219EF20F00D1CBE5 /* CryingEventServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -601,6 +656,11 @@
 				8AA7CBE3218C5A5100FCF62A /* URLMediaPlayerMock.swift */,
 				8AED3177218C89D200FEFE8A /* LullabiesRepositoryMock.swift */,
 				4E9AFD70218C849D007D92BE /* MicrophoneTrackerMock.swift */,
+				4EC96DD4219ED8EC00D1CBE5 /* RecorderMock.swift */,
+				4EC96DDA219EF32A00D1CBE5 /* CryingDetectionServiceMock.swift */,
+				4EC96DDC219EF97200D1CBE5 /* AudioRecordServiceMock.swift */,
+				4EC96DDE219EFA3A00D1CBE5 /* CryingEventsRepositoryMock.swift */,
+				4E9C2DC321A2D2CD0002EA6F /* DocumentsSavableMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -667,6 +727,7 @@
 			isa = PBXGroup;
 			children = (
 				8AA7CBD9218C54BE00FCF62A /* LullabyPlayerTests.swift */,
+				4EC96DD2219ED7B800D1CBE5 /* AudioRecordServiceTests.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -702,6 +763,9 @@
 				8A42DB0A2179D7D700BF5F1B /* URLUserDefaults.swift */,
 				8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */,
 				8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */,
+				4E31F9B6219ADB00007FE0E9 /* RealmCryingEventsRepository.swift */,
+				4E9D0E4C219C3EA4007BEF27 /* MemoryCleaner.swift */,
+				4E126957219DC1AB009CC31E /* CryingEventsRepositoryProtocol.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -711,6 +775,7 @@
 			children = (
 				8AEAFBB52177371B003E756F /* RealmBaby.swift */,
 				8AA7CBFF218C72D600FCF62A /* RealmLullaby.swift */,
+				4E31F9B4219AD789007FE0E9 /* RealmCryingEvent.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -1117,16 +1182,21 @@
 				4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */,
 				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
+				4E31F9B7219ADB00007FE0E9 /* RealmCryingEventsRepository.swift in Sources */,
 				8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */,
 				8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */,
 				8AA7CBDE218C55C500FCF62A /* LullabyPlayer.swift in Sources */,
+				4E9D0E4D219C3EA4007BEF27 /* MemoryCleaner.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
 				8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */,
+				4E520EE421A4071200738950 /* AlertPresenter.swift in Sources */,
+				4E31F9B3219AD52B007FE0E9 /* DirectoryDocumentsSavable.swift in Sources */,
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				8A42DB0B2179D7D700BF5F1B /* URLUserDefaults.swift in Sources */,
 				8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */,
+				4E25207B2195A7F9001B3795 /* AudioRecordService.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
@@ -1139,11 +1209,14 @@
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
 				4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
+				4E31F9B9219B10B5007FE0E9 /* Result.swift in Sources */,
 				8AA7CBE2218C576D00FCF62A /* URLMediaPlayer.swift in Sources */,
 				4E626694217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift in Sources */,
 				8AA7CBDC218C559000FCF62A /* LullabyPlayerProtocol.swift in Sources */,
+				4E52739C219ECB8900E86A53 /* RecorderFactory.swift in Sources */,
 				4E5731A52170BA9D00DEAF0B /* MediaPlayerProtocol.swift in Sources */,
 				8A42DB092179D65900BF5F1B /* UserDefaultsRTSPConfiguration.swift in Sources */,
+				4E126958219DC1AB009CC31E /* CryingEventsRepositoryProtocol.swift in Sources */,
 				4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */,
 				4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
@@ -1173,6 +1246,7 @@
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
 				4E57319D2170BA7400DEAF0B /* Identifiable.swift in Sources */,
 				4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */,
+				4E9D0E4B219C2654007BEF27 /* FileManager+DocumentsDirectory.swift in Sources */,
 				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* RTSPConfiguration.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
@@ -1182,10 +1256,13 @@
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+RTSP.swift in Sources */,
 				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
+				4E31F9B5219AD789007FE0E9 /* RealmCryingEvent.swift in Sources */,
 				4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */,
 				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
+				4EB2C40F21999D7A00D80006 /* CryingEventService.swift in Sources */,
 				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
 				EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */,
+				4E9D0E49219C250F007BEF27 /* FileManager+Size.swift in Sources */,
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
 				8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */,
@@ -1198,6 +1275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EC96DD9219EF20F00D1CBE5 /* CryingEventServiceTests.swift in Sources */,
 				8AA7CBFC218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift in Sources */,
 				8A42DB122179D9A300BF5F1B /* UserDefaultsRTSPConfiguration.swift in Sources */,
 				8AA7CBE4218C5A5100FCF62A /* URLMediaPlayerMock.swift in Sources */,
@@ -1206,20 +1284,26 @@
 				8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */,
 				8AA7CBCC21871B3E00FCF62A /* ConnectionCheckerMock.swift in Sources */,
 				4E08670E218C8ECB00E27DEF /* CryingDetectionServiceTests.swift in Sources */,
+				4EC96DD3219ED7B800D1CBE5 /* AudioRecordServiceTests.swift in Sources */,
+				4EC96DDB219EF32A00D1CBE5 /* CryingDetectionServiceMock.swift in Sources */,
 				8AA7CBC02187105600FCF62A /* BabyMonitorCellMock.swift in Sources */,
 				8AA7CBCA21871AE300FCF62A /* DashboardViewModelTests.swift in Sources */,
 				4E9AFD71218C849D007D92BE /* MicrophoneTrackerMock.swift in Sources */,
 				8A42DB0E2179D8FB00BF5F1B /* URLUserDefaultsMock.swift in Sources */,
 				8AA7CBD72187521500FCF62A /* LullabyViewModelTests.swift in Sources */,
+				4EC96DDF219EFA3A00D1CBE5 /* CryingEventsRepositoryMock.swift in Sources */,
 				8AA7CBCF2187401700FCF62A /* ActivityLogViewModelTests.swift in Sources */,
+				4EC96DD5219ED8EC00D1CBE5 /* RecorderMock.swift in Sources */,
 				8AA7CBC42187117200FCF62A /* BabiesRepositoryMock.swift in Sources */,
 				8A42DB172179DD9C00BF5F1B /* URL+RTSPTests.swift in Sources */,
 				8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */,
 				8AED3178218C89D200FEFE8A /* LullabiesRepositoryMock.swift in Sources */,
 				8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */,
 				4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */,
+				4E9C2DC421A2D2CD0002EA6F /* DocumentsSavableMock.swift in Sources */,
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
 				8AA7CBD421874FD000FCF62A /* SwitchBabyViewModelTests.swift in Sources */,
+				4EC96DDD219EF97200D1CBE5 /* AudioRecordServiceMock.swift in Sources */,
 				8AA7CBBE2187103600FCF62A /* SettingsViewModelTests.swift in Sources */,
 				8AA7CBDA218C54BE00FCF62A /* LullabyPlayerTests.swift in Sources */,
 			);

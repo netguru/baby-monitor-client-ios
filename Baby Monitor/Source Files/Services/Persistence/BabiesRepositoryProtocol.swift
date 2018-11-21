@@ -20,7 +20,12 @@ protocol BabiesRepositoryProtocol {
     /// Sets baby as current one
     ///
     /// - Parameter baby: object to set as current
-    func setCurrentBaby(baby: Baby)
+    func setCurrent(baby: Baby)
+    
+    /// Gets current baby if there is one
+    ///
+    /// - Returns: current baby
+    func getCurrent() -> Baby?
     
     /// Returns all persisted babies
     ///
