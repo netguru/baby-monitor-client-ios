@@ -40,7 +40,7 @@ PODS:
   - SwiftLint (0.27.0)
 
 DEPENDENCIES:
-  - AudioKit (~> 4.5)
+  - AudioKit (~> 4.5.4)
   - GoogleWebRTC (~> 1.1.2)
   - MobileVLCKit (~> 3.1)
   - PocketSocket (~> 1.0.1)
@@ -85,6 +85,6 @@ SPEC CHECKSUMS:
   RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 5ab927e1267f5b4b0267aa3c4fdc8f994566b864
+PODFILE CHECKSUM: bd464011f0af7eb03ec398d8470c1505969bb67d
 
 COCOAPODS: 1.6.0.beta.2

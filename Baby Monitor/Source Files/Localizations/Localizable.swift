@@ -45,6 +45,12 @@ enum Localizable {
         static let addAnotherBaby = localized("switch-baby.add-another.baby")
     }
     
+    enum Server {
+        static let babyIsCrying = localized("server.baby-is-crying")
+        static let babyStoppedCrying = localized("server.baby-stopped-crying")
+        static let audioRecordError = localized("server.audio-record-error")
+    }
+    
     enum Lullabies {
         static let bmLibrary = localized("lullabies.bm-library")
         static let yourLullabies = localized("lullabies.your-lullabies")

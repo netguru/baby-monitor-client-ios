@@ -35,8 +35,15 @@ final class BabiesRepositoryMock: BabiesRepositoryProtocol {
         babyUpdatePublisher.onNext(baby)
     }
     
-    func setCurrentBaby(baby: Baby) {
+    func setCurrent(baby: Baby) {
         currentBabyId = baby.id
+    }
+    
+    func getCurrent() -> Baby? {
+        guard let currentBabyId = currentBabyId else {
+            return nil
+        }
+        return babies[currentBabyId]
     }
     
     func fetchAllBabies() -> [Baby] {

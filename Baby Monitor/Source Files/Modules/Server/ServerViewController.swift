@@ -20,8 +20,6 @@ final class ServerViewController: BaseViewController {
     }
     
     private func setup() {
-        view.addSubview(localView)
-        localView.addConstraints { $0.equalSafeAreaEdges() }
         viewModel.didLoadLocalStream = { [unowned self] stream in
             self.attach(stream: stream)
         }
