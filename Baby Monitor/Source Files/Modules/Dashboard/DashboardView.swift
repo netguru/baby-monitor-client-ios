@@ -93,6 +93,10 @@ class DashboardView: BaseView {
         photoButtonView.setPhoto(photo)
         babyNavigationItemView.setBabyPhoto(photo)
     }
+    
+    func updatePhotoButtonLayer() {
+        photoButtonView.setupPhotoButtonLayer()
+    }
 
     // MARK: - private functions
     private func setupLayout() {
