@@ -21,6 +21,11 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
         setup()
         setupViewModel()
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        customView.updatePhotoButtonLayer()
+    }
 
     // MARK: - UIImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {

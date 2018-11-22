@@ -11,10 +11,10 @@ final class DashboardPhotoButtonView: UIView {
     
     fileprivate let button: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 90
         button.setTitleColor(UIColor(named: "darkPurple"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFill
         button.clipsToBounds = true
+        button.layer.masksToBounds = true
         return button
     }()
     private let buttonPlaceholder: UIImageView = {
@@ -32,6 +32,7 @@ final class DashboardPhotoButtonView: UIView {
     private let backgoundView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "oval"))
         imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     private lazy var placeholderStackView: UIStackView = {
@@ -57,10 +58,15 @@ final class DashboardPhotoButtonView: UIView {
         updateImage(image)
     }
     
+    func setPhotoButtonLayer() {
+        button.layer.cornerRadius = button.frame.width / 2
+    }
+    
     // MARK: - private functions
     private func setup() {
-        backgoundView.addSubview(button)
-        button.addSubview(placeholderStackView)
+        [placeholderStackView, button].forEach {
+            backgoundView.addSubview($0)
+        }
         addSubview(backgoundView)
         setupConstraints()
     }
@@ -75,7 +81,7 @@ final class DashboardPhotoButtonView: UIView {
         }
         
         button.addConstraints {[
-            $0.equalTo(self, .width, .width, multiplier: 0.75),
+            $0.equalTo(self, .width, .width, multiplier: 0.53),
             $0.equalTo($0, .width, .height),
             $0.equal(.centerX),
             $0.equal(.centerY)

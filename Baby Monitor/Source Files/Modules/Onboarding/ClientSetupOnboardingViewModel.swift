@@ -62,7 +62,7 @@ final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, Service
             babyRepo.setCurrent(baby: baby)
         } else {
             let baby = Baby(name: "Anonymous")
-            try! babyRepo.save(baby: Baby(name: "Anonymous"))
+            try! babyRepo.save(baby: baby)
             babyRepo.setCurrent(baby: baby)
         }
     }
