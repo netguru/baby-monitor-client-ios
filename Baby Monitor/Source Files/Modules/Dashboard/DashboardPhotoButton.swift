@@ -58,7 +58,7 @@ final class DashboardPhotoButtonView: UIView {
         updateImage(image)
     }
     
-    func setPhotoButtonLayer() {
+    func setupPhotoButtonLayer() {
         button.layer.cornerRadius = button.frame.width / 2
     }
     

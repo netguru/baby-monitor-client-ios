@@ -95,7 +95,7 @@ class DashboardView: BaseView {
     }
     
     func updatePhotoButtonLayer() {
-        photoButtonView.setPhotoButtonLayer()
+        photoButtonView.setupPhotoButtonLayer()
     }
 
     // MARK: - private functions
