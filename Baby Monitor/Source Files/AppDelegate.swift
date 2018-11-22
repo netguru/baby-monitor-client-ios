@@ -27,7 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupAppearance() {
         UITabBar.appearance().tintColor = UIColor(named: "purple")
-        UINavigationBar.appearance().tintColor = UIColor(named: "darkPurple")
+        UINavigationBar.appearance().barTintColor = UIColor(named: "darkPurple")
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().isTranslucent = false
     }
     
 }
