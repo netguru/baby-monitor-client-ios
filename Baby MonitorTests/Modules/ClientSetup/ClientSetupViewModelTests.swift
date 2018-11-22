@@ -13,9 +13,9 @@ class ClientSetupViewModelTests: XCTestCase {
         // Given
         let exp = expectation(description: "Should find device")
         let netServiceClient = NetServiceClientMock()
-        let configuration = RTSPConfigurationMock()
+        let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyRepo: babyRepo)
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
 
         // When
@@ -33,9 +33,9 @@ class ClientSetupViewModelTests: XCTestCase {
         let ip = "ip"
         let port = "port"
         let netServiceClient = NetServiceClientMock(ip: ip, port: port)
-        let configuration = RTSPConfigurationMock()
+        let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyRepo: babyRepo)
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -44,7 +44,7 @@ class ClientSetupViewModelTests: XCTestCase {
         // Then
         waitForExpectations(timeout: 0.1) { _ in
             XCTAssertNotNil(configuration.url)
-            XCTAssertEqual(URL(string: "rtsp://\(ip):\(port)"), configuration.url)
+            XCTAssertEqual(URL(string: "ws://\(ip):\(port)"), configuration.url)
         }
     }
     
@@ -52,9 +52,9 @@ class ClientSetupViewModelTests: XCTestCase {
         // Given
         let exp = expectation(description: "Should find device")
         let netServiceClient = NetServiceClientMock()
-        let configuration = RTSPConfigurationMock()
+        let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyRepo: babyRepo)
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -70,9 +70,9 @@ class ClientSetupViewModelTests: XCTestCase {
         // Given
         let exp = expectation(description: "Should find device")
         let netServiceClient = NetServiceClientMock()
-        let configuration = RTSPConfigurationMock()
+        let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyRepo: babyRepo)
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -88,9 +88,9 @@ class ClientSetupViewModelTests: XCTestCase {
         // Given
         let exp = expectation(description: "Should find device")
         let netServiceClient = NetServiceClientMock(findServiceDelay: 20.0)
-        let configuration = RTSPConfigurationMock()
+        let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, rtspConfiguration: configuration, babyRepo: babyRepo)
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo)
         sut.didFinishDeviceSearch = { result in
             XCTAssertEqual(result, DeviceSearchResult.failure(.timeout))
             exp.fulfill()

@@ -47,7 +47,7 @@ final class OnboardingCoordinator: Coordinator {
     private func showClientSetup() {
         let viewModel = ClientSetupOnboardingViewModel(
             netServiceClient: appDependencies.netServiceClient,
-            rtspConfiguration: appDependencies.rtspConfiguration,
+            urlConfiguration: appDependencies.urlConfiguration,
             babyRepo: appDependencies.babiesRepository)
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
@@ -66,7 +66,7 @@ final class OnboardingCoordinator: Coordinator {
     }
     
     private func showServerView() {
-        let viewModel = ServerViewModel(mediaPlayerStreamingService: appDependencies.mediaPlayerStreamingService, cryingService: appDependencies.cryingEventService, babiesRepository: appDependencies.babiesRepository)
+        let viewModel = ServerViewModel(webRtcServerManager: appDependencies.webRtcServer(), messageServer: appDependencies.messageServer, netServiceServer: appDependencies.netServiceServer, decoders: appDependencies.webRtcMessageDecoders, cryingService: appDependencies.cryingEventService, babiesRepository: appDependencies.babiesRepository)
         let serverViewController = ServerViewController(viewModel: viewModel)
         viewModel.onCryingEventOccurence = { isBabyCrying in
             let title = isBabyCrying ? Localizable.Server.babyIsCrying : Localizable.Server.babyStoppedCrying

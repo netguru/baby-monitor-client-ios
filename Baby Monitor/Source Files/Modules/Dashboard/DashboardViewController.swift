@@ -25,6 +25,7 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        customView.updatePhotoButtonLayer()
     }
 
     // MARK: - UIImagePickerControllerDelegate

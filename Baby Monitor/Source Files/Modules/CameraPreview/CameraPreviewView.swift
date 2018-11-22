@@ -6,6 +6,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import WebRTC
 
 final class CameraPreviewView: BaseView {
     
@@ -14,7 +15,7 @@ final class CameraPreviewView: BaseView {
         static let secondaryButtonWidthHeight: CGFloat = 60
     }
     
-    let mediaView = UIView()
+    let mediaView = RTCEAGLVideoView()
     let babyNavigationItemView = BabyNavigationItemView()
     let cancelItemButton = UIBarButtonItem(barButtonSystemItem: .cancel,
                                            target: nil,
