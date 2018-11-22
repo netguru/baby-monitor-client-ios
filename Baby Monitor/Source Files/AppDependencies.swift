@@ -26,7 +26,12 @@ final class AppDependencies {
         let peerConnectionFactory = RTCPeerConnectionFactory()
         return peerConnectionFactory.peerConnection(with: RTCConfiguration(), constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement.rawValue: "true"]), delegate: nil)
     }
-    private(set) lazy var webRtcServer: () -> WebRtcServerManager = { WebRtcServerManager() }
+    private(set) lazy var webRtcStreamFactory: StreamFactoryProtocol = RTCPeerConnectionFactory()
+    private(set) lazy var webRtcServer: (RTCPeerConnection, StreamFactoryProtocol) -> WebRtcServerManagerProtocol = { connection, streamFactory in
+        let serverManager = WebRtcServerManager(peerConnection: connection, streamFactory: streamFactory)
+        connection.delegate = serverManager
+        return serverManager
+    }
     private(set) lazy var webRtcClient: (RTCPeerConnection) -> WebRtcClientManagerProtocol = { connection in
         let clientManager = WebRtcClientManager(peerConnection: connection)
         connection.delegate = clientManager

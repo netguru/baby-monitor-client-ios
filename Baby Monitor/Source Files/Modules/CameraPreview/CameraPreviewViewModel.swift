@@ -14,7 +14,7 @@ final class CameraPreviewViewModel {
     private let webSocket: WebSocketProtocol?
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
     private let bag = DisposeBag()
-    var remoteStream: Observable<RTCMediaStream> {
+    var remoteStream: Observable<MediaStreamProtocol> {
         return webRtcClientManager.mediaStream
     }
 
