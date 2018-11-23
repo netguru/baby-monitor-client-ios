@@ -29,7 +29,7 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
         super.init()
         netServiceBrowser.delegate = self
     }
-    
+
     func findService() {
         // Apparently net service browser doesn't allow to call stop/searchForDevices in quick succession, hence the async
         DispatchQueue.main.async { [weak self] in

@@ -56,7 +56,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     
     private func showClientSetup() {
         let clientSetupViewModel = ClientSetupOnboardingViewModel(
-            netServiceClient: appDependencies.netServiceClient,
+            netServiceClient: appDependencies.netServiceClient(),
             urlConfiguration: appDependencies.urlConfiguration,
             babyRepo: appDependencies.babiesRepository)
 
