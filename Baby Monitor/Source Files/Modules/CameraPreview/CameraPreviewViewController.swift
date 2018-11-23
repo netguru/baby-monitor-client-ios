@@ -13,6 +13,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     private let viewModel: CameraPreviewViewModel
     
     lazy var videoView = customView.mediaView
+    private var videoTrack: RTCVideoTrack?
 
     private let bag = DisposeBag()
     
@@ -66,7 +67,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         guard let stream = stream as? RTCMediaStream else {
             return
         }
-        let videoTrack = stream.videoTracks[0]
-        videoTrack.add(videoView)
+        videoTrack = stream.videoTracks[0]
+        videoTrack?.add(videoView)
     }
 }
