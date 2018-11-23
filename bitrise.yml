@@ -217,7 +217,7 @@ workflows:
 
   archive-xcode:
     steps:
-      - xcode-archive:
+      - xcode-archive@2.4.15:
           inputs:
             - project_path: $XCODEBUILD_PROJECT
             - scheme: $XCODEBUILD_SCHEME
