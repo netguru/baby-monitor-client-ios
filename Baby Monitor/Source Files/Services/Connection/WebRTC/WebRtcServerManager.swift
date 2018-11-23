@@ -8,33 +8,40 @@
 
 import Foundation
 import WebRTC
+import RxSwift
+import RxCocoa
 
-class WebRtcServerManager: NSObject {
+class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
 
-    private var peerConnection: RTCPeerConnection?
-    private let peerConnectionFactory: RTCPeerConnectionFactory?
-    private var localSDP: RTCSessionDescription?
-    private var remoteSDP: RTCSessionDescription?
-    weak var delegate: WebRtcServerManagerDelegate?
+    private let peerConnection: PeerConnectionProtocol
+    private let streamFactory: StreamFactoryProtocol
+    private var localSdp: SessionDescriptionProtocol?
+    private var remoteSdp: SessionDescriptionProtocol?
 
-    override public init() {
-        peerConnectionFactory = RTCPeerConnectionFactory()
-        super.init()
-        peerConnection = peerConnectionFactory?.peerConnection(with: RTCConfiguration(), constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement.rawValue: "true"]), delegate: self)
+    var sdpAnswer: Observable<SessionDescriptionProtocol> {
+        return sdpAnswerPublisher.asObservable()
+    }
+    private let sdpAnswerPublisher = PublishRelay<SessionDescriptionProtocol>()
+
+    var iceCandidate: Observable<IceCandidateProtocol> {
+        return iceCandidatePublisher.asObservable()
+    }
+    private let iceCandidatePublisher = PublishRelay<IceCandidateProtocol>()
+
+    var mediaStream: Observable<MediaStreamProtocol> {
+        return mediaStreamPublisher.asObservable()
+    }
+    private let mediaStreamPublisher = PublishRelay<MediaStreamProtocol>()
+
+    init(peerConnection: PeerConnectionProtocol, streamFactory: StreamFactoryProtocol) {
+        self.peerConnection = peerConnection
+        self.streamFactory = streamFactory
     }
   
     private func addLocalMediaStream() {
-        guard let videoSource = peerConnectionFactory?.videoSource(),
-            let videoTrack = peerConnectionFactory?.videoTrack(with: videoSource, trackId: WebRtcStreamId.videoTrack.rawValue),
-            let localStream = peerConnectionFactory?.mediaStream(withStreamId: WebRtcStreamId.mediaStream.rawValue),
-            let audioTrack = peerConnectionFactory?.audioTrack(withTrackId: WebRtcStreamId.audioTrack.rawValue) else {
-                return
-        }
-
-        localStream.addVideoTrack(videoTrack)
-        localStream.addAudioTrack(audioTrack)
-        peerConnection?.add(localStream)
-        delegate?.localStreamAvailable(stream: localStream)
+        let localStream = streamFactory.createStream()
+        peerConnection.add(stream: localStream)
+        mediaStreamPublisher.accept(localStream)
     }
   
     private func createConstraints() -> RTCMediaConstraints {
@@ -42,18 +49,18 @@ class WebRtcServerManager: NSObject {
         return peerConnectionConstraints
     }
   
-    func createAnswer(remoteSDP: RTCSessionDescription) {
-        self.remoteSDP = remoteSDP
+    func createAnswer(remoteSdp: SessionDescriptionProtocol) {
+        self.remoteSdp = remoteSdp
         addLocalMediaStream()
-        peerConnection?.setRemoteDescription(remoteSDP, completionHandler: nil)
+        peerConnection.setRemoteDescription(sdp: remoteSdp, completionHandler: nil)
     }
   
-    func setICECandidates(iceCandidate: RTCIceCandidate) {
-        peerConnection?.add(iceCandidate)
+    func setICECandidates(iceCandidate: IceCandidateProtocol) {
+        peerConnection.add(iceCandidate)
     }
 
     func disconnect() {
-        peerConnection?.close()
+        peerConnection.close()
     }
 }
 
@@ -63,7 +70,7 @@ extension WebRtcServerManager: RTCPeerConnectionDelegate {
     public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {}
 
     public func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
-        delegate?.iceCandidatesCreated(iceCandidate: candidate)
+        iceCandidatePublisher.accept(candidate)
     }
 
     public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {}
@@ -84,9 +91,9 @@ extension WebRtcServerManager: RTCPeerConnectionDelegate {
             guard let sdp = sdp else {
                 return
             }
-            self?.localSDP = sdp
+            self?.localSdp = sdp
             peerConnection.setLocalDescription(sdp, completionHandler: nil)
-            self?.delegate?.answerSDPCreated(sdp: sdp)
+            self?.sdpAnswerPublisher.accept(sdp)
         })
     }
 

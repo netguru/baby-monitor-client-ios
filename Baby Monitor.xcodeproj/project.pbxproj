@@ -111,6 +111,25 @@
 		8A7A612721A59E8600488ED4 /* DirectoryDocumentsSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612621A59E8600488ED4 /* DirectoryDocumentsSavable.swift */; };
 		8A7A612A21A59E9A00488ED4 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612921A59E9A00488ED4 /* AlertPresenter.swift */; };
 		8A7A612C21A59EB000488ED4 /* RecorderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612B21A59EB000488ED4 /* RecorderFactory.swift */; };
+		8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */; };
+		8A7A613021A68DA300488ED4 /* MediaStreamProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612F21A68DA300488ED4 /* MediaStreamProtocol.swift */; };
+		8A7A613321A68DF000488ED4 /* StreamFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613221A68DF000488ED4 /* StreamFactoryProtocol.swift */; };
+		8A7A613721A6A05200488ED4 /* MediaStreamMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613621A6A05200488ED4 /* MediaStreamMock.swift */; };
+		8A7A613A21A6A58F00488ED4 /* ServerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613921A6A58F00488ED4 /* ServerViewModelTests.swift */; };
+		8A7A613C21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613B21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift */; };
+		8A7A613E21A6AACD00488ED4 /* MessageServerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */; };
+		8A7A614021A6AB7600488ED4 /* NetServiceServerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613F21A6AB7600488ED4 /* NetServiceServerMock.swift */; };
+		8A7A614821A6AC7900488ED4 /* CryingEventsRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614321A6AC7800488ED4 /* CryingEventsRepositoryMock.swift */; };
+		8A7A614921A6AC7900488ED4 /* CryingDetectionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */; };
+		8A7A614A21A6AC7900488ED4 /* AudioRecordServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614521A6AC7900488ED4 /* AudioRecordServiceMock.swift */; };
+		8A7A614B21A6AC7900488ED4 /* DocumentsSavableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614621A6AC7900488ED4 /* DocumentsSavableMock.swift */; };
+		8A7A614C21A6AC7900488ED4 /* RecorderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614721A6AC7900488ED4 /* RecorderMock.swift */; };
+		8A7A614E21A6AC8800488ED4 /* AudioRecordServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614D21A6AC8800488ED4 /* AudioRecordServiceTests.swift */; };
+		8A7A615021A6ACB000488ED4 /* CryingEventServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */; };
+		8A7A615221A6B00F00488ED4 /* CryingEventsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A615121A6B00F00488ED4 /* CryingEventsServiceMock.swift */; };
+		8A7A615421A6B77200488ED4 /* SdpOfferDecoderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A615321A6B77200488ED4 /* SdpOfferDecoderMock.swift */; };
+		8A7A615621A6DCD100488ED4 /* StreamFactoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A615521A6DCD100488ED4 /* StreamFactoryMock.swift */; };
+		8A7A615821A6DD9500488ED4 /* WebRtcServerManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A615721A6DD9500488ED4 /* WebRtcServerManagerTests.swift */; };
 		8A87305221906A780045E25D /* test2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A87305121906A780045E25D /* test2.mp3 */; };
 		8A8EF944219C40630098A27B /* RTCSessionDescription+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF943219C40630098A27B /* RTCSessionDescription+JSON.swift */; };
 		8A8EF946219C46AD0098A27B /* SdpOfferDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF945219C46AD0098A27B /* SdpOfferDecoder.swift */; };
@@ -308,6 +327,25 @@
 		8A7A612621A59E8600488ED4 /* DirectoryDocumentsSavable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectoryDocumentsSavable.swift; sourceTree = "<group>"; };
 		8A7A612921A59E9A00488ED4 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertPresenter.swift; path = "Baby Monitor/Source Files/Services/Other/AlertPresenter.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A612B21A59EB000488ED4 /* RecorderFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderFactory.swift; sourceTree = "<group>"; };
+		8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerProtocol.swift; sourceTree = "<group>"; };
+		8A7A612F21A68DA300488ED4 /* MediaStreamProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStreamProtocol.swift; sourceTree = "<group>"; };
+		8A7A613221A68DF000488ED4 /* StreamFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamFactoryProtocol.swift; sourceTree = "<group>"; };
+		8A7A613621A6A05200488ED4 /* MediaStreamMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStreamMock.swift; sourceTree = "<group>"; };
+		8A7A613921A6A58F00488ED4 /* ServerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServerViewModelTests.swift; path = "Baby MonitorTests/Modules/Server/ServerViewModelTests.swift"; sourceTree = SOURCE_ROOT; };
+		8A7A613B21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerMock.swift; sourceTree = "<group>"; };
+		8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServerMock.swift; sourceTree = "<group>"; };
+		8A7A613F21A6AB7600488ED4 /* NetServiceServerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceServerMock.swift; sourceTree = "<group>"; };
+		8A7A614321A6AC7800488ED4 /* CryingEventsRepositoryMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryingEventsRepositoryMock.swift; sourceTree = "<group>"; };
+		8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryingDetectionServiceMock.swift; sourceTree = "<group>"; };
+		8A7A614521A6AC7900488ED4 /* AudioRecordServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecordServiceMock.swift; sourceTree = "<group>"; };
+		8A7A614621A6AC7900488ED4 /* DocumentsSavableMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsSavableMock.swift; sourceTree = "<group>"; };
+		8A7A614721A6AC7900488ED4 /* RecorderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderMock.swift; sourceTree = "<group>"; };
+		8A7A614D21A6AC8800488ED4 /* AudioRecordServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecordServiceTests.swift; sourceTree = "<group>"; };
+		8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CryingEventServiceTests.swift; path = "Baby MonitorTests/Services/CryingEventServiceTests.swift"; sourceTree = SOURCE_ROOT; };
+		8A7A615121A6B00F00488ED4 /* CryingEventsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingEventsServiceMock.swift; sourceTree = "<group>"; };
+		8A7A615321A6B77200488ED4 /* SdpOfferDecoderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdpOfferDecoderMock.swift; sourceTree = "<group>"; };
+		8A7A615521A6DCD100488ED4 /* StreamFactoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamFactoryMock.swift; sourceTree = "<group>"; };
+		8A7A615721A6DD9500488ED4 /* WebRtcServerManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerTests.swift; sourceTree = "<group>"; };
 		8A87305121906A780045E25D /* test2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test2.mp3; sourceTree = "<group>"; };
 		8A8EF943219C40630098A27B /* RTCSessionDescription+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RTCSessionDescription+JSON.swift"; sourceTree = "<group>"; };
 		8A8EF945219C46AD0098A27B /* SdpOfferDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdpOfferDecoder.swift; sourceTree = "<group>"; };
@@ -659,6 +697,7 @@
 		8A42DAFB2179BF8200BF5F1B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8A7A613821A6A55C00488ED4 /* Server */,
 				8A7A60EA21A43B4E00488ED4 /* CameraPreview */,
 				8AA7CBD52187520700FCF62A /* Lullaby */,
 				8AA7CBD021874F1E00FCF62A /* SwitchBaby */,
@@ -681,6 +720,11 @@
 		8A42DAFF2179C07C00BF5F1B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				8A7A614521A6AC7900488ED4 /* AudioRecordServiceMock.swift */,
+				8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */,
+				8A7A614321A6AC7800488ED4 /* CryingEventsRepositoryMock.swift */,
+				8A7A614621A6AC7900488ED4 /* DocumentsSavableMock.swift */,
+				8A7A614721A6AC7900488ED4 /* RecorderMock.swift */,
 				8A7A60CD21A40D3B00488ED4 /* MicrophoneTrackerMock.swift */,
 				8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */,
 				8A42DB0D2179D8FB00BF5F1B /* URLUserDefaultsMock.swift */,
@@ -700,6 +744,13 @@
 				8A7A60EF21A43C9F00488ED4 /* WebRtcClientManagerMock.swift */,
 				8A7A60F121A4429800488ED4 /* IceCandidateDecoderMock.swift */,
 				8A7A60F321A4441500488ED4 /* SdpAnswerDecoderMock.swift */,
+				8A7A613621A6A05200488ED4 /* MediaStreamMock.swift */,
+				8A7A613B21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift */,
+				8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */,
+				8A7A613F21A6AB7600488ED4 /* NetServiceServerMock.swift */,
+				8A7A615121A6B00F00488ED4 /* CryingEventsServiceMock.swift */,
+				8A7A615321A6B77200488ED4 /* SdpOfferDecoderMock.swift */,
+				8A7A615521A6DCD100488ED4 /* StreamFactoryMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -758,6 +809,7 @@
 			isa = PBXGroup;
 			children = (
 				8A7A60E221A4327200488ED4 /* WebRtcClientManagerTests.swift */,
+				8A7A615721A6DD9500488ED4 /* WebRtcServerManagerTests.swift */,
 			);
 			path = WebRTC;
 			sourceTree = "<group>";
@@ -779,6 +831,28 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		8A7A613121A68DD300488ED4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8A7A60D321A4180B00488ED4 /* IceCandidateProtocol.swift */,
+				8A7A60D521A4187C00488ED4 /* SessionDescriptionProtocol.swift */,
+				8A7A60DB21A41DD700488ED4 /* PeerConnectionProtocol.swift */,
+				8A7A60DD21A41E5700488ED4 /* MediaConstraintsProtocol.swift */,
+				8A7A612F21A68DA300488ED4 /* MediaStreamProtocol.swift */,
+				8A7A613221A68DF000488ED4 /* StreamFactoryProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		8A7A613821A6A55C00488ED4 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				8A7A613921A6A58F00488ED4 /* ServerViewModelTests.swift */,
+			);
+			name = Server;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		8A8EF94B219C4B920098A27B /* Json */ = {
 			isa = PBXGroup;
 			children = (
@@ -793,17 +867,15 @@
 		8A8EF98C21A3F15E0098A27B /* WebRTC */ = {
 			isa = PBXGroup;
 			children = (
+				8A7A613121A68DD300488ED4 /* Protocols */,
 				8A8EF98421A329EF0098A27B /* WebRtcClientManager.swift */,
 				8A7A60D121A416E300488ED4 /* WebRtcClientManagerProtocol.swift */,
 				8A8EF98D21A3F2480098A27B /* WebRtcConstraintKey.swift */,
 				8A8EF98721A329F00098A27B /* WebRtcClientManagerDelegate.swift */,
 				8A8EF98521A329EF0098A27B /* WebRtcServerManager.swift */,
+				8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */,
 				8A8EF98621A329F00098A27B /* WebRtcServerManagerDelegate.swift */,
 				8A045D5A21A3F685006A2E10 /* WebRtcStreamId.swift */,
-				8A7A60D321A4180B00488ED4 /* IceCandidateProtocol.swift */,
-				8A7A60D521A4187C00488ED4 /* SessionDescriptionProtocol.swift */,
-				8A7A60DB21A41DD700488ED4 /* PeerConnectionProtocol.swift */,
-				8A7A60DD21A41E5700488ED4 /* MediaConstraintsProtocol.swift */,
 			);
 			path = WebRTC;
 			sourceTree = "<group>";
@@ -851,6 +923,8 @@
 		8AA7CBD8218C549D00FCF62A /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */,
+				8A7A614D21A6AC8800488ED4 /* AudioRecordServiceTests.swift */,
 				8A7A60CB21A40D2F00488ED4 /* CryingDetectionServiceTests.swift */,
 				8AA7CBD9218C54BE00FCF62A /* LullabyPlayerTests.swift */,
 			);
@@ -1357,6 +1431,7 @@
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
 				4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */,
 				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
+				8A7A613021A68DA300488ED4 /* MediaStreamProtocol.swift in Sources */,
 				4E57319C2170BA7400DEAF0B /* BabyMonitorCellSelectable.swift in Sources */,
 				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
 				8A7A611621A59E3B00488ED4 /* CryingDetectionService.swift in Sources */,
@@ -1410,6 +1485,7 @@
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
+				8A7A613321A68DF000488ED4 /* StreamFactoryProtocol.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
 				8A7A612721A59E8600488ED4 /* DirectoryDocumentsSavable.swift in Sources */,
@@ -1418,6 +1494,7 @@
 				4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */,
 				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* URLConfiguration.swift in Sources */,
+				8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				8AA7CBFE218C70B400FCF62A /* RealmLullabiesRepository.swift in Sources */,
 				8A8EF946219C46AD0098A27B /* SdpOfferDecoder.swift in Sources */,
@@ -1451,7 +1528,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A7A615621A6DCD100488ED4 /* StreamFactoryMock.swift in Sources */,
+				8A7A615221A6B00F00488ED4 /* CryingEventsServiceMock.swift in Sources */,
 				8AA7CBFC218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift in Sources */,
+				8A7A614821A6AC7900488ED4 /* CryingEventsRepositoryMock.swift in Sources */,
 				8A42DB122179D9A300BF5F1B /* UserDefaultsURLConfiguration.swift in Sources */,
 				8A7A60F421A4441500488ED4 /* SdpAnswerDecoderMock.swift in Sources */,
 				8AA7CBE4218C5A5100FCF62A /* URLMediaPlayerMock.swift in Sources */,
@@ -1462,28 +1542,41 @@
 				8AFAE5B8219AFF6D007013BC /* WebSocketMock.swift in Sources */,
 				8A7A60CA21A40CF200488ED4 /* MessageServerTests.swift in Sources */,
 				8A7A60E921A439FD00488ED4 /* IceCandidateMock.swift in Sources */,
+				8A7A613A21A6A58F00488ED4 /* ServerViewModelTests.swift in Sources */,
 				8AA7CBCC21871B3E00FCF62A /* ConnectionCheckerMock.swift in Sources */,
+				8A7A614021A6AB7600488ED4 /* NetServiceServerMock.swift in Sources */,
+				8A7A615421A6B77200488ED4 /* SdpOfferDecoderMock.swift in Sources */,
 				8A8EF955219D581D0098A27B /* MessageStreamMock.swift in Sources */,
 				8AA7CBC02187105600FCF62A /* BabyMonitorCellMock.swift in Sources */,
 				8AA7CBCA21871AE300FCF62A /* DashboardViewModelTests.swift in Sources */,
+				8A7A614A21A6AC7900488ED4 /* AudioRecordServiceMock.swift in Sources */,
 				8A7A60E521A432F500488ED4 /* PeerConnectionMock.swift in Sources */,
 				8A7A60E321A4327200488ED4 /* WebRtcClientManagerTests.swift in Sources */,
 				8A42DB0E2179D8FB00BF5F1B /* URLUserDefaultsMock.swift in Sources */,
 				8AA7CBD72187521500FCF62A /* LullabyViewModelTests.swift in Sources */,
+				8A7A614921A6AC7900488ED4 /* CryingDetectionServiceMock.swift in Sources */,
 				8A7A60E721A437C500488ED4 /* SessionDescriptionMock.swift in Sources */,
 				8AA7CBCF2187401700FCF62A /* ActivityLogViewModelTests.swift in Sources */,
 				8A7A60F021A43C9F00488ED4 /* WebRtcClientManagerMock.swift in Sources */,
+				8A7A615021A6ACB000488ED4 /* CryingEventServiceTests.swift in Sources */,
 				8A7A60CC21A40D2F00488ED4 /* CryingDetectionServiceTests.swift in Sources */,
 				8A7A60C921A40CF200488ED4 /* MessageStreamProtocolTests.swift in Sources */,
 				8AFAE5B5219ACA5F007013BC /* WebSocketServerMock.swift in Sources */,
+				8A7A613E21A6AACD00488ED4 /* MessageServerMock.swift in Sources */,
+				8A7A614B21A6AC7900488ED4 /* DocumentsSavableMock.swift in Sources */,
 				8AA7CBC42187117200FCF62A /* BabiesRepositoryMock.swift in Sources */,
+				8A7A614E21A6AC8800488ED4 /* AudioRecordServiceTests.swift in Sources */,
 				8A42DB172179DD9C00BF5F1B /* URL+PrefixTests.swift in Sources */,
+				8A7A615821A6DD9500488ED4 /* WebRtcServerManagerTests.swift in Sources */,
 				8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */,
 				8AED3178218C89D200FEFE8A /* LullabiesRepositoryMock.swift in Sources */,
 				8A7A60F221A4429800488ED4 /* IceCandidateDecoderMock.swift in Sources */,
+				8A7A613721A6A05200488ED4 /* MediaStreamMock.swift in Sources */,
 				8A7A60C721A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift in Sources */,
+				8A7A614C21A6AC7900488ED4 /* RecorderMock.swift in Sources */,
 				8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */,
 				4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */,
+				8A7A613C21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift in Sources */,
 				8A7A60EE21A43BD600488ED4 /* CameraPreviewViewModelTests.swift in Sources */,
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
 				8AA7CBD421874FD000FCF62A /* SwitchBabyViewModelTests.swift in Sources */,

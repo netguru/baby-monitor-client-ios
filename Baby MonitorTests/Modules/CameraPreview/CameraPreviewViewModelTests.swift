@@ -92,4 +92,25 @@ class CameraPreviewViewModelTests: XCTestCase {
         XCTAssertEqual(sdpAnswer, webRtcClientManager.remoteSdp! as! SessionDescriptionMock)
     }
 
+    func testShouldPropagateReceivedStream() {
+        // Given
+        let bag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let observer = scheduler.createObserver(MediaStreamProtocol.self)
+        let stream = MediaStreamMock(id: "id")
+        let webRtcClientManager = WebRtcClientManagerMock()
+        let webSocket = WebSocketMock()
+        let babyRepo = BabiesRepositoryMock()
+        let sut = CameraPreviewViewModel(webRtcClientManager: webRtcClientManager, webSocket: webSocket, babyRepo: babyRepo, decoders: [])
+
+        // When
+        sut.play()
+        sut.remoteStream
+            .subscribe(observer)
+            .disposed(by: bag)
+        webRtcClientManager.mediaStreamPublisher.onNext(stream)
+
+        // Then
+        XCTAssertEqual([stream], observer.events.map { $0.value.element as! MediaStreamMock })
+    }
 }

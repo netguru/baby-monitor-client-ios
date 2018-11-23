@@ -62,7 +62,10 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
             .disposed(by: bag)
     }
     
-    private func attach(stream: RTCMediaStream) {
+    private func attach(stream: MediaStreamProtocol) {
+        guard let stream = stream as? RTCMediaStream else {
+            return
+        }
         let videoTrack = stream.videoTracks[0]
         videoTrack.add(videoView)
     }

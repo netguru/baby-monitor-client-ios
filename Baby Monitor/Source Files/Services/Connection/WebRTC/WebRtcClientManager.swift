@@ -27,10 +27,10 @@ class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     }
     private let iceCandidatePublisher = PublishRelay<IceCandidateProtocol>()
 
-    var mediaStream: Observable<RTCMediaStream> {
+    var mediaStream: Observable<MediaStreamProtocol> {
         return mediaStreamPublisher.asObservable()
     }
-    private let mediaStreamPublisher = PublishRelay<RTCMediaStream>()
+    private let mediaStreamPublisher = PublishRelay<MediaStreamProtocol>()
 
     init(peerConnection: PeerConnectionProtocol) {
         self.peerConnection = peerConnection

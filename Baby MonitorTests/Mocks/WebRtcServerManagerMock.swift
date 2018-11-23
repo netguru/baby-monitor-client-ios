@@ -1,34 +1,28 @@
 //
-//  WebRtcClientManagerMock.swift
+//  WebRtcServerManagerMock.swift
 //  Baby MonitorTests
 //
 
 @testable import BabyMonitor
 import RxSwift
-import WebRTC
 
-final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
-
-    private(set) var isStarted = false
+final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
+    private(set) var isStarted = true
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var iceCandidates = [IceCandidateProtocol]()
 
     private let localSdp: SessionDescriptionProtocol?
 
-    init(sdpOffer: SessionDescriptionProtocol? = nil) {
-        self.localSdp = sdpOffer
+    init(sdpAnswer: SessionDescriptionProtocol? = nil) {
+        self.localSdp = sdpAnswer
     }
 
-    func startWebRtcConnection() {
-        isStarted = true
+    func createAnswer(remoteSdp: SessionDescriptionProtocol) {
+        self.remoteSdp = remoteSdp
         guard let localSdp = localSdp else {
             return
         }
-        sdpOfferPublisher.onNext(localSdp)
-    }
-
-    func setAnswerSDP(sdp: SessionDescriptionProtocol) {
-        remoteSdp = sdp
+        sdpAnswerPublisher.onNext(localSdp)
     }
 
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
@@ -39,10 +33,10 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
         isStarted = false
     }
 
-    var sdpOffer: Observable<SessionDescriptionProtocol> {
-        return sdpOfferPublisher
+    var sdpAnswer: Observable<SessionDescriptionProtocol> {
+        return sdpAnswerPublisher
     }
-    let sdpOfferPublisher = PublishSubject<SessionDescriptionProtocol>()
+    let sdpAnswerPublisher = PublishSubject<SessionDescriptionProtocol>()
 
     var iceCandidate: Observable<IceCandidateProtocol> {
         return iceCandidatePublisher
