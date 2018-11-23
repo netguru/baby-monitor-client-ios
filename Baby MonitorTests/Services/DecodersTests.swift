@@ -22,8 +22,8 @@ class DecodersTests: XCTestCase {
         
         // Then
         if case let .sdpAnswer(sdpAnswer) = decodedMessage {
-            XCTAssertEqual(sdp.description, sdpAnswer.description)
-            XCTAssertEqual(sdp.type, sdpAnswer.type)
+            XCTAssertEqual(sdp.sdp, sdpAnswer.sdp)
+            XCTAssertEqual(sdp.stringType, sdpAnswer.stringType)
         } else {
             XCTAssertTrue(false, "Decoded message type doesn't match")
         }
@@ -42,8 +42,8 @@ class DecodersTests: XCTestCase {
         
         // Then
         if case let .sdpOffer(sdpAnswer) = decodedMessage {
-            XCTAssertEqual(sdp.description, sdpAnswer.description)
-            XCTAssertEqual(sdp.type, sdpAnswer.type)
+            XCTAssertEqual(sdp.sdp, sdpAnswer.sdp)
+            XCTAssertEqual(sdp.stringType, sdpAnswer.stringType)
         } else {
             XCTAssertTrue(false, "Decoded message type doesn't match")
         }

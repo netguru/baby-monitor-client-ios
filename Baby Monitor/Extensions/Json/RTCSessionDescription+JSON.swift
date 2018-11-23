@@ -24,21 +24,23 @@ extension RTCSdpType {
     static let allCases: [RTCSdpType] = [.answer, .offer, .prAnswer]
 }
 
-extension RTCSessionDescription {
-    private enum Keys: String {
-        case type
-        case sdp
-    }
+private enum Keys: String {
+    case type
+    case sdp
+}
 
+extension SessionDescriptionProtocol {
     func jsonDictionary() -> [AnyHashable: Any] {
-        return [RTCSessionDescription.Keys.type.rawValue: type.canonicalName,
-                RTCSessionDescription.Keys.sdp.rawValue: sdp]
+        return [Keys.type.rawValue: stringType,
+                Keys.sdp.rawValue: sdp]
     }
-    
+}
+
+extension RTCSessionDescription {
     convenience init?(dictionary: [AnyHashable: Any]) {
-        guard let typeString = dictionary[RTCSessionDescription.Keys.type.rawValue] as? String,
+        guard let typeString = dictionary[Keys.type.rawValue] as? String,
             let type = RTCSdpType.type(from: typeString),
-            let sdp = dictionary[RTCSessionDescription.Keys.sdp.rawValue] as? String else {
+            let sdp = dictionary[Keys.sdp.rawValue] as? String else {
                 return nil
         }
         self.init(type: type, sdp: sdp)

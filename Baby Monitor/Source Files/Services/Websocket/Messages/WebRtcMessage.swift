@@ -3,12 +3,10 @@
 //  Baby Monitor
 //
 
-import WebRTC
-
-enum WebRtcMessage: Equatable {
-    case sdpAnswer(RTCSessionDescription)
-    case sdpOffer(RTCSessionDescription)
-    case iceCandidate(RTCIceCandidate)
+enum WebRtcMessage {
+    case sdpAnswer(SessionDescriptionProtocol)
+    case sdpOffer(SessionDescriptionProtocol)
+    case iceCandidate(IceCandidateProtocol)
     
     enum Key: String {
         case offerSDP

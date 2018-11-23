@@ -22,8 +22,16 @@ final class AppDependencies {
 
     private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
+    private(set) lazy var peerConnection: () -> RTCPeerConnection = {
+        let peerConnectionFactory = RTCPeerConnectionFactory()
+        return peerConnectionFactory.peerConnection(with: RTCConfiguration(), constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement.rawValue: "true"]), delegate: nil)
+    }
     private(set) lazy var webRtcServer: () -> WebRtcServerManager = { WebRtcServerManager() }
-    private(set) lazy var webRtcClient: () -> WebRtcClientManager = { WebRtcClientManager() }
+    private(set) lazy var webRtcClient: (RTCPeerConnection) -> WebRtcClientManagerProtocol = { connection in
+        let clientManager = WebRtcClientManager(peerConnection: connection)
+        connection.delegate = clientManager
+        return clientManager
+    }
     private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
 
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, urlConfiguration: urlConfiguration)
