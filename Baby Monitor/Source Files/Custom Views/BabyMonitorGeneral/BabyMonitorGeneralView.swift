@@ -32,18 +32,14 @@ final class BabyMonitorGeneralView: BaseView {
     
     // MARK: - private functions
     private func setup(type: BabyMonitorGeneralViewType) {
-        tableView.separatorStyle = .singleLine
-        
         tableView.tableHeaderView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 0, height: CGFloat.leastNormalMagnitude)))
         tableView.tableFooterView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 0, height: CGFloat.leastNormalMagnitude)))
+        tableView.backgroundColor = .clear
         switch type {
         case .switchBaby:
-            tableView.separatorStyle = .none
-            backgroundColor = .clear
-            tableView.backgroundColor = .clear
+            break
         case .activityLog, .lullaby, .settings:
             backgroundView.isHidden = true
-            tableView.backgroundColor = .white
         }
         
         [backgroundView, tableView].forEach {

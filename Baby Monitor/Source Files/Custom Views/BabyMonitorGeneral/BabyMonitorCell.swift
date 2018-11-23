@@ -8,7 +8,25 @@ import UIKit
 class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
     
     private enum Constants {
-        static let mainWidthHeight: CGFloat = 40
+        static let mainWidthHeight: CGFloat = 36
+        enum Alpha {
+            static let separator: CGFloat = 0.3
+            static let background: CGFloat = 0.2
+        }
+        enum FontSize {
+            static let header: CGFloat = 16
+            static let main: CGFloat = 11
+            static let secondary: CGFloat = 8
+        }
+        enum Color {
+            static let font = UIColor(rgb: 0x211E35)
+        }
+        enum Spacing {
+            static let labels: CGFloat = 3
+        }
+        enum Height {
+            static let separator: CGFloat = 1.0
+        }
     }
     
     private let photoImageView: UIImageView = {
@@ -22,10 +40,16 @@ class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
         return imageView
     }()
     
-    private let mainLabel = UILabel()
+    private let mainLabel: UILabel = {
+        let label = UILabel()
+        label.font = label.font.withSize(Constants.FontSize.main)
+        label.textColor = Constants.Color.font
+        return label
+    }()
     private let secondaryLabel: UILabel = {
         let label = UILabel()
-        label.font = label.font.withSize(15)
+        label.font = label.font.withSize(Constants.FontSize.secondary)
+        label.textColor = Constants.Color.font
         return label
     }()
     
@@ -41,6 +65,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
         let stackView = UIStackView(arrangedSubviews: [mainLabel, secondaryLabel])
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
+        stackView.spacing = Constants.Spacing.labels
         stackView.alignment = .leading
         stackView.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return stackView
@@ -53,6 +78,12 @@ class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
         stackView.alignment = .center
         stackView.spacing = 20
         return stackView
+    }()
+
+    private lazy var separatorView: UIView = {
+        let separator = UIView()
+        separator.backgroundColor = UIColor.white.withAlphaComponent(Constants.Alpha.separator)
+        return separator
     }()
     
     var type: BabyMonitorCellType = .activityLog {
@@ -104,24 +135,25 @@ class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
         [secondaryLabel, photoImageView, additionalButton].forEach {
             $0.isHidden = true
         }
-        mainLabel.font = mainLabel.font.withSize(30)
+        mainLabel.font = UIFont.systemFont(ofSize: Constants.FontSize.header, weight: .bold)
+        backgroundColor = .clear
     }
     
     // MARK: - Private functions
     private func setup() {
         selectionStyle = .none
+        backgroundColor = UIColor.white.withAlphaComponent(Constants.Alpha.background)
         contentView.addSubview(mainStackView)
+        contentView.addSubview(separatorView)
         
-        photoImageView.addConstraints {[
-            $0.equalConstant(.height, Constants.mainWidthHeight),
-            $0.equalConstant(.width, Constants.mainWidthHeight)
-        ]
+        photoImageView.addConstraints {
+            [$0.equalConstant(.height, Constants.mainWidthHeight),
+            $0.equalConstant(.width, Constants.mainWidthHeight)]
         }
         
-        additionalButton.addConstraints {[
-            $0.equalConstant(.height, Constants.mainWidthHeight),
-            $0.equalConstant(.width, Constants.mainWidthHeight)
-        ]
+        additionalButton.addConstraints {
+            [$0.equalConstant(.height, Constants.mainWidthHeight),
+            $0.equalConstant(.width, Constants.mainWidthHeight)]
         }
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCell))
@@ -132,6 +164,13 @@ class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
             $0.equal(.bottom),
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.8)]
+        }
+
+        separatorView.addConstraints {
+            [$0.equalConstant(.height, Constants.Height.separator),
+             $0.equalTo(contentView, .leading, .leading),
+             $0.equalTo(contentView, .trailing, .trailing),
+             $0.equalTo(contentView, .bottom, .bottom)]
         }
     }
     

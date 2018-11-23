@@ -14,6 +14,12 @@ enum BabyMonitorGeneralViewType {
     case settings
 }
 
+private enum GeneralConstants {
+    enum Height {
+        static let cell: CGFloat = 56
+    }
+}
+
 class BabyMonitorGeneralViewController<T: Equatable>: TypedViewController<BabyMonitorGeneralView>, UITableViewDelegate {
 
     private let viewModel: AnyBabyMonitorGeneralViewModelProtocol<T>
@@ -96,14 +102,14 @@ class BabyMonitorGeneralViewController<T: Equatable>: TypedViewController<BabyMo
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return GeneralConstants.Height.cell
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         guard viewModel.isBabyMonitorHeaderCellConfigurable else {
             return CGFloat.leastNormalMagnitude
         }
-        return 70
+        return GeneralConstants.Height.cell
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
