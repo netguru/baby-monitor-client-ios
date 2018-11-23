@@ -93,6 +93,10 @@ class DashboardView: BaseView {
         photoButtonView.setPhoto(photo)
         babyNavigationItemView.setBabyPhoto(photo)
     }
+    
+    func updatePhotoButtonLayer() {
+        photoButtonView.setupPhotoButtonLayer()
+    }
 
     // MARK: - private functions
     private func setupLayout() {
@@ -106,7 +110,7 @@ class DashboardView: BaseView {
     private func setupConstraints() {
         photoButtonView.addConstraints {[
             $0.equalTo(self, .top, .safeAreaTop),
-            $0.equal(.width, multiplier: 0.8),
+            $0.equal(.width, multiplier: 0.9),
             $0.equalTo($0, .width, .height),
             $0.equal(.centerX)
         ]
@@ -129,20 +133,21 @@ class DashboardView: BaseView {
         descriptionLabel.addConstraints {[
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.9),
-            $0.equalTo(nameField, .top, .bottom, constant: Constants.mainOffset + 10)
+            $0.equalTo(nameField, .top, .bottom, constant: Constants.mainOffset + 40)
         ]
         }
         
         tipLabel.addConstraints {[
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.9),
-            $0.equalTo(dashboardButtonsStackView, .bottom, .top)
+            $0.equalTo(dashboardButtonsStackView, .bottom, .top, constant: -40)
         ]
         }
         
         dashboardButtonsStackView.addConstraints {[
             $0.equal(.centerX),
-            $0.equalTo(self, .bottom, .safeAreaBottom, constant: Constants.mainOffset * 2)
+            $0.equal(.width, multiplier: 0.8),
+            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -Constants.mainOffset * 2)
         ]
         }
         

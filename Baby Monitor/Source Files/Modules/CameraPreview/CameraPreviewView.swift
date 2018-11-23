@@ -11,8 +11,8 @@ import WebRTC
 final class CameraPreviewView: BaseView {
     
     private enum Constants {
-        static let mainButtonWidthHeight: CGFloat = 70
-        static let secondaryButtonWidthHeight: CGFloat = 50
+        static let mainButtonWidthHeight: CGFloat = 90
+        static let secondaryButtonWidthHeight: CGFloat = 60
     }
     
     let mediaView = RTCEAGLVideoView()
@@ -44,13 +44,11 @@ final class CameraPreviewView: BaseView {
         addSubview(buttonsStackView)
         [stopButton, microphoneButton, changeCameraButton].forEach {
             $0.layer.cornerRadius = Constants.secondaryButtonWidthHeight / 2
-            $0.backgroundColor = .blue
         }
         stopButton.layer.cornerRadius = Constants.mainButtonWidthHeight / 2
-        changeCameraButton.backgroundColor = .gray
         changeCameraButton.setImage(#imageLiteral(resourceName: "switchCamera"), for: .normal)
         stopButton.setImage(#imageLiteral(resourceName: "stop"), for: .normal)
-        microphoneButton.setImage(#imageLiteral(resourceName: "microphone"), for: .normal)
+        microphoneButton.setImage(#imageLiteral(resourceName: "mic"), for: .normal)
         
         setupConstraints()
     }
