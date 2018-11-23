@@ -22,8 +22,9 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
         setupViewModel()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
         customView.updatePhotoButtonLayer()
     }
 
