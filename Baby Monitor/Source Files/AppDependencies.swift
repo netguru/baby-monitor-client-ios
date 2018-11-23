@@ -20,7 +20,7 @@ final class AppDependencies {
     /// Service that takes care of appropriate controling: crying detection, audio recording and saving these events to realm database
     private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(cryingDetectionService: cryingDetectionService, audioRecordService: audioRecordService, babiesRepository: babiesRepository)
 
-    private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
+    private(set) lazy var netServiceClient: () -> NetServiceClientProtocol = { NetServiceClient() }
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
     private(set) lazy var peerConnection: () -> RTCPeerConnection = {
         let peerConnectionFactory = RTCPeerConnectionFactory()
@@ -39,7 +39,7 @@ final class AppDependencies {
     }
     private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
 
-    private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, urlConfiguration: urlConfiguration)
+    private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient(), urlConfiguration: urlConfiguration)
     
     private(set) var urlConfiguration: URLConfiguration = UserDefaultsURLConfiguration()
     private(set) lazy var messageServer = MessageServer(server: webSocketServer)

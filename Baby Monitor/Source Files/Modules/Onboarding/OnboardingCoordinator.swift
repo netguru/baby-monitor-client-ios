@@ -46,7 +46,7 @@ final class OnboardingCoordinator: Coordinator {
 
     private func showClientSetup() {
         let viewModel = ClientSetupOnboardingViewModel(
-            netServiceClient: appDependencies.netServiceClient,
+            netServiceClient: appDependencies.netServiceClient(),
             urlConfiguration: appDependencies.urlConfiguration,
             babyRepo: appDependencies.babiesRepository)
         viewModel.didFinishDeviceSearch = { [weak self] result in
