@@ -130,6 +130,7 @@
 		8A7A615421A6B77200488ED4 /* SdpOfferDecoderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A615321A6B77200488ED4 /* SdpOfferDecoderMock.swift */; };
 		8A7A615621A6DCD100488ED4 /* StreamFactoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A615521A6DCD100488ED4 /* StreamFactoryMock.swift */; };
 		8A7A615821A6DD9500488ED4 /* WebRtcServerManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A615721A6DD9500488ED4 /* WebRtcServerManagerTests.swift */; };
+		8A7A616D21A8162000488ED4 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A616C21A8162000488ED4 /* UIColor+Custom.swift */; };
 		8A87305221906A780045E25D /* test2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A87305121906A780045E25D /* test2.mp3 */; };
 		8A8EF944219C40630098A27B /* RTCSessionDescription+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF943219C40630098A27B /* RTCSessionDescription+JSON.swift */; };
 		8A8EF946219C46AD0098A27B /* SdpOfferDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF945219C46AD0098A27B /* SdpOfferDecoder.swift */; };
@@ -346,6 +347,7 @@
 		8A7A615321A6B77200488ED4 /* SdpOfferDecoderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdpOfferDecoderMock.swift; sourceTree = "<group>"; };
 		8A7A615521A6DCD100488ED4 /* StreamFactoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamFactoryMock.swift; sourceTree = "<group>"; };
 		8A7A615721A6DD9500488ED4 /* WebRtcServerManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerTests.swift; sourceTree = "<group>"; };
+		8A7A616C21A8162000488ED4 /* UIColor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
 		8A87305121906A780045E25D /* test2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test2.mp3; sourceTree = "<group>"; };
 		8A8EF943219C40630098A27B /* RTCSessionDescription+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RTCSessionDescription+JSON.swift"; sourceTree = "<group>"; };
 		8A8EF945219C46AD0098A27B /* SdpOfferDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdpOfferDecoder.swift; sourceTree = "<group>"; };
@@ -570,6 +572,7 @@
 				4E95633A2164F6D500289475 /* UIViewController+ChildViewController.swift */,
 				8A42DB132179DCAC00BF5F1B /* URL+Prefix.swift */,
 				8A43DB082180971D00E3004D /* UIViewController+Rx.swift */,
+				8A7A616C21A8162000488ED4 /* UIColor+Custom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1445,6 +1448,7 @@
 				8AA7CBE2218C576D00FCF62A /* URLMediaPlayer.swift in Sources */,
 				8AFAE5BC219C0DEE007013BC /* MessageDecoderProtocol.swift in Sources */,
 				8A7A611F21A59E5D00488ED4 /* RealmCryingEvent.swift in Sources */,
+				8A7A616D21A8162000488ED4 /* UIColor+Custom.swift in Sources */,
 				8A8EF98E21A3F2480098A27B /* WebRtcConstraintKey.swift in Sources */,
 				4E626694217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift in Sources */,
 				8AA7CBDC218C559000FCF62A /* LullabyPlayerProtocol.swift in Sources */,

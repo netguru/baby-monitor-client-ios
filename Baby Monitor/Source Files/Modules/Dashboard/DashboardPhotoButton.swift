@@ -56,6 +56,9 @@ final class DashboardPhotoButtonView: UIView {
     
     func setPhoto(_ image: UIImage?) {
         updateImage(image)
+        DispatchQueue.main.async {
+            self.setupPhotoButtonLayer()
+        }
     }
     
     func setupPhotoButtonLayer() {
@@ -72,27 +75,24 @@ final class DashboardPhotoButtonView: UIView {
     }
     
     private func setupConstraints() {
-        backgoundView.addConstraints {[
-            $0.equal(.centerX)
-        ]
+        backgoundView.addConstraints {
+            [$0.equal(.centerX)]
         }
         backgoundView.addConstraints {
             $0.equalEdges()
         }
         
-        button.addConstraints {[
-            $0.equalTo(self, .width, .width, multiplier: 0.53),
+        button.addConstraints {
+            [$0.equalTo(self, .width, .width, multiplier: 0.53),
             $0.equalTo($0, .width, .height),
             $0.equal(.centerX),
-            $0.equal(.centerY)
-        ]
+            $0.equal(.centerY)]
         }
         
-        placeholderStackView.addConstraints {[
-            $0.equal(.centerX),
+        placeholderStackView.addConstraints {
+            [$0.equal(.centerX),
             $0.equal(.centerY),
-            $0.equalTo(button, .width, .width)
-        ]
+            $0.equalTo(button, .width, .width)]
         }
     }
     
