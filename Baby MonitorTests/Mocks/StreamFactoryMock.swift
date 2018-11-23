@@ -1,7 +1,19 @@
 //
-//  PeerConnectionFactoryMock.swift
+//  StreamFactoryMock.swift
 //  Baby MonitorTests
 //
 
+@testable import BabyMonitor
 
-import Foundation
+final class StreamFactoryMock: StreamFactoryProtocol {
+
+    private let id: String
+
+    init(id: String = UUID().uuidString) {
+        self.id = id
+    }
+
+    func createStream() -> MediaStreamProtocol {
+        return MediaStreamMock(id: id)
+    }
+}

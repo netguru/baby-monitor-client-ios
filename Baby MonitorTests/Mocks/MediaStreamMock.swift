@@ -3,5 +3,8 @@
 //  Baby MonitorTests
 //
 
+@testable import BabyMonitor
 
-import Foundation
+struct MediaStreamMock: Equatable, MediaStreamProtocol {
+    let id: String
+}

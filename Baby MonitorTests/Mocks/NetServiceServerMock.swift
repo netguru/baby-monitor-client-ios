@@ -1,7 +1,19 @@
 //
-//  NetServiceMock.swift
+//  NetServiceServerMock.swift
 //  Baby MonitorTests
 //
 
+@testable import BabyMonitor
 
-import Foundation
+final class NetServiceServerMock: NetServiceServerProtocol {
+
+    private(set) var isStarted = false
+
+    func publish() {
+        isStarted = true
+    }
+
+    func stop() {
+        isStarted = false
+    }
+}

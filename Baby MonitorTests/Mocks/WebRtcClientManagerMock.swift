@@ -49,8 +49,8 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
     }
     let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
 
-    var mediaStream: Observable<RTCMediaStream> {
+    var mediaStream: Observable<MediaStreamProtocol> {
         return mediaStreamPublisher
     }
-    let mediaStreamPublisher = PublishSubject<RTCMediaStream>()
+    let mediaStreamPublisher = PublishSubject<MediaStreamProtocol>()
 }
