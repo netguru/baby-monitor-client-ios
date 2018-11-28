@@ -24,14 +24,14 @@ final class OnboardingCoordinator: Coordinator {
     }
 
     private func showInitialSetup() {
-        let viewModel = InitialOnboardingViewModel()
-        viewModel.didSelectBabyMonitorServer = { [weak self] in
+        let viewModel = SpecifyDeviceOnboardingViewModel()
+        viewModel.didSelectBaby = { [weak self] in
             self?.showServerView()
         }
-        viewModel.didSelectBabyMonitorClient = { [weak self] in
+        viewModel.didSelectParent = { [weak self] in
             self?.showStartDiscoveringView()
         }
-        let viewController = GeneralOnboardingViewController(viewModel: viewModel, role: .begin)
+        let viewController = SpecifyDeviceOnboardingViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
     
@@ -52,7 +52,7 @@ final class OnboardingCoordinator: Coordinator {
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success:
-                self?.showDashboard()
+                self?.onEnding?()
             case .failure:
                 self?.appDependencies.errorHandler.showAlert(
                     title: Localizable.Errors.errorOccured,
@@ -82,9 +82,5 @@ final class OnboardingCoordinator: Coordinator {
             AlertPresenter.showDefaultAlert(title: nil, message: message, onViewController: serverViewController)
         }
         navigationController.pushViewController(serverViewController, animated: true)
-    }
-
-    private func showDashboard() {
-        onEnding?()
     }
 }
