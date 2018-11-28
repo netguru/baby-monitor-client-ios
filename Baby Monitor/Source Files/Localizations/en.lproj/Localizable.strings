@@ -32,6 +32,10 @@
 "dashboard.action-button.camera" = "Camera";
 "dashboard.action-button.photoLibrary" = "Photo library";
 "dashboard.text-field-placeholder.add-name" = "What's your baby's name";
+"onboarding.button.parent" = "Parent";
+"onboarding.button.baby" = "Baby";
+"onboarding.label.specify-this-device" = "Specify this device";
+"onboarding.label.welcome-to" = "Welcome to Baby Monitor \nLet’s start by defining this device";
 
 //MARK: - TabBar
 "tab-bar.dashboard" = "Dashboard";

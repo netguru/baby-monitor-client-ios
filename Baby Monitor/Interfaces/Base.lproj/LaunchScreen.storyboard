@@ -1,19 +1,86 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvertaStd-Regular.otf">
+            <string>AvertaStd-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="FAA-tC-1bo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2SV-WJ-COz">
+                                <rect key="frame" x="199" y="736" width="72" height="18"/>
+                                <color key="tintColor" red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="by ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.12941176470588234" green="0.11764705882352941" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="AvertaStd-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Netguru">
+                                        <attributes>
+                                            <color key="NSColor" red="0.12941176470588234" green="0.11764705882352941" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="AvertaStd-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="childPurple" translatesAutoresizingMaskIntoConstraints="NO" id="fHi-Si-TXk">
+                                <rect key="frame" x="142" y="364" width="91" height="84"/>
+                                <color key="tintColor" red="0.6588235294" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crafted with" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huo-uj-HB2">
+                                <rect key="frame" x="95" y="736" width="81" height="18"/>
+                                <fontDescription key="fontDescription" name="AvertaStd-Regular" family="Averta Std" pointSize="14"/>
+                                <color key="textColor" red="0.12941176470588234" green="0.11764705882352941" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="v2r-3h-T9c">
+                                <rect key="frame" x="181" y="736" width="13" height="18"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="v2r-3h-T9c" firstAttribute="leading" secondItem="huo-uj-HB2" secondAttribute="trailing" constant="5" id="4TM-Pa-ufS"/>
+                            <constraint firstItem="fHi-Si-TXk" firstAttribute="centerX" secondItem="FAA-tC-1bo" secondAttribute="centerX" id="6XL-b7-BRg"/>
+                            <constraint firstItem="huo-uj-HB2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8Vf-Kg-LVI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FAA-tC-1bo" secondAttribute="trailing" id="JyP-ma-tXx"/>
+                            <constraint firstItem="2SV-WJ-COz" firstAttribute="height" secondItem="huo-uj-HB2" secondAttribute="height" id="OzT-aE-LHB"/>
+                            <constraint firstItem="2SV-WJ-COz" firstAttribute="bottom" secondItem="huo-uj-HB2" secondAttribute="bottom" id="QYf-Sp-V83"/>
+                            <constraint firstAttribute="bottom" secondItem="FAA-tC-1bo" secondAttribute="bottom" id="QcG-aQ-9oG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="huo-uj-HB2" secondAttribute="bottom" constant="24" id="TPq-of-Sor"/>
+                            <constraint firstItem="v2r-3h-T9c" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Xei-IV-OQJ"/>
+                            <constraint firstItem="fHi-Si-TXk" firstAttribute="centerY" secondItem="FAA-tC-1bo" secondAttribute="centerY" id="YRK-zj-tKl"/>
+                            <constraint firstItem="v2r-3h-T9c" firstAttribute="height" secondItem="huo-uj-HB2" secondAttribute="height" id="e8m-jb-hpO"/>
+                            <constraint firstItem="FAA-tC-1bo" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="mcP-bS-B87"/>
+                            <constraint firstItem="v2r-3h-T9c" firstAttribute="bottom" secondItem="huo-uj-HB2" secondAttribute="bottom" id="pTc-oR-07p"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2SV-WJ-COz" secondAttribute="trailing" id="vB0-xI-pc0"/>
+                            <constraint firstItem="2SV-WJ-COz" firstAttribute="leading" secondItem="v2r-3h-T9c" secondAttribute="trailing" constant="5" id="yQR-LD-tcc"/>
+                            <constraint firstItem="FAA-tC-1bo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="z8N-NT-6GS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +89,9 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back" width="375" height="667"/>
+        <image name="childPurple" width="91" height="84"/>
+        <image name="heart" width="13" height="12"/>
+    </resources>
 </document>
