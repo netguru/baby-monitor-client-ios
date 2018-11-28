@@ -39,10 +39,19 @@
 		4E626690217F1A6300FA542F /* GeneralOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62668F217F1A6300FA542F /* GeneralOnboardingViewController.swift */; };
 		4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */; };
 		4E626694217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626693217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift */; };
-		4E626696217F1B4000FA542F /* InitialOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626695217F1B4000FA542F /* InitialOnboardingViewModel.swift */; };
 		4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626697217F2B8400FA542F /* OnboardingView.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
 		4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */; };
+		4E8E056321AD81D4009ACE05 /* BaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E056221AD81D4009ACE05 /* BaseOnboardingView.swift */; };
+		4E8E056621AD82EE009ACE05 /* AvertaStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E8E056521AD82EE009ACE05 /* AvertaStd-Bold.otf */; };
+		4E8E056821AD8327009ACE05 /* UIFont+BabyMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E056721AD8327009ACE05 /* UIFont+BabyMonitor.swift */; };
+		4E8E056A21AD855B009ACE05 /* AvertaStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E8E056921AD855B009ACE05 /* AvertaStd-Regular.otf */; };
+		4E8E056C21AD8E25009ACE05 /* SpecifyDeviceOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E056B21AD8E25009ACE05 /* SpecifyDeviceOnboardingView.swift */; };
+		4E8E056E21AD8E72009ACE05 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E056D21AD8E72009ACE05 /* OnboardingButton.swift */; };
+		4E8E057021AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E056F21AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift */; };
+		4E8E057221AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E057121AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift */; };
+		4E8E057421AE9E4A009ACE05 /* UIColor+BabyMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E057321AE9E4A009ACE05 /* UIColor+BabyMonitor.swift */; };
+		4E8E057721AEADC5009ACE05 /* SpecifyDeviceOnboardingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E057621AEADC5009ACE05 /* SpecifyDeviceOnboardingViewModelTests.swift */; };
 		4E931330216635B700AEE942 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93132F216635B700AEE942 /* TabBarController.swift */; };
 		4E9563182163521900289475 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563172163521900289475 /* DashboardButton.swift */; };
 		4E95631B21638D1500289475 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95631A21638D1500289475 /* Localizable.swift */; };
@@ -246,10 +255,19 @@
 		4E62668F217F1A6300FA542F /* GeneralOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralOnboardingViewController.swift; sourceTree = "<group>"; };
 		4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupOnboardingViewModel.swift; sourceTree = "<group>"; };
 		4E626693217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDiscoveringOnboardingViewModel.swift; sourceTree = "<group>"; };
-		4E626695217F1B4000FA542F /* InitialOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialOnboardingViewModel.swift; sourceTree = "<group>"; };
 		4E626697217F2B8400FA542F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		4E8E056221AD81D4009ACE05 /* BaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOnboardingView.swift; sourceTree = "<group>"; };
+		4E8E056521AD82EE009ACE05 /* AvertaStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvertaStd-Bold.otf"; sourceTree = "<group>"; };
+		4E8E056721AD8327009ACE05 /* UIFont+BabyMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+BabyMonitor.swift"; sourceTree = "<group>"; };
+		4E8E056921AD855B009ACE05 /* AvertaStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvertaStd-Regular.otf"; sourceTree = "<group>"; };
+		4E8E056B21AD8E25009ACE05 /* SpecifyDeviceOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceOnboardingView.swift; sourceTree = "<group>"; };
+		4E8E056D21AD8E72009ACE05 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
+		4E8E056F21AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceOnboardingViewController.swift; sourceTree = "<group>"; };
+		4E8E057121AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceOnboardingViewModel.swift; sourceTree = "<group>"; };
+		4E8E057321AE9E4A009ACE05 /* UIColor+BabyMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+BabyMonitor.swift"; sourceTree = "<group>"; };
+		4E8E057621AEADC5009ACE05 /* SpecifyDeviceOnboardingViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceOnboardingViewModelTests.swift; sourceTree = "<group>"; };
 		4E93132F216635B700AEE942 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4E9563172163521900289475 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		4E95631A21638D1500289475 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
@@ -573,6 +591,8 @@
 				8A42DB132179DCAC00BF5F1B /* URL+Prefix.swift */,
 				8A43DB082180971D00E3004D /* UIViewController+Rx.swift */,
 				8A7A616C21A8162000488ED4 /* UIColor+Custom.swift */,
+				4E8E056721AD8327009ACE05 /* UIFont+BabyMonitor.swift */,
+				4E8E057321AE9E4A009ACE05 /* UIColor+BabyMonitor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -592,6 +612,23 @@
 				EC8C943C216CBFCE00E3B478 /* TabBar */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		4E8E056421AD82D9009ACE05 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4E8E056921AD855B009ACE05 /* AvertaStd-Regular.otf */,
+				4E8E056521AD82EE009ACE05 /* AvertaStd-Bold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		4E8E057521AEADB2009ACE05 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				4E8E057621AEADC5009ACE05 /* SpecifyDeviceOnboardingViewModelTests.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		4E95631921638CE400289475 /* Localizations */ = {
@@ -700,6 +737,7 @@
 		8A42DAFB2179BF8200BF5F1B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4E8E057521AEADB2009ACE05 /* Onboarding */,
 				8A7A613821A6A55C00488ED4 /* Server */,
 				8A7A60EA21A43B4E00488ED4 /* CameraPreview */,
 				8AA7CBD52187520700FCF62A /* Lullaby */,
@@ -1033,8 +1071,12 @@
 				4E62668F217F1A6300FA542F /* GeneralOnboardingViewController.swift */,
 				4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */,
 				4E626693217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift */,
-				4E626695217F1B4000FA542F /* InitialOnboardingViewModel.swift */,
 				4E626697217F2B8400FA542F /* OnboardingView.swift */,
+				4E8E056221AD81D4009ACE05 /* BaseOnboardingView.swift */,
+				4E8E056B21AD8E25009ACE05 /* SpecifyDeviceOnboardingView.swift */,
+				4E8E056D21AD8E72009ACE05 /* OnboardingButton.swift */,
+				4E8E056F21AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift */,
+				4E8E057121AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1115,6 +1157,7 @@
 		EC82B57E213EA142005CA395 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E8E056421AD82D9009ACE05 /* Fonts */,
 				8AA7CBEA218C62D500FCF62A /* Lullabies */,
 				4E221D8C21771946003D8531 /* Bridging-Header.h */,
 				EC82B560213EA074005CA395 /* Assets.xcassets */,
@@ -1248,12 +1291,14 @@
 			files = (
 				ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */,
 				4E5731AB2170C1A200DEAF0B /* Tests-Development.xcconfig in Resources */,
+				4E8E056621AD82EE009ACE05 /* AvertaStd-Bold.otf in Resources */,
 				EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */,
 				4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */,
 				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
 				8AA7CBF3218C62E600FCF62A /* prettyLittleHorses.mp3 in Resources */,
 				EC82B561213EA074005CA395 /* Assets.xcassets in Resources */,
 				8AA7CBF2218C62E600FCF62A /* lullabyGoodnight.mp3 in Resources */,
+				4E8E056A21AD855B009ACE05 /* AvertaStd-Regular.otf in Resources */,
 				8AA7CBF0218C62E600FCF62A /* rockAByeBaby.mp3 in Resources */,
 				4E95631E21638E2200289475 /* Localizable.strings in Resources */,
 				ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */,
@@ -1426,6 +1471,7 @@
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				8A42DB0B2179D7D700BF5F1B /* URLUserDefaults.swift in Sources */,
 				8AFAE5BA219C0314007013BC /* String+JSON.swift in Sources */,
+				4E8E056E21AD8E72009ACE05 /* OnboardingButton.swift in Sources */,
 				8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
 				8A7A60DC21A41DD700488ED4 /* PeerConnectionProtocol.swift in Sources */,
@@ -1439,6 +1485,7 @@
 				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
 				8A7A611621A59E3B00488ED4 /* CryingDetectionService.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
+				4E8E057421AE9E4A009ACE05 /* UIColor+BabyMonitor.swift in Sources */,
 				8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */,
@@ -1463,11 +1510,12 @@
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				8A7A612A21A59E9A00488ED4 /* AlertPresenter.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
-				4E626696217F1B4000FA542F /* InitialOnboardingViewModel.swift in Sources */,
 				4E5731982170BA7400DEAF0B /* BabiesViewSelectable.swift in Sources */,
+				4E8E056821AD8327009ACE05 /* UIFont+BabyMonitor.swift in Sources */,
 				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
 				8A8EF94A219C47FD0098A27B /* RTCIceCandidate+JSON.swift in Sources */,
 				4E57319B2170BA7400DEAF0B /* HasWindow.swift in Sources */,
+				4E8E056C21AD8E25009ACE05 /* SpecifyDeviceOnboardingView.swift in Sources */,
 				8A8EF948219C47B90098A27B /* IceCandidateDecoder.swift in Sources */,
 				4E9563292164CAC600289475 /* BabyMonitorGeneralViewController.swift in Sources */,
 				4E1D2C6321678D5700E92F29 /* BabyMonitorGeneralView.swift in Sources */,
@@ -1498,13 +1546,16 @@
 				4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */,
 				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* URLConfiguration.swift in Sources */,
+				4E8E057021AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift in Sources */,
 				8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */,
+				4E8E056321AD81D4009ACE05 /* BaseOnboardingView.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				8AA7CBFE218C70B400FCF62A /* RealmLullabiesRepository.swift in Sources */,
 				8A8EF946219C46AD0098A27B /* SdpOfferDecoder.swift in Sources */,
 				8A7A611D21A59E5000488ED4 /* CryingEventsRepositoryProtocol.swift in Sources */,
 				8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
+				4E8E057221AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+Prefix.swift in Sources */,
 				8A7A612C21A59EB000488ED4 /* RecorderFactory.swift in Sources */,
 				8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */,
@@ -1543,6 +1594,7 @@
 				8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */,
 				8A7A60CE21A40D3B00488ED4 /* MicrophoneTrackerMock.swift in Sources */,
 				8AFAE5BE219C0FF7007013BC /* MessageDecoderMock.swift in Sources */,
+				4E8E057721AEADC5009ACE05 /* SpecifyDeviceOnboardingViewModelTests.swift in Sources */,
 				8AFAE5B8219AFF6D007013BC /* WebSocketMock.swift in Sources */,
 				8A7A60CA21A40CF200488ED4 /* MessageServerTests.swift in Sources */,
 				8A7A60E921A439FD00488ED4 /* IceCandidateMock.swift in Sources */,

@@ -4,6 +4,11 @@
 <dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>To select a lullaby for your baby</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AvertaStd-Bold.otf</string>
+		<string>AvertaStd-Regular.otf</string>
+	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To select a photo for your baby </string>
 	<key>NSCameraUsageDescription</key>

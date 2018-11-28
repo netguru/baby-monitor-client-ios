@@ -20,6 +20,10 @@ enum Localizable {
         static let setupAddress = localized("onboarding.button.setup-address")
         static let startDiscovering = localized("onboarding.button.start-discovering")
         static let addressPlaceholder = localized("onboarding.text-field-placeholder.address")
+        static let parent = localized("onboarding.button.parent")
+        static let baby = localized("onboarding.button.baby")
+        static let specifyDevice = localized("onboarding.label.specify-this-device")
+        static let welcomeTo = localized("onboarding.label.welcome-to")
     }
     
     enum TabBar {
