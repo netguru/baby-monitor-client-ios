@@ -12,6 +12,13 @@ enum Localizable {
         static let disconnected = localized("general.disconnected")
         static let delete = localized("general.delete")
         static let ok = localized("general.ok")
+        static let next = localized("general.next")
+    }
+    
+    enum Intro {
+        static let featureDetect = localized("intro.title.detect")
+        static let featureMonitor = localized("intro.title.monitor")
+        static let setupBabyMonitor = localized("intro.button.setup-baby-monitor")
     }
     
     enum Onboarding {

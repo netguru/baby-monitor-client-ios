@@ -25,6 +25,10 @@ class BaseView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupBackgroundImage(_ image: UIImage) {
+        backgroundImageView.image = image
+    }
+    
     private func setup() {
         addSubview(backgroundImageView)
         sendSubviewToBack(backgroundImageView)

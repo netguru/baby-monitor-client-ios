@@ -28,6 +28,9 @@ final class RootCoordinator: RootCoordinatorProtocol {
     // MARK: - private functions
     private func setup() {
         window.rootViewController = navigationController
+        
+        let introCoordinator = IntroCoordinator(navigationController, appDependencies: appDependencies)
+        childCoordinators.append(introCoordinator)
 
         let onboardingCoordinator = OnboardingCoordinator(navigationController, appDependencies: appDependencies)
         childCoordinators.append(onboardingCoordinator)
@@ -35,6 +38,9 @@ final class RootCoordinator: RootCoordinatorProtocol {
         let tabBarCoordinator = TabBarCoordinator(navigationController, appDependencies: appDependencies)
         childCoordinators.append(tabBarCoordinator)
 
+        introCoordinator.onEnding = {
+            onboardingCoordinator.start()
+        }
         onboardingCoordinator.onEnding = { [weak self] in
             self?.navigationController.setViewControllers([], animated: false)
             tabBarCoordinator.start()
