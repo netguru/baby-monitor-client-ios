@@ -5,7 +5,7 @@
 
 import UIKit
 
-/// Base class for view controllers with programatically created `BackgroundView`
+/// Base class for page view controllers with programatically created `BackgroundView`
 internal class TypedPageViewController<BackgroundView: UIView>: BasePageViewController {
     
     /// Custom View
@@ -25,5 +25,4 @@ internal class TypedPageViewController<BackgroundView: UIView>: BasePageViewCont
         view.addSubview(customView)
         view.sendSubviewToBack(customView)
     }
-
 }

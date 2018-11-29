@@ -30,11 +30,7 @@ final class IntroView: BaseView {
     
     private func setup() {
         setupBackgroundImage(#imageLiteral(resourceName: "backIntro"))
-
-        [pageControl].forEach {
-            addSubview($0)
-        }
-        
+        addSubview(pageControl)
         setupConstraints()
     }
     

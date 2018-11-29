@@ -6,8 +6,8 @@
 import Foundation
 
 enum IntroFeature: Int, CaseIterable {
-    case featureA = 0
-    case featureB
+    case featureDetection = 0
+    case featureMonitoring
 }
 
 final class IntroViewModel {

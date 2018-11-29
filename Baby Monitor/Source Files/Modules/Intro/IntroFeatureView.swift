@@ -69,11 +69,11 @@ final class IntroFeatureView: BaseView {
     
     private func setup(role: IntroFeature) {
         switch role {
-        case .featureA:
+        case .featureDetection:
             imageView.image = #imageLiteral(resourceName: "feature-a")
             nextButton.setTitle(Localizable.General.next, for: .normal)
             titleLabel.text = Localizable.Intro.featureDetect
-        case .featureB:
+        case .featureMonitoring:
             imageView.image = #imageLiteral(resourceName: "feature-c")
             titleLabel.text = Localizable.Intro.featureMonitor
             nextButton.setTitle(Localizable.Intro.setupBabyMonitor, for: .normal)
@@ -85,10 +85,8 @@ final class IntroFeatureView: BaseView {
             addSubview($0)
         }
 
-        [nextButton].forEach {
-            $0.titleLabel?.font = .boldSystemFont(ofSize: 14)
-            $0.layer.cornerRadius = Constants.buttonHeight / 2
-        }
+        nextButton.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        nextButton.layer.cornerRadius = Constants.buttonHeight / 2
         
         setupConstraints()
     }

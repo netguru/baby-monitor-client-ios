@@ -17,10 +17,19 @@ final class OnboardingCoordinator: Coordinator {
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
         self.appDependencies = appDependencies
+        setup()
     }
 
     func start() {
-        showInitialSetup()
+        childCoordinators.first?.start()
+    }
+    
+    private func setup() {
+        let introCoordinator = IntroCoordinator(navigationController, appDependencies: appDependencies)
+        childCoordinators.append(introCoordinator)
+        introCoordinator.onEnding = { [weak self] in
+            self?.showInitialSetup()
+        }
     }
 
     private func showInitialSetup() {
