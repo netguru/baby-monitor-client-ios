@@ -35,8 +35,7 @@ final class IntroFeatureView: BaseView {
         label.textColor = UIColor.white.withAlphaComponent(Constants.textAlpha)
         label.font = .systemFont(ofSize: 14)
         label.layer.opacity = 0.5
-        // TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
-        label.text = "Your baby is laying in bed, looks likes he is sleeping soundly."
+        label.text = Localizable.Intro.sleepingSoundly
         return label
     }()
     private let nextButton: UIButton = {

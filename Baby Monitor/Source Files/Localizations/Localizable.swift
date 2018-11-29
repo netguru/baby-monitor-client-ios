@@ -18,6 +18,7 @@ enum Localizable {
     enum Intro {
         static let featureDetect = localized("intro.title.detect")
         static let featureMonitor = localized("intro.title.monitor")
+        static let sleepingSoundly = localized("intro.description.sleepingSoundly")
         static let setupBabyMonitor = localized("intro.button.setup-baby-monitor")
     }
     
