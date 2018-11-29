@@ -8,6 +8,13 @@
 "general.disconnected" = "Disconnected";
 "general.delete" = "Delete";
 "general.ok" = "OK";
+"general.next" = "Next";
+
+//MARK: = Intro
+"intro.title.detect" = "Automatically detect if your baby is crying";
+"intro.title.monitor" = "Monitor your baby";
+"intro.description.sleepingSoundly" = "Your baby is laying in bed, looks likes he is sleeping soundly.";
+"intro.button.setup-baby-monitor" = "Setup Baby Monitor";
 
 //MARK: - Onboarding
 "onboarding.button.start-client" = "START BABY MONITOR CLIENT";
