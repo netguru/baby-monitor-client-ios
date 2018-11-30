@@ -13,14 +13,26 @@ final class OnboardingCoordinator: Coordinator {
     var onEnding: (() -> Void)?
     
     private var isAudioServiceErrorAlreadyShown = false
+    private weak var pairingCoordinator: OnboardingPairingCoordinator?
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
         self.appDependencies = appDependencies
+        setup()
     }
 
     func start() {
         showInitialSetup()
+    }
+    
+    private func setup() {
+        navigationController.setNavigationBarHidden(true, animated: false)
+        let pairingCoordinator = OnboardingPairingCoordinator(navigationController, appDependencies: appDependencies)
+        pairingCoordinator.onEnding = { [weak self] in
+            self?.onEnding?()
+        }
+        childCoordinators.append(pairingCoordinator)
+        self.pairingCoordinator = pairingCoordinator
     }
 
     private func showInitialSetup() {
@@ -29,7 +41,7 @@ final class OnboardingCoordinator: Coordinator {
             self?.showServerView()
         }
         viewModel.didSelectParent = { [weak self] in
-            self?.showStartDiscoveringView()
+            self?.pairingCoordinator?.start()
         }
         let viewController = SpecifyDeviceOnboardingViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)

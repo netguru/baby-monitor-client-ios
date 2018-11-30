@@ -21,6 +21,8 @@
 		4E1D2C692167926500E92F29 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C682167926500E92F29 /* BaseView.swift */; };
 		4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E221D8A217716CF003D8531 /* ServerViewController.swift */; };
 		4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2D30292180AC9200722477 /* Rx+Expectations.swift */; };
+		4E2F413521B1441600513843 /* OnboardingContinuableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F413421B1441600513843 /* OnboardingContinuableViewController.swift */; };
+		4E2F413721B148BB00513843 /* OnboardingContinuableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F413621B148BB00513843 /* OnboardingContinuableViewModel.swift */; };
 		4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3943302175D4AD00AD7582 /* NetServiceClient.swift */; };
 		4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3943322175E50200AD7582 /* NetServiceServer.swift */; };
 		4E5731982170BA7400DEAF0B /* BabiesViewSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5731902170BA7400DEAF0B /* BabiesViewSelectable.swift */; };
@@ -36,6 +38,8 @@
 		4E5731AC2170C1A200DEAF0B /* Tests-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E5731A92170C1A200DEAF0B /* Tests-Production.xcconfig */; };
 		4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */; };
 		4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */; };
+		4E60697821AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60697721AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift */; };
+		4E60697D21AFEFD500EB1DCF /* ImageOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */; };
 		4E626690217F1A6300FA542F /* GeneralOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E62668F217F1A6300FA542F /* GeneralOnboardingViewController.swift */; };
 		4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */; };
 		4E626694217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626693217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift */; };
@@ -237,6 +241,8 @@
 		4E221D8A217716CF003D8531 /* ServerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		4E221D8C21771946003D8531 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		4E2D30292180AC9200722477 /* Rx+Expectations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Expectations.swift"; sourceTree = "<group>"; };
+		4E2F413421B1441600513843 /* OnboardingContinuableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContinuableViewController.swift; sourceTree = "<group>"; };
+		4E2F413621B148BB00513843 /* OnboardingContinuableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContinuableViewModel.swift; sourceTree = "<group>"; };
 		4E3943302175D4AD00AD7582 /* NetServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceClient.swift; sourceTree = "<group>"; };
 		4E3943322175E50200AD7582 /* NetServiceServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceServer.swift; sourceTree = "<group>"; };
 		4E5731902170BA7400DEAF0B /* BabiesViewSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesViewSelectable.swift; sourceTree = "<group>"; };
@@ -252,6 +258,8 @@
 		4E5731A92170C1A200DEAF0B /* Tests-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Production.xcconfig"; sourceTree = "<group>"; };
 		4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Staging.xcconfig"; sourceTree = "<group>"; };
 		4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		4E60697721AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPairingCoordinator.swift; sourceTree = "<group>"; };
+		4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOnboardingView.swift; sourceTree = "<group>"; };
 		4E62668F217F1A6300FA542F /* GeneralOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralOnboardingViewController.swift; sourceTree = "<group>"; };
 		4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupOnboardingViewModel.swift; sourceTree = "<group>"; };
 		4E626693217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDiscoveringOnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -595,6 +603,17 @@
 				4E8E057321AE9E4A009ACE05 /* UIColor+BabyMonitor.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4E60697621AFECC200EB1DCF /* Pairing */ = {
+			isa = PBXGroup;
+			children = (
+				4E60697721AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift */,
+				4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */,
+				4E2F413421B1441600513843 /* OnboardingContinuableViewController.swift */,
+				4E2F413621B148BB00513843 /* OnboardingContinuableViewModel.swift */,
+			);
+			path = Pairing;
 			sourceTree = "<group>";
 		};
 		4E6EA7932161FB81005575E0 /* Modules */ = {
@@ -1067,6 +1086,7 @@
 		EC4C9945216B944B0093EDFC /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				4E60697621AFECC200EB1DCF /* Pairing */,
 				EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */,
 				4E62668F217F1A6300FA542F /* GeneralOnboardingViewController.swift */,
 				4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */,
@@ -1465,6 +1485,7 @@
 				8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */,
 				8AA7CBDE218C55C500FCF62A /* LullabyPlayer.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
+				4E2F413721B148BB00513843 /* OnboardingContinuableViewModel.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
 				8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */,
@@ -1488,6 +1509,7 @@
 				4E8E057421AE9E4A009ACE05 /* UIColor+BabyMonitor.swift in Sources */,
 				8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
+				4E60697821AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift in Sources */,
 				8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
 				4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
@@ -1506,6 +1528,7 @@
 				8A42DB092179D65900BF5F1B /* UserDefaultsURLConfiguration.swift in Sources */,
 				4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */,
 				4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */,
+				4E60697D21AFEFD500EB1DCF /* ImageOnboardingView.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				8A7A612A21A59E9A00488ED4 /* AlertPresenter.swift in Sources */,
@@ -1527,6 +1550,7 @@
 				8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */,
 				8A7A60D421A4180B00488ED4 /* IceCandidateProtocol.swift in Sources */,
 				8A8EF98921A329F10098A27B /* WebRtcServerManager.swift in Sources */,
+				4E2F413521B1441600513843 /* OnboardingContinuableViewController.swift in Sources */,
 				8A7A60D221A416E300488ED4 /* WebRtcClientManagerProtocol.swift in Sources */,
 				8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,

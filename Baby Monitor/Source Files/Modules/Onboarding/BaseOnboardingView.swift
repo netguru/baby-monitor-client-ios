@@ -7,13 +7,17 @@ import UIKit
 
 class BaseOnboardingView: BaseView {
     
-    let titleLabel: UILabel = {
+    var titleLeadingAnchor: NSLayoutXAxisAnchor {
+        return titleLabel.leadingAnchor
+    }
+    
+    private let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.avertaBold.withSize(16)
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    private let descriptionLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.avertaRegular.withSize(14)
         label.alpha = 0.5
@@ -30,6 +34,10 @@ class BaseOnboardingView: BaseView {
     override init() {
         super.init()
         setup()
+    }
+    
+    func updateTitle(_ text: String) {
+        titleLabel.text = text
     }
     
     func updateDescription(_ text: String) {

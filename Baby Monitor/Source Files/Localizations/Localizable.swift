@@ -15,6 +15,8 @@ enum Localizable {
     }
     
     enum Onboarding {
+        static let `continue` = localized("onboarding.continue")
+        static let connecting = localized("onboarding.connecting")
         static let startClient = localized("onboarding.button.start-client")
         static let startServer = localized("onboarding.button.start-server")
         static let setupAddress = localized("onboarding.button.setup-address")
@@ -24,6 +26,19 @@ enum Localizable {
         static let baby = localized("onboarding.button.baby")
         static let specifyDevice = localized("onboarding.label.specify-this-device")
         static let welcomeTo = localized("onboarding.label.welcome-to")
+        static let connectToWiFi = localized("onboarding.connecting.connect-to-wi-fi")
+        
+        enum Pairing {
+            static let hello = localized("onboarding.pairing.share-link.title")
+            static let timeToInstallBabyMonitor = localized("onboarding.pairing.share-link.description")
+            static let searchingForSecondDevice = localized("onboarding.pairing.connecting.description")
+            static let done = localized("onboarding.pairing.done.description")
+            static let error = localized("onboarding.pairing.error-description")
+            static let tryAgain = localized("onboarding.pairing.try-again")
+            static let startUsingBabyMonitor = localized("onboarding.pairing.start-using-baby-monitor")
+            static let allDone = localized("onboarding.pairing.all-done")
+            static let getStarted = localized("onboarding.pairing.get-started")
+        }
     }
     
     enum TabBar {
