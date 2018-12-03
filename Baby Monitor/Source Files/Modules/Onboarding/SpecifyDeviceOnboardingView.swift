@@ -23,17 +23,17 @@ final class SpecifyDeviceOnboardingView: BaseOnboardingView {
     override init() {
         super.init()
         addSubview(buttonsStackView)
-        titleLabel.text = Localizable.Onboarding.specifyDevice
+        updateTitle(Localizable.Onboarding.specifyDevice)
         updateDescription(Localizable.Onboarding.welcomeTo)
         [parentButton, babyButton].forEach { view in
             view.addConstraints({ [$0.equalConstant(.height, 56)] })
         }
         buttonsStackView.addConstraints {[
             $0.equal(.centerX),
-            $0.equal(.centerY, constant: -22),
-            $0.equalTo(titleLabel, .leading, .leading)
+            $0.equal(.centerY, constant: -22)
         ]
         }
+        buttonsStackView.leadingAnchor.constraint(equalTo: titleLeadingAnchor).isActive = true
     }
     
 }

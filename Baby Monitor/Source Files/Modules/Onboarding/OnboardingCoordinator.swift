@@ -13,6 +13,8 @@ final class OnboardingCoordinator: Coordinator {
     var onEnding: (() -> Void)?
     
     private var isAudioServiceErrorAlreadyShown = false
+    private weak var pairingCoordinator: OnboardingPairingCoordinator?
+    private weak var connectingCoordinator: OnboardingConnectingCoordinator?
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
@@ -30,47 +32,30 @@ final class OnboardingCoordinator: Coordinator {
         introCoordinator.onEnding = { [weak self] in
             self?.showInitialSetup()
         }
+        navigationController.setNavigationBarHidden(true, animated: false)
+        let pairingCoordinator = OnboardingPairingCoordinator(navigationController, appDependencies: appDependencies)
+        pairingCoordinator.onEnding = { [weak self] in
+            self?.onEnding?()
+        }
+        childCoordinators.append(pairingCoordinator)
+        self.pairingCoordinator = pairingCoordinator
+        let connectingCoordinator = OnboardingConnectingCoordinator(navigationController, appDependencies: appDependencies)
+        connectingCoordinator.onEnding = { [weak self] in
+            self?.showServerView()
+        }
+        childCoordinators.append(connectingCoordinator)
+        self.connectingCoordinator = connectingCoordinator
     }
 
     private func showInitialSetup() {
         let viewModel = SpecifyDeviceOnboardingViewModel()
         viewModel.didSelectBaby = { [weak self] in
-            self?.showServerView()
+            self?.connectingCoordinator?.start()
         }
         viewModel.didSelectParent = { [weak self] in
-            self?.showStartDiscoveringView()
+            self?.pairingCoordinator?.start()
         }
         let viewController = SpecifyDeviceOnboardingViewController(viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    private func showStartDiscoveringView() {
-        let viewModel = StartDiscoveringOnboardingViewModel()
-        viewModel.didSelectStartDiscovering = { [weak self] in
-            self?.showClientSetup()
-        }
-        let viewController = GeneralOnboardingViewController(viewModel: viewModel, role: .startDiscovering)
-        navigationController.pushViewController(viewController, animated: true)
-    }
-
-    private func showClientSetup() {
-        let viewModel = ClientSetupOnboardingViewModel(
-            netServiceClient: appDependencies.netServiceClient(),
-            urlConfiguration: appDependencies.urlConfiguration,
-            babyRepo: appDependencies.babiesRepository)
-        viewModel.didFinishDeviceSearch = { [weak self] result in
-            switch result {
-            case .success:
-                self?.onEnding?()
-            case .failure:
-                self?.appDependencies.errorHandler.showAlert(
-                    title: Localizable.Errors.errorOccured,
-                    message: Localizable.Errors.unableToFind,
-                    presenter: self?.navigationController
-                )
-            }
-        }
-        let viewController = GeneralOnboardingViewController(viewModel: viewModel, role: .clientSetup)
         navigationController.pushViewController(viewController, animated: true)
     }
     

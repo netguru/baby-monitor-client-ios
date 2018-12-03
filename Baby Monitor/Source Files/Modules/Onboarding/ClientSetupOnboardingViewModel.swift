@@ -15,7 +15,7 @@ enum DeviceSearchResult: Equatable {
     case failure(DeviceSearchError)
 }
 
-final class ClientSetupOnboardingViewModel: OnboardingViewModelProtocol, ServiceDiscoverable {
+final class ClientSetupOnboardingViewModel {
     var selectFirstAction: (() -> Void)?
     var selectSecondAction: (() -> Void)?
     
