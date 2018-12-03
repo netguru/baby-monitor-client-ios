@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class ImageOnboardingView: BaseOnboardingView {
+class ImageOnboardingView: BaseOnboardingView {
     
     enum `Role` {
         case pairing(PairingRole)
@@ -91,11 +91,14 @@ final class ImageOnboardingView: BaseOnboardingView {
                     return UIImage()
                 }
             case .connecting:
-                return UIImage()
+                return #imageLiteral(resourceName: "onboarding-connecting")
             }
         }
     }
     
+    var imageCenterYAnchor: NSLayoutYAxisAnchor {
+        return imageView.centerYAnchor
+    }
     lazy var nextButtonObservable = nextButton.rx.tap.asObservable()
     
     private let role: Role
@@ -113,10 +116,28 @@ final class ImageOnboardingView: BaseOnboardingView {
         setup(role: role)
     }
     
+    func hideNextButton() {
+        nextButton.isHidden = true
+    }
+    
     private func setup(role: Role) {
         updateTitle(role.title)
         updateDescription(role.description)
         imageView.image = role.image
+        
+        switch role {
+        case .pairing(.error):
+            nextButton.backgroundColor = .clear
+            nextButton.setTitleColor(.black, for: .normal)
+            nextButton.layer.borderColor = UIColor.babyMonitorPurple.cgColor
+            nextButton.layer.borderWidth = 2
+        case .pairing(.allDone):
+            changeStyleToBluish()
+            nextButton.backgroundColor = .black
+            nextButton.setTitleColor(.white, for: .normal)
+        default:
+            break
+        }
         
         [imageView, nextButton].forEach {
             addSubview($0)
@@ -135,7 +156,7 @@ final class ImageOnboardingView: BaseOnboardingView {
         }
         nextButton.addConstraints {[
             $0.equal(.centerX),
-            $0.equal(.bottom, constant: -32),
+            $0.equal(.safeAreaBottom, constant: -32),
             $0.equalConstant(.height, 56)
         ]
         }

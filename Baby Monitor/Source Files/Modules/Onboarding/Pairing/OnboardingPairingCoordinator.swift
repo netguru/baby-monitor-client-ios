@@ -23,14 +23,27 @@ final class OnboardingPairingCoordinator: Coordinator {
     private func showInstallBMOnSecondDeviceView() {
         let viewModel = OnboardingContinuableViewModel()
         viewModel.onSelectNext = {
-            self.showConnectingView()
+            self.showClientSetupView()
         }
         let viewController = OnboardingContinuableViewController(role: .pairing(.shareLink), viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    private func showConnectingView() {
-        showPairingDoneView()
+    private func showClientSetupView() {
+        let viewModel = ClientSetupOnboardingViewModel(
+            netServiceClient: appDependencies.netServiceClient(),
+            urlConfiguration: appDependencies.urlConfiguration,
+            babyRepo: appDependencies.babiesRepository)
+        viewModel.didFinishDeviceSearch = { [weak self] result in
+            switch result {
+            case .success:
+                self?.showPairingDoneView()
+            case .failure:
+                self?.showErrorPairingView()
+            }
+        }
+        let viewController = OnboardingClientSetupViewController(role: .pairing(.pairing), viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
     }
     
     private func showPairingDoneView() {
@@ -49,5 +62,14 @@ final class OnboardingPairingCoordinator: Coordinator {
         }
         let viewController = OnboardingContinuableViewController(role: .pairing(.allDone), viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    private func showErrorPairingView() {
+        let viewModel = OnboardingContinuableViewModel()
+        viewModel.onSelectNext = { [weak self] in
+            self?.navigationController.dismiss(animated: true, completion: nil)
+        }
+        let viewController = OnboardingContinuableViewController(role: .pairing(.error), viewModel: viewModel)
+        navigationController.present(viewController, animated: true, completion: nil)
     }
 }

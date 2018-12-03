@@ -36,6 +36,12 @@ class BaseOnboardingView: BaseView {
         setup()
     }
     
+    func changeStyleToBluish() {
+        titleLabel.textColor = .babyMonitorWhite
+        descriptionLabel.textColor = .babyMonitorWhite
+        backgroundImageView.image = #imageLiteral(resourceName: "onboarding-bluish-background")
+    }
+    
     func updateTitle(_ text: String) {
         titleLabel.text = text
     }

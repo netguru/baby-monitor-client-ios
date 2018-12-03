@@ -38,7 +38,7 @@ final class OnboardingCoordinator: Coordinator {
     private func showInitialSetup() {
         let viewModel = SpecifyDeviceOnboardingViewModel()
         viewModel.didSelectBaby = { [weak self] in
-            self?.showServerView()
+            self?.showConnectToWiFiView()
         }
         viewModel.didSelectParent = { [weak self] in
             self?.pairingCoordinator?.start()
@@ -47,33 +47,12 @@ final class OnboardingCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    private func showStartDiscoveringView() {
-        let viewModel = StartDiscoveringOnboardingViewModel()
-        viewModel.didSelectStartDiscovering = { [weak self] in
-            self?.showClientSetup()
+    private func showConnectToWiFiView() {
+        let viewModel = OnboardingContinuableViewModel()
+        viewModel.onSelectNext = { [weak self] in
+           self?.showServerView()
         }
-        let viewController = GeneralOnboardingViewController(viewModel: viewModel, role: .startDiscovering)
-        navigationController.pushViewController(viewController, animated: true)
-    }
-
-    private func showClientSetup() {
-        let viewModel = ClientSetupOnboardingViewModel(
-            netServiceClient: appDependencies.netServiceClient(),
-            urlConfiguration: appDependencies.urlConfiguration,
-            babyRepo: appDependencies.babiesRepository)
-        viewModel.didFinishDeviceSearch = { [weak self] result in
-            switch result {
-            case .success:
-                self?.onEnding?()
-            case .failure:
-                self?.appDependencies.errorHandler.showAlert(
-                    title: Localizable.Errors.errorOccured,
-                    message: Localizable.Errors.unableToFind,
-                    presenter: self?.navigationController
-                )
-            }
-        }
-        let viewController = GeneralOnboardingViewController(viewModel: viewModel, role: .clientSetup)
+        let viewController = OnboardingContinuableViewController(role: .connecting, viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
     
