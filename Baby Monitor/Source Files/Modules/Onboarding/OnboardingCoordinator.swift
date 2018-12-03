@@ -22,10 +22,15 @@ final class OnboardingCoordinator: Coordinator {
     }
 
     func start() {
-        showInitialSetup()
+        childCoordinators.first?.start()
     }
     
     private func setup() {
+        let introCoordinator = IntroCoordinator(navigationController, appDependencies: appDependencies)
+        childCoordinators.append(introCoordinator)
+        introCoordinator.onEnding = { [weak self] in
+            self?.showInitialSetup()
+        }
         navigationController.setNavigationBarHidden(true, animated: false)
         let pairingCoordinator = OnboardingPairingCoordinator(navigationController, appDependencies: appDependencies)
         pairingCoordinator.onEnding = { [weak self] in

@@ -208,10 +208,18 @@
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
 		EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC82B562213EA074005CA395 /* LaunchScreen.storyboard */; };
 		EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8389B6213FD7F500F00B83 /* MathTests.swift */; };
+		EC8A8FF321AE8EE500B5FCCF /* BasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A8FF221AE8EE500B5FCCF /* BasePageViewController.swift */; };
+		EC8A8FF521AE8F5F00B5FCCF /* TypedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A8FF421AE8F5F00B5FCCF /* TypedPageViewController.swift */; };
+		EC8A8FF721AE950B00B5FCCF /* IntroFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A8FF621AE950B00B5FCCF /* IntroFeatureViewController.swift */; };
+		EC8A8FF921AEA7EE00B5FCCF /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A8FF821AEA7EE00B5FCCF /* IntroView.swift */; };
 		EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */; };
 		ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */; };
 		ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */; };
 		ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */; };
+		ECB2428621AD4E1100B4E409 /* IntroCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428521AD4E1100B4E409 /* IntroCoordinator.swift */; };
+		ECB2428821AD4F0400B4E409 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428721AD4F0400B4E409 /* IntroViewModel.swift */; };
+		ECB2428A21AD4F9200B4E409 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428921AD4F9200B4E409 /* IntroViewController.swift */; };
+		ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428B21AD4FB700B4E409 /* IntroFeatureView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -443,10 +451,18 @@
 		EC82B56A213EA074005CA395 /* Baby Monitor.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Baby Monitor.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B570213EA074005CA395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC8389B6213FD7F500F00B83 /* MathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
+		EC8A8FF221AE8EE500B5FCCF /* BasePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewController.swift; sourceTree = "<group>"; };
+		EC8A8FF421AE8F5F00B5FCCF /* TypedPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedPageViewController.swift; sourceTree = "<group>"; };
+		EC8A8FF621AE950B00B5FCCF /* IntroFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFeatureViewController.swift; sourceTree = "<group>"; };
+		EC8A8FF821AEA7EE00B5FCCF /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
 		ECB146DB213EA45E00C504FD /* App-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Development.xcconfig"; sourceTree = "<group>"; };
 		ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Staging.xcconfig"; sourceTree = "<group>"; };
+		ECB2428521AD4E1100B4E409 /* IntroCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCoordinator.swift; sourceTree = "<group>"; };
+		ECB2428721AD4F0400B4E409 /* IntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewModel.swift; sourceTree = "<group>"; };
+		ECB2428921AD4F9200B4E409 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		ECB2428B21AD4FB700B4E409 /* IntroFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFeatureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -622,6 +638,7 @@
 			isa = PBXGroup;
 			children = (
 				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
+				ECB2428421AD4DCC00B4E409 /* Intro */,
 				EC4C9945216B944B0093EDFC /* Onboarding */,
 				4E994BE221623EC3009C44C5 /* ActivityLog */,
 				4E1D2C5B21673FE200E92F29 /* CameraPreview */,
@@ -687,8 +704,10 @@
 			children = (
 				4EF36FBB21660F1700257384 /* BabyMonitorGeneral */,
 				4E1D2C6421678D9100E92F29 /* TypedViewController.swift */,
+				EC8A8FF421AE8F5F00B5FCCF /* TypedPageViewController.swift */,
 				4E9563382164F09C00289475 /* BabyNavigationItemView.swift */,
 				4E994BF121624835009C44C5 /* BaseViewController.swift */,
+				EC8A8FF221AE8EE500B5FCCF /* BasePageViewController.swift */,
 				4E1D2C682167926500E92F29 /* BaseView.swift */,
 			);
 			path = "Custom Views";
@@ -1221,6 +1240,19 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		ECB2428421AD4DCC00B4E409 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				ECB2428521AD4E1100B4E409 /* IntroCoordinator.swift */,
+				ECB2428921AD4F9200B4E409 /* IntroViewController.swift */,
+				EC8A8FF621AE950B00B5FCCF /* IntroFeatureViewController.swift */,
+				ECB2428721AD4F0400B4E409 /* IntroViewModel.swift */,
+				ECB2428B21AD4FB700B4E409 /* IntroFeatureView.swift */,
+				EC8A8FF821AEA7EE00B5FCCF /* IntroView.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1496,8 +1528,10 @@
 				8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
 				8A7A60DC21A41DD700488ED4 /* PeerConnectionProtocol.swift in Sources */,
+				ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */,
 				8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
+				ECB2428821AD4F0400B4E409 /* IntroViewModel.swift in Sources */,
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
 				4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */,
 				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
@@ -1513,12 +1547,15 @@
 				8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
 				4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
+				EC8A8FF721AE950B00B5FCCF /* IntroFeatureViewController.swift in Sources */,
 				8AFAE5B1219AAEC7007013BC /* WebSocketProtocol.swift in Sources */,
 				8AA7CBE2218C576D00FCF62A /* URLMediaPlayer.swift in Sources */,
 				8AFAE5BC219C0DEE007013BC /* MessageDecoderProtocol.swift in Sources */,
 				8A7A611F21A59E5D00488ED4 /* RealmCryingEvent.swift in Sources */,
 				8A7A616D21A8162000488ED4 /* UIColor+Custom.swift in Sources */,
 				8A8EF98E21A3F2480098A27B /* WebRtcConstraintKey.swift in Sources */,
+				EC8A8FF321AE8EE500B5FCCF /* BasePageViewController.swift in Sources */,
+				4E626694217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift in Sources */,
 				8AA7CBDC218C559000FCF62A /* LullabyPlayerProtocol.swift in Sources */,
 				8A7A611521A59E3B00488ED4 /* AudioRecordService.swift in Sources */,
 				8A7A60D621A4187C00488ED4 /* SessionDescriptionProtocol.swift in Sources */,
@@ -1529,6 +1566,8 @@
 				4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */,
 				4E60697D21AFEFD500EB1DCF /* ImageOnboardingView.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
+				EC8A8FF521AE8F5F00B5FCCF /* TypedPageViewController.swift in Sources */,
+				ECB2428A21AD4F9200B4E409 /* IntroViewController.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				8A7A612A21A59E9A00488ED4 /* AlertPresenter.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
@@ -1594,12 +1633,14 @@
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
 				8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */,
+				ECB2428621AD4E1100B4E409 /* IntroCoordinator.swift in Sources */,
 				8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */,
 				8A8EF98A21A329F10098A27B /* WebRtcServerManagerDelegate.swift in Sources */,
 				8A8EF94F219D55B60098A27B /* MessageStreamProtocol.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 				8A7A608421A4027E00488ED4 /* ErrorHandler.swift in Sources */,
 				8A8EF98821A329F10098A27B /* WebRtcClientManager.swift in Sources */,
+				EC8A8FF921AEA7EE00B5FCCF /* IntroView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
