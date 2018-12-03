@@ -25,11 +25,7 @@ class ImageOnboardingView: BaseOnboardingView {
                 switch pairingRole {
                 case .shareLink:
                     return Localizable.Onboarding.Pairing.hello
-                case .pairing:
-                    return Localizable.Onboarding.connecting
-                case .error:
-                    return Localizable.Onboarding.connecting
-                case .pairingDone:
+                case .pairing, .error, .pairingDone:
                     return Localizable.Onboarding.connecting
                 case .allDone:
                     return Localizable.Onboarding.Pairing.allDone
@@ -137,14 +133,14 @@ class ImageOnboardingView: BaseOnboardingView {
     init(role: Role) {
         self.role = role
         super.init()
-        setup(role: role)
+        setup()
     }
     
     func hideNextButton() {
         nextButton.isHidden = true
     }
     
-    private func setup(role: Role) {
+    private func setup() {
         updateTitle(role.title)
         updateDescription(role.description)
         imageView.image = role.image

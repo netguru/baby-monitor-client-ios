@@ -6,6 +6,7 @@
 import UIKit
 
 final class OnboardingClientSetupViewController: TypedViewController<OnboardingSpinnerView> {
+    
     private let viewModel: ClientSetupOnboardingViewModel
     
     init(role: ImageOnboardingView.Role, viewModel: ClientSetupOnboardingViewModel) {

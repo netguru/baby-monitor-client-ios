@@ -6,6 +6,7 @@
 import Foundation
 
 final class OnboardingPairingCoordinator: Coordinator {
+    
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
         self.appDependencies = appDependencies
