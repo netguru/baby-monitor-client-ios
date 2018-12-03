@@ -74,6 +74,7 @@
 		4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */; };
 		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
+		4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
 		8A045D5B21A3F685006A2E10 /* WebRtcStreamId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A045D5A21A3F685006A2E10 /* WebRtcStreamId.swift */; };
 		8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DAFD2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift */; };
@@ -308,6 +309,7 @@
 		4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Production.xcconfig"; sourceTree = "<group>"; };
 		4EA662F8216CBDEA009AD3B6 /* App-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Base.xcconfig"; sourceTree = "<group>"; };
+		4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConnectingCoordinator.swift; sourceTree = "<group>"; };
 		4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		6958C860204FB0CCE8F3AE3E /* Pods-Baby MonitorTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.staging.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.staging.xcconfig"; sourceTree = "<group>"; };
 		6C69871368E94FA94469B9C2 /* Pods-Baby MonitorTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.development.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"; sourceTree = "<group>"; };
@@ -753,6 +755,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		4EE33F1021B54221003A1742 /* Connecting */ = {
+			isa = PBXGroup;
+			children = (
+				4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */,
+			);
+			path = Connecting;
+			sourceTree = "<group>";
+		};
 		4EF36FBB21660F1700257384 /* BabyMonitorGeneral */ = {
 			isa = PBXGroup;
 			children = (
@@ -1107,6 +1117,7 @@
 		EC4C9945216B944B0093EDFC /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				4EE33F1021B54221003A1742 /* Connecting */,
 				4E60697621AFECC200EB1DCF /* Pairing */,
 				EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */,
 				4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */,
@@ -1523,6 +1534,7 @@
 				8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */,
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				8A42DB0B2179D7D700BF5F1B /* URLUserDefaults.swift in Sources */,
+				4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */,
 				8AFAE5BA219C0314007013BC /* String+JSON.swift in Sources */,
 				4E8E056E21AD8E72009ACE05 /* OnboardingButton.swift in Sources */,
 				8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */,
@@ -1555,7 +1567,6 @@
 				8A7A616D21A8162000488ED4 /* UIColor+Custom.swift in Sources */,
 				8A8EF98E21A3F2480098A27B /* WebRtcConstraintKey.swift in Sources */,
 				EC8A8FF321AE8EE500B5FCCF /* BasePageViewController.swift in Sources */,
-				4E626694217F1B2500FA542F /* StartDiscoveringOnboardingViewModel.swift in Sources */,
 				8AA7CBDC218C559000FCF62A /* LullabyPlayerProtocol.swift in Sources */,
 				8A7A611521A59E3B00488ED4 /* AudioRecordService.swift in Sources */,
 				8A7A60D621A4187C00488ED4 /* SessionDescriptionProtocol.swift in Sources */,

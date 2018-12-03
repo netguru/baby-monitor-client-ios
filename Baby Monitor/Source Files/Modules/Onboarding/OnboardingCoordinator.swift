@@ -14,6 +14,7 @@ final class OnboardingCoordinator: Coordinator {
     
     private var isAudioServiceErrorAlreadyShown = false
     private weak var pairingCoordinator: OnboardingPairingCoordinator?
+    private weak var connectingCoordinator: OnboardingConnectingCoordinator?
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
@@ -38,26 +39,23 @@ final class OnboardingCoordinator: Coordinator {
         }
         childCoordinators.append(pairingCoordinator)
         self.pairingCoordinator = pairingCoordinator
+        let connectingCoordinator = OnboardingConnectingCoordinator(navigationController, appDependencies: appDependencies)
+        connectingCoordinator.onEnding = { [weak self] in
+            self?.showServerView()
+        }
+        childCoordinators.append(connectingCoordinator)
+        self.connectingCoordinator = connectingCoordinator
     }
 
     private func showInitialSetup() {
         let viewModel = SpecifyDeviceOnboardingViewModel()
         viewModel.didSelectBaby = { [weak self] in
-            self?.showConnectToWiFiView()
+            self?.connectingCoordinator?.start()
         }
         viewModel.didSelectParent = { [weak self] in
             self?.pairingCoordinator?.start()
         }
         let viewController = SpecifyDeviceOnboardingViewController(viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    private func showConnectToWiFiView() {
-        let viewModel = OnboardingContinuableViewModel()
-        viewModel.onSelectNext = { [weak self] in
-           self?.showServerView()
-        }
-        let viewController = OnboardingContinuableViewController(role: .connecting, viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
     

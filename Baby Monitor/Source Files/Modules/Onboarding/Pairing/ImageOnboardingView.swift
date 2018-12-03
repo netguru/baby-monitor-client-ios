@@ -9,10 +9,14 @@ class ImageOnboardingView: BaseOnboardingView {
     
     enum `Role` {
         case pairing(PairingRole)
-        case connecting
+        case connecting(ConnectingRole)
         
         enum PairingRole {
             case shareLink, pairing, error, pairingDone, allDone
+        }
+        
+        enum ConnectingRole {
+            case connectToWiFi, setupInformation
         }
         
         var title: String {
@@ -30,8 +34,13 @@ class ImageOnboardingView: BaseOnboardingView {
                 case .allDone:
                     return Localizable.Onboarding.Pairing.allDone
                 }
-            case .connecting:
-                return Localizable.Onboarding.connecting
+            case .connecting(let connectingRole):
+                switch connectingRole {
+                case .connectToWiFi:
+                    return Localizable.Onboarding.connecting
+                case .setupInformation:
+                    return "Setup information"
+                }
             }
         }
         
@@ -50,8 +59,13 @@ class ImageOnboardingView: BaseOnboardingView {
                 case .allDone:
                     return Localizable.Onboarding.Pairing.startUsingBabyMonitor
                 }
-            case .connecting:
-                return Localizable.Onboarding.connectToWiFi
+            case .connecting(let connectingRole):
+                switch connectingRole {
+                case .connectToWiFi:
+                    return Localizable.Onboarding.connectToWiFi
+                case .setupInformation:
+                    return "Place this device next to your baby’s bed \nso that you can see him on your live view"
+                }
             }
         }
         
@@ -70,11 +84,16 @@ class ImageOnboardingView: BaseOnboardingView {
                 case .allDone:
                     return Localizable.Onboarding.Pairing.getStarted
                 }
-            case .connecting:
-                return Localizable.Onboarding.continue
+            case .connecting(let connectingRole):
+                switch connectingRole {
+                case .connectToWiFi:
+                    return Localizable.Onboarding.continue
+                case .setupInformation:
+                    return "Start monitoring"
+                }
             }
         }
-
+        
         var image: UIImage {
             switch self {
             case .pairing(let pairingRole):
@@ -90,8 +109,13 @@ class ImageOnboardingView: BaseOnboardingView {
                 case .allDone:
                     return UIImage()
                 }
-            case .connecting:
-                return #imageLiteral(resourceName: "onboarding-connecting")
+            case .connecting(let connectingRole):
+                switch connectingRole {
+                case .connectToWiFi:
+                    return #imageLiteral(resourceName: "onboarding-connecting")
+                case .setupInformation:
+                    return #imageLiteral(resourceName: "onboarding-camera")
+                }
             }
         }
     }
@@ -152,13 +176,13 @@ class ImageOnboardingView: BaseOnboardingView {
             $0.equal(.centerY, constant: -17),
             $0.equalConstant(.width, 80),
             $0.equalTo($0, .height, .width)
-        ]
+            ]
         }
         nextButton.addConstraints {[
             $0.equal(.centerX),
             $0.equal(.safeAreaBottom, constant: -32),
             $0.equalConstant(.height, 56)
-        ]
+            ]
         }
         nextButton.leadingAnchor.constraint(equalTo: titleLeadingAnchor).isActive = true
     }
