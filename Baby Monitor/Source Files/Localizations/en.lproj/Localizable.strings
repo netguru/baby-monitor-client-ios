@@ -38,6 +38,9 @@
 "onboarding.pairing.start-using-baby-monitor" = "You can now start using Baby Monitor!";
 "onboarding.pairing.all-done" = "All done!";
 "onboarding.pairing.get-started" = "Get started";
+"onboarding.connecting.setup-information" = "Setup information";
+"onboarding.connecting.place-device" = "Place this device next to your baby’s bed \nso that you can see him on your live view";
+"onboarding.connecting.start-monitoring" = "Start monitoring";
 
 //MARK: - Dashboard
 "dashboard.button.live-camera" = "LIVE CAMERA";

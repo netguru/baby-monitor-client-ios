@@ -39,7 +39,7 @@ class ImageOnboardingView: BaseOnboardingView {
                 case .connectToWiFi:
                     return Localizable.Onboarding.connecting
                 case .setupInformation:
-                    return "Setup information"
+                    return Localizable.Onboarding.Connecting.setupInformation
                 }
             }
         }
@@ -62,9 +62,9 @@ class ImageOnboardingView: BaseOnboardingView {
             case .connecting(let connectingRole):
                 switch connectingRole {
                 case .connectToWiFi:
-                    return Localizable.Onboarding.connectToWiFi
+                    return Localizable.Onboarding.Connecting.connectToWiFi
                 case .setupInformation:
-                    return "Place this device next to your baby’s bed \nso that you can see him on your live view"
+                    return Localizable.Onboarding.Connecting.placeDevice
                 }
             }
         }
@@ -89,7 +89,7 @@ class ImageOnboardingView: BaseOnboardingView {
                 case .connectToWiFi:
                     return Localizable.Onboarding.continue
                 case .setupInformation:
-                    return "Start monitoring"
+                    return Localizable.Onboarding.Connecting.startMonitoring
                 }
             }
         }

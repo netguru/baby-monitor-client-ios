@@ -34,7 +34,13 @@ enum Localizable {
         static let baby = localized("onboarding.button.baby")
         static let specifyDevice = localized("onboarding.label.specify-this-device")
         static let welcomeTo = localized("onboarding.label.welcome-to")
-        static let connectToWiFi = localized("onboarding.connecting.connect-to-wi-fi")
+        
+        enum Connecting {
+            static let connectToWiFi = localized("onboarding.connecting.connect-to-wi-fi")
+            static let setupInformation = localized("onboarding.connecting.setup-information")
+            static let placeDevice = localized("onboarding.connecting.place-device")
+            static let startMonitoring = localized("onboarding.connecting.start-monitoring")
+        }
         
         enum Pairing {
             static let hello = localized("onboarding.pairing.share-link.title")
