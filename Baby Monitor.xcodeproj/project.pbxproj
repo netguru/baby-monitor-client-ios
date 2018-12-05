@@ -40,6 +40,7 @@
 		4E5731AB2170C1A200DEAF0B /* Tests-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E5731A82170C1A200DEAF0B /* Tests-Development.xcconfig */; };
 		4E5731AC2170C1A200DEAF0B /* Tests-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E5731A92170C1A200DEAF0B /* Tests-Production.xcconfig */; };
 		4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */; };
+		4E592E6221B80FA3004E94F7 /* CameraPreviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E592E6121B80FA3004E94F7 /* CameraPreviewViewModelTests.swift */; };
 		4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */; };
 		4E60697821AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60697721AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift */; };
 		4E60697D21AFEFD500EB1DCF /* ImageOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */; };
@@ -111,7 +112,7 @@
 		8A7A60E521A432F500488ED4 /* PeerConnectionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60E421A432F500488ED4 /* PeerConnectionMock.swift */; };
 		8A7A60E721A437C500488ED4 /* SessionDescriptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60E621A437C500488ED4 /* SessionDescriptionMock.swift */; };
 		8A7A60E921A439FD00488ED4 /* IceCandidateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60E821A439FD00488ED4 /* IceCandidateMock.swift */; };
-		8A7A60EE21A43BD600488ED4 /* CameraPreviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60ED21A43BD600488ED4 /* CameraPreviewViewModelTests.swift */; };
+		8A7A60EE21A43BD600488ED4 /* WebSocketsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60ED21A43BD600488ED4 /* WebSocketsServiceTests.swift */; };
 		8A7A60F021A43C9F00488ED4 /* WebRtcClientManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60EF21A43C9F00488ED4 /* WebRtcClientManagerMock.swift */; };
 		8A7A60F221A4429800488ED4 /* IceCandidateDecoderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60F121A4429800488ED4 /* IceCandidateDecoderMock.swift */; };
 		8A7A60F421A4441500488ED4 /* SdpAnswerDecoderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60F321A4441500488ED4 /* SdpAnswerDecoderMock.swift */; };
@@ -119,7 +120,7 @@
 		8A7A611621A59E3B00488ED4 /* CryingDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A611321A59E3B00488ED4 /* CryingDetectionService.swift */; };
 		8A7A611721A59E3B00488ED4 /* CryingEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A611421A59E3B00488ED4 /* CryingEventService.swift */; };
 		8A7A611B21A59E5000488ED4 /* MemoryCleaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A611821A59E5000488ED4 /* MemoryCleaner.swift */; };
-		8A7A611C21A59E5000488ED4 /* RealmCryingEventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A611921A59E5000488ED4 /* RealmCryingEventsRepository.swift */; };
+		8A7A611C21A59E5000488ED4 /* CryingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A611921A59E5000488ED4 /* CryingEvent.swift */; };
 		8A7A611D21A59E5000488ED4 /* CryingEventsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A611A21A59E5000488ED4 /* CryingEventsRepositoryProtocol.swift */; };
 		8A7A611F21A59E5D00488ED4 /* RealmCryingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A611E21A59E5D00488ED4 /* RealmCryingEvent.swift */; };
 		8A7A612121A59E6500488ED4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612021A59E6500488ED4 /* Result.swift */; };
@@ -272,6 +273,7 @@
 		4E5731A82170C1A200DEAF0B /* Tests-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Development.xcconfig"; sourceTree = "<group>"; };
 		4E5731A92170C1A200DEAF0B /* Tests-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Production.xcconfig"; sourceTree = "<group>"; };
 		4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Staging.xcconfig"; sourceTree = "<group>"; };
+		4E592E6121B80FA3004E94F7 /* CameraPreviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewViewModelTests.swift; sourceTree = "<group>"; };
 		4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		4E60697721AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPairingCoordinator.swift; sourceTree = "<group>"; };
 		4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOnboardingView.swift; sourceTree = "<group>"; };
@@ -353,7 +355,7 @@
 		8A7A60E421A432F500488ED4 /* PeerConnectionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnectionMock.swift; sourceTree = "<group>"; };
 		8A7A60E621A437C500488ED4 /* SessionDescriptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDescriptionMock.swift; sourceTree = "<group>"; };
 		8A7A60E821A439FD00488ED4 /* IceCandidateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceCandidateMock.swift; sourceTree = "<group>"; };
-		8A7A60ED21A43BD600488ED4 /* CameraPreviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewViewModelTests.swift; sourceTree = "<group>"; };
+		8A7A60ED21A43BD600488ED4 /* WebSocketsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketsServiceTests.swift; sourceTree = "<group>"; };
 		8A7A60EF21A43C9F00488ED4 /* WebRtcClientManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcClientManagerMock.swift; sourceTree = "<group>"; };
 		8A7A60F121A4429800488ED4 /* IceCandidateDecoderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceCandidateDecoderMock.swift; sourceTree = "<group>"; };
 		8A7A60F321A4441500488ED4 /* SdpAnswerDecoderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdpAnswerDecoderMock.swift; sourceTree = "<group>"; };
@@ -361,7 +363,7 @@
 		8A7A611321A59E3B00488ED4 /* CryingDetectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CryingDetectionService.swift; path = Crying/CryingDetectionService.swift; sourceTree = "<group>"; };
 		8A7A611421A59E3B00488ED4 /* CryingEventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CryingEventService.swift; path = Crying/CryingEventService.swift; sourceTree = "<group>"; };
 		8A7A611821A59E5000488ED4 /* MemoryCleaner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryCleaner.swift; sourceTree = "<group>"; };
-		8A7A611921A59E5000488ED4 /* RealmCryingEventsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmCryingEventsRepository.swift; sourceTree = "<group>"; };
+		8A7A611921A59E5000488ED4 /* CryingEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryingEvent.swift; sourceTree = "<group>"; };
 		8A7A611A21A59E5000488ED4 /* CryingEventsRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryingEventsRepositoryProtocol.swift; sourceTree = "<group>"; };
 		8A7A611E21A59E5D00488ED4 /* RealmCryingEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmCryingEvent.swift; sourceTree = "<group>"; };
 		8A7A612021A59E6500488ED4 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -611,6 +613,14 @@
 			path = MediaPlayer;
 			sourceTree = "<group>";
 		};
+		4E592E6321B80FD0004E94F7 /* Websockets */ = {
+			isa = PBXGroup;
+			children = (
+				8A7A60ED21A43BD600488ED4 /* WebSocketsServiceTests.swift */,
+			);
+			path = Websockets;
+			sourceTree = "<group>";
+		};
 		4E5BEB13215E5EC60056E5CC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -801,6 +811,7 @@
 		8A42DAFB2179BF8200BF5F1B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4E592E6321B80FD0004E94F7 /* Websockets */,
 				4E8E057521AEADB2009ACE05 /* Onboarding */,
 				8A7A613821A6A55C00488ED4 /* Server */,
 				8A7A60EA21A43B4E00488ED4 /* CameraPreview */,
@@ -922,7 +933,7 @@
 		8A7A60EA21A43B4E00488ED4 /* CameraPreview */ = {
 			isa = PBXGroup;
 			children = (
-				8A7A60ED21A43BD600488ED4 /* CameraPreviewViewModelTests.swift */,
+				4E592E6121B80FA3004E94F7 /* CameraPreviewViewModelTests.swift */,
 			);
 			path = CameraPreview;
 			sourceTree = "<group>";
@@ -1062,7 +1073,7 @@
 			children = (
 				8A7A611A21A59E5000488ED4 /* CryingEventsRepositoryProtocol.swift */,
 				8A7A611821A59E5000488ED4 /* MemoryCleaner.swift */,
-				8A7A611921A59E5000488ED4 /* RealmCryingEventsRepository.swift */,
+				8A7A611921A59E5000488ED4 /* CryingEvent.swift */,
 				8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */,
 				8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */,
 				8A42DB062179D61B00BF5F1B /* URLConfiguration.swift */,
@@ -1538,7 +1549,7 @@
 				8A7A611721A59E3B00488ED4 /* CryingEventService.swift in Sources */,
 				8A045D5B21A3F685006A2E10 /* WebRtcStreamId.swift in Sources */,
 				8A7A611B21A59E5000488ED4 /* MemoryCleaner.swift in Sources */,
-				8A7A611C21A59E5000488ED4 /* RealmCryingEventsRepository.swift in Sources */,
+				8A7A611C21A59E5000488ED4 /* CryingEvent.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
 				8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */,
 				8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */,
@@ -1703,6 +1714,7 @@
 				8AA7CBCA21871AE300FCF62A /* DashboardViewModelTests.swift in Sources */,
 				8A7A614A21A6AC7900488ED4 /* AudioRecordServiceMock.swift in Sources */,
 				8A7A60E521A432F500488ED4 /* PeerConnectionMock.swift in Sources */,
+				4E592E6221B80FA3004E94F7 /* CameraPreviewViewModelTests.swift in Sources */,
 				8A7A60E321A4327200488ED4 /* WebRtcClientManagerTests.swift in Sources */,
 				8A42DB0E2179D8FB00BF5F1B /* URLUserDefaultsMock.swift in Sources */,
 				8AA7CBD72187521500FCF62A /* LullabyViewModelTests.swift in Sources */,
@@ -1729,7 +1741,7 @@
 				8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */,
 				4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */,
 				8A7A613C21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift in Sources */,
-				8A7A60EE21A43BD600488ED4 /* CameraPreviewViewModelTests.swift in Sources */,
+				8A7A60EE21A43BD600488ED4 /* WebSocketsServiceTests.swift in Sources */,
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
 				8AA7CBD421874FD000FCF62A /* SwitchBabyViewModelTests.swift in Sources */,
 				8A7A60C821A40CF200488ED4 /* DecodersTests.swift in Sources */,

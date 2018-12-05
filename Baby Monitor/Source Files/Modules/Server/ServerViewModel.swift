@@ -22,7 +22,7 @@ final class ServerViewModel {
     private let bag = DisposeBag()
     
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
-
+    
     init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol) {
         self.cryingEventService = cryingService
         self.babiesRepository = babiesRepository
@@ -33,7 +33,7 @@ final class ServerViewModel {
         setup()
         rxSetup()
     }
-
+    
     private func setup() {
         if babiesRepository.getCurrent() == nil {
             let baby = Baby(name: "Anonymous")
@@ -41,11 +41,11 @@ final class ServerViewModel {
             babiesRepository.setCurrent(baby: baby)
         }
     }
-
+    
     private func rxSetup() {
-        cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] isCrying in
-            let jsonString = try! JSONEncoder().encode(EventMessage.babyIsCrying).base64EncodedString()
-            self?.messageServer.send(message: jsonString)
+        cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] cryingEventMessage in
+                let jsonString = try! JSONEncoder().encode(cryingEventMessage).base64EncodedString()
+                self?.messageServer.send(message: jsonString)
         }).disposed(by: bag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
@@ -72,7 +72,7 @@ final class ServerViewModel {
             break
         }
     }
-
+    
     private func sdpAnswerJson() -> Observable<String> {
         return webRtcServerManager.sdpAnswer
             .flatMap { sdp -> Observable<String> in
@@ -83,7 +83,7 @@ final class ServerViewModel {
                 return Observable.just(jsonString)
             }
     }
-
+    
     private func iceCandidateJson() -> Observable<String> {
         return webRtcServerManager.iceCandidate
             .flatMap { iceCandidate -> Observable<String> in

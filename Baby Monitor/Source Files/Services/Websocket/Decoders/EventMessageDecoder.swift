@@ -7,14 +7,13 @@ import Foundation
 
 final class EventMessageDecoder: MessageDecoderProtocol {
     
-    typealias T = BabyMonitorEvent
+    typealias T = EventMessage
     
-    func decode(message: String) -> BabyMonitorEvent? {
+    func decode(message: String) -> EventMessage? {
         guard let data = message.data(using: .utf16),
-            let eventMessage = try? JSONDecoder().decode(EventMessage.self, from: data),
-            let babyMonitorEvent = BabyMonitorEvent(rawValue: eventMessage.action) else {
+            let eventMessage = try? JSONDecoder().decode(EventMessage.self, from: data) else {
                 return nil
         }
-        return babyMonitorEvent
+        return eventMessage
     }
 }

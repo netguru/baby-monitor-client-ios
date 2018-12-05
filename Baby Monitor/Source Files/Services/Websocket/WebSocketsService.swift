@@ -20,16 +20,16 @@ final class WebSocketsService: WebSocketsServiceProtocol {
     private let webRtcClientManager: WebRtcClientManagerProtocol
     private let webSocket: WebSocketProtocol?
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
-    private let babyMonitorEventsDecoder: AnyMessageDecoder<BabyMonitorEvent>
+    private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     private let bag = DisposeBag()
     private let cryingEventsRepository: CryingEventsRepositoryProtocol
     
-    init(webRtcClientManager: WebRtcClientManagerProtocol, webSocket: WebSocketProtocol?, cryingEventsRepository: CryingEventsRepositoryProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], babyMonitorEventsDecoder: AnyMessageDecoder<BabyMonitorEvent>) {
+    init(webRtcClientManager: WebRtcClientManagerProtocol, webSocket: WebSocketProtocol?, cryingEventsRepository: CryingEventsRepositoryProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>) {
         self.webRtcClientManager = webRtcClientManager
         self.webSocket = webSocket
         self.cryingEventsRepository = cryingEventsRepository
         self.decoders = decoders
-        self.babyMonitorEventsDecoder = babyMonitorEventsDecoder
+        self.babyMonitorEventMessagesDecoder = babyMonitorEventMessagesDecoder
         setup()
     }
     
@@ -52,7 +52,7 @@ final class WebSocketsService: WebSocketsServiceProtocol {
                 self.handle(message: message)
             })
             .disposed(by: bag)
-        webSocket?.decodedMessage(using: [babyMonitorEventsDecoder])
+        webSocket?.decodedMessage(using: [babyMonitorEventMessagesDecoder])
             .subscribe(onNext: { [unowned self] event in
                 guard let event = event else {
                     return
@@ -94,9 +94,13 @@ final class WebSocketsService: WebSocketsServiceProtocol {
         }
     }
     
-    private func handle(event: BabyMonitorEvent) {
-        switch event {
+    private func handle(event: EventMessage) {
+        guard let babyEvent = BabyMonitorEvent(rawValue: event.action) else {
+            return
+        }
+        switch babyEvent {
         case .crying:
+            cryingEventsRepository.save(cryingEvent: CryingEvent(fileName: event.value))
             onCryingEventOccurence?()
         }
     }

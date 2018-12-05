@@ -42,11 +42,11 @@ final class AppDependencies {
         webSocket: webSocket(urlConfiguration.url),
         cryingEventsRepository: babiesRepository,
         decoders: webRtcMessageDecoders,
-        babyMonitorEventsDecoder: babyMonitorEventsDecoder)
+        babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder)
     
     private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
     
-    private(set) var babyMonitorEventsDecoder = AnyMessageDecoder<BabyMonitorEvent>(EventMessageDecoder())
+    private(set) var babyMonitorEventMessagesDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
 
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient(), urlConfiguration: urlConfiguration)
     

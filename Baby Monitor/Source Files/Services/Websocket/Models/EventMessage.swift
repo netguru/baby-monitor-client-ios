@@ -13,5 +13,7 @@ struct EventMessage: Codable {
     let action: String
     let value: String
     
-    static let babyIsCrying = EventMessage(action: BabyMonitorEvent.crying.rawValue, value: "")
+    static func initWithCryingEvent(value: String) -> EventMessage {
+        return EventMessage(action: BabyMonitorEvent.crying.rawValue, value: value)
+    }
 }
