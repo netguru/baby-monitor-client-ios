@@ -15,7 +15,6 @@ final class ServerViewModel {
     var localStream: Observable<MediaStreamProtocol> {
         return webRtcServerManager.mediaStream
     }
-    var onCryingEventOccurence: ((Bool) -> Void)?
     var onAudioRecordServiceError: (() -> Void)?
     private let cryingEventService: CryingEventsServiceProtocol
     private let babiesRepository: BabiesRepositoryProtocol
@@ -45,7 +44,8 @@ final class ServerViewModel {
 
     private func rxSetup() {
         cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] isCrying in
-            self?.onCryingEventOccurence?(isCrying)
+            let jsonString = try! JSONEncoder().encode(EventMessage.babyIsCrying).base64EncodedString()
+            self?.messageServer.send(message: jsonString)
         }).disposed(by: bag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in

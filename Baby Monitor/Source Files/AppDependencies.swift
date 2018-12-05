@@ -37,7 +37,16 @@ final class AppDependencies {
         connection.delegate = clientManager
         return clientManager
     }
+    private(set) lazy var websocketsService: WebSocketsServiceProtocol = WebSocketsService(
+        webRtcClientManager: webRtcClient(peerConnection()),
+        webSocket: webSocket(urlConfiguration.url),
+        cryingEventsRepository: babiesRepository,
+        decoders: webRtcMessageDecoders,
+        babyMonitorEventsDecoder: babyMonitorEventsDecoder)
+    
     private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
+    
+    private(set) var babyMonitorEventsDecoder = AnyMessageDecoder<BabyMonitorEvent>(EventMessageDecoder())
 
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient(), urlConfiguration: urlConfiguration)
     
