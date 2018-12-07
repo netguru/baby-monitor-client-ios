@@ -11,9 +11,9 @@
 "general.next" = "Next";
 
 //MARK: = Intro
-"intro.title.detect" = "Automatically detect if your baby is crying";
+"intro.title.detect" = "Automatically detect if your \nbaby is crying";
 "intro.title.monitor" = "Monitor your baby";
-"intro.description.sleepingSoundly" = "Your baby is laying in bed, looks likes he is sleeping soundly.";
+"intro.description.sleepingSoundly" = "Your baby is laying in bed, looks like \ns/he is sleeping soundly.";
 "intro.button.setup-baby-monitor" = "Setup Baby Monitor";
 
 //MARK: - Onboarding
