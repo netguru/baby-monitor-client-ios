@@ -28,4 +28,8 @@ protocol WebRtcServerManagerProtocol {
 
     /// Observable emitting media stream
     var mediaStream: Observable<MediaStreamProtocol> { get }
+
+    var error: Observable<Error> { get }
+
+    func start()
 }

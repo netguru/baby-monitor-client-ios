@@ -27,6 +27,11 @@ final class ServerViewController: BaseViewController {
                 self.attach(stream: stream)
             })
             .disposed(by: bag)
+        viewModel.error
+            .subscribe(onNext: { [weak self] error in
+                self?.title = error.localizedDescription
+            })
+            .disposed(by: bag)
         viewModel.startStreaming()
     }
     

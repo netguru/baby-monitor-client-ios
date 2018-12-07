@@ -66,7 +66,7 @@ final class OnboardingCoordinator: Coordinator {
     }
     
     private func showServerView() {
-        let viewModel = ServerViewModel(webRtcServerManager: appDependencies.webRtcServer(appDependencies.peerConnection(), appDependencies.webRtcStreamFactory), messageServer: appDependencies.messageServer, netServiceServer: appDependencies.netServiceServer, decoders: appDependencies.webRtcMessageDecoders, cryingService: appDependencies.cryingEventService, babiesRepository: appDependencies.babiesRepository)
+        let viewModel = ServerViewModel(webRtcServerManager: appDependencies.webRtcServer(appDependencies.peerConnection(), appDependencies.webRtcStreamFactory), messageServer: appDependencies.messageServer, netServiceServer: appDependencies.netServiceServer, decoders: appDependencies.webRtcMessageDecoders, babiesRepository: appDependencies.babiesRepository)
         let serverViewController = ServerViewController(viewModel: viewModel)
         viewModel.onCryingEventOccurence = { isBabyCrying in
             let title = isBabyCrying ? Localizable.Server.babyIsCrying : Localizable.Server.babyStoppedCrying

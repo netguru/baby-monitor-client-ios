@@ -17,6 +17,7 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     private let streamFactory: StreamFactoryProtocol
     private var localSdp: SessionDescriptionProtocol?
     private var remoteSdp: SessionDescriptionProtocol?
+    private var capturer: RTCVideoCapturer?
 
     var sdpAnswer: Observable<SessionDescriptionProtocol> {
         return sdpAnswerPublisher.asObservable()
@@ -32,6 +33,10 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         return mediaStreamPublisher.asObservable()
     }
     private let mediaStreamPublisher = PublishRelay<MediaStreamProtocol>()
+    var error: Observable<Error> {
+        return errorPublisher.asObservable()
+    }
+    private let errorPublisher = PublishSubject<Error>()
 
     init(peerConnection: PeerConnectionProtocol, streamFactory: StreamFactoryProtocol) {
         self.peerConnection = peerConnection
@@ -39,20 +44,26 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     }
   
     private func addLocalMediaStream() {
-        let localStream = streamFactory.createStream()
-        peerConnection.add(stream: localStream)
-        mediaStreamPublisher.accept(localStream)
+        let localStream = streamFactory.createStream(handler: { [weak self] error in
+            self?.errorPublisher.onNext(error)
+        })
+        capturer = localStream.0!
+        peerConnection.add(stream: localStream.1!)
+        mediaStreamPublisher.accept(localStream.1!)
     }
   
     private func createConstraints() -> RTCMediaConstraints {
         let peerConnectionConstraints = RTCMediaConstraints(mandatoryConstraints: [WebRtcConstraintKey.offerToReceiveAudio.rawValue: "true", WebRtcConstraintKey.offerToReceiveVideo.rawValue: "true"], optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement.rawValue: "true"])
         return peerConnectionConstraints
     }
+
+    func start() {
+        addLocalMediaStream()
+    }
   
     func createAnswer(remoteSdp: SessionDescriptionProtocol) {
         self.remoteSdp = remoteSdp
-        addLocalMediaStream()
-        peerConnection.setRemoteDescription(sdp: remoteSdp, completionHandler: nil)
+        peerConnection.setRemoteDescription(sdp: remoteSdp, completionHandler: { _ in })
     }
   
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
