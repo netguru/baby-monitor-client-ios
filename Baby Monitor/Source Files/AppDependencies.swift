@@ -12,7 +12,7 @@ import AudioKit
 final class AppDependencies {
     
     /// Service for cleaning too many crying events
-    private(set) lazy var memoryCleaner: MemoryCleanerProtocol = MemoryCleaner(cryingEventsRepository: babiesRepository)
+    private(set) lazy var memoryCleaner: MemoryCleanerProtocol = MemoryCleaner()
     /// Service for recording audio
     private(set) lazy var audioRecordService: AudioRecordServiceProtocol? = try? AudioRecordService(recorderFactory: AudioKitRecorderFactory.makeRecorderFactory)
     /// Service for detecting baby's cry
@@ -32,16 +32,12 @@ final class AppDependencies {
         connection.delegate = serverManager
         return serverManager
     }
-    private(set) lazy var webRtcClient: (RTCPeerConnection) -> WebRtcClientManagerProtocol = { connection in
-        let clientManager = WebRtcClientManager(peerConnection: connection)
-        connection.delegate = clientManager
-        return clientManager
-    }
+    private(set) lazy var webRtcClient: WebRtcClientManagerProtocol = makeWebRtcClient(peerConnection())
     private(set) lazy var websocketsService: WebSocketsServiceProtocol = WebSocketsService(
-        webRtcClientManager: webRtcClient(peerConnection()),
+        webRtcClientManager: webRtcClient,
         webSocket: webSocket(urlConfiguration.url),
         cryingEventsRepository: babiesRepository,
-        decoders: webRtcMessageDecoders,
+        webRtcMessageDecoders: webRtcMessageDecoders,
         babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder)
     
     private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
@@ -71,4 +67,10 @@ final class AppDependencies {
     private(set) lazy var lullabiesRepository: LullabiesRepositoryProtocol = RealmLullabiesRepository(realm: try! Realm())
     /// Service for handling errors and showing error alerts
     private(set) var errorHandler: ErrorHandlerProtocol = ErrorHandler()
+    
+    private func makeWebRtcClient(_ connection: RTCPeerConnection) -> WebRtcClientManagerProtocol {
+        let clientManager = WebRtcClientManager(peerConnection: connection)
+        connection.delegate = clientManager
+        return clientManager
+    }
 }

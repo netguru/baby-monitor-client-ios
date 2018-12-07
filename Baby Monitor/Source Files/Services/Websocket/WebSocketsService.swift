@@ -19,16 +19,16 @@ final class WebSocketsService: WebSocketsServiceProtocol {
     
     private let webRtcClientManager: WebRtcClientManagerProtocol
     private let webSocket: WebSocketProtocol?
-    private let decoders: [AnyMessageDecoder<WebRtcMessage>]
+    private let webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>]
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     private let bag = DisposeBag()
     private let cryingEventsRepository: CryingEventsRepositoryProtocol
     
-    init(webRtcClientManager: WebRtcClientManagerProtocol, webSocket: WebSocketProtocol?, cryingEventsRepository: CryingEventsRepositoryProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>) {
+    init(webRtcClientManager: WebRtcClientManagerProtocol, webSocket: WebSocketProtocol?, cryingEventsRepository: CryingEventsRepositoryProtocol, webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>], babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>) {
         self.webRtcClientManager = webRtcClientManager
         self.webSocket = webSocket
         self.cryingEventsRepository = cryingEventsRepository
-        self.decoders = decoders
+        self.webRtcMessageDecoders = webRtcMessageDecoders
         self.babyMonitorEventMessagesDecoder = babyMonitorEventMessagesDecoder
         setup()
     }
@@ -44,7 +44,7 @@ final class WebSocketsService: WebSocketsServiceProtocol {
                 self?.webSocket?.send(message: json)
             })
             .disposed(by: bag)
-        webSocket?.decodedMessage(using: decoders)
+        webSocket?.decodedMessage(using: webRtcMessageDecoders)
             .subscribe(onNext: { [unowned self] message in
                 guard let message = message else {
                     return

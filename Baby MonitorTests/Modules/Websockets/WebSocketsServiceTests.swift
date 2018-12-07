@@ -17,7 +17,7 @@ class WebSocketsServiceTests: XCTestCase {
         let cryingEventsRepository = CryingEventsRepositoryMock()
         let decoders = [AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
         let eventMessageDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
-        let sut = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, decoders: decoders, babyMonitorEventMessagesDecoder: eventMessageDecoder)
+        let sut = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, webRtcMessageDecoders: decoders, babyMonitorEventMessagesDecoder: eventMessageDecoder)
 
         // When
         sut.play()
@@ -34,7 +34,7 @@ class WebSocketsServiceTests: XCTestCase {
         let cryingEventsRepository = CryingEventsRepositoryMock()
         let decoders = [AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
         let eventMessageDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
-        let sut = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, decoders: decoders, babyMonitorEventMessagesDecoder: eventMessageDecoder)
+        let sut = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, webRtcMessageDecoders: decoders, babyMonitorEventMessagesDecoder: eventMessageDecoder)
 
         // When
         sut.play()
@@ -52,7 +52,7 @@ class WebSocketsServiceTests: XCTestCase {
         let cryingEventsRepository = CryingEventsRepositoryMock()
         let decoders = [AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
         let eventMessageDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
-        let sut = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, decoders: decoders, babyMonitorEventMessagesDecoder: eventMessageDecoder)
+        let sut = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, webRtcMessageDecoders: decoders, babyMonitorEventMessagesDecoder: eventMessageDecoder)
 
         // When
         sut.play()
@@ -69,7 +69,7 @@ class WebSocketsServiceTests: XCTestCase {
         let cryingEventsRepository = CryingEventsRepositoryMock()
         let decoders = [AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoderMock(iceCandidate: iceCandidate))]
         let eventMessageDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
-        let sut = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, decoders: decoders, babyMonitorEventMessagesDecoder: eventMessageDecoder)
+        let sut = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, webRtcMessageDecoders: decoders, babyMonitorEventMessagesDecoder: eventMessageDecoder)
 
         // When
         sut.play()
@@ -87,7 +87,7 @@ class WebSocketsServiceTests: XCTestCase {
         let cryingEventsRepository = CryingEventsRepositoryMock()
         let decoders = [AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoderMock(sdpAnswer: sdpAnswer))]
         let eventMessageDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
-        let sut = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, decoders: decoders, babyMonitorEventMessagesDecoder: eventMessageDecoder)
+        let sut = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, webRtcMessageDecoders: decoders, babyMonitorEventMessagesDecoder: eventMessageDecoder)
 
         // When
         sut.play()

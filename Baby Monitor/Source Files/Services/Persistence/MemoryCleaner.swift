@@ -11,25 +11,20 @@ protocol MemoryCleanerProtocol: Any {
 
 final class MemoryCleaner: MemoryCleanerProtocol {
     
-    private let cryingEventsRepository: CryingEventsRepositoryProtocol
-    
-    init(cryingEventsRepository: CryingEventsRepositoryProtocol) {
-        self.cryingEventsRepository = cryingEventsRepository
-    }
-    
     func cleanMemoryIfNeeded() {
         let twoHundredMB = 200 * 1024 * 1024
-        guard let memoryUsage = FileManager.documentsDirectorySize,
+        guard let enumerator = FileManager.default.enumerator(atPath: FileManager.cryingRecordsURL.path),
+            let memoryUsage = FileManager.documentsDirectorySize,
             memoryUsage < twoHundredMB else {
                 return
         }
-        let allCryingEvents = cryingEventsRepository.fetchAllCryingEvents()
-        var sortedCryingEvents = allCryingEvents.sorted { $0.date > $1.date }
+        var fileUrls = enumerator.allObjects.compactMap({ $0 as? URL })
         while (FileManager.documentsDirectorySize ?? 0) > UInt64(Double(twoHundredMB) * 0.7) {
-            let cryingEventToRemove = sortedCryingEvents.remove(at: 0)
-            if let _ = try? FileManager.default.removeItem(at: cryingEventToRemove.fileURL) {
-                cryingEventsRepository.remove(cryingEvent: cryingEventToRemove)
+            guard !fileUrls.isEmpty else {
+                break
             }
+            let fileToRemoveUrl = fileUrls.remove(at: 0)
+            try? FileManager.default.removeItem(at: fileToRemoveUrl)
         }
     }
 }

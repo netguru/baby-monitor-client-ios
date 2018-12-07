@@ -44,8 +44,11 @@ final class ServerViewModel {
     
     private func rxSetup() {
         cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] cryingEventMessage in
-                let jsonString = try! JSONEncoder().encode(cryingEventMessage).base64EncodedString()
-                self?.messageServer.send(message: jsonString)
+            let data = try! JSONEncoder().encode(cryingEventMessage)
+            guard let jsonString = String(data: data, encoding: .utf8) else {
+                return
+            }
+            self?.messageServer.send(message: jsonString)
         }).disposed(by: bag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in

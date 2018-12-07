@@ -10,7 +10,7 @@ final class EventMessageDecoder: MessageDecoderProtocol {
     typealias T = EventMessage
     
     func decode(message: String) -> EventMessage? {
-        guard let data = message.data(using: .utf16),
+        guard let data = message.data(using: .utf8),
             let eventMessage = try? JSONDecoder().decode(EventMessage.self, from: data) else {
                 return nil
         }

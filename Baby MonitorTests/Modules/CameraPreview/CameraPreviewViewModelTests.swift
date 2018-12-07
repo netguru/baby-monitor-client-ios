@@ -21,7 +21,7 @@ class CameraPreviewViewModelTests: XCTestCase {
         let cryingEventsRepository = CryingEventsRepositoryMock()
         let babyRepo = BabiesRepositoryMock()
         let babyMonitorEventMessagesDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
-        let websocketService = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, decoders: [], babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder)
+        let websocketService = WebSocketsService(webRtcClientManager: webRtcClientManager, webSocket: webSocket, cryingEventsRepository: cryingEventsRepository, webRtcMessageDecoders: [], babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder)
         let sut = CameraPreviewViewModel(webRtcClientManager: webRtcClientManager, babyRepo: babyRepo)
         
         // When
