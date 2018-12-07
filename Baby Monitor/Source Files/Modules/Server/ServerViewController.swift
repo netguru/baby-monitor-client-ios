@@ -18,6 +18,8 @@ final class ServerViewController: BaseViewController {
     init(viewModel: ServerViewModel) {
         self.viewModel = viewModel
         super.init()
+        self.view.addSubview(localView)
+        localView.addConstraints { $0.equalEdges() }
         setup()
     }
     
@@ -25,11 +27,6 @@ final class ServerViewController: BaseViewController {
         viewModel.localStream
             .subscribe(onNext: { [unowned self] stream in
                 self.attach(stream: stream)
-            })
-            .disposed(by: bag)
-        viewModel.error
-            .subscribe(onNext: { [weak self] error in
-                self?.title = error.localizedDescription
             })
             .disposed(by: bag)
         viewModel.startStreaming()
