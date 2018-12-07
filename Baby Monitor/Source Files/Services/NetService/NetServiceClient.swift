@@ -23,7 +23,7 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
     private let netServiceBrowser = NetServiceBrowser()
     
     private static let androidPort = 55555
-    private static let iosPort = 554
+    private static let iosPort = Constants.websocketPort
     
     override init() {
         super.init()
@@ -57,6 +57,7 @@ extension NetServiceClient: NetServiceDelegate {
     
     func netServiceDidResolveAddress(_ sender: NetService) {
         guard let addressData = sender.addresses?.first,
+            [NetServiceClient.androidPort, NetServiceClient.iosPort].contains(sender.port),
             let ip = getIP(from: addressData) else {
                 return
         }
