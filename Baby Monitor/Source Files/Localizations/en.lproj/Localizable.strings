@@ -13,8 +13,8 @@
 //MARK: = Intro
 "intro.title.detect" = "Automatically detect if your \nbaby is crying";
 "intro.title.monitor" = "Monitor your baby";
-"intro.description.sleepingSoundly" = "Your baby is laying in bed, looks like \ns/he is sleeping soundly.";
-"intro.button.setup-baby-monitor" = "Setup Baby Monitor";
+"intro.description.sleepingSoundly" = "Your baby is lying in bed, looks like \nit is sleeping soundly.";
+"intro.button.setup-baby-monitor" = "Set up Baby Monitor";
 
 //MARK: - Onboarding
 "onboarding.connecting" = "Connecting";
