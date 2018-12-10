@@ -11,7 +11,6 @@ final class IntroFeatureView: BaseView {
     
     private enum Constants {
         static let buttonHeight: CGFloat = 50
-        static let mainOffset: CGFloat = 20
         static let textAlpha: CGFloat = 0.7
     }
     
@@ -25,7 +24,7 @@ final class IntroFeatureView: BaseView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .white
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = UIFont.avertaBold.withSize(18)
         return label
     }()
     private let descriptionLabel: UILabel = {
@@ -33,7 +32,7 @@ final class IntroFeatureView: BaseView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = UIColor.white.withAlphaComponent(Constants.textAlpha)
-        label.font = .systemFont(ofSize: 14)
+        label.font = UIFont.avertaRegular.withSize(14)
         label.layer.opacity = 0.5
         label.text = Localizable.Intro.sleepingSoundly
         return label
@@ -42,13 +41,13 @@ final class IntroFeatureView: BaseView {
         let button = UIButton()
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         button.titleLabel?.textColor = .white
-        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont.avertaBold.withSize(14)
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.cgColor
         return button
     }()
     private lazy var introStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel, descriptionLabel])
+        let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel])
         stackView.axis = .vertical
         stackView.spacing = 40
         stackView.alignment = .center
@@ -80,7 +79,7 @@ final class IntroFeatureView: BaseView {
             nextButton.backgroundColor = UIColor(named: "darkPurple")
         }
         
-        [introStackView, nextButton].forEach {
+        [introStackView, descriptionLabel, nextButton].forEach {
             addSubview($0)
         }
 
@@ -94,7 +93,13 @@ final class IntroFeatureView: BaseView {
         introStackView.addConstraints {[
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.8),
-            $0.equalTo(self, .top, .safeAreaTop, constant: Constants.mainOffset * 2)
+            $0.equalTo(self, .top, .safeAreaTop, constant: 56)
+        ]
+        }
+        
+        descriptionLabel.addConstraints {[
+            $0.equal(.centerX),
+            $0.equalTo(titleLabel, .top, .bottom, constant: 24)
         ]
         }
         
@@ -109,7 +114,7 @@ final class IntroFeatureView: BaseView {
             $0.equal(.centerX),
             $0.equalConstant(.height, Constants.buttonHeight),
             $0.equal(.width, multiplier: 0.9),
-            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -Constants.mainOffset)
+            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -32)
         ]
         }
     }
