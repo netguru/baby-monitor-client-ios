@@ -18,6 +18,7 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     private var localSdp: SessionDescriptionProtocol?
     private var remoteSdp: SessionDescriptionProtocol?
     private var capturer: RTCVideoCapturer?
+    private var localStream: RTCMediaStream?
 
     var sdpAnswer: Observable<SessionDescriptionProtocol> {
         return sdpAnswerPublisher.asObservable()
@@ -48,7 +49,6 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             self?.errorPublisher.onNext(error)
         })
         capturer = localStream.0!
-        peerConnection.add(stream: localStream.1!)
         mediaStreamPublisher.accept(localStream.1!)
     }
   
@@ -63,7 +63,21 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
   
     func createAnswer(remoteSdp: SessionDescriptionProtocol) {
         self.remoteSdp = remoteSdp
-        peerConnection.setRemoteDescription(sdp: remoteSdp, completionHandler: { _ in })
+        peerConnection.setRemoteDescription(sdp: remoteSdp, completionHandler: { [unowned self] _ in
+            let answerConstraints = self.createConstraints()
+            guard let peerConnection = self.peerConnection as? RTCPeerConnection else { return }
+            peerConnection.answer(for: answerConstraints, completionHandler: { [weak self] sdp, _ in
+                guard let sdp = sdp else {
+                    return
+                }
+                self?.localSdp = sdp
+                peerConnection.setLocalDescription(sdp, completionHandler: { [weak self] _ in
+                    guard let localStream = self?.localStream else { return }
+                    peerConnection.add(stream: localStream)
+                })
+                self?.sdpAnswerPublisher.accept(sdp)
+            })
+        })
     }
   
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
@@ -97,15 +111,6 @@ extension WebRtcServerManager: RTCPeerConnectionDelegate {
     public func peerConnection(_ peerConnection: RTCPeerConnection, didOpen dataChannel: RTCDataChannel) {}
 
     public func peerConnection(_ peerConnection: RTCPeerConnection, didSetSessionDescriptionWithError error: Error?) {
-        let answerConstraints = createConstraints()
-        peerConnection.answer(for: answerConstraints, completionHandler: { [weak self] sdp, _ in
-            guard let sdp = sdp else {
-                return
-            }
-            self?.localSdp = sdp
-            peerConnection.setLocalDescription(sdp, completionHandler: nil)
-            self?.sdpAnswerPublisher.accept(sdp)
-        })
     }
 
     public func peerConnectionShouldNegotiate(_ peerConnection: RTCPeerConnection) {}
