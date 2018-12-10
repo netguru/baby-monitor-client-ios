@@ -1638,7 +1638,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9HJ69C5G9K;
 				LIBRARY_SEARCH_PATHS = (
@@ -1701,8 +1701,8 @@
 					"-framework",
 					"\"WebRTC\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor.staging;
-				PROVISIONING_PROFILE_SPECIFIER = "BabyMonitor Staging";
+				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor.development;
+				PROVISIONING_PROFILE_SPECIFIER = "BabyMonitor Development";
 			};
 			name = Development;
 		};
@@ -1771,7 +1771,7 @@
 					"-framework",
 					"\"WebRTC\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor.development;
 			};
 			name = Production;
 		};
@@ -1990,7 +1990,7 @@
 					"-framework",
 					"\"WebRTC\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor.development;
 			};
 			name = Staging;
 		};

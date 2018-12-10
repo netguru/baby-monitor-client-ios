@@ -38,6 +38,7 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
         self.socket = socket
         super.init()
         guard assignDelegate else {
+            isConnected = true
             return
         }
         socket.delegate = self

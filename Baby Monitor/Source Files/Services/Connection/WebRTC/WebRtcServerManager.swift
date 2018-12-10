@@ -18,7 +18,7 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     private var localSdp: SessionDescriptionProtocol?
     private var remoteSdp: SessionDescriptionProtocol?
     private var capturer: RTCVideoCapturer?
-    private var localStream: RTCMediaStream?
+    private var localStream: MediaStreamProtocol?
 
     var sdpAnswer: Observable<SessionDescriptionProtocol> {
         return sdpAnswerPublisher.asObservable()
@@ -49,6 +49,7 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             self?.errorPublisher.onNext(error)
         })
         capturer = localStream.0!
+        self.localStream = localStream.1!
         mediaStreamPublisher.accept(localStream.1!)
     }
   
