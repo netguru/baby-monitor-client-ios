@@ -1,0 +1,11 @@
+//
+//  Common-Staging.xcconfig
+//  Baby Monitor
+//
+
+#include "Common-Base.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Configurations/Release.xcconfig"
+
+_ENVIRONMENTS = ENV_STAGING
+
+DEBUG_INFORMATION_FORMAT = dwarf

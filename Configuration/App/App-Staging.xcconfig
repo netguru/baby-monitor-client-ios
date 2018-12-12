@@ -1,0 +1,13 @@
+//
+//  App-Staging.xcconfig
+//  Baby Monitor
+//
+
+#include "App-Base.xcconfig"
+#include "../../Pods/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.staging.xcconfig"
+
+__BUNDLE_IDENTIFIER_SUFFIX = .staging
+
+_CODESIGN_DEVELOPMENT_TEAM = 9HJ69C5G9K
+_CODESIGN_IDENTITY = iPhone Distribution
+_CODESIGN_PROFILE_SPECIFIER = BabyMonitor Staging
