@@ -12,14 +12,47 @@ enum Localizable {
         static let disconnected = localized("general.disconnected")
         static let delete = localized("general.delete")
         static let ok = localized("general.ok")
+        static let next = localized("general.next")
+    }
+    
+    enum Intro {
+        static let featureDetect = localized("intro.title.detect")
+        static let featureMonitor = localized("intro.title.monitor")
+        static let sleepingSoundly = localized("intro.description.sleepingSoundly")
+        static let setupBabyMonitor = localized("intro.button.setup-baby-monitor")
     }
     
     enum Onboarding {
+        static let `continue` = localized("onboarding.continue")
+        static let connecting = localized("onboarding.connecting")
         static let startClient = localized("onboarding.button.start-client")
         static let startServer = localized("onboarding.button.start-server")
         static let setupAddress = localized("onboarding.button.setup-address")
         static let startDiscovering = localized("onboarding.button.start-discovering")
         static let addressPlaceholder = localized("onboarding.text-field-placeholder.address")
+        static let parent = localized("onboarding.button.parent")
+        static let baby = localized("onboarding.button.baby")
+        static let specifyDevice = localized("onboarding.label.specify-this-device")
+        static let welcomeTo = localized("onboarding.label.welcome-to")
+        
+        enum Connecting {
+            static let connectToWiFi = localized("onboarding.connecting.connect-to-wi-fi")
+            static let setupInformation = localized("onboarding.connecting.setup-information")
+            static let placeDevice = localized("onboarding.connecting.place-device")
+            static let startMonitoring = localized("onboarding.connecting.start-monitoring")
+        }
+        
+        enum Pairing {
+            static let hello = localized("onboarding.pairing.share-link.title")
+            static let timeToInstallBabyMonitor = localized("onboarding.pairing.share-link.description")
+            static let searchingForSecondDevice = localized("onboarding.pairing.connecting.description")
+            static let done = localized("onboarding.pairing.done.description")
+            static let error = localized("onboarding.pairing.error-description")
+            static let tryAgain = localized("onboarding.pairing.try-again")
+            static let startUsingBabyMonitor = localized("onboarding.pairing.start-using-baby-monitor")
+            static let allDone = localized("onboarding.pairing.all-done")
+            static let getStarted = localized("onboarding.pairing.get-started")
+        }
     }
     
     enum TabBar {

@@ -8,7 +8,7 @@ import UIKit
 final class OnboardingView: BaseView {
     
     enum Role {
-        case begin, startDiscovering, clientSetup
+        case startDiscovering, clientSetup
     }
     
     private enum Constants {
@@ -62,9 +62,6 @@ final class OnboardingView: BaseView {
     private func setup(_ role: Role) {
         spinner.isHidden = true
         switch role {
-        case .begin:
-            firstButton.setTitle(Localizable.Onboarding.startServer, for: .normal)
-            secondButton.setTitle(Localizable.Onboarding.startClient, for: .normal)
         case .startDiscovering:
             firstButton.setTitle(Localizable.Onboarding.startDiscovering, for: .normal)
             secondButton.isHidden = true

@@ -8,13 +8,39 @@
 "general.disconnected" = "Disconnected";
 "general.delete" = "Delete";
 "general.ok" = "OK";
+"general.next" = "Next";
+
+//MARK: = Intro
+"intro.title.detect" = "Automatically detect if your \nbaby is crying";
+"intro.title.monitor" = "Monitor your baby";
+"intro.description.sleepingSoundly" = "Your baby is lying in bed, looks like \nit is sleeping soundly.";
+"intro.button.setup-baby-monitor" = "Set up Baby Monitor";
 
 //MARK: - Onboarding
+"onboarding.connecting" = "Connecting";
+"onboarding.continue" = "Continue";
+"onboarding.connecting.connect-to-wi-fi" = "Get started by connecting \nBaby Monitor to Wi-Fi";
 "onboarding.button.start-client" = "START BABY MONITOR CLIENT";
 "onboarding.button.start-server" = "START BABY MONITOR SERVER";
 "onboarding.button.setup-address" = "Setup Address";
 "onboarding.button.start-discovering" = "START DISCOVERING SERVICES";
 "onboarding.text-field-placeholder.address" = "Type address...";
+"onboarding.button.parent" = "Parent";
+"onboarding.button.baby" = "Baby";
+"onboarding.label.specify-this-device" = "Specify this device";
+"onboarding.label.welcome-to" = "Welcome to Baby Monitor \nLet’s start by defining this device";
+"onboarding.pairing.share-link.title" = "Hello";
+"onboarding.pairing.share-link.description" = "It’s time to install Baby Monitor \non your second device";
+"onboarding.pairing.connecting.description" = "Searching for second device";
+"onboarding.pairing.done.description" = "Done!";
+"onboarding.pairing.error-description" = "Ups! Something went wrong :( \nMake sure that you are connected to the same \nWi-Fi network";
+"onboarding.pairing.try-again" = "Try again";
+"onboarding.pairing.start-using-baby-monitor" = "You can now start using Baby Monitor!";
+"onboarding.pairing.all-done" = "All done!";
+"onboarding.pairing.get-started" = "Get started";
+"onboarding.connecting.setup-information" = "Setup information";
+"onboarding.connecting.place-device" = "Place this device next to your baby’s bed \nso that you can see him on your live view";
+"onboarding.connecting.start-monitoring" = "Start monitoring";
 
 //MARK: - Dashboard
 "dashboard.button.live-camera" = "LIVE CAMERA";
