@@ -19,6 +19,7 @@ final class ServerViewModel {
     var onAudioRecordServiceError: (() -> Void)?
     private let cryingEventService: CryingEventsServiceProtocol
     private let babiesRepository: BabiesRepositoryProtocol
+    private let peerToPeerService: PeerToPeerServiceProtocol = UDPeerToPeerService()
     
     private let bag = DisposeBag()
     
@@ -34,6 +35,13 @@ final class ServerViewModel {
         setup()
         rxSetup()
     }
+    
+    deinit {
+        netServiceServer.stop()
+        messageServer.stop()
+        webRtcServerManager.disconnect()
+        cryingEventService.stop()
+    }
 
     private func setup() {
         if babiesRepository.getCurrent() == nil {
@@ -46,6 +54,7 @@ final class ServerViewModel {
     private func rxSetup() {
         cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] isCrying in
             self?.onCryingEventOccurence?(isCrying)
+            self?.peerToPeerService.send(message: "BABY_IS_CRYING")
         }).disposed(by: bag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
@@ -97,6 +106,7 @@ final class ServerViewModel {
     
     /// Starts streaming
     func startStreaming() {
+        peerToPeerService.start()
         messageServer.start()
         netServiceServer.publish()
         do {
@@ -109,12 +119,5 @@ final class ServerViewModel {
                 break
             }
         }
-    }
-    
-    deinit {
-        netServiceServer.stop()
-        messageServer.stop()
-        webRtcServerManager.disconnect()
-        cryingEventService.stop()
     }
 }
