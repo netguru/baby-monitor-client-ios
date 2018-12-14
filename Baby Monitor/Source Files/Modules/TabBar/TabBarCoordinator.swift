@@ -18,15 +18,19 @@ final class TabBarCoordinator: Coordinator {
     ]
     var onEnding: (() -> Void)?
     
+    private let tabBarController = TabBarController()
+    
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
         self.appDependencies = appDependencies
         setup()
     }
     
-    private let tabBarController = TabBarController()
-    
     func start() {
+        appDependencies.websocketsService.play()
+        appDependencies.websocketsService.onCryingEventOccurence = { [unowned self] in
+            AlertPresenter.showDefaultAlert(title: Localizable.Server.babyIsCrying, message: nil, onViewController: self.navigationController)
+        }
         navigationController.isNavigationBarHidden = true
         navigationController.pushViewController(tabBarController, animated: true)
         childCoordinators.forEach { $0.start() }

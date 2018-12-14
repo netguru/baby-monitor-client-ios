@@ -13,6 +13,6 @@ struct AlertPresenter {
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(alertAction)
-        alertController.present(vc, animated: true, completion: nil)
+        vc.present(alertController, animated: true, completion: nil)
     }
 }

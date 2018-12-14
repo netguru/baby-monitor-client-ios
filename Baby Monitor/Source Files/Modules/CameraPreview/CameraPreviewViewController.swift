@@ -26,7 +26,6 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         super.viewDidLoad()
         setup()
         setupViewModel()
-        viewModel.play()
     }
     
     // MARK: - Selectors

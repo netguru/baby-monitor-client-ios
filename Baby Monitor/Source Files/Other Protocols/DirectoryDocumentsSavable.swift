@@ -13,7 +13,7 @@ protocol DirectoryDocumentsSavable {
 extension AKAudioFile: DirectoryDocumentsSavable {
     func save(withName name: String, completion: @escaping (Result<()>) -> Void) {
         do {
-            try FileManager.default.moveItem(at: avAsset.url, to: FileManager.documentsDirectoryURL.appendingPathComponent(name).appendingPathExtension("caf"))
+            try FileManager.default.moveItem(at: avAsset.url, to: FileManager.cryingRecordsURL.appendingPathComponent(name).appendingPathExtension("caf"))
             completion(.success(()))
         } catch {
             completion(.failure(error))

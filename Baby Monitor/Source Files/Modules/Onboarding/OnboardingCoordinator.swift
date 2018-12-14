@@ -62,10 +62,6 @@ final class OnboardingCoordinator: Coordinator {
     private func showServerView() {
         let viewModel = ServerViewModel(webRtcServerManager: appDependencies.webRtcServer(appDependencies.peerConnection(), appDependencies.webRtcStreamFactory), messageServer: appDependencies.messageServer, netServiceServer: appDependencies.netServiceServer, decoders: appDependencies.webRtcMessageDecoders, cryingService: appDependencies.cryingEventService, babiesRepository: appDependencies.babiesRepository)
         let serverViewController = ServerViewController(viewModel: viewModel)
-        viewModel.onCryingEventOccurence = { isBabyCrying in
-            let title = isBabyCrying ? Localizable.Server.babyIsCrying : Localizable.Server.babyStoppedCrying
-            AlertPresenter.showDefaultAlert(title: title, message: nil, onViewController: serverViewController)
-        }
         viewModel.onAudioRecordServiceError = { [weak self] in
             guard let self = self,
                 !self.isAudioServiceErrorAlreadyShown else {

@@ -9,10 +9,10 @@ import RxSwift
 final class CryingEventsServiceMock: CryingEventsServiceProtocol {
 
     private(set) var isStarted = false
-    var cryingEventObservable: Observable<Bool> {
+    var cryingEventObservable: Observable<EventMessage> {
         return cryingEventPublisher
     }
-    let cryingEventPublisher = PublishSubject<Bool>()
+    let cryingEventPublisher = PublishSubject<EventMessage>()
     private let shouldThrow: Bool
 
     init(shouldThrow: Bool = false) {
