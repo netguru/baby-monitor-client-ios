@@ -6,22 +6,25 @@
 import WebRTC
 
 protocol StreamFactoryProtocol {
-    func createStream(handler: @escaping (Error) -> Void) -> (RTCVideoCapturer?, MediaStreamProtocol?)
+    func createStream(didCreateStream: (MediaStreamProtocol, VideoCapturer) -> Void)
 }
 
+typealias VideoCapturer = AnyObject
+
 extension RTCPeerConnectionFactory: StreamFactoryProtocol {
-    func createStream(handler: @escaping (Error) -> Void) -> (RTCVideoCapturer?, MediaStreamProtocol?) {
-        let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front)!
+    func createStream(didCreateStream: (MediaStreamProtocol, VideoCapturer) -> Void) {
+        guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) else {
+            return
+        }
         let videoSource = self.videoSource()
         let capturer = RTCCameraVideoCapturer(delegate: videoSource)
-        capturer.startCapture(with: captureDevice, format: captureDevice.activeFormat, fps: 10) { error in
-            handler(error)
-        }
+        // Putting nil as handler crashes - hence the empty handler
+        capturer.startCapture(with: captureDevice, format: captureDevice.activeFormat, fps: 25) { _ in }
         let videoTrack = self.videoTrack(with: videoSource, trackId: WebRtcStreamId.videoTrack.rawValue)
         let localStream = mediaStream(withStreamId: WebRtcStreamId.mediaStream.rawValue)
         let audioTrack = self.audioTrack(withTrackId: WebRtcStreamId.audioTrack.rawValue)
         localStream.addVideoTrack(videoTrack)
         localStream.addAudioTrack(audioTrack)
-        return (capturer, localStream)
+        didCreateStream(localStream, capturer)
     }
 }

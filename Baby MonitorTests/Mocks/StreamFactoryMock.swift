@@ -13,7 +13,7 @@ final class StreamFactoryMock: StreamFactoryProtocol {
         self.id = id
     }
 
-    func createStream() -> MediaStreamProtocol {
-        return MediaStreamMock(id: id)
+    func createStream(didCreateStream: (MediaStreamProtocol, VideoCapturer) -> Void) {
+        didCreateStream(MediaStreamMock(id: id), VideoCapturerMock())
     }
 }

@@ -15,18 +15,17 @@ final class ServerViewModel {
     var localStream: Observable<MediaStreamProtocol> {
         return webRtcServerManager.mediaStream
     }
-    var error: Observable<Error> {
-        return webRtcServerManager.error
-    }
     var onCryingEventOccurence: ((Bool) -> Void)?
     var onAudioRecordServiceError: (() -> Void)?
+    private let cryingEventService: CryingEventsServiceProtocol
     private let babiesRepository: BabiesRepositoryProtocol
     
     private let bag = DisposeBag()
     
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
 
-    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], babiesRepository: BabiesRepositoryProtocol) {
+    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol) {
+        self.cryingEventService = cryingService
         self.babiesRepository = babiesRepository
         self.webRtcServerManager = webRtcServerManager
         self.messageServer = messageServer
@@ -37,6 +36,9 @@ final class ServerViewModel {
     }
 
     private func setup() {
+        cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] isCrying in
+            self?.onCryingEventOccurence?(isCrying)
+        }).disposed(by: bag)
         if babiesRepository.getCurrent() == nil {
             let baby = Baby(name: "Anonymous")
             try! babiesRepository.save(baby: baby)
@@ -97,6 +99,16 @@ final class ServerViewModel {
     func startStreaming() {
         messageServer.start()
         netServiceServer.publish()
+        do {
+            try cryingEventService.start()
+        } catch {
+            switch error {
+            case CryingEventService.CryingEventServiceError.audioRecordServiceError:
+                onAudioRecordServiceError?()
+            default:
+                break
+            }
+        }
         webRtcServerManager.start()
     }
     
@@ -104,5 +116,6 @@ final class ServerViewModel {
         netServiceServer.stop()
         messageServer.stop()
         webRtcServerManager.disconnect()
+        cryingEventService.stop()
     }
 }

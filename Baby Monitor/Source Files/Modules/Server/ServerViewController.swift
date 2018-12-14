@@ -18,7 +18,7 @@ final class ServerViewController: BaseViewController {
     init(viewModel: ServerViewModel) {
         self.viewModel = viewModel
         super.init()
-        self.view.addSubview(localView)
+        view.addSubview(localView)
         localView.addConstraints { $0.equalEdges() }
         setup()
     }

@@ -14,6 +14,8 @@ protocol PeerConnectionProtocol {
 
     func close()
 
+    func createAnswer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?)
+
     func createOffer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?)
 
     func add(stream: MediaStreamProtocol)
@@ -26,6 +28,15 @@ extension RTCPeerConnection: PeerConnectionProtocol {
             return
         }
         add(stream)
+    }
+
+    func createAnswer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?) {
+        guard let constraints = constraints as? RTCMediaConstraints else {
+            return
+        }
+        answer(for: constraints) { sdp, error in
+            completionHandler?(sdp, error)
+        }
     }
     
     func createOffer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?) {
