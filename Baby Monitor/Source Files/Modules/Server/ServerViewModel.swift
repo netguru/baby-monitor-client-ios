@@ -112,6 +112,7 @@ final class ServerViewModel {
                 break
             }
         }
+        webRtcServerManager.start()
     }
     
     deinit {

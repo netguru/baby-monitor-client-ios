@@ -38,6 +38,7 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
         self.socket = socket
         super.init()
         guard assignDelegate else {
+            isConnected = true
             return
         }
         socket.delegate = self
@@ -71,8 +72,7 @@ extension PSWebSocketWrapper: PSWebSocketDelegate {
     func webSocket(_ webSocket: PSWebSocket, didFailWithError error: Error) {}
     
     func webSocket(_ webSocket: PSWebSocket, didReceiveMessage message: Any) {
-        guard let messageData = message as? Data,
-            let stringMessage = String(data: messageData, encoding: .utf8) else {
+        guard let stringMessage = message as? String else {
                 return
         }
         receivedMessagePublisher.accept(stringMessage)
