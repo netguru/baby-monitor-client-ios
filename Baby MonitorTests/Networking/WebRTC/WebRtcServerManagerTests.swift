@@ -53,13 +53,15 @@ class WebRtcServerManagerTests: XCTestCase {
 
     func testShouldAddStreamToConnectionWhenCreatingAnswer() {
         // Given
-        let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
-        let peerConnection = PeerConnectionMock()
+        let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "offer")
+        let sdpAnswer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
+        let peerConnection = PeerConnectionMock(answerSdp: sdpAnswer)
         let streamId = "test"
         let streamFactory = StreamFactoryMock(id: streamId)
         let sut = WebRtcServerManager(peerConnection: peerConnection, streamFactory: streamFactory)
 
         // When
+        sut.start()
         sut.createAnswer(remoteSdp: sdpOffer)
 
         // Then
@@ -81,6 +83,7 @@ class WebRtcServerManagerTests: XCTestCase {
             .disposed(by: bag)
 
         // When
+        sut.start()
         sut.createAnswer(remoteSdp: sdpOffer)
 
         // Then

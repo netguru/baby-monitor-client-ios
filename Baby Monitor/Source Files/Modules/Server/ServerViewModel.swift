@@ -36,6 +36,9 @@ final class ServerViewModel {
     }
 
     private func setup() {
+        cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] isCrying in
+            self?.onCryingEventOccurence?(isCrying)
+        }).disposed(by: bag)
         if babiesRepository.getCurrent() == nil {
             let baby = Baby(name: "Anonymous")
             try! babiesRepository.save(baby: baby)
@@ -44,9 +47,6 @@ final class ServerViewModel {
     }
 
     private func rxSetup() {
-        cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] isCrying in
-            self?.onCryingEventOccurence?(isCrying)
-        }).disposed(by: bag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
                 guard let message = message else {
@@ -109,6 +109,7 @@ final class ServerViewModel {
                 break
             }
         }
+        webRtcServerManager.start()
     }
     
     deinit {

@@ -17,7 +17,7 @@ final class NetServiceServer: NSObject, NetServiceServerProtocol {
     init(netService: NetService = NetService(domain: Constants.domain,
                                              type: Constants.netServiceType,
                                              name: Constants.netServiceName,
-                                             port: 554)) {
+                                             port: Int32(Constants.websocketPort))) {
         self.netService = netService
     }
     

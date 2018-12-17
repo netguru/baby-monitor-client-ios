@@ -10,11 +10,16 @@ final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
     private(set) var isStarted = true
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var iceCandidates = [IceCandidateProtocol]()
+    private(set) var isSetup = false
 
     private let localSdp: SessionDescriptionProtocol?
 
     init(sdpAnswer: SessionDescriptionProtocol? = nil) {
         self.localSdp = sdpAnswer
+    }
+
+    func start() {
+        isSetup = true
     }
 
     func createAnswer(remoteSdp: SessionDescriptionProtocol) {
