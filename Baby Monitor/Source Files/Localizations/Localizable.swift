@@ -13,6 +13,7 @@ enum Localizable {
         static let delete = localized("general.delete")
         static let ok = localized("general.ok")
         static let next = localized("general.next")
+        static let warning = localized("general.warning")
     }
     
     enum Intro {
@@ -106,6 +107,7 @@ enum Localizable {
     enum Errors {
         static let errorOccured = localized("errors.title.error-occured")
         static let unableToFind = localized("errors.message.unable-to-find")
+        static let notificationsNotAllowed = localized("errors.notifications-not-allowed")
     }
 }
 

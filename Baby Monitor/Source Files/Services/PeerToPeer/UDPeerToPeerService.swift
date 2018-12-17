@@ -30,7 +30,6 @@ final class UDPeerToPeerService: NSObject, PeerToPeerServiceProtocol {
     private let appId: Int32 = 234235
     private let nodeId: Int64
     private var transport: UDTransport
-    private let babyIsCryingMessage = "BABY_IS_CRYING"
     private var connectedPeer: UDLink? {
         didSet {
             if connectedPeer == nil {

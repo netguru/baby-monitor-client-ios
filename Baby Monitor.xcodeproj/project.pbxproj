@@ -99,6 +99,7 @@
 		4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */; };
 		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
+		4EAFA8F221C7CDCE00D88117 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFA8F121C7CDCE00D88117 /* LocalNotificationsService.swift */; };
 		4EB6DE6321B6687D004701EA /* EventMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6DE6221B6687D004701EA /* EventMessage.swift */; };
 		4EB6DE6521B67C11004701EA /* EventMessageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6DE6421B67C11004701EA /* EventMessageDecoder.swift */; };
 		4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */; };
@@ -372,6 +373,7 @@
 		4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Production.xcconfig"; sourceTree = "<group>"; };
 		4EA662F8216CBDEA009AD3B6 /* App-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Base.xcconfig"; sourceTree = "<group>"; };
+		4EAFA8F121C7CDCE00D88117 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		4EB6DE6221B6687D004701EA /* EventMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMessage.swift; sourceTree = "<group>"; };
 		4EB6DE6421B67C11004701EA /* EventMessageDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMessageDecoder.swift; sourceTree = "<group>"; };
 		4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConnectingCoordinator.swift; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 		4E5731A02170BA9D00DEAF0B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4EAFA8F021C7CDBB00D88117 /* Notifications */,
 				4E5EFDB421C28A3400B14CD9 /* PeerToPeer */,
 				8A7A612821A59E9100488ED4 /* Other */,
 				8A7A608221A4024100488ED4 /* ErrorHandler */,
@@ -872,6 +875,14 @@
 				4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		4EAFA8F021C7CDBB00D88117 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				4EAFA8F121C7CDCE00D88117 /* LocalNotificationsService.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		4EB6DE6121B66865004701EA /* Models */ = {
@@ -1784,6 +1795,7 @@
 				4E8E057221AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+Prefix.swift in Sources */,
 				8A7A612C21A59EB000488ED4 /* RecorderFactory.swift in Sources */,
+				4EAFA8F221C7CDCE00D88117 /* LocalNotificationsService.swift in Sources */,
 				8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */,
 				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
 				8AFAE5AD219AAAAC007013BC /* MessageServerProtocol.swift in Sources */,

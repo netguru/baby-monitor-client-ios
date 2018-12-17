@@ -39,6 +39,8 @@ final class AppDependencies {
         cryingEventsRepository: babiesRepository,
         webRtcMessageDecoders: webRtcMessageDecoders,
         babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder)
+    private(set) lazy var localNotificationService: LocalNotificationsServiceProtocol = LocalNotificationsService()
+    private(set) lazy var peerToPeerService: PeerToPeerServiceProtocol = UDPeerToPeerService()
     
     private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
     

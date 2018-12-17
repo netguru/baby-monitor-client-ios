@@ -18,19 +18,19 @@ final class ServerViewModel {
     var onAudioRecordServiceError: (() -> Void)?
     private let cryingEventService: CryingEventsServiceProtocol
     private let babiesRepository: BabiesRepositoryProtocol
-    private let peerToPeerService: PeerToPeerServiceProtocol = UDPeerToPeerService()
-    
+    private let peerToPeerService: PeerToPeerServiceProtocol
     private let bag = DisposeBag()
     
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
     
-    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol) {
+    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, peerToPeerService: PeerToPeerServiceProtocol) {
         self.cryingEventService = cryingService
         self.babiesRepository = babiesRepository
         self.webRtcServerManager = webRtcServerManager
         self.messageServer = messageServer
         self.netServiceServer = netServiceServer
         self.decoders = decoders
+        self.peerToPeerService = peerToPeerService
         setup()
         rxSetup()
     }
@@ -52,7 +52,7 @@ final class ServerViewModel {
     
     private func rxSetup() {
         cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] cryingEventMessage in
-            self?.peerToPeerService.send(message: "BABY_IS_CRYING")
+            self?.peerToPeerService.send(message: BabyMonitorEvent.crying.rawValue)
             let data = try! JSONEncoder().encode(cryingEventMessage)
             guard let jsonString = String(data: data, encoding: .utf8) else {
                 return

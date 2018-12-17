@@ -34,6 +34,11 @@ final class TabBarCoordinator: Coordinator {
         navigationController.isNavigationBarHidden = true
         navigationController.pushViewController(tabBarController, animated: true)
         childCoordinators.forEach { $0.start() }
+        appDependencies.localNotificationService.getNotificationsAllowance { [unowned self] isGranted in
+            if !isGranted {
+                AlertPresenter.showDefaultAlert(title: Localizable.General.warning, message: Localizable.Errors.notificationsNotAllowed, onViewController: self.navigationController)
+            }
+        }
     }
     
     // MARK: - private functions
