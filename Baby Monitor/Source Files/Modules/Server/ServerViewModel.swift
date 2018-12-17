@@ -15,7 +15,6 @@ final class ServerViewModel {
     var localStream: Observable<MediaStreamProtocol> {
         return webRtcServerManager.mediaStream
     }
-    var onCryingEventOccurence: ((Bool) -> Void)?
     var onAudioRecordServiceError: (() -> Void)?
     private let cryingEventService: CryingEventsServiceProtocol
     private let babiesRepository: BabiesRepositoryProtocol
@@ -23,7 +22,7 @@ final class ServerViewModel {
     private let bag = DisposeBag()
     
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
-
+    
     init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol) {
         self.cryingEventService = cryingService
         self.babiesRepository = babiesRepository
@@ -34,19 +33,23 @@ final class ServerViewModel {
         setup()
         rxSetup()
     }
-
+    
     private func setup() {
-        cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] isCrying in
-            self?.onCryingEventOccurence?(isCrying)
-        }).disposed(by: bag)
         if babiesRepository.getCurrent() == nil {
             let baby = Baby(name: "Anonymous")
             try! babiesRepository.save(baby: baby)
             babiesRepository.setCurrent(baby: baby)
         }
     }
-
+    
     private func rxSetup() {
+        cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] cryingEventMessage in
+            let data = try! JSONEncoder().encode(cryingEventMessage)
+            guard let jsonString = String(data: data, encoding: .utf8) else {
+                return
+            }
+            self?.messageServer.send(message: jsonString)
+        }).disposed(by: bag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
                 guard let message = message else {
@@ -72,7 +75,7 @@ final class ServerViewModel {
             break
         }
     }
-
+    
     private func sdpAnswerJson() -> Observable<String> {
         return webRtcServerManager.sdpAnswer
             .flatMap { sdp -> Observable<String> in
@@ -83,7 +86,7 @@ final class ServerViewModel {
                 return Observable.just(jsonString)
             }
     }
-
+    
     private func iceCandidateJson() -> Observable<String> {
         return webRtcServerManager.iceCandidate
             .flatMap { iceCandidate -> Observable<String> in

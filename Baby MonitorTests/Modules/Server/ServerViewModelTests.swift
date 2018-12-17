@@ -48,28 +48,6 @@ class ServerViewModelTests: XCTestCase {
         waitForExpectations(timeout: 0.1, handler: nil)
     }
 
-    func testPropagateCryingEventOccurence() {
-        // Given
-        let exp = expectation(description: "Should call crying event callback")
-        let webRtcServerManager = WebRtcServerManagerMock()
-        let messageServer = MessageServerMock()
-        let netServiceServer = NetServiceServerMock()
-        let cryingService = CryingEventsServiceMock()
-        let babiesRepository = BabiesRepositoryMock()
-        let sut = ServerViewModel(webRtcServerManager: webRtcServerManager, messageServer: messageServer, netServiceServer: netServiceServer, decoders: [], cryingService: cryingService, babiesRepository: babiesRepository)
-        sut.onCryingEventOccurence = { result in
-            XCTAssertTrue(result)
-            exp.fulfill()
-        }
-
-        // When
-        sut.startStreaming()
-        cryingService.cryingEventPublisher.onNext(true)
-
-        // Then
-        waitForExpectations(timeout: 0.1, handler: nil)
-    }
-
     func testShouldDisconnectServicesAfterDeallocation() {
         // Given
         let webRtcServerManager = WebRtcServerManagerMock()

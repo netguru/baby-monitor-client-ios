@@ -172,13 +172,13 @@ class ImageOnboardingView: BaseOnboardingView {
             $0.equal(.centerY, constant: -17),
             $0.equalConstant(.width, 80),
             $0.equalTo($0, .height, .width)
-            ]
+        ]
         }
         nextButton.addConstraints {[
             $0.equal(.centerX),
             $0.equal(.safeAreaBottom, constant: -32),
             $0.equalConstant(.height, 56)
-            ]
+        ]
         }
         nextButton.leadingAnchor.constraint(equalTo: titleLeadingAnchor).isActive = true
     }
