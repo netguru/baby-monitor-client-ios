@@ -66,8 +66,7 @@ final class OnboardingCoordinator: Coordinator {
             netServiceServer: appDependencies.netServiceServer,
             decoders: appDependencies.webRtcMessageDecoders,
             cryingService: appDependencies.cryingEventService,
-            babiesRepository: appDependencies.babiesRepository,
-            peerToPeerService: appDependencies.peerToPeerService)
+            babiesRepository: appDependencies.babiesRepository)
         let serverViewController = ServerViewController(viewModel: viewModel)
         viewModel.onAudioRecordServiceError = { [weak self] in
             guard let self = self,

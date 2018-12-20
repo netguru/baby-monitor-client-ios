@@ -42,29 +42,6 @@
 		4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */; };
 		4E592E6221B80FA3004E94F7 /* CameraPreviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E592E6121B80FA3004E94F7 /* CameraPreviewViewModelTests.swift */; };
 		4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */; };
-		4E5EFDB621C28A5200B14CD9 /* UDPeerToPeerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5EFDB521C28A5200B14CD9 /* UDPeerToPeerService.swift */; };
-		4E5EFDCB21C28DE600B14CD9 /* Underdark.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDB921C28DE600B14CD9 /* Underdark.framework.dSYM */; };
-		4E5EFDCC21C28DE600B14CD9 /* B0653D07-2D72-365A-84EB-07437B69734E.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDBA21C28DE600B14CD9 /* B0653D07-2D72-365A-84EB-07437B69734E.bcsymbolmap */; };
-		4E5EFDCD21C28DE600B14CD9 /* C42CD59C-D2DF-3503-95A9-0E18934F8249.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDBB21C28DE600B14CD9 /* C42CD59C-D2DF-3503-95A9-0E18934F8249.bcsymbolmap */; };
-		4E5EFDCE21C28DE600B14CD9 /* CACDCDC1-210B-35FF-B72A-896B47C2D1E4.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDBC21C28DE600B14CD9 /* CACDCDC1-210B-35FF-B72A-896B47C2D1E4.bcsymbolmap */; };
-		4E5EFDCF21C28DE600B14CD9 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5EFDBD21C28DE600B14CD9 /* ProtocolBuffers.framework */; };
-		4E5EFDD021C28DE600B14CD9 /* 62387A95-2491-37B9-91A2-5B7FC519244C.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDBE21C28DE600B14CD9 /* 62387A95-2491-37B9-91A2-5B7FC519244C.bcsymbolmap */; };
-		4E5EFDD121C28DE600B14CD9 /* ProtocolBuffers.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDBF21C28DE600B14CD9 /* ProtocolBuffers.framework.dSYM */; };
-		4E5EFDD221C28DE600B14CD9 /* Underdark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5EFDC021C28DE600B14CD9 /* Underdark.framework */; };
-		4E5EFDD321C28DE600B14CD9 /* 9AE90F5D-E41D-364C-B2E6-36CA2D143408.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDC121C28DE600B14CD9 /* 9AE90F5D-E41D-364C-B2E6-36CA2D143408.bcsymbolmap */; };
-		4E5EFDD421C28DE600B14CD9 /* 182F28E5-7081-362C-BA24-44DD6FE95CA3.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDC221C28DE600B14CD9 /* 182F28E5-7081-362C-BA24-44DD6FE95CA3.bcsymbolmap */; };
-		4E5EFDD521C28DE600B14CD9 /* DC119A03-1F3C-3395-92C8-5B93816CFDD9.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDC321C28DE600B14CD9 /* DC119A03-1F3C-3395-92C8-5B93816CFDD9.bcsymbolmap */; };
-		4E5EFDD621C28DE600B14CD9 /* EE6FBE4D-8240-339E-8399-7D29E9981194.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDC421C28DE600B14CD9 /* EE6FBE4D-8240-339E-8399-7D29E9981194.bcsymbolmap */; };
-		4E5EFDD721C28DE600B14CD9 /* 7859843D-56EC-3F5C-A721-3792E65301AF.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDC521C28DE600B14CD9 /* 7859843D-56EC-3F5C-A721-3792E65301AF.bcsymbolmap */; };
-		4E5EFDD821C28DE600B14CD9 /* E1CC59AE-8A2C-3055-8CC1-8CD1C74EE6A8.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDC621C28DE600B14CD9 /* E1CC59AE-8A2C-3055-8CC1-8CD1C74EE6A8.bcsymbolmap */; };
-		4E5EFDD921C28DE600B14CD9 /* 92E25047-9429-33EC-A18B-509DD879A141.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDC721C28DE600B14CD9 /* 92E25047-9429-33EC-A18B-509DD879A141.bcsymbolmap */; };
-		4E5EFDDA21C28DE600B14CD9 /* E0F25CA9-7774-3280-AD35-0E5BDC60B080.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDC821C28DE600B14CD9 /* E0F25CA9-7774-3280-AD35-0E5BDC60B080.bcsymbolmap */; };
-		4E5EFDDB21C28DE600B14CD9 /* C00609BE-077A-32B4-AE73-C498AA857600.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDC921C28DE600B14CD9 /* C00609BE-077A-32B4-AE73-C498AA857600.bcsymbolmap */; };
-		4E5EFDDC21C28DE600B14CD9 /* C14AE5EC-90CA-3E41-83D6-5E40F2F03AC5.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = 4E5EFDCA21C28DE600B14CD9 /* C14AE5EC-90CA-3E41-83D6-5E40F2F03AC5.bcsymbolmap */; };
-		4E5EFDDD21C28E3700B14CD9 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5EFDBD21C28DE600B14CD9 /* ProtocolBuffers.framework */; };
-		4E5EFDDE21C28E3700B14CD9 /* ProtocolBuffers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5EFDBD21C28DE600B14CD9 /* ProtocolBuffers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4E5EFDDF21C28E3700B14CD9 /* Underdark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5EFDC021C28DE600B14CD9 /* Underdark.framework */; };
-		4E5EFDE021C28E3700B14CD9 /* Underdark.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5EFDC021C28DE600B14CD9 /* Underdark.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E60697821AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60697721AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift */; };
 		4E60697D21AFEFD500EB1DCF /* ImageOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */; };
 		4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */; };
@@ -99,7 +76,8 @@
 		4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */; };
 		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
-		4EAFA8F221C7CDCE00D88117 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFA8F121C7CDCE00D88117 /* LocalNotificationsService.swift */; };
+		4E9BD20121CA702A00FEE46C /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9BD20021CA702A00FEE46C /* ClientService.swift */; };
+		4EAFA8F221C7CDCE00D88117 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFA8F121C7CDCE00D88117 /* NotificationService.swift */; };
 		4EB6DE6321B6687D004701EA /* EventMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6DE6221B6687D004701EA /* EventMessage.swift */; };
 		4EB6DE6521B67C11004701EA /* EventMessageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6DE6421B67C11004701EA /* EventMessageDecoder.swift */; };
 		4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */; };
@@ -269,8 +247,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4E5EFDDE21C28E3700B14CD9 /* ProtocolBuffers.framework in Embed Frameworks */,
-				4E5EFDE021C28E3700B14CD9 /* Underdark.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,25 +291,6 @@
 		4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Tests-Staging.xcconfig"; sourceTree = "<group>"; };
 		4E592E6121B80FA3004E94F7 /* CameraPreviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewViewModelTests.swift; sourceTree = "<group>"; };
 		4E5BEB14215E5EDD0056E5CC /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
-		4E5EFDB521C28A5200B14CD9 /* UDPeerToPeerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDPeerToPeerService.swift; sourceTree = "<group>"; };
-		4E5EFDB921C28DE600B14CD9 /* Underdark.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Underdark.framework.dSYM; sourceTree = "<group>"; };
-		4E5EFDBA21C28DE600B14CD9 /* B0653D07-2D72-365A-84EB-07437B69734E.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "B0653D07-2D72-365A-84EB-07437B69734E.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDBB21C28DE600B14CD9 /* C42CD59C-D2DF-3503-95A9-0E18934F8249.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C42CD59C-D2DF-3503-95A9-0E18934F8249.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDBC21C28DE600B14CD9 /* CACDCDC1-210B-35FF-B72A-896B47C2D1E4.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CACDCDC1-210B-35FF-B72A-896B47C2D1E4.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDBD21C28DE600B14CD9 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ProtocolBuffers.framework; sourceTree = "<group>"; };
-		4E5EFDBE21C28DE600B14CD9 /* 62387A95-2491-37B9-91A2-5B7FC519244C.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "62387A95-2491-37B9-91A2-5B7FC519244C.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDBF21C28DE600B14CD9 /* ProtocolBuffers.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = ProtocolBuffers.framework.dSYM; sourceTree = "<group>"; };
-		4E5EFDC021C28DE600B14CD9 /* Underdark.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Underdark.framework; sourceTree = "<group>"; };
-		4E5EFDC121C28DE600B14CD9 /* 9AE90F5D-E41D-364C-B2E6-36CA2D143408.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "9AE90F5D-E41D-364C-B2E6-36CA2D143408.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDC221C28DE600B14CD9 /* 182F28E5-7081-362C-BA24-44DD6FE95CA3.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "182F28E5-7081-362C-BA24-44DD6FE95CA3.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDC321C28DE600B14CD9 /* DC119A03-1F3C-3395-92C8-5B93816CFDD9.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "DC119A03-1F3C-3395-92C8-5B93816CFDD9.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDC421C28DE600B14CD9 /* EE6FBE4D-8240-339E-8399-7D29E9981194.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EE6FBE4D-8240-339E-8399-7D29E9981194.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDC521C28DE600B14CD9 /* 7859843D-56EC-3F5C-A721-3792E65301AF.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "7859843D-56EC-3F5C-A721-3792E65301AF.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDC621C28DE600B14CD9 /* E1CC59AE-8A2C-3055-8CC1-8CD1C74EE6A8.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "E1CC59AE-8A2C-3055-8CC1-8CD1C74EE6A8.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDC721C28DE600B14CD9 /* 92E25047-9429-33EC-A18B-509DD879A141.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "92E25047-9429-33EC-A18B-509DD879A141.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDC821C28DE600B14CD9 /* E0F25CA9-7774-3280-AD35-0E5BDC60B080.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "E0F25CA9-7774-3280-AD35-0E5BDC60B080.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDC921C28DE600B14CD9 /* C00609BE-077A-32B4-AE73-C498AA857600.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C00609BE-077A-32B4-AE73-C498AA857600.bcsymbolmap"; sourceTree = "<group>"; };
-		4E5EFDCA21C28DE600B14CD9 /* C14AE5EC-90CA-3E41-83D6-5E40F2F03AC5.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "C14AE5EC-90CA-3E41-83D6-5E40F2F03AC5.bcsymbolmap"; sourceTree = "<group>"; };
 		4E60697721AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPairingCoordinator.swift; sourceTree = "<group>"; };
 		4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOnboardingView.swift; sourceTree = "<group>"; };
 		4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupOnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -368,13 +325,14 @@
 		4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewModel.swift; sourceTree = "<group>"; };
 		4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewModel.swift; sourceTree = "<group>"; };
 		4E994BF121624835009C44C5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		4E9BD20021CA702A00FEE46C /* ClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
 		4EA662F4216CBA36009AD3B6 /* Common-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F5216CBC8A009AD3B6 /* Common-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Development.xcconfig"; sourceTree = "<group>"; };
 		4EA662F6216CBCEC009AD3B6 /* Common-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Staging.xcconfig"; sourceTree = "<group>"; };
 		4EA662F7216CBCF6009AD3B6 /* Common-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Production.xcconfig"; sourceTree = "<group>"; };
 		4EA662F8216CBDEA009AD3B6 /* App-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Base.xcconfig"; sourceTree = "<group>"; };
-		4EAFA8F121C7CDCE00D88117 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
+		4EAFA8F121C7CDCE00D88117 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		4EB6DE6221B6687D004701EA /* EventMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMessage.swift; sourceTree = "<group>"; };
 		4EB6DE6421B67C11004701EA /* EventMessageDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMessageDecoder.swift; sourceTree = "<group>"; };
 		4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConnectingCoordinator.swift; sourceTree = "<group>"; };
@@ -541,11 +499,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E5EFDDD21C28E3700B14CD9 /* ProtocolBuffers.framework in Frameworks */,
-				4E5EFDCF21C28DE600B14CD9 /* ProtocolBuffers.framework in Frameworks */,
-				4E5EFDD221C28DE600B14CD9 /* Underdark.framework in Frameworks */,
 				4452592C0E44BE74496FDFDF /* Pods_Baby_Monitor.framework in Frameworks */,
-				4E5EFDDF21C28E3700B14CD9 /* Underdark.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,7 +610,6 @@
 			isa = PBXGroup;
 			children = (
 				4EAFA8F021C7CDBB00D88117 /* Notifications */,
-				4E5EFDB421C28A3400B14CD9 /* PeerToPeer */,
 				8A7A612821A59E9100488ED4 /* Other */,
 				8A7A608221A4024100488ED4 /* ErrorHandler */,
 				8A7A608121A4020B00488ED4 /* CryingDetection */,
@@ -706,47 +659,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		4E5EFDB421C28A3400B14CD9 /* PeerToPeer */ = {
-			isa = PBXGroup;
-			children = (
-				4E5EFDB521C28A5200B14CD9 /* UDPeerToPeerService.swift */,
-			);
-			path = PeerToPeer;
-			sourceTree = "<group>";
-		};
-		4E5EFDB721C28DE600B14CD9 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				4E5EFDB821C28DE600B14CD9 /* Underdark */,
-			);
-			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		4E5EFDB821C28DE600B14CD9 /* Underdark */ = {
-			isa = PBXGroup;
-			children = (
-				4E5EFDB921C28DE600B14CD9 /* Underdark.framework.dSYM */,
-				4E5EFDBA21C28DE600B14CD9 /* B0653D07-2D72-365A-84EB-07437B69734E.bcsymbolmap */,
-				4E5EFDBB21C28DE600B14CD9 /* C42CD59C-D2DF-3503-95A9-0E18934F8249.bcsymbolmap */,
-				4E5EFDBC21C28DE600B14CD9 /* CACDCDC1-210B-35FF-B72A-896B47C2D1E4.bcsymbolmap */,
-				4E5EFDBD21C28DE600B14CD9 /* ProtocolBuffers.framework */,
-				4E5EFDBE21C28DE600B14CD9 /* 62387A95-2491-37B9-91A2-5B7FC519244C.bcsymbolmap */,
-				4E5EFDBF21C28DE600B14CD9 /* ProtocolBuffers.framework.dSYM */,
-				4E5EFDC021C28DE600B14CD9 /* Underdark.framework */,
-				4E5EFDC121C28DE600B14CD9 /* 9AE90F5D-E41D-364C-B2E6-36CA2D143408.bcsymbolmap */,
-				4E5EFDC221C28DE600B14CD9 /* 182F28E5-7081-362C-BA24-44DD6FE95CA3.bcsymbolmap */,
-				4E5EFDC321C28DE600B14CD9 /* DC119A03-1F3C-3395-92C8-5B93816CFDD9.bcsymbolmap */,
-				4E5EFDC421C28DE600B14CD9 /* EE6FBE4D-8240-339E-8399-7D29E9981194.bcsymbolmap */,
-				4E5EFDC521C28DE600B14CD9 /* 7859843D-56EC-3F5C-A721-3792E65301AF.bcsymbolmap */,
-				4E5EFDC621C28DE600B14CD9 /* E1CC59AE-8A2C-3055-8CC1-8CD1C74EE6A8.bcsymbolmap */,
-				4E5EFDC721C28DE600B14CD9 /* 92E25047-9429-33EC-A18B-509DD879A141.bcsymbolmap */,
-				4E5EFDC821C28DE600B14CD9 /* E0F25CA9-7774-3280-AD35-0E5BDC60B080.bcsymbolmap */,
-				4E5EFDC921C28DE600B14CD9 /* C00609BE-077A-32B4-AE73-C498AA857600.bcsymbolmap */,
-				4E5EFDCA21C28DE600B14CD9 /* C14AE5EC-90CA-3E41-83D6-5E40F2F03AC5.bcsymbolmap */,
-			);
-			path = Underdark;
-			sourceTree = "<group>";
-		};
 		4E60697621AFECC200EB1DCF /* Pairing */ = {
 			isa = PBXGroup;
 			children = (
@@ -763,6 +675,7 @@
 		4E6EA7932161FB81005575E0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4E9BD1FF21CA700D00FEE46C /* Client */,
 				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
 				ECB2428421AD4DCC00B4E409 /* Intro */,
 				EC4C9945216B944B0093EDFC /* Onboarding */,
@@ -879,10 +792,18 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		4E9BD1FF21CA700D00FEE46C /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				4E9BD20021CA702A00FEE46C /* ClientService.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
 		4EAFA8F021C7CDBB00D88117 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				4EAFA8F121C7CDCE00D88117 /* LocalNotificationsService.swift */,
+				4EAFA8F121C7CDCE00D88117 /* NotificationService.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -1284,7 +1205,6 @@
 				EC82B56D213EA074005CA395 /* Baby MonitorTests */,
 				EC82B557213EA072005CA395 /* Products */,
 				1BD3FFBE9B26AAC1CE2C0505 /* Pods */,
-				4E5EFDB721C28DE600B14CD9 /* Dependencies */,
 				5A6BEA236D04738E5E6A922E /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -1500,35 +1420,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */,
-				4E5EFDD321C28DE600B14CD9 /* 9AE90F5D-E41D-364C-B2E6-36CA2D143408.bcsymbolmap in Resources */,
 				4E5731AB2170C1A200DEAF0B /* Tests-Development.xcconfig in Resources */,
 				4E8E056621AD82EE009ACE05 /* AvertaStd-Bold.otf in Resources */,
 				EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */,
-				4E5EFDCC21C28DE600B14CD9 /* B0653D07-2D72-365A-84EB-07437B69734E.bcsymbolmap in Resources */,
-				4E5EFDCE21C28DE600B14CD9 /* CACDCDC1-210B-35FF-B72A-896B47C2D1E4.bcsymbolmap in Resources */,
 				4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */,
-				4E5EFDD821C28DE600B14CD9 /* E1CC59AE-8A2C-3055-8CC1-8CD1C74EE6A8.bcsymbolmap in Resources */,
 				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
 				8AA7CBF3218C62E600FCF62A /* prettyLittleHorses.mp3 in Resources */,
 				EC82B561213EA074005CA395 /* Assets.xcassets in Resources */,
-				4E5EFDD021C28DE600B14CD9 /* 62387A95-2491-37B9-91A2-5B7FC519244C.bcsymbolmap in Resources */,
-				4E5EFDCB21C28DE600B14CD9 /* Underdark.framework.dSYM in Resources */,
-				4E5EFDD421C28DE600B14CD9 /* 182F28E5-7081-362C-BA24-44DD6FE95CA3.bcsymbolmap in Resources */,
-				4E5EFDD121C28DE600B14CD9 /* ProtocolBuffers.framework.dSYM in Resources */,
-				4E5EFDD721C28DE600B14CD9 /* 7859843D-56EC-3F5C-A721-3792E65301AF.bcsymbolmap in Resources */,
 				8AA7CBF2218C62E600FCF62A /* lullabyGoodnight.mp3 in Resources */,
 				4E8E056A21AD855B009ACE05 /* AvertaStd-Regular.otf in Resources */,
-				4E5EFDDB21C28DE600B14CD9 /* C00609BE-077A-32B4-AE73-C498AA857600.bcsymbolmap in Resources */,
-				4E5EFDD921C28DE600B14CD9 /* 92E25047-9429-33EC-A18B-509DD879A141.bcsymbolmap in Resources */,
 				8AA7CBF0218C62E600FCF62A /* rockAByeBaby.mp3 in Resources */,
-				4E5EFDD521C28DE600B14CD9 /* DC119A03-1F3C-3395-92C8-5B93816CFDD9.bcsymbolmap in Resources */,
-				4E5EFDDA21C28DE600B14CD9 /* E0F25CA9-7774-3280-AD35-0E5BDC60B080.bcsymbolmap in Resources */,
 				4E95631E21638E2200289475 /* Localizable.strings in Resources */,
-				4E5EFDCD21C28DE600B14CD9 /* C42CD59C-D2DF-3503-95A9-0E18934F8249.bcsymbolmap in Resources */,
-				4E5EFDD621C28DE600B14CD9 /* EE6FBE4D-8240-339E-8399-7D29E9981194.bcsymbolmap in Resources */,
 				ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */,
 				4E5731AC2170C1A200DEAF0B /* Tests-Production.xcconfig in Resources */,
-				4E5EFDDC21C28DE600B14CD9 /* C14AE5EC-90CA-3E41-83D6-5E40F2F03AC5.bcsymbolmap in Resources */,
 				8AA7CBF4218C62E600FCF62A /* hushLittleBaby.mp3 in Resources */,
 				8AA7CBF1218C62E600FCF62A /* twinkleTwinkleLittleStar.mp3 in Resources */,
 			);
@@ -1787,6 +1691,7 @@
 				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* URLConfiguration.swift in Sources */,
 				4E8E057021AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift in Sources */,
+				4E9BD20121CA702A00FEE46C /* ClientService.swift in Sources */,
 				8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */,
 				4E8E056321AD81D4009ACE05 /* BaseOnboardingView.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
@@ -1798,7 +1703,7 @@
 				4E8E057221AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+Prefix.swift in Sources */,
 				8A7A612C21A59EB000488ED4 /* RecorderFactory.swift in Sources */,
-				4EAFA8F221C7CDCE00D88117 /* LocalNotificationsService.swift in Sources */,
+				4EAFA8F221C7CDCE00D88117 /* NotificationService.swift in Sources */,
 				8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */,
 				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
 				8AFAE5AD219AAAAC007013BC /* MessageServerProtocol.swift in Sources */,
@@ -1819,7 +1724,6 @@
 				8A7A608421A4027E00488ED4 /* ErrorHandler.swift in Sources */,
 				8A8EF98821A329F10098A27B /* WebRtcClientManager.swift in Sources */,
 				EC8A8FF921AEA7EE00B5FCCF /* IntroView.swift in Sources */,
-				4E5EFDB621C28A5200B14CD9 /* UDPeerToPeerService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1880,7 +1784,7 @@
 				8A7A613C21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift in Sources */,
 				8A7A60EE21A43BD600488ED4 /* WebSocketsServiceTests.swift in Sources */,
 				8A41D4C221C2475A00CF1E08 /* VideoCapturerMock.swift in Sources */,
-				8A7A60EE21A43BD600488ED4 /* CameraPreviewViewModelTests.swift in Sources */,
+				8A7A60EE21A43BD600488ED4 /* WebSocketsServiceTests.swift in Sources */,
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
 				8AA7CBD421874FD000FCF62A /* SwitchBabyViewModelTests.swift in Sources */,
 				8A7A60C821A40CF200488ED4 /* DecodersTests.swift in Sources */,
