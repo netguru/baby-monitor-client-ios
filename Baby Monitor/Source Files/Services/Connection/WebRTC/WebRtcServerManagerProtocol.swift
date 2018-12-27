@@ -4,7 +4,6 @@
 //
 
 import RxSwift
-import WebRTC
 
 protocol WebRtcServerManagerProtocol {
     /// Sets session description answer

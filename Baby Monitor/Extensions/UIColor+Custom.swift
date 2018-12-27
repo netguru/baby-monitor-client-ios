@@ -3,6 +3,8 @@
 //  Baby Monitor
 //
 
+import UIKit
+
 extension UIColor {
     convenience init(rgb: Int) {
         self.init(

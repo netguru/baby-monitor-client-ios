@@ -5,7 +5,6 @@
 
 import Foundation
 import RealmSwift
-import WebRTC
 import PocketSocket
 import AudioKit
 

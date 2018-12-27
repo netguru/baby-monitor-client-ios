@@ -3,8 +3,6 @@
 //  Baby Monitor
 //
 
-import WebRTC
-
 protocol IceCandidateProtocol {
     var sdpMLineIndex: Int32 { get }
     var sdpMid: String? { get }

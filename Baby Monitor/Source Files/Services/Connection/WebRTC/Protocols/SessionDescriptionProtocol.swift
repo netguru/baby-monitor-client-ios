@@ -3,8 +3,6 @@
 //  Baby Monitor
 //
 
-import WebRTC
-
 protocol SessionDescriptionProtocol {
     var sdp: String { get }
     var stringType: String { get }

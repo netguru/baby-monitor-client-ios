@@ -3,7 +3,8 @@
 //  Baby Monitor
 //
 
-import WebRTC
+import Foundation
+import AVFoundation
 
 protocol StreamFactoryProtocol {
     func createStream(didCreateStream: (MediaStreamProtocol, VideoCapturer) -> Void)
