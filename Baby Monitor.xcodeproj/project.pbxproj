@@ -31,7 +31,6 @@
 		4E55435C21D4C33A005C41FD /* WebRTC.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4E55433621D4C33A005C41FD /* WebRTC.podspec */; };
 		4E55435D21D4C33A005C41FD /* WebrtcServerManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E55435321D4C33A005C41FD /* WebrtcServerManagerDelegate.swift */; };
 		4E55435E21D4C33A005C41FD /* RTCICEServer+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E55435421D4C33A005C41FD /* RTCICEServer+JSON.m */; };
-		4E55435F21D4C33A005C41FD /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E55435621D4C33A005C41FD /* libWebRTC.a */; };
 		4E55436021D4C33A005C41FD /* WebrtcClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E55435721D4C33A005C41FD /* WebrtcClientManager.swift */; };
 		4E55436121D4C33A005C41FD /* WebrtcServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E55435821D4C33A005C41FD /* WebrtcServerManager.swift */; };
 		4E55436221D4C33A005C41FD /* WebrtcClientManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E55435B21D4C33A005C41FD /* WebrtcClientManagerDelegate.swift */; };
@@ -507,7 +506,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ADEE4562199623300B11B14 /* libWebRTC.a in Frameworks */,
-				4E55435F21D4C33A005C41FD /* libWebRTC.a in Frameworks */,
 				4452592C0E44BE74496FDFDF /* Pods_Baby_Monitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1923,8 +1921,6 @@
 					"-framework",
 					"\"Foundation\"",
 					"-framework",
-					"\"MobileVLCKit\"",
-					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
 					"\"PocketSocket\"",
@@ -1948,8 +1944,6 @@
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"VideoToolbox\"",
-					"-framework",
-					"\"WebRTC\"",
 					"-l\"WebRTC\"",
 				);
 				PROVISIONING_PROFILE_SPECIFIER = "BabyMonitor Development";
@@ -1996,8 +1990,6 @@
 					"-framework",
 					"\"Foundation\"",
 					"-framework",
-					"\"MobileVLCKit\"",
-					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
 					"\"PocketSocket\"",
@@ -2021,8 +2013,6 @@
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"VideoToolbox\"",
-					"-framework",
-					"\"WebRTC\"",
 				);
 			};
 			name = Production;
@@ -2090,8 +2080,6 @@
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"VideoToolbox\"",
-					"-framework",
-					"\"WebRTC\"",
 					"-framework",
 					"\"XCTest\"",
 				);
@@ -2163,8 +2151,6 @@
 					"-framework",
 					"\"VideoToolbox\"",
 					"-framework",
-					"\"WebRTC\"",
-					"-framework",
 					"\"XCTest\"",
 				);
 			};
@@ -2217,8 +2203,6 @@
 					"-framework",
 					"\"Foundation\"",
 					"-framework",
-					"\"MobileVLCKit\"",
-					"-framework",
 					"\"OpenGLES\"",
 					"-framework",
 					"\"PocketSocket\"",
@@ -2242,8 +2226,6 @@
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"VideoToolbox\"",
-					"-framework",
-					"\"WebRTC\"",
 				);
 			};
 			name = Staging;
@@ -2312,8 +2294,6 @@
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"VideoToolbox\"",
-					"-framework",
-					"\"WebRTC\"",
 					"-framework",
 					"\"XCTest\"",
 				);

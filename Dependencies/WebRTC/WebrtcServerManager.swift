@@ -45,6 +45,8 @@ public class WebrtcServerManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
   
   override public init() {
     super.init()
+    peerConnectionFactory = RTCPeerConnectionFactory.init()
+    peerConnection = peerConnectionFactory?.peerConnection(withICEServers: [], constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [RTCPair(key: "DtlsSrtpKeyAgreement", value: "true")]), delegate: self)
   }
   
   public func addLocalMediaStream() {
@@ -65,8 +67,8 @@ public class WebrtcServerManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
     DispatchQueue.main.async {
 
     }
-    self.peerConnection?.add(localStream!)
     mediaStreamPublisher.onNext(localStream!)
+    self.peerConnection?.add(localStream!)
   }
   
   public func startWebrtcConnection() {
