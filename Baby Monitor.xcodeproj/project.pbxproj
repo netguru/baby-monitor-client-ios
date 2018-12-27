@@ -81,6 +81,7 @@
 		4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */; };
 		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
+		4EA602A321D536BA00953E8B /* RTCICECandidate+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA602A221D536BA00953E8B /* RTCICECandidate+JSON.swift */; };
 		4EB6DE6321B6687D004701EA /* EventMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6DE6221B6687D004701EA /* EventMessage.swift */; };
 		4EB6DE6521B67C11004701EA /* EventMessageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6DE6421B67C11004701EA /* EventMessageDecoder.swift */; };
 		4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */; };
@@ -139,7 +140,6 @@
 		8A8EF944219C40630098A27B /* RTCSessionDescription+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF943219C40630098A27B /* RTCSessionDescription+JSON.swift */; };
 		8A8EF946219C46AD0098A27B /* SdpOfferDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF945219C46AD0098A27B /* SdpOfferDecoder.swift */; };
 		8A8EF948219C47B90098A27B /* IceCandidateDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF947219C47B90098A27B /* IceCandidateDecoder.swift */; };
-		8A8EF94A219C47FD0098A27B /* RTCICECandidate+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF949219C47FD0098A27B /* RTCICECandidate+JSON.swift */; };
 		8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF94C219C52480098A27B /* AnyMessageDecoder.swift */; };
 		8A8EF94F219D55B60098A27B /* MessageStreamProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF94E219D55B60098A27B /* MessageStreamProtocol.swift */; };
 		8A8EF955219D581D0098A27B /* MessageStreamMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF954219D581D0098A27B /* MessageStreamMock.swift */; };
@@ -325,6 +325,7 @@
 		4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewModel.swift; sourceTree = "<group>"; };
 		4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewModel.swift; sourceTree = "<group>"; };
 		4E994BF121624835009C44C5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		4EA602A221D536BA00953E8B /* RTCICECandidate+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RTCICECandidate+JSON.swift"; sourceTree = "<group>"; };
 		4EA662F4216CBA36009AD3B6 /* Common-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F5216CBC8A009AD3B6 /* Common-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Development.xcconfig"; sourceTree = "<group>"; };
 		4EA662F6216CBCEC009AD3B6 /* Common-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Staging.xcconfig"; sourceTree = "<group>"; };
@@ -391,7 +392,6 @@
 		8A8EF943219C40630098A27B /* RTCSessionDescription+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RTCSessionDescription+JSON.swift"; sourceTree = "<group>"; };
 		8A8EF945219C46AD0098A27B /* SdpOfferDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdpOfferDecoder.swift; sourceTree = "<group>"; };
 		8A8EF947219C47B90098A27B /* IceCandidateDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceCandidateDecoder.swift; sourceTree = "<group>"; };
-		8A8EF949219C47FD0098A27B /* RTCICECandidate+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RTCICECandidate+JSON.swift"; sourceTree = "<group>"; };
 		8A8EF94C219C52480098A27B /* AnyMessageDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyMessageDecoder.swift; sourceTree = "<group>"; };
 		8A8EF94E219D55B60098A27B /* MessageStreamProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStreamProtocol.swift; sourceTree = "<group>"; };
 		8A8EF954219D581D0098A27B /* MessageStreamMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStreamMock.swift; sourceTree = "<group>"; };
@@ -982,7 +982,7 @@
 				8AFAE5B9219C0314007013BC /* String+JSON.swift */,
 				8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */,
 				8A8EF943219C40630098A27B /* RTCSessionDescription+JSON.swift */,
-				8A8EF949219C47FD0098A27B /* RTCICECandidate+JSON.swift */,
+				4EA602A221D536BA00953E8B /* RTCICECandidate+JSON.swift */,
 			);
 			path = Json;
 			sourceTree = "<group>";
@@ -1612,8 +1612,8 @@
 				4EB6DE6521B67C11004701EA /* EventMessageDecoder.swift in Sources */,
 				4E5731982170BA7400DEAF0B /* BabiesViewSelectable.swift in Sources */,
 				4E8E056821AD8327009ACE05 /* UIFont+BabyMonitor.swift in Sources */,
+				4EA602A321D536BA00953E8B /* RTCICECandidate+JSON.swift in Sources */,
 				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
-				8A8EF94A219C47FD0098A27B /* RTCICECandidate+JSON.swift in Sources */,
 				4E57319B2170BA7400DEAF0B /* HasWindow.swift in Sources */,
 				4E55436121D4C33A005C41FD /* WebrtcServerManager.swift in Sources */,
 				4E8E056C21AD8E25009ACE05 /* SpecifyDeviceOnboardingView.swift in Sources */,
