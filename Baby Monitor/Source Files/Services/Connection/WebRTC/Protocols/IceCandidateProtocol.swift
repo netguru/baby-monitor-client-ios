@@ -9,4 +9,4 @@ protocol IceCandidateProtocol {
     var sdp: String { get }
 }
 
-extension RTCIceCandidate: IceCandidateProtocol {}
+extension RTCICECandidate: IceCandidateProtocol {}
