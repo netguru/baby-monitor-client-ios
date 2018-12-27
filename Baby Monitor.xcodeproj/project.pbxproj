@@ -111,10 +111,6 @@
 		8A7A60CC21A40D2F00488ED4 /* CryingDetectionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60CB21A40D2F00488ED4 /* CryingDetectionServiceTests.swift */; };
 		8A7A60CE21A40D3B00488ED4 /* MicrophoneTrackerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60CD21A40D3B00488ED4 /* MicrophoneTrackerMock.swift */; };
 		8A7A60D221A416E300488ED4 /* WebRtcClientManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60D121A416E300488ED4 /* WebRtcClientManagerProtocol.swift */; };
-		8A7A60D421A4180B00488ED4 /* IceCandidateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60D321A4180B00488ED4 /* IceCandidateProtocol.swift */; };
-		8A7A60D621A4187C00488ED4 /* SessionDescriptionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60D521A4187C00488ED4 /* SessionDescriptionProtocol.swift */; };
-		8A7A60DC21A41DD700488ED4 /* PeerConnectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60DB21A41DD700488ED4 /* PeerConnectionProtocol.swift */; };
-		8A7A60DE21A41E5700488ED4 /* MediaConstraintsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60DD21A41E5700488ED4 /* MediaConstraintsProtocol.swift */; };
 		8A7A60E321A4327200488ED4 /* WebRtcClientManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60E221A4327200488ED4 /* WebRtcClientManagerTests.swift */; };
 		8A7A60E521A432F500488ED4 /* PeerConnectionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60E421A432F500488ED4 /* PeerConnectionMock.swift */; };
 		8A7A60E721A437C500488ED4 /* SessionDescriptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60E621A437C500488ED4 /* SessionDescriptionMock.swift */; };
@@ -137,8 +133,6 @@
 		8A7A612A21A59E9A00488ED4 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612921A59E9A00488ED4 /* AlertPresenter.swift */; };
 		8A7A612C21A59EB000488ED4 /* RecorderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612B21A59EB000488ED4 /* RecorderFactory.swift */; };
 		8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */; };
-		8A7A613021A68DA300488ED4 /* MediaStreamProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612F21A68DA300488ED4 /* MediaStreamProtocol.swift */; };
-		8A7A613321A68DF000488ED4 /* StreamFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613221A68DF000488ED4 /* StreamFactoryProtocol.swift */; };
 		8A7A613721A6A05200488ED4 /* MediaStreamMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613621A6A05200488ED4 /* MediaStreamMock.swift */; };
 		8A7A613A21A6A58F00488ED4 /* ServerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613921A6A58F00488ED4 /* ServerViewModelTests.swift */; };
 		8A7A613C21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613B21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift */; };
@@ -387,10 +381,6 @@
 		8A7A60CB21A40D2F00488ED4 /* CryingDetectionServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CryingDetectionServiceTests.swift; path = "Baby MonitorTests/Services/CryingDetectionServiceTests.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A60CD21A40D3B00488ED4 /* MicrophoneTrackerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophoneTrackerMock.swift; sourceTree = "<group>"; };
 		8A7A60D121A416E300488ED4 /* WebRtcClientManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcClientManagerProtocol.swift; sourceTree = "<group>"; };
-		8A7A60D321A4180B00488ED4 /* IceCandidateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceCandidateProtocol.swift; sourceTree = "<group>"; };
-		8A7A60D521A4187C00488ED4 /* SessionDescriptionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDescriptionProtocol.swift; sourceTree = "<group>"; };
-		8A7A60DB21A41DD700488ED4 /* PeerConnectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnectionProtocol.swift; sourceTree = "<group>"; };
-		8A7A60DD21A41E5700488ED4 /* MediaConstraintsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaConstraintsProtocol.swift; sourceTree = "<group>"; };
 		8A7A60E221A4327200488ED4 /* WebRtcClientManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcClientManagerTests.swift; sourceTree = "<group>"; };
 		8A7A60E421A432F500488ED4 /* PeerConnectionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnectionMock.swift; sourceTree = "<group>"; };
 		8A7A60E621A437C500488ED4 /* SessionDescriptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDescriptionMock.swift; sourceTree = "<group>"; };
@@ -413,8 +403,6 @@
 		8A7A612921A59E9A00488ED4 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertPresenter.swift; path = "Baby Monitor/Source Files/Services/Other/AlertPresenter.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A612B21A59EB000488ED4 /* RecorderFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderFactory.swift; sourceTree = "<group>"; };
 		8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerProtocol.swift; sourceTree = "<group>"; };
-		8A7A612F21A68DA300488ED4 /* MediaStreamProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStreamProtocol.swift; sourceTree = "<group>"; };
-		8A7A613221A68DF000488ED4 /* StreamFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamFactoryProtocol.swift; sourceTree = "<group>"; };
 		8A7A613621A6A05200488ED4 /* MediaStreamMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStreamMock.swift; sourceTree = "<group>"; };
 		8A7A613921A6A58F00488ED4 /* ServerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServerViewModelTests.swift; path = "Baby MonitorTests/Modules/Server/ServerViewModelTests.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A613B21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerMock.swift; sourceTree = "<group>"; };
@@ -1067,12 +1055,6 @@
 		8A7A613121A68DD300488ED4 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				8A7A60D321A4180B00488ED4 /* IceCandidateProtocol.swift */,
-				8A7A60D521A4187C00488ED4 /* SessionDescriptionProtocol.swift */,
-				8A7A60DB21A41DD700488ED4 /* PeerConnectionProtocol.swift */,
-				8A7A60DD21A41E5700488ED4 /* MediaConstraintsProtocol.swift */,
-				8A7A612F21A68DA300488ED4 /* MediaStreamProtocol.swift */,
-				8A7A613221A68DF000488ED4 /* StreamFactoryProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1656,7 +1638,6 @@
 			files = (
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
 				4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */,
-				8A7A60DE21A41E5700488ED4 /* MediaConstraintsProtocol.swift in Sources */,
 				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				8A7A611721A59E3B00488ED4 /* CryingEventService.swift in Sources */,
 				8A045D5B21A3F685006A2E10 /* (null) in Sources */,
@@ -1680,7 +1661,6 @@
 				4E8E056E21AD8E72009ACE05 /* OnboardingButton.swift in Sources */,
 				8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
-				8A7A60DC21A41DD700488ED4 /* PeerConnectionProtocol.swift in Sources */,
 				ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */,
 				8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
@@ -1688,7 +1668,6 @@
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
 				4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */,
 				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
-				8A7A613021A68DA300488ED4 /* MediaStreamProtocol.swift in Sources */,
 				4E57319C2170BA7400DEAF0B /* BabyMonitorCellSelectable.swift in Sources */,
 				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
 				8A7A611621A59E3B00488ED4 /* CryingDetectionService.swift in Sources */,
@@ -1711,7 +1690,6 @@
 				8AA7CBDC218C559000FCF62A /* LullabyPlayerProtocol.swift in Sources */,
 				4E55435D21D4C33A005C41FD /* WebrtcServerManagerDelegate.swift in Sources */,
 				8A7A611521A59E3B00488ED4 /* AudioRecordService.swift in Sources */,
-				8A7A60D621A4187C00488ED4 /* SessionDescriptionProtocol.swift in Sources */,
 				4EB6DE6321B6687D004701EA /* EventMessage.swift in Sources */,
 				8A8EF944219C40630098A27B /* RTCSessionDescription+JSON.swift in Sources */,
 				8AFAE5C3219C1FE3007013BC /* SdpAnswerDecoder.swift in Sources */,
@@ -1742,7 +1720,6 @@
 				8A7A608821A403D500488ED4 /* MicrophoneTrackerProtocol.swift in Sources */,
 				4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */,
 				8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */,
-				8A7A60D421A4180B00488ED4 /* IceCandidateProtocol.swift in Sources */,
 				4E2F413521B1441600513843 /* OnboardingContinuableViewController.swift in Sources */,
 				8A7A60D221A416E300488ED4 /* WebRtcClientManagerProtocol.swift in Sources */,
 				8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */,
@@ -1754,7 +1731,6 @@
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
-				8A7A613321A68DF000488ED4 /* StreamFactoryProtocol.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
 				4E36A3AE21B15F850058DAD2 /* OnboardingClientSetupViewController.swift in Sources */,
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,

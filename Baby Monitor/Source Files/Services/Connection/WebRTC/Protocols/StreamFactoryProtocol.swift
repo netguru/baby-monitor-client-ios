@@ -18,7 +18,7 @@ extension RTCPeerConnectionFactory: StreamFactoryProtocol {
             return
         }
         let videoSource = self.videoSource()
-        let capturer = RTCCameraVideoCapturer(delegate: videoSource)
+        let capturer = RTCVideoCapturer(delegate: videoSource)
         // Putting nil as handler crashes - hence the empty handler
         capturer.startCapture(with: captureDevice, format: captureDevice.activeFormat, fps: 25) { _ in }
         let videoTrack = self.videoTrack(with: videoSource, trackId: WebRtcStreamId.videoTrack.rawValue)

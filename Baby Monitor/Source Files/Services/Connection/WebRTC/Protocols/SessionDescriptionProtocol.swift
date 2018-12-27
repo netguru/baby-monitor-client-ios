@@ -9,7 +9,11 @@ protocol SessionDescriptionProtocol {
 }
 
 extension RTCSessionDescription: SessionDescriptionProtocol {
+    var sdp: String {
+        return self.description
+    }
+    
     var stringType: String {
-        return type.canonicalName
+        return type
     }
 }

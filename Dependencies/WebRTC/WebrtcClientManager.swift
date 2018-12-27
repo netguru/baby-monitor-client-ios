@@ -8,7 +8,24 @@
 
 import Foundation
 import AVFoundation
-public class WebrtcClientManager: NSObject, RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate {
+import RxSwift
+public class WebrtcClientManager: NSObject, RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate, WebRtcClientManagerProtocol {
+    
+    var sdpOffer: Observable<RTCSessionDescription> {
+        return sdpOfferPublisher
+    }
+    let sdpOfferPublisher = PublishSubject<RTCSessionDescription>()
+    
+    var iceCandidate: Observable<RTCICECandidate> {
+        return iceCandidatePublisher
+    }
+    let iceCandidatePublisher = PublishSubject<RTCICECandidate>()
+    
+    var mediaStream: Observable<RTCMediaStream> {
+        return mediaStreamPublisher
+    }
+    let mediaStreamPublisher = PublishSubject<RTCMediaStream>()
+    
     
   var peerConnection: RTCPeerConnection?
   var peerConnectionFactory: RTCPeerConnectionFactory?
@@ -26,7 +43,7 @@ public class WebrtcClientManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
     super.init()
   }
   
-  public func startWebrtcConnection() {
+  public func startWebRtcConnection() {
     peerConnectionFactory = RTCPeerConnectionFactory()
     peerConnection = peerConnectionFactory?.peerConnection(withICEServers: [], constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [RTCPair(key: "DtlsSrtpKeyAgreement", value: "true")]), delegate: self)
       self.createOffer()
@@ -38,9 +55,9 @@ public class WebrtcClientManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
   }
   
   public func createConstraints() -> RTCMediaConstraints {
-    let pairOfferToReceiveAudio = RTCPair(key: "OfferToReceiveAudio", value: "true")
-    let pairOfferToReceiveVideo = RTCPair(key: "OfferToReceiveVideo", value: "true")
-    let pairDtlsSrtpKeyAgreement = RTCPair(key: "DtlsSrtpKeyAgreement", value: "true")
+    let pairOfferToReceiveAudio = RTCPair(key: "OfferToReceiveAudio", value: "true")!
+    let pairOfferToReceiveVideo = RTCPair(key: "OfferToReceiveVideo", value: "true")!
+    let pairDtlsSrtpKeyAgreement = RTCPair(key: "DtlsSrtpKeyAgreement", value: "true")!
     let peerConnectionConstraints = RTCMediaConstraints(mandatoryConstraints: [pairOfferToReceiveVideo, pairOfferToReceiveAudio], optionalConstraints: [pairDtlsSrtpKeyAgreement])
     return peerConnectionConstraints!
   }
@@ -69,12 +86,12 @@ public class WebrtcClientManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
   }
     public func peerConnection(_ peerConnection: RTCPeerConnection, addedStream stream: RTCMediaStream) {
     print("Log: PEER CONNECTION:- Stream Added")
-    self.delegate?.remoteStreamAvailable(stream: stream)
+        mediaStreamPublisher.onNext(stream)
   }
   
     public func peerConnection(_ peerConnection: RTCPeerConnection, gotICECandidate candidate: RTCICECandidate) {
     print("PEER CONNECTION:- Got ICE Candidate - \(candidate)")
-        self.delegate?.iceCandidatesCreated(iceCandidate: candidate)
+        iceCandidatePublisher.onNext(candidate)
  
   }
     public func peerConnection(_ peerConnection: RTCPeerConnection, iceConnectionChanged newState: RTCICEConnectionState) {
@@ -102,20 +119,14 @@ public class WebrtcClientManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
     if let er = error {
       print(er.localizedDescription)
     }
-    if sdp == nil {
-      print("Problem creating SDP - \(sdp)")
-    } else {
-      
-      print("SDP created -: \(sdp)")
-    }
     self.localSDP = sdp
         self.peerConnection?.setLocalDescriptionWith(self, sessionDescription: sdp)
-        self.delegate?.offerSDPCreated(sdp: sdp)
+        sdpOfferPublisher.onNext(sdp)
   }
   
     public func peerConnection(_ peerConnection: RTCPeerConnection, didSetSessionDescriptionWithError error: Error?) {
     if error != nil {
-        print("sdp error \(error?.localizedDescription) \(error)")
+        print("sdp error \(String(describing: error?.localizedDescription)) \(String(describing: error))")
     }
   }
   
