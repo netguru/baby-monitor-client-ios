@@ -45,7 +45,7 @@ final class AppDependencies {
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient(), urlConfiguration: urlConfiguration)
     private(set) lazy var clientService: ClientServiceProtocol = ClientService(websocketsService: websocketsService, localNotificationService: localNotificationService, messageServer: messageServer)
     private(set) lazy var serverService: ServerServiceProtocol = ServerService(
-        webRtcServerManager: webRtcServer(peerConnection(), webRtcStreamFactory),
+        webRtcServerManager: webRtcServer(),
         messageServer: messageServer,
         netServiceServer: netServiceServer,
         webRtcDecoders: webRtcMessageDecoders,

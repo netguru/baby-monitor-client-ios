@@ -7,14 +7,14 @@ import Foundation
 import RxSwift
 
 protocol ServerServiceProtocol: AnyObject {
-    var localStreamObservable: Observable<MediaStreamProtocol> { get }
+    var localStreamObservable: Observable<RTCMediaStream> { get }
     var audioRecordServiceErrorObservable: Observable<Void> { get }
     func startStreaming()
 }
 
 final class ServerService: ServerServiceProtocol {
     
-    var localStreamObservable: Observable<MediaStreamProtocol> {
+    var localStreamObservable: Observable<RTCMediaStream> {
         return webRtcServerManager.mediaStream
     }
     lazy var audioRecordServiceErrorObservable = audioRecordServiceErrorPublisher.asObservable()
