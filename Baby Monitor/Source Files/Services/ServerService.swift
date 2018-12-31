@@ -1,45 +1,54 @@
 //
-//  ServerViewModel.swift
+//  ServerService.swift
 //  Baby Monitor
 //
 
 import Foundation
-import WebRTC
 import RxSwift
 
-final class ServerViewModel {
+final class ServerService {
     
     var localStream: Observable<MediaStreamProtocol> {
         return webRtcServerManager.mediaStream
     }
     var onAudioRecordServiceError: (() -> Void)?
     
+    private var isCryingMessageReceivedFromClient = false
+    private var timer: Timer?
     private let webRtcServerManager: WebRtcServerManagerProtocol
     private let messageServer: MessageServerProtocol
     private let netServiceServer: NetServiceServerProtocol
     private let cryingEventService: CryingEventsServiceProtocol
     private let babiesRepository: BabiesRepositoryProtocol
-    private let bag = DisposeBag()
+    private let websocketsService: WebSocketsServiceProtocol
+    private let cacheService: CacheServiceProtocol
+    private let disposeBag = DisposeBag()
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
     
-    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol) {
+    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, websocketsService: WebSocketsServiceProtocol, cacheService: CacheServiceProtocol) {
         self.cryingEventService = cryingService
         self.babiesRepository = babiesRepository
         self.webRtcServerManager = webRtcServerManager
         self.messageServer = messageServer
         self.netServiceServer = netServiceServer
+        self.websocketsService = websocketsService
+        self.cacheService = cacheService
         self.decoders = decoders
         setup()
         rxSetup()
     }
     
-    deinit {
+    func stop() {
         netServiceServer.stop()
         messageServer.stop()
         webRtcServerManager.disconnect()
         cryingEventService.stop()
     }
-
+    
+    func sendCry() {
+        cryingEventService.a()
+    }
+    
     private func setup() {
         if babiesRepository.getCurrent() == nil {
             let baby = Baby(name: "Anonymous")
@@ -49,13 +58,19 @@ final class ServerViewModel {
     }
     
     private func rxSetup() {
-        cryingEventService.cryingEventObservable.subscribe(onNext: { [weak self] cryingEventMessage in
+        cryingEventService.cryingEventObservable.subscribe(onNext: { [unowned self] cryingEventMessage in
             let data = try! JSONEncoder().encode(cryingEventMessage)
             guard let jsonString = String(data: data, encoding: .utf8) else {
                 return
             }
-            self?.messageServer.send(message: jsonString)
-        }).disposed(by: bag)
+            self.messageServer.send(message: jsonString)
+            self.timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false, block: { _ in
+                if !self.isCryingMessageReceivedFromClient {
+                    // TODO: send push
+                }
+                self.isCryingMessageReceivedFromClient = false
+            })
+        }).disposed(by: disposeBag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
                 guard let message = message else {
@@ -63,12 +78,18 @@ final class ServerViewModel {
                 }
                 self.handle(message: message)
             })
-            .disposed(by: bag)
+            .disposed(by: disposeBag)
         Observable.merge(sdpAnswerJson(), iceCandidateJson())
             .subscribe(onNext: { [unowned self] json in
                 self.messageServer.send(message: json)
             })
-            .disposed(by: bag)
+            .disposed(by: disposeBag)
+        websocketsService.messageReceivedObservable.subscribe(onNext: { [unowned self] _ in
+            self.isCryingMessageReceivedFromClient = true
+        }).disposed(by: disposeBag)
+        websocketsService.pushNotificationsTokenObservable.subscribe(onNext: { [unowned self] token in
+            <#code#>
+        }).disposed(by: disposeBag)
     }
     
     private func handle(message: WebRtcMessage) {
@@ -90,7 +111,7 @@ final class ServerViewModel {
                     return Observable.empty()
                 }
                 return Observable.just(jsonString)
-            }
+        }
     }
     
     private func iceCandidateJson() -> Observable<String> {
@@ -101,7 +122,7 @@ final class ServerViewModel {
                     return Observable.empty()
                 }
                 return Observable.just(jsonString)
-            }
+        }
     }
     
     /// Starts streaming

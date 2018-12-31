@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootCoordinator?.start()
         window?.makeKeyAndVisible()
         setupAppearance()
+        setupNotifications(application: application)
         return true
     }
     
@@ -25,6 +26,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if REGULAR_BUILD
             appDependencies.memoryCleaner.cleanMemoryIfNeeded()
         #endif
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.reduce("") { $0 + String(format: "%02x", $1) }
+        appDependencies.cacheService.pushNotificationsToken = token
+    }
+    
+    private func setupNotifications(application: UIApplication) {
+        appDependencies.localNotificationService.getNotificationsAllowance { isGranted in
+            if isGranted {
+                DispatchQueue.main.async {
+                    application.registerForRemoteNotifications()
+                }
+            }
+        }
     }
     
     private func setupAppearance() {

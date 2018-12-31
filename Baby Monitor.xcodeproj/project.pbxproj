@@ -76,10 +76,12 @@
 		4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */; };
 		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
-		4E9BD20121CA702A00FEE46C /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9BD20021CA702A00FEE46C /* ClientService.swift */; };
+		4EA1007F21CBE61C00AEFA48 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA1007E21CBE61C00AEFA48 /* CacheService.swift */; };
 		4EAFA8F221C7CDCE00D88117 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFA8F121C7CDCE00D88117 /* NotificationService.swift */; };
 		4EB6DE6321B6687D004701EA /* EventMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6DE6221B6687D004701EA /* EventMessage.swift */; };
 		4EB6DE6521B67C11004701EA /* EventMessageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6DE6421B67C11004701EA /* EventMessageDecoder.swift */; };
+		4EBACE4621CBC27700A32FAE /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBACE4521CBC27700A32FAE /* ClientService.swift */; };
+		4EBACE4821CBC4AD00A32FAE /* ServerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBACE4721CBC4AD00A32FAE /* ServerService.swift */; };
 		4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
 		8A045D5B21A3F685006A2E10 /* WebRtcStreamId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A045D5A21A3F685006A2E10 /* WebRtcStreamId.swift */; };
@@ -325,7 +327,7 @@
 		4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewModel.swift; sourceTree = "<group>"; };
 		4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewModel.swift; sourceTree = "<group>"; };
 		4E994BF121624835009C44C5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		4E9BD20021CA702A00FEE46C /* ClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
+		4EA1007E21CBE61C00AEFA48 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
 		4EA662F4216CBA36009AD3B6 /* Common-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Base.xcconfig"; sourceTree = "<group>"; };
 		4EA662F5216CBC8A009AD3B6 /* Common-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Development.xcconfig"; sourceTree = "<group>"; };
 		4EA662F6216CBCEC009AD3B6 /* Common-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Common-Staging.xcconfig"; sourceTree = "<group>"; };
@@ -335,6 +337,9 @@
 		4EAFA8F121C7CDCE00D88117 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		4EB6DE6221B6687D004701EA /* EventMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMessage.swift; sourceTree = "<group>"; };
 		4EB6DE6421B67C11004701EA /* EventMessageDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMessageDecoder.swift; sourceTree = "<group>"; };
+		4EBACE4521CBC27700A32FAE /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
+		4EBACE4721CBC4AD00A32FAE /* ServerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerService.swift; sourceTree = "<group>"; };
+		4EBACE4921CBD39800A32FAE /* BabyMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyMonitor.entitlements; sourceTree = "<group>"; };
 		4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConnectingCoordinator.swift; sourceTree = "<group>"; };
 		4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		6958C860204FB0CCE8F3AE3E /* Pods-Baby MonitorTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.staging.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -609,6 +614,7 @@
 		4E5731A02170BA9D00DEAF0B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4EA1007D21CBE60F00AEFA48 /* Cache */,
 				4EAFA8F021C7CDBB00D88117 /* Notifications */,
 				8A7A612821A59E9100488ED4 /* Other */,
 				8A7A608221A4024100488ED4 /* ErrorHandler */,
@@ -675,7 +681,6 @@
 		4E6EA7932161FB81005575E0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				4E9BD1FF21CA700D00FEE46C /* Client */,
 				4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */,
 				ECB2428421AD4DCC00B4E409 /* Intro */,
 				EC4C9945216B944B0093EDFC /* Onboarding */,
@@ -792,12 +797,12 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		4E9BD1FF21CA700D00FEE46C /* Client */ = {
+		4EA1007D21CBE60F00AEFA48 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				4E9BD20021CA702A00FEE46C /* ClientService.swift */,
+				4EA1007E21CBE61C00AEFA48 /* CacheService.swift */,
 			);
-			path = Client;
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		4EAFA8F021C7CDBB00D88117 /* Notifications */ = {
@@ -943,9 +948,11 @@
 		8A7A608121A4020B00488ED4 /* CryingDetection */ = {
 			isa = PBXGroup;
 			children = (
+				4EBACE4521CBC27700A32FAE /* ClientService.swift */,
 				8A7A611221A59E3A00488ED4 /* AudioRecordService.swift */,
 				8A7A611321A59E3B00488ED4 /* CryingDetectionService.swift */,
 				8A7A611421A59E3B00488ED4 /* CryingEventService.swift */,
+				4EBACE4721CBC4AD00A32FAE /* ServerService.swift */,
 			);
 			name = CryingDetection;
 			sourceTree = "<group>";
@@ -1222,6 +1229,7 @@
 		EC82B558213EA072005CA395 /* Baby Monitor */ = {
 			isa = PBXGroup;
 			children = (
+				4EBACE4921CBD39800A32FAE /* BabyMonitor.entitlements */,
 				4E5BEB13215E5EC60056E5CC /* Extensions */,
 				EC82B579213EA0CB005CA395 /* Source Files */,
 				EC82B57E213EA142005CA395 /* Resources */,
@@ -1387,6 +1395,11 @@
 					EC82B555213EA072005CA395 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1000;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					EC82B569213EA074005CA395 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -1625,6 +1638,7 @@
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E60697821AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift in Sources */,
 				8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */,
+				4EA1007F21CBE61C00AEFA48 /* CacheService.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
 				4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
 				EC8A8FF721AE950B00B5FCCF /* IntroFeatureViewController.swift in Sources */,
@@ -1691,7 +1705,7 @@
 				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* URLConfiguration.swift in Sources */,
 				4E8E057021AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift in Sources */,
-				4E9BD20121CA702A00FEE46C /* ClientService.swift in Sources */,
+				4EBACE4621CBC27700A32FAE /* ClientService.swift in Sources */,
 				8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */,
 				4E8E056321AD81D4009ACE05 /* BaseOnboardingView.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
@@ -1715,6 +1729,7 @@
 				8AFAE5AF219AAE63007013BC /* WebSocketServerProtocol.swift in Sources */,
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
+				4EBACE4821CBC4AD00A32FAE /* ServerService.swift in Sources */,
 				8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				ECB2428621AD4E1100B4E409 /* IntroCoordinator.swift in Sources */,
 				8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */,
@@ -1841,6 +1856,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Baby Monitor/BabyMonitor.entitlements";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9HJ69C5G9K;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1912,6 +1928,7 @@
 					"\"WebRTC\"",
 				);
 				PROVISIONING_PROFILE_SPECIFIER = "BabyMonitor Development";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Development;
 		};
@@ -1919,7 +1936,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Baby Monitor/BabyMonitor.entitlements";
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 9HJ69C5G9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dependencies/Underdark",
@@ -1988,6 +2007,8 @@
 					"-framework",
 					"\"WebRTC\"",
 				);
+				PROVISIONING_PROFILE_SPECIFIER = "BabyMonitor Production";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Production;
 		};
@@ -2145,7 +2166,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Baby Monitor/BabyMonitor.entitlements";
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 9HJ69C5G9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dependencies/Underdark",
@@ -2214,6 +2237,8 @@
 					"-framework",
 					"\"WebRTC\"",
 				);
+				PROVISIONING_PROFILE_SPECIFIER = "BabyMonitor Staging";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Staging;
 		};
