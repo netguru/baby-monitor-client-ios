@@ -3,8 +3,6 @@
 //  Baby Monitor
 //
 
-import WebRTC
-
 final class SdpAnswerDecoder: MessageDecoderProtocol {
     
     typealias T = WebRtcMessage

@@ -6,8 +6,6 @@ PODS:
   - AudioKit/UI (4.5.4):
     - AudioKit/Core
   - Differentiator (3.1.0)
-  - GoogleWebRTC (1.1.25544)
-  - MobileVLCKit (3.1.5)
   - PocketSocket (1.0.1):
     - PocketSocket/Client (= 1.0.1)
     - PocketSocket/Core (= 1.0.1)
@@ -41,8 +39,6 @@ PODS:
 
 DEPENDENCIES:
   - AudioKit (~> 4.5.4)
-  - GoogleWebRTC (~> 1.1.2)
-  - MobileVLCKit (~> 3.1)
   - PocketSocket (~> 1.0.1)
   - RealmSwift (~> 3.11.0)
   - RxBlocking (~> 4.0)
@@ -56,8 +52,6 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AudioKit
     - Differentiator
-    - GoogleWebRTC
-    - MobileVLCKit
     - PocketSocket
     - Realm
     - RealmSwift
@@ -72,8 +66,6 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AudioKit: af3f5b73e22f85f3cd03076fea8afbb9658f0938
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  GoogleWebRTC: b73841295d587468f368d146144753b138ed8014
-  MobileVLCKit: 4d44e56380d0ee41c76f9ec7015d3a4b62a963a3
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
   Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
   RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
@@ -85,6 +77,6 @@ SPEC CHECKSUMS:
   RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: bd464011f0af7eb03ec398d8470c1505969bb67d
+PODFILE CHECKSUM: 41b1209fca92a546fb6d45bc160db75ba7598feb
 
 COCOAPODS: 1.6.0.beta.2

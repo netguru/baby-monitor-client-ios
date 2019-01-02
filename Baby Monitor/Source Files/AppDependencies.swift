@@ -5,7 +5,6 @@
 
 import Foundation
 import RealmSwift
-import WebRTC
 import PocketSocket
 import AudioKit
 
@@ -22,19 +21,10 @@ final class AppDependencies {
 
     private(set) lazy var netServiceClient: () -> NetServiceClientProtocol = { NetServiceClient() }
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
-    private(set) lazy var peerConnection: () -> RTCPeerConnection = {
-        let peerConnectionFactory = RTCPeerConnectionFactory()
-        return peerConnectionFactory.peerConnection(with: RTCConfiguration(), constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement.rawValue: "true"]), delegate: nil)
-    }
-    private(set) lazy var webRtcStreamFactory: StreamFactoryProtocol = RTCPeerConnectionFactory()
-    private(set) lazy var webRtcServer: (RTCPeerConnection, StreamFactoryProtocol) -> WebRtcServerManagerProtocol = { connection, streamFactory in
-        let serverManager = WebRtcServerManager(peerConnection: connection, streamFactory: streamFactory)
-        connection.delegate = serverManager
-        return serverManager
-    }
-    private(set) lazy var webRtcClient: WebRtcClientManagerProtocol = makeWebRtcClient(peerConnection())
+    private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = { WebrtcServerManager() }
+    private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = { WebrtcClientManager() }
     private(set) lazy var websocketsService: WebSocketsServiceProtocol = WebSocketsService(
-        webRtcClientManager: webRtcClient,
+        webRtcClientManager: webRtcClient(),
         webSocket: webSocket(urlConfiguration.url),
         cryingEventsRepository: babiesRepository,
         webRtcMessageDecoders: webRtcMessageDecoders,
@@ -67,10 +57,4 @@ final class AppDependencies {
     private(set) lazy var lullabiesRepository: LullabiesRepositoryProtocol = RealmLullabiesRepository(realm: try! Realm())
     /// Service for handling errors and showing error alerts
     private(set) var errorHandler: ErrorHandlerProtocol = ErrorHandler()
-    
-    private func makeWebRtcClient(_ connection: RTCPeerConnection) -> WebRtcClientManagerProtocol {
-        let clientManager = WebRtcClientManager(peerConnection: connection)
-        connection.delegate = clientManager
-        return clientManager
-    }
 }

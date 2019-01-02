@@ -6,7 +6,6 @@
 import UIKit
 import RxCocoa
 import RxSwift
-import WebRTC
 
 final class CameraPreviewView: BaseView {
     

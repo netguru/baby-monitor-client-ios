@@ -5,7 +5,6 @@
 
 @testable import BabyMonitor
 import RxSwift
-import WebRTC
 
 final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
 

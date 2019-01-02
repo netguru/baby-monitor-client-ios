@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-import WebRTC
 import RxSwift
 
 protocol WebRtcClientManagerProtocol {
@@ -13,22 +12,22 @@ protocol WebRtcClientManagerProtocol {
     /// Sets session description answer
     ///
     /// - Parameter sdp: session description protocol to add
-    func setAnswerSDP(sdp: SessionDescriptionProtocol)
+    func setAnswerSDP(sdp: RTCSessionDescription)
 
     /// Adds ice candidate
     ///
     /// - Parameter iceCandidate: ice candidate to add
-    func setICECandidates(iceCandidate: IceCandidateProtocol)
+    func setICECandidates(iceCandidate: RTCICECandidate)
 
     /// Closes connection
     func disconnect()
 
     /// Observable emitting session description offer
-    var sdpOffer: Observable<SessionDescriptionProtocol> { get }
+    var sdpOffer: Observable<RTCSessionDescription> { get }
 
     /// Observable emitting ice candidates
-    var iceCandidate: Observable<IceCandidateProtocol> { get }
+    var iceCandidate: Observable<RTCICECandidate> { get }
 
     /// Observable emitting media stream
-    var mediaStream: Observable<MediaStreamProtocol> { get }
+    var mediaStream: Observable<RTCMediaStream> { get }
 }

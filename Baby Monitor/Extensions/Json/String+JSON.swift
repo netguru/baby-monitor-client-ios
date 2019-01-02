@@ -3,6 +3,8 @@
 //  Baby Monitor
 //
 
+import Foundation
+
 extension String {
     
     var jsonDictionary: [String: [AnyHashable: Any]]? {

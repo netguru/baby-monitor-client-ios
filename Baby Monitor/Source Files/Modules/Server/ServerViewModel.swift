@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import WebRTC
 import RxSwift
 
 final class ServerViewModel {
@@ -12,7 +11,7 @@ final class ServerViewModel {
     private let webRtcServerManager: WebRtcServerManagerProtocol
     private let messageServer: MessageServerProtocol
     private let netServiceServer: NetServiceServerProtocol
-    var localStream: Observable<MediaStreamProtocol> {
+    var localStream: Observable<RTCMediaStream> {
         return webRtcServerManager.mediaStream
     }
     var onAudioRecordServiceError: (() -> Void)?

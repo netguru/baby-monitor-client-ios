@@ -11,9 +11,16 @@ protocol WebSocketsServiceProtocol: AnyObject {
     
     /// Open websockets connection
     func play()
+    
+    var mediaStream: Observable<RTCMediaStream> { get }
+    
+    // TODO: Stop
 }
 
 final class WebSocketsService: WebSocketsServiceProtocol {
+    var mediaStream: Observable<RTCMediaStream> {
+        return webRtcClientManager.mediaStream
+    }
     
     var onCryingEventOccurence: (() -> Void)?
     

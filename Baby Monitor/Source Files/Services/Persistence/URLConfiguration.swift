@@ -3,6 +3,8 @@
 //  Baby Monitor
 //
 
+import Foundation
+
 protocol URLConfiguration: AnyObject {
     
     /// Holds server url
