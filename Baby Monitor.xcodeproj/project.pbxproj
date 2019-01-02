@@ -28,7 +28,6 @@
 		4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3943302175D4AD00AD7582 /* NetServiceClient.swift */; };
 		4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3943322175E50200AD7582 /* NetServiceServer.swift */; };
 		4E43FCB321B68DEC00D18007 /* WebSocketsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E43FCB221B68DEC00D18007 /* WebSocketsService.swift */; };
-		4E55435C21D4C33A005C41FD /* WebRTC.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4E55433621D4C33A005C41FD /* WebRTC.podspec */; };
 		4E55435D21D4C33A005C41FD /* WebrtcServerManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E55435321D4C33A005C41FD /* WebrtcServerManagerDelegate.swift */; };
 		4E55435E21D4C33A005C41FD /* RTCICEServer+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E55435421D4C33A005C41FD /* RTCICEServer+JSON.m */; };
 		4E55436021D4C33A005C41FD /* WebrtcClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E55435721D4C33A005C41FD /* WebrtcClientManager.swift */; };
@@ -243,7 +242,6 @@
 		4E3943302175D4AD00AD7582 /* NetServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceClient.swift; sourceTree = "<group>"; };
 		4E3943322175E50200AD7582 /* NetServiceServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceServer.swift; sourceTree = "<group>"; };
 		4E43FCB221B68DEC00D18007 /* WebSocketsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketsService.swift; sourceTree = "<group>"; };
-		4E55433621D4C33A005C41FD /* WebRTC.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WebRTC.podspec; sourceTree = "<group>"; };
 		4E55433921D4C33A005C41FD /* RTCPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPair.h; sourceTree = "<group>"; };
 		4E55433A21D4C33A005C41FD /* RTCStatsReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCStatsReport.h; sourceTree = "<group>"; };
 		4E55433B21D4C33A005C41FD /* RTCPeerConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPeerConnectionDelegate.h; sourceTree = "<group>"; };
@@ -532,7 +530,6 @@
 		4E55433521D4C33A005C41FD /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				4E55433621D4C33A005C41FD /* WebRTC.podspec */,
 				4E55433721D4C33A005C41FD /* WebRTC */,
 			);
 			path = Dependencies;
@@ -1384,7 +1381,6 @@
 				ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */,
 				4E5731AB2170C1A200DEAF0B /* Tests-Development.xcconfig in Resources */,
 				4E8E056621AD82EE009ACE05 /* AvertaStd-Bold.otf in Resources */,
-				4E55435C21D4C33A005C41FD /* WebRTC.podspec in Resources */,
 				EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */,
 				4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */,
 				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
