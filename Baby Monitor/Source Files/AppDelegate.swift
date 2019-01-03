@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         setupAppearance()
         setupNotifications(application: application)
+        Messaging.messaging().delegate = self
+        FirebaseApp.configure()
         return true
     }
     
@@ -26,11 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if REGULAR_BUILD
             appDependencies.memoryCleaner.cleanMemoryIfNeeded()
         #endif
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let token = deviceToken.reduce("") { $0 + String(format: "%02x", $1) }
-        appDependencies.cacheService.pushNotificationsToken = token
     }
     
     private func setupNotifications(application: UIApplication) {
@@ -49,5 +47,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().isTranslucent = false
     }
+}
+
+extension AppDelegate: MessagingDelegate {
     
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        appDependencies.cacheService.selfPushNotificationsToken = fcmToken
+    }
 }

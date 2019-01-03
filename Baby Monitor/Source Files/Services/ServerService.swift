@@ -24,8 +24,9 @@ final class ServerService {
     private let cacheService: CacheServiceProtocol
     private let disposeBag = DisposeBag()
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
+    private let notificationsService: NotificationServiceProtocol
     
-    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, websocketsService: WebSocketsServiceProtocol, cacheService: CacheServiceProtocol) {
+    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, websocketsService: WebSocketsServiceProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol) {
         self.cryingEventService = cryingService
         self.babiesRepository = babiesRepository
         self.webRtcServerManager = webRtcServerManager
@@ -34,6 +35,7 @@ final class ServerService {
         self.websocketsService = websocketsService
         self.cacheService = cacheService
         self.decoders = decoders
+        self.notificationsService = notificationsService
         setup()
         rxSetup()
     }
@@ -43,10 +45,6 @@ final class ServerService {
         messageServer.stop()
         webRtcServerManager.disconnect()
         cryingEventService.stop()
-    }
-    
-    func sendCry() {
-        cryingEventService.a()
     }
     
     private func setup() {
@@ -66,7 +64,7 @@ final class ServerService {
             self.messageServer.send(message: jsonString)
             self.timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false, block: { _ in
                 if !self.isCryingMessageReceivedFromClient {
-                    // TODO: send push
+                    self.notificationsService.sendPushNotificationsRequest()
                 }
                 self.isCryingMessageReceivedFromClient = false
             })
@@ -88,7 +86,7 @@ final class ServerService {
             self.isCryingMessageReceivedFromClient = true
         }).disposed(by: disposeBag)
         websocketsService.pushNotificationsTokenObservable.subscribe(onNext: { [unowned self] token in
-            <#code#>
+            self.cacheService.receiverPushNotificationsToken = token
         }).disposed(by: disposeBag)
     }
     

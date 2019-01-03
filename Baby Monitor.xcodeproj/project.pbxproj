@@ -11,6 +11,11 @@
 		4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */; };
 		4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */; };
 		4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */; };
+		4E0D36AC21DCF11700898ED4 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0D36AB21DCF11700898ED4 /* Request.swift */; };
+		4E0D36AE21DCF12D00898ED4 /* URLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0D36AD21DCF12D00898ED4 /* URLRequestConvertible.swift */; };
+		4E0D36B021DCF14A00898ED4 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0D36AF21DCF14A00898ED4 /* HTTPMethod.swift */; };
+		4E0D36B221DCF16F00898ED4 /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0D36B121DCF16F00898ED4 /* NetworkDispatcher.swift */; };
+		4E0D36B421DCF3C600898ED4 /* FirebasePushNotificationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0D36B321DCF3C600898ED4 /* FirebasePushNotificationsRequest.swift */; };
 		4E190CA321789E820004ED79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E190CA221789E820004ED79 /* Constants.swift */; };
 		4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CF816217856C500F48706 /* ServerViewModel.swift */; };
 		4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C5C21673FF800E92F29 /* CameraPreviewViewController.swift */; };
@@ -48,6 +53,7 @@
 		4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626697217F2B8400FA542F /* OnboardingView.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
 		4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */; };
+		4E881BB121DE11610099D5C1 /* ServerKeyObtainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E881BB021DE11610099D5C1 /* ServerKeyObtainable.swift */; };
 		4E8E056321AD81D4009ACE05 /* BaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E056221AD81D4009ACE05 /* BaseOnboardingView.swift */; };
 		4E8E056621AD82EE009ACE05 /* AvertaStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E8E056521AD82EE009ACE05 /* AvertaStd-Bold.otf */; };
 		4E8E056821AD8327009ACE05 /* UIFont+BabyMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E056721AD8327009ACE05 /* UIFont+BabyMonitor.swift */; };
@@ -261,6 +267,11 @@
 		4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCoordinator.swift; sourceTree = "<group>"; };
 		4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		4E0D36AB21DCF11700898ED4 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		4E0D36AD21DCF12D00898ED4 /* URLRequestConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestConvertible.swift; sourceTree = "<group>"; };
+		4E0D36AF21DCF14A00898ED4 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		4E0D36B121DCF16F00898ED4 /* NetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
+		4E0D36B321DCF3C600898ED4 /* FirebasePushNotificationsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePushNotificationsRequest.swift; sourceTree = "<group>"; };
 		4E190CA221789E820004ED79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4E1CF816217856C500F48706 /* ServerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewModel.swift; sourceTree = "<group>"; };
 		4E1D2C5C21673FF800E92F29 /* CameraPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +289,9 @@
 		4E36A3AF21B15FF80058DAD2 /* OnboardingSpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSpinnerView.swift; sourceTree = "<group>"; };
 		4E3943302175D4AD00AD7582 /* NetServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceClient.swift; sourceTree = "<group>"; };
 		4E3943322175E50200AD7582 /* NetServiceServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceServer.swift; sourceTree = "<group>"; };
+		4E412F8B21DA30FF007CF3DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4E412F8D21DA3186007CF3DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4E412F8E21DA31D8007CF3DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4E43FCB221B68DEC00D18007 /* WebSocketsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketsService.swift; sourceTree = "<group>"; };
 		4E5731902170BA7400DEAF0B /* BabiesViewSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesViewSelectable.swift; sourceTree = "<group>"; };
 		4E5731912170BA7400DEAF0B /* BabiesViewShowable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesViewShowable.swift; sourceTree = "<group>"; };
@@ -299,6 +313,7 @@
 		4E626697217F2B8400FA542F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		4E881BB021DE11610099D5C1 /* ServerKeyObtainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerKeyObtainable.swift; sourceTree = "<group>"; };
 		4E8E056221AD81D4009ACE05 /* BaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOnboardingView.swift; sourceTree = "<group>"; };
 		4E8E056521AD82EE009ACE05 /* AvertaStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvertaStd-Bold.otf"; sourceTree = "<group>"; };
 		4E8E056721AD8327009ACE05 /* UIFont+BabyMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+BabyMonitor.swift"; sourceTree = "<group>"; };
@@ -532,6 +547,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		4E0D36AA21DCF0F900898ED4 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4E0D36AB21DCF11700898ED4 /* Request.swift */,
+				4E0D36AD21DCF12D00898ED4 /* URLRequestConvertible.swift */,
+				4E0D36AF21DCF14A00898ED4 /* HTTPMethod.swift */,
+				4E0D36B121DCF16F00898ED4 /* NetworkDispatcher.swift */,
+				4E0D36B321DCF3C600898ED4 /* FirebasePushNotificationsRequest.swift */,
+				4E881BB021DE11610099D5C1 /* ServerKeyObtainable.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		4E1D2C5B21673FE200E92F29 /* CameraPreview */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,6 +586,40 @@
 				4E3943322175E50200AD7582 /* NetServiceServer.swift */,
 			);
 			path = NetService;
+			sourceTree = "<group>";
+		};
+		4E412F8721DA2F98007CF3DD /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				4E412F8821DA2FA4007CF3DD /* Development */,
+				4E412F8A21DA2FE2007CF3DD /* Staging */,
+				4E412F8C21DA310B007CF3DD /* Production */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		4E412F8821DA2FA4007CF3DD /* Development */ = {
+			isa = PBXGroup;
+			children = (
+				4E412F8E21DA31D8007CF3DD /* GoogleService-Info.plist */,
+			);
+			path = Development;
+			sourceTree = "<group>";
+		};
+		4E412F8A21DA2FE2007CF3DD /* Staging */ = {
+			isa = PBXGroup;
+			children = (
+				4E412F8B21DA30FF007CF3DD /* GoogleService-Info.plist */,
+			);
+			path = Staging;
+			sourceTree = "<group>";
+		};
+		4E412F8C21DA310B007CF3DD /* Production */ = {
+			isa = PBXGroup;
+			children = (
+				4E412F8D21DA3186007CF3DD /* GoogleService-Info.plist */,
+			);
+			path = Production;
 			sourceTree = "<group>";
 		};
 		4E56C7E8216CEE9000379FB4 /* App */ = {
@@ -614,6 +676,7 @@
 		4E5731A02170BA9D00DEAF0B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4E0D36AA21DCF0F900898ED4 /* Networking */,
 				4EA1007D21CBE60F00AEFA48 /* Cache */,
 				4EAFA8F021C7CDBB00D88117 /* Notifications */,
 				8A7A612821A59E9100488ED4 /* Other */,
@@ -1293,6 +1356,7 @@
 		EC82B57F213EA150005CA395 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4E412F8721DA2F98007CF3DD /* Firebase */,
 				EC82B565213EA074005CA395 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -1348,8 +1412,9 @@
 				1C3EA3D1BCD2BA4913FA643A /* [CP] Check Pods Manifest.lock */,
 				EC82B552213EA072005CA395 /* Sources */,
 				EC82B553213EA072005CA395 /* Frameworks */,
+				4E412F8F21DA3217007CF3DD /* Setup Firebase Environment GoogleService-Info.plist */,
+				8AEAFBC5217765E4003E756F /* Shell Script */,
 				EC82B554213EA072005CA395 /* Resources */,
-				8AEAFBC5217765E4003E756F /* ShellScript */,
 				EC5A292F431E9BD400752CCC /* [CP] Embed Pods Frameworks */,
 				4E5EFDE121C28E3700B14CD9 /* Embed Frameworks */,
 			);
@@ -1507,7 +1572,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8AEAFBC5217765E4003E756F /* ShellScript */ = {
+		4E412F8F21DA3217007CF3DD /* Setup Firebase Environment GoogleService-Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Setup Firebase Environment GoogleService-Info.plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=GoogleService-Info.plist\n\n# Get references to dev and prod versions of the GoogleService-Info.plist\n# NOTE: These should only live on the file system and should NOT be part of the target (since we'll be adding them to the target manually)\nGOOGLESERVICE_INFO_DEV=${PROJECT_DIR}/${TARGET_NAME}/Supporting\\ Files/Firebase/Development/${GOOGLESERVICE_INFO_PLIST}\nGOOGLESERVICE_INFO_PROD=${PROJECT_DIR}/${TARGET_NAME}/Supporting\\ Files/Firebase/Production/${GOOGLESERVICE_INFO_PLIST}\nGOOGLESERVICE_INFO_STAGING=${PROJECT_DIR}/${TARGET_NAME}/Supporting\\ Files/Firebase/Staging/${GOOGLESERVICE_INFO_PLIST}\n\n# Make sure the dev version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_DEV}\"\nif [ ! -f $GOOGLESERVICE_INFO_DEV ]\nthen\necho \"No Development GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\nexit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\necho \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\nexit 1\nfi\n\n# Make sure the staging version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_STAGING ]\nthen\necho \"No Staging GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\nexit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\nPLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\necho \"Will copy ${GOOGLESERVICE_INFO_PLIST} to final destination: ${PLIST_DESTINATION}\"\n\n# Copy over the prod GoogleService-Info.plist for Release builds\nif [ \"${CONFIGURATION}\" == \"Development\" ]\nthen\necho \"Using ${GOOGLESERVICE_INFO_DEV}\"\ncp \"${GOOGLESERVICE_INFO_DEV}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Staging\" ]\nthen\necho \"Using ${GOOGLESERVICE_INFO_STAGING}\"\ncp \"${GOOGLESERVICE_INFO_DEV}\" \"${PLIST_DESTINATION}\"\nelse \necho \"Using ${GOOGLESERVICE_INFO_PRODUCTION}\"\ncp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nfi\n";
+		};
+		8AEAFBC5217765E4003E756F /* Shell Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1515,6 +1598,7 @@
 			inputPaths = (
 				"",
 			);
+			name = "Shell Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1559,28 +1643,36 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework",
+				"${BUILT_PRODUCTS_DIR}/Keys/Keys.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSocket/PocketSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keys.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1611,6 +1703,7 @@
 				4E36A3B021B15FF80058DAD2 /* OnboardingSpinnerView.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
+				4E0D36AC21DCF11700898ED4 /* Request.swift in Sources */,
 				4E43FCB321B68DEC00D18007 /* WebSocketsService.swift in Sources */,
 				8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */,
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
@@ -1637,6 +1730,7 @@
 				8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E60697821AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift in Sources */,
+				4E0D36B021DCF14A00898ED4 /* HTTPMethod.swift in Sources */,
 				8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */,
 				4EA1007F21CBE61C00AEFA48 /* CacheService.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
@@ -1653,6 +1747,7 @@
 				8A7A611521A59E3B00488ED4 /* AudioRecordService.swift in Sources */,
 				8A7A60D621A4187C00488ED4 /* SessionDescriptionProtocol.swift in Sources */,
 				4EB6DE6321B6687D004701EA /* EventMessage.swift in Sources */,
+				4E0D36B421DCF3C600898ED4 /* FirebasePushNotificationsRequest.swift in Sources */,
 				8A8EF944219C40630098A27B /* RTCSessionDescription+JSON.swift in Sources */,
 				8AFAE5C3219C1FE3007013BC /* SdpAnswerDecoder.swift in Sources */,
 				8A42DB092179D65900BF5F1B /* UserDefaultsURLConfiguration.swift in Sources */,
@@ -1692,6 +1787,7 @@
 				8AA7CC00218C72D600FCF62A /* RealmLullaby.swift in Sources */,
 				8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */,
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,
+				4E881BB121DE11610099D5C1 /* ServerKeyObtainable.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
 				8A7A613321A68DF000488ED4 /* StreamFactoryProtocol.swift in Sources */,
@@ -1715,6 +1811,7 @@
 				8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
 				4E8E057221AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift in Sources */,
+				4E0D36B221DCF16F00898ED4 /* NetworkDispatcher.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+Prefix.swift in Sources */,
 				8A7A612C21A59EB000488ED4 /* RecorderFactory.swift in Sources */,
 				4EAFA8F221C7CDCE00D88117 /* NotificationService.swift in Sources */,
@@ -1726,6 +1823,7 @@
 				8A8EF98B21A329F10098A27B /* WebRtcClientManagerDelegate.swift in Sources */,
 				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
 				EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */,
+				4E0D36AE21DCF12D00898ED4 /* URLRequestConvertible.swift in Sources */,
 				8AFAE5AF219AAE63007013BC /* WebSocketServerProtocol.swift in Sources */,
 				4E95632D2164DB7500289475 /* SwitchBabyViewModel.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,

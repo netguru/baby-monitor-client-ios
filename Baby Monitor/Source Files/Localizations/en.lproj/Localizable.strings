@@ -10,6 +10,7 @@
 "general.ok" = "OK";
 "general.next" = "Next";
 "general.warning" = "Warning!";
+"general.attention" = "Attention!";
 
 //MARK: = Intro
 "intro.title.detect" = "Automatically detect if your \nbaby is crying";

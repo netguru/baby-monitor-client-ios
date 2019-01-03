@@ -6,9 +6,11 @@
 import Foundation
 
 protocol CacheServiceProtocol: AnyObject {
-    var pushNotificationsToken: String? { get set }
+    var selfPushNotificationsToken: String? { get set }
+    var receiverPushNotificationsToken: String? { get set }
 }
 
 final class CacheService: CacheServiceProtocol {
-    var pushNotificationsToken: String?
+    var selfPushNotificationsToken: String?
+    var receiverPushNotificationsToken: String?
 }

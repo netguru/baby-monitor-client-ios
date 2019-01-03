@@ -8,6 +8,7 @@ import RealmSwift
 import WebRTC
 import PocketSocket
 import AudioKit
+import FirebaseMessaging
 
 final class AppDependencies {
     
@@ -39,7 +40,12 @@ final class AppDependencies {
         cryingEventsRepository: babiesRepository,
         webRtcMessageDecoders: webRtcMessageDecoders,
         babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder)
-    private(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService()
+    private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher()
+    private(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService(
+        networkDispatcher: networkDispatcher,
+        cacheService: cacheService,
+        serverKeyObtainable: serverKeyObtainable)
+    private let serverKeyObtainable: ServerKeyObtainableProtocol = ServerKeyObtainable()
     
     private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
     

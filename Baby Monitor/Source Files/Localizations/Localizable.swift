@@ -14,6 +14,7 @@ enum Localizable {
         static let ok = localized("general.ok")
         static let next = localized("general.next")
         static let warning = localized("general.warning")
+        static let attention = localized("general.attention")
     }
     
     enum Intro {
