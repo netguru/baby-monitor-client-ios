@@ -29,5 +29,5 @@ protocol WebRtcClientManagerProtocol {
     var iceCandidate: Observable<RTCICECandidate> { get }
 
     /// Observable emitting media stream
-    var mediaStream: Observable<RTCMediaStream> { get }
+    var mediaStream: Observable<RTCMediaStream?> { get }
 }

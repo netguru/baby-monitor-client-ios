@@ -47,7 +47,7 @@ public class WebrtcServerManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
     }
     
     func start() {
-        
+        addLocalMediaStream()
     }
     
     public func addLocalMediaStream() {
@@ -88,7 +88,6 @@ public class WebrtcServerManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
     func createAnswer(remoteSdp remoteSDP: RTCSessionDescription) {
         DispatchQueue.main.async {
             self.remoteSDP = remoteSDP
-            self.addLocalMediaStream()
             self.peerConnection!.setRemoteDescriptionWith(self, sessionDescription: remoteSDP)
         }
     }
