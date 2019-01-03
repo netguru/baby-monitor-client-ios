@@ -8,17 +8,14 @@ import RxSwift
 
 protocol WebSocketsServiceProtocol: AnyObject {
     var onCryingEventOccurence: (() -> Void)? { get set }
+    var mediaStream: Observable<RTCMediaStream?> { get }
     
     /// Open websockets connection
     func play()
-    
-    var mediaStream: Observable<RTCMediaStream> { get }
-    
-    // TODO: Stop
 }
 
 final class WebSocketsService: WebSocketsServiceProtocol {
-    var mediaStream: Observable<RTCMediaStream> {
+    var mediaStream: Observable<RTCMediaStream?> {
         return webRtcClientManager.mediaStream
     }
     

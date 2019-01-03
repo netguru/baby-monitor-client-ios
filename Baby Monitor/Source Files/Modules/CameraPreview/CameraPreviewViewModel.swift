@@ -10,7 +10,7 @@ final class CameraPreviewViewModel {
     private let babyRepo: BabiesRepositoryProtocol
     lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
     private let webSocketsService: WebSocketsServiceProtocol
-    var remoteStream: Observable<RTCMediaStream> {
+    var remoteStream: Observable<RTCMediaStream?> {
         return webSocketsService.mediaStream
     }
 

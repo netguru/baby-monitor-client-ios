@@ -28,13 +28,13 @@ public class WebrtcClientManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
     var sdpOffer: Observable<RTCSessionDescription> {
         return sdpOfferPublisher
     }
-    var mediaStream: Observable<RTCMediaStream> {
+    var mediaStream: Observable<RTCMediaStream?> {
         return mediaStreamPublisher
     }
     
     let sdpOfferPublisher = PublishSubject<RTCSessionDescription>()
     let iceCandidatePublisher = PublishSubject<RTCICECandidate>()
-    let mediaStreamPublisher = PublishSubject<RTCMediaStream>()
+    let mediaStreamPublisher = BehaviorSubject<RTCMediaStream?>(value: nil)
     
     override public init() {
         super.init()

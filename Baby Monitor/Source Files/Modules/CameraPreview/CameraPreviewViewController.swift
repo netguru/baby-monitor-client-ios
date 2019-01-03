@@ -47,6 +47,9 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     private func setupViewModel() {
         viewModel.remoteStream
             .subscribe(onNext: { [unowned self] stream in
+                guard let stream = stream else {
+                    return
+                }
                 self.attach(stream: stream)
             })
             .disposed(by: bag)
