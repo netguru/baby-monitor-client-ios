@@ -16,12 +16,11 @@ final class NetworkDispatcher: NSObject, NetworkDispatcherProtocol {
     private let dispatchQueue = DispatchQueue(label: "NetworkDispatcherQueue")
     
     func execute(urlRequest: URLRequest, completion: ((Result<Data>) -> Void)?) {
-        let dataTask = defaultUrlSession.dataTask(with: urlRequest) { (data, response, error) in
+        let dataTask = defaultUrlSession.dataTask(with: urlRequest) { data, response, error in
             var result = Result<Data>.failure(nil)
             if let error = error {
                 result = .failure(error)
-            }
-            else if let data = data {
+            } else if let data = data {
                 result = .success(data)
                 
             }
@@ -40,8 +39,7 @@ final class NetworkDispatcher: NSObject, NetworkDispatcherProtocol {
                 do {
                     let decodable = try JSONDecoder().decode(T.self, from: data)
                     newResult = .success(decodable)
-                }
-                catch {
+                } catch {
                     newResult = .failure(error)
                 }
             case .failure(let error):

@@ -7,7 +7,9 @@ import Foundation
 import RxSwift
 
 protocol ClientServiceProtocol: AnyObject {
+    var cryingEventObservable: Observable<Void> { get }
     
+    func start()
 }
 
 final class ClientService: ClientServiceProtocol {
@@ -25,6 +27,10 @@ final class ClientService: ClientServiceProtocol {
         self.localNotificationService = localNotificationService
         self.messageServer = messageServer
         setup()
+    }
+    
+    func start() {
+        websocketsService.play()
     }
     
     private func setup() {

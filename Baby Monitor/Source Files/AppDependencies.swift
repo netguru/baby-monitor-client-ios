@@ -53,6 +53,18 @@ final class AppDependencies {
     private(set) var cacheService: CacheServiceProtocol = CacheService()
 
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient(), urlConfiguration: urlConfiguration)
+    private(set) lazy var clientService: ClientServiceProtocol = ClientService(websocketsService: websocketsService, localNotificationService: localNotificationService, messageServer: messageServer)
+    private(set) lazy var serverService: ServerServiceProtocol = ServerService(
+        webRtcServerManager: webRtcServer(peerConnection(), webRtcStreamFactory),
+        messageServer: messageServer,
+        netServiceServer: netServiceServer,
+        decoders: webRtcMessageDecoders,
+        cryingService: cryingEventService,
+        babiesRepository: babiesRepository,
+        websocketsService: websocketsService,
+        cacheService: cacheService,
+        notificationsService: localNotificationService
+    )
     
     private(set) var urlConfiguration: URLConfiguration = UserDefaultsURLConfiguration()
     private(set) lazy var messageServer = MessageServer(server: webSocketServer)

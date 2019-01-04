@@ -60,13 +60,7 @@ final class OnboardingCoordinator: Coordinator {
     }
     
     private func showServerView() {
-        let viewModel = ServerViewModel(
-            webRtcServerManager: appDependencies.webRtcServer(appDependencies.peerConnection(), appDependencies.webRtcStreamFactory),
-            messageServer: appDependencies.messageServer,
-            netServiceServer: appDependencies.netServiceServer,
-            decoders: appDependencies.webRtcMessageDecoders,
-            cryingService: appDependencies.cryingEventService,
-            babiesRepository: appDependencies.babiesRepository)
+        let viewModel = ServerViewModel(serverService: appDependencies.serverService)
         let serverViewController = ServerViewController(viewModel: viewModel)
         viewModel.onAudioRecordServiceError = { [weak self] in
             guard let self = self,

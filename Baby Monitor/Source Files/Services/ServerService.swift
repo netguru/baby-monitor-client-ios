@@ -6,12 +6,18 @@
 import Foundation
 import RxSwift
 
-final class ServerService {
+protocol ServerServiceProtocol: AnyObject {
+    var localStreamObservable: Observable<MediaStreamProtocol> { get }
+    var audioRecordServiceErrorObservable: Observable<Void> { get }
+    func startStreaming()
+}
+
+final class ServerService: ServerServiceProtocol {
     
-    var localStream: Observable<MediaStreamProtocol> {
+    var localStreamObservable: Observable<MediaStreamProtocol> {
         return webRtcServerManager.mediaStream
     }
-    var onAudioRecordServiceError: (() -> Void)?
+    lazy var audioRecordServiceErrorObservable = audioRecordServiceErrorPublisher.asObservable()
     
     private var isCryingMessageReceivedFromClient = false
     private var timer: Timer?
@@ -25,6 +31,7 @@ final class ServerService {
     private let disposeBag = DisposeBag()
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
     private let notificationsService: NotificationServiceProtocol
+    private let audioRecordServiceErrorPublisher = PublishSubject<Void>()
     
     init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, websocketsService: WebSocketsServiceProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol) {
         self.cryingEventService = cryingService
@@ -109,7 +116,7 @@ final class ServerService {
                     return Observable.empty()
                 }
                 return Observable.just(jsonString)
-        }
+            }
     }
     
     private func iceCandidateJson() -> Observable<String> {
@@ -120,7 +127,7 @@ final class ServerService {
                     return Observable.empty()
                 }
                 return Observable.just(jsonString)
-        }
+            }
     }
     
     /// Starts streaming
@@ -132,7 +139,7 @@ final class ServerService {
         } catch {
             switch error {
             case CryingEventService.CryingEventServiceError.audioRecordServiceError:
-                onAudioRecordServiceError?()
+                audioRecordServiceErrorPublisher.onNext(())
             default:
                 break
             }
