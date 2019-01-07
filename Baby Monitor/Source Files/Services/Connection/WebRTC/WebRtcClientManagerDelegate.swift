@@ -6,7 +6,6 @@
 //  Copyright © 2016 Ralf Ebert. All rights reserved.
 //
 
-
 protocol WebRtcClientManagerDelegate: AnyObject {
     func offerSDPCreated(sdp: SessionDescriptionProtocol)
     func remoteStreamAvailable(stream: RTCMediaStream)

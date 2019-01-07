@@ -77,17 +77,17 @@ extension WebRtcClientManager: RTCPeerConnectionDelegate {
 
     public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove stream: RTCMediaStream) {}
 
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCICECandidate) {
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
         iceCandidatePublisher.accept(candidate)
     }
 
-    public func peerConnection(_ peerConnection: RTCPeerConnection, iceConnectionChanged newState: RTCICEConnectionState) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {}
 
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCICEGatheringState) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceGatheringState) {}
 
     public func peerConnection(_ peerConnection: RTCPeerConnection, didChange stateChanged: RTCSignalingState) {}
 
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCICECandidate]) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {}
 
     public func peerConnectionShouldNegotiate(_ peerConnection: RTCPeerConnection) {}
 

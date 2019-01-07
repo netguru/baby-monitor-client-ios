@@ -86,21 +86,21 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
 }
 
 extension WebRtcServerManager: RTCPeerConnectionDelegate {
-    public func peerConnection(_ peerConnection: RTCPeerConnection, addedStream stream: RTCMediaStream) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, removedStreamam: RTCMediaStream) {}
 
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCICECandidate]) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {}
 
-    public func peerConnection(_ peerConnection: RTCPeerConnection, gotICECandidate candidate: RTCICECandidate) {
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
         iceCandidatePublisher.accept(candidate)
     }
 
-    public func peerConnection(_ peerConnection: RTCPeerConnection, iceConnectionChanged newState: RTCICEConnectionState) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {}
 
-    public func peerConnection(_ peerConnection: RTCPeerConnection, iceGatheringChanged newState: RTCICEGatheringState) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceGatheringState) {}
 
     public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove stream: RTCMediaStream) {}
 
-    public func peerConnection(_ peerConnection: RTCPeerConnection, signalingStateChanged stateChanged: RTCSignalingState) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange stateChanged: RTCSignalingState) {}
 
     public func peerConnection(onRenegotiationNeeded peerConnection: RTCPeerConnection) {}
 
