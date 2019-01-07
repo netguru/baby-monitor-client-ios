@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class OnboardingPairingCoordinator: Coordinator {
     

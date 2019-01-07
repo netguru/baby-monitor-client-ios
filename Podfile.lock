@@ -61,9 +61,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (5.3.6):
     - GoogleUtilities/Logger
-  - GoogleWebRTC (1.1.25544)
   - Keys (1.0.1)
-  - MobileVLCKit (3.1.5)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -105,9 +103,7 @@ DEPENDENCIES:
   - AudioKit (~> 4.5.4)
   - Firebase/Core
   - Firebase/Messaging
-  - GoogleWebRTC (~> 1.1.2)
   - Keys (from `Pods/CocoaPodsKeys`)
-  - MobileVLCKit (~> 3.1)
   - PocketSocket (~> 1.0.1)
   - RealmSwift (~> 3.11.0)
   - RxBlocking (~> 4.0)
@@ -129,8 +125,6 @@ SPEC REPOS:
     - FirebaseMessaging
     - GoogleAppMeasurement
     - GoogleUtilities
-    - GoogleWebRTC
-    - MobileVLCKit
     - nanopb
     - PocketSocket
     - Protobuf
@@ -159,9 +153,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 0f14a264b0d7f867e8eff5d3556bc5d0d4e57888
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
-  GoogleWebRTC: b73841295d587468f368d146144753b138ed8014
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
-  MobileVLCKit: 4d44e56380d0ee41c76f9ec7015d3a4b62a963a3
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
@@ -175,6 +167,6 @@ SPEC CHECKSUMS:
   RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: e5a54e55df6a0886130ac13c916002b199f82efd
+PODFILE CHECKSUM: cb269def9fd43d8ea334890bfd72e46307193807
 
 COCOAPODS: 1.6.0.beta.2

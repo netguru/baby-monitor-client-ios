@@ -52,6 +52,20 @@
 		4E60697D21AFEFD500EB1DCF /* ImageOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */; };
 		4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */; };
 		4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E626697217F2B8400FA542F /* OnboardingView.swift */; };
+		4E63DBFA21E3962B00604167 /* WebRtcServerManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBEB21E3962B00604167 /* WebRtcServerManagerProtocol.swift */; };
+		4E63DBFB21E3962B00604167 /* WebRtcConstraintKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBEC21E3962B00604167 /* WebRtcConstraintKey.swift */; };
+		4E63DBFC21E3962B00604167 /* WebRtcServerManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBED21E3962B00604167 /* WebRtcServerManagerDelegate.swift */; };
+		4E63DBFD21E3962B00604167 /* WebRtcStreamId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBEE21E3962B00604167 /* WebRtcStreamId.swift */; };
+		4E63DBFE21E3962B00604167 /* WebRtcClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBEF21E3962B00604167 /* WebRtcClientManager.swift */; };
+		4E63DBFF21E3962B00604167 /* WebRtcServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBF021E3962B00604167 /* WebRtcServerManager.swift */; };
+		4E63DC0021E3962B00604167 /* WebRtcClientManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBF121E3962B00604167 /* WebRtcClientManagerProtocol.swift */; };
+		4E63DC0121E3962B00604167 /* MediaConstraintsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBF321E3962B00604167 /* MediaConstraintsProtocol.swift */; };
+		4E63DC0221E3962B00604167 /* SessionDescriptionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBF421E3962B00604167 /* SessionDescriptionProtocol.swift */; };
+		4E63DC0321E3962B00604167 /* StreamFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBF521E3962B00604167 /* StreamFactoryProtocol.swift */; };
+		4E63DC0421E3962B00604167 /* MediaStreamProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBF621E3962B00604167 /* MediaStreamProtocol.swift */; };
+		4E63DC0521E3962B00604167 /* IceCandidateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBF721E3962B00604167 /* IceCandidateProtocol.swift */; };
+		4E63DC0621E3962B00604167 /* PeerConnectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBF821E3962B00604167 /* PeerConnectionProtocol.swift */; };
+		4E63DC0721E3962B00604167 /* WebRtcClientManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DBF921E3962B00604167 /* WebRtcClientManagerDelegate.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
 		4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */; };
 		4E881BB121DE11610099D5C1 /* ServerKeyObtainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E881BB021DE11610099D5C1 /* ServerKeyObtainable.swift */; };
@@ -89,9 +103,14 @@
 		4EB6DE6521B67C11004701EA /* EventMessageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6DE6421B67C11004701EA /* EventMessageDecoder.swift */; };
 		4EBACE4621CBC27700A32FAE /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBACE4521CBC27700A32FAE /* ClientService.swift */; };
 		4EBACE4821CBC4AD00A32FAE /* ServerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBACE4721CBC4AD00A32FAE /* ServerService.swift */; };
+		4ED9730721E3919800EF868D /* WebrtcServerManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED972FE21E3919800EF868D /* WebrtcServerManagerDelegate.swift */; };
+		4ED9730821E3919800EF868D /* RTCICEServer+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED972FF21E3919800EF868D /* RTCICEServer+JSON.m */; };
+		4ED9730921E3919800EF868D /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED9730121E3919800EF868D /* libWebRTC.a */; };
+		4ED9730A21E3919800EF868D /* WebrtcClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9730221E3919800EF868D /* WebrtcClientManager.swift */; };
+		4ED9730B21E3919800EF868D /* WebrtcServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9730321E3919800EF868D /* WebrtcServerManager.swift */; };
+		4ED9730C21E3919800EF868D /* WebrtcClientManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED9730621E3919800EF868D /* WebrtcClientManagerDelegate.swift */; };
 		4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
-		8A045D5B21A3F685006A2E10 /* WebRtcStreamId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A045D5A21A3F685006A2E10 /* WebRtcStreamId.swift */; };
 		8A41D4C221C2475A00CF1E08 /* VideoCapturerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A41D4C121C2475A00CF1E08 /* VideoCapturerMock.swift */; };
 		8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DAFD2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift */; };
 		8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */; };
@@ -115,11 +134,6 @@
 		8A7A60CA21A40CF200488ED4 /* MessageServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60C621A40CF200488ED4 /* MessageServerTests.swift */; };
 		8A7A60CC21A40D2F00488ED4 /* CryingDetectionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60CB21A40D2F00488ED4 /* CryingDetectionServiceTests.swift */; };
 		8A7A60CE21A40D3B00488ED4 /* MicrophoneTrackerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60CD21A40D3B00488ED4 /* MicrophoneTrackerMock.swift */; };
-		8A7A60D221A416E300488ED4 /* WebRtcClientManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60D121A416E300488ED4 /* WebRtcClientManagerProtocol.swift */; };
-		8A7A60D421A4180B00488ED4 /* IceCandidateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60D321A4180B00488ED4 /* IceCandidateProtocol.swift */; };
-		8A7A60D621A4187C00488ED4 /* SessionDescriptionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60D521A4187C00488ED4 /* SessionDescriptionProtocol.swift */; };
-		8A7A60DC21A41DD700488ED4 /* PeerConnectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60DB21A41DD700488ED4 /* PeerConnectionProtocol.swift */; };
-		8A7A60DE21A41E5700488ED4 /* MediaConstraintsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60DD21A41E5700488ED4 /* MediaConstraintsProtocol.swift */; };
 		8A7A60E321A4327200488ED4 /* WebRtcClientManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60E221A4327200488ED4 /* WebRtcClientManagerTests.swift */; };
 		8A7A60E521A432F500488ED4 /* PeerConnectionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60E421A432F500488ED4 /* PeerConnectionMock.swift */; };
 		8A7A60E721A437C500488ED4 /* SessionDescriptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A60E621A437C500488ED4 /* SessionDescriptionMock.swift */; };
@@ -141,9 +155,6 @@
 		8A7A612721A59E8600488ED4 /* DirectoryDocumentsSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612621A59E8600488ED4 /* DirectoryDocumentsSavable.swift */; };
 		8A7A612A21A59E9A00488ED4 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612921A59E9A00488ED4 /* AlertPresenter.swift */; };
 		8A7A612C21A59EB000488ED4 /* RecorderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612B21A59EB000488ED4 /* RecorderFactory.swift */; };
-		8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */; };
-		8A7A613021A68DA300488ED4 /* MediaStreamProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612F21A68DA300488ED4 /* MediaStreamProtocol.swift */; };
-		8A7A613321A68DF000488ED4 /* StreamFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613221A68DF000488ED4 /* StreamFactoryProtocol.swift */; };
 		8A7A613721A6A05200488ED4 /* MediaStreamMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613621A6A05200488ED4 /* MediaStreamMock.swift */; };
 		8A7A613C21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613B21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift */; };
 		8A7A613E21A6AACD00488ED4 /* MessageServerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */; };
@@ -168,11 +179,6 @@
 		8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF94C219C52480098A27B /* AnyMessageDecoder.swift */; };
 		8A8EF94F219D55B60098A27B /* MessageStreamProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF94E219D55B60098A27B /* MessageStreamProtocol.swift */; };
 		8A8EF955219D581D0098A27B /* MessageStreamMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF954219D581D0098A27B /* MessageStreamMock.swift */; };
-		8A8EF98821A329F10098A27B /* WebRtcClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF98421A329EF0098A27B /* WebRtcClientManager.swift */; };
-		8A8EF98921A329F10098A27B /* WebRtcServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF98521A329EF0098A27B /* WebRtcServerManager.swift */; };
-		8A8EF98A21A329F10098A27B /* WebRtcServerManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF98621A329F00098A27B /* WebRtcServerManagerDelegate.swift */; };
-		8A8EF98B21A329F10098A27B /* WebRtcClientManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF98721A329F00098A27B /* WebRtcClientManagerDelegate.swift */; };
-		8A8EF98E21A3F2480098A27B /* WebRtcConstraintKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF98D21A3F2480098A27B /* WebRtcConstraintKey.swift */; };
 		8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */; };
 		8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */; };
 		8AA7CBBE2187103600FCF62A /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */; };
@@ -312,6 +318,20 @@
 		4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOnboardingView.swift; sourceTree = "<group>"; };
 		4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupOnboardingViewModel.swift; sourceTree = "<group>"; };
 		4E626697217F2B8400FA542F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		4E63DBEB21E3962B00604167 /* WebRtcServerManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerProtocol.swift; sourceTree = "<group>"; };
+		4E63DBEC21E3962B00604167 /* WebRtcConstraintKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRtcConstraintKey.swift; sourceTree = "<group>"; };
+		4E63DBED21E3962B00604167 /* WebRtcServerManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerDelegate.swift; sourceTree = "<group>"; };
+		4E63DBEE21E3962B00604167 /* WebRtcStreamId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRtcStreamId.swift; sourceTree = "<group>"; };
+		4E63DBEF21E3962B00604167 /* WebRtcClientManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRtcClientManager.swift; sourceTree = "<group>"; };
+		4E63DBF021E3962B00604167 /* WebRtcServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRtcServerManager.swift; sourceTree = "<group>"; };
+		4E63DBF121E3962B00604167 /* WebRtcClientManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRtcClientManagerProtocol.swift; sourceTree = "<group>"; };
+		4E63DBF321E3962B00604167 /* MediaConstraintsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaConstraintsProtocol.swift; sourceTree = "<group>"; };
+		4E63DBF421E3962B00604167 /* SessionDescriptionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDescriptionProtocol.swift; sourceTree = "<group>"; };
+		4E63DBF521E3962B00604167 /* StreamFactoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamFactoryProtocol.swift; sourceTree = "<group>"; };
+		4E63DBF621E3962B00604167 /* MediaStreamProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaStreamProtocol.swift; sourceTree = "<group>"; };
+		4E63DBF721E3962B00604167 /* IceCandidateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IceCandidateProtocol.swift; sourceTree = "<group>"; };
+		4E63DBF821E3962B00604167 /* PeerConnectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerConnectionProtocol.swift; sourceTree = "<group>"; };
+		4E63DBF921E3962B00604167 /* WebRtcClientManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRtcClientManagerDelegate.swift; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		4E881BB021DE11610099D5C1 /* ServerKeyObtainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerKeyObtainable.swift; sourceTree = "<group>"; };
@@ -356,13 +376,46 @@
 		4EBACE4521CBC27700A32FAE /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
 		4EBACE4721CBC4AD00A32FAE /* ServerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerService.swift; sourceTree = "<group>"; };
 		4EBACE4921CBD39800A32FAE /* BabyMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyMonitor.entitlements; sourceTree = "<group>"; };
+		4ED972E421E3919800EF868D /* RTCPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPair.h; sourceTree = "<group>"; };
+		4ED972E521E3919800EF868D /* RTCStatsReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCStatsReport.h; sourceTree = "<group>"; };
+		4ED972E621E3919800EF868D /* RTCPeerConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPeerConnectionDelegate.h; sourceTree = "<group>"; };
+		4ED972E721E3919800EF868D /* RTCSessionDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCSessionDescription.h; sourceTree = "<group>"; };
+		4ED972E821E3919800EF868D /* RTCVideoCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCVideoCapturer.h; sourceTree = "<group>"; };
+		4ED972E921E3919800EF868D /* RTCVideoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCVideoSource.h; sourceTree = "<group>"; };
+		4ED972EA21E3919800EF868D /* RTCICEServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCICEServer.h; sourceTree = "<group>"; };
+		4ED972EB21E3919800EF868D /* RTCMediaConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCMediaConstraints.h; sourceTree = "<group>"; };
+		4ED972EC21E3919800EF868D /* RTCMediaStreamTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCMediaStreamTrack.h; sourceTree = "<group>"; };
+		4ED972ED21E3919800EF868D /* RTCVideoTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCVideoTrack.h; sourceTree = "<group>"; };
+		4ED972EE21E3919800EF868D /* RTCVideoRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCVideoRenderer.h; sourceTree = "<group>"; };
+		4ED972EF21E3919800EF868D /* RTCEAGLVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCEAGLVideoView.h; sourceTree = "<group>"; };
+		4ED972F021E3919800EF868D /* RTCAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCAudioTrack.h; sourceTree = "<group>"; };
+		4ED972F121E3919800EF868D /* RTCDataChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCDataChannel.h; sourceTree = "<group>"; };
+		4ED972F221E3919800EF868D /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		4ED972F321E3919800EF868D /* RTCI420Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCI420Frame.h; sourceTree = "<group>"; };
+		4ED972F421E3919800EF868D /* RTCSessionDescriptionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCSessionDescriptionDelegate.h; sourceTree = "<group>"; };
+		4ED972F521E3919800EF868D /* RTCAudioSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCAudioSource.h; sourceTree = "<group>"; };
+		4ED972F621E3919800EF868D /* RTCPeerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPeerConnection.h; sourceTree = "<group>"; };
+		4ED972F721E3919800EF868D /* RTCPeerConnectionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPeerConnectionFactory.h; sourceTree = "<group>"; };
+		4ED972F821E3919800EF868D /* RTCMediaStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCMediaStream.h; sourceTree = "<group>"; };
+		4ED972F921E3919800EF868D /* RTCTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCTypes.h; sourceTree = "<group>"; };
+		4ED972FA21E3919800EF868D /* RTCICECandidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCICECandidate.h; sourceTree = "<group>"; };
+		4ED972FB21E3919800EF868D /* RTCMediaSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCMediaSource.h; sourceTree = "<group>"; };
+		4ED972FC21E3919800EF868D /* RTCStatsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCStatsDelegate.h; sourceTree = "<group>"; };
+		4ED972FD21E3919800EF868D /* RTCOpenGLVideoRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCOpenGLVideoRenderer.h; sourceTree = "<group>"; };
+		4ED972FE21E3919800EF868D /* WebrtcServerManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebrtcServerManagerDelegate.swift; sourceTree = "<group>"; };
+		4ED972FF21E3919800EF868D /* RTCICEServer+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCICEServer+JSON.m"; sourceTree = "<group>"; };
+		4ED9730121E3919800EF868D /* libWebRTC.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWebRTC.a; sourceTree = "<group>"; };
+		4ED9730221E3919800EF868D /* WebrtcClientManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebrtcClientManager.swift; sourceTree = "<group>"; };
+		4ED9730321E3919800EF868D /* WebrtcServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebrtcServerManager.swift; sourceTree = "<group>"; };
+		4ED9730421E3919800EF868D /* WebRTC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebRTC.h; sourceTree = "<group>"; };
+		4ED9730521E3919800EF868D /* RTCICEServer+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCICEServer+JSON.h"; sourceTree = "<group>"; };
+		4ED9730621E3919800EF868D /* WebrtcClientManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebrtcClientManagerDelegate.swift; sourceTree = "<group>"; };
 		4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConnectingCoordinator.swift; sourceTree = "<group>"; };
 		4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		6958C860204FB0CCE8F3AE3E /* Pods-Baby MonitorTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.staging.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.staging.xcconfig"; sourceTree = "<group>"; };
 		6C69871368E94FA94469B9C2 /* Pods-Baby MonitorTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.development.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"; sourceTree = "<group>"; };
 		6DA92525E47710C0C7E376A8 /* Pods-Baby Monitor.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.development.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.development.xcconfig"; sourceTree = "<group>"; };
 		770CAA0507F2AE99629A2004 /* Pods-Baby MonitorTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.production.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.production.xcconfig"; sourceTree = "<group>"; };
-		8A045D5A21A3F685006A2E10 /* WebRtcStreamId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcStreamId.swift; sourceTree = "<group>"; };
 		8A41D4C121C2475A00CF1E08 /* VideoCapturerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapturerMock.swift; sourceTree = "<group>"; };
 		8A42DAFD2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupViewModelTests.swift; sourceTree = "<group>"; };
 		8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceClientMock.swift; sourceTree = "<group>"; };
@@ -386,11 +439,6 @@
 		8A7A60C621A40CF200488ED4 /* MessageServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageServerTests.swift; path = "Baby MonitorTests/Services/MessageServerTests.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A60CB21A40D2F00488ED4 /* CryingDetectionServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CryingDetectionServiceTests.swift; path = "Baby MonitorTests/Services/CryingDetectionServiceTests.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A60CD21A40D3B00488ED4 /* MicrophoneTrackerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophoneTrackerMock.swift; sourceTree = "<group>"; };
-		8A7A60D121A416E300488ED4 /* WebRtcClientManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcClientManagerProtocol.swift; sourceTree = "<group>"; };
-		8A7A60D321A4180B00488ED4 /* IceCandidateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceCandidateProtocol.swift; sourceTree = "<group>"; };
-		8A7A60D521A4187C00488ED4 /* SessionDescriptionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDescriptionProtocol.swift; sourceTree = "<group>"; };
-		8A7A60DB21A41DD700488ED4 /* PeerConnectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnectionProtocol.swift; sourceTree = "<group>"; };
-		8A7A60DD21A41E5700488ED4 /* MediaConstraintsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaConstraintsProtocol.swift; sourceTree = "<group>"; };
 		8A7A60E221A4327200488ED4 /* WebRtcClientManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcClientManagerTests.swift; sourceTree = "<group>"; };
 		8A7A60E421A432F500488ED4 /* PeerConnectionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnectionMock.swift; sourceTree = "<group>"; };
 		8A7A60E621A437C500488ED4 /* SessionDescriptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDescriptionMock.swift; sourceTree = "<group>"; };
@@ -412,9 +460,6 @@
 		8A7A612621A59E8600488ED4 /* DirectoryDocumentsSavable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectoryDocumentsSavable.swift; sourceTree = "<group>"; };
 		8A7A612921A59E9A00488ED4 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertPresenter.swift; path = "Baby Monitor/Source Files/Services/Other/AlertPresenter.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A612B21A59EB000488ED4 /* RecorderFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderFactory.swift; sourceTree = "<group>"; };
-		8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerProtocol.swift; sourceTree = "<group>"; };
-		8A7A612F21A68DA300488ED4 /* MediaStreamProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStreamProtocol.swift; sourceTree = "<group>"; };
-		8A7A613221A68DF000488ED4 /* StreamFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamFactoryProtocol.swift; sourceTree = "<group>"; };
 		8A7A613621A6A05200488ED4 /* MediaStreamMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStreamMock.swift; sourceTree = "<group>"; };
 		8A7A613B21A6AA0C00488ED4 /* WebRtcServerManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerMock.swift; sourceTree = "<group>"; };
 		8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServerMock.swift; sourceTree = "<group>"; };
@@ -439,11 +484,6 @@
 		8A8EF94C219C52480098A27B /* AnyMessageDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyMessageDecoder.swift; sourceTree = "<group>"; };
 		8A8EF94E219D55B60098A27B /* MessageStreamProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStreamProtocol.swift; sourceTree = "<group>"; };
 		8A8EF954219D581D0098A27B /* MessageStreamMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStreamMock.swift; sourceTree = "<group>"; };
-		8A8EF98421A329EF0098A27B /* WebRtcClientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcClientManager.swift; sourceTree = "<group>"; };
-		8A8EF98521A329EF0098A27B /* WebRtcServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManager.swift; sourceTree = "<group>"; };
-		8A8EF98621A329F00098A27B /* WebRtcServerManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerDelegate.swift; sourceTree = "<group>"; };
-		8A8EF98721A329F00098A27B /* WebRtcClientManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcClientManagerDelegate.swift; sourceTree = "<group>"; };
-		8A8EF98D21A3F2480098A27B /* WebRtcConstraintKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcConstraintKey.swift; sourceTree = "<group>"; };
 		8AA7CBB82183560900FCF62A /* BabiesRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabiesRepositoryProtocol.swift; sourceTree = "<group>"; };
 		8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellProtocol.swift; sourceTree = "<group>"; };
 		8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
@@ -519,6 +559,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ED9730921E3919800EF868D /* libWebRTC.a in Frameworks */,
 				4452592C0E44BE74496FDFDF /* Pods_Baby_Monitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -749,6 +790,35 @@
 			path = Pairing;
 			sourceTree = "<group>";
 		};
+		4E63DBEA21E3962B00604167 /* WebRTC */ = {
+			isa = PBXGroup;
+			children = (
+				4E63DBEB21E3962B00604167 /* WebRtcServerManagerProtocol.swift */,
+				4E63DBEC21E3962B00604167 /* WebRtcConstraintKey.swift */,
+				4E63DBED21E3962B00604167 /* WebRtcServerManagerDelegate.swift */,
+				4E63DBEE21E3962B00604167 /* WebRtcStreamId.swift */,
+				4E63DBEF21E3962B00604167 /* WebRtcClientManager.swift */,
+				4E63DBF021E3962B00604167 /* WebRtcServerManager.swift */,
+				4E63DBF121E3962B00604167 /* WebRtcClientManagerProtocol.swift */,
+				4E63DBF221E3962B00604167 /* Protocols */,
+				4E63DBF921E3962B00604167 /* WebRtcClientManagerDelegate.swift */,
+			);
+			path = WebRTC;
+			sourceTree = "<group>";
+		};
+		4E63DBF221E3962B00604167 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4E63DBF321E3962B00604167 /* MediaConstraintsProtocol.swift */,
+				4E63DBF421E3962B00604167 /* SessionDescriptionProtocol.swift */,
+				4E63DBF521E3962B00604167 /* StreamFactoryProtocol.swift */,
+				4E63DBF621E3962B00604167 /* MediaStreamProtocol.swift */,
+				4E63DBF721E3962B00604167 /* IceCandidateProtocol.swift */,
+				4E63DBF821E3962B00604167 /* PeerConnectionProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		4E6EA7932161FB81005575E0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -892,6 +962,71 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		4ED972E121E3919800EF868D /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				4ED972E221E3919800EF868D /* WebRTC */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		4ED972E221E3919800EF868D /* WebRTC */ = {
+			isa = PBXGroup;
+			children = (
+				4ED972E321E3919800EF868D /* include */,
+				4ED972FE21E3919800EF868D /* WebrtcServerManagerDelegate.swift */,
+				4ED972FF21E3919800EF868D /* RTCICEServer+JSON.m */,
+				4ED9730021E3919800EF868D /* libs */,
+				4ED9730221E3919800EF868D /* WebrtcClientManager.swift */,
+				4ED9730321E3919800EF868D /* WebrtcServerManager.swift */,
+				4ED9730421E3919800EF868D /* WebRTC.h */,
+				4ED9730521E3919800EF868D /* RTCICEServer+JSON.h */,
+				4ED9730621E3919800EF868D /* WebrtcClientManagerDelegate.swift */,
+			);
+			path = WebRTC;
+			sourceTree = "<group>";
+		};
+		4ED972E321E3919800EF868D /* include */ = {
+			isa = PBXGroup;
+			children = (
+				4ED972E421E3919800EF868D /* RTCPair.h */,
+				4ED972E521E3919800EF868D /* RTCStatsReport.h */,
+				4ED972E621E3919800EF868D /* RTCPeerConnectionDelegate.h */,
+				4ED972E721E3919800EF868D /* RTCSessionDescription.h */,
+				4ED972E821E3919800EF868D /* RTCVideoCapturer.h */,
+				4ED972E921E3919800EF868D /* RTCVideoSource.h */,
+				4ED972EA21E3919800EF868D /* RTCICEServer.h */,
+				4ED972EB21E3919800EF868D /* RTCMediaConstraints.h */,
+				4ED972EC21E3919800EF868D /* RTCMediaStreamTrack.h */,
+				4ED972ED21E3919800EF868D /* RTCVideoTrack.h */,
+				4ED972EE21E3919800EF868D /* RTCVideoRenderer.h */,
+				4ED972EF21E3919800EF868D /* RTCEAGLVideoView.h */,
+				4ED972F021E3919800EF868D /* RTCAudioTrack.h */,
+				4ED972F121E3919800EF868D /* RTCDataChannel.h */,
+				4ED972F221E3919800EF868D /* SRWebSocket.h */,
+				4ED972F321E3919800EF868D /* RTCI420Frame.h */,
+				4ED972F421E3919800EF868D /* RTCSessionDescriptionDelegate.h */,
+				4ED972F521E3919800EF868D /* RTCAudioSource.h */,
+				4ED972F621E3919800EF868D /* RTCPeerConnection.h */,
+				4ED972F721E3919800EF868D /* RTCPeerConnectionFactory.h */,
+				4ED972F821E3919800EF868D /* RTCMediaStream.h */,
+				4ED972F921E3919800EF868D /* RTCTypes.h */,
+				4ED972FA21E3919800EF868D /* RTCICECandidate.h */,
+				4ED972FB21E3919800EF868D /* RTCMediaSource.h */,
+				4ED972FC21E3919800EF868D /* RTCStatsDelegate.h */,
+				4ED972FD21E3919800EF868D /* RTCOpenGLVideoRenderer.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		4ED9730021E3919800EF868D /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				4ED9730121E3919800EF868D /* libWebRTC.a */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
 		4EE33F1021B54221003A1742 /* Connecting */ = {
 			isa = PBXGroup;
 			children = (
@@ -997,7 +1132,7 @@
 		8A43DAFB217DD1C300E3004D /* Connection */ = {
 			isa = PBXGroup;
 			children = (
-				8A8EF98C21A3F15E0098A27B /* WebRTC */,
+				4E63DBEA21E3962B00604167 /* WebRTC */,
 				8A43DAFC217DD1D000E3004D /* ConnectionChecker.swift */,
 				8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */,
 			);
@@ -1063,19 +1198,6 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
-		8A7A613121A68DD300488ED4 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				8A7A60D321A4180B00488ED4 /* IceCandidateProtocol.swift */,
-				8A7A60D521A4187C00488ED4 /* SessionDescriptionProtocol.swift */,
-				8A7A60DB21A41DD700488ED4 /* PeerConnectionProtocol.swift */,
-				8A7A60DD21A41E5700488ED4 /* MediaConstraintsProtocol.swift */,
-				8A7A612F21A68DA300488ED4 /* MediaStreamProtocol.swift */,
-				8A7A613221A68DF000488ED4 /* StreamFactoryProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		8A8EF94B219C4B920098A27B /* Json */ = {
 			isa = PBXGroup;
 			children = (
@@ -1085,22 +1207,6 @@
 				8A8EF949219C47FD0098A27B /* RTCIceCandidate+JSON.swift */,
 			);
 			path = Json;
-			sourceTree = "<group>";
-		};
-		8A8EF98C21A3F15E0098A27B /* WebRTC */ = {
-			isa = PBXGroup;
-			children = (
-				8A7A613121A68DD300488ED4 /* Protocols */,
-				8A8EF98421A329EF0098A27B /* WebRtcClientManager.swift */,
-				8A7A60D121A416E300488ED4 /* WebRtcClientManagerProtocol.swift */,
-				8A8EF98D21A3F2480098A27B /* WebRtcConstraintKey.swift */,
-				8A8EF98721A329F00098A27B /* WebRtcClientManagerDelegate.swift */,
-				8A8EF98521A329EF0098A27B /* WebRtcServerManager.swift */,
-				8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */,
-				8A8EF98621A329F00098A27B /* WebRtcServerManagerDelegate.swift */,
-				8A045D5A21A3F685006A2E10 /* WebRtcStreamId.swift */,
-			);
-			path = WebRTC;
 			sourceTree = "<group>";
 		};
 		8AA7CBBC2187100F00FCF62A /* Settings */ = {
@@ -1269,6 +1375,7 @@
 		EC82B54D213EA072005CA395 = {
 			isa = PBXGroup;
 			children = (
+				4ED972E121E3919800EF868D /* Dependencies */,
 				ECB146D9213EA44C00C504FD /* Configuration */,
 				EC82B558213EA072005CA395 /* Baby Monitor */,
 				EC82B56D213EA074005CA395 /* Baby MonitorTests */,
@@ -1643,7 +1750,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework",
 				"${BUILT_PRODUCTS_DIR}/Keys/Keys.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSocket/PocketSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -1661,7 +1767,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keys.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -1687,16 +1792,15 @@
 			files = (
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
 				4E5731992170BA7400DEAF0B /* BabiesViewShowable.swift in Sources */,
-				8A7A60DE21A41E5700488ED4 /* MediaConstraintsProtocol.swift in Sources */,
 				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				8A7A611721A59E3B00488ED4 /* CryingEventService.swift in Sources */,
-				8A045D5B21A3F685006A2E10 /* WebRtcStreamId.swift in Sources */,
 				8A7A611B21A59E5000488ED4 /* MemoryCleaner.swift in Sources */,
 				8A7A611C21A59E5000488ED4 /* CryingEvent.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
 				8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */,
 				8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */,
 				8AA7CBDE218C55C500FCF62A /* LullabyPlayer.swift in Sources */,
+				4E63DC0421E3962B00604167 /* MediaStreamProtocol.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E2F413721B148BB00513843 /* OnboardingContinuableViewModel.swift in Sources */,
 				4E36A3B021B15FF80058DAD2 /* OnboardingSpinnerView.swift in Sources */,
@@ -1707,12 +1811,12 @@
 				8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */,
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				8A42DB0B2179D7D700BF5F1B /* URLUserDefaults.swift in Sources */,
+				4ED9730B21E3919800EF868D /* WebrtcServerManager.swift in Sources */,
 				4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */,
 				8AFAE5BA219C0314007013BC /* String+JSON.swift in Sources */,
 				4E8E056E21AD8E72009ACE05 /* OnboardingButton.swift in Sources */,
 				8AA7CBB92183560900FCF62A /* BabiesRepositoryProtocol.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
-				8A7A60DC21A41DD700488ED4 /* PeerConnectionProtocol.swift in Sources */,
 				ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */,
 				8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
@@ -1720,10 +1824,11 @@
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
 				4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */,
 				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
-				8A7A613021A68DA300488ED4 /* MediaStreamProtocol.swift in Sources */,
 				4E57319C2170BA7400DEAF0B /* BabyMonitorCellSelectable.swift in Sources */,
 				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
+				4E63DC0721E3962B00604167 /* WebRtcClientManagerDelegate.swift in Sources */,
 				8A7A611621A59E3B00488ED4 /* CryingDetectionService.swift in Sources */,
+				4E63DC0021E3962B00604167 /* WebRtcClientManagerProtocol.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
 				4E8E057421AE9E4A009ACE05 /* UIColor+BabyMonitor.swift in Sources */,
 				8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */,
@@ -1740,11 +1845,10 @@
 				8AFAE5BC219C0DEE007013BC /* MessageDecoderProtocol.swift in Sources */,
 				8A7A611F21A59E5D00488ED4 /* RealmCryingEvent.swift in Sources */,
 				8A7A616D21A8162000488ED4 /* UIColor+Custom.swift in Sources */,
-				8A8EF98E21A3F2480098A27B /* WebRtcConstraintKey.swift in Sources */,
 				EC8A8FF321AE8EE500B5FCCF /* BasePageViewController.swift in Sources */,
 				8AA7CBDC218C559000FCF62A /* LullabyPlayerProtocol.swift in Sources */,
 				8A7A611521A59E3B00488ED4 /* AudioRecordService.swift in Sources */,
-				8A7A60D621A4187C00488ED4 /* SessionDescriptionProtocol.swift in Sources */,
+				4ED9730C21E3919800EF868D /* WebrtcClientManagerDelegate.swift in Sources */,
 				4EB6DE6321B6687D004701EA /* EventMessage.swift in Sources */,
 				4E0D36B421DCF3C600898ED4 /* FirebasePushNotificationsRequest.swift in Sources */,
 				8A8EF944219C40630098A27B /* RTCSessionDescription+JSON.swift in Sources */,
@@ -1775,22 +1879,24 @@
 				8A7A608821A403D500488ED4 /* MicrophoneTrackerProtocol.swift in Sources */,
 				4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */,
 				8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */,
-				8A7A60D421A4180B00488ED4 /* IceCandidateProtocol.swift in Sources */,
-				8A8EF98921A329F10098A27B /* WebRtcServerManager.swift in Sources */,
 				4E2F413521B1441600513843 /* OnboardingContinuableViewController.swift in Sources */,
-				8A7A60D221A416E300488ED4 /* WebRtcClientManagerProtocol.swift in Sources */,
 				8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,
+				4E63DBFB21E3962B00604167 /* WebRtcConstraintKey.swift in Sources */,
 				8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
+				4E63DC0121E3962B00604167 /* MediaConstraintsProtocol.swift in Sources */,
 				8AA7CC00218C72D600FCF62A /* RealmLullaby.swift in Sources */,
 				8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */,
+				4E63DC0621E3962B00604167 /* PeerConnectionProtocol.swift in Sources */,
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,
+				4ED9730A21E3919800EF868D /* WebrtcClientManager.swift in Sources */,
 				4E881BB121DE11610099D5C1 /* ServerKeyObtainable.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
+				4E63DC0521E3962B00604167 /* IceCandidateProtocol.swift in Sources */,
 				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
-				8A7A613321A68DF000488ED4 /* StreamFactoryProtocol.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
+				4E63DBFA21E3962B00604167 /* WebRtcServerManagerProtocol.swift in Sources */,
 				4E36A3AE21B15F850058DAD2 /* OnboardingClientSetupViewController.swift in Sources */,
 				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
 				8A7A612721A59E8600488ED4 /* DirectoryDocumentsSavable.swift in Sources */,
@@ -1801,13 +1907,16 @@
 				8A42DB072179D61B00BF5F1B /* URLConfiguration.swift in Sources */,
 				4E8E057021AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift in Sources */,
 				4EBACE4621CBC27700A32FAE /* ClientService.swift in Sources */,
-				8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */,
+				4E63DC0221E3962B00604167 /* SessionDescriptionProtocol.swift in Sources */,
 				4E8E056321AD81D4009ACE05 /* BaseOnboardingView.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
+				4E63DC0321E3962B00604167 /* StreamFactoryProtocol.swift in Sources */,
 				8AA7CBFE218C70B400FCF62A /* RealmLullabiesRepository.swift in Sources */,
+				4ED9730721E3919800EF868D /* WebrtcServerManagerDelegate.swift in Sources */,
 				8A8EF946219C46AD0098A27B /* SdpOfferDecoder.swift in Sources */,
 				8A7A611D21A59E5000488ED4 /* CryingEventsRepositoryProtocol.swift in Sources */,
 				8A43DAFD217DD1D000E3004D /* ConnectionChecker.swift in Sources */,
+				4ED9730821E3919800EF868D /* RTCICEServer+JSON.m in Sources */,
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
 				4E8E057221AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift in Sources */,
 				4E0D36B221DCF16F00898ED4 /* NetworkDispatcher.swift in Sources */,
@@ -1815,11 +1924,11 @@
 				8A7A612C21A59EB000488ED4 /* RecorderFactory.swift in Sources */,
 				4EAFA8F221C7CDCE00D88117 /* NotificationService.swift in Sources */,
 				8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */,
+				4E63DBFC21E3962B00604167 /* WebRtcServerManagerDelegate.swift in Sources */,
 				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
 				8AFAE5AD219AAAAC007013BC /* MessageServerProtocol.swift in Sources */,
 				4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */,
 				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
-				8A8EF98B21A329F10098A27B /* WebRtcClientManagerDelegate.swift in Sources */,
 				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
 				EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */,
 				4E0D36AE21DCF12D00898ED4 /* URLRequestConvertible.swift in Sources */,
@@ -1830,11 +1939,12 @@
 				8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				ECB2428621AD4E1100B4E409 /* IntroCoordinator.swift in Sources */,
 				8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */,
-				8A8EF98A21A329F10098A27B /* WebRtcServerManagerDelegate.swift in Sources */,
+				4E63DBFF21E3962B00604167 /* WebRtcServerManager.swift in Sources */,
 				8A8EF94F219D55B60098A27B /* MessageStreamProtocol.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
+				4E63DBFD21E3962B00604167 /* WebRtcStreamId.swift in Sources */,
+				4E63DBFE21E3962B00604167 /* WebRtcClientManager.swift in Sources */,
 				8A7A608421A4027E00488ED4 /* ErrorHandler.swift in Sources */,
-				8A8EF98821A329F10098A27B /* WebRtcClientManager.swift in Sources */,
 				EC8A8FF921AEA7EE00B5FCCF /* IntroView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

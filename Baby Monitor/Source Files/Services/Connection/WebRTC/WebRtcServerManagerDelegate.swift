@@ -6,10 +6,8 @@
 //  Copyright © 2016 Ralf Ebert. All rights reserved.
 //
 
-import WebRTC
-
 protocol WebRtcServerManagerDelegate: AnyObject {
     func localStreamAvailable(stream: RTCMediaStream)
     func answerSDPCreated(sdp: RTCSessionDescription)
-    func iceCandidatesCreated(iceCandidate: RTCIceCandidate)
+    func iceCandidatesCreated(iceCandidate: RTCICECandidate)
 }

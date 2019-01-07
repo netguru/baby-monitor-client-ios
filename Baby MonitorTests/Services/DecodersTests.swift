@@ -4,7 +4,6 @@
 //
 
 @testable import BabyMonitor
-import WebRTC
 import XCTest
 
 class DecodersTests: XCTestCase {

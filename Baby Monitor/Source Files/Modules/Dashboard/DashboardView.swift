@@ -133,14 +133,14 @@ class DashboardView: BaseView {
         descriptionLabel.addConstraints {[
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.9),
-            $0.equalTo(nameField, .top, .bottom, constant: Constants.mainOffset + 40)
+            $0.equalTo(nameField, .top, .bottom, constant: Constants.mainOffset + 25)
         ]
         }
         
         tipLabel.addConstraints {[
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.9),
-            $0.equalTo(dashboardButtonsStackView, .bottom, .top, constant: -40)
+            $0.equalTo(dashboardButtonsStackView, .bottom, .top, constant: -25)
         ]
         }
         

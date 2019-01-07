@@ -3,8 +3,6 @@
 //  Baby Monitor
 //
 
-import WebRTC
-
 protocol PeerConnectionProtocol {
     func setRemoteDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?)
 

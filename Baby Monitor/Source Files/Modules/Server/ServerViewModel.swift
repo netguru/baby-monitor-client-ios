@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import WebRTC
 import RxSwift
 
 final class ServerViewModel {

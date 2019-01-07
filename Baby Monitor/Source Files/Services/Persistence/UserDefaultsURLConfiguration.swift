@@ -3,6 +3,8 @@
 //  Baby Monitor
 //
 
+import Foundation
+
 final class UserDefaultsURLConfiguration: URLConfiguration {
     
     private var cachedUrl: URL?

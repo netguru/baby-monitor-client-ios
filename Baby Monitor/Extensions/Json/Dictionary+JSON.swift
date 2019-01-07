@@ -3,6 +3,8 @@
 //  Baby Monitor
 //
 
+import Foundation
+
 extension Dictionary where Key == String, Value == [AnyHashable: Any] {
     var jsonString: String? {
         guard let jsonData = try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted) else {

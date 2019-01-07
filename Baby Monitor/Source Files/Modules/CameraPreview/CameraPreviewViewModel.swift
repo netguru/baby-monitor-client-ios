@@ -4,19 +4,18 @@
 //
 
 import RxSwift
-import WebRTC
 
 final class CameraPreviewViewModel {
 
     private let babyRepo: BabiesRepositoryProtocol
     lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
-    private let webRtcClientManager: WebRtcClientManagerProtocol
-    var remoteStream: Observable<MediaStreamProtocol> {
-        return webRtcClientManager.mediaStream
+    private let webSocketsService: WebSocketsServiceProtocol
+    var remoteStream: Observable<RTCMediaStream?> {
+        return webSocketsService.mediaStream
     }
 
-    init(webRtcClientManager: WebRtcClientManagerProtocol, babyRepo: BabiesRepositoryProtocol) {
-        self.webRtcClientManager = webRtcClientManager
+    init(webSocketsService: WebSocketsServiceProtocol, babyRepo: BabiesRepositoryProtocol) {
+        self.webSocketsService = webSocketsService
         self.babyRepo = babyRepo
     }
     
@@ -27,6 +26,10 @@ final class CameraPreviewViewModel {
     // MARK: - Internal functions
     func selectCancel() {
         didSelectCancel?()
+    }
+
+    func play() {
+        webSocketsService.play()
     }
 
     func selectShowBabies() {
