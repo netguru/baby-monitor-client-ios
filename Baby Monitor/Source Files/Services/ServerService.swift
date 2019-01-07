@@ -32,8 +32,9 @@ final class ServerService: ServerServiceProtocol {
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
     private let notificationsService: NotificationServiceProtocol
     private let audioRecordServiceErrorPublisher = PublishSubject<Void>()
+    private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     
-    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, websocketsService: WebSocketsServiceProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol) {
+    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, websocketsService: WebSocketsServiceProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>) {
         self.cryingEventService = cryingService
         self.babiesRepository = babiesRepository
         self.webRtcServerManager = webRtcServerManager
@@ -41,8 +42,9 @@ final class ServerService: ServerServiceProtocol {
         self.netServiceServer = netServiceServer
         self.websocketsService = websocketsService
         self.cacheService = cacheService
-        self.decoders = decoders
+        self.decoders = webRtcDecoders
         self.notificationsService = notificationsService
+        self.babyMonitorEventMessagesDecoder = babyMonitorEventMessagesDecoder
         setup()
         rxSetup()
     }
@@ -84,17 +86,18 @@ final class ServerService: ServerServiceProtocol {
                 self.handle(message: message)
             })
             .disposed(by: disposeBag)
+        messageServer.decodedMessage(using: [babyMonitorEventMessagesDecoder]).subscribe(onNext: { [unowned self] event in
+            guard let event = event else {
+                return
+            }
+            self.handle(event: event)
+        })
+            .disposed(by: disposeBag)
         Observable.merge(sdpAnswerJson(), iceCandidateJson())
             .subscribe(onNext: { [unowned self] json in
                 self.messageServer.send(message: json)
             })
             .disposed(by: disposeBag)
-        websocketsService.messageReceivedObservable.subscribe(onNext: { [unowned self] _ in
-            self.isCryingMessageReceivedFromClient = true
-        }).disposed(by: disposeBag)
-        websocketsService.pushNotificationsTokenObservable.subscribe(onNext: { [unowned self] token in
-            self.cacheService.receiverPushNotificationsToken = token
-        }).disposed(by: disposeBag)
     }
     
     private func handle(message: WebRtcMessage) {
@@ -104,6 +107,20 @@ final class ServerService: ServerServiceProtocol {
         case .sdpOffer(let sdp):
             webRtcServerManager.createAnswer(remoteSdp: sdp)
         default:
+            break
+        }
+    }
+    
+    private func handle(event: EventMessage) {
+        guard let babyMonitorEvent = BabyMonitorEvent(rawValue: event.action) else {
+            return
+        }
+        switch babyMonitorEvent {
+        case .cryingEventMessageReceived:
+            isCryingMessageReceivedFromClient = true
+        case .pushNotificationsKey:
+            self.cacheService.receiverPushNotificationsToken = event.value
+        case .crying:
             break
         }
     }

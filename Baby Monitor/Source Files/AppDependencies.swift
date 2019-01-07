@@ -58,12 +58,13 @@ final class AppDependencies {
         webRtcServerManager: webRtcServer(peerConnection(), webRtcStreamFactory),
         messageServer: messageServer,
         netServiceServer: netServiceServer,
-        decoders: webRtcMessageDecoders,
+        webRtcDecoders: webRtcMessageDecoders,
         cryingService: cryingEventService,
         babiesRepository: babiesRepository,
         websocketsService: websocketsService,
         cacheService: cacheService,
-        notificationsService: localNotificationService
+        notificationsService: localNotificationService,
+        babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
     )
     
     private(set) var urlConfiguration: URLConfiguration = UserDefaultsURLConfiguration()

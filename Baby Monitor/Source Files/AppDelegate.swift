@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         setupAppearance()
         setupNotifications(application: application)
-        Messaging.messaging().delegate = self
         FirebaseApp.configure()
+        Messaging.messaging().delegate = self
         return true
     }
     

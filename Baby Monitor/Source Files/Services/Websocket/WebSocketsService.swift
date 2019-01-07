@@ -7,23 +7,18 @@ import Foundation
 import RxSwift
 
 protocol WebSocketsServiceProtocol: AnyObject {
-    var messageReceivedObservable: Observable<Void> { get }
-    var pushNotificationsTokenObservable: Observable<String> { get }
     var onCryingEventOccurence: (() -> Void)? { get set }
     
     /// Open websockets connection
     func play()
+    /// Sends message to connected server app
+    func sendMessageToServer(message: String)
 }
 
 final class WebSocketsService: WebSocketsServiceProtocol {
     
     var onCryingEventOccurence: (() -> Void)?
     
-    lazy var pushNotificationsTokenObservable = pushNotificationsPublisher.asObservable()
-    lazy var messageReceivedObservable = messageReceivedPublisher.asObservable()
-    
-    private let messageReceivedPublisher = PublishSubject<Void>()
-    private let pushNotificationsPublisher = PublishSubject<String>()
     private let webRtcClientManager: WebRtcClientManagerProtocol
     private let webSocket: WebSocketProtocol?
     private let webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>]
@@ -43,6 +38,10 @@ final class WebSocketsService: WebSocketsServiceProtocol {
     func play() {
         webSocket?.open()
         webRtcClientManager.startWebRtcConnection()
+    }
+    
+    func sendMessageToServer(message: String) {
+        webSocket?.send(message: message)
     }
     
     private func setup() {
@@ -109,10 +108,8 @@ final class WebSocketsService: WebSocketsServiceProtocol {
         case .crying:
             cryingEventsRepository.save(cryingEvent: CryingEvent(fileName: event.value))
             onCryingEventOccurence?()
-        case .cryingEventMessageReceived:
-            messageReceivedPublisher.onNext(())
-        case .pushNotificationsKey:
-            pushNotificationsPublisher.onNext(event.value)
+        case .cryingEventMessageReceived, .pushNotificationsKey:
+            break
         }
     }
 }

@@ -37,6 +37,7 @@ extension URLRequestConvertible where Self: Request {
         headers?.forEach {
             urlRequest.addValue($0.value, forHTTPHeaderField: $0.key)
         }
+        urlRequest.httpMethod = method.rawValue
         return urlRequest
     }
 }
