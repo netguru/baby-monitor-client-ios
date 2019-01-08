@@ -11,5 +11,5 @@ protocol ServerKeyObtainableProtocol: AnyObject {
 }
 
 final class ServerKeyObtainable: ServerKeyObtainableProtocol {
-    let serverKey = EidolonKeys().firebaseServerKey
+    let serverKey = BabyMonitorKeys().firebaseServerKey
 }

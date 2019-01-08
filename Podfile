@@ -1,5 +1,5 @@
 plugin 'cocoapods-keys', {
-  :project => "Eidolon",
+  :project => "BabyMonitor",
   :keys => [
     "FirebaseServerKey"
   ]}
