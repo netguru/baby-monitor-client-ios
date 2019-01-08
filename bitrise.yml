@@ -200,7 +200,7 @@ workflows:
       - script:
           title: 'copy-dotenv'
           inputs:
-            - content: cp .env.sample .env
+            - content: cp .env
             - cocoapods-install: {}
 
   # Bootstrap code signing by installing certificates and provisioning profiles.
