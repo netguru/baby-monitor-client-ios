@@ -186,30 +186,22 @@ workflows:
             - carthage_command: bootstrap
             - carthage_options: --platform iOS --cache-builds
             - github_access_token: $GITHUB_ACCESS_TOKEN
-
-  # Bootstrap dependencies using CocoaPods package manager.
-  #
-  # If you don't use this package manager, you can remove this workflow.
-
-  bootstrap-cocoapods:
-    steps:
-      - cocoapods-install: {}
 	  
 	  # Bootstrap dependencies using CocoaPods package manager.
 	  #
 	  # If you don't use this package manager, you can remove this workflow.
 
-	  bootstrap-cocoapods-keys:
-	    steps:
-	      - script:
-	          title: 'bundle-install'
-	          inputs:
-	            - content: bundle install
-	      - script:
-	          title: 'copy-dotenv'
-	          inputs:
-	            - content: cp .env.sample .env
-	      - cocoapods-install: {}
+  bootstrap-cocoapods-keys:
+    steps:
+      - script:
+          title: 'bundle-install'
+          inputs:
+            - content: bundle install
+      - script:
+          title: 'copy-dotenv'
+          inputs:
+            - content: cp .env.sample .env
+            - cocoapods-install: {}
 
   # Bootstrap code signing by installing certificates and provisioning profiles.
 
