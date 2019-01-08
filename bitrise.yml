@@ -187,9 +187,9 @@ workflows:
             - carthage_options: --platform iOS --cache-builds
             - github_access_token: $GITHUB_ACCESS_TOKEN
   
-	  # Bootstrap dependencies using CocoaPods package manager.
-	  #
-	  # If you don't use this package manager, you can remove this workflow.
+  # Bootstrap dependencies using CocoaPods package manager.
+  #
+  # If you don't use this package manager, you can remove this workflow.
 
   bootstrap-cocoapods-keys:
     steps:
