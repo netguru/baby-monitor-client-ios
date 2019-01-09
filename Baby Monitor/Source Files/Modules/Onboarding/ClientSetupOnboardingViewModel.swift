@@ -51,16 +51,12 @@ final class ClientSetupOnboardingViewModel {
                     let self = self else {
                         return
                 }
-                let cryingEventMessage = EventMessage.initWithPushNotificationsKey(key: self.cacheService.selfPushNotificationsToken!)
-                let data = try! JSONEncoder().encode(cryingEventMessage)
-                guard let jsonString = String(data: data, encoding: .utf8) else {
-                    return
-                }
                 self.searchCancelTimer?.invalidate()
                 self.urlConfiguration.url = serverUrl
                 self.clientService.start()
                 self.netServiceClient.stopFinding()
-                self.clientService.sendMessageToServer(message: jsonString)
+                let cryingEventMessage = EventMessage.initWithPushNotificationsKey(key: self.cacheService.selfPushNotificationsToken!)
+                self.clientService.sendMessageToServer(message: cryingEventMessage.toStringMessage())
                 self.didFinishDeviceSearch?(.success)
                 self.setupBaby()
             })

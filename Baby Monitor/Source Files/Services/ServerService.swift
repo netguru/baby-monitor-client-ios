@@ -66,11 +66,7 @@ final class ServerService: ServerServiceProtocol {
     
     private func rxSetup() {
         cryingEventService.cryingEventObservable.subscribe(onNext: { [unowned self] cryingEventMessage in
-            let data = try! JSONEncoder().encode(cryingEventMessage)
-            guard let jsonString = String(data: data, encoding: .utf8) else {
-                return
-            }
-            self.messageServer.send(message: jsonString)
+            self.messageServer.send(message: cryingEventMessage.toStringMessage())
             self.timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false, block: { _ in
                 if !self.isCryingMessageReceivedFromClient {
                     self.notificationsService.sendPushNotificationsRequest()

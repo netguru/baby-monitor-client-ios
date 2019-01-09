@@ -12,11 +12,6 @@ struct FirebasePushNotificationsRequest: Request, URLRequestConvertible {
         body?["to"] = receiverId
     }
     
-    var basePath = "https://fcm.googleapis.com"
-    var apiPath = ""
-    var path = "/fcm/send"
-    var method: HTTPMethod = .post
-    var parameters: [String: String]?
     var headers: [String: String]? = [
         "Content-Type": "application/json"
     ]
@@ -26,4 +21,9 @@ struct FirebasePushNotificationsRequest: Request, URLRequestConvertible {
             "body": Localizable.Server.babyIsCrying
         ]
     ]
+    let basePath = "https://fcm.googleapis.com"
+    let apiPath = ""
+    let path = "/fcm/send"
+    let method: HTTPMethod = .post
+    let parameters: [String: String]? = nil
 }

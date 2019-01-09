@@ -33,11 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupNotifications(application: UIApplication) {
         appDependencies.localNotificationService.getNotificationsAllowance { isGranted in
-            if isGranted {
-                DispatchQueue.main.async {
-                    application.registerForRemoteNotifications()
-                }
+            guard isGranted else {
+                return
             }
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+            }
+            
         }
     }
     

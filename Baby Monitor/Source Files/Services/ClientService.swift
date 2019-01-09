@@ -41,9 +41,7 @@ final class ClientService: ClientServiceProtocol {
         websocketsService.onCryingEventOccurence = { [unowned self] in
             self.cryingEventPublisher.onNext(())
             let eventMessage = EventMessage.initWithMessageReceived()
-            let data = try! JSONEncoder().encode(eventMessage)
-            let jsonString = String(data: data, encoding: .utf8)!
-            self.sendMessageToServer(message: jsonString)
+            self.sendMessageToServer(message: eventMessage.toStringMessage())
         }
     }
 }
