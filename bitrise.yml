@@ -197,11 +197,6 @@ workflows:
           title: 'bundle-install'
           inputs:
             - content: bundle install
-      - script:
-          title: 'copy-dotenv'
-          inputs:
-            - content: cp .env
-            - cocoapods-install: {}
 
   # Bootstrap code signing by installing certificates and provisioning profiles.
 
