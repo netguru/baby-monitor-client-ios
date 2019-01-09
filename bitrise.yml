@@ -197,6 +197,7 @@ workflows:
           title: 'bundle-install'
           inputs:
             - content: bundle install
+      - cocoapods-install: {}
 
   # Bootstrap code signing by installing certificates and provisioning profiles.
 
