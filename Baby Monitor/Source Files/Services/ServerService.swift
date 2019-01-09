@@ -21,6 +21,7 @@ final class ServerService: ServerServiceProtocol {
     
     private var isCryingMessageReceivedFromClient = false
     private var timer: Timer?
+    private let parentResponseTime: TimeInterval
     private let webRtcServerManager: WebRtcServerManagerProtocol
     private let messageServer: MessageServerProtocol
     private let netServiceServer: NetServiceServerProtocol
@@ -34,7 +35,7 @@ final class ServerService: ServerServiceProtocol {
     private let audioRecordServiceErrorPublisher = PublishSubject<Void>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     
-    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, websocketsService: WebSocketsServiceProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>) {
+    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, websocketsService: WebSocketsServiceProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
         self.cryingEventService = cryingService
         self.babiesRepository = babiesRepository
         self.webRtcServerManager = webRtcServerManager
@@ -45,6 +46,7 @@ final class ServerService: ServerServiceProtocol {
         self.decoders = webRtcDecoders
         self.notificationsService = notificationsService
         self.babyMonitorEventMessagesDecoder = babyMonitorEventMessagesDecoder
+        self.parentResponseTime = parentResponseTime
         setup()
         rxSetup()
     }
@@ -67,7 +69,7 @@ final class ServerService: ServerServiceProtocol {
     private func rxSetup() {
         cryingEventService.cryingEventObservable.subscribe(onNext: { [unowned self] cryingEventMessage in
             self.messageServer.send(message: cryingEventMessage.toStringMessage())
-            self.timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false, block: { _ in
+            self.timer = Timer.scheduledTimer(withTimeInterval: self.parentResponseTime, repeats: false, block: { _ in
                 if !self.isCryingMessageReceivedFromClient {
                     self.notificationsService.sendPushNotificationsRequest()
                 }
