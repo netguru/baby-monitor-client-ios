@@ -26,13 +26,12 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     var receivedMessage: Observable<String> {
         return receivedMessagePublisher.asObservable()
     }
-    private let receivedMessagePublisher = PublishRelay<String>()
     
+    private var isConnected = false
+    private let receivedMessagePublisher = PublishRelay<String>()
     private let socket: PSWebSocket
 
     private var buffer: [Any] = []
-
-    private var isConnected = false
     
     init(socket: PSWebSocket, assignDelegate: Bool = true) {
         self.socket = socket

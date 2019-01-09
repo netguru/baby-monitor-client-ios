@@ -12,6 +12,8 @@ protocol WebSocketsServiceProtocol: AnyObject {
     
     /// Open websockets connection
     func play()
+    /// Sends message to connected server app
+    func sendMessageToServer(message: String)
 }
 
 final class WebSocketsService: WebSocketsServiceProtocol {
@@ -40,6 +42,10 @@ final class WebSocketsService: WebSocketsServiceProtocol {
     func play() {
         webSocket?.open()
         webRtcClientManager.startWebRtcConnection()
+    }
+    
+    func sendMessageToServer(message: String) {
+        webSocket?.send(message: message)
     }
     
     private func setup() {
@@ -106,6 +112,8 @@ final class WebSocketsService: WebSocketsServiceProtocol {
         case .crying:
             cryingEventsRepository.save(cryingEvent: CryingEvent(fileName: event.value))
             onCryingEventOccurence?()
+        case .cryingEventMessageReceived, .pushNotificationsKey:
+            break
         }
     }
 }

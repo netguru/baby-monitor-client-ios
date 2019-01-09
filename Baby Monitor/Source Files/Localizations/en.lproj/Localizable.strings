@@ -9,6 +9,8 @@
 "general.delete" = "Delete";
 "general.ok" = "OK";
 "general.next" = "Next";
+"general.warning" = "Warning!";
+"general.attention" = "Attention!";
 
 //MARK: = Intro
 "intro.title.detect" = "Automatically detect if your \nbaby is crying";
@@ -87,3 +89,4 @@
 //MARK: - Errors
 "errors.title.error-occured" = "Error occured";
 "errors.message.unable-to-find" = "Unable to find a device for connection";
+"errors.notifications-not-allowed" = "Notifications are not allowed. You won't get any message if your baby starts crying";

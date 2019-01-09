@@ -58,7 +58,9 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
         let clientSetupViewModel = ClientSetupOnboardingViewModel(
             netServiceClient: appDependencies.netServiceClient(),
             urlConfiguration: appDependencies.urlConfiguration,
-            babyRepo: appDependencies.babiesRepository)
+            babyRepo: appDependencies.babiesRepository,
+            cacheService: appDependencies.cacheService,
+            clientService: appDependencies.clientService)
 
         let clientSetupViewController = OnboardingClientSetupViewController(role: .pairing(.pairing), viewModel: clientSetupViewModel)
         clientSetupViewController.rx.viewDidLoad

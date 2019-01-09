@@ -1,3 +1,9 @@
+plugin 'cocoapods-keys', {
+  :project => "BabyMonitor",
+  :keys => [
+    "FirebaseServerKey"
+  ]}
+
 # Uncomment the next line to define a global platform for your project
   platform :ios, '11.0'
   use_frameworks!
@@ -13,6 +19,8 @@ target 'Baby Monitor' do
   pod 'RxDataSources', '~> 3.0'
   pod 'PocketSocket', '~> 1.0.1'
   pod 'AudioKit', '~> 4.5.4' 
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 
   target 'Baby MonitorTests' do
     inherit! :search_paths

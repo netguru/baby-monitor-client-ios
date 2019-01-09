@@ -23,7 +23,7 @@ final class ServerViewController: BaseViewController {
     }
     
     private func setup() {
-        viewModel.localStream
+        viewModel.stream
             .subscribe(onNext: { [unowned self] stream in
                 self.attach(stream: stream)
             })

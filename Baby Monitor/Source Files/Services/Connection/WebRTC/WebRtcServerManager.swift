@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import WebRTC
 import RxSwift
 import RxCocoa
 
@@ -87,7 +86,7 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
 }
 
 extension WebRtcServerManager: RTCPeerConnectionDelegate {
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didAdd stream: RTCMediaStream) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, removedStreamam: RTCMediaStream) {}
 
     public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {}
 

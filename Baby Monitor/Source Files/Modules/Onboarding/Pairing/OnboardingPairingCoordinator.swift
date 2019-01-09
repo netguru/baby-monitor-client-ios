@@ -35,7 +35,9 @@ final class OnboardingPairingCoordinator: Coordinator {
         let viewModel = ClientSetupOnboardingViewModel(
             netServiceClient: appDependencies.netServiceClient(),
             urlConfiguration: appDependencies.urlConfiguration,
-            babyRepo: appDependencies.babiesRepository)
+            babyRepo: appDependencies.babiesRepository,
+            cacheService: appDependencies.cacheService,
+            clientService: appDependencies.clientService)
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success:

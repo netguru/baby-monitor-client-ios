@@ -7,6 +7,7 @@ import Foundation
 import RealmSwift
 import PocketSocket
 import AudioKit
+import FirebaseMessaging
 
 final class AppDependencies {
     
@@ -29,12 +30,35 @@ final class AppDependencies {
         cryingEventsRepository: babiesRepository,
         webRtcMessageDecoders: webRtcMessageDecoders,
         babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder)
+    private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher(
+        urlSession: URLSession(configuration: .default),
+        dispatchQueue: DispatchQueue(label: "NetworkDispatcherQueue")
+    )
+    private(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService(
+        networkDispatcher: networkDispatcher,
+        cacheService: cacheService,
+        serverKeyObtainable: serverKeyObtainable)
+    private let serverKeyObtainable: ServerKeyObtainableProtocol = ServerKeyObtainable()
     
     private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
     
     private(set) var babyMonitorEventMessagesDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
+    private(set) var cacheService: CacheServiceProtocol = CacheService()
 
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient(), urlConfiguration: urlConfiguration)
+    private(set) lazy var clientService: ClientServiceProtocol = ClientService(websocketsService: websocketsService, localNotificationService: localNotificationService, messageServer: messageServer)
+    private(set) lazy var serverService: ServerServiceProtocol = ServerService(
+        webRtcServerManager: webRtcServer(),
+        messageServer: messageServer,
+        netServiceServer: netServiceServer,
+        webRtcDecoders: webRtcMessageDecoders,
+        cryingService: cryingEventService,
+        babiesRepository: babiesRepository,
+        websocketsService: websocketsService,
+        cacheService: cacheService,
+        notificationsService: localNotificationService,
+        babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
+    )
     
     private(set) var urlConfiguration: URLConfiguration = UserDefaultsURLConfiguration()
     private(set) lazy var messageServer = MessageServer(server: webSocketServer)
