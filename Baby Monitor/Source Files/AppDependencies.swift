@@ -22,8 +22,8 @@ final class AppDependencies {
 
     private(set) lazy var netServiceClient: () -> NetServiceClientProtocol = { NetServiceClient() }
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
-    private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = { WebrtcServerManager() }
-    private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = { WebrtcClientManager() }
+    private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = { WebRtcServerManager() }
+    private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = { WebRtcClientManager() }
     private(set) lazy var websocketsService: WebSocketsServiceProtocol = WebSocketsService(
         webRtcClientManager: webRtcClient(),
         webSocket: webSocket(urlConfiguration.url),

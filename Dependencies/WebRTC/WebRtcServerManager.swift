@@ -10,13 +10,9 @@ import Foundation
 import AVFoundation
 import RxSwift
 
-public class WebrtcServerManager: NSObject, RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate, WebRtcServerManagerProtocol {
-    
-    public weak var delegate: WebrtcServerManagerDelegate?
-    
+public class WebRtcServerManager: NSObject, RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate, WebRtcServerManagerProtocol {
+
     var localStream: RTCMediaStream?
-    var unusedICECandidates: [RTCICECandidate] = []
-    var initiator = false
     var peerConnection: RTCPeerConnection?
     var peerConnectionFactory: RTCPeerConnectionFactory?
     var videoCapturer: RTCVideoCapturer?
@@ -37,8 +33,6 @@ public class WebrtcServerManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
     let mediaStreamPublisher = PublishSubject<RTCMediaStream>()
     let sdpAnswerPublisher = PublishSubject<RTCSessionDescription>()
     let iceCandidatePublisher = PublishSubject<RTCICECandidate>()
-    
-    private let debug = true
     
     override public init() {
         super.init()
@@ -65,9 +59,7 @@ public class WebrtcServerManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
         localVideoTrack = videoTrack
         localStream?.addVideoTrack(videoTrack)
         localStream?.addAudioTrack(audioTrack)
-        DispatchQueue.main.async {
-            
-        }
+        DispatchQueue.main.async {}
         mediaStreamPublisher.onNext(localStream!)
         self.peerConnection?.add(localStream!)
     }
@@ -98,74 +90,38 @@ public class WebrtcServerManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
         }
     }
     
-    public func addUnusedIceCandidates() {
-        unusedICECandidates.forEach {
-            peerConnection?.add($0)
-        }
-        unusedICECandidates = []
-    }
-    
-    public func peerConnection(_ peerConnection: RTCPeerConnection, addedStream stream: RTCMediaStream) {
-        print("Log: PEER CONNECTION:- Stream Added")
-    }
+    public func peerConnection(_ peerConnection: RTCPeerConnection, addedStream stream: RTCMediaStream) {}
     
     public func peerConnection(_ peerConnection: RTCPeerConnection, gotICECandidate candidate: RTCICECandidate) {
-        print("PEER CONNECTION:- Got ICE Candidate - \(candidate)")
         iceCandidatePublisher.onNext(candidate)
-        
     }
     
-    public func peerConnection(_ peerConnection: RTCPeerConnection, iceConnectionChanged newState: RTCICEConnectionState) {
-        print("PEER CONNECTION:- ICE Connection Changed \(newState)")
-    }
+    public func peerConnection(_ peerConnection: RTCPeerConnection, iceConnectionChanged newState: RTCICEConnectionState) {}
     
-    public func peerConnection(_ peerConnection: RTCPeerConnection, iceGatheringChanged newState: RTCICEGatheringState) {
-        print("PEER CONNECTION:- ICE Gathering Changed - \(newState)")
-        
-    }
+    public func peerConnection(_ peerConnection: RTCPeerConnection, iceGatheringChanged newState: RTCICEGatheringState) {}
     
-    public func peerConnection(_ peerConnection: RTCPeerConnection, removedStream stream: RTCMediaStream) {
-        print("PEER CONNECTION:- Stream Removed")
-    }
+    public func peerConnection(_ peerConnection: RTCPeerConnection, removedStream stream: RTCMediaStream) {}
     
-    public func peerConnection(_ peerConnection: RTCPeerConnection, signalingStateChanged stateChanged: RTCSignalingState) {
-        print("PEER CONNECTION:- Signaling State Changed \(stateChanged)")
-    }
+    public func peerConnection(_ peerConnection: RTCPeerConnection, signalingStateChanged stateChanged: RTCSignalingState) {}
     
-    public func peerConnection(onRenegotiationNeeded peerConnection: RTCPeerConnection) {
-        print("PEER CONNECTION:- Renegotiation Needed")
-    }
+    public func peerConnection(onRenegotiationNeeded peerConnection: RTCPeerConnection) {}
     
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didOpen dataChannel: RTCDataChannel) {
-        print("PEER CONNECTION:- Open Data Channel")
-    }
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didOpen dataChannel: RTCDataChannel) {}
     
     public func peerConnection(_ peerConnection: RTCPeerConnection, didCreateSessionDescription sdp: RTCSessionDescription, error: Error?) {
-        if let er = error {
-            print(er.localizedDescription)
-        }
         self.localSDP = sdp
         self.peerConnection?.setLocalDescriptionWith(self, sessionDescription: sdp)
         sdpAnswerPublisher.onNext(sdp)
     }
     
     public func peerConnection(_ peerConnection: RTCPeerConnection, didSetSessionDescriptionWithError error: Error?) {
-        print("SDP set success")
-        if initiator == false && self.localSDP == nil {
-            
+        if self.localSDP == nil {
             let answerConstraints = self.createConstraints()
             self.peerConnection!.createAnswer(with: self, constraints: answerConstraints)
         }
     }
-    
-    // Called when the data channel state has changed.
-    public func channelDidChangeState(channel: RTCDataChannel) {
-        
-    }
-    
-    public func channel(channel: RTCDataChannel, didReceiveMessageWithBuffer buffer: RTCDataBuffer) {
-        self.delegate?.dataReceivedInChannel(data: buffer.data! as NSData)
-    }
+
+    public func channel(channel: RTCDataChannel, didReceiveMessageWithBuffer buffer: RTCDataBuffer) {}
     
     public func disconnect() {
         self.peerConnection?.close()
