@@ -22,7 +22,7 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
     private let servicePublisher = PublishRelay<(ip: String, port: String)>()
     private let netServiceBrowser = NetServiceBrowser()
     
-    private static let androidPort = 55555
+    private static let androidPort = 10001
     private static let iosPort = Constants.websocketPort
     
     override init() {
