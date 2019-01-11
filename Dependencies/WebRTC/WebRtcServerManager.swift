@@ -10,66 +10,49 @@ import Foundation
 import AVFoundation
 import RxSwift
 
-public class WebRtcServerManager: NSObject, RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate, WebRtcServerManagerProtocol {
+final class WebRtcServerManager: NSObject, PeerConnectionDelegate, SessionDescriptionDelegate, WebRtcServerManagerProtocol {
 
-    var localStream: RTCMediaStream?
-    var peerConnection: RTCPeerConnection?
-    var peerConnectionFactory: RTCPeerConnectionFactory?
-    var videoCapturer: RTCVideoCapturer?
-    var localAudioTrack: RTCAudioTrack?
-    var localVideoTrack: RTCVideoTrack?
-    var localSDP: RTCSessionDescription?
-    var remoteSDP: RTCSessionDescription?
-    var sdpAnswer: Observable<RTCSessionDescription> {
+    var sdpAnswer: Observable<SessionDescriptionProtocol> {
         return sdpAnswerPublisher
     }
-    var iceCandidate: Observable<RTCICECandidate> {
+    var iceCandidate: Observable<IceCandidateProtocol> {
         return iceCandidatePublisher
     }
-    var mediaStream: Observable<RTCMediaStream> {
+    var mediaStream: Observable<MediaStream> {
         return mediaStreamPublisher
     }
     
-    let mediaStreamPublisher = PublishSubject<RTCMediaStream>()
-    let sdpAnswerPublisher = PublishSubject<RTCSessionDescription>()
-    let iceCandidatePublisher = PublishSubject<RTCICECandidate>()
-    
-    override public init() {
+    private let mediaStreamPublisher = PublishSubject<MediaStream>()
+    private let sdpAnswerPublisher = PublishSubject<SessionDescriptionProtocol>()
+    private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
+
+    private var capturer: VideoCapturer?
+    private var peerConnection: PeerConnectionProtocol?
+    private let peerConnectionFactory: PeerConnectionFactoryProtocol?
+    private let connectionDelegateProxy: RTCPeerConnectionDelegate
+    private let sessionDelegateProxy: RTCSessionDescriptionDelegate
+
+    init(peerConnectionFactory: PeerConnectionFactoryProtocol, connectionDelegateProxy: RTCPeerConnectionDelegate, sessionDelegateProxy: RTCSessionDescriptionDelegate) {
+        self.peerConnectionFactory = peerConnectionFactory
+        self.connectionDelegateProxy = connectionDelegateProxy
+        self.sessionDelegateProxy = sessionDelegateProxy
+        peerConnection = peerConnectionFactory.peerConnection(with: connectionDelegateProxy)
         super.init()
-        peerConnectionFactory = RTCPeerConnectionFactory.init()
-        peerConnection = peerConnectionFactory?.peerConnection(withICEServers: [], constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [RTCPair(key: "DtlsSrtpKeyAgreement", value: "true")]), delegate: self)
     }
     
     func start() {
         addLocalMediaStream()
     }
     
-    public func addLocalMediaStream() {
-        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) else {
-            return
+    private func addLocalMediaStream() {
+        peerConnectionFactory?.createStream { [weak self] stream, capturer in
+            self?.capturer = capturer
+            self?.mediaStreamPublisher.onNext(stream)
+            self?.peerConnection?.add(stream: stream)
         }
-        let cameraID = device.localizedName
-        let videoCapturer = RTCVideoCapturer(deviceName: cameraID)
-        self.videoCapturer = videoCapturer
-        let videoSource = peerConnectionFactory?.videoSource(with: videoCapturer, constraints: nil)
-        let videoTrack = peerConnectionFactory?.videoTrack(withID: "ARDAMSv0", source: videoSource)
-        localStream = peerConnectionFactory?.mediaStream(withLabel: "ARDAMS")
-        let audioTrack = peerConnectionFactory?.audioTrack(withID: "ARDAMSa0")
-        localAudioTrack = audioTrack
-        localVideoTrack = videoTrack
-        localStream?.addVideoTrack(videoTrack)
-        localStream?.addAudioTrack(audioTrack)
-        DispatchQueue.main.async {}
-        mediaStreamPublisher.onNext(localStream!)
-        self.peerConnection?.add(localStream!)
     }
     
-    public func startWebrtcConnection() {
-        peerConnectionFactory = RTCPeerConnectionFactory.init()
-        peerConnection = peerConnectionFactory?.peerConnection(withICEServers: [], constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [RTCPair(key: "DtlsSrtpKeyAgreement", value: "true")]), delegate: self)
-    }
-    
-    public func createConstraints() -> RTCMediaConstraints {
+    func createConstraints() -> RTCMediaConstraints {
         let pairOfferToReceiveAudio = RTCPair(key: "OfferToReceiveAudio", value: "true")!
         let pairOfferToReceiveVideo = RTCPair(key: "OfferToReceiveVideo", value: "true")!
         let pairDtlsSrtpKeyAgreement = RTCPair(key: "DtlsSrtpKeyAgreement", value: "true")!
@@ -77,53 +60,35 @@ public class WebRtcServerManager: NSObject, RTCPeerConnectionDelegate, RTCSessio
         return peerConnectionConstraints!
     }
     
-    func createAnswer(remoteSdp remoteSDP: RTCSessionDescription) {
+    func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol) {
         DispatchQueue.main.async {
-            self.remoteSDP = remoteSDP
-            self.peerConnection!.setRemoteDescriptionWith(self, sessionDescription: remoteSDP)
+            self.peerConnection?.setRemoteDescription(sdp: remoteSDP, delegate: self.sessionDelegateProxy)
         }
     }
     
-    public func setICECandidates(iceCandidate: RTCICECandidate) {
+    func setICECandidates(iceCandidate: IceCandidateProtocol) {
         DispatchQueue.main.async {
-            self.peerConnection?.add(iceCandidate)
-        }
-    }
-    
-    public func peerConnection(_ peerConnection: RTCPeerConnection, addedStream stream: RTCMediaStream) {}
-    
-    public func peerConnection(_ peerConnection: RTCPeerConnection, gotICECandidate candidate: RTCICECandidate) {
-        iceCandidatePublisher.onNext(candidate)
-    }
-    
-    public func peerConnection(_ peerConnection: RTCPeerConnection, iceConnectionChanged newState: RTCICEConnectionState) {}
-    
-    public func peerConnection(_ peerConnection: RTCPeerConnection, iceGatheringChanged newState: RTCICEGatheringState) {}
-    
-    public func peerConnection(_ peerConnection: RTCPeerConnection, removedStream stream: RTCMediaStream) {}
-    
-    public func peerConnection(_ peerConnection: RTCPeerConnection, signalingStateChanged stateChanged: RTCSignalingState) {}
-    
-    public func peerConnection(onRenegotiationNeeded peerConnection: RTCPeerConnection) {}
-    
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didOpen dataChannel: RTCDataChannel) {}
-    
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didCreateSessionDescription sdp: RTCSessionDescription, error: Error?) {
-        self.localSDP = sdp
-        self.peerConnection?.setLocalDescriptionWith(self, sessionDescription: sdp)
-        sdpAnswerPublisher.onNext(sdp)
-    }
-    
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didSetSessionDescriptionWithError error: Error?) {
-        if self.localSDP == nil {
-            let answerConstraints = self.createConstraints()
-            self.peerConnection!.createAnswer(with: self, constraints: answerConstraints)
+            self.peerConnection?.add(iceCandidate: iceCandidate)
         }
     }
 
-    public func channel(channel: RTCDataChannel, didReceiveMessageWithBuffer buffer: RTCDataBuffer) {}
-    
-    public func disconnect() {
+    func addedStream(_ stream: MediaStream) {}
+
+    func gotIceCandidate(_ iceCandidate: IceCandidateProtocol) {
+        iceCandidatePublisher.onNext(iceCandidate)
+    }
+
+    func didSetDescription() {
+        let answerConstraints = self.createConstraints()
+        self.peerConnection?.createAnswer(for: answerConstraints, delegate: sessionDelegateProxy)
+    }
+
+    func didCreateDescription(_ sdp: SessionDescriptionProtocol) {
+        self.peerConnection?.setLocalDescription(sdp: sdp, delegate: sessionDelegateProxy)
+        sdpAnswerPublisher.onNext(sdp)
+    }
+
+    func disconnect() {
         self.peerConnection?.close()
     }
 }

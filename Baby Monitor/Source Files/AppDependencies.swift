@@ -22,8 +22,23 @@ final class AppDependencies {
 
     private(set) lazy var netServiceClient: () -> NetServiceClientProtocol = { NetServiceClient() }
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
-    private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = { WebRtcServerManager() }
-    private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = { WebRtcClientManager() }
+    private(set) lazy var peerConnectionFactory: PeerConnectionFactoryProtocol = PeerConnectionFactory(peerConnectionFactory: RTCPeerConnectionFactory())
+    private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = {
+        let peerConnectionDelegateProxy = PeerConnectionDelegateProxy()
+        let sessionDescriptionDelegateProxy = SessionDescriptionDelegateProxy()
+        let serverManager = WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory, connectionDelegateProxy: peerConnectionDelegateProxy, sessionDelegateProxy: sessionDescriptionDelegateProxy)
+        peerConnectionDelegateProxy.delegate = serverManager
+        sessionDescriptionDelegateProxy.delegate = serverManager
+        return serverManager
+    }
+    private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = {
+        let peerConnectionDelegateProxy = PeerConnectionDelegateProxy()
+        let sessionDescriptionDelegateProxy = SessionDescriptionDelegateProxy()
+        let clientManager = WebRtcClientManager(peerConnectionFactory: self.peerConnectionFactory, connectionDelegateProxy: peerConnectionDelegateProxy, sessionDelegateProxy: sessionDescriptionDelegateProxy)
+        peerConnectionDelegateProxy.delegate = clientManager
+        sessionDescriptionDelegateProxy.delegate = clientManager
+        return clientManager
+    }
     private(set) lazy var websocketsService: WebSocketsServiceProtocol = WebSocketsService(
         webRtcClientManager: webRtcClient(),
         webSocket: webSocket(urlConfiguration.url),

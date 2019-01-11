@@ -31,10 +31,10 @@ class WebRtcClientManager: NSObject, PeerConnectionDelegate, SessionDescriptionD
     private let sessionDelegateProxy: RTCSessionDescriptionDelegate
 
     init(peerConnectionFactory: PeerConnectionFactoryProtocol, connectionDelegateProxy: RTCPeerConnectionDelegate, sessionDelegateProxy: RTCSessionDescriptionDelegate) {
-        super.init()
         self.peerConnectionFactory = peerConnectionFactory
         self.connectionDelegateProxy = connectionDelegateProxy
         self.sessionDelegateProxy = sessionDelegateProxy
+        super.init()
     }
     
     func startWebRtcConnection() {
@@ -63,7 +63,7 @@ class WebRtcClientManager: NSObject, PeerConnectionDelegate, SessionDescriptionD
     
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
         DispatchQueue.main.async {
-            self.peerConnection?.add(iceCandidate)
+            self.peerConnection?.add(iceCandidate: iceCandidate)
         }
     }
 

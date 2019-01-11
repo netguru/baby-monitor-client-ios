@@ -31,7 +31,10 @@ final class ServerViewController: BaseViewController {
         viewModel.startStreaming()
     }
     
-    private func attach(stream: RTCMediaStream) {
+    private func attach(stream: MediaStream) {
+        guard let stream = stream as? RTCMediaStream else {
+            return
+        }
         localVideoTrack?.remove(localView)
         localView.renderFrame(nil)
         localVideoTrack = stream.videoTracks[0] as? RTCVideoTrack

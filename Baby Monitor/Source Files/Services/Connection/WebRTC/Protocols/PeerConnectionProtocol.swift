@@ -8,7 +8,7 @@ protocol PeerConnectionProtocol {
 
     func setLocalDescription(sdp: SessionDescriptionProtocol, delegate: RTCSessionDescriptionDelegate)
 
-    func add(_ iceCandidate: IceCandidateProtocol)
+    func add(iceCandidate: IceCandidateProtocol)
 
     func close()
 
@@ -30,7 +30,7 @@ extension RTCPeerConnection: PeerConnectionProtocol {
         add(stream)
     }
 
-    func add(_ iceCandidate: IceCandidateProtocol) {
+    func add(iceCandidate: IceCandidateProtocol) {
         guard let iceCandidate = iceCandidate as? RTCICECandidate else {
             return
         }

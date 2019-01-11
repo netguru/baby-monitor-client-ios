@@ -8,7 +8,7 @@ import RxSwift
 
 final class ServerViewModel {
     
-    var stream: Observable<RTCMediaStream> {
+    var stream: Observable<MediaStream> {
         return serverService.localStreamObservable
     }
     var onAudioRecordServiceError: (() -> Void)?

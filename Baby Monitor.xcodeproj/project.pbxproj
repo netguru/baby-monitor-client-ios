@@ -108,7 +108,6 @@
 		8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */; };
 		8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB082180971D00E3004D /* UIViewController+Rx.swift */; };
 		8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB1E2181D1E700E3004D /* GeneralSection.swift */; };
-		8A50AA3721E602F60058C63A /* StreamFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50AA3121E602F60058C63A /* StreamFactoryProtocol.swift */; };
 		8A50AA3821E602F60058C63A /* PeerConnectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50AA3221E602F60058C63A /* PeerConnectionProtocol.swift */; };
 		8A50AA3921E602F60058C63A /* IceCandidateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50AA3321E602F60058C63A /* IceCandidateProtocol.swift */; };
 		8A50AA3A21E602F60058C63A /* SessionDescriptionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50AA3421E602F60058C63A /* SessionDescriptionProtocol.swift */; };
@@ -379,7 +378,6 @@
 		8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionChecker.swift; sourceTree = "<group>"; };
 		8A43DB082180971D00E3004D /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		8A43DB1E2181D1E700E3004D /* GeneralSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSection.swift; sourceTree = "<group>"; };
-		8A50AA3121E602F60058C63A /* StreamFactoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamFactoryProtocol.swift; path = "Baby Monitor/Source Files/Services/Connection/WebRTC/Protocols/StreamFactoryProtocol.swift"; sourceTree = SOURCE_ROOT; };
 		8A50AA3221E602F60058C63A /* PeerConnectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeerConnectionProtocol.swift; path = "Baby Monitor/Source Files/Services/Connection/WebRTC/Protocols/PeerConnectionProtocol.swift"; sourceTree = SOURCE_ROOT; };
 		8A50AA3321E602F60058C63A /* IceCandidateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IceCandidateProtocol.swift; path = "Baby Monitor/Source Files/Services/Connection/WebRTC/Protocols/IceCandidateProtocol.swift"; sourceTree = SOURCE_ROOT; };
 		8A50AA3421E602F60058C63A /* SessionDescriptionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionDescriptionProtocol.swift; path = "Baby Monitor/Source Files/Services/Connection/WebRTC/Protocols/SessionDescriptionProtocol.swift"; sourceTree = SOURCE_ROOT; };
@@ -1053,7 +1051,6 @@
 				8A50AA3321E602F60058C63A /* IceCandidateProtocol.swift */,
 				8A50AA3221E602F60058C63A /* PeerConnectionProtocol.swift */,
 				8A50AA3421E602F60058C63A /* SessionDescriptionProtocol.swift */,
-				8A50AA3121E602F60058C63A /* StreamFactoryProtocol.swift */,
 				8A50AA4121E60A190058C63A /* PeerConnectionDelegate.swift */,
 				8A50AA7E21E73B350058C63A /* PeerConnectionFactory.swift */,
 				8A50AA8021E74ECB0058C63A /* SessionDescriptionDelegate.swift */,
@@ -1757,7 +1754,6 @@
 				4EB6DE6321B6687D004701EA /* EventMessage.swift in Sources */,
 				8A8EF944219C40630098A27B /* RTCSessionDescription+JSON.swift in Sources */,
 				8AFAE5C3219C1FE3007013BC /* SdpAnswerDecoder.swift in Sources */,
-				8A50AA3721E602F60058C63A /* StreamFactoryProtocol.swift in Sources */,
 				8A42DB092179D65900BF5F1B /* UserDefaultsURLConfiguration.swift in Sources */,
 				4E63DC1121E39CFA00604167 /* CacheService.swift in Sources */,
 				4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */,
@@ -1947,6 +1943,7 @@
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Baby Monitor/BabyMonitor.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9HJ69C5G9K;
 				LIBRARY_SEARCH_PATHS = (

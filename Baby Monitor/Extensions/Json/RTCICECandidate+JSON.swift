@@ -3,15 +3,16 @@
 //  Baby Monitor
 //
 
-extension RTCICECandidate {
-    
+extension IceCandidateProtocol {
     func jsonDictionary() -> [AnyHashable: Any] {
         return ["type": "candidate",
                 "label": sdpMLineIndex,
                 "id": sdpMid,
                 "candidate": sdp]
     }
-    
+}
+
+extension RTCICECandidate {
     convenience init?(dictionary: [AnyHashable: Any]) {
         guard dictionary["type"] as? String == "candidate",
             let label = dictionary["label"] as? Int,
