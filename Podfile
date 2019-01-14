@@ -21,6 +21,7 @@ target 'Baby Monitor' do
   pod 'AudioKit', '~> 4.5.4' 
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Storage'
 
   target 'Baby MonitorTests' do
     inherit! :search_paths

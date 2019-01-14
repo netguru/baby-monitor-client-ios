@@ -7,6 +7,7 @@ import Foundation
 
 protocol MemoryCleanerProtocol: Any {
     func cleanMemoryIfNeeded()
+    func removeFile(path: URL)
 }
 
 final class MemoryCleaner: MemoryCleanerProtocol {
@@ -24,7 +25,11 @@ final class MemoryCleaner: MemoryCleanerProtocol {
                 break
             }
             let fileToRemoveUrl = fileUrls.remove(at: 0)
-            try? FileManager.default.removeItem(at: fileToRemoveUrl)
+            removeFile(path: fileToRemoveUrl)
         }
+    }
+    
+    func removeFile(path: URL) {
+        try? FileManager.default.removeItem(at: path)
     }
 }

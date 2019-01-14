@@ -9,6 +9,7 @@ import RxCocoa
 final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSelectable, BabyMonitorHeaderCellConfigurable {
 
     private let babyRepo: BabiesRepositoryProtocol
+    private let storageServerService: StorageServerServiceProtocol
 
     typealias DataType = Cell
     
@@ -32,7 +33,7 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
     lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
     
     private(set) lazy var sections: Observable<[GeneralSection<Cell>]> = {
-        let mainSection = Observable.just(GeneralSection(title: Section.main.title, items: [Cell.switchToServer, Cell.changeServer]))
+        let mainSection = Observable.just(GeneralSection(title: Section.main.title, items: [Cell.switchToServer, Cell.changeServer, Cell.sendRecordings]))
         let detectionSection = Observable.just(GeneralSection(title: Section.cryingDetection.title, items: [Cell.useML, Cell.useStaticCryingDetection]))
         return Observable.combineLatest(mainSection, detectionSection, resultSelector: { mainSection, detectionSection -> [GeneralSection<Cell>] in
             return [mainSection, detectionSection]
@@ -44,10 +45,12 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
         case changeServer
         case useML
         case useStaticCryingDetection
+        case sendRecordings
     }
 
-    init(babyRepo: BabiesRepositoryProtocol) {
+    init(babyRepo: BabiesRepositoryProtocol, storageServerService: StorageServerServiceProtocol) {
         self.babyRepo = babyRepo
+        self.storageServerService = storageServerService
     }
 
     // MARK: - Internal functions
@@ -71,6 +74,11 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
             cell.showCheckmark(true)
         case Cell.useStaticCryingDetection:
             cell.update(mainText: Localizable.Settings.useStaticCryingDetection)
+        case Cell.sendRecordings:
+            cell.update(mainText: Localizable.Settings.sendRecordingsToServer)
+            cell.didTap = { [weak self] in
+                self?.storageServerService.uploadRecordingsToDatabase()
+            }
         }
     }
     

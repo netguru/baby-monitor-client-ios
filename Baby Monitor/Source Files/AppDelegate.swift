@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupNotifications(application: application)
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
+        appDependencies.storageServerService.uploadRecordingsToDatabaseIfNeeded()
         return true
     }
     
