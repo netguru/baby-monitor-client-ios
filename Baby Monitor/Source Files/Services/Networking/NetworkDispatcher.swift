@@ -12,11 +12,17 @@ protocol NetworkDispatcherProtocol: AnyObject {
 
 final class NetworkDispatcher: NSObject, NetworkDispatcherProtocol {
     
-    private lazy var defaultUrlSession = URLSession(configuration: .default)
-    private let dispatchQueue = DispatchQueue(label: "NetworkDispatcherQueue")
+    private let urlSession: URLSessionProtocol
+    private let dispatchQueue: DispatchQueue
+    
+    init(urlSession: URLSessionProtocol, dispatchQueue: DispatchQueue) {
+        self.urlSession = urlSession
+        self.dispatchQueue = dispatchQueue
+        super.init()
+    }
     
     func execute(urlRequest: URLRequest, completion: ((Result<Data>) -> Void)?) {
-        let dataTask = defaultUrlSession.dataTask(with: urlRequest) { data, response, error in
+        let dataTask = urlSession.dataTask(with: urlRequest) { data, response, error in
             var result = Result<Data>.failure(nil)
             if let error = error {
                 result = .failure(error)
@@ -33,19 +39,7 @@ final class NetworkDispatcher: NSObject, NetworkDispatcherProtocol {
     
     func execute<T: Decodable>(urlRequest: URLRequest, completion: ((Result<T>) -> Void)?) {
         execute(urlRequest: urlRequest) { result in
-            let newResult: Result<T>
-            switch result {
-            case .success(let data):
-                do {
-                    let decodable = try JSONDecoder().decode(T.self, from: data)
-                    newResult = .success(decodable)
-                } catch {
-                    newResult = .failure(error)
-                }
-            case .failure(let error):
-                newResult = .failure(error)
-            }
-            completion?(newResult)
+            completion?(result.map { try JSONDecoder().decode(T.self, from: $0) })
         }
     }
 }

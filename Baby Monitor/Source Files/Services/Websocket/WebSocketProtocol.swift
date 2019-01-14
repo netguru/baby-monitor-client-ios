@@ -23,11 +23,11 @@ protocol WebSocketProtocol: MessageStreamProtocol {
 
 final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     
-    var isConnected = false
     var receivedMessage: Observable<String> {
         return receivedMessagePublisher.asObservable()
     }
     
+    private var isConnected = false
     private let receivedMessagePublisher = PublishRelay<String>()
     private let socket: PSWebSocket
 

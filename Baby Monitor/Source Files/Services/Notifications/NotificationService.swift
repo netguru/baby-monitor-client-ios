@@ -12,8 +12,6 @@ protocol NotificationServiceProtocol: AnyObject {
 
 final class NotificationService: NotificationServiceProtocol {
     
-    typealias Successful = Bool
-    
     private let networkDispatcher: NetworkDispatcherProtocol
     private let cacheService: CacheServiceProtocol
     private let serverKeyObtainable: ServerKeyObtainableProtocol
