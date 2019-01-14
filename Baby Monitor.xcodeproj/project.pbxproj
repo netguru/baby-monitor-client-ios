@@ -99,6 +99,7 @@
 		4EA2802621E8C6B200262E45 /* DateFormatter+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA2802521E8C6B100262E45 /* DateFormatter+Helpers.swift */; };
 		4EB6DE6321B6687D004701EA /* EventMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6DE6221B6687D004701EA /* EventMessage.swift */; };
 		4EB6DE6521B67C11004701EA /* EventMessageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6DE6421B67C11004701EA /* EventMessageDecoder.swift */; };
+		4EB93D2021ECA15F00E99BB3 /* StorageServerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB93D1F21ECA15F00E99BB3 /* StorageServerServiceMock.swift */; };
 		4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
 		8A045D5B21A3F685006A2E10 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -371,6 +372,7 @@
 		4EA662F9216CC029009AD3B6 /* Tests-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Base.xcconfig"; sourceTree = "<group>"; };
 		4EB6DE6221B6687D004701EA /* EventMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMessage.swift; sourceTree = "<group>"; };
 		4EB6DE6421B67C11004701EA /* EventMessageDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMessageDecoder.swift; sourceTree = "<group>"; };
+		4EB93D1F21ECA15F00E99BB3 /* StorageServerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServerServiceMock.swift; sourceTree = "<group>"; };
 		4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConnectingCoordinator.swift; sourceTree = "<group>"; };
 		4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
 		5DA983E08D91DB2F19F277C9 /* Pods_Baby_Monitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_Monitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1023,6 +1025,7 @@
 				8A7A615121A6B00F00488ED4 /* CryingEventsServiceMock.swift */,
 				4E7B090B21E5E4E300EDDD11 /* CacheServiceMock.swift */,
 				4E7B090D21E5E52F00EDDD11 /* ClientServiceMock.swift */,
+				4EB93D1F21ECA15F00E99BB3 /* StorageServerServiceMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1875,6 +1878,7 @@
 				8A7A614B21A6AC7900488ED4 /* DocumentsSavableMock.swift in Sources */,
 				8AA7CBC42187117200FCF62A /* BabiesRepositoryMock.swift in Sources */,
 				8A7A614E21A6AC8800488ED4 /* AudioRecordServiceTests.swift in Sources */,
+				4EB93D2021ECA15F00E99BB3 /* StorageServerServiceMock.swift in Sources */,
 				8A42DB172179DD9C00BF5F1B /* URL+PrefixTests.swift in Sources */,
 				4E7B090E21E5E52F00EDDD11 /* ClientServiceMock.swift in Sources */,
 				8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */,
