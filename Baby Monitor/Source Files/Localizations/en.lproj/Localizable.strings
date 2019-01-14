@@ -67,7 +67,6 @@
 //MARK: - Server
 "server.baby-stopped-crying" = "Baby stopped crying!";
 "server.baby-is-crying" = "Baby is crying!";
-"general.attention" = "Attention!";
 "server.audio-record-error" = "There is some error with audio recording. Please turn app again.";
 
 //MARK: - Lullabies
