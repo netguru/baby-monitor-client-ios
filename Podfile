@@ -25,6 +25,7 @@ target 'Baby Monitor' do
   target 'Baby MonitorTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Firebase'
     pod 'RxBlocking', '~> 4.0'
     pod 'RxTest', '~> 4.0'
   end

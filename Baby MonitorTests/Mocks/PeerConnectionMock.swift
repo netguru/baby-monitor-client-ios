@@ -11,7 +11,7 @@ final class PeerConnectionMock: PeerConnectionProtocol {
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var localSdp: SessionDescriptionProtocol?
     private(set) var iceCandidates = [IceCandidateProtocol]()
-    private(set) var mediaStream: MediaStreamProtocol?
+    private(set) var mediaStream: MediaStream?
 
     private let offerSdp: SessionDescriptionProtocol?
     private let answerSdp: SessionDescriptionProtocol?
@@ -23,21 +23,19 @@ final class PeerConnectionMock: PeerConnectionProtocol {
         self.error = error
     }
 
-    func setRemoteDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?) {
+    func setRemoteDescription(sdp: SessionDescriptionProtocol, delegate: RTCSessionDescriptionDelegate) {
         self.remoteSdp = sdp
-        completionHandler?(error)
     }
 
-    func setLocalDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?) {
+    func setLocalDescription(sdp: SessionDescriptionProtocol, delegate: RTCSessionDescriptionDelegate) {
         self.localSdp = sdp
-        completionHandler?(error)
     }
 
-    func add(_ iceCandidate: IceCandidateProtocol) {
+    func add(iceCandidate: IceCandidateProtocol) {
         iceCandidates.append(iceCandidate)
     }
 
-    func add(stream: MediaStreamProtocol) {
+    func add(stream: MediaStream) {
         self.mediaStream = stream
     }
 
@@ -45,11 +43,11 @@ final class PeerConnectionMock: PeerConnectionProtocol {
         isConnected = false
     }
 
-    func createOffer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?) {
-        completionHandler?(offerSdp, error)
+    func createOffer(for constraints: MediaConstraints, delegate: RTCSessionDescriptionDelegate) {
+        delegate.peerConnection(nil, didCreateSessionDescription: RTCSessionDescription(type: offerSdp?.stringType, sdp: offerSdp?.sdp), error: error)
     }
 
-    func createAnswer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?) {
-        completionHandler?(answerSdp, error)
+    func createAnswer(for constraints: MediaConstraints, delegate: RTCSessionDescriptionDelegate) {
+        delegate.peerConnection(nil, didCreateSessionDescription: RTCSessionDescription(type: offerSdp?.stringType, sdp: offerSdp?.sdp), error: error)
     }
 }

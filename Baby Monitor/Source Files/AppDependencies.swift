@@ -22,7 +22,7 @@ final class AppDependencies {
 
     private(set) lazy var netServiceClient: () -> NetServiceClientProtocol = { NetServiceClient() }
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
-    private(set) lazy var peerConnectionFactory: PeerConnectionFactoryProtocol = PeerConnectionFactory(peerConnectionFactory: RTCPeerConnectionFactory())
+    private(set) lazy var peerConnectionFactory: PeerConnectionFactoryProtocol = RTCPeerConnectionFactory()
     private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = {
         let peerConnectionDelegateProxy = PeerConnectionDelegateProxy()
         let sessionDescriptionDelegateProxy = SessionDescriptionDelegateProxy()

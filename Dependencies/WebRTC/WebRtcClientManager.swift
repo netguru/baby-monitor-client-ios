@@ -9,7 +9,8 @@
 import Foundation
 import AVFoundation
 import RxSwift
-class WebRtcClientManager: NSObject, PeerConnectionDelegate, SessionDescriptionDelegate, WebRtcClientManagerProtocol {
+
+final class WebRtcClientManager: NSObject, PeerConnectionDelegate, SessionDescriptionDelegate, WebRtcClientManagerProtocol {
 
     var iceCandidate: Observable<IceCandidateProtocol> {
         return iceCandidatePublisher
@@ -56,15 +57,11 @@ class WebRtcClientManager: NSObject, PeerConnectionDelegate, SessionDescriptionD
     }
     
     func setAnswerSDP(sdp: SessionDescriptionProtocol) {
-        DispatchQueue.main.async {
-            self.peerConnection?.setRemoteDescription(sdp: sdp, delegate: self.sessionDelegateProxy)
-        }
+        peerConnection?.setRemoteDescription(sdp: sdp, delegate: sessionDelegateProxy)
     }
     
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
-        DispatchQueue.main.async {
-            self.peerConnection?.add(iceCandidate: iceCandidate)
-        }
+        peerConnection?.add(iceCandidate: iceCandidate)
     }
 
     func addedStream(_ stream: MediaStream) {

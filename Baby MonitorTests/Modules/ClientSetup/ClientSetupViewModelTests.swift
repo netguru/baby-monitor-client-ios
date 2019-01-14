@@ -15,7 +15,9 @@ class ClientSetupViewModelTests: XCTestCase {
         let netServiceClient = NetServiceClientMock()
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo)
+        let cacheService = CacheServiceMock()
+        let clientService = ClientServiceMock()
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, clientService: clientService)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
 
         // When
@@ -35,7 +37,9 @@ class ClientSetupViewModelTests: XCTestCase {
         let netServiceClient = NetServiceClientMock(ip: ip, port: port)
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo)
+        let cacheService = CacheServiceMock()
+        let clientService = ClientServiceMock()
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, clientService: clientService)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -54,7 +58,9 @@ class ClientSetupViewModelTests: XCTestCase {
         let netServiceClient = NetServiceClientMock()
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo)
+        let cacheService = CacheServiceMock()
+        let clientService = ClientServiceMock()
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, clientService: clientService)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -72,7 +78,9 @@ class ClientSetupViewModelTests: XCTestCase {
         let netServiceClient = NetServiceClientMock()
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo)
+        let cacheService = CacheServiceMock()
+        let clientService = ClientServiceMock()
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, clientService: clientService)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -90,7 +98,9 @@ class ClientSetupViewModelTests: XCTestCase {
         let netServiceClient = NetServiceClientMock(findServiceDelay: 20.0)
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo)
+        let cacheService = CacheServiceMock()
+        let clientService = ClientServiceMock()
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, clientService: clientService)
         sut.didFinishDeviceSearch = { result in
             XCTAssertEqual(result, DeviceSearchResult.failure(.timeout))
             exp.fulfill()

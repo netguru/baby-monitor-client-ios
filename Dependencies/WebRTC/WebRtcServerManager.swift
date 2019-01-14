@@ -61,15 +61,11 @@ final class WebRtcServerManager: NSObject, PeerConnectionDelegate, SessionDescri
     }
     
     func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol) {
-        DispatchQueue.main.async {
-            self.peerConnection?.setRemoteDescription(sdp: remoteSDP, delegate: self.sessionDelegateProxy)
-        }
+        peerConnection?.setRemoteDescription(sdp: remoteSDP, delegate: sessionDelegateProxy)
     }
     
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
-        DispatchQueue.main.async {
-            self.peerConnection?.add(iceCandidate: iceCandidate)
-        }
+        peerConnection?.add(iceCandidate: iceCandidate)
     }
 
     func addedStream(_ stream: MediaStream) {}
@@ -79,16 +75,16 @@ final class WebRtcServerManager: NSObject, PeerConnectionDelegate, SessionDescri
     }
 
     func didSetDescription() {
-        let answerConstraints = self.createConstraints()
-        self.peerConnection?.createAnswer(for: answerConstraints, delegate: sessionDelegateProxy)
+        let answerConstraints = createConstraints()
+        peerConnection?.createAnswer(for: answerConstraints, delegate: sessionDelegateProxy)
     }
 
     func didCreateDescription(_ sdp: SessionDescriptionProtocol) {
-        self.peerConnection?.setLocalDescription(sdp: sdp, delegate: sessionDelegateProxy)
+        peerConnection?.setLocalDescription(sdp: sdp, delegate: sessionDelegateProxy)
         sdpAnswerPublisher.onNext(sdp)
     }
 
     func disconnect() {
-        self.peerConnection?.close()
+        peerConnection?.close()
     }
 }
