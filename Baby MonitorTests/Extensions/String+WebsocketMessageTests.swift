@@ -4,8 +4,6 @@
 //
 
 import XCTest
-
-import XCTest
 @testable import BabyMonitor
 
 class StringWebsocketMessageTests: XCTestCase {
