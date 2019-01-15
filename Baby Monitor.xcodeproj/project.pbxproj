@@ -171,8 +171,8 @@
 		8A7A615221A6B00F00488ED4 /* CryingEventsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A615121A6B00F00488ED4 /* CryingEventsServiceMock.swift */; };
 		8A7A616D21A8162000488ED4 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A616C21A8162000488ED4 /* UIColor+Custom.swift */; };
 		8A87305221906A780045E25D /* test2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A87305121906A780045E25D /* test2.mp3 */; };
-		8A8B76DF21EDE3640063EF7E /* String+WebsocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8B76DE21EDE3640063EF7E /* String+WebsocketMessage.swift */; };
-		8A8B76E121EDE4650063EF7E /* String+WebsocketMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8B76E021EDE4650063EF7E /* String+WebsocketMessageTests.swift */; };
+		8A8B76DF21EDE3640063EF7E /* WebsocketMessageDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8B76DE21EDE3640063EF7E /* WebsocketMessageDecodable.swift */; };
+		8A8B76E121EDE4650063EF7E /* WebsocketMessageDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8B76E021EDE4650063EF7E /* WebsocketMessageDecodableTests.swift */; };
 		8A8EF940219C34C40098A27B /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADEE4552199623300B11B14 /* libWebRTC.a */; };
 		8A8EF944219C40630098A27B /* RTCSessionDescription+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF943219C40630098A27B /* RTCSessionDescription+JSON.swift */; };
 		8A8EF946219C46AD0098A27B /* SdpOfferDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF945219C46AD0098A27B /* SdpOfferDecoder.swift */; };
@@ -471,8 +471,8 @@
 		8A7A615121A6B00F00488ED4 /* CryingEventsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingEventsServiceMock.swift; sourceTree = "<group>"; };
 		8A7A616C21A8162000488ED4 /* UIColor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
 		8A87305121906A780045E25D /* test2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test2.mp3; sourceTree = "<group>"; };
-		8A8B76DE21EDE3640063EF7E /* String+WebsocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WebsocketMessage.swift"; sourceTree = "<group>"; };
-		8A8B76E021EDE4650063EF7E /* String+WebsocketMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WebsocketMessageTests.swift"; sourceTree = "<group>"; };
+		8A8B76DE21EDE3640063EF7E /* WebsocketMessageDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketMessageDecodable.swift; sourceTree = "<group>"; };
+		8A8B76E021EDE4650063EF7E /* WebsocketMessageDecodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketMessageDecodableTests.swift; sourceTree = "<group>"; };
 		8A8EF943219C40630098A27B /* RTCSessionDescription+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RTCSessionDescription+JSON.swift"; sourceTree = "<group>"; };
 		8A8EF945219C46AD0098A27B /* SdpOfferDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdpOfferDecoder.swift; sourceTree = "<group>"; };
 		8A8EF947219C47B90098A27B /* IceCandidateDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceCandidateDecoder.swift; sourceTree = "<group>"; };
@@ -710,6 +710,7 @@
 		4E57318F2170BA7400DEAF0B /* Other Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				8A8B76DE21EDE3640063EF7E /* WebsocketMessageDecodable.swift */,
 				8A7A612621A59E8600488ED4 /* DirectoryDocumentsSavable.swift */,
 				8A7A608721A403D500488ED4 /* MicrophoneTrackerProtocol.swift */,
 				4E5731902170BA7400DEAF0B /* BabiesViewSelectable.swift */,
@@ -781,7 +782,6 @@
 				4E7B091021E5FE6D00EDDD11 /* Encodable+StringMessage.swift */,
 				4EA2802321E8BD6300262E45 /* String+Regex.swift */,
 				4EA2802521E8C6B100262E45 /* DateFormatter+Helpers.swift */,
-				8A8B76DE21EDE3640063EF7E /* String+WebsocketMessage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1088,7 +1088,7 @@
 			children = (
 				8A42DB162179DD9C00BF5F1B /* URL+PrefixTests.swift */,
 				4E2D30292180AC9200722477 /* Rx+Expectations.swift */,
-				8A8B76E021EDE4650063EF7E /* String+WebsocketMessageTests.swift */,
+				8A8B76E021EDE4650063EF7E /* WebsocketMessageDecodableTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1865,7 +1865,7 @@
 				4E60697D21AFEFD500EB1DCF /* ImageOnboardingView.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				EC8A8FF521AE8F5F00B5FCCF /* TypedPageViewController.swift in Sources */,
-				8A8B76DF21EDE3640063EF7E /* String+WebsocketMessage.swift in Sources */,
+				8A8B76DF21EDE3640063EF7E /* WebsocketMessageDecodable.swift in Sources */,
 				ECB2428A21AD4F9200B4E409 /* IntroViewController.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				8A7A612A21A59E9A00488ED4 /* AlertPresenter.swift in Sources */,
@@ -1998,7 +1998,7 @@
 				8A50AAA321E8DBA20058C63A /* SessionDescriptionMock.swift in Sources */,
 				8A50AA9E21E8DBA20058C63A /* WebRtcServerManagerMock.swift in Sources */,
 				8A7A60C721A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift in Sources */,
-				8A8B76E121EDE4650063EF7E /* String+WebsocketMessageTests.swift in Sources */,
+				8A8B76E121EDE4650063EF7E /* WebsocketMessageDecodableTests.swift in Sources */,
 				8A7A614C21A6AC7900488ED4 /* RecorderMock.swift in Sources */,
 				8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */,
 				8A50AA9C21E8DBA20058C63A /* IceCandidateDecoderMock.swift in Sources */,

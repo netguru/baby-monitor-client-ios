@@ -1,31 +1,31 @@
 //
-//  String+WebsocketMessageTests.swift
+//  WebsocketMessageDecodableTests.swift
 //  Baby MonitorTests
 //
 
 import XCTest
 @testable import BabyMonitor
 
-class StringWebsocketMessageTests: XCTestCase {
+class WebsocketMessageDecodableTests: XCTestCase {
 
-    func testShouldReturnStringFromString() {
+    func testShouldConvertString() {
         // Given
         let string = "string"
 
         // When
-        let result = String.from(websocketMessage: string)
+        let result = (string as WebsocketMessageDecodable).decode()
 
         // Then
         XCTAssertEqual(result, string)
     }
 
-    func testShouldReturnStringFromUTF8Data() {
+    func testShouldConvertUTF8Data() {
         // Given
         let string = "string"
         let data = string.data(using: .utf8)!
 
         // When
-        let result = String.from(websocketMessage: data)
+        let result = (data as WebsocketMessageDecodable).decode()
 
         // Then
         XCTAssertEqual(result, string)

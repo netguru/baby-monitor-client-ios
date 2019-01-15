@@ -71,7 +71,8 @@ extension PSWebSocketWrapper: PSWebSocketDelegate {
     func webSocket(_ webSocket: PSWebSocket, didFailWithError error: Error) {}
     
     func webSocket(_ webSocket: PSWebSocket, didReceiveMessage message: Any) {
-        guard let stringMessage = String.from(websocketMessage: message) else {
+        guard let decodableMessage = message as? WebsocketMessageDecodable,
+            let stringMessage = decodableMessage.decode() else {
             return
         }
         receivedMessagePublisher.accept(stringMessage)
