@@ -74,6 +74,7 @@ final class AppDependencies {
         notificationsService: localNotificationService,
         babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
     )
+    private(set) lazy var storageServerService = FirebaseStorageService(memoryCleaner: memoryCleaner)
     
     private(set) var urlConfiguration: URLConfiguration = UserDefaultsURLConfiguration()
     private(set) lazy var messageServer = MessageServer(server: webSocketServer)

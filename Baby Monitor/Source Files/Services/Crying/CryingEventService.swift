@@ -56,7 +56,8 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     private func rxSetup() {
         cryingDetectionService.cryingDetectionObservable.subscribe(onNext: { [unowned self] isBabyCrying in
             if isBabyCrying {
-                self.nextFileName = UUID().uuidString
+                let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
+                self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
                 self.audioRecordService?.startRecording()
                 let cryingEventMessage = EventMessage.initWithCryingEvent(value: self.nextFileName)
                 self.cryingEventPublisher.onNext(cryingEventMessage)

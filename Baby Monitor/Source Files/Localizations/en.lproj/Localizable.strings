@@ -85,6 +85,7 @@
 "settings.cell.use-static-crying-detection" = "Use Static Crying Detection";
 "settings.header.main" = "Main";
 "settings.header.crying-detection-method" = "Crying Detection Method";
+"settings.cell.send-recordings-to-server" = "Send crying records to server";
 
 //MARK: - Errors
 "errors.title.error-occured" = "Error occured";
