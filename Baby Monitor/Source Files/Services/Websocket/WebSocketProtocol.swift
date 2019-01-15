@@ -71,13 +71,10 @@ extension PSWebSocketWrapper: PSWebSocketDelegate {
     func webSocket(_ webSocket: PSWebSocket, didFailWithError error: Error) {}
     
     func webSocket(_ webSocket: PSWebSocket, didReceiveMessage message: Any) {
-        if let stringMessage = message as? String {
-            receivedMessagePublisher.accept(stringMessage)
+        guard let stringMessage = String.from(websocketMessage: message) else {
+            return
         }
-        if let messageData = message as? Data,
-            let stringMessage = String(bytes: messageData, encoding: .utf8) {
-            receivedMessagePublisher.accept(stringMessage)
-        }
+        receivedMessagePublisher.accept(stringMessage)
     }
     
     func webSocket(_ webSocket: PSWebSocket, didCloseWithCode code: Int, reason: String, wasClean: Bool) {}
