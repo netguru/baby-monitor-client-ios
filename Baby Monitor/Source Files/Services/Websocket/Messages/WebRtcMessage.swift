@@ -4,9 +4,9 @@
 //
 
 enum WebRtcMessage {
-    case sdpAnswer(RTCSessionDescription)
-    case sdpOffer(RTCSessionDescription)
-    case iceCandidate(RTCICECandidate)
+    case sdpAnswer(SessionDescriptionProtocol)
+    case sdpOffer(SessionDescriptionProtocol)
+    case iceCandidate(IceCandidateProtocol)
     
     enum Key: String {
         case offerSDP

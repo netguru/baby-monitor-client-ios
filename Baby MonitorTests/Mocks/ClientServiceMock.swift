@@ -4,7 +4,7 @@
 //
 
 @testable import BabyMonitor
-import Foundation
+import RxSwift
 import RxSwift
 
 final class ClientServiceMock: ClientServiceProtocol {

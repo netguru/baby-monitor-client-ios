@@ -4,66 +4,64 @@
 //
 
 protocol PeerConnectionProtocol {
-    func setRemoteDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?)
+    func setRemoteDescription(sdp: SessionDescriptionProtocol, delegate: RTCSessionDescriptionDelegate)
 
-    func setLocalDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?)
+    func setLocalDescription(sdp: SessionDescriptionProtocol, delegate: RTCSessionDescriptionDelegate)
 
-    func add(_ iceCandidate: IceCandidateProtocol)
+    func add(iceCandidate: IceCandidateProtocol)
 
     func close()
 
-    func createAnswer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?)
+    func createAnswer(for constraints: MediaConstraints, delegate: RTCSessionDescriptionDelegate)
 
-    func createOffer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?)
+    func createOffer(for constraints: MediaConstraints, delegate: RTCSessionDescriptionDelegate)
 
-    func add(stream: MediaStreamProtocol)
+    func add(stream: MediaStream)
 }
+
+typealias MediaConstraints = AnyObject
 
 extension RTCPeerConnection: PeerConnectionProtocol {
 
-    func add(stream: MediaStreamProtocol) {
+    func add(stream: MediaStream) {
         guard let stream = stream as? RTCMediaStream else {
             return
         }
         add(stream)
     }
 
-    func createAnswer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?) {
-        guard let constraints = constraints as? RTCMediaConstraints else {
-            return
-        }
-        answer(for: constraints) { sdp, error in
-            completionHandler?(sdp, error)
-        }
-    }
-    
-    func createOffer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?) {
-        guard let constraints = constraints as? RTCMediaConstraints else {
-            return
-        }
-        offer(for: constraints) { sdp, error in
-            completionHandler?(sdp, error)
-        }
-    }
-
-    func add(_ iceCandidate: IceCandidateProtocol) {
-        guard let iceCandidate = iceCandidate as? RTCIceCandidate else {
+    func add(iceCandidate: IceCandidateProtocol) {
+        guard let iceCandidate = iceCandidate as? RTCICECandidate else {
             return
         }
         add(iceCandidate)
     }
 
-    func setRemoteDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?) {
+    func setRemoteDescription(sdp: SessionDescriptionProtocol, delegate: RTCSessionDescriptionDelegate) {
         guard let sdp = sdp as? RTCSessionDescription else {
             return
         }
-        setRemoteDescription(sdp, completionHandler: completionHandler)
+        setRemoteDescriptionWith(delegate, sessionDescription: sdp)
     }
 
-    func setLocalDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?) {
+    func setLocalDescription(sdp: SessionDescriptionProtocol, delegate: RTCSessionDescriptionDelegate) {
         guard let sdp = sdp as? RTCSessionDescription else {
             return
         }
-        setLocalDescription(sdp, completionHandler: completionHandler)
+        setLocalDescriptionWith(delegate, sessionDescription: sdp)
+    }
+
+    func createAnswer(for constraints: MediaConstraints, delegate: RTCSessionDescriptionDelegate) {
+        guard let constraints = constraints as? RTCMediaConstraints else {
+            return
+        }
+        createAnswer(with: delegate, constraints: constraints)
+    }
+
+    func createOffer(for constraints: MediaConstraints, delegate: RTCSessionDescriptionDelegate) {
+        guard let constraints = constraints as? RTCMediaConstraints else {
+            return
+        }
+        createOffer(with: delegate, constraints: constraints)
     }
 }

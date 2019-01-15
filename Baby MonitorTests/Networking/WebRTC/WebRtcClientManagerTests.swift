@@ -17,7 +17,12 @@ class WebRtcClientManagerTests: XCTestCase {
         let observer = scheduler.createObserver(SessionDescriptionProtocol.self)
         let offerSdp = SessionDescriptionMock(sdp: "sdp", stringType: "type")
         let peerConnection = PeerConnectionMock(offerSdp: offerSdp)
-        let sut = WebRtcClientManager(peerConnection: peerConnection)
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
+        let connectionDelegateProxy = PeerConnectionDelegateProxy()
+        let sessionDelegateProxy = SessionDescriptionDelegateProxy()
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionDelegateProxy: connectionDelegateProxy, sessionDelegateProxy: sessionDelegateProxy)
+        connectionDelegateProxy.delegate = sut
+        sessionDelegateProxy.delegate = sut
 
         // When
         sut.sdpOffer
@@ -27,29 +32,41 @@ class WebRtcClientManagerTests: XCTestCase {
         sut.startWebRtcConnection()
 
         // Then
-        XCTAssertEqual(observer.events.map { $0.value.element! as! SessionDescriptionMock }, [offerSdp])
+        XCTAssertEqual(observer.events.map { $0.value.element!.sdp }, [offerSdp.sdp])
     }
 
     func testShouldSetAnswer() {
         // Given
         let answerSdp = SessionDescriptionMock(sdp: "sdp", stringType: "type")
         let peerConnection = PeerConnectionMock()
-        let sut = WebRtcClientManager(peerConnection: peerConnection)
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
+        let connectionDelegateProxy = PeerConnectionDelegateProxy()
+        let sessionDelegateProxy = SessionDescriptionDelegateProxy()
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionDelegateProxy: connectionDelegateProxy, sessionDelegateProxy: sessionDelegateProxy)
+        connectionDelegateProxy.delegate = sut
+        sessionDelegateProxy.delegate = sut
 
         // When
+        sut.startWebRtcConnection()
         sut.setAnswerSDP(sdp: answerSdp)
 
         // Then
-        XCTAssertEqual(answerSdp, peerConnection.remoteSdp as! SessionDescriptionMock)
+        XCTAssertEqual(answerSdp.sdp, peerConnection.remoteSdp!.sdp)
     }
 
     func testShouldAddIceCandidate() {
         // Given
-        let iceCandidate = IceCandidateMock(sdpMLineIndex: Int32(0), sdpMid: "", sdp: "sdp")
+        let iceCandidate = IceCandidateMock(sdpMLineIndex: 0, sdpMid: "", sdp: "sdp")
         let peerConnection = PeerConnectionMock()
-        let sut = WebRtcClientManager(peerConnection: peerConnection)
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
+        let connectionDelegateProxy = PeerConnectionDelegateProxy()
+        let sessionDelegateProxy = SessionDescriptionDelegateProxy()
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionDelegateProxy: connectionDelegateProxy, sessionDelegateProxy: sessionDelegateProxy)
+        connectionDelegateProxy.delegate = sut
+        sessionDelegateProxy.delegate = sut
 
         // When
+        sut.startWebRtcConnection()
         sut.setICECandidates(iceCandidate: iceCandidate)
 
         // Then
@@ -58,12 +75,18 @@ class WebRtcClientManagerTests: XCTestCase {
 
     func testShouldAddMultipleIceCandidate() {
         // Given
-        let iceCandidate = IceCandidateMock(sdpMLineIndex: Int32(0), sdpMid: "", sdp: "sdp")
-        let secondIceCandidate = IceCandidateMock(sdpMLineIndex: Int32(0), sdpMid: "", sdp: "sdp2")
+        let iceCandidate = IceCandidateMock(sdpMLineIndex: 0, sdpMid: "", sdp: "sdp")
+        let secondIceCandidate = IceCandidateMock(sdpMLineIndex: 0, sdpMid: "", sdp: "sdp2")
         let peerConnection = PeerConnectionMock()
-        let sut = WebRtcClientManager(peerConnection: peerConnection)
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
+        let connectionDelegateProxy = PeerConnectionDelegateProxy()
+        let sessionDelegateProxy = SessionDescriptionDelegateProxy()
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionDelegateProxy: connectionDelegateProxy, sessionDelegateProxy: sessionDelegateProxy)
+        connectionDelegateProxy.delegate = sut
+        sessionDelegateProxy.delegate = sut
 
         // When
+        sut.startWebRtcConnection()
         sut.setICECandidates(iceCandidate: iceCandidate)
         sut.setICECandidates(iceCandidate: secondIceCandidate)
 
@@ -74,9 +97,15 @@ class WebRtcClientManagerTests: XCTestCase {
     func testShouldDisconnect() {
         // Given
         let peerConnection = PeerConnectionMock()
-        let sut = WebRtcClientManager(peerConnection: peerConnection)
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
+        let connectionDelegateProxy = PeerConnectionDelegateProxy()
+        let sessionDelegateProxy = SessionDescriptionDelegateProxy()
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionDelegateProxy: connectionDelegateProxy, sessionDelegateProxy: sessionDelegateProxy)
+        connectionDelegateProxy.delegate = sut
+        sessionDelegateProxy.delegate = sut
 
         // When
+        sut.startWebRtcConnection()
         sut.disconnect()
 
         // Then
