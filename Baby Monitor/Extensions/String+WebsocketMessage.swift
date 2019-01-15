@@ -8,9 +8,8 @@ extension String {
         if let stringMessage = websocketMessage as? String {
             return stringMessage
         }
-        if let messageData = websocketMessage as? Data,
-            let stringMessage = String(data: messageData, encoding: .utf8) {
-            return stringMessage
+        if let messageData = websocketMessage as? Data {
+            return String(data: messageData, encoding: .utf8)
         }
         return nil
     }
