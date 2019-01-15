@@ -23,7 +23,8 @@ class SettingsViewModelTests: XCTestCase {
         // Given
         let exp = expectation(description: "Did called didSelectChangeServer")
         let babiesRepository = BabiesRepositoryMock()
-        let sut = SettingsViewModel(babyRepo: babiesRepository)
+        let storageServerService = StorageServerServiceMock()
+        let sut = SettingsViewModel(babyRepo: babiesRepository, storageServerService: storageServerService)
         let cell = BabyMonitorCellMock()
         sut.didSelectChangeServer = { exp.fulfill() }
         
@@ -40,7 +41,8 @@ class SettingsViewModelTests: XCTestCase {
     func testShouldUpdateCellForSwitchToServer() {
         // Given
         let babiesRepository = BabiesRepositoryMock()
-        let sut = SettingsViewModel(babyRepo: babiesRepository)
+        let storageServerService = StorageServerServiceMock()
+        let sut = SettingsViewModel(babyRepo: babiesRepository, storageServerService: storageServerService)
         let cell = BabyMonitorCellMock()
         
         // When
@@ -55,9 +57,10 @@ class SettingsViewModelTests: XCTestCase {
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver([GeneralSection<SettingsViewModel.Cell>].self)
         let babiesRepository = BabiesRepositoryMock()
-        let sut = SettingsViewModel(babyRepo: babiesRepository)
+        let storageServerService = StorageServerServiceMock()
+        let sut = SettingsViewModel(babyRepo: babiesRepository, storageServerService: storageServerService)
         let expectedSection = [
-            GeneralSection<SettingsViewModel.Cell>(title: Localizable.Settings.main, items: [SettingsViewModel.Cell.switchToServer, SettingsViewModel.Cell.changeServer]),
+            GeneralSection<SettingsViewModel.Cell>(title: Localizable.Settings.main, items: [SettingsViewModel.Cell.switchToServer, SettingsViewModel.Cell.changeServer, SettingsViewModel.Cell.sendRecordings]),
             GeneralSection<SettingsViewModel.Cell>(title: Localizable.Settings.cryingDetectionMethod, items: [SettingsViewModel.Cell.useML, SettingsViewModel.Cell.useStaticCryingDetection])
         ]
         
@@ -75,7 +78,8 @@ class SettingsViewModelTests: XCTestCase {
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(Void.self)
         let babiesRepository = BabiesRepositoryMock()
-        let sut = SettingsViewModel(babyRepo: babiesRepository)
+        let storageServerService = StorageServerServiceMock()
+        let sut = SettingsViewModel(babyRepo: babiesRepository, storageServerService: storageServerService)
         sut.attachInput(showBabiesTap: ControlEvent(events: showBabiesTap))
         sut.showBabies?
             .subscribe(observer)

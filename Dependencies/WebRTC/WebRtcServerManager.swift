@@ -12,6 +12,9 @@ import RxSwift
 
 final class WebRtcServerManager: NSObject, PeerConnectionDelegate, SessionDescriptionDelegate, WebRtcServerManagerProtocol {
 
+    private var capturer: VideoCapturer?
+    private var peerConnection: PeerConnectionProtocol?
+
     var sdpAnswer: Observable<SessionDescriptionProtocol> {
         return sdpAnswerPublisher
     }
@@ -26,8 +29,6 @@ final class WebRtcServerManager: NSObject, PeerConnectionDelegate, SessionDescri
     private let sdpAnswerPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
 
-    private var capturer: VideoCapturer?
-    private var peerConnection: PeerConnectionProtocol?
     private let peerConnectionFactory: PeerConnectionFactoryProtocol?
     private let connectionDelegateProxy: RTCPeerConnectionDelegate
     private let sessionDelegateProxy: RTCSessionDescriptionDelegate

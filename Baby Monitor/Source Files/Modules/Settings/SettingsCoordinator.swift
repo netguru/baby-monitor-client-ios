@@ -28,7 +28,9 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     
     // MARK: - private functions
     private func showSettings() {
-        let viewModel = SettingsViewModel(babyRepo: appDependencies.babiesRepository)
+        let viewModel = SettingsViewModel(
+            babyRepo: appDependencies.babiesRepository,
+            storageServerService: appDependencies.storageServerService)
 
         let settingsViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<SettingsViewModel.Cell>(viewModel: viewModel), type: .settings)
         settingsViewController.rx.viewDidLoad
