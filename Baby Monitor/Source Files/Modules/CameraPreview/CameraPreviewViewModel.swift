@@ -9,13 +9,13 @@ final class CameraPreviewViewModel {
 
     private let babyRepo: BabiesRepositoryProtocol
     lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
-    private let webSocketsService: WebSocketsServiceProtocol
+    private let webSocketWebRtcService: WebSocketWebRtcServiceProtocol
     var remoteStream: Observable<MediaStream?> {
-        return webSocketsService.mediaStream
+        return webSocketWebRtcService.mediaStream
     }
 
-    init(webSocketsService: WebSocketsServiceProtocol, babyRepo: BabiesRepositoryProtocol) {
-        self.webSocketsService = webSocketsService
+    init(webSocketWebRtcService: WebSocketWebRtcServiceProtocol, babyRepo: BabiesRepositoryProtocol) {
+        self.webSocketWebRtcService = webSocketWebRtcService
         self.babyRepo = babyRepo
     }
     
@@ -29,7 +29,7 @@ final class CameraPreviewViewModel {
     }
 
     func play() {
-        webSocketsService.play()
+        webSocketWebRtcService.start()
     }
 
     func selectShowBabies() {

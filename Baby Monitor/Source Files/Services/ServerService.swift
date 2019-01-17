@@ -27,7 +27,6 @@ final class ServerService: ServerServiceProtocol {
     private let netServiceServer: NetServiceServerProtocol
     private let cryingEventService: CryingEventsServiceProtocol
     private let babiesRepository: BabiesRepositoryProtocol
-    private let websocketsService: WebSocketsServiceProtocol
     private let cacheService: CacheServiceProtocol
     private let disposeBag = DisposeBag()
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
@@ -35,13 +34,12 @@ final class ServerService: ServerServiceProtocol {
     private let audioRecordServiceErrorPublisher = PublishSubject<Void>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     
-    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, websocketsService: WebSocketsServiceProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
+    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
         self.cryingEventService = cryingService
         self.babiesRepository = babiesRepository
         self.webRtcServerManager = webRtcServerManager
         self.messageServer = messageServer
         self.netServiceServer = netServiceServer
-        self.websocketsService = websocketsService
         self.cacheService = cacheService
         self.decoders = webRtcDecoders
         self.notificationsService = notificationsService

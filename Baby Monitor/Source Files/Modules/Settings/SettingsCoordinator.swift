@@ -62,7 +62,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
             urlConfiguration: appDependencies.urlConfiguration,
             babyRepo: appDependencies.babiesRepository,
             cacheService: appDependencies.cacheService,
-            clientService: appDependencies.clientService)
+            webSocketEventMessageService: appDependencies.webSocketEventMessageService)
 
         let clientSetupViewController = OnboardingClientSetupViewController(role: .pairing(.pairing), viewModel: clientSetupViewModel)
         clientSetupViewController.rx.viewDidLoad
