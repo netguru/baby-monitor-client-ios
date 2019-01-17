@@ -7,14 +7,14 @@ protocol WebsocketMessageDecodable {
     func decode() -> String?
 }
 
-extension String: WebsocketMessageDecodable {
+extension NSString: WebsocketMessageDecodable {
     func decode() -> String? {
-        return self
+        return self as String
     }
 }
 
-extension Data: WebsocketMessageDecodable {
+extension NSData: WebsocketMessageDecodable {
     func decode() -> String? {
-        return String(data: self, encoding: .utf8)
+        return String(data: self as Data, encoding: .utf8)
     }
 }
