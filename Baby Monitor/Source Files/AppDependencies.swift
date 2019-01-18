@@ -40,11 +40,11 @@ final class AppDependencies {
         sessionDescriptionDelegateProxy.delegate = clientManager
         return clientManager
     }
-    private(set) lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebsocketConductor<EventMessage> = { emitter, handler in
-        return WebsocketConductor(webSocket: self.webSocket(self.urlConfiguration.url), messageEmitter: emitter, messageHandler: handler, messageDecoders: [self.babyMonitorEventMessagesDecoder])
+    private(set) lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductor<EventMessage> = { emitter, handler in
+        return WebSocketConductor(webSocket: self.webSocket(self.urlConfiguration.url), messageEmitter: emitter, messageHandler: handler, messageDecoders: [self.babyMonitorEventMessagesDecoder])
     }
-    private(set) lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebsocketConductor<WebRtcMessage> = { emitter, handler in
-        return WebsocketConductor(webSocket: self.webSocket(self.urlConfiguration.url), messageEmitter: emitter, messageHandler: handler, messageDecoders: self.webRtcMessageDecoders)
+    private(set) lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
+        return WebSocketConductor(webSocket: self.webSocket(self.urlConfiguration.url), messageEmitter: emitter, messageHandler: handler, messageDecoders: self.webRtcMessageDecoders)
     }
     private(set) lazy var webSocketEventMessageService: WebSocketEventMessageServiceProtocol = WebSocketEventMessageService(cryingEventsRepository: babiesRepository, eventMessageConductorFactory: eventMessageConductorFactory)
     private(set) lazy var webSocketWebRtcService: (WebRtcClientManagerProtocol) -> WebSocketWebRtcServiceProtocol = { webRtcClient in

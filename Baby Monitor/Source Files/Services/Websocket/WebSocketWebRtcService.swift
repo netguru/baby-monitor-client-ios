@@ -15,14 +15,14 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
     lazy var mediaStream: Observable<MediaStream?> = webRtcClientManager.mediaStream
 
     private let webRtcClientManager: WebRtcClientManagerProtocol
-    private var webRtcConductor: WebsocketConductorProtocol?
+    private var webRtcConductor: WebSocketConductorProtocol?
 
-    init(webRtcClientManager: WebRtcClientManagerProtocol, webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebsocketConductorProtocol) {
+    init(webRtcClientManager: WebRtcClientManagerProtocol, webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductorProtocol) {
         self.webRtcClientManager = webRtcClientManager
         setupWebRtcConductor(with: webRtcConductorFactory)
     }
 
-    private func setupWebRtcConductor(with factory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebsocketConductorProtocol) {
+    private func setupWebRtcConductor(with factory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductorProtocol) {
         webRtcConductor = factory(Observable.merge(sdpOfferJson(), iceCandidateJson()), webRtcMessageHandler())
     }
 
