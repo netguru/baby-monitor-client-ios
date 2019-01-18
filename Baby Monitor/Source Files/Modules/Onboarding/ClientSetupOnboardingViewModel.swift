@@ -28,14 +28,14 @@ final class ClientSetupOnboardingViewModel {
     private let babyRepo: BabiesRepositoryProtocol
     private let cacheService: CacheServiceProtocol
     private let disposeBag = DisposeBag()
-    private let clientService: ClientServiceProtocol
-    
-    init(netServiceClient: NetServiceClientProtocol, urlConfiguration: URLConfiguration, babyRepo: BabiesRepositoryProtocol, cacheService: CacheServiceProtocol, clientService: ClientServiceProtocol) {
+    private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
+
+    init(netServiceClient: NetServiceClientProtocol, urlConfiguration: URLConfiguration, babyRepo: BabiesRepositoryProtocol, cacheService: CacheServiceProtocol, webSocketEventMessageService: WebSocketEventMessageServiceProtocol) {
         self.netServiceClient = netServiceClient
         self.urlConfiguration = urlConfiguration
         self.babyRepo = babyRepo
         self.cacheService = cacheService
-        self.clientService = clientService
+        self.webSocketEventMessageService = webSocketEventMessageService
     }
     
     func startDiscovering(withTimeout timeout: TimeInterval = 5.0) {
@@ -53,10 +53,10 @@ final class ClientSetupOnboardingViewModel {
                 }
                 self.searchCancelTimer?.invalidate()
                 self.urlConfiguration.url = serverUrl
-                self.clientService.start()
+                self.webSocketEventMessageService.start()
                 self.netServiceClient.stopFinding()
                 let cryingEventMessage = EventMessage.initWithPushNotificationsKey(key: self.cacheService.selfPushNotificationsToken!)
-                self.clientService.sendMessageToServer(message: cryingEventMessage.toStringMessage())
+                self.webSocketEventMessageService.sendMessage(cryingEventMessage.toStringMessage())
                 self.didFinishDeviceSearch?(.success)
                 self.setupBaby()
             })

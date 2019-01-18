@@ -5,6 +5,7 @@
 
 import Foundation
 import RealmSwift
+import RxSwift
 import PocketSocket
 import AudioKit
 import FirebaseMessaging
@@ -39,12 +40,16 @@ final class AppDependencies {
         sessionDescriptionDelegateProxy.delegate = clientManager
         return clientManager
     }
-    private(set) lazy var websocketsService: WebSocketsServiceProtocol = WebSocketsService(
-        webRtcClientManager: webRtcClient(),
-        webSocket: webSocket(urlConfiguration.url),
-        cryingEventsRepository: babiesRepository,
-        webRtcMessageDecoders: webRtcMessageDecoders,
-        babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder)
+    private(set) lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductor<EventMessage> = { emitter, handler in
+        return WebSocketConductor(webSocket: self.webSocket(self.urlConfiguration.url), messageEmitter: emitter, messageHandler: handler, messageDecoders: [self.babyMonitorEventMessagesDecoder])
+    }
+    private(set) lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
+        return WebSocketConductor(webSocket: self.webSocket(self.urlConfiguration.url), messageEmitter: emitter, messageHandler: handler, messageDecoders: self.webRtcMessageDecoders)
+    }
+    private(set) lazy var webSocketEventMessageService: WebSocketEventMessageServiceProtocol = WebSocketEventMessageService(cryingEventsRepository: babiesRepository, eventMessageConductorFactory: eventMessageConductorFactory)
+    private(set) lazy var webSocketWebRtcService: (WebRtcClientManagerProtocol) -> WebSocketWebRtcServiceProtocol = { webRtcClient in
+        return WebSocketWebRtcService(webRtcClientManager: webRtcClient, webRtcConductorFactory: self.webRtcConductorFactory)
+    }
     private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher(
         urlSession: URLSession(configuration: .default),
         dispatchQueue: DispatchQueue(label: "NetworkDispatcherQueue")
@@ -61,7 +66,6 @@ final class AppDependencies {
     private(set) var cacheService: CacheServiceProtocol = CacheService()
 
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient(), urlConfiguration: urlConfiguration)
-    private(set) lazy var clientService: ClientServiceProtocol = ClientService(websocketsService: websocketsService, localNotificationService: localNotificationService, messageServer: messageServer)
     private(set) lazy var serverService: ServerServiceProtocol = ServerService(
         webRtcServerManager: webRtcServer(),
         messageServer: messageServer,
@@ -69,7 +73,6 @@ final class AppDependencies {
         webRtcDecoders: webRtcMessageDecoders,
         cryingService: cryingEventService,
         babiesRepository: babiesRepository,
-        websocketsService: websocketsService,
         cacheService: cacheService,
         notificationsService: localNotificationService,
         babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder

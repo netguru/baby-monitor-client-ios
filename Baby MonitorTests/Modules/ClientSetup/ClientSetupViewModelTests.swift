@@ -16,8 +16,8 @@ class ClientSetupViewModelTests: XCTestCase {
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let cacheService = CacheServiceMock()
-        let clientService = ClientServiceMock()
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, clientService: clientService)
+        let webSocketEventMessageService = WebSocketEventMessageServiceMock()
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, webSocketEventMessageService: webSocketEventMessageService)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
 
         // When
@@ -38,8 +38,8 @@ class ClientSetupViewModelTests: XCTestCase {
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let cacheService = CacheServiceMock()
-        let clientService = ClientServiceMock()
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, clientService: clientService)
+        let webSocketEventMessageService = WebSocketEventMessageServiceMock()
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, webSocketEventMessageService: webSocketEventMessageService)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -59,8 +59,8 @@ class ClientSetupViewModelTests: XCTestCase {
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let cacheService = CacheServiceMock()
-        let clientService = ClientServiceMock()
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, clientService: clientService)
+        let webSocketEventMessageService = WebSocketEventMessageServiceMock()
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, webSocketEventMessageService: webSocketEventMessageService)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -79,8 +79,8 @@ class ClientSetupViewModelTests: XCTestCase {
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let cacheService = CacheServiceMock()
-        let clientService = ClientServiceMock()
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, clientService: clientService)
+        let webSocketEventMessageService = WebSocketEventMessageServiceMock()
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, webSocketEventMessageService: webSocketEventMessageService)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -99,8 +99,8 @@ class ClientSetupViewModelTests: XCTestCase {
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let cacheService = CacheServiceMock()
-        let clientService = ClientServiceMock()
-        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, clientService: clientService)
+        let webSocketEventMessageService = WebSocketEventMessageServiceMock()
+        let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, babyRepo: babyRepo, cacheService: cacheService, webSocketEventMessageService: webSocketEventMessageService)
         sut.didFinishDeviceSearch = { result in
             XCTAssertEqual(result, DeviceSearchResult.failure(.timeout))
             exp.fulfill()

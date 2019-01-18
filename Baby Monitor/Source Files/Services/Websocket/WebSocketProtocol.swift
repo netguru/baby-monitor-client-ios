@@ -52,10 +52,16 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     }
     
     func open() {
+        guard !isConnected else {
+            return
+        }
         socket.open()
     }
     
     func close() {
+        guard isConnected else {
+            return
+        }
         socket.close()
     }
 }
@@ -68,7 +74,9 @@ extension PSWebSocketWrapper: PSWebSocketDelegate {
         buffer = []
     }
     
-    func webSocket(_ webSocket: PSWebSocket, didFailWithError error: Error) {}
+    func webSocket(_ webSocket: PSWebSocket, didFailWithError error: Error) {
+        isConnected = false
+    }
     
     func webSocket(_ webSocket: PSWebSocket, didReceiveMessage message: Any) {
         guard let decodableMessage = message as? WebsocketMessageDecodable,
@@ -78,5 +86,7 @@ extension PSWebSocketWrapper: PSWebSocketDelegate {
         receivedMessagePublisher.accept(stringMessage)
     }
     
-    func webSocket(_ webSocket: PSWebSocket, didCloseWithCode code: Int, reason: String, wasClean: Bool) {}
+    func webSocket(_ webSocket: PSWebSocket, didCloseWithCode code: Int, reason: String, wasClean: Bool) {
+        isConnected = false
+    }
 }
