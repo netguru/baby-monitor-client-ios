@@ -33,7 +33,7 @@ final class TabBarCoordinator: Coordinator {
                 AlertPresenter.showDefaultAlert(title: Localizable.General.warning, message: Localizable.Errors.notificationsNotAllowed, onViewController: self.navigationController)
             }
         }
-        appDependencies.clientService.cryingEventObservable.subscribe(onNext: { _ in
+        appDependencies.webSocketEventMessageService.cryingEventObservable.subscribe(onNext: { _ in
             AlertPresenter.showDefaultAlert(title: Localizable.Server.babyIsCrying, message: nil, onViewController: self.navigationController)
         }).disposed(by: disposeBag)
         navigationController.isNavigationBarHidden = true
