@@ -29,11 +29,13 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
     
     // MARK: - Coordinator callback
     var didSelectChangeServer: (() -> Void)?
+    var didSelectClearData: (() -> Void)?
+    
     private(set) var showBabies: Observable<Void>?
     lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
     
     private(set) lazy var sections: Observable<[GeneralSection<Cell>]> = {
-        let mainSection = Observable.just(GeneralSection(title: Section.main.title, items: [Cell.switchToServer, Cell.changeServer, Cell.sendRecordings]))
+        let mainSection = Observable.just(GeneralSection(title: Section.main.title, items: [Cell.switchToServer, Cell.changeServer, Cell.sendRecordings, Cell.clearData]))
         let detectionSection = Observable.just(GeneralSection(title: Section.cryingDetection.title, items: [Cell.useML, Cell.useStaticCryingDetection]))
         return Observable.combineLatest(mainSection, detectionSection, resultSelector: { mainSection, detectionSection -> [GeneralSection<Cell>] in
             return [mainSection, detectionSection]
@@ -46,6 +48,7 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
         case useML
         case useStaticCryingDetection
         case sendRecordings
+        case clearData
     }
 
     init(babyRepo: BabiesRepositoryProtocol, storageServerService: StorageServerServiceProtocol) {
@@ -78,6 +81,11 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
             cell.update(mainText: Localizable.Settings.sendRecordingsToServer)
             cell.didTap = { [weak self] in
                 self?.storageServerService.uploadRecordingsToDatabase()
+            }
+        case Cell.clearData:
+            cell.update(mainText: Localizable.Settings.clearData)
+            cell.didTap = { [weak self] in
+                self?.didSelectClearData?()
             }
         }
     }

@@ -15,7 +15,6 @@ final class TabBarCoordinator: Coordinator {
         ActivityLogCoordinator(UINavigationController(), appDependencies: appDependencies),
         // TODO: Hidden for MVP
         // LullabiesCoordinator(UINavigationController(), appDependencies: appDependencies),
-        SettingsCoordinator(UINavigationController(), appDependencies: appDependencies)
     ]
     var onEnding: (() -> Void)?
     
@@ -44,6 +43,17 @@ final class TabBarCoordinator: Coordinator {
     
     // MARK: - private functions
     private func setup() {
+        let settingsCoordinator = SettingsCoordinator(UINavigationController(), appDependencies: appDependencies)
+        settingsCoordinator.onEnding = { [weak self] in
+            // For now triggering settingsCoordinator onEnding is only in situation where user wants to clear all data
+            switch UserDefaults.appMode {
+            case .none:
+                self?.onEnding?()
+            case .parent, .baby:
+                break
+            }
+        }
+        childCoordinators.append(settingsCoordinator)
         let tabViewControllers = childCoordinators.map { $0.navigationController }
         tabBarController.setViewControllers(tabViewControllers, animated: false)
         tabBarController.setupTabBarItems()

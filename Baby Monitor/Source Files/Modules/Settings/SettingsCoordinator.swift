@@ -54,6 +54,23 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
         viewModel.didSelectChangeServer = { [weak self] in
             self?.showClientSetup()
         }
+        viewModel.didSelectClearData = { [weak self] in
+            guard let self = self else {
+                return
+            }
+            let continueHandler: (() -> Void) = { [weak self] in
+                self?.appDependencies.babiesRepository.removeAllData()
+                UserDefaults.appMode = .none
+                self?.onEnding?()
+            }
+            let continueAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = ("Continue", UIAlertAction.Style.destructive, continueHandler)
+            let cancelAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = (Localizable.General.cancel, UIAlertAction.Style.default, nil)
+            AlertPresenter.showDefaultAlert(
+                title: Localizable.General.warning,
+                message: Localizable.Settings.clearDataAlertMessage,
+                onViewController: self.navigationController,
+                customActions: [continueAlertAction, cancelAlertAction])
+        }
     }
     
     private func showClientSetup() {

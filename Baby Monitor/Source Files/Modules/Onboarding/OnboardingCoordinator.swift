@@ -12,7 +12,6 @@ final class OnboardingCoordinator: Coordinator {
     var navigationController: UINavigationController
     var onEnding: (() -> Void)?
     
-    private var isAudioServiceErrorAlreadyShown = false
     private weak var pairingCoordinator: OnboardingPairingCoordinator?
     private weak var connectingCoordinator: OnboardingConnectingCoordinator?
     
@@ -35,13 +34,15 @@ final class OnboardingCoordinator: Coordinator {
         navigationController.setNavigationBarHidden(true, animated: false)
         let pairingCoordinator = OnboardingPairingCoordinator(navigationController, appDependencies: appDependencies)
         pairingCoordinator.onEnding = { [weak self] in
+            UserDefaults.appMode = .parent
             self?.onEnding?()
         }
         childCoordinators.append(pairingCoordinator)
         self.pairingCoordinator = pairingCoordinator
         let connectingCoordinator = OnboardingConnectingCoordinator(navigationController, appDependencies: appDependencies)
         connectingCoordinator.onEnding = { [weak self] in
-            self?.showServerView()
+            UserDefaults.appMode = .baby
+            self?.onEnding?()
         }
         childCoordinators.append(connectingCoordinator)
         self.connectingCoordinator = connectingCoordinator
@@ -57,20 +58,5 @@ final class OnboardingCoordinator: Coordinator {
         }
         let viewController = SpecifyDeviceOnboardingViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    private func showServerView() {
-        let viewModel = ServerViewModel(serverService: appDependencies.serverService)
-        let serverViewController = ServerViewController(viewModel: viewModel)
-        viewModel.onAudioRecordServiceError = { [weak self] in
-            guard let self = self,
-                !self.isAudioServiceErrorAlreadyShown else {
-                    return
-            }
-            self.isAudioServiceErrorAlreadyShown = true
-            let message = Localizable.Server.audioRecordError
-            AlertPresenter.showDefaultAlert(title: nil, message: message, onViewController: serverViewController)
-        }
-        navigationController.pushViewController(serverViewController, animated: true)
     }
 }
