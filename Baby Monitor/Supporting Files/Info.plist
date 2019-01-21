@@ -30,6 +30,9 @@
 	<string>To select a photo for your baby </string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Rubik-Regular.ttf</string>
+		<string>Rubik-Medium.ttf</string>
+		<string>Rubik-Bold.ttf</string>
 		<string>AvertaStd-Bold.otf</string>
 		<string>AvertaStd-Regular.otf</string>
 	</array>

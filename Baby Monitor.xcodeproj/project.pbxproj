@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20AFCFFE21F62B8D00FC810F /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFCFFD21F62B8C00FC810F /* Rubik-Medium.ttf */; };
+		20AFD00021F62B9900FC810F /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFCFFF21F62B9900FC810F /* Rubik-Bold.ttf */; };
+		20AFD00221F62BA200FC810F /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFD00121F62BA200FC810F /* Rubik-Regular.ttf */; };
 		2FD6861BC0920FE58CB3D522 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DA983E08D91DB2F19F277C9 /* Pods_Baby_Monitor.framework */; };
 		4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */; };
 		4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */; };
@@ -263,6 +266,9 @@
 
 /* Begin PBXFileReference section */
 		0806325953361018B6D7E8E8 /* Pods-Baby MonitorTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.development.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"; sourceTree = "<group>"; };
+		20AFCFFD21F62B8C00FC810F /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		20AFCFFF21F62B9900FC810F /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		20AFD00121F62BA200FC810F /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		2DF3AA99E8050A590C2C9C86 /* Pods-Baby MonitorTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.staging.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.staging.xcconfig"; sourceTree = "<group>"; };
 		33E1959F9CAED63F1EBBC378 /* Pods-Baby Monitor.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.staging.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.staging.xcconfig"; sourceTree = "<group>"; };
 		3D35897D6D02EF8BB7728EDE /* Pods-Baby MonitorTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.production.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.production.xcconfig"; sourceTree = "<group>"; };
@@ -894,6 +900,9 @@
 			isa = PBXGroup;
 			children = (
 				4E8E056921AD855B009ACE05 /* AvertaStd-Regular.otf */,
+				20AFCFFF21F62B9900FC810F /* Rubik-Bold.ttf */,
+				20AFCFFD21F62B8C00FC810F /* Rubik-Medium.ttf */,
+				20AFD00121F62BA200FC810F /* Rubik-Regular.ttf */,
 				4E8E056521AD82EE009ACE05 /* AvertaStd-Bold.otf */,
 			);
 			path = Fonts;
@@ -1612,18 +1621,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */,
+				20AFD00021F62B9900FC810F /* Rubik-Bold.ttf in Resources */,
 				4E5731AB2170C1A200DEAF0B /* Tests-Development.xcconfig in Resources */,
 				4E8E056621AD82EE009ACE05 /* AvertaStd-Bold.otf in Resources */,
 				EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */,
 				4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */,
 				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
 				8AA7CBF3218C62E600FCF62A /* prettyLittleHorses.mp3 in Resources */,
+				20AFCFFE21F62B8D00FC810F /* Rubik-Medium.ttf in Resources */,
 				EC82B561213EA074005CA395 /* Assets.xcassets in Resources */,
 				8AA7CBF2218C62E600FCF62A /* lullabyGoodnight.mp3 in Resources */,
 				4E8E056A21AD855B009ACE05 /* AvertaStd-Regular.otf in Resources */,
 				8AA7CBF0218C62E600FCF62A /* rockAByeBaby.mp3 in Resources */,
 				4E95631E21638E2200289475 /* Localizable.strings in Resources */,
 				ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */,
+				20AFD00221F62BA200FC810F /* Rubik-Regular.ttf in Resources */,
 				4E5731AC2170C1A200DEAF0B /* Tests-Production.xcconfig in Resources */,
 				8AA7CBF4218C62E600FCF62A /* hushLittleBaby.mp3 in Resources */,
 				8AA7CBF1218C62E600FCF62A /* twinkleTwinkleLittleStar.mp3 in Resources */,
