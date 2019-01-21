@@ -59,6 +59,8 @@
 		4E63DC1E21E39D4B00604167 /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DC1821E39D4B00604167 /* NetworkDispatcher.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
 		4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */; };
+		4E7A1A9021F1284B0015C3A3 /* UserDefaults+AppMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A1A8F21F1284B0015C3A3 /* UserDefaults+AppMode.swift */; };
+		4E7A1A9221F12BD00015C3A3 /* ServerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A1A9121F12BD00015C3A3 /* ServerCoordinator.swift */; };
 		4E7B091121E5FE6D00EDDD11 /* Encodable+StringMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7B091021E5FE6D00EDDD11 /* Encodable+StringMessage.swift */; };
 		4E7B091321E6148600EDDD11 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7B091221E6148600EDDD11 /* URLSessionProtocol.swift */; };
 		4E8E056321AD81D4009ACE05 /* BaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E056221AD81D4009ACE05 /* BaseOnboardingView.swift */; };
@@ -349,6 +351,8 @@
 		4E63DC2521E485E300604167 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		4E71CFAA216B496500191FC1 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		4E7A1A8F21F1284B0015C3A3 /* UserDefaults+AppMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+AppMode.swift"; sourceTree = "<group>"; };
+		4E7A1A9121F12BD00015C3A3 /* ServerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCoordinator.swift; sourceTree = "<group>"; };
 		4E7B090B21E5E4E300EDDD11 /* CacheServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheServiceMock.swift; sourceTree = "<group>"; };
 		4E7B090D21E5E52F00EDDD11 /* ClientServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientServiceMock.swift; sourceTree = "<group>"; };
 		4E7B091021E5FE6D00EDDD11 /* Encodable+StringMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+StringMessage.swift"; sourceTree = "<group>"; };
@@ -604,6 +608,7 @@
 			children = (
 				4E221D8A217716CF003D8531 /* ServerViewController.swift */,
 				4E1CF816217856C500F48706 /* ServerViewModel.swift */,
+				4E7A1A9121F12BD00015C3A3 /* ServerCoordinator.swift */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -786,6 +791,7 @@
 				4E7B091021E5FE6D00EDDD11 /* Encodable+StringMessage.swift */,
 				4EA2802321E8BD6300262E45 /* String+Regex.swift */,
 				4EA2802521E8C6B100262E45 /* DateFormatter+Helpers.swift */,
+				4E7A1A8F21F1284B0015C3A3 /* UserDefaults+AppMode.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1872,6 +1878,7 @@
 				8A8B76ED21EF53A20063EF7E /* WebSocketEventMessageService.swift in Sources */,
 				EC8A8FF521AE8F5F00B5FCCF /* TypedPageViewController.swift in Sources */,
 				8A8B76DF21EDE3640063EF7E /* WebsocketMessageDecodable.swift in Sources */,
+				4E7A1A9221F12BD00015C3A3 /* ServerCoordinator.swift in Sources */,
 				ECB2428A21AD4F9200B4E409 /* IntroViewController.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				8A7A612A21A59E9A00488ED4 /* AlertPresenter.swift in Sources */,
@@ -1899,6 +1906,7 @@
 				8A7A60D221A416E300488ED4 /* WebRtcClientManagerProtocol.swift in Sources */,
 				4E63DC1021E39CFA00604167 /* NotificationService.swift in Sources */,
 				8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */,
+				4E7A1A9021F1284B0015C3A3 /* UserDefaults+AppMode.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,
 				8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,

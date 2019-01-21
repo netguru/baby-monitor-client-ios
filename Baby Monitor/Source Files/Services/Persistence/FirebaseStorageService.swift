@@ -14,7 +14,7 @@ protocol StorageServerServiceProtocol: AnyObject {
 final class FirebaseStorageService: StorageServerServiceProtocol {
     private var filepathsToSend: [URL] = []
     private var isSending = false
-    private let storageReference = Storage.storage().reference()
+    private lazy var storageReference = Storage.storage().reference()
     private let shouldSendRecordingsKey = "SHOULD_SEND_RECORDINGS"
     private let userDefaults = UserDefaults.standard
     private let memoryCleaner: MemoryCleanerProtocol

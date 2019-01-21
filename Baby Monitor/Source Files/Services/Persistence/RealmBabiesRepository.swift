@@ -98,10 +98,11 @@ final class RealmBabiesRepository: BabiesRepositoryProtocol & CryingEventsReposi
         return Array(babies)
     }
     
-    func removeAllBabies() {
+    func removeAllData() {
         try! realm.write {
             realm.deleteAll()
         }
+        currentBabyId = nil
     }
     
     func fetchBaby(id: String) -> Baby? {

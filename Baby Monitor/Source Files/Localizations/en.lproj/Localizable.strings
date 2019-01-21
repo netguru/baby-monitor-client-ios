@@ -86,6 +86,8 @@
 "settings.header.main" = "Main";
 "settings.header.crying-detection-method" = "Crying Detection Method";
 "settings.cell.send-recordings-to-server" = "Send crying records to server";
+"settings.cell.clear-data" = "Clear data";
+"settings.cell.clear-data-alert-message" = "All data will be cleared. Would you like to continue?";
 
 //MARK: - Errors
 "errors.title.error-occured" = "Error occured";
