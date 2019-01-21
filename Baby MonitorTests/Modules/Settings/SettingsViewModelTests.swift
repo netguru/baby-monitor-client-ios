@@ -64,7 +64,7 @@ class SettingsViewModelTests: XCTestCase {
         let storageServerService = StorageServerServiceMock()
         let sut = SettingsViewModel(babyRepo: babiesRepository, storageServerService: storageServerService, memoryCleaner: memoryCleaner, urlConfiguration: urlConfiguration)
         let expectedSection = [
-            GeneralSection<SettingsViewModel.Cell>(title: Localizable.Settings.main, items: [SettingsViewModel.Cell.switchToServer, SettingsViewModel.Cell.changeServer, SettingsViewModel.Cell.sendRecordings]),
+            GeneralSection<SettingsViewModel.Cell>(title: Localizable.Settings.main, items: [SettingsViewModel.Cell.switchToServer, SettingsViewModel.Cell.changeServer, SettingsViewModel.Cell.sendRecordings, SettingsViewModel.Cell.clearData]),
             GeneralSection<SettingsViewModel.Cell>(title: Localizable.Settings.cryingDetectionMethod, items: [SettingsViewModel.Cell.useML, SettingsViewModel.Cell.useStaticCryingDetection])
         ]
         
