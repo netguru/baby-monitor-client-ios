@@ -68,7 +68,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
             case .baby:
                 serverCoordinator.start()
             case .none:
-                fatalError("Here should not be selected `.none`")
+                break
             }
         }
     }
