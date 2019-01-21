@@ -15,7 +15,7 @@ extension UserDefaults {
     
     private static var appModeKey = "APP_MODE_KEY"
     
-    class var appMode: AppMode {
+    static var appMode: AppMode {
         get {
             let rawValue = UserDefaults.standard.string(forKey: appModeKey) ?? AppMode.none.rawValue
             return AppMode(rawValue: rawValue) ?? .none
