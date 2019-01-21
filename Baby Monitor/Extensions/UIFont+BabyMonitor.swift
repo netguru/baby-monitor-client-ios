@@ -7,6 +7,7 @@ import UIKit
 
 extension UIFont {
 
+    /// Custom font sizes used throught the app
     enum CustomTextSize: CGFloat {
         case caption = 12
         case small = 14
@@ -16,6 +17,12 @@ extension UIFont {
         case h1 = 32
     }
 
+    /// Creates custom font used throught the app
+    ///
+    /// - Parameters:
+    ///     - size: size of the font
+    ///     - weight: weight of the font
+    /// - Returns: Created font
     static func customFont(withSize size: CustomTextSize, weight: Weight = .regular) -> UIFont {
         switch weight {
         case .regular:
