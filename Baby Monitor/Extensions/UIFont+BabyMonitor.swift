@@ -16,11 +16,6 @@ extension UIFont {
         case h1 = 32
     }
 
-    private static var defaultFontSize: CGFloat = 10
-    
-    static let avertaBold = UIFont(name: "AvertaStd-Bold", size: defaultFontSize)!
-    static let avertaRegular = UIFont(name: "AvertaStd-Regular", size: defaultFontSize)!
-
     static func customFont(withSize size: CustomTextSize, weight: Weight = .regular) -> UIFont {
         switch weight {
         case .regular:
