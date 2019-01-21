@@ -22,7 +22,14 @@ final class OnboardingCoordinator: Coordinator {
     }
 
     func start() {
-        childCoordinators.first?.start()
+        switch UserDefaults.appMode {
+        case .parent:
+            pairingCoordinator?.start()
+        case .none:
+            childCoordinators.first?.start()
+        case .baby:
+            break
+        }
     }
     
     private func setup() {

@@ -10,6 +10,8 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
 
     private let babyRepo: BabiesRepositoryProtocol
     private let storageServerService: StorageServerServiceProtocol
+    private let memoryCleaner: MemoryCleanerProtocol
+    private let urlConfiguration: URLConfiguration
 
     typealias DataType = Cell
     
@@ -51,8 +53,10 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
         case clearData
     }
 
-    init(babyRepo: BabiesRepositoryProtocol, storageServerService: StorageServerServiceProtocol) {
+    init(babyRepo: BabiesRepositoryProtocol, storageServerService: StorageServerServiceProtocol, memoryCleaner: MemoryCleanerProtocol, urlConfiguration: URLConfiguration) {
         self.babyRepo = babyRepo
+        self.memoryCleaner = memoryCleaner
+        self.urlConfiguration = urlConfiguration
         self.storageServerService = storageServerService
     }
 
@@ -101,5 +105,12 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
         case Section.cryingDetection:
             headerCell.update(mainText: Section.cryingDetection.title)
         }
+    }
+    
+    func clearAllDataForNoneState() {
+        babyRepo.removeAllData()
+        memoryCleaner.cleanMemory()
+        urlConfiguration.url = nil
+        UserDefaults.appMode = .none
     }
 }

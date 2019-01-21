@@ -19,7 +19,14 @@ final class OnboardingPairingCoordinator: Coordinator {
     var onEnding: (() -> Void)?
     
     func start() {
-        showInstallBMOnSecondDeviceView()
+        switch UserDefaults.appMode {
+        case .none:
+            showInstallBMOnSecondDeviceView()
+        case .parent:
+            showClientSetupView()
+        case .baby:
+            break
+        }
     }
     
     private func showInstallBMOnSecondDeviceView() {
@@ -41,7 +48,14 @@ final class OnboardingPairingCoordinator: Coordinator {
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success:
-                self?.showPairingDoneView()
+                switch UserDefaults.appMode {
+                case .parent:
+                    self?.onEnding?()
+                case .none:
+                    self?.showPairingDoneView()
+                case .baby:
+                    break
+                }
             case .failure:
                 self?.showErrorPairingView()
             }

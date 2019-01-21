@@ -30,7 +30,9 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     private func showSettings() {
         let viewModel = SettingsViewModel(
             babyRepo: appDependencies.babiesRepository,
-            storageServerService: appDependencies.storageServerService)
+            storageServerService: appDependencies.storageServerService,
+            memoryCleaner: appDependencies.memoryCleaner,
+            urlConfiguration: appDependencies.urlConfiguration)
 
         let settingsViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<SettingsViewModel.Cell>(viewModel: viewModel), type: .settings)
         settingsViewController.rx.viewDidLoad
@@ -59,8 +61,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
                 return
             }
             let continueHandler: (() -> Void) = { [weak self] in
-                self?.appDependencies.babiesRepository.removeAllData()
-                UserDefaults.appMode = .none
+                viewModel.clearAllDataForNoneState()
                 self?.onEnding?()
             }
             let continueAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = ("Continue", UIAlertAction.Style.destructive, continueHandler)
