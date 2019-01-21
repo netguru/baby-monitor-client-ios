@@ -26,10 +26,10 @@ final class RootCoordinator: RootCoordinatorProtocol {
 
     func start() {
         switch UserDefaults.appMode {
-        case .parent, .baby:
+        case .parent, .none:
             onboardingCoordinator?.start()
-        case .none:
-            onboardingCoordinator?.start()
+        case .baby:
+            serverCoordinator?.start()
         }
     }
 
