@@ -24,7 +24,7 @@ final class IntroFeatureView: BaseView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .white
-        label.font = UIFont.avertaBold.withSize(18)
+        label.font = UIFont.customFont(withSize: .h3, weight: .bold)
         return label
     }()
     private let descriptionLabel: UILabel = {
@@ -32,7 +32,7 @@ final class IntroFeatureView: BaseView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = UIColor.white.withAlphaComponent(Constants.textAlpha)
-        label.font = UIFont.avertaRegular.withSize(14)
+        label.font = UIFont.customFont(withSize: .small, weight: .regular)
         label.layer.opacity = 0.5
         label.text = Localizable.Intro.sleepingSoundly
         return label
@@ -41,7 +41,7 @@ final class IntroFeatureView: BaseView {
         let button = UIButton()
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         button.titleLabel?.textColor = .white
-        button.titleLabel?.font = UIFont.avertaBold.withSize(14)
+        button.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.cgColor
         return button

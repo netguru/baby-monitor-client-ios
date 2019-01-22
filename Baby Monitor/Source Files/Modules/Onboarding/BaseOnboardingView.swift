@@ -13,13 +13,13 @@ class BaseOnboardingView: BaseView {
     
     private let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = UIFont.avertaBold.withSize(16)
+        label.font = UIFont.customFont(withSize: .body, weight: .bold)
         return label
     }()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = UIFont.avertaRegular.withSize(14)
+        label.font = UIFont.customFont(withSize: .small, weight: .regular)
         label.alpha = 0.5
         label.numberOfLines = 0
         return label
@@ -37,8 +37,8 @@ class BaseOnboardingView: BaseView {
     }
     
     func changeStyleToBluish() {
-        titleLabel.textColor = .babyMonitorWhite
-        descriptionLabel.textColor = .babyMonitorWhite
+        titleLabel.textColor = .babyMonitorNonTranslucentWhite
+        descriptionLabel.textColor = .babyMonitorNonTranslucentWhite
         backgroundImageView.image = #imageLiteral(resourceName: "onboarding-bluish-background")
     }
     
