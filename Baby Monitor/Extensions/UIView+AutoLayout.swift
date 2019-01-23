@@ -74,10 +74,11 @@ extension UIView {
     ///   - view: that constrain should relate to
     ///   - fromAnchor: constraints key path of current view
     ///   - toAnchor: constraints key path of related view
+    ///   - constant: value
     /// - Returns: created constraint
-    func greaterThanOrEqualTo<Anchor, Axis>(_ view: UIView, _ fromAnchor: KeyPath<UIView, Anchor>, _ toAnchor: KeyPath<UIView, Anchor>) -> Constraint where Anchor: NSLayoutAnchor<Axis> {
+    func greaterThanOrEqualTo<Anchor, Axis>(_ view: UIView, _ fromAnchor: KeyPath<UIView, Anchor>, _ toAnchor: KeyPath<UIView, Anchor>, constant: CGFloat = 0) -> Constraint where Anchor: NSLayoutAnchor<Axis> {
         return { layoutView in
-            layoutView[keyPath: fromAnchor].constraint(greaterThanOrEqualTo: view[keyPath: toAnchor])
+            layoutView[keyPath: fromAnchor].constraint(greaterThanOrEqualTo: view[keyPath: toAnchor], constant: constant)
         }
     }
     
@@ -87,10 +88,11 @@ extension UIView {
     ///   - view: that constrain should relate to
     ///   - fromAnchor: constraints key path of current view
     ///   - toAnchor: constraints key path of related view
+    ///   - constant: value
     /// - Returns: created constraint
-    func greaterThanOrEqualTo<Anchor>(_ view: UIView, _ fromAnchor: KeyPath<UIView, Anchor>, _ toAnchor: KeyPath<UIView, Anchor>) -> Constraint where Anchor: NSLayoutXAxisAnchor {
+    func greaterThanOrEqualTo<Anchor>(_ view: UIView, _ fromAnchor: KeyPath<UIView, Anchor>, _ toAnchor: KeyPath<UIView, Anchor>, constant: CGFloat = 0) -> Constraint where Anchor: NSLayoutXAxisAnchor {
         return { layoutView in
-            layoutView[keyPath: fromAnchor].constraint(greaterThanOrEqualTo: view[keyPath: toAnchor])
+            layoutView[keyPath: fromAnchor].constraint(greaterThanOrEqualTo: view[keyPath: toAnchor], constant: constant)
         }
     }
     
@@ -100,10 +102,11 @@ extension UIView {
     ///   - view: that constrain should relate to
     ///   - fromAnchor: constraints key path of current view
     ///   - toAnchor: constraints key path of related view
+    ///   - constant: value
     /// - Returns: created constraint
-    func greaterThanOrEqualTo<LayoutDimension>(_ view: UIView, _ fromAnchor: KeyPath<UIView, LayoutDimension>, _ toAnchor: KeyPath<UIView, LayoutDimension>) -> Constraint where LayoutDimension: NSLayoutDimension {
+    func greaterThanOrEqualTo<LayoutDimension>(_ view: UIView, _ fromAnchor: KeyPath<UIView, LayoutDimension>, _ toAnchor: KeyPath<UIView, LayoutDimension>, constant: CGFloat = 0) -> Constraint where LayoutDimension: NSLayoutDimension {
         return { layoutView in
-            layoutView[keyPath: fromAnchor].constraint(greaterThanOrEqualTo: view[keyPath: toAnchor])
+            layoutView[keyPath: fromAnchor].constraint(greaterThanOrEqualTo: view[keyPath: toAnchor], constant: constant)
         }
     }
     
