@@ -66,6 +66,7 @@ final class SettingsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// Initializes settings view
     init() {
         super.init(frame: UIScreen.main.bounds)
         setupLayout()
