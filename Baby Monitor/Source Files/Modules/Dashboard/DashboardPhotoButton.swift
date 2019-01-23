@@ -29,7 +29,7 @@ final class DashboardPhotoButtonView: UIView {
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
-    private let backgoundView: UIImageView = {
+    private let backgroundView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "oval"))
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
@@ -68,17 +68,17 @@ final class DashboardPhotoButtonView: UIView {
     // MARK: - private functions
     private func setup() {
         [placeholderStackView, button].forEach {
-            backgoundView.addSubview($0)
+            backgroundView.addSubview($0)
         }
-        addSubview(backgoundView)
+        addSubview(backgroundView)
         setupConstraints()
     }
     
     private func setupConstraints() {
-        backgoundView.addConstraints {
+        backgroundView.addConstraints {
             [$0.equal(.centerX)]
         }
-        backgoundView.addConstraints {
+        backgroundView.addConstraints {
             $0.equalEdges()
         }
         
