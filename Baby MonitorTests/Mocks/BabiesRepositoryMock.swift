@@ -58,7 +58,7 @@ final class BabiesRepositoryMock: BabiesRepositoryProtocol {
         return babies.values.filter { $0.name == name }
     }
     
-    func removeAllBabies() {
+    func removeAllData() {
         babies = [String: Baby]()
     }
     

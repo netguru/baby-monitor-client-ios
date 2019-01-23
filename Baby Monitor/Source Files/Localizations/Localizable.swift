@@ -104,6 +104,8 @@ enum Localizable {
         static let main = localized("settings.header.main")
         static let cryingDetectionMethod = localized("settings.header.crying-detection-method")
         static let sendRecordingsToServer = localized("settings.cell.send-recordings-to-server")
+        static let clearData = localized("settings.cell.clear-data")
+        static let clearDataAlertMessage = localized("settings.cell.clear-data-alert-message")
     }
     
     enum Errors {

@@ -5,11 +5,11 @@
 
 import RxSwift
 
-protocol WebsocketConductorProtocol {
+protocol WebSocketConductorProtocol {
     func open()
 }
 
-final class WebsocketConductor<MessageType>: WebsocketConductorProtocol {
+final class WebSocketConductor<MessageType>: WebSocketConductorProtocol {
 
     private let webSocket: WebSocketProtocol?
     private let messageEmitter: Observable<String>

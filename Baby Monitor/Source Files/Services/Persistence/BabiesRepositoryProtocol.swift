@@ -44,8 +44,8 @@ protocol BabiesRepositoryProtocol {
     /// - Returns: Babies with specified name
     func fetchBabies(name: String) -> [Baby]
     
-    /// Removes all persisted babies
-    func removeAllBabies()
+    /// Removes all data from database
+    func removeAllData()
     
     // Update current baby
     func setPhoto(_ photo: UIImage, id: String)

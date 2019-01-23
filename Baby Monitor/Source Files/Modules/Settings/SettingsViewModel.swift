@@ -10,6 +10,8 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
 
     private let babyRepo: BabiesRepositoryProtocol
     private let storageServerService: StorageServerServiceProtocol
+    private let memoryCleaner: MemoryCleanerProtocol
+    private let urlConfiguration: URLConfiguration
 
     typealias DataType = Cell
     
@@ -29,11 +31,13 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
     
     // MARK: - Coordinator callback
     var didSelectChangeServer: (() -> Void)?
+    var didSelectClearData: (() -> Void)?
+    
     private(set) var showBabies: Observable<Void>?
     lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
     
     private(set) lazy var sections: Observable<[GeneralSection<Cell>]> = {
-        let mainSection = Observable.just(GeneralSection(title: Section.main.title, items: [Cell.switchToServer, Cell.changeServer, Cell.sendRecordings]))
+        let mainSection = Observable.just(GeneralSection(title: Section.main.title, items: [Cell.switchToServer, Cell.changeServer, Cell.sendRecordings, Cell.clearData]))
         let detectionSection = Observable.just(GeneralSection(title: Section.cryingDetection.title, items: [Cell.useML, Cell.useStaticCryingDetection]))
         return Observable.combineLatest(mainSection, detectionSection, resultSelector: { mainSection, detectionSection -> [GeneralSection<Cell>] in
             return [mainSection, detectionSection]
@@ -46,10 +50,13 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
         case useML
         case useStaticCryingDetection
         case sendRecordings
+        case clearData
     }
 
-    init(babyRepo: BabiesRepositoryProtocol, storageServerService: StorageServerServiceProtocol) {
+    init(babyRepo: BabiesRepositoryProtocol, storageServerService: StorageServerServiceProtocol, memoryCleaner: MemoryCleanerProtocol, urlConfiguration: URLConfiguration) {
         self.babyRepo = babyRepo
+        self.memoryCleaner = memoryCleaner
+        self.urlConfiguration = urlConfiguration
         self.storageServerService = storageServerService
     }
 
@@ -79,6 +86,11 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
             cell.didTap = { [weak self] in
                 self?.storageServerService.uploadRecordingsToDatabase()
             }
+        case Cell.clearData:
+            cell.update(mainText: Localizable.Settings.clearData)
+            cell.didTap = { [weak self] in
+                self?.didSelectClearData?()
+            }
         }
     }
     
@@ -93,5 +105,12 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
         case Section.cryingDetection:
             headerCell.update(mainText: Section.cryingDetection.title)
         }
+    }
+    
+    func clearAllDataForNoneState() {
+        babyRepo.removeAllData()
+        memoryCleaner.cleanMemory()
+        urlConfiguration.url = nil
+        UserDefaults.appMode = .none
     }
 }

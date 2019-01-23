@@ -24,7 +24,7 @@ final class OnboardingButton: UIButton {
     
     private func setup(title: String) {
         backgroundColor = .babyMonitorPurple
-        titleLabel?.font = UIFont.avertaBold.withSize(14)
+        titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
         setTitle(title, for: .normal)
     }
 }

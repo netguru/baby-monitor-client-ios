@@ -7,10 +7,21 @@ import Foundation
 
 protocol MemoryCleanerProtocol: Any {
     func cleanMemoryIfNeeded()
+    func cleanMemory()
     func removeFile(path: URL)
 }
 
 final class MemoryCleaner: MemoryCleanerProtocol {
+    
+    func cleanMemory() {
+        guard let enumerator = FileManager.default.enumerator(atPath: FileManager.cryingRecordsURL.path) else {
+                return
+        }
+        let fileUrls = enumerator.allObjects.compactMap({ $0 as? URL })
+        fileUrls.forEach {
+            removeFile(path: $0)
+        }
+    }
     
     func cleanMemoryIfNeeded() {
         let twoHundredMB = 200 * 1024 * 1024

@@ -40,11 +40,11 @@ final class AppDependencies {
         sessionDescriptionDelegateProxy.delegate = clientManager
         return clientManager
     }
-    private(set) lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebsocketConductor<EventMessage> = { emitter, handler in
-        return WebsocketConductor(webSocket: self.webSocket(self.urlConfiguration.url), messageEmitter: emitter, messageHandler: handler, messageDecoders: [self.babyMonitorEventMessagesDecoder])
+    private(set) lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductor<EventMessage> = { emitter, handler in
+        return WebSocketConductor(webSocket: self.webSocket, messageEmitter: emitter, messageHandler: handler, messageDecoders: [self.babyMonitorEventMessagesDecoder])
     }
-    private(set) lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebsocketConductor<WebRtcMessage> = { emitter, handler in
-        return WebsocketConductor(webSocket: self.webSocket(self.urlConfiguration.url), messageEmitter: emitter, messageHandler: handler, messageDecoders: self.webRtcMessageDecoders)
+    private(set) lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
+        return WebSocketConductor(webSocket: self.webSocket, messageEmitter: emitter, messageHandler: handler, messageDecoders: self.webRtcMessageDecoders)
     }
     private(set) lazy var webSocketEventMessageService: WebSocketEventMessageServiceProtocol = WebSocketEventMessageService(cryingEventsRepository: babiesRepository, eventMessageConductorFactory: eventMessageConductorFactory)
     private(set) lazy var webSocketWebRtcService: (WebRtcClientManagerProtocol) -> WebSocketWebRtcServiceProtocol = { webRtcClient in
@@ -85,8 +85,8 @@ final class AppDependencies {
         let webSocketServer = PSWebSocketServer(host: nil, port: UInt(Constants.websocketPort))!
         return PSWebSocketServerWrapper(server: webSocketServer)
     }()
-    private(set) lazy var webSocket: (URL?) -> WebSocketProtocol? = { url in
-        guard let url = url else {
+    private(set) lazy var webSocket: WebSocketProtocol? = {
+        guard let url = self.urlConfiguration.url else {
             return nil
         }
         let urlRequest = URLRequest(url: url)
@@ -94,7 +94,7 @@ final class AppDependencies {
             return nil
         }
         return PSWebSocketWrapper(socket: webSocket)
-    }
+    }()
     /// Baby service for getting and adding babies throughout the app
     private(set) lazy var babiesRepository: BabiesRepositoryProtocol & CryingEventsRepositoryProtocol = RealmBabiesRepository(realm: try! Realm())
     private(set) lazy var lullabiesRepository: LullabiesRepositoryProtocol = RealmLullabiesRepository(realm: try! Realm())

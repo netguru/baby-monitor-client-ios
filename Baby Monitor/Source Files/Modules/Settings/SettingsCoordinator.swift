@@ -30,7 +30,9 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     private func showSettings() {
         let viewModel = SettingsViewModel(
             babyRepo: appDependencies.babiesRepository,
-            storageServerService: appDependencies.storageServerService)
+            storageServerService: appDependencies.storageServerService,
+            memoryCleaner: appDependencies.memoryCleaner,
+            urlConfiguration: appDependencies.urlConfiguration)
 
         let settingsViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<SettingsViewModel.Cell>(viewModel: viewModel), type: .settings)
         settingsViewController.rx.viewDidLoad
@@ -53,6 +55,22 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
             .disposed(by: bag)
         viewModel.didSelectChangeServer = { [weak self] in
             self?.showClientSetup()
+        }
+        viewModel.didSelectClearData = { [weak self] in
+            guard let self = self else {
+                return
+            }
+            let continueHandler: (() -> Void) = { [weak self] in
+                viewModel.clearAllDataForNoneState()
+                self?.onEnding?()
+            }
+            let continueAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = ("Continue", UIAlertAction.Style.destructive, continueHandler)
+            let cancelAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = (Localizable.General.cancel, UIAlertAction.Style.default, nil)
+            AlertPresenter.showDefaultAlert(
+                title: Localizable.General.warning,
+                message: Localizable.Settings.clearDataAlertMessage,
+                onViewController: self.navigationController,
+                customActions: [continueAlertAction, cancelAlertAction])
         }
     }
     

@@ -56,7 +56,7 @@ final class ClientSetupOnboardingViewModel {
                 self.webSocketEventMessageService.start()
                 self.netServiceClient.stopFinding()
                 let cryingEventMessage = EventMessage.initWithPushNotificationsKey(key: self.cacheService.selfPushNotificationsToken!)
-            self.webSocketEventMessageService.sendMessage(cryingEventMessage.toStringMessage())
+                self.webSocketEventMessageService.sendMessage(cryingEventMessage.toStringMessage())
                 self.didFinishDeviceSearch?(.success)
                 self.setupBaby()
             })

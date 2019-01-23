@@ -16,16 +16,16 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
     lazy var cryingEventObservable: Observable<Void> = cryingEventPublisher.asObservable()
 
     private let cryingEventsRepository: CryingEventsRepositoryProtocol
-    private var eventMessageConductor: WebsocketConductorProtocol?
+    private var eventMessageConductor: WebSocketConductorProtocol?
     private let cryingEventPublisher = PublishSubject<Void>()
     private let eventMessagePublisher = PublishSubject<String>()
 
-    init(cryingEventsRepository: CryingEventsRepositoryProtocol, eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebsocketConductorProtocol) {
+    init(cryingEventsRepository: CryingEventsRepositoryProtocol, eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductorProtocol) {
         self.cryingEventsRepository = cryingEventsRepository
         setupEventMessageConductor(with: eventMessageConductorFactory)
     }
 
-    private func setupEventMessageConductor(with factory: (Observable<String>, AnyObserver<EventMessage>) -> WebsocketConductorProtocol) {
+    private func setupEventMessageConductor(with factory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductorProtocol) {
         eventMessageConductor = factory(eventMessagePublisher, eventMessageHandler())
     }
 
