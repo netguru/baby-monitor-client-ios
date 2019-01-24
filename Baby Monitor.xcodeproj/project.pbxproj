@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		200DFD4721F87862009CA3ED /* RoundedRectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */; };
+		201CF6A221F9CBDC00E06FEF /* ParentSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201CF6A121F9CBDC00E06FEF /* ParentSettingsViewController.swift */; };
 		2025564121F728F1006C6490 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025564021F728F1006C6490 /* SettingsView.swift */; };
 		20AFCFFE21F62B8D00FC810F /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFCFFD21F62B8C00FC810F /* Rubik-Medium.ttf */; };
 		20AFD00021F62B9900FC810F /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFCFFF21F62B9900FC810F /* Rubik-Bold.ttf */; };
@@ -267,6 +268,7 @@
 /* Begin PBXFileReference section */
 		0806325953361018B6D7E8E8 /* Pods-Baby MonitorTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.development.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"; sourceTree = "<group>"; };
 		200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleButton.swift; sourceTree = "<group>"; };
+		201CF6A121F9CBDC00E06FEF /* ParentSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsViewController.swift; sourceTree = "<group>"; };
 		2025564021F728F1006C6490 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		20AFCFFD21F62B8C00FC810F /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		20AFCFFF21F62B9900FC810F /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
@@ -996,6 +998,7 @@
 				4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */,
 				4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */,
 				2025564021F728F1006C6490 /* SettingsView.swift */,
+				201CF6A121F9CBDC00E06FEF /* ParentSettingsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1862,6 +1865,7 @@
 				8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				4E60697821AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift in Sources */,
+				201CF6A221F9CBDC00E06FEF /* ParentSettingsViewController.swift in Sources */,
 				8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
 				4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
