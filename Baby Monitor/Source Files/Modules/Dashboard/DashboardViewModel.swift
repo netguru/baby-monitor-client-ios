@@ -9,27 +9,25 @@ import RxSwift
 
 final class DashboardViewModel {
 
-    private let babyRepo: BabiesRepositoryProtocol
-    
+    private let babyModelController: BabyModelControllerProtocol
     private let bag = DisposeBag()
 
     // MARK: - Coordinator callback
-    private(set) var showBabies: Observable<Void>?
     private(set) var liveCameraPreview: Observable<Void>?
     private(set) var addPhoto: Observable<Void>?
     lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
     
     private let dismissImagePickerSubject = PublishRelay<Void>()
     
-    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
+    lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
     lazy var connectionStatus: Observable<ConnectionStatus> = connectionChecker.connectionStatus
 
     // MARK: - Private properties
     private let connectionChecker: ConnectionChecker
 
-    init(connectionChecker: ConnectionChecker, babyRepo: BabiesRepositoryProtocol) {
+    init(connectionChecker: ConnectionChecker, babyModelController: BabyModelControllerProtocol) {
         self.connectionChecker = connectionChecker
-        self.babyRepo = babyRepo
+        self.babyModelController = babyModelController
         setup()
     }
 
@@ -41,15 +39,13 @@ final class DashboardViewModel {
         dismissImagePickerSubject.accept(())
     }
     
-    func attachInput(switchBabyTap: Observable<Void>,
-                     liveCameraTap: Observable<Void>,
+    func attachInput(liveCameraTap: Observable<Void>,
                      addPhotoTap: Observable<Void>,
                      name: Observable<String>) {
-        showBabies = switchBabyTap
         liveCameraPreview = liveCameraTap
         addPhoto = addPhotoTap
         name.subscribe(onNext: { [weak self] name in
-            self?.babyRepo.setCurrentName(name)
+            self?.babyModelController.updateName(name)
         })
             .disposed(by: bag)
     }
@@ -59,7 +55,7 @@ final class DashboardViewModel {
     ///
     /// - Parameter photo: A new photo for baby.
     func updatePhoto(_ photo: UIImage) {
-        babyRepo.setCurrentPhoto(photo)
+        babyModelController.updatePhoto(photo)
     }
     
     // MARK: - Private functions

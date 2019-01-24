@@ -6,12 +6,11 @@
 import UIKit
 import RxSwift
 
-final class SettingsCoordinator: Coordinator, BabiesViewShowable {
+final class SettingsCoordinator: Coordinator {
     
     var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    var switchBabyViewController: BabyMonitorGeneralViewController<SwitchBabyViewModel.Cell>?
     var onEnding: (() -> Void)?
     
     private let bag = DisposeBag()
@@ -29,7 +28,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     // MARK: - private functions
     private func showSettings() {
         let viewModel = SettingsViewModel(
-            babyRepo: appDependencies.babiesRepository,
+            babyModelController: appDependencies.databaseRepository,
             storageServerService: appDependencies.storageServerService,
             memoryCleaner: appDependencies.memoryCleaner,
             urlConfiguration: appDependencies.urlConfiguration)
@@ -45,14 +44,6 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
     }
     
     private func connect(toSettingsViewModel viewModel: SettingsViewModel) {
-        viewModel.showBabies?
-            .subscribe(onNext: { [weak self] in
-                guard let self = self, let settingsViewController = self.settingsViewController else {
-                    return
-                }
-                self.toggleSwitchBabiesView(on: settingsViewController, babyRepo: self.appDependencies.babiesRepository)
-            })
-            .disposed(by: bag)
         viewModel.didSelectChangeServer = { [weak self] in
             self?.showClientSetup()
         }
@@ -78,7 +69,7 @@ final class SettingsCoordinator: Coordinator, BabiesViewShowable {
         let clientSetupViewModel = ClientSetupOnboardingViewModel(
             netServiceClient: appDependencies.netServiceClient(),
             urlConfiguration: appDependencies.urlConfiguration,
-            babyRepo: appDependencies.babiesRepository,
+            activityLogEventsRepository: appDependencies.databaseRepository,
             cacheService: appDependencies.cacheService,
             webSocketEventMessageService: appDependencies.webSocketEventMessageService)
 

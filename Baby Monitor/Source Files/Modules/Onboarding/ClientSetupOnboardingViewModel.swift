@@ -25,15 +25,15 @@ final class ClientSetupOnboardingViewModel {
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
     private let urlConfiguration: URLConfiguration
-    private let babyRepo: BabiesRepositoryProtocol
+    private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
     private let cacheService: CacheServiceProtocol
     private let disposeBag = DisposeBag()
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
 
-    init(netServiceClient: NetServiceClientProtocol, urlConfiguration: URLConfiguration, babyRepo: BabiesRepositoryProtocol, cacheService: CacheServiceProtocol, webSocketEventMessageService: WebSocketEventMessageServiceProtocol) {
+    init(netServiceClient: NetServiceClientProtocol, urlConfiguration: URLConfiguration, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol, cacheService: CacheServiceProtocol, webSocketEventMessageService: WebSocketEventMessageServiceProtocol) {
         self.netServiceClient = netServiceClient
         self.urlConfiguration = urlConfiguration
-        self.babyRepo = babyRepo
+        self.activityLogEventsRepository = activityLogEventsRepository
         self.cacheService = cacheService
         self.webSocketEventMessageService = webSocketEventMessageService
     }
@@ -57,20 +57,19 @@ final class ClientSetupOnboardingViewModel {
                 self.netServiceClient.stopFinding()
                 let cryingEventMessage = EventMessage.initWithPushNotificationsKey(key: self.cacheService.selfPushNotificationsToken!)
                 self.webSocketEventMessageService.sendMessage(cryingEventMessage.toStringMessage())
+                self.saveEmptyStateIfNeeded()
                 self.didFinishDeviceSearch?(.success)
-                self.setupBaby()
             })
             .disposed(by: disposeBag)
         netServiceClient.findService()
     }
     
-    private func setupBaby() {
-        if let baby = babyRepo.fetchAllBabies().first {
-            babyRepo.setCurrent(baby: baby)
-        } else {
-            let baby = Baby(name: "Anonymous")
-            try! babyRepo.save(baby: baby)
-            babyRepo.setCurrent(baby: baby)
+    private func saveEmptyStateIfNeeded() {
+        let allActivityLogEvents = activityLogEventsRepository.fetchAllActivityLogEvents()
+        guard allActivityLogEvents.first(where: { $0.mode == .emptyState }) == nil else {
+            return
         }
+        let emptyStateLogEvent = ActivityLogEvent(mode: .emptyState)
+        activityLogEventsRepository.save(activityLogEvent: emptyStateLogEvent)
     }
 }

@@ -19,7 +19,7 @@ final class AppDependencies {
     /// Service for detecting baby's cry
     private(set) lazy var cryingDetectionService: CryingDetectionServiceProtocol = CryingDetectionService(microphoneTracker: AKMicrophoneTracker())
     /// Service that takes care of appropriate controling: crying detection, audio recording and saving these events to realm database
-    private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(cryingDetectionService: cryingDetectionService, audioRecordService: audioRecordService, babiesRepository: babiesRepository)
+    private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(cryingDetectionService: cryingDetectionService, audioRecordService: audioRecordService, activityLogEventsRepository: databaseRepository)
 
     private(set) lazy var netServiceClient: () -> NetServiceClientProtocol = { NetServiceClient() }
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
@@ -46,7 +46,7 @@ final class AppDependencies {
     private(set) lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
         return WebSocketConductor(webSocket: self.webSocket, messageEmitter: emitter, messageHandler: handler, messageDecoders: self.webRtcMessageDecoders)
     }
-    private(set) lazy var webSocketEventMessageService: WebSocketEventMessageServiceProtocol = WebSocketEventMessageService(cryingEventsRepository: babiesRepository, eventMessageConductorFactory: eventMessageConductorFactory)
+    private(set) lazy var webSocketEventMessageService: WebSocketEventMessageServiceProtocol = WebSocketEventMessageService(cryingEventsRepository: databaseRepository, eventMessageConductorFactory: eventMessageConductorFactory)
     private(set) lazy var webSocketWebRtcService: (WebRtcClientManagerProtocol) -> WebSocketWebRtcServiceProtocol = { webRtcClient in
         return WebSocketWebRtcService(webRtcClientManager: webRtcClient, webRtcConductorFactory: self.webRtcConductorFactory)
     }
@@ -72,7 +72,7 @@ final class AppDependencies {
         netServiceServer: netServiceServer,
         webRtcDecoders: webRtcMessageDecoders,
         cryingService: cryingEventService,
-        babiesRepository: babiesRepository,
+        babyModelController: databaseRepository,
         cacheService: cacheService,
         notificationsService: localNotificationService,
         babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
@@ -96,7 +96,7 @@ final class AppDependencies {
         return PSWebSocketWrapper(socket: webSocket)
     }()
     /// Baby service for getting and adding babies throughout the app
-    private(set) lazy var babiesRepository: BabiesRepositoryProtocol & CryingEventsRepositoryProtocol = RealmBabiesRepository(realm: try! Realm())
+    private(set) lazy var databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol = RealmBabiesRepository(realm: try! Realm())
     private(set) lazy var lullabiesRepository: LullabiesRepositoryProtocol = RealmLullabiesRepository(realm: try! Realm())
     /// Service for handling errors and showing error alerts
     private(set) var errorHandler: ErrorHandlerProtocol = ErrorHandler()

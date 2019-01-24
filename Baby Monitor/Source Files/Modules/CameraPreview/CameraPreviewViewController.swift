@@ -36,11 +36,6 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     private func setup() {
         navigationItem.leftBarButtonItem = customView.cancelItemButton
         navigationItem.titleView = customView.babyNavigationItemView
-        customView.rx.switchBabiesTap
-            .subscribe(onNext: { [weak self] _ in
-                self?.viewModel.selectShowBabies()
-            })
-            .disposed(by: bag)
         customView.cancelItemButton.target = self
         customView.cancelItemButton.action = #selector(didTouchCancelButton)
     }
