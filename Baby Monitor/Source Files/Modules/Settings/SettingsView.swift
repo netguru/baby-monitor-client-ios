@@ -4,16 +4,18 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class SettingsView: UIView {
 
-    private let editBabyPhotoButton: UIButton = {
+    fileprivate let editBabyPhotoButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "edit_baby_photo"), for: .normal)
         return button
     }()
 
-    private let babyNameTextField: UITextField = {
+    fileprivate let babyNameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Your baby name"
         textField.textColor = .babyMonitorPurple
@@ -72,8 +74,11 @@ final class SettingsView: UIView {
         setupLayout()
     }
 
-    private func setupLayout() {
+    override func layoutSubviews() {
         backgroundColor = .babyMonitorDarkPurple
+    }
+
+    private func setupLayout() {
         editBabyNameStackView.addArrangedSubview(customTextInputStackView)
         editBabyNameStackView.addArrangedSubview(underline)
         [editBabyPhotoButton, editBabyNameStackView, buttonsStackView, signatureLabel].forEach { addSubview($0) }
@@ -100,9 +105,9 @@ final class SettingsView: UIView {
         }
 
         buttonsStackView.addConstraints {[
-            $0.greaterThanOrEqualTo(editBabyNameStackView, .top, .bottom),
+            $0.greaterThanOrEqualTo(editBabyNameStackView, .top, .bottom, constant: 70),
             $0.equal(.leading, constant: 23),
-            $0.equal(.trailing, constant: 23)
+            $0.equal(.trailing, constant: -23)
         ]
         }
 
@@ -111,5 +116,16 @@ final class SettingsView: UIView {
             $0.equal(.centerX)
         ]
         }
+    }
+}
+
+extension Reactive where Base: SettingsView {
+
+    var babyPhoto: Binder<UIImage?> {
+        return base.editBabyPhotoButton.rx.image()
+    }
+
+    var babyName: ControlProperty<String?> {
+        return base.babyNameTextField.rx.text
     }
 }
