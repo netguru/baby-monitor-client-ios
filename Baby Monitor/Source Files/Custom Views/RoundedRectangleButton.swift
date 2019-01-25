@@ -23,13 +23,14 @@ class RoundedRectangleButton: UIButton {
         }
     }
 
-    @available(*, unavailable, message: "Use init() instead")
+    @available(*, unavailable, message: "Use init(title: String, backgroundColor: UIColor) instead")
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     /// - SeeAlso: UIView.layoutSubviews()
     override func layoutSubviews() {
+        super.layoutSubviews()
         layer.masksToBounds = true
         layer.cornerRadius = bounds.height / 2
     }
