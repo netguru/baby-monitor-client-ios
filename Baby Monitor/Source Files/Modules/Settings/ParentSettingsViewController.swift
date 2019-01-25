@@ -25,8 +25,7 @@ class ParentSettingsViewController: TypedViewController<SettingsView> {
     // MARK: - Private functions
     private func setup() {
         navigationItem.title = "Settings"
-
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "arrow_back").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(cancel))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "arrow_back"), style: .plain, target: self, action: #selector(cancel))
     }
 
     private func setupViewModel() {
