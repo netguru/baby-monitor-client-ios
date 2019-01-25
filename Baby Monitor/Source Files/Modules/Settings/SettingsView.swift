@@ -17,6 +17,7 @@ final class SettingsView: UIView {
 
     fileprivate let babyNameTextField: UITextField = {
         let textField = UITextField()
+        textField.returnKeyType = .done
         textField.placeholder = "Your baby name"
         textField.textColor = .babyMonitorPurple
         return textField
@@ -126,7 +127,21 @@ extension Reactive where Base: SettingsView {
         return base.editBabyPhotoButton.rx.image()
     }
 
-    var babyName: ControlProperty<String?> {
-        return base.babyNameTextField.rx.text
+    var babyName: ControlProperty<String> {
+        let name = base.babyNameTextField.rx.controlEvent(.editingDidEndOnExit)
+            .withLatestFrom(base.babyNameTextField.rx.text)
+            .map { $0 ?? "" }
+        let binder = Binder<String>(base.babyNameTextField) { textField, name in
+            textField.text = name
+        }
+        return ControlProperty(values: name, valueSink: binder)
+    }
+
+    var rateButtonTap: ControlEvent<Void> {
+        return base.rateButton.rx.tap
+    }
+
+    var resetButtonTap: ControlEvent<Void> {
+        return base.resetButton.rx.tap
     }
 }

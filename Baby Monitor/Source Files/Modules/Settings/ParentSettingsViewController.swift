@@ -14,12 +14,13 @@ class ParentSettingsViewController: TypedViewController<SettingsView> {
     init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: SettingsView())
-        setup()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.babyMonitorNonTranslucentWhite, .font: UIFont.customFont(withSize: .body)]
+        setup()
+        setupViewModel()
     }
 
     // MARK: - Private functions
@@ -29,6 +30,7 @@ class ParentSettingsViewController: TypedViewController<SettingsView> {
     }
 
     private func setupViewModel() {
+        viewModel.attachInput(babyName: customView.rx.babyName.asObservable())
         viewModel.baby
             .map { $0.name }
             .distinctUntilChanged()
@@ -39,7 +41,6 @@ class ParentSettingsViewController: TypedViewController<SettingsView> {
             .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
-     
     }
 
     @objc

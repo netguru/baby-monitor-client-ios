@@ -6,12 +6,14 @@
 import RxSwift
 import RxCocoa
 
-final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSelectable, BabyMonitorHeaderCellConfigurable {
+final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable {
 
     private let babyRepo: BabiesRepositoryProtocol
     private let storageServerService: StorageServerServiceProtocol
     private let memoryCleaner: MemoryCleanerProtocol
     private let urlConfiguration: URLConfiguration
+
+    private let bag = DisposeBag()
 
     typealias DataType = Cell
     
@@ -61,8 +63,11 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabiesViewSe
     }
 
     // MARK: - Internal functions
-    func attachInput(showBabiesTap: ControlEvent<Void>) {
-        showBabies = showBabiesTap.asObservable()
+    func attachInput(babyName: Observable<String>) {
+        babyName.subscribe(onNext: { [weak self] name in
+            self?.babyRepo.setCurrentName(name)
+        })
+        .disposed(by: bag)
     }
     
     func configure(cell: BabyMonitorCellProtocol, for data: Cell) {
