@@ -6,12 +6,11 @@
 import Foundation
 import UIKit
 
-struct Baby: Equatable {
+final class Baby {
     
     static let initial = Baby(name: "Anonymous")
-
-    let name: String
-    let photo: UIImage?
+    var name: String
+    var photo: UIImage?
     let id: String
     let cryingEvents: [ActivityLogEvent]
 
@@ -22,4 +21,10 @@ struct Baby: Equatable {
         self.cryingEvents = cryingEvents
     }
     
+}
+
+extension Baby: Equatable {
+    static func == (lhs: Baby, rhs: Baby) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

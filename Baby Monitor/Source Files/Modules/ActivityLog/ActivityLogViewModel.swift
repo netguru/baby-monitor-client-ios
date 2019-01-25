@@ -48,6 +48,9 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
     func configure(cell: BabyMonitorCellProtocol, for data: ActivityLogEvent) {
         cell.type = .activityLog
         let activityLogEvent = data
+        if let image = databaseRepository.baby.photo {
+            cell.update(image: image)
+        }
         switch activityLogEvent.mode {
         case .emptyState:
             cell.update(mainText: Localizable.ActivityLog.emptyStateMessage)

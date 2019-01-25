@@ -25,13 +25,6 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
         setup()
     }
     
-    func save(baby: Baby) throws {
-        let realmBaby = RealmBaby(with: baby)
-        try! realm.write {
-            realm.add(realmBaby, update: true)
-        }
-    }
-    
     func save(activityLogEvent: ActivityLogEvent) {
         let realmActivityLogEvent = RealmActivityLogEvent(with: activityLogEvent)
         try! realm.write {
@@ -59,6 +52,7 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
             guard let photoData = photo.jpegData(compressionQuality: 1) else { return }
             _ = realm.create(RealmBaby.self, value: ["id": baby.id, "photoData": photoData], update: true)
                 .toBaby()
+            babyPublisher.value.photo = photo
             let currentBaby = self.baby
             self.babyPublisher.value = currentBaby
         }
@@ -69,6 +63,7 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
         try! realm.write {
             _ = realm.create(RealmBaby.self, value: ["id": baby.id, "name": name], update: true)
                 .toBaby()
+            babyPublisher.value.name = name
             let currentBaby = self.baby
             self.babyPublisher.value = currentBaby
         }
