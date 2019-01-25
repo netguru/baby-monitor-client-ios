@@ -52,6 +52,7 @@ final class SettingsView: UIView {
         let stackView = UIStackView(arrangedSubviews: [rateButton, resetButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
+        stackView.spacing = 16
         return stackView
     }()
 
