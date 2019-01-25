@@ -7,12 +7,11 @@ import UIKit
 import RxSwift
 import MediaPlayer
 
-final class LullabiesCoordinator: NSObject, Coordinator, BabiesViewShowable {
+final class LullabiesCoordinator: NSObject, Coordinator {
     
     var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    var switchBabyViewController: BabyMonitorGeneralViewController<SwitchBabyViewModel.Cell>?
     var onEnding: (() -> Void)?
     
     private var lullabiesViewController: BabyMonitorGeneralViewController<Lullaby>?
@@ -30,12 +29,11 @@ final class LullabiesCoordinator: NSObject, Coordinator, BabiesViewShowable {
     
     // MARK: - private functions
     private func showLullabies() {
-        let viewModel = LullabiesViewModel(babyRepo: appDependencies.babiesRepository, lullabiesRepo: appDependencies.lullabiesRepository)
+        let viewModel = LullabiesViewModel(babyModelController: appDependencies.databaseRepository, lullabiesRepo: appDependencies.lullabiesRepository)
         lullabiesViewModel = viewModel
         lullabiesViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<Lullaby>(viewModel: viewModel), type: .lullaby)
         lullabiesViewController?.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
-                self?.connect(toLullabiesViewModel: viewModel)
                 let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self?.didTapAddButton))
                 self?.lullabiesViewController?.navigationItem.rightBarButtonItems = [button]
             })
@@ -48,17 +46,6 @@ final class LullabiesCoordinator: NSObject, Coordinator, BabiesViewShowable {
         let mediaPickerController = MPMediaPickerController(mediaTypes: .music)
         mediaPickerController.delegate = self
         navigationController.present(mediaPickerController, animated: true)
-    }
-    
-    private func connect(toLullabiesViewModel viewModel: LullabiesViewModel) {
-        viewModel.showBabies?
-            .subscribe(onNext: { [weak self] in
-                guard let self = self, let lullabiesViewController = self.lullabiesViewController else {
-                    return
-                }
-                self.toggleSwitchBabiesView(on: lullabiesViewController, babyRepo: self.appDependencies.babiesRepository)
-            })
-            .disposed(by: bag)
     }
 }
 

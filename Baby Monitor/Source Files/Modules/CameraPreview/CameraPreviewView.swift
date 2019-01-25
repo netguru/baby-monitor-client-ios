@@ -78,10 +78,6 @@ final class CameraPreviewView: BaseView {
 }
 
 extension Reactive where Base: CameraPreviewView {
-    var switchBabiesTap: ControlEvent<Void> {
-        return base.babyNavigationItemView.rx.tap
-    }
-    
     var babyName: Binder<String> {
         return Binder(base.babyNavigationItemView, binding: { navigationView, name in
             navigationView.setBabyName(name)

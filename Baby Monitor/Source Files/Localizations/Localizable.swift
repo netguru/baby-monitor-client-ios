@@ -15,6 +15,8 @@ enum Localizable {
         static let next = localized("general.next")
         static let warning = localized("general.warning")
         static let attention = localized("general.attention")
+        static let today = localized("general.today")
+        static let yesterday = localized("general.yesterday")
     }
     
     enum Intro {
@@ -74,6 +76,10 @@ enum Localizable {
         static let camera = localized("dashboard.action-button.camera")
         static let photoLibrary = localized("dashboard.action-button.photoLibrary")
         static let addName = localized("dashboard.text-field-placeholder.add-name")
+    }
+    
+    enum ActivityLog {
+        static let emptyStateMessage = localized("activity-log.empty-state.message")
     }
     
     enum SwitchBaby {

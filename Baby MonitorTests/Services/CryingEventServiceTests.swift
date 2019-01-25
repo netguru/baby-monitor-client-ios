@@ -11,16 +11,16 @@ import RxTest
 class CryingEventServiceTests: XCTestCase {
     
     //Given
-    lazy var sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, babiesRepository: cryingEventsRepositoryMock)
+    lazy var sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock)
     var cryingDetectionServiceMock = CryingDetectionServiceMock()
     var audioRecordServiceMock = AudioRecordServiceMock()
-    var cryingEventsRepositoryMock = CryingEventsRepositoryMock()
+    var cryingEventsRepositoryMock = DatabaseRepositoryMock()
 
     override func setUp() {
         cryingDetectionServiceMock = CryingDetectionServiceMock()
         audioRecordServiceMock = AudioRecordServiceMock()
-        cryingEventsRepositoryMock = CryingEventsRepositoryMock()
-        sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, babiesRepository: cryingEventsRepositoryMock)
+        cryingEventsRepositoryMock = DatabaseRepositoryMock()
+        sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock)
     }
     
     func testShouldStartCryingDetectionAnalysis() {
@@ -56,7 +56,7 @@ class CryingEventServiceTests: XCTestCase {
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
         
         //Then
-        XCTAssertEqual(cryingEventsRepositoryMock.fetchAllCryingEvents().count, 0)
+        XCTAssertEqual(cryingEventsRepositoryMock.fetchAllActivityLogEvents().count, 0)
     }
     
     func testShouldNotSaveCryingEvent() {
@@ -67,7 +67,7 @@ class CryingEventServiceTests: XCTestCase {
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
         
         //Then
-        XCTAssertEqual(cryingEventsRepositoryMock.fetchAllCryingEvents().count, 0)
+        XCTAssertEqual(cryingEventsRepositoryMock.fetchAllActivityLogEvents().count, 0)
     }
     
     func testShouldNotifyAboutCryingDetecion() {

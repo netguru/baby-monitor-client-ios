@@ -13,40 +13,19 @@ import RxBlocking
 class LullabyViewModelTests: XCTestCase {
 
     private var bag = DisposeBag()
-    private var showBabiesTap = PublishSubject<Void>()
     
     override func setUp() {
-        showBabiesTap = PublishSubject<Void>()
         bag = DisposeBag()
-    }
-    
-    func testShouldForwardSwitchBabyTap() {
-        // Given
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Void.self)
-        let babiesRepository = BabiesRepositoryMock()
-        let lullabiesRepository = LullabiesRepositoryMock()
-        let sut = LullabiesViewModel(babyRepo: babiesRepository, lullabiesRepo: lullabiesRepository)
-        sut.attachInput(showBabiesTap: ControlEvent(events: showBabiesTap))
-        sut.showBabies?
-            .subscribe(observer)
-            .disposed(by: bag)
-        
-        // When
-        showBabiesTap.onNext(())
-        
-        // Then
-        XCTAssertEqual(1, observer.events.count)
     }
     
     func testShouldReturnProperSections() {
         // Given
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver([GeneralSection<Lullaby>].self)
-        let babiesRepository = BabiesRepositoryMock()
+        let babiesRepository = DatabaseRepositoryMock()
         let lullaby = Lullaby(name: "test", identifier: "test", type: .yourLullabies)
         let lullabiesRepository = LullabiesRepositoryMock(currentLullabies: [lullaby])
-        let sut = LullabiesViewModel(babyRepo: babiesRepository, lullabiesRepo: lullabiesRepository)
+        let sut = LullabiesViewModel(babyModelController: babiesRepository, lullabiesRepo: lullabiesRepository)
         
         // When
         sut.sections
@@ -65,9 +44,9 @@ class LullabyViewModelTests: XCTestCase {
     
     func testShouldConfigureCell() {
         // Given
-        let babiesRepository = BabiesRepositoryMock()
+        let babiesRepository = DatabaseRepositoryMock()
         let lullabiesRepository = LullabiesRepositoryMock()
-        let sut = LullabiesViewModel(babyRepo: babiesRepository, lullabiesRepo: lullabiesRepository)
+        let sut = LullabiesViewModel(babyModelController: babiesRepository, lullabiesRepo: lullabiesRepository)
         let lullaby = Lullaby(name: "lullaby", identifier: "id", type: .bmLibrary)
         let cell = BabyMonitorCellMock()
         
@@ -80,9 +59,9 @@ class LullabyViewModelTests: XCTestCase {
     
     func testShouldConfigureHeaderCellBmLibrary() {
         // Given
-        let babiesRepository = BabiesRepositoryMock()
+        let babiesRepository = DatabaseRepositoryMock()
         let lullabiesRepository = LullabiesRepositoryMock()
-        let sut = LullabiesViewModel(babyRepo: babiesRepository, lullabiesRepo: lullabiesRepository)
+        let sut = LullabiesViewModel(babyModelController: babiesRepository, lullabiesRepo: lullabiesRepository)
         let cell = BabyMonitorCellMock()
         
         // When
@@ -95,9 +74,9 @@ class LullabyViewModelTests: XCTestCase {
     
     func testShouldConfigureHeaderCellForYourLullabies() {
         // Given
-        let babiesRepository = BabiesRepositoryMock()
+        let babiesRepository = DatabaseRepositoryMock()
         let lullabiesRepository = LullabiesRepositoryMock()
-        let sut = LullabiesViewModel(babyRepo: babiesRepository, lullabiesRepo: lullabiesRepository)
+        let sut = LullabiesViewModel(babyModelController: babiesRepository, lullabiesRepo: lullabiesRepository)
         let cell = BabyMonitorCellMock()
         
         // When
@@ -110,11 +89,11 @@ class LullabyViewModelTests: XCTestCase {
     
     func testShouldSaveLullabies() {
         // Given
-        let babiesRepository = BabiesRepositoryMock()
+        let babiesRepository = DatabaseRepositoryMock()
         let lullabiesRepository = LullabiesRepositoryMock()
         let lullabies = [Lullaby(name: "test", identifier: "test", type: .yourLullabies),
                          Lullaby(name: "test2", identifier: "test2", type: .yourLullabies)]
-        let sut = LullabiesViewModel(babyRepo: babiesRepository, lullabiesRepo: lullabiesRepository)
+        let sut = LullabiesViewModel(babyModelController: babiesRepository, lullabiesRepo: lullabiesRepository)
         
         // When
         sut.save(lullabies: lullabies)
@@ -127,9 +106,9 @@ class LullabyViewModelTests: XCTestCase {
     
     func testShouldReturnCanDeleteOnlyForYourLullabiesSection() {
         // Given
-        let babiesRepository = BabiesRepositoryMock()
+        let babiesRepository = DatabaseRepositoryMock()
         let lullabiesRepository = LullabiesRepositoryMock()
-        let sut = LullabiesViewModel(babyRepo: babiesRepository, lullabiesRepo: lullabiesRepository)
+        let sut = LullabiesViewModel(babyModelController: babiesRepository, lullabiesRepo: lullabiesRepository)
         let indexPaths = LullabiesViewModel.Section.allCases.map { IndexPath(row: 0, section: $0.rawValue) }
         let expectedResults = LullabiesViewModel.Section.allCases.map { $0 == .yourLullabies }
         

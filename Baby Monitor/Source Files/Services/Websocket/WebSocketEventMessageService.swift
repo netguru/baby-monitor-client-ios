@@ -15,13 +15,13 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
 
     lazy var cryingEventObservable: Observable<Void> = cryingEventPublisher.asObservable()
 
-    private let cryingEventsRepository: CryingEventsRepositoryProtocol
+    private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
     private var eventMessageConductor: WebSocketConductorProtocol?
     private let cryingEventPublisher = PublishSubject<Void>()
     private let eventMessagePublisher = PublishSubject<String>()
 
-    init(cryingEventsRepository: CryingEventsRepositoryProtocol, eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductorProtocol) {
-        self.cryingEventsRepository = cryingEventsRepository
+    init(cryingEventsRepository: ActivityLogEventsRepositoryProtocol, eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductorProtocol) {
+        self.activityLogEventsRepository = cryingEventsRepository
         setupEventMessageConductor(with: eventMessageConductorFactory)
     }
 
@@ -37,7 +37,7 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
             }
             switch babyEvent {
             case .crying:
-                self?.cryingEventsRepository.save(cryingEvent: CryingEvent(fileName: event.value))
+                self?.activityLogEventsRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent))
                 self?.cryingEventPublisher.onNext(())
                 let eventMessage = EventMessage.initWithMessageReceived()
                 self?.eventMessagePublisher.onNext(eventMessage.toStringMessage())

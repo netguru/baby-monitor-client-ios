@@ -7,142 +7,76 @@ import RealmSwift
 import RxSwift
 import RxCocoa
 
-final class RealmBabiesRepository: BabiesRepositoryProtocol & CryingEventsRepositoryProtocol {
+final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol {
     
-    enum UpdateType {
-        case name(Baby)
-        case image(Baby)
+    lazy var activityLogEventsObservable: Observable<[ActivityLogEvent]> = activityLogEventsPublisher.asObservable()
+    lazy var babyUpdateObservable: Observable<Baby> = babyPublisher.asObservable()
+    var baby: Baby {
+        return babyPublisher.value
     }
     
-    lazy var babyUpdateObservable = babyPublisher
-        .filter { $0 != nil }
-        .map { $0! }
-    
-    var currentBabyId: String? {
-        didSet {
-            guard let currentBabyId = currentBabyId else {
-                babyPublisher.accept(nil)
-                return
-            }
-            let realmBaby = realm.object(ofType: RealmBaby.self, forPrimaryKey: currentBabyId)
-            if let baby = realmBaby?.toBaby() {
-                self.babyPublisher.accept(baby)
-            }
-            currentBabyToken = realmBaby?.observe({ _ in
-                guard let baby = self.realm.object(ofType: RealmBaby.self, forPrimaryKey: currentBabyId)?.toBaby() else {
-                    return
-                }
-                self.babyPublisher.accept(baby)
-            })
-        }
-    }
-    
-    private var babyPublisher = BehaviorRelay<Baby?>(value: nil)
+    private var babyPublisher = Variable<Baby>(Baby.initial)
+    private let activityLogEventsPublisher = Variable<[ActivityLogEvent]>([])
     private let realm: Realm
     private var currentBabyToken: NotificationToken?
     
     init(realm: Realm) {
         self.realm = realm
+        setup()
     }
     
-    func save(baby: Baby) throws {
-        let realmBaby = RealmBaby(with: baby)
+    func save(activityLogEvent: ActivityLogEvent) {
+        let realmActivityLogEvent = RealmActivityLogEvent(with: activityLogEvent)
         try! realm.write {
-            realm.add(realmBaby, update: true)
+            realm.create(RealmActivityLogEvent.self, value: realmActivityLogEvent, update: false)
+            activityLogEventsPublisher.value.append(activityLogEvent)
         }
     }
     
-    func setCurrent(baby: Baby) {
-        currentBabyId = baby.id
-    }
-    
-    func getCurrent() -> Baby? {
-        guard let currentBabyId = currentBabyId,
-            let realmBaby = realm.object(ofType: RealmBaby.self, forPrimaryKey: currentBabyId) else {
-                return nil
-        }
-        return realmBaby.toBaby()
-    }
-    
-    func save(cryingEvent: CryingEvent) {
-        let realmCryingEvent = RealmCryingEvent(with: cryingEvent)
-        guard let currentBabyId = currentBabyId,
-            let realmBaby = realm.object(ofType: RealmBaby.self, forPrimaryKey: currentBabyId) else {
-                return
-        }
-        try! realm.write {
-            realmBaby.cryingEvents.append(realmCryingEvent)
-        }
-    }
-    
-    func fetchAllCryingEvents() -> [CryingEvent] {
-        let cryingEvents = realm.objects(RealmCryingEvent.self)
-            .map { $0.toCryingEvent() }
-        return Array(cryingEvents)
-    }
-    
-    func remove(cryingEvent: CryingEvent) {
-        let allCryingEvents = realm.objects(RealmCryingEvent.self)
-        guard let foundEvent = allCryingEvents.first(where: { $0.fileName == cryingEvent.fileName }) else {
-            return
-        }
-        try! realm.write {
-            realm.delete(foundEvent)
-            try? FileManager.default.removeItem(at: FileManager.documentsDirectoryURL.appendingPathComponent(foundEvent.fileName).appendingPathExtension("caf"))
-        }
-    }
-    
-    func fetchAllBabies() -> [Baby] {
-        let babies = realm.objects(RealmBaby.self)
-            .map { $0.toBaby() }
-        return Array(babies)
+    func fetchAllActivityLogEvents() -> [ActivityLogEvent] {
+        let activityLogEvents = realm.objects(RealmActivityLogEvent.self)
+            .map { $0.toActivityLogEvent() }
+        return Array(activityLogEvents)
     }
     
     func removeAllData() {
         try! realm.write {
             realm.deleteAll()
+            babyPublisher.value = Baby.initial
+            activityLogEventsPublisher.value = []
         }
-        currentBabyId = nil
     }
     
-    func fetchBaby(id: String) -> Baby? {
-        return realm.object(ofType: RealmBaby.self, forPrimaryKey: id)?
-            .toBaby()
-    }
-    
-    func fetchBabies(name: String) -> [Baby] {
-        let babies = realm.objects(RealmBaby.self)
-            .filter { $0.name == name }
-            .map { $0.toBaby() }
-        return Array(babies)
-    }
-    
-    func setPhoto(_ photo: UIImage, id: String) {
+    func updatePhoto(_ photo: UIImage) {
         try! realm.write {
             guard let photoData = photo.jpegData(compressionQuality: 1) else { return }
-            _ = realm.create(RealmBaby.self, value: ["id": id, "photoData": photoData], update: true)
+            _ = realm.create(RealmBaby.self, value: ["id": baby.id, "photoData": photoData], update: true)
                 .toBaby()
+            babyPublisher.value.photo = photo
+            let currentBaby = self.baby
+            self.babyPublisher.value = currentBaby
         }
+        
     }
     
-    func setName(_ name: String, id: String) {
+    func updateName(_ name: String) {
         try! realm.write {
-            _ = realm.create(RealmBaby.self, value: ["id": id, "name": name], update: true)
+            _ = realm.create(RealmBaby.self, value: ["id": baby.id, "name": name], update: true)
                 .toBaby()
+            babyPublisher.value.name = name
+            let currentBaby = self.baby
+            self.babyPublisher.value = currentBaby
         }
     }
     
-    func setCurrentPhoto(_ photo: UIImage) {
-        guard let currentId = currentBabyId else {
-            return
+    private func setup() {
+        try! realm.write {
+            if let realmBaby = realm.objects(RealmBaby.self).first {
+                babyPublisher.value = realmBaby.toBaby()
+            } else {
+                realm.create(RealmBaby.self, value: ["id": baby.id, "name": baby.name], update: false)
+            }
+            activityLogEventsPublisher.value = fetchAllActivityLogEvents()
         }
-        setPhoto(photo, id: currentId)
-    }
-    
-    func setCurrentName(_ name: String) {
-        guard let currentId = currentBabyId else {
-            return
-        }
-        setName(name, id: currentId)
     }
 }

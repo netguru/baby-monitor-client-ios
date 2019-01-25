@@ -30,13 +30,13 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     private let errorPublisher = PublishSubject<Error>()
     private let cryingDetectionService: CryingDetectionServiceProtocol
     private let audioRecordService: AudioRecordServiceProtocol?
-    private let babiesRepository: CryingEventsRepositoryProtocol
+    private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
     private let disposeBag = DisposeBag()
     
-    init(cryingDetectionService: CryingDetectionServiceProtocol, audioRecordService: AudioRecordServiceProtocol?, babiesRepository: CryingEventsRepositoryProtocol) {
+    init(cryingDetectionService: CryingDetectionServiceProtocol, audioRecordService: AudioRecordServiceProtocol?, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol) {
         self.cryingDetectionService = cryingDetectionService
         self.audioRecordService = audioRecordService
-        self.babiesRepository = babiesRepository
+        self.activityLogEventsRepository = activityLogEventsRepository
         
         rxSetup()
     }

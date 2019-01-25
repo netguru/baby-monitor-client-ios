@@ -51,7 +51,6 @@ class BabyMonitorGeneralViewController<T: Equatable>: TypedViewController<BabyMo
     }
     
     private func setupViewModel() {
-        viewModel.attachInput?(customView.rx.switchBabiesTap)
         let dataSource = RxTableViewSectionedReloadDataSource<GeneralSection<T>>(
             configureCell: { dataSource, tableView, indexPath, item in
                 let cell = tableView.dequeueReusableCell(for: indexPath) as BabyMonitorCell
