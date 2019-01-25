@@ -11,6 +11,7 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
     
     typealias DataType = ActivityLogEvent
     
+    private let dateFormatter = DateFormatter()
     private let databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol
 
     init(databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol) {
@@ -90,14 +91,12 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
     }
     
     private func textDateForCell(from date: Date) -> String {
-        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm a"
         let dateString = dateFormatter.string(from: date)
         return dateString
     }
     
     private func textDateForHeader(from date: Date) -> String {
-        let dateFormatter = DateFormatter()
         var prefix = ""
         if Calendar.current.isDateInToday(date) {
             prefix = "\(Localizable.General.today),"
