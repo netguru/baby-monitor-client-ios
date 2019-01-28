@@ -27,6 +27,10 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         viewModel.play()
     }
     
+    override func viewDidLayoutSubviews() {
+        customView.setupOnLoadingView()
+    }
+    
     // MARK: - Selectors
     @objc private func didTouchCancelButton() {
         viewModel.selectCancel()
@@ -54,7 +58,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
             .bind(to: customView.rx.babyName)
             .disposed(by: bag)
         viewModel.baby
-            .map { $0.photo }
+            .map { $0.photo ?? UIImage() }
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
     }
