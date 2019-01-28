@@ -11,6 +11,8 @@
 "general.next" = "Next";
 "general.warning" = "Warning!";
 "general.attention" = "Attention!";
+"general.yesterday" = "Yesterday";
+"general.today" = "Today";
 
 //MARK: = Intro
 "intro.title.detect" = "Automatically detect if your \nbaby is crying";
@@ -68,6 +70,9 @@
 "server.baby-stopped-crying" = "Baby stopped crying!";
 "server.baby-is-crying" = "Baby is crying!";
 "server.audio-record-error" = "There is some error with audio recording. Please turn app again.";
+
+//MARK: - Activity Log
+"activity-log.empty-state.message" = "Device was paired and configured correctly";
 
 //MARK: - Lullabies
 "lullabies.bm-library" = "BM library";

@@ -26,7 +26,7 @@ final class ServerService: ServerServiceProtocol {
     private let messageServer: MessageServerProtocol
     private let netServiceServer: NetServiceServerProtocol
     private let cryingEventService: CryingEventsServiceProtocol
-    private let babiesRepository: BabiesRepositoryProtocol
+    private let babyModelController: BabyModelControllerProtocol
     private let cacheService: CacheServiceProtocol
     private let disposeBag = DisposeBag()
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
@@ -34,9 +34,9 @@ final class ServerService: ServerServiceProtocol {
     private let audioRecordServiceErrorPublisher = PublishSubject<Void>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     
-    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
+    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babyModelController: BabyModelControllerProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
         self.cryingEventService = cryingService
-        self.babiesRepository = babiesRepository
+        self.babyModelController = babyModelController
         self.webRtcServerManager = webRtcServerManager
         self.messageServer = messageServer
         self.netServiceServer = netServiceServer
@@ -45,7 +45,6 @@ final class ServerService: ServerServiceProtocol {
         self.notificationsService = notificationsService
         self.babyMonitorEventMessagesDecoder = babyMonitorEventMessagesDecoder
         self.parentResponseTime = parentResponseTime
-        setup()
         rxSetup()
     }
     
@@ -54,14 +53,6 @@ final class ServerService: ServerServiceProtocol {
         messageServer.stop()
         webRtcServerManager.disconnect()
         cryingEventService.stop()
-    }
-    
-    private func setup() {
-        if babiesRepository.getCurrent() == nil {
-            let baby = Baby(name: "Anonymous")
-            try! babiesRepository.save(baby: baby)
-            babiesRepository.setCurrent(baby: baby)
-        }
     }
     
     private func rxSetup() {

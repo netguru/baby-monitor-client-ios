@@ -27,6 +27,11 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         viewModel.play()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        customView.setupOnLoadingView()
+    }
+    
     // MARK: - Selectors
     @objc private func didTouchCancelButton() {
         viewModel.selectCancel()
@@ -36,11 +41,6 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     private func setup() {
         navigationItem.leftBarButtonItem = customView.cancelItemButton
         navigationItem.titleView = customView.babyNavigationItemView
-        customView.rx.switchBabiesTap
-            .subscribe(onNext: { [weak self] _ in
-                self?.viewModel.selectShowBabies()
-            })
-            .disposed(by: bag)
         customView.cancelItemButton.target = self
         customView.cancelItemButton.action = #selector(didTouchCancelButton)
     }
@@ -59,7 +59,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
             .bind(to: customView.rx.babyName)
             .disposed(by: bag)
         viewModel.baby
-            .map { $0.photo }
+            .map { $0.photo ?? UIImage() }
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
     }

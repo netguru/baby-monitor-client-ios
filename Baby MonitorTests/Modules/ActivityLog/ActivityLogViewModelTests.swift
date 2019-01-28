@@ -21,14 +21,16 @@ class ActivityLogViewModelTests: XCTestCase {
     
     func testShouldConfigureCell() {
         // Given
-        let babiesRepository = BabiesRepositoryMock()
-        let sut = ActivityLogViewModel(babyRepo: babiesRepository)
+        let babiesRepository = DatabaseRepositoryMock()
+        let sut = ActivityLogViewModel(databaseRepository: babiesRepository)
         let photo = UIImage(named: "add")
+        let activityLogEvent = ActivityLogEvent(mode: .cryingEvent)
         let baby = Baby(id: "id", name: "name", photo: photo)
+        babiesRepository.save(baby: baby)
         let cell = BabyMonitorCellMock()
         
         // When
-        sut.configure(cell: cell, for: baby)
+        sut.configure(cell: cell, for: activityLogEvent)
 
         // Then
         XCTAssertEqual(photo, cell.image)
@@ -38,8 +40,14 @@ class ActivityLogViewModelTests: XCTestCase {
     
     func testShouldConfigureHeaderCell() {
         // Given
-        let babiesRepository = BabiesRepositoryMock()
-        let sut = ActivityLogViewModel(babyRepo: babiesRepository)
+        let disposeBag = DisposeBag()
+        let babiesRepository = DatabaseRepositoryMock()
+        babiesRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent))
+        let sut = ActivityLogViewModel(databaseRepository: babiesRepository)
+        sut.sections.subscribe(onNext: { _ in
+            
+        })
+        .disposed(by: disposeBag)
         let cell = BabyMonitorCellMock()
         
         // When
@@ -50,39 +58,45 @@ class ActivityLogViewModelTests: XCTestCase {
         XCTAssertNotNil(cell.mainText)
     }
     
-    func testShouldForwardSwitchBabyTap() {
+    func testShouldNotFillHeaderCellMainText() {
         // Given
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Void.self)
-        let babiesRepository = BabiesRepositoryMock()
-        let sut = ActivityLogViewModel(babyRepo: babiesRepository)
-        sut.attachInput(showBabiesTap: ControlEvent(events: showBabiesTap))
-        sut.showBabies?
-            .subscribe(observer)
-            .disposed(by: bag)
+        let disposeBag = DisposeBag()
+        let babiesRepository = DatabaseRepositoryMock()
+        let sut = ActivityLogViewModel(databaseRepository: babiesRepository)
+        sut.sections.subscribe(onNext: { _ in
+        })
+            .disposed(by: disposeBag)
+        let cell = BabyMonitorCellMock()
         
         // When
-        showBabiesTap.onNext(())
+        sut.configure(headerCell: cell, for: 0)
         
         // Then
-        XCTAssertEqual(1, observer.events.count)
+        XCTAssertTrue(cell.isConfiguredAsHeader)
+        XCTAssertNil(cell.mainText)
     }
     
-    func testShouldReturnProperSections() {
+    func testShouldGenerateProperSections() {
         // Given
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver([GeneralSection<Baby>].self)
-        let baby = Baby(id: "id", name: "name", photo: nil)
-        let babiesRepository = BabiesRepositoryMock(currentBaby: baby)
-        let sut = ActivityLogViewModel(babyRepo: babiesRepository)
-        sut.attachInput(showBabiesTap: ControlEvent(events: showBabiesTap))
-        
+        let disposeBag = DisposeBag()
+        let babiesRepository = DatabaseRepositoryMock()
+        let yesterdayCryingLogEvent = ActivityLogEvent(mode: .cryingEvent, date: Date.yesterday)
+        let todayCryingLogEvent = ActivityLogEvent(mode: .cryingEvent, date: Date())
+        babiesRepository.save(activityLogEvent: yesterdayCryingLogEvent)
+        babiesRepository.save(activityLogEvent: todayCryingLogEvent)
+        let expectedSections = [
+            GeneralSection<ActivityLogEvent>(title: "", items: [yesterdayCryingLogEvent]),
+            GeneralSection<ActivityLogEvent>(title: "", items: [todayCryingLogEvent])
+        ]
+        let sut = ActivityLogViewModel(databaseRepository: babiesRepository)
+        var resultSections: [GeneralSection<ActivityLogEvent>] = []
         // When
-        sut.sections
-            .subscribe(observer)
-            .disposed(by: bag)
+        sut.sections.subscribe(onNext: { sections in
+            resultSections = sections
+        })
+            .disposed(by: disposeBag)
         
         // Then
-        XCTAssertRecordedElements(observer.events, [[GeneralSection<Baby>(title: "", items: [baby])]])
+        XCTAssertEqual(expectedSections, resultSections)
     }
 }

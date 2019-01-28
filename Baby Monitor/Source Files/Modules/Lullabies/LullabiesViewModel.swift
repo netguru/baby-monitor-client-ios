@@ -7,12 +7,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable, BabyMonitorCellDeletable {
+final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabyMonitorCellDeletable {
     
     typealias DataType = Lullaby
     typealias DeletedModelType = Lullaby
 
-    private let babyRepo: BabiesRepositoryProtocol
+    private let babyModelController: BabyModelControllerProtocol
     private let lullabiesRepo: LullabiesRepositoryProtocol
 
     enum Section: Int, CaseIterable {
@@ -38,19 +38,14 @@ final class LullabiesViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitor
     }
 
     // MARK: - Coordinator callback
-    private(set) var showBabies: Observable<Void>?
-    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
+    lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
 
-    init(babyRepo: BabiesRepositoryProtocol, lullabiesRepo: LullabiesRepositoryProtocol) {
-        self.babyRepo = babyRepo
+    init(babyModelController: BabyModelControllerProtocol, lullabiesRepo: LullabiesRepositoryProtocol) {
+        self.babyModelController = babyModelController
         self.lullabiesRepo = lullabiesRepo
     }
 
     // MARK: - Internal functions
-    func attachInput(showBabiesTap: ControlEvent<Void>) {
-        self.showBabies = showBabiesTap.asObservable()
-    }
-    
     func configure(cell: BabyMonitorCellProtocol, for data: Lullaby) {
         cell.type = .lullaby
         let lullaby = data

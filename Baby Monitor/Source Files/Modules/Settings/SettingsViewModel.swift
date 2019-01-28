@@ -8,7 +8,7 @@ import RxCocoa
 
 final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable {
 
-    private let babyRepo: BabiesRepositoryProtocol
+    private let babyModelController: BabyModelControllerProtocol
     private let storageServerService: StorageServerServiceProtocol
     private let memoryCleaner: MemoryCleanerProtocol
     private let urlConfiguration: URLConfiguration
@@ -35,8 +35,7 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorH
     var didSelectChangeServer: (() -> Void)?
     var didSelectClearData: (() -> Void)?
     
-    private(set) var showBabies: Observable<Void>?
-    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
+    lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
     
     private(set) lazy var sections: Observable<[GeneralSection<Cell>]> = {
         let mainSection = Observable.just(GeneralSection(title: Section.main.title, items: [Cell.switchToServer, Cell.changeServer, Cell.sendRecordings, Cell.clearData]))
@@ -55,8 +54,8 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorH
         case clearData
     }
 
-    init(babyRepo: BabiesRepositoryProtocol, storageServerService: StorageServerServiceProtocol, memoryCleaner: MemoryCleanerProtocol, urlConfiguration: URLConfiguration) {
-        self.babyRepo = babyRepo
+    init(babyModelController: BabyModelControllerProtocol, storageServerService: StorageServerServiceProtocol, memoryCleaner: MemoryCleanerProtocol, urlConfiguration: URLConfiguration) {
+        self.babyModelController = babyModelController
         self.memoryCleaner = memoryCleaner
         self.urlConfiguration = urlConfiguration
         self.storageServerService = storageServerService
@@ -113,7 +112,7 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorH
     }
     
     func clearAllDataForNoneState() {
-        babyRepo.removeAllData()
+        babyModelController.removeAllData()
         memoryCleaner.cleanMemory()
         urlConfiguration.url = nil
         UserDefaults.appMode = .none

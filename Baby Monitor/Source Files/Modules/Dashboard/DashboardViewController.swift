@@ -47,7 +47,7 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
     }
     
     private func setupViewModel() {
-        viewModel.attachInput(switchBabyTap: customView.rx.switchBabyTap.asObservable(), liveCameraTap: customView.rx.liveCameraTap.asObservable(), addPhotoTap: customView.rx.addPhotoTap.asObservable(), name: customView.rx.babyName.asObservable())
+        viewModel.attachInput(liveCameraTap: customView.rx.liveCameraTap.asObservable(), addPhotoTap: customView.rx.addPhotoTap.asObservable(), name: customView.rx.babyName.asObservable())
         viewModel.baby
             .map { $0.name }
             .distinctUntilChanged()

@@ -7,12 +7,11 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class DashboardCoordinator: Coordinator, BabiesViewShowable {
+final class DashboardCoordinator: Coordinator {
 
     var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    weak var switchBabyViewController: BabyMonitorGeneralViewController<SwitchBabyViewModel.Cell>?
 
     var onEnding: (() -> Void)?
 
@@ -45,19 +44,11 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
 
     // Prepare DashboardViewModel
     private func createDashboardViewModel() -> DashboardViewModel {
-        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyRepo: appDependencies.babiesRepository)
+        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyModelController: appDependencies.databaseRepository)
         return viewModel
     }
     
     private func connect(toDashboardViewModel viewModel: DashboardViewModel) {
-        viewModel.showBabies?
-            .subscribe(onNext: { [unowned self] in
-                guard let dashboardViewController = self.dashboardViewController else {
-                    return
-                }
-                self.toggleSwitchBabiesView(on: dashboardViewController, babyRepo: self.appDependencies.babiesRepository)
-            })
-            .disposed(by: bag)
         viewModel.liveCameraPreview?.subscribe(onNext: { [unowned self] in
                 let viewModel = self.createCameraPreviewViewModel()
                 let cameraPreviewViewController = CameraPreviewViewController(viewModel: viewModel)
@@ -81,15 +72,9 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
 
     // Prepare CameraPreviewViewModel
     private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
-        let viewModel = CameraPreviewViewModel(webSocketWebRtcService: appDependencies.webSocketWebRtcService(appDependencies.webRtcClient()), babyRepo: appDependencies.babiesRepository)
+        let viewModel = CameraPreviewViewModel(webSocketWebRtcService: appDependencies.webSocketWebRtcService(appDependencies.webRtcClient()), babyModelController: appDependencies.databaseRepository)
         viewModel.didSelectCancel = { [weak self] in
             self?.navigationController.dismiss(animated: true, completion: nil)
-        }
-        viewModel.didSelectShowBabies = { [weak self] in
-            guard let self = self, let cameraPreviewViewController = self.cameraPreviewViewController else {
-                return
-            }
-            self.toggleSwitchBabiesView(on: cameraPreviewViewController, babyRepo: self.appDependencies.babiesRepository)
         }
         return viewModel
     }

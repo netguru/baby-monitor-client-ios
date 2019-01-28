@@ -17,7 +17,7 @@ class DashboardView: BaseView {
     fileprivate let liveCameraButton = DashboardButtonView(role: .liveCamera)
     fileprivate let talkButton = DashboardButtonView(role: .talk)
     fileprivate let playLullabyButton = DashboardButtonView(role: .playLullaby)
-    let babyNavigationItemView = BabyNavigationItemView()
+    let babyNavigationItemView = BabyNavigationItemView(mode: .parent)
     let editProfileBarButtonItem = UIBarButtonItem(title: Localizable.Dashboard.editProfile,
                                                    style: .plain,
                                                    target: nil,
@@ -86,12 +86,11 @@ class DashboardView: BaseView {
     
     func updateName(_ text: String?) {
         nameField.text = text
-        babyNavigationItemView.setBabyName(text)
+        babyNavigationItemView.updateBabyName(text)
     }
 
     func updatePhoto(_ photo: UIImage?) {
         photoButtonView.setPhoto(photo)
-        babyNavigationItemView.setBabyPhoto(photo)
     }
     
     func updatePhotoButtonLayer() {
@@ -196,10 +195,6 @@ extension Reactive where Base: DashboardView {
     // var playLullabyTap: ControlEvent<Void> {
         // return base.playLullabyButton.rx.tap
     // }
-    
-    var switchBabyTap: ControlEvent<Void> {
-        return base.babyNavigationItemView.rx.tap
-    }
     
     var addPhotoTap: ControlEvent<Void> {
         return base.photoButtonView.rx.tap

@@ -16,7 +16,7 @@ final class BabyMonitorGeneralView: BaseView {
         return tableView
     }()
     
-    private(set) lazy var babyNavigationItemView = BabyNavigationItemView()
+    private(set) lazy var babyNavigationItemView = BabyNavigationItemView(mode: .parent)
     
     private let backgroundView: UIView = {
         let view = UIView()
@@ -46,12 +46,5 @@ final class BabyMonitorGeneralView: BaseView {
             addSubview($0)
             $0.addConstraints({ $0.equalSafeAreaEdges() })
         }
-    }
-}
-
-extension Reactive where Base: BabyMonitorGeneralView {
-    
-    var switchBabiesTap: ControlEvent<Void> {
-        return base.babyNavigationItemView.rx.tap
     }
 }
