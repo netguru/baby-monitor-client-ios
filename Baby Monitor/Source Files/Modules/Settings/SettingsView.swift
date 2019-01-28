@@ -76,7 +76,9 @@ final class SettingsView: UIView {
     }
 
     override func layoutSubviews() {
+        super.layoutSubviews()
         backgroundColor = .babyMonitorDarkPurple
+        editBabyPhotoImage.layer.masksToBounds = true
         editBabyPhotoImage.layer.cornerRadius = editBabyPhotoImage.bounds.height / 2
     }
 
