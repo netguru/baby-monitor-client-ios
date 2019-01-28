@@ -126,7 +126,8 @@ final class SettingsView: UIView {
         buttonsStackView.addConstraints {[
             $0.equalTo(signatureLabel, .bottom, .top, constant: -29),
             $0.equal(.leading, constant: 23),
-            $0.equal(.trailing, constant: -23)
+            $0.equal(.trailing, constant: -23),
+            $0.equalTo(buttonsStackView, .height, .width, multiplier: 0.415)
         ]
         }
 
