@@ -142,7 +142,9 @@ final class SettingsView: UIView {
 extension Reactive where Base: SettingsView {
 
     var babyPhoto: Binder<UIImage?> {
-        return base.editBabyPhotoImage.rx.image
+        return Binder<UIImage?>(base.editBabyPhotoImage) { imageView, image in
+            imageView.image = image ?? #imageLiteral(resourceName: "edit_baby_photo")
+        }
     }
 
     var babyName: ControlProperty<String> {
