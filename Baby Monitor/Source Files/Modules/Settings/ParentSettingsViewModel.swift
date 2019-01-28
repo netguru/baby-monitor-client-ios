@@ -8,7 +8,7 @@ import RxCocoa
 
 final class ParentSettingsViewModel {
 
-    private let babyRepo: BabiesRepositoryProtocol
+    private let babyRepo: BabyModelControllerProtocol
 
     private let bag = DisposeBag()
 
@@ -20,24 +20,25 @@ final class ParentSettingsViewModel {
 
     lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
 
-    init(babyRepo: BabiesRepositoryProtocol) {
+    init(babyRepo: BabyModelControllerProtocol) {
         self.babyRepo = babyRepo
     }
 
     func attachInput(babyName: Observable<String>, addPhotoTap: Observable<Void>, resetAppTap: Observable<Void>) {
         addPhoto = addPhotoTap
         babyName.subscribe(onNext: { [weak self] name in
-            self?.babyRepo.setCurrentName(name)
+            self?.babyRepo.updateName(name)
         })
         .disposed(by: bag)
         resetAppTap.subscribe(onNext: { [weak self] _ in
             self?.babyRepo.removeAllData()
+            // TODO: Logout from the app
         })
         .disposed(by: bag)
     }
 
     func updatePhoto(_ photo: UIImage) {
-        babyRepo.setCurrentPhoto(photo)
+        babyRepo.updatePhoto(photo)
     }
 
     func selectDismissImagePicker() {

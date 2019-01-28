@@ -28,7 +28,7 @@ final class ParentSettingsCoordinator: Coordinator {
 
     // MARK: - private functions
     private func showSettings() {
-        let viewModel = ParentSettingsViewModel(babyRepo: appDependencies.babiesRepository)
+        let viewModel = ParentSettingsViewModel(babyRepo: appDependencies.databaseRepository)
         let settingsViewController = ParentSettingsViewController(viewModel: viewModel)
         settingsViewController.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
