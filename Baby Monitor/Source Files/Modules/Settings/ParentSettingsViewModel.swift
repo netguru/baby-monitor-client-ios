@@ -24,10 +24,14 @@ final class ParentSettingsViewModel {
         self.babyRepo = babyRepo
     }
 
-    func attachInput(babyName: Observable<String>, addPhotoTap: Observable<Void>) {
+    func attachInput(babyName: Observable<String>, addPhotoTap: Observable<Void>, resetAppTap: Observable<Void>) {
         addPhoto = addPhotoTap
         babyName.subscribe(onNext: { [weak self] name in
             self?.babyRepo.setCurrentName(name)
+        })
+        .disposed(by: bag)
+        resetAppTap.subscribe(onNext: { [weak self] _ in
+            self?.babyRepo.removeAllData()
         })
         .disposed(by: bag)
     }
