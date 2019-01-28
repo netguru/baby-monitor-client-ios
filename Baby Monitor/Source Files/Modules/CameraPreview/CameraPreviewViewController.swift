@@ -28,6 +28,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         customView.setupOnLoadingView()
     }
     
