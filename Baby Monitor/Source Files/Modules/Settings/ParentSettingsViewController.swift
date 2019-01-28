@@ -6,12 +6,12 @@
 import UIKit
 import RxSwift
 
-class ParentSettingsViewController: TypedViewController<SettingsView> {
+class ParentSettingsViewController: TypedViewController<SettingsView>, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-    private let viewModel: SettingsViewModel
+    private let viewModel: ParentSettingsViewModel
     private let bag = DisposeBag()
 
-    init(viewModel: SettingsViewModel) {
+    init(viewModel: ParentSettingsViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: SettingsView())
     }
@@ -23,6 +23,13 @@ class ParentSettingsViewController: TypedViewController<SettingsView> {
         setupViewModel()
     }
 
+    // MARK: - UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        viewModel.updatePhoto(image)
+        viewModel.selectDismissImagePicker()
+    }
+
     // MARK: - Private functions
     private func setup() {
         navigationItem.title = "Settings"
@@ -30,7 +37,7 @@ class ParentSettingsViewController: TypedViewController<SettingsView> {
     }
 
     private func setupViewModel() {
-        viewModel.attachInput(babyName: customView.rx.babyName.asObservable())
+        viewModel.attachInput(babyName: customView.rx.babyName.asObservable(), addPhotoTap: customView.rx.editPhotoTap.asObservable())
         viewModel.baby
             .map { $0.name }
             .distinctUntilChanged()
