@@ -9,11 +9,9 @@ import RxCocoa
 
 final class SettingsView: UIView {
 
-    fileprivate let editBabyPhotoButton: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "edit_baby_photo"), for: .normal)
-        return button
-    }()
+    fileprivate let editBabyPhotoButton = UIButton(type: .custom)
+
+    fileprivate let editBabyPhotoImage = UIImageView(image: #imageLiteral(resourceName: "edit_baby_photo"))
 
     fileprivate let babyNameTextField: UITextField = {
         let textField = UITextField()
@@ -42,12 +40,13 @@ final class SettingsView: UIView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
+        stackView.spacing = 12.5
         return stackView
     }()
 
-    private let rateButton = RoundedRectangleButton(title: "Rate us", backgroundColor: .babyMonitorPurple)
+    fileprivate let rateButton = RoundedRectangleButton(title: "Rate us", backgroundColor: .babyMonitorPurple)
 
-    private let resetButton = RoundedRectangleButton(title: "Reset the app", backgroundColor: .babyMonitorDarkPurple, borderColor: .babyMonitorNonTranslucentWhite)
+    fileprivate let resetButton = RoundedRectangleButton(title: "Reset the app", backgroundColor: .babyMonitorDarkPurple, borderColor: .babyMonitorNonTranslucentWhite)
 
     private lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [rateButton, resetButton])
@@ -78,43 +77,59 @@ final class SettingsView: UIView {
 
     override func layoutSubviews() {
         backgroundColor = .babyMonitorDarkPurple
+        editBabyPhotoImage.layer.cornerRadius = editBabyPhotoImage.bounds.height / 2
     }
 
     private func setupLayout() {
         editBabyNameStackView.addArrangedSubview(customTextInputStackView)
         editBabyNameStackView.addArrangedSubview(underline)
-        [editBabyPhotoButton, editBabyNameStackView, buttonsStackView, signatureLabel].forEach { addSubview($0) }
+        [editBabyPhotoImage, editBabyPhotoButton, editBabyNameStackView, buttonsStackView, signatureLabel].forEach { addSubview($0) }
         setupConstraints()
     }
 
     private func setupConstraints() {
-        editBabyPhotoButton.addConstraints {[
-            $0.equal(.top, constant: 100),
-            $0.equalConstant(.width, 113),
-            $0.equalConstant(.height, 113),
-            $0.equal(.centerX)
+        editImageView.addConstraints {[
+            $0.equalConstant(.width, 16),
+            $0.equalConstant(.height, 16)
         ]
         }
 
+        editBabyPhotoImage.addConstraints {[
+            $0.equal(.top, constant: 100),
+            $0.equal(.centerX),
+            $0.equalConstant(.width, 96),
+            $0.equalConstant(.height, 96)
+        ]
+        }
+
+        editBabyPhotoButton.addConstraints {[
+            $0.equalTo(editBabyPhotoImage, .leading, .leading),
+            $0.equalTo(editBabyPhotoImage, .trailing, .trailing),
+            $0.equalTo(editBabyPhotoImage, .bottom, .bottom),
+            $0.equalTo(editBabyPhotoImage, .top, .top)
+        ]
+        }
+        editBabyPhotoButton.layer.zPosition = 1
+        
         underline.addConstraints {
             [$0.equalConstant(.height, 1)]
         }
         editBabyNameStackView.addConstraints {[
             $0.equalTo(editBabyPhotoButton, .top, .bottom, constant: 40),
             $0.equal(.leading, constant: 23),
-            $0.equal(.trailing, constant: 23)
+            $0.equal(.trailing, constant: -23)
         ]
         }
 
         buttonsStackView.addConstraints {[
-            $0.greaterThanOrEqualTo(editBabyNameStackView, .top, .bottom, constant: 70),
+            $0.equalTo(signatureLabel, .bottom, .top, constant: -29),
             $0.equal(.leading, constant: 23),
             $0.equal(.trailing, constant: -23)
         ]
         }
 
         signatureLabel.addConstraints {[
-            $0.equalTo(buttonsStackView, .top, .bottom, constant: 29),
+            $0.equal(.bottom, constant: -52),
             $0.equal(.centerX)
         ]
         }
@@ -124,7 +139,7 @@ final class SettingsView: UIView {
 extension Reactive where Base: SettingsView {
 
     var babyPhoto: Binder<UIImage?> {
-        return base.editBabyPhotoButton.rx.image()
+        return base.editBabyPhotoImage.rx.image
     }
 
     var babyName: ControlProperty<String> {
@@ -143,5 +158,9 @@ extension Reactive where Base: SettingsView {
 
     var resetButtonTap: ControlEvent<Void> {
         return base.resetButton.rx.tap
+    }
+
+    var editPhotoTap: ControlEvent<Void> {
+        return base.editBabyPhotoButton.rx.tap
     }
 }
