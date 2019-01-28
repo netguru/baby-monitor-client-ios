@@ -81,7 +81,7 @@ final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonit
                 sortedLogs.append([log])
             } else {
                 if Calendar.current.compare(logs[index].date, to: logs[index - 1].date, toGranularity: .day) == .orderedSame {
-                    sortedLogs[sortedLogs.endIndex].append(log)
+                    sortedLogs[sortedLogs.endIndex - 1].append(log)
                 } else {
                     sortedLogs.append([log])
                 }
