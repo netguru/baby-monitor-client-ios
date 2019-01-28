@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		200681BF21FB4FC600340596 /* ParentSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */; };
+		200681C121FB53AA00340596 /* ParentSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200681C021FB53AA00340596 /* ParentSettingsCoordinator.swift */; };
 		200DFD4721F87862009CA3ED /* RoundedRectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */; };
 		201CF6A221F9CBDC00E06FEF /* ParentSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201CF6A121F9CBDC00E06FEF /* ParentSettingsViewController.swift */; };
 		2025564121F728F1006C6490 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025564021F728F1006C6490 /* SettingsView.swift */; };
@@ -267,6 +269,8 @@
 
 /* Begin PBXFileReference section */
 		0806325953361018B6D7E8E8 /* Pods-Baby MonitorTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.development.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"; sourceTree = "<group>"; };
+		200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsViewModel.swift; sourceTree = "<group>"; };
+		200681C021FB53AA00340596 /* ParentSettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsCoordinator.swift; sourceTree = "<group>"; };
 		200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleButton.swift; sourceTree = "<group>"; };
 		201CF6A121F9CBDC00E06FEF /* ParentSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsViewController.swift; sourceTree = "<group>"; };
 		2025564021F728F1006C6490 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -996,6 +1000,8 @@
 			isa = PBXGroup;
 			children = (
 				4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */,
+				200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */,
+				200681C021FB53AA00340596 /* ParentSettingsCoordinator.swift */,
 				4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */,
 				2025564021F728F1006C6490 /* SettingsView.swift */,
 				201CF6A121F9CBDC00E06FEF /* ParentSettingsViewController.swift */,
@@ -1915,6 +1921,7 @@
 				4E994BE121623821009C44C5 /* DashboardViewModel.swift in Sources */,
 				8AFAE5AB219AAA53007013BC /* MessageServer.swift in Sources */,
 				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
+				200681BF21FB4FC600340596 /* ParentSettingsViewModel.swift in Sources */,
 				8A7A608821A403D500488ED4 /* MicrophoneTrackerProtocol.swift in Sources */,
 				4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */,
 				8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */,
@@ -1925,6 +1932,7 @@
 				4E7A1A9021F1284B0015C3A3 /* UserDefaults+AppMode.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,
 				8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */,
+				200681C121FB53AA00340596 /* ParentSettingsCoordinator.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
 				8A50AA4021E603080058C63A /* WebRtcStreamId.swift in Sources */,
 				8AA7CC00218C72D600FCF62A /* RealmLullaby.swift in Sources */,
