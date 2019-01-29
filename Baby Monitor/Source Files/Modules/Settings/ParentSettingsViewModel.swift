@@ -9,15 +9,10 @@ import RxCocoa
 final class ParentSettingsViewModel {
 
     private let babyRepo: BabyModelControllerProtocol
-
     private let bag = DisposeBag()
-
     private(set) var addPhoto: Observable<Void>?
-
     private let dismissImagePickerSubject = PublishRelay<Void>()
-
     lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
-
     lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
 
     init(babyRepo: BabyModelControllerProtocol) {

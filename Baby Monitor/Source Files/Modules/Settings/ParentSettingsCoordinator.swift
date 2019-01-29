@@ -12,9 +12,7 @@ final class ParentSettingsCoordinator: Coordinator {
     var appDependencies: AppDependencies
     var navigationController: UINavigationController
     var onEnding: (() -> Void)?
-
     private weak var parentSettingsViewController: ParentSettingsViewController?
-
     private let bag = DisposeBag()
 
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
