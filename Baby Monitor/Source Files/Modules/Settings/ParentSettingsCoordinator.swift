@@ -43,10 +43,7 @@ final class ParentSettingsCoordinator: Coordinator {
         })
         .disposed(by: bag)
         viewModel.dismissImagePicker.subscribe(onNext: { [unowned self] in
-            guard let parentSettingsViewController = self.parentSettingsViewController else {
-                return
-            }
-            parentSettingsViewController.dismiss(animated: true, completion: nil)
+            self.parentSettingsViewController?.dismiss(animated: true, completion: nil)
         })
         .disposed(by: bag)
     }
