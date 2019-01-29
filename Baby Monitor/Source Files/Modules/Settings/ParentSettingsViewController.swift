@@ -18,7 +18,6 @@ class ParentSettingsViewController: TypedViewController<SettingsView>, UINavigat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.babyMonitorNonTranslucentWhite, .font: UIFont.customFont(withSize: .body)]
         setup()
         setupViewModel()
     }
@@ -32,6 +31,7 @@ class ParentSettingsViewController: TypedViewController<SettingsView>, UINavigat
 
     // MARK: - Private functions
     private func setup() {
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.babyMonitorNonTranslucentWhite, .font: UIFont.customFont(withSize: .body)]
         navigationItem.title = "Settings"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "arrow_back"), style: .plain, target: self, action: #selector(cancel))
         customView.rx.rateButtonTap.asObservable().subscribe(onNext: { [weak self] _ in
@@ -60,5 +60,5 @@ class ParentSettingsViewController: TypedViewController<SettingsView>, UINavigat
     }
 
     // TODO: - Redirect to Appstore and give possibility of rating after app will be on Appstore
-    private func handleRating(){}
+    private func handleRating() {}
 }
