@@ -16,7 +16,7 @@ final class SettingsView: UIView {
     fileprivate let babyNameTextField: UITextField = {
         let textField = UITextField()
         textField.returnKeyType = .done
-        textField.placeholder = "Your baby name"
+        textField.placeholder = Localizable.Settings.babyNamePlaceholder
         textField.textColor = .babyMonitorPurple
         return textField
     }()
@@ -44,9 +44,9 @@ final class SettingsView: UIView {
         return stackView
     }()
 
-    fileprivate let rateButton = RoundedRectangleButton(title: "Rate us", backgroundColor: .babyMonitorPurple)
+    fileprivate let rateButton = RoundedRectangleButton(title: Localizable.Settings.rateButtonTitle, backgroundColor: .babyMonitorPurple)
 
-    fileprivate let resetButton = RoundedRectangleButton(title: "Reset the app", backgroundColor: .babyMonitorDarkPurple, borderColor: .babyMonitorNonTranslucentWhite)
+    fileprivate let resetButton = RoundedRectangleButton(title: Localizable.Settings.resetButtonTitle, backgroundColor: .babyMonitorDarkPurple, borderColor: .babyMonitorNonTranslucentWhite)
 
     private lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [rateButton, resetButton])
@@ -58,8 +58,8 @@ final class SettingsView: UIView {
 
     private let signatureLabel: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: "Crafted with ❤️", attributes: [.foregroundColor: UIColor.babyMonitorNonTranslucentWhite, .font: UIFont.customFont(withSize: .caption)])
-        attributedText.append(NSAttributedString(string: "by Netguru", attributes: [.foregroundColor: UIColor.babyMonitorPurple, .font: UIFont.customFont(withSize: .caption)]))
+        let attributedText = NSMutableAttributedString(string: Localizable.General.craftedWithLove, attributes: [.foregroundColor: UIColor.babyMonitorNonTranslucentWhite, .font: UIFont.customFont(withSize: .caption)])
+        attributedText.append(NSAttributedString(string: Localizable.General.byNetguru, attributes: [.foregroundColor: UIColor.babyMonitorPurple, .font: UIFont.customFont(withSize: .caption)]))
         label.attributedText = attributedText
         return label
     }()
