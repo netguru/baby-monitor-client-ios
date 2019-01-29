@@ -60,7 +60,7 @@ final class SettingsViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorH
     }
 
     // MARK: - Internal functions
-    
+
     func configure(cell: BabyMonitorCellProtocol, for data: Cell) {
         cell.type = .settings
         switch data {
