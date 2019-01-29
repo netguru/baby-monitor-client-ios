@@ -11,16 +11,14 @@ final class DashboardButtonView: UIView {
     
     fileprivate let button: UIButton = UIButton()
     enum Role {
-        case liveCamera, talk, playLullaby
+        case liveCamera, activityLog
         
         var image: UIImage {
             switch self {
             case .liveCamera:
-                return #imageLiteral(resourceName: "video")
-            case .playLullaby:
-                return #imageLiteral(resourceName: "lullabies")
-            case .talk:
-                return #imageLiteral(resourceName: "mic")
+                return #imageLiteral(resourceName: "baby-placeholder")
+            case .activityLog:
+                return #imageLiteral(resourceName: "activityLog")
             }
         }
     }

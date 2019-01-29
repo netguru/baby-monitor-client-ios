@@ -225,10 +225,10 @@
 		8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */; };
 		8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DF82182F07700729615 /* Lullaby.swift */; };
 		8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */; };
+		A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */; };
 		A18D3E6E21FF071200C165C6 /* CALayerBasicAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */; };
 		A1C5E6E221FA2E7100D93203 /* DatabaseRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */; };
 		A1C5E6E421FB0C9C00D93203 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */; };
-		EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */; };
 		EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
@@ -526,11 +526,11 @@
 		8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 		8AFE3DF82182F07700729615 /* Lullaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lullaby.swift; sourceTree = "<group>"; };
 		8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
+		A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFactory.swift; sourceTree = "<group>"; };
 		A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerBasicAnimation.swift; sourceTree = "<group>"; };
 		A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepositoryMock.swift; sourceTree = "<group>"; };
 		A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 		DC0A7360EB7E7A40F5162D1F /* Pods_Baby_MonitorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_MonitorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPhotoButton.swift; sourceTree = "<group>"; };
 		EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -880,6 +880,7 @@
 				4E994BE6216240DA009C44C5 /* Settings */,
 				4E221D89217714D7003D8531 /* Server */,
 				EC8C943C216CBFCE00E3B478 /* TabBar */,
+				A1572D8E2200A88600AC57C4 /* AnimationFactory */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -946,7 +947,6 @@
 				4E994BE021623821009C44C5 /* DashboardViewModel.swift */,
 				4E1D2C66216791AD00E92F29 /* DashboardView.swift */,
 				4E9563172163521900289475 /* DashboardButton.swift */,
-				EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1338,6 +1338,14 @@
 				8A8EF94E219D55B60098A27B /* MessageStreamProtocol.swift */,
 			);
 			path = Messages;
+			sourceTree = "<group>";
+		};
+		A1572D8E2200A88600AC57C4 /* AnimationFactory */ = {
+			isa = PBXGroup;
+			children = (
+				A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */,
+			);
+			path = AnimationFactory;
 			sourceTree = "<group>";
 		};
 		A18D3E6C21FF06E800C165C6 /* CustomAnimations */ = {
@@ -1822,6 +1830,7 @@
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
 				ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */,
 				8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */,
+				A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
 				ECB2428821AD4F0400B4E409 /* IntroViewModel.swift in Sources */,
 				4E63DC1D21E39D4B00604167 /* URLRequestConvertible.swift in Sources */,
@@ -1937,7 +1946,6 @@
 				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
 				4E63DC1921E39D4B00604167 /* HTTPMethod.swift in Sources */,
 				8A50AA3921E602F60058C63A /* IceCandidateProtocol.swift in Sources */,
-				EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */,
 				8AFAE5AF219AAE63007013BC /* WebSocketServerProtocol.swift in Sources */,
 				4E360CCE21E781E3002781AC /* FirebaseStorageService.swift in Sources */,
 				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,

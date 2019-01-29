@@ -57,10 +57,6 @@ final class DashboardCoordinator: Coordinator {
                 self.navigationController.present(navigationController, animated: true, completion: nil)
             })
             .disposed(by: bag)
-        viewModel.addPhoto?.subscribe(onNext: { [unowned self] in
-                self.showImagePickerAlert()
-            })
-            .disposed(by: bag)
         viewModel.dismissImagePicker.subscribe(onNext: { [unowned self] in
                 guard let dashboardViewController = self.dashboardViewController else {
                     return
@@ -77,33 +73,5 @@ final class DashboardCoordinator: Coordinator {
             self?.navigationController.dismiss(animated: true, completion: nil)
         }
         return viewModel
-    }
-
-    // Show alert with camera or photo library options, after choosing show image picker or camera
-    private func showImagePickerAlert() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.delegate = dashboardViewController
-
-        let alertController = UIAlertController(title: Localizable.Dashboard.chooseImage, message: nil, preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: Localizable.General.cancel, style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraAction = UIAlertAction(title: Localizable.Dashboard.camera, style: .default, handler: { action in
-                imagePickerController.sourceType = .camera
-                self.navigationController.present(imagePickerController, animated: true, completion: nil)
-            })
-            alertController.addAction(cameraAction)
-        }
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let photoLibraryAction = UIAlertAction(title: Localizable.Dashboard.photoLibrary, style: .default, handler: { action in
-                imagePickerController.sourceType = .photoLibrary
-                self.navigationController.present(imagePickerController, animated: true, completion: nil)
-            })
-            alertController.addAction(photoLibraryAction)
-        }
-
-        navigationController.present(alertController, animated: true, completion: nil)
     }
 }

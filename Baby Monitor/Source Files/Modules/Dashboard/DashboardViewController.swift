@@ -6,8 +6,14 @@
 import UIKit
 import RxSwift
 
-final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+final class DashboardViewController: TypedViewController<DashboardView>, UINavigationControllerDelegate {
 
+    private var timer: Timer?
+    private lazy var settingsBarButtonItem = UIBarButtonItem(
+        image: #imageLiteral(resourceName: "settings"),
+        style: .plain,
+        target: self,
+        action: #selector(didTouchSettingsButton))
     private let viewModel: DashboardViewModel
     private let bag = DisposeBag()
 
@@ -20,34 +26,32 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
         super.viewDidLoad()
         setup()
         setupViewModel()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.8, repeats: true, block: { [weak self] _ in
+            self?.customView.firePulse()
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.timer?.fire()
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
-        customView.updatePhotoButtonLayer()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.rightBarButtonItem = settingsBarButtonItem
     }
-
-    // MARK: - UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        viewModel.updatePhoto(image)
-        viewModel.selectDismissImagePicker()
-    }
-
-    // MARK: - Selectors
-    @objc private func didTouchEditProfileButton() {
-        //TODO: add implementation
+    
+    @objc
+    private func didTouchSettingsButton() {
+        //TODO: implement showing settings
     }
 
     // MARK: - Private functions
     private func setup() {
-        navigationItem.rightBarButtonItem = customView.editProfileBarButtonItem
+        view.backgroundColor = .babyMonitorDarkGray
         navigationItem.titleView = customView.babyNavigationItemView
     }
     
     private func setupViewModel() {
-        viewModel.attachInput(liveCameraTap: customView.rx.liveCameraTap.asObservable(), addPhotoTap: customView.rx.addPhotoTap.asObservable(), name: customView.rx.babyName.asObservable())
         viewModel.baby
             .map { $0.name }
             .distinctUntilChanged()

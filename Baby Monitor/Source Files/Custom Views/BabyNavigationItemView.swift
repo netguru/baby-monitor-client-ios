@@ -63,27 +63,7 @@ final class BabyNavigationItemView: UIView {
     }
     
     func firePulse() {
-        let circularPath = UIBezierPath(arcCenter: .zero, radius: 4, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
-        let pulsatingLayer = CAShapeLayer()
-        pulsatingLayer.path = circularPath.cgPath
-        pulsatingLayer.fillColor = UIColor.babyMonitorLightGreen.cgColor
-        let point = pulsatoryView.bounds.origin
-        let frame = pulsatoryView.frame
-        pulsatingLayer.position =  CGPoint(
-            x: point.x + (frame.width / 2),
-            y: point.y + (frame.height / 2)
-        )
-        pulsatoryView.layer.addSublayer(pulsatingLayer)
-        let scaleAnimation = CALayerBasicAnimation(keyPath: "transform.scale")
-        scaleAnimation.toValue = 4
-        let colorAnimation = CALayerBasicAnimation(keyPath: "fillColor")
-        colorAnimation.toValue = UIColor(named: "darkPurple")!.cgColor
-        [scaleAnimation, colorAnimation].forEach {
-            $0.duration = 2
-            $0.delegate = self
-            $0.layer = pulsatingLayer
-            pulsatingLayer.add($0, forKey: nil)
-        }
+        AnimationFactory.shared.firePulse(onView: pulsatoryView, fromColor: UIColor.babyMonitorLightGreen, toColor: UIColor(named: "darkPurple")!)
     }
     
     // MARK: - View setup
@@ -115,16 +95,6 @@ final class BabyNavigationItemView: UIView {
         case .none:
             break
         }
-    }
-}
-
-extension BabyNavigationItemView: CAAnimationDelegate {
-    
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard let layerAnimation = anim as? CALayerBasicAnimation else {
-            return
-        }
-        layerAnimation.layer?.removeFromSuperlayer()
     }
 }
 

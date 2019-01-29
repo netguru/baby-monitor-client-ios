@@ -38,17 +38,6 @@ final class DashboardViewModel {
     func selectDismissImagePicker() {
         dismissImagePickerSubject.accept(())
     }
-    
-    func attachInput(liveCameraTap: Observable<Void>,
-                     addPhotoTap: Observable<Void>,
-                     name: Observable<String>) {
-        liveCameraPreview = liveCameraTap
-        addPhoto = addPhotoTap
-        name.subscribe(onNext: { [weak self] name in
-            self?.babyModelController.updateName(name)
-        })
-            .disposed(by: bag)
-    }
 
     // TODO: Remove when baby service is done https://netguru.atlassian.net/browse/BM-119
     /// Sets a new photo for the current baby.

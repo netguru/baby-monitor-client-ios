@@ -55,7 +55,9 @@
 "dashboard.action.choose-image" = "Choose image source";
 "dashboard.action-button.camera" = "Camera";
 "dashboard.action-button.photoLibrary" = "Photo library";
-"dashboard.text-field-placeholder.add-name" = "What's your baby's name";
+"dashboard.text-field-placeholder.your-baby-name" = "Your baby name";
+"dashboard.connection-status-connected" = "Devices connected";
+"dashboard.connection-status-disconnected" = "Devices disconnected";
 
 //MARK: - TabBar
 "tab-bar.dashboard" = "Dashboard";
