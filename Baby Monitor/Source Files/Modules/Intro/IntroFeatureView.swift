@@ -24,16 +24,17 @@ final class IntroFeatureView: BaseView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .white
-        label.font = UIFont.customFont(withSize: .h3, weight: .bold)
+        let fontSize: UIFont.CustomTextSize = UIDevice.screenSizeBiggerThan4Inches ? .h3 : .caption
+        label.font = UIFont.customFont(withSize: fontSize, weight: .bold)
         return label
     }()
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.textColor = UIColor.white.withAlphaComponent(Constants.textAlpha)
-        label.font = UIFont.customFont(withSize: .small, weight: .regular)
-        label.layer.opacity = 0.5
+        label.textColor = UIColor.babyMonitorPurple
+        let fontSize: UIFont.CustomTextSize = UIDevice.screenSizeBiggerThan4Inches ? .body : .small
+        label.font = UIFont.customFont(withSize: fontSize, weight: .regular)
         label.text = Localizable.Intro.sleepingSoundly
         return label
     }()
@@ -47,9 +48,9 @@ final class IntroFeatureView: BaseView {
         return button
     }()
     private lazy var introStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel])
+        let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel, descriptionLabel])
         stackView.axis = .vertical
-        stackView.spacing = 40
+        stackView.spacing = 20
         stackView.alignment = .center
         stackView.distribution = .fill
         return stackView
@@ -68,7 +69,7 @@ final class IntroFeatureView: BaseView {
     private func setup(role: IntroFeature) {
         switch role {
         case .featureDetection:
-            imageView.image = #imageLiteral(resourceName: "feature-a")
+            imageView.image = #imageLiteral(resourceName: "feature camera.png")
             nextButton.setTitle(Localizable.General.next, for: .normal)
             titleLabel.text = Localizable.Intro.featureDetect
         case .featureMonitoring:
@@ -79,7 +80,7 @@ final class IntroFeatureView: BaseView {
             nextButton.backgroundColor = UIColor(named: "darkPurple")
         }
         
-        [introStackView, descriptionLabel, nextButton].forEach {
+        [introStackView, nextButton].forEach {
             addSubview($0)
         }
 
@@ -90,26 +91,18 @@ final class IntroFeatureView: BaseView {
     }
     
     private func setupConstraints() {
+        introStackView.setCustomSpacing(15, after: titleLabel)
         introStackView.addConstraints {[
             $0.equal(.centerX),
-            $0.equal(.width, multiplier: 0.8),
-            $0.equalTo(self, .top, .safeAreaTop, constant: 56)
+            $0.equal(.centerY, constant: -50),
+            $0.equal(.width, multiplier: 0.75),
+            $0.equal(.height, multiplier: 0.6)
         ]
         }
-        
-        descriptionLabel.addConstraints {[
-            $0.equal(.centerX),
-            $0.equalTo(titleLabel, .top, .bottom, constant: 24)
+        imageView.addConstraints {[
+            $0.equalTo(introStackView, .width, .width, multiplier: 0.9)
         ]
         }
-        
-        [titleLabel, descriptionLabel].forEach {
-            $0.addConstraints {[
-                $0.equal(.width, multiplier: 0.8)
-            ]
-            }
-        }
-        
         nextButton.addConstraints {[
             $0.equal(.centerX),
             $0.equalConstant(.height, Constants.buttonHeight),

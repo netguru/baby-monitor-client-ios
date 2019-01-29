@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-screen-background" translatesAutoresizingMaskIntoConstraints="NO" id="FAA-tC-1bo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="base-background" translatesAutoresizingMaskIntoConstraints="NO" id="FAA-tC-1bo">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baby logo welcome screen" translatesAutoresizingMaskIntoConstraints="NO" id="fHi-Si-TXk">
@@ -51,6 +51,6 @@
     <resources>
         <image name="Made with love" width="153" height="14"/>
         <image name="baby logo welcome screen" width="125" height="125"/>
-        <image name="launch-screen-background" width="375" height="667"/>
+        <image name="base-background" width="375" height="667"/>
     </resources>
 </document>
