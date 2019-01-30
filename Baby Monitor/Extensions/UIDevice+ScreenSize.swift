@@ -3,8 +3,6 @@
 //  Baby Monitor
 //
 
-import Foundation
-
 import UIKit
 
 extension UIDevice {

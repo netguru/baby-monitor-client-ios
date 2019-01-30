@@ -6,10 +6,12 @@
 import UIKit
 
 final class IntroFeatureView: BaseView {
-    
-    var didSelectRightAction: (() -> Void)?
 
+    /// Indicates that user has tapped a left button at the bottom of the view
     var didSelectLeftAction: (() -> Void)?
+
+    /// Indicates that user has tapped a right button at the bottom of the view
+    var didSelectRightAction: (() -> Void)?
 
     private let imageView: UIImageView = {
         let imageView = UIImageView()
