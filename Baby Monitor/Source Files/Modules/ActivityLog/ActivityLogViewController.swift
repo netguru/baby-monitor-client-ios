@@ -8,13 +8,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-private enum GeneralConstants {
-    enum Height {
-        static let cell: CGFloat = 56
-    }
-}
-
 final class ActivityLogViewController: TypedViewController<ActivityLogView>, UITableViewDelegate, UITableViewDataSource {
+    
+    private enum GeneralConstants {
+        enum Height {
+            static let cell: CGFloat = 56
+        }
+    }
     
     private let viewModel: ActivityLogViewModel
     private let bag = DisposeBag()

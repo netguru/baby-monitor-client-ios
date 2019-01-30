@@ -5,7 +5,7 @@
 
 import UIKit
 
-class ActivityLogCell: UITableViewCell, Identifiable {
+final class ActivityLogCell: UITableViewCell, Identifiable {
     
     private enum Constants {
         static let mainWidthHeight: CGFloat = 36
@@ -51,7 +51,7 @@ class ActivityLogCell: UITableViewCell, Identifiable {
     
     private lazy var separatorView: UIView = {
         let separator = UIView()
-        separator.backgroundColor = UIColor(rgb: 0x363253)
+        separator.backgroundColor = .babyMonitorSeparatorGray
         return separator
     }()
     private let informationImageView: UIImageView = {
@@ -77,7 +77,7 @@ class ActivityLogCell: UITableViewCell, Identifiable {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
     }
-    
+    @available(*, unavailable, message: "Use init(style:reuseIdentifier:) instead")
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -97,9 +97,8 @@ class ActivityLogCell: UITableViewCell, Identifiable {
     func configureAsHeader() {
         separatorViewLeadingAnchor?.constant = 0
         stackViewLeadingAnchor?.constant = 16
-        [secondaryLabel, informationImageView].forEach {
-            $0.isHidden = true
-        }
+        secondaryLabel.isHidden = true
+        informationImageView.isHidden = true
         mainLabel.font = UIFont.systemFont(ofSize: Constants.FontSize.header, weight: .bold)
         backgroundColor = .clear
     }

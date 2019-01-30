@@ -44,8 +44,7 @@ final class ActivityLogViewModel {
         else {
             return
         }
-        let activityLogEvent = currentSections[indexPath.section].items[indexPath.row
-        ]
+        let activityLogEvent = currentSections[indexPath.section].items[indexPath.row]
         let dateText = textDateForCell(from: activityLogEvent.date)
         cell.update(secondaryText: dateText)
         switch activityLogEvent.mode {
