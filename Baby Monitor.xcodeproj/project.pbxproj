@@ -230,7 +230,10 @@
 		8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */; };
 		8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DF82182F07700729615 /* Lullaby.swift */; };
 		8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */; };
+		A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */; };
 		A18D3E6E21FF071200C165C6 /* CALayerBasicAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */; };
+		A18D3E7521FF6D3700C165C6 /* ActivityLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */; };
+		A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */; };
 		A1C5E6E221FA2E7100D93203 /* DatabaseRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */; };
 		A1C5E6E421FB0C9C00D93203 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */; };
 		EC431F5D2175C1A40099858C /* DashboardPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC431F5C2175C1A40099858C /* DashboardPhotoButton.swift */; };
@@ -536,7 +539,10 @@
 		8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 		8AFE3DF82182F07700729615 /* Lullaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lullaby.swift; sourceTree = "<group>"; };
 		8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
+		A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerBasicAnimation.swift; sourceTree = "<group>"; };
+		A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogView.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
 		A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepositoryMock.swift; sourceTree = "<group>"; };
 		A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 		DC0A7360EB7E7A40F5162D1F /* Pods_Baby_MonitorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_MonitorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -965,8 +971,11 @@
 		4E994BE221623EC3009C44C5 /* ActivityLog */ = {
 			isa = PBXGroup;
 			children = (
+				A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */,
+				A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */,
 				4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */,
 				4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */,
+				A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */,
 			);
 			path = ActivityLog;
 			sourceTree = "<group>";
@@ -1817,6 +1826,8 @@
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
 				4EA2802621E8C6B200262E45 /* DateFormatter+Helpers.swift in Sources */,
 				8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */,
+				A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */,
+				A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */,
 				8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */,
 				8AA7CBDE218C55C500FCF62A /* LullabyPlayer.swift in Sources */,
 				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
@@ -1964,6 +1975,7 @@
 				8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				ECB2428621AD4E1100B4E409 /* IntroCoordinator.swift in Sources */,
 				8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */,
+				A18D3E7521FF6D3700C165C6 /* ActivityLogView.swift in Sources */,
 				8A8EF94F219D55B60098A27B /* MessageStreamProtocol.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 				8A7A608421A4027E00488ED4 /* ErrorHandler.swift in Sources */,

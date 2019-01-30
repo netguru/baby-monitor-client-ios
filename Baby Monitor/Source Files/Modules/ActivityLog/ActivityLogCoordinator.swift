@@ -14,7 +14,7 @@ final class ActivityLogCoordinator: Coordinator {
     
     var onEnding: (() -> Void)?
 
-    private var activityLogViewController: BabyMonitorGeneralViewController<ActivityLogEvent>?
+    private var activityLogViewController: ActivityLogViewController?
     private let bag = DisposeBag()
     
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
@@ -29,6 +29,6 @@ final class ActivityLogCoordinator: Coordinator {
     // MARK: - private functions
     private func showActivityLog() {
         let viewModel = ActivityLogViewModel(databaseRepository: appDependencies.databaseRepository)
-        activityLogViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<ActivityLogEvent>(viewModel: viewModel), type: .activityLog)
+        activityLogViewController = ActivityLogViewController(viewModel: viewModel)
         navigationController.pushViewController(activityLogViewController!, animated: false)
     }}
