@@ -11,15 +11,13 @@ import RxTest
 class DashboardViewModelTests: XCTestCase {
     
     private var liveCameraTap = PublishSubject<Void>()
-    private var addPhotoTap = PublishSubject<Void>()
-    private var namePublisher = PublishSubject<String>()
+    private var activityLogTap = PublishSubject<Void>()
     
     private var bag = DisposeBag()
     
     override func setUp() {
         liveCameraTap = PublishSubject<Void>()
-        addPhotoTap = PublishSubject<Void>()
-        namePublisher = PublishSubject<String>()
+        activityLogTap = PublishSubject<Void>()
         bag = DisposeBag()
     }
 
@@ -57,7 +55,7 @@ class DashboardViewModelTests: XCTestCase {
         let babiesRepository = DatabaseRepositoryMock()
         let connectionChecker = ConnectionCheckerMock()
         let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository)
-        sut.attachInput(liveCameraTap: liveCameraTap, addPhotoTap: addPhotoTap, name: namePublisher)
+        sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap)
         sut.liveCameraPreview?
             .subscribe(observer)
             .disposed(by: bag)
@@ -69,82 +67,21 @@ class DashboardViewModelTests: XCTestCase {
         XCTAssertEqual(1, observer.events.count)
     }
     
-    func testShouldForwardAddPhotoTap() {
+    func testShouldForwardActivityLogTap() {
         // Given
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(Void.self)
         let babiesRepository = DatabaseRepositoryMock()
         let connectionChecker = ConnectionCheckerMock()
         let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository)
-        sut.attachInput(liveCameraTap: liveCameraTap, addPhotoTap: addPhotoTap, name: namePublisher)
-        sut.addPhoto?
+        sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap)
+        sut.activityLogTap?
             .subscribe(observer)
             .disposed(by: bag)
         
         // When
-        addPhotoTap.onNext(())
+        activityLogTap.onNext(())
         
         // Then
         XCTAssertEqual(1, observer.events.count)
-    }
-    
-    func testShouldForwardDismissImagePickerTap() {
-        // Given
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Void.self)
-        let babiesRepository = DatabaseRepositoryMock()
-        let connectionChecker = ConnectionCheckerMock()
-        let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository)
-        sut.attachInput(liveCameraTap: liveCameraTap, addPhotoTap: addPhotoTap, name: namePublisher)
-        sut.dismissImagePicker
-            .subscribe(observer)
-            .disposed(by: bag)
-        
-        // When
-        sut.selectDismissImagePicker()
-        
-        // Then
-        XCTAssertEqual(1, observer.events.count)
-    }
-    
-    func testShouldUpdateNameInRepository() {
-        // Given
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Baby.self)
-        let baby = Baby(id: "id", name: "name", photo: nil)
-        let babiesRepository = DatabaseRepositoryMock(currentBaby: baby)
-        let connectionChecker = ConnectionCheckerMock()
-        let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository)
-        sut.attachInput(liveCameraTap: liveCameraTap, addPhotoTap: addPhotoTap, name: namePublisher)
-        babiesRepository.babyUpdateObservable
-            .subscribe(observer)
-            .disposed(by: bag)
-        
-        // When
-        namePublisher.onNext("Franek")
-        
-        // Then
-        XCTAssertEqual(observer.events.count, 2)
-    }
-    
-    func testShouldUpdatePhotoInRepository() {
-        // Given
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Baby.self)
-        let photo = UIImage(named: "add")!
-        let baby = Baby(id: "id", name: "name", photo: nil)
-        let babiesRepository = DatabaseRepositoryMock(currentBaby: baby)
-        let connectionChecker = ConnectionCheckerMock()
-        let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository)
-        sut.attachInput(liveCameraTap: liveCameraTap, addPhotoTap: addPhotoTap, name: namePublisher)
-        babiesRepository.babyUpdateObservable
-            .subscribe(observer)
-            .disposed(by: bag)
-        
-        // When
-        sut.updatePhoto(photo)
-        
-        // Then
-        XCTAssertEqual(observer.events.count, 2)
-    }
-}
+    }}
