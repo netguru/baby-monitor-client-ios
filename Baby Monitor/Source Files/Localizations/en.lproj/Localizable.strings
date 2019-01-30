@@ -15,12 +15,12 @@
 "general.today" = "Today";
 
 //MARK: = Intro
-"intro.title.monitoring" = "Do your daily and keep an eye on your baby";
-"intro.title.detection" = "Automatically detect if your baby is crying";
-"intro.title.safety" = "Using Baby Monitor is safe for you and your baby";
-"intro.description.monitoring" = "Easily check on your baby whenever and wherever you are";
-"intro.description.detection" = "Each time your baby starts crying you’ll get a notification";
-"intro.description.safety" = "Video will not be recorded. Voice recordings will be used only in development purpose and sent with your permission";
+"intro.title.monitoring" = "Do your daily and keep an\n eye on your baby";
+"intro.title.detection" = "Automatically detect if\n your baby is crying";
+"intro.title.safety" = "Using Baby Monitor is safe\n for you and your baby";
+"intro.description.monitoring" = "Easily check on your baby whenever\n and wherever you are";
+"intro.description.detection" = "Each time your baby starts crying\n you’ll get a notification";
+"intro.description.safety" = "Video will not be recorded. Voice recordings\n will be used only in development purpose\n and sent with your permission";
 "intro.button.skip" = "Skip";
 "intro.button.next" = "Next";
 "intro.button.setup-baby-monitor" = "Set up Baby Monitor";

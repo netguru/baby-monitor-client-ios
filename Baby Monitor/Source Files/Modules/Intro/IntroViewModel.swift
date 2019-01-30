@@ -13,6 +13,7 @@ final class IntroViewModel {
     
     // MARK: - Coordinator callback
     var didSelectLeftAction: (() -> Void)?
+    
     var didSelectRightAction: (() -> Void)?
 
     func selectLeftAction() {

@@ -11,11 +11,6 @@ final class IntroFeatureView: BaseView {
 
     var didSelectLeftAction: (() -> Void)?
 
-    private enum Constants {
-        static let buttonHeight: CGFloat = 50
-        static let textAlpha: CGFloat = 0.7
-    }
-    
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -35,9 +30,8 @@ final class IntroFeatureView: BaseView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = UIColor.babyMonitorPurple
-        let fontSize: UIFont.CustomTextSize = UIDevice.screenSizeBiggerThan4Inches ? .body : .small
+        let fontSize: UIFont.CustomTextSize = UIDevice.screenSizeBiggerThan4Inches ? .body : .caption
         label.font = UIFont.customFont(withSize: fontSize, weight: .regular)
-        label.text = "Easily check on your baby whenever and wherever you are"
         return label
     }()
     private let leftButton: UIButton = {
@@ -105,24 +99,36 @@ final class IntroFeatureView: BaseView {
     
     private func setupConstraints() {
         introStackView.setCustomSpacing(15, after: titleLabel)
+        let lowPriority = UILayoutPriority(999)
+        let widthMultiplyContraint = introStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7)
+        let heightMultiplyContraint = introStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6)
+        widthMultiplyContraint.priority = lowPriority
+        heightMultiplyContraint.priority = lowPriority
+
+        NSLayoutConstraint.activate([
+            introStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 400),
+            widthMultiplyContraint,
+            introStackView.heightAnchor.constraint(lessThanOrEqualToConstant: 600),
+            heightMultiplyContraint
+        ])
+
         introStackView.addConstraints {[
             $0.equal(.centerX),
-            $0.equal(.centerY, constant: -50),
-            $0.equal(.width, multiplier: 0.7),
-            $0.equal(.height, multiplier: 0.6)
+            $0.equal(.centerY, constant: -50)
         ]
         }
         imageView.addConstraints {[
             $0.equalTo(introStackView, .width, .width, multiplier: 0.8)
         ]
         }
+        let sideConstantForButtons: CGFloat = 35
         leftButton.addConstraints {[
-            $0.equalTo(self, .leading, .leading, constant: 24),
-            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -44)
+            $0.equalTo(self, .leading, .leading, constant: sideConstantForButtons),
+            $0.equalTo(self, .bottom, .bottom, constant: -44)
         ]
         }
         rightButton.addConstraints {[
-            $0.equalTo(self, .trailing, .trailing, constant: -24),
+            $0.equalTo(self, .trailing, .trailing, constant: -sideConstantForButtons),
             $0.equalTo(leftButton, .centerY, .centerY)
         ]
         }
