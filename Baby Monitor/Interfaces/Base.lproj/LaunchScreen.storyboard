@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Rubik-Regular.ttf">
+            <string>Rubik-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -21,6 +26,34 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="base-background" translatesAutoresizingMaskIntoConstraints="NO" id="FAA-tC-1bo">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2SV-WJ-COz">
+                                <rect key="frame" x="199" y="737" width="72.666666666666686" height="17"/>
+                                <color key="tintColor" red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="by ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.12941176470588234" green="0.11764705882352941" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="Rubik-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Netguru">
+                                        <attributes>
+                                            <color key="NSColor" red="0.12941176470588234" green="0.11764705882352941" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="Rubik-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crafted with" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huo-uj-HB2">
+                                <rect key="frame" x="94.333333333333314" y="737" width="81.666666666666686" height="17"/>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
+                                <color key="textColor" red="0.12941176470588234" green="0.11764705882352941" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baby logo welcome screen" translatesAutoresizingMaskIntoConstraints="NO" id="fHi-Si-TXk">
                                 <rect key="frame" x="144.66666666666666" y="305.66666666666669" width="124.99999999999997" height="125"/>
                                 <color key="tintColor" red="0.6588235294" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
