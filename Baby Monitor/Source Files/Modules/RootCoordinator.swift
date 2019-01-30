@@ -60,10 +60,10 @@ final class RootCoordinator: RootCoordinatorProtocol {
         self.serverCoordinator = serverCoordinator
         childCoordinators.append(serverCoordinator)
 
-        onboardingCoordinator.onEnding = { //[weak self] in
+        onboardingCoordinator.onEnding = { [weak self] in
             switch UserDefaults.appMode {
             case .parent:
-//                self?.navigationController.setViewControllers([], animated: false)
+                self?.navigationController.setViewControllers([], animated: false)
                 tabBarCoordinator.start()
             case .baby:
                 serverCoordinator.start()
