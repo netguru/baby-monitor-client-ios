@@ -34,7 +34,7 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
                     return Observable.empty()
                 }
                 return Observable.just(jsonString)
-        }
+            }
     }
 
     private func iceCandidateJson() -> Observable<String> {
@@ -45,7 +45,7 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
                     return Observable.empty()
                 }
                 return Observable.just(jsonString)
-        }
+            }
     }
 
     private func webRtcMessageHandler() -> AnyObserver<WebRtcMessage> {

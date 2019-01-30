@@ -12,9 +12,7 @@ final class TabBarCoordinator: Coordinator {
     var navigationController: UINavigationController
     lazy var childCoordinators: [Coordinator] = [
         DashboardCoordinator(UINavigationController(), appDependencies: appDependencies),
-        ActivityLogCoordinator(UINavigationController(), appDependencies: appDependencies),
-        // TODO: Hidden for MVP
-        // LullabiesCoordinator(UINavigationController(), appDependencies: appDependencies),
+        ActivityLogCoordinator(UINavigationController(), appDependencies: appDependencies)
     ]
     var onEnding: (() -> Void)?
     

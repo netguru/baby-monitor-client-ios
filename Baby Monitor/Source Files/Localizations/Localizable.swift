@@ -17,6 +17,8 @@ enum Localizable {
         static let attention = localized("general.attention")
         static let today = localized("general.today")
         static let yesterday = localized("general.yesterday")
+        static let craftedWithLove = localized("general.craftedWithLove")
+        static let byNetguru = localized("general.byNetguru")
     }
     
     enum Intro {
@@ -81,7 +83,10 @@ enum Localizable {
     }
     
     enum ActivityLog {
+        static let title = localized("activity-log.title")
         static let emptyStateMessage = localized("activity-log.empty-state.message")
+        static let noMoreNotificationsMessage = localized("activity-log.no-more-notifications.message")
+        static let wasCrying = localized("activity-log.was-crying")
     }
     
     enum SwitchBaby {
@@ -105,6 +110,9 @@ enum Localizable {
     }
     
     enum Settings {
+        static let babyNamePlaceholder = localized("settings.babyNameTextField.placeholder")
+        static let rateButtonTitle = localized("settings.rateButton.title")
+        static let resetButtonTitle = localized("settings.resetButton.title")
         static let switchToServer = localized("settings.cell.switch-to-server")
         static let changeServer = localized("settings.cell.change-server")
         static let useML = localized("settings.cell.use-ml")
