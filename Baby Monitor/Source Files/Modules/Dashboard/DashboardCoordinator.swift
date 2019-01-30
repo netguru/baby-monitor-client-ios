@@ -12,7 +12,6 @@ final class DashboardCoordinator: Coordinator {
     var appDependencies: AppDependencies
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-
     var onEnding: (() -> Void)?
 
     private weak var dashboardViewController: DashboardViewController?
@@ -56,14 +55,16 @@ final class DashboardCoordinator: Coordinator {
                 let navigationController = UINavigationController(rootViewController: cameraPreviewViewController)
                 self.navigationController.present(navigationController, animated: true, completion: nil)
             })
-            .disposed(by: bag)
-        viewModel.dismissImagePicker.subscribe(onNext: { [unowned self] in
-                guard let dashboardViewController = self.dashboardViewController else {
-                    return
-                }
-                dashboardViewController.dismiss(animated: true, completion: nil)
-            })
-            .disposed(by: bag)
+            .disposed(by: viewModel.bag)
+//        viewModel.activityLogTap?.subscribe(onNext: { [unowned self] in
+//            let viewModel = createActivityLogViewModel()
+//            let viewController = ActivityLogViewController
+//        })
+    }
+    
+    private func createActivityLogViewModel() -> ActivityLogViewModel {
+        let viewModel = ActivityLogViewModel(databaseRepository: appDependencies.databaseRepository)
+        return viewModel
     }
 
     // Prepare CameraPreviewViewModel

@@ -52,6 +52,9 @@ final class DashboardViewController: TypedViewController<DashboardView>, UINavig
     }
     
     private func setupViewModel() {
+        viewModel.attachInput(
+            liveCameraTap: customView.rx.liveCameraTap.asObservable(),
+            activityLogTap: customView.rx.activityLogTap.asObservable())
         viewModel.baby
             .map { $0.name }
             .distinctUntilChanged()

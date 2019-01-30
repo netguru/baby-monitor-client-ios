@@ -9,11 +9,6 @@ import RxSwift
 
 class DashboardView: BaseView {
     
-    private enum Constants {
-        static let mainOffset: CGFloat = 20
-        static let disconnectedLabelHeight: CGFloat = 40
-    }
-    
     fileprivate let liveCameraButton = DashboardButtonView(role: .liveCamera)
     fileprivate let activityLogButton = DashboardButtonView(role: .activityLog)
     let babyNavigationItemView = BabyNavigationItemView(mode: .parent)
@@ -132,7 +127,7 @@ class DashboardView: BaseView {
         }
         dashboardButtonsStackView.addConstraints {[
             $0.equal(.centerX),
-            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -Constants.mainOffset * 2)
+            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -52)
         ]
         }
     }
@@ -152,6 +147,10 @@ extension Reactive where Base: DashboardView {
     
     var liveCameraTap: ControlEvent<Void> {
         return base.liveCameraButton.rx.tap
+    }
+    
+    var activityLogTap: ControlEvent<Void> {
+        return base.activityLogButton.rx.tap
     }
     
     var babyName: Binder<String> {

@@ -16,7 +16,7 @@ final class DashboardButtonView: UIView {
         var image: UIImage {
             switch self {
             case .liveCamera:
-                return #imageLiteral(resourceName: "baby-placeholder")
+                return #imageLiteral(resourceName: "baby-placeholder-button")
             case .activityLog:
                 return #imageLiteral(resourceName: "activityLog")
             }
