@@ -36,11 +36,14 @@ final class IntroCoordinator: Coordinator {
         self.introViewController = introViewController
         setFeatureViewController(featureControllers.first!)
         
-        viewModelA.didSelectNextAction = { [weak self] in
+        viewModelA.didSelectRightAction = { [weak self] in
             self?.setFeatureViewController(featureControllers[1])
             self?.introViewController?.updatePageControl(to: 1)
         }
-        viewModelB.didSelectNextAction = { [weak self] in
+        viewModelA.didSelectLeftAction = { [weak self] in
+            self?.onEnding?()
+        }
+        viewModelB.didSelectRightAction = { [weak self] in
             self?.onEnding?()
         }
         

@@ -13,9 +13,14 @@ enum IntroFeature: Int, CaseIterable {
 final class IntroViewModel {
     
     // MARK: - Coordinator callback
-    var didSelectNextAction: (() -> Void)?
-    
-    func selectNextAction() {
-        didSelectNextAction?()
+    var didSelectLeftAction: (() -> Void)?
+    var didSelectRightAction: (() -> Void)?
+
+    func selectLeftAction() {
+        didSelectLeftAction?()
+    }
+
+    func selectRightAction() {
+        didSelectRightAction?()
     }
 }

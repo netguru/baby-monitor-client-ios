@@ -37,7 +37,7 @@ final class IntroView: BaseView {
     private func setupConstraints() {
         pageControl.addConstraints {[
             $0.equal(.centerX),
-            $0.equal(.safeAreaBottom, constant: -100)
+            $0.equal(.safeAreaBottom, constant: -97)
         ]
         }
     }

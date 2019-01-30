@@ -7,8 +7,10 @@ import UIKit
 
 final class IntroFeatureView: BaseView {
     
-    var didSelectNextAction: (() -> Void)?
-    
+    var didSelectRightAction: (() -> Void)?
+
+    var didSelectLeftAction: (() -> Void)?
+
     private enum Constants {
         static let buttonHeight: CGFloat = 50
         static let textAlpha: CGFloat = 0.7
@@ -35,16 +37,22 @@ final class IntroFeatureView: BaseView {
         label.textColor = UIColor.babyMonitorPurple
         let fontSize: UIFont.CustomTextSize = UIDevice.screenSizeBiggerThan4Inches ? .body : .small
         label.font = UIFont.customFont(withSize: fontSize, weight: .regular)
-        label.text = Localizable.Intro.sleepingSoundly
+        label.text = "Easily check on your baby whenever and wherever you are"
         return label
     }()
-    private let nextButton: UIButton = {
+    private let leftButton: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapLeftButton), for: .touchUpInside)
+        button.titleLabel?.textColor = .white
+        button.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .medium)
+        button.layer.opacity = 0.3
+        return button
+    }()
+    private let rightButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(didTapRightButton), for: .touchUpInside)
         button.titleLabel?.textColor = .white
         button.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.white.cgColor
         return button
     }()
     private lazy var introStackView: UIStackView = {
@@ -62,30 +70,31 @@ final class IntroFeatureView: BaseView {
     }
     
     // MARK: - Selectors
-    @objc private func didTapNextButton() {
-        didSelectNextAction?()
+    @objc private func didTapLeftButton() {
+        didSelectLeftAction?()
     }
-    
+
+    @objc private func didTapRightButton() {
+        didSelectRightAction?()
+    }
+
     private func setup(role: IntroFeature) {
         switch role {
         case .featureDetection:
             imageView.image = #imageLiteral(resourceName: "feature camera.png")
-            nextButton.setTitle(Localizable.General.next, for: .normal)
-            titleLabel.text = Localizable.Intro.featureDetect
+            leftButton.setTitle("Skip", for: .normal)
+            rightButton.setTitle(Localizable.General.next, for: .normal)
+            titleLabel.text = "Do your daily and keep an eye on your baby"
         case .featureMonitoring:
             imageView.image = #imageLiteral(resourceName: "feature-c")
             titleLabel.text = Localizable.Intro.featureMonitor
-            nextButton.setTitle(Localizable.Intro.setupBabyMonitor, for: .normal)
-            nextButton.layer.borderColor = UIColor.clear.cgColor
-            nextButton.backgroundColor = UIColor(named: "darkPurple")
+            leftButton.setTitle("Skip", for: .normal)
+            rightButton.setTitle(Localizable.Intro.setupBabyMonitor, for: .normal)
         }
         
-        [introStackView, nextButton].forEach {
+        [introStackView, leftButton, rightButton].forEach {
             addSubview($0)
         }
-
-        nextButton.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        nextButton.layer.cornerRadius = Constants.buttonHeight / 2
         
         setupConstraints()
     }
@@ -103,11 +112,14 @@ final class IntroFeatureView: BaseView {
             $0.equalTo(introStackView, .width, .width, multiplier: 0.8)
         ]
         }
-        nextButton.addConstraints {[
-            $0.equal(.centerX),
-            $0.equalConstant(.height, Constants.buttonHeight),
-            $0.equal(.width, multiplier: 0.9),
-            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -32)
+        leftButton.addConstraints {[
+            $0.equalTo(self, .leading, .leading, constant: 24),
+            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -44)
+        ]
+        }
+        rightButton.addConstraints {[
+            $0.equalTo(self, .trailing, .trailing, constant: -24),
+            $0.equalTo(leftButton, .centerY, .centerY)
         ]
         }
     }

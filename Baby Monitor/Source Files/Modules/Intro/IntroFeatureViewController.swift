@@ -25,8 +25,11 @@ class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
     }
     
     private func setup() {
-        customView.didSelectNextAction = { [weak self] in
-            self?.viewModel.selectNextAction()
+        customView.didSelectRightAction = { [weak self] in
+            self?.viewModel.selectRightAction()
+        }
+        customView.didSelectLeftAction = { [weak self] in
+            self?.viewModel.selectLeftAction()
         }
     }
 }
