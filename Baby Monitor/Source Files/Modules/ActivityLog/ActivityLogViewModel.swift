@@ -17,10 +17,10 @@ final class ActivityLogViewModel {
         return currentSections.count
     }
     private(set) var baby: Observable<Baby>
+    private(set) var currentSections: [GeneralSection<ActivityLogEvent>] = []
     
     private let dateFormatter = DateFormatter()
     private let databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol
-    private var currentSections: [GeneralSection<ActivityLogEvent>] = []
     private let disposeBag = DisposeBag()
 
     init(databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol) {

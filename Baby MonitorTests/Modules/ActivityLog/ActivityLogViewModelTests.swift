@@ -19,82 +19,32 @@ class ActivityLogViewModelTests: XCTestCase {
         bag = DisposeBag()
     }
     
-    func testShouldConfigureCell() {
-        // Given
-        let babiesRepository = DatabaseRepositoryMock()
-        let sut = ActivityLogViewModel(databaseRepository: babiesRepository)
-        let photo = UIImage(named: "add")
-        let activityLogEvent = ActivityLogEvent(mode: .cryingEvent)
-        let baby = Baby(id: "id", name: "name", photo: photo)
-        babiesRepository.save(baby: baby)
-        let cell = BabyMonitorCellMock()
-        
-        // When
-        sut.configure(cell: cell, for: activityLogEvent)
-
-        // Then
-        XCTAssertEqual(photo, cell.image)
-        XCTAssertNotNil(cell.secondaryText)
-        XCTAssertNotNil(cell.mainText)
-    }
-    
-    func testShouldConfigureHeaderCell() {
-        // Given
-        let disposeBag = DisposeBag()
-        let babiesRepository = DatabaseRepositoryMock()
-        babiesRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent))
-        let sut = ActivityLogViewModel(databaseRepository: babiesRepository)
-        sut.sections.subscribe(onNext: { _ in
-            
-        })
-        .disposed(by: disposeBag)
-        let cell = BabyMonitorCellMock()
-        
-        // When
-        sut.configure(headerCell: cell, for: 0)
-        
-        // Then
-        XCTAssertTrue(cell.isConfiguredAsHeader)
-        XCTAssertNotNil(cell.mainText)
-    }
-    
-    func testShouldNotFillHeaderCellMainText() {
-        // Given
-        let disposeBag = DisposeBag()
-        let babiesRepository = DatabaseRepositoryMock()
-        let sut = ActivityLogViewModel(databaseRepository: babiesRepository)
-        sut.sections.subscribe(onNext: { _ in
-        })
-            .disposed(by: disposeBag)
-        let cell = BabyMonitorCellMock()
-        
-        // When
-        sut.configure(headerCell: cell, for: 0)
-        
-        // Then
-        XCTAssertTrue(cell.isConfiguredAsHeader)
-        XCTAssertNil(cell.mainText)
-    }
-    
     func testShouldGenerateProperSections() {
         // Given
         let disposeBag = DisposeBag()
         let babiesRepository = DatabaseRepositoryMock()
+        let tommorowCryingLogEvent = ActivityLogEvent(mode: .cryingEvent, date: Date.tommorow)
         let yesterdayCryingLogEvent = ActivityLogEvent(mode: .cryingEvent, date: Date.yesterday)
+        let secondYesterdayCryingLogEvent = ActivityLogEvent(mode: .cryingEvent, date: Date.yesterday.addingTimeInterval(1))
         let todayCryingLogEvent = ActivityLogEvent(mode: .cryingEvent, date: Date())
-        babiesRepository.save(activityLogEvent: yesterdayCryingLogEvent)
-        babiesRepository.save(activityLogEvent: todayCryingLogEvent)
         let expectedSections = [
-            GeneralSection<ActivityLogEvent>(title: "", items: [yesterdayCryingLogEvent]),
-            GeneralSection<ActivityLogEvent>(title: "", items: [todayCryingLogEvent])
+            GeneralSection<ActivityLogEvent>(title: "", items: [tommorowCryingLogEvent]),
+            GeneralSection<ActivityLogEvent>(title: "", items: [todayCryingLogEvent]),
+            GeneralSection<ActivityLogEvent>(title: "", items: [secondYesterdayCryingLogEvent, yesterdayCryingLogEvent])
         ]
         let sut = ActivityLogViewModel(databaseRepository: babiesRepository)
         var resultSections: [GeneralSection<ActivityLogEvent>] = []
-        // When
-        sut.sections.subscribe(onNext: { sections in
-            resultSections = sections
+        
+        sut.sectionsChangeObservable.subscribe(onNext: {
+            resultSections = sut.currentSections
         })
             .disposed(by: disposeBag)
+        // When
+        
+        babiesRepository.save(activityLogEvent: yesterdayCryingLogEvent)
+        babiesRepository.save(activityLogEvent: secondYesterdayCryingLogEvent)
+        babiesRepository.save(activityLogEvent: todayCryingLogEvent)
+        babiesRepository.save(activityLogEvent: tommorowCryingLogEvent)
         
         // Then
         XCTAssertEqual(expectedSections, resultSections)
