@@ -46,13 +46,13 @@ final class ActivityLogViewModel {
         }
         let activityLogEvent = currentSections[indexPath.section].items[indexPath.row
         ]
+        let dateText = textDateForCell(from: activityLogEvent.date)
+        cell.update(secondaryText: dateText)
         switch activityLogEvent.mode {
         case .emptyState:
             cell.update(mainText: Localizable.ActivityLog.emptyStateMessage)
         case .cryingEvent:
             cell.update(mainText: "\(databaseRepository.baby.name) \(Localizable.ActivityLog.wasCrying)")
-            let dateText = textDateForCell(from: activityLogEvent.date)
-            cell.update(secondaryText: dateText)
         }
     }
 
@@ -75,12 +75,13 @@ final class ActivityLogViewModel {
                 sortedLogs.append([log])
             } else {
                 if Calendar.current.compare(logs[index].date, to: logs[index - 1].date, toGranularity: .day) == .orderedSame {
-                    sortedLogs[sortedLogs.endIndex - 1].append(log)
+                    sortedLogs[sortedLogs.endIndex - 1].insert(log, at: 0)
                 } else {
                     sortedLogs.append([log])
                 }
             }
         }
+        sortedLogs.reverse()
         return sortedLogs
     }
     

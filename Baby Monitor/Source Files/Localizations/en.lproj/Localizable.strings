@@ -13,6 +13,8 @@
 "general.attention" = "Attention!";
 "general.yesterday" = "Yesterday";
 "general.today" = "Today";
+"general.craftedWithLove" = "Crafted with ❤️";
+"general.byNetguru" = "by Netguru";
 
 //MARK: = Intro
 "intro.title.detect" = "Automatically detect if your \nbaby is crying";
@@ -96,6 +98,9 @@
 "settings.cell.send-recordings-to-server" = "Send crying records to server";
 "settings.cell.clear-data" = "Clear data";
 "settings.cell.clear-data-alert-message" = "All data will be cleared. Would you like to continue?";
+"settings.babyNameTextField.placeholder" = "Your baby name";
+"settings.rateButton.title" = "Rate us";
+"settings.resetButton.title" = "Reset the app";
 
 //MARK: - Errors
 "errors.title.error-occured" = "Error occured";

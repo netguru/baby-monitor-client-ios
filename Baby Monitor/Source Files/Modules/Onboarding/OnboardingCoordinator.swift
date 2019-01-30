@@ -24,7 +24,8 @@ final class OnboardingCoordinator: Coordinator {
     func start() {
         switch UserDefaults.appMode {
         case .parent:
-            pairingCoordinator?.start()
+//            pairingCoordinator?.start()
+            onEnding?()
         case .none:
             childCoordinators.first?.start()
         case .baby:
