@@ -15,9 +15,14 @@
 "general.today" = "Today";
 
 //MARK: = Intro
-"intro.title.detect" = "Automatically detect if your \nbaby is crying";
-"intro.title.monitor" = "Monitor your baby";
-"intro.description.sleepingSoundly" = "Your baby is lying in bed, looks like \nit is sleeping soundly.";
+"intro.title.monitoring" = "Do your daily and keep an eye on your baby";
+"intro.title.detection" = "Automatically detect if your baby is crying";
+"intro.title.safety" = "Using Baby Monitor is safe for you and your baby";
+"intro.description.monitoring" = "Easily check on your baby whenever and wherever you are";
+"intro.description.detection" = "Each time your baby starts crying you’ll get a notification";
+"intro.description.safety" = "Video will not be recorded. Voice recordings will be used only in development purpose and sent with your permission";
+"intro.button.skip" = "Skip";
+"intro.button.next" = "Next";
 "intro.button.setup-baby-monitor" = "Set up Baby Monitor";
 
 //MARK: - Onboarding

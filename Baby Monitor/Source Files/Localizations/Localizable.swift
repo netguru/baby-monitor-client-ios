@@ -20,8 +20,20 @@ enum Localizable {
     }
     
     enum Intro {
-        static let featureDetect = localized("intro.title.detect")
-        static let featureMonitor = localized("intro.title.monitor")
+        enum Title {
+            static let monitoring = localized("intro.title.monitoring")
+            static let detection = localized("intro.title.detection")
+            static let safety = localized("intro.title.safety")
+        }
+        enum Description {
+            static let monitoring = localized("intro.description.monitoring")
+            static let detection = localized("intro.description.detection")
+            static let safety = localized("intro.description.safety")
+        }
+        enum Buttons {
+            static let skip = localized("intro.button.skip")
+            static let next = localized("intro.button.next")
+        }
         static let sleepingSoundly = localized("intro.description.sleepingSoundly")
         static let setupBabyMonitor = localized("intro.button.setup-baby-monitor")
     }

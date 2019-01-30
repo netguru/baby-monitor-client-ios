@@ -79,19 +79,23 @@ final class IntroFeatureView: BaseView {
     }
 
     private func setup(role: IntroFeature) {
+        leftButton.setTitle(Localizable.Intro.Buttons.skip, for: .normal)
+        rightButton.setTitle(Localizable.Intro.Buttons.next, for: .normal)
         switch role {
-        case .featureDetection:
+        case .monitoring:
             imageView.image = #imageLiteral(resourceName: "feature camera.png")
-            leftButton.setTitle("Skip", for: .normal)
-            rightButton.setTitle(Localizable.General.next, for: .normal)
-            titleLabel.text = "Do your daily and keep an eye on your baby"
-        case .featureMonitoring:
-            imageView.image = #imageLiteral(resourceName: "feature-c")
-            titleLabel.text = Localizable.Intro.featureMonitor
-            leftButton.setTitle("Skip", for: .normal)
-            rightButton.setTitle(Localizable.Intro.setupBabyMonitor, for: .normal)
+            titleLabel.text = Localizable.Intro.Title.monitoring
+            descriptionLabel.text = Localizable.Intro.Description.monitoring
+        case .detection:
+            imageView.image = #imageLiteral(resourceName: "feature baby.png")
+            titleLabel.text = Localizable.Intro.Title.detection
+            descriptionLabel.text = Localizable.Intro.Description.detection
+        case .safety:
+            imageView.image = #imageLiteral(resourceName: "safety.png")
+            titleLabel.text = Localizable.Intro.Title.safety
+            descriptionLabel.text = Localizable.Intro.Description.safety
         }
-        
+
         [introStackView, leftButton, rightButton].forEach {
             addSubview($0)
         }
