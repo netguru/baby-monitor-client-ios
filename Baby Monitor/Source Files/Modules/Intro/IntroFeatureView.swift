@@ -24,7 +24,7 @@ final class IntroFeatureView: BaseView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .white
-        let fontSize: UIFont.CustomTextSize = UIDevice.screenSizeBiggerThan4Inches ? .h3 : .caption
+        let fontSize: UIFont.CustomTextSize = UIDevice.screenSizeBiggerThan4Inches ? .h3 : .body
         label.font = UIFont.customFont(withSize: fontSize, weight: .bold)
         return label
     }()
@@ -95,12 +95,12 @@ final class IntroFeatureView: BaseView {
         introStackView.addConstraints {[
             $0.equal(.centerX),
             $0.equal(.centerY, constant: -50),
-            $0.equal(.width, multiplier: 0.75),
+            $0.equal(.width, multiplier: 0.7),
             $0.equal(.height, multiplier: 0.6)
         ]
         }
         imageView.addConstraints {[
-            $0.equalTo(introStackView, .width, .width, multiplier: 0.9)
+            $0.equalTo(introStackView, .width, .width, multiplier: 0.8)
         ]
         }
         nextButton.addConstraints {[
