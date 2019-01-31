@@ -27,6 +27,7 @@ final class CameraPreviewView: BaseView {
     
     // MARK: - Private functions
     private func setup() {
+        setupBackgroundImage(UIImage())
         backgroundColor = .gray
         addSubview(mediaView)
         mediaView.addConstraints { $0.equalSafeAreaEdges() }
@@ -40,9 +41,9 @@ extension Reactive where Base: CameraPreviewView {
         })
     }
     
-    var babyPhoto: Binder<UIImage> {
+    var babyPhoto: Binder<UIImage?> {
         return Binder(base.babyNavigationItemView, binding: { navigationView, photo in
-            navigationView.updateBabyPhoto(photo)
+            navigationView.updateBabyPhoto(photo ?? UIImage())
         })
     }
 }

@@ -39,6 +39,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     
     // MARK: - Private functions
     private func setup() {
+        view.backgroundColor = .babyMonitorDarkGray
         navigationItem.leftBarButtonItem = customView.cancelItemButton
         navigationItem.titleView = customView.babyNavigationItemView
         customView.cancelItemButton.target = self
@@ -59,7 +60,9 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
             .bind(to: customView.rx.babyName)
             .disposed(by: bag)
         viewModel.baby
-            .map { $0.photo ?? UIImage() }
+            .map { $0.photo }
+            .filter { $0 != nil }
+            .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
     }

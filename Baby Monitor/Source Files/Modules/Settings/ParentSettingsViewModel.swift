@@ -7,37 +7,49 @@ import RxSwift
 import RxCocoa
 
 final class ParentSettingsViewModel {
-
+    
     lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
-    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
-    private(set) var addPhoto: Observable<Void>?
-    private let babyRepo: BabyModelControllerProtocol
+    lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
+    private(set) var addPhotoTap: Observable<Void>?
+    private(set) var resetAppTap: Observable<Void>?
+    private(set) var cancelTap: Observable<Void>?
+    
+    private let babyModelController: BabyModelControllerProtocol
+    private let memoryCleaner: MemoryCleanerProtocol
+    private let urlConfiguration: URLConfiguration
     private let bag = DisposeBag()
     private let dismissImagePickerSubject = PublishRelay<Void>()
-
-
-    init(babyRepo: BabyModelControllerProtocol) {
-        self.babyRepo = babyRepo
+    
+    init(babyModelController: BabyModelControllerProtocol, memoryCleaner: MemoryCleanerProtocol, urlConfiguration: URLConfiguration) {
+        self.babyModelController = babyModelController
+        self.memoryCleaner = memoryCleaner
+        self.urlConfiguration = urlConfiguration
     }
-
-    func attachInput(babyName: Observable<String>, addPhotoTap: Observable<Void>, resetAppTap: Observable<Void>) {
-        addPhoto = addPhotoTap
-        babyName.subscribe(onNext: { [weak self] name in
-            self?.babyRepo.updateName(name)
+    
+    func attachInput(babyName: Observable<String>, addPhotoTap: Observable<Void>, resetAppTap: Observable<Void>, cancelTap: Observable<Void>) {
+        self.addPhotoTap = addPhotoTap
+        self.resetAppTap = resetAppTap
+        self.cancelTap = cancelTap
+        babyName.subscribe({ [weak self] event in
+            if let name = event.element {
+                self?.babyModelController.updateName(name)
+            }
         })
-        .disposed(by: bag)
-        resetAppTap.subscribe(onNext: { [weak self] _ in
-            self?.babyRepo.removeAllData()
-            // TODO: Logout from the app
-        })
-        .disposed(by: bag)
+            .disposed(by: bag)
     }
-
+    
     func updatePhoto(_ photo: UIImage) {
-        babyRepo.updatePhoto(photo)
+        babyModelController.updatePhoto(photo)
     }
-
+    
     func selectDismissImagePicker() {
         dismissImagePickerSubject.accept(())
+    }
+    
+    func clearAllDataForNoneState() {
+        babyModelController.removeAllData()
+        memoryCleaner.cleanMemory()
+        urlConfiguration.url = nil
+        UserDefaults.appMode = .none
     }
 }

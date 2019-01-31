@@ -6,8 +6,9 @@
 import UIKit
 import RxSwift
 
-final class DashboardViewController: TypedViewController<DashboardView>, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+final class DashboardViewController: TypedViewController<DashboardView>, UINavigationControllerDelegate {
 
+    private var timer: Timer?
     private let viewModel: DashboardViewModel
     private let bag = DisposeBag()
 
@@ -15,39 +16,40 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
         self.viewModel = viewModel
         super.init(viewMaker: DashboardView())
     }
+    
+    deinit {
+        timer?.invalidate()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         setupViewModel()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.8, repeats: true, block: { [weak self] _ in
+            self?.customView.firePulse()
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.timer?.fire()
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
-        customView.updatePhotoButtonLayer()
-    }
-
-    // MARK: - UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        viewModel.updatePhoto(image)
-        viewModel.selectDismissImagePicker()
-    }
-
-    // MARK: - Selectors
-    @objc private func didTouchEditProfileButton() {
-        //TODO: add implementation
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.rightBarButtonItem = customView.settingsBarButtonItem
     }
 
     // MARK: - Private functions
     private func setup() {
-        navigationItem.rightBarButtonItem = customView.editProfileBarButtonItem
+        view.backgroundColor = .babyMonitorDarkGray
         navigationItem.titleView = customView.babyNavigationItemView
     }
     
     private func setupViewModel() {
-        viewModel.attachInput(liveCameraTap: customView.rx.liveCameraTap.asObservable(), addPhotoTap: customView.rx.addPhotoTap.asObservable(), name: customView.rx.babyName.asObservable())
+        viewModel.attachInput(
+            liveCameraTap: customView.rx.liveCameraTap.asObservable(),
+            activityLogTap: customView.rx.activityLogTap.asObservable(),
+            settingsTap: customView.rx.settingsTap.asObservable())
         viewModel.baby
             .map { $0.name }
             .distinctUntilChanged()
@@ -55,6 +57,7 @@ final class DashboardViewController: TypedViewController<DashboardView>, UIImage
             .disposed(by: bag)
         viewModel.baby
             .map { $0.photo }
+            .filter { $0 != nil }
             .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)

@@ -26,7 +26,11 @@ final class ParentSettingsCoordinator: Coordinator {
 
     // MARK: - private functions
     private func showSettings() {
-        let viewModel = ParentSettingsViewModel(babyRepo: appDependencies.databaseRepository)
+        let viewModel = ParentSettingsViewModel(
+            babyModelController: appDependencies.databaseRepository,
+            memoryCleaner: appDependencies.memoryCleaner,
+            urlConfiguration: appDependencies.urlConfiguration
+        )
         let settingsViewController = ParentSettingsViewController(viewModel: viewModel)
         settingsViewController.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
@@ -34,11 +38,11 @@ final class ParentSettingsCoordinator: Coordinator {
         })
         .disposed(by: bag)
         self.parentSettingsViewController = settingsViewController
-        navigationController.pushViewController(settingsViewController, animated: false)
+        navigationController.pushViewController(settingsViewController, animated: true)
     }
 
     private func connect(toParentSettingsViewModel viewModel: ParentSettingsViewModel) {
-        viewModel.addPhoto?.subscribe(onNext: { [unowned self] in
+        viewModel.addPhotoTap?.subscribe(onNext: { [unowned self] in
             self.showImagePickerAlert()
         })
         .disposed(by: bag)
@@ -46,7 +50,27 @@ final class ParentSettingsCoordinator: Coordinator {
             self.parentSettingsViewController?.dismiss(animated: true, completion: nil)
         })
         .disposed(by: bag)
+        viewModel.resetAppTap?.subscribe(onNext: { [unowned self] in
+            let continueHandler: (() -> Void) = { [weak self] in
+                viewModel.clearAllDataForNoneState()
+                self?.onEnding?()
+            }
+            let continueAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = ("Continue", UIAlertAction.Style.destructive, continueHandler)
+            let cancelAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = (Localizable.General.cancel, UIAlertAction.Style.default, nil)
+            AlertPresenter.showDefaultAlert(
+                title: Localizable.General.warning,
+                message: Localizable.Settings.clearDataAlertMessage,
+                onViewController: self.navigationController,
+                customActions: [continueAlertAction, cancelAlertAction])
+        })
+            .disposed(by: bag)
+        viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
+            self.navigationController.popViewController(animated: true)
+            self.onEnding?()
+        })
+        .disposed(by: bag)
     }
+
 
     private func showImagePickerAlert() {
         let imagePickerController = UIImagePickerController()

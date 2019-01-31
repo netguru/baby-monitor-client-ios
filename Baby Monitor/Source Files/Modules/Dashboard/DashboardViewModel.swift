@@ -10,12 +10,12 @@ import RxSwift
 final class DashboardViewModel {
 
     private let babyModelController: BabyModelControllerProtocol
-    private let bag = DisposeBag()
+    private(set) var bag = DisposeBag()
 
     // MARK: - Coordinator callback
     private(set) var liveCameraPreview: Observable<Void>?
-    private(set) var addPhoto: Observable<Void>?
-    lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
+    private(set) var activityLogTap: Observable<Void>?
+    private(set) var settingsTap: Observable<Void>?
     
     private let dismissImagePickerSubject = PublishRelay<Void>()
     
@@ -35,22 +35,12 @@ final class DashboardViewModel {
         connectionChecker.stop()
     }
     
-    func selectDismissImagePicker() {
-        dismissImagePickerSubject.accept(())
-    }
-    
-    func attachInput(liveCameraTap: Observable<Void>,
-                     addPhotoTap: Observable<Void>,
-                     name: Observable<String>) {
+    func attachInput(liveCameraTap: Observable<Void>, activityLogTap: Observable<Void>, settingsTap: Observable<Void>) {
         liveCameraPreview = liveCameraTap
-        addPhoto = addPhotoTap
-        name.subscribe(onNext: { [weak self] name in
-            self?.babyModelController.updateName(name)
-        })
-            .disposed(by: bag)
+        self.activityLogTap = activityLogTap
+        self.settingsTap = settingsTap
     }
 
-    // TODO: Remove when baby service is done https://netguru.atlassian.net/browse/BM-119
     /// Sets a new photo for the current baby.
     ///
     /// - Parameter photo: A new photo for baby.

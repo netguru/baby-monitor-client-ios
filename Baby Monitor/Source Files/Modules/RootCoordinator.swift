@@ -13,7 +13,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
     var appDependencies: AppDependencies
     
     private weak var onboardingCoordinator: OnboardingCoordinator?
-    private weak var tabBarCoordinator: TabBarCoordinator?
+    private weak var dashboardCoordinator: DashboardCoordinator?
     private weak var serverCoordinator: ServerCoordinator?
     
     private let navigationController = UINavigationController()
@@ -41,9 +41,9 @@ final class RootCoordinator: RootCoordinatorProtocol {
         self.onboardingCoordinator = onboardingCoordinator
         childCoordinators.append(onboardingCoordinator)
         
-        let tabBarCoordinator = TabBarCoordinator(navigationController, appDependencies: appDependencies)
-        self.tabBarCoordinator = tabBarCoordinator
-        tabBarCoordinator.onEnding = { [unowned self] in
+        let dashboardCoordinator = DashboardCoordinator(navigationController, appDependencies: appDependencies)
+        self.dashboardCoordinator = dashboardCoordinator
+        dashboardCoordinator.onEnding = { [unowned self] in
             // For now triggering tabBarCoordinator onEnding is only in situation where user wants to clear all data
             switch UserDefaults.appMode {
             case .none:
@@ -54,7 +54,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
                 break
             }
         }
-        childCoordinators.append(tabBarCoordinator)
+        childCoordinators.append(dashboardCoordinator)
         
         let serverCoordinator = ServerCoordinator(navigationController, appDependencies: appDependencies)
         self.serverCoordinator = serverCoordinator
@@ -64,7 +64,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
             switch UserDefaults.appMode {
             case .parent:
                 self?.navigationController.setViewControllers([], animated: false)
-                tabBarCoordinator.start()
+                dashboardCoordinator.start()
             case .baby:
                 serverCoordinator.start()
             case .none:

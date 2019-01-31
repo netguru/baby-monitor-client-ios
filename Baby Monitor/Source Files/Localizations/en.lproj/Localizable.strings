@@ -13,8 +13,8 @@
 "general.attention" = "Attention!";
 "general.yesterday" = "Yesterday";
 "general.today" = "Today";
-"general.craftedWithLove" = "Crafted with ❤️";
 "general.byNetguru" = "by Netguru";
+"general.your-baby" = "Your baby";
 
 //MARK: = Intro
 "intro.title.detect" = "Automatically detect if your \nbaby is crying";
@@ -57,7 +57,9 @@
 "dashboard.action.choose-image" = "Choose image source";
 "dashboard.action-button.camera" = "Camera";
 "dashboard.action-button.photoLibrary" = "Photo library";
-"dashboard.text-field-placeholder.add-name" = "What's your baby's name";
+"dashboard.text-field-placeholder.your-baby-name" = "Your baby name";
+"dashboard.connection-status-connected" = "Devices connected";
+"dashboard.connection-status-disconnected" = "Devices disconnected";
 
 //MARK: - TabBar
 "tab-bar.dashboard" = "Dashboard";

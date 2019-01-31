@@ -19,6 +19,7 @@ enum Localizable {
         static let yesterday = localized("general.yesterday")
         static let craftedWithLove = localized("general.craftedWithLove")
         static let byNetguru = localized("general.byNetguru")
+        static let yourBaby = localized("general.your-baby")
     }
     
     enum Intro {
@@ -77,7 +78,9 @@ enum Localizable {
         static let chooseImage = localized("dashboard.action.choose-image")
         static let camera = localized("dashboard.action-button.camera")
         static let photoLibrary = localized("dashboard.action-button.photoLibrary")
-        static let addName = localized("dashboard.text-field-placeholder.add-name")
+        static let yourBabyName = localized("dashboard.text-field-placeholder.your-baby-name")
+        static let connectionStatusConnected = localized("dashboard.connection-status-connected")
+        static let connectionStatusDisconnected = localized("dashboard.connection-status-disconnected")
     }
     
     enum ActivityLog {

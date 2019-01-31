@@ -8,7 +8,7 @@ import UIKit
 
 final class Baby {
     
-    static let initial = Baby(name: "Anonymous")
+    static let initial = Baby(name: "")
     var name: String
     var photo: UIImage?
     let id: String

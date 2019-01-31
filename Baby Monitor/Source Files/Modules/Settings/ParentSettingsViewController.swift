@@ -33,7 +33,7 @@ class ParentSettingsViewController: TypedViewController<SettingsView>, UINavigat
     private func setup() {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.babyMonitorNonTranslucentWhite, .font: UIFont.customFont(withSize: .body)]
         navigationItem.title = "Settings"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "arrow_back"), style: .plain, target: self, action: #selector(cancel))
+        navigationItem.leftBarButtonItem = customView.cancelButtonItem
         customView.rx.rateButtonTap.asObservable().subscribe(onNext: { [weak self] _ in
             self?.handleRating()
         })
@@ -41,7 +41,12 @@ class ParentSettingsViewController: TypedViewController<SettingsView>, UINavigat
     }
 
     private func setupViewModel() {
-        viewModel.attachInput(babyName: customView.rx.babyName.asObservable(), addPhotoTap: customView.rx.editPhotoTap.asObservable(), resetAppTap: customView.rx.resetButtonTap.asObservable())
+        viewModel.attachInput(
+            babyName: customView.rx.babyName.asObservable(),
+            addPhotoTap: customView.rx.editPhotoTap.asObservable(),
+            resetAppTap: customView.rx.resetButtonTap.asObservable(),
+            cancelTap: customView.rx.cancelButtonTap.asObservable()
+        )
         viewModel.baby
             .map { $0.name }
             .distinctUntilChanged()
@@ -52,11 +57,6 @@ class ParentSettingsViewController: TypedViewController<SettingsView>, UINavigat
             .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
-    }
-
-    @objc
-    private func cancel() {
-        navigationController?.popViewController(animated: true)
     }
 
     // TODO: - Redirect to Appstore and give possibility of rating after app will be on Appstore

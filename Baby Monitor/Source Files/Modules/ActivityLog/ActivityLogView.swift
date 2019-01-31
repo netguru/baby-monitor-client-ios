@@ -13,6 +13,10 @@ final class ActivityLogView: BaseView {
         tableView.separatorStyle = .none
         return tableView
     }()
+    let cancelItemButton = UIBarButtonItem(image: #imageLiteral(resourceName: "arrowBack"),
+                                           style: .plain,
+                                           target: nil,
+                                           action: nil)
     
     private lazy var tableFooterView: UIView = {
         let view = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
@@ -32,7 +36,8 @@ final class ActivityLogView: BaseView {
     
     // MARK: - private functions
     private func setup() {
-        backgroundColor = .babyMonitorPurple
+        backgroundColor = .babyMonitorDarkGray
+        setupBackgroundImage(UIImage())
         tableView.backgroundColor = .babyMonitorDarkGray
         tableView.tableFooterView = tableFooterView
         addSubview(tableView)
