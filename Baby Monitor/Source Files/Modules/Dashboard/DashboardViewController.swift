@@ -16,6 +16,10 @@ final class DashboardViewController: TypedViewController<DashboardView>, UINavig
         self.viewModel = viewModel
         super.init(viewMaker: DashboardView())
     }
+    
+    deinit {
+        timer?.invalidate()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

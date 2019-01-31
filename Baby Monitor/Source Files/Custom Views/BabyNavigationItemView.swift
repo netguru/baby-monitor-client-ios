@@ -70,7 +70,7 @@ final class BabyNavigationItemView: UIView {
     }
     
     func firePulse() {
-        AnimationFactory.shared.firePulse(onView: pulsatoryView, fromColor: UIColor.babyMonitorLightGreen, toColor: UIColor(named: "darkPurple")!)
+        AnimationFactory.shared.firePulse(onView: pulsatoryView, fromColor: UIColor.babyMonitorLightGreen, toColor: UIColor(named: "darkPurple") ?? .purple)
     }
     
     // MARK: - View setup
