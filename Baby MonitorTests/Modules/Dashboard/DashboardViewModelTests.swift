@@ -12,12 +12,14 @@ class DashboardViewModelTests: XCTestCase {
     
     private var liveCameraTap = PublishSubject<Void>()
     private var activityLogTap = PublishSubject<Void>()
+    private var settingsTap = PublishSubject<Void>()
     
     private var bag = DisposeBag()
     
     override func setUp() {
         liveCameraTap = PublishSubject<Void>()
         activityLogTap = PublishSubject<Void>()
+        settingsTap = PublishSubject<Void>()
         bag = DisposeBag()
     }
 
@@ -55,7 +57,7 @@ class DashboardViewModelTests: XCTestCase {
         let babiesRepository = DatabaseRepositoryMock()
         let connectionChecker = ConnectionCheckerMock()
         let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository)
-        sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap)
+        sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap, settingsTap: settingsTap)
         sut.liveCameraPreview?
             .subscribe(observer)
             .disposed(by: bag)
@@ -74,7 +76,7 @@ class DashboardViewModelTests: XCTestCase {
         let babiesRepository = DatabaseRepositoryMock()
         let connectionChecker = ConnectionCheckerMock()
         let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository)
-        sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap)
+        sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap, settingsTap: settingsTap)
         sut.activityLogTap?
             .subscribe(observer)
             .disposed(by: bag)
