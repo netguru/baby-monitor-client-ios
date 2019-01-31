@@ -36,6 +36,7 @@ final class ClientSetupOnboardingViewModel {
         self.activityLogEventsRepository = activityLogEventsRepository
         self.cacheService = cacheService
         self.webSocketEventMessageService = webSocketEventMessageService
+        setupRx()
     }
     
     func startDiscovering(withTimeout timeout: TimeInterval = 5.0) {
@@ -44,6 +45,10 @@ final class ClientSetupOnboardingViewModel {
             self?.netServiceClient.stopFinding()
             self?.searchCancelTimer = nil
         })
+        netServiceClient.findService()
+    }
+    
+    private func setupRx() {
         netServiceClient.serviceObservable
             .take(1)
             .subscribe(onNext: { [weak self] ip, port in
@@ -61,7 +66,6 @@ final class ClientSetupOnboardingViewModel {
                 self.didFinishDeviceSearch?(.success)
             })
             .disposed(by: disposeBag)
-        netServiceClient.findService()
     }
     
     private func saveEmptyStateIfNeeded() {
