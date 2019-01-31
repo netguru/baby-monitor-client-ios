@@ -9,11 +9,6 @@ import RxSwift
 final class DashboardViewController: TypedViewController<DashboardView>, UINavigationControllerDelegate {
 
     private var timer: Timer?
-    private lazy var settingsBarButtonItem = UIBarButtonItem(
-        image: #imageLiteral(resourceName: "settings"),
-        style: .plain,
-        target: self,
-        action: #selector(didTouchSettingsButton))
     private let viewModel: DashboardViewModel
     private let bag = DisposeBag()
 
@@ -37,12 +32,7 @@ final class DashboardViewController: TypedViewController<DashboardView>, UINavig
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBar.isHidden = false
-        navigationItem.rightBarButtonItem = settingsBarButtonItem
-    }
-    
-    @objc
-    private func didTouchSettingsButton() {
-        //TODO: implement showing settings
+        navigationItem.rightBarButtonItem = customView.settingsBarButtonItem
     }
 
     // MARK: - Private functions
@@ -54,7 +44,8 @@ final class DashboardViewController: TypedViewController<DashboardView>, UINavig
     private func setupViewModel() {
         viewModel.attachInput(
             liveCameraTap: customView.rx.liveCameraTap.asObservable(),
-            activityLogTap: customView.rx.activityLogTap.asObservable())
+            activityLogTap: customView.rx.activityLogTap.asObservable(),
+            settingsTap: customView.rx.settingsTap.asObservable())
         viewModel.baby
             .map { $0.name }
             .distinctUntilChanged()
@@ -62,6 +53,7 @@ final class DashboardViewController: TypedViewController<DashboardView>, UINavig
             .disposed(by: bag)
         viewModel.baby
             .map { $0.photo }
+            .filter { $0 != nil }
             .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)

@@ -9,45 +9,33 @@ import RxCocoa
 
 final class SettingsView: UIView {
 
+    let cancelButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "arrow_back"), style: .plain, target: nil, action: nil)
+    
     fileprivate let editBabyPhotoButton = UIButton(type: .custom)
-
     fileprivate let editBabyPhotoImage = UIImageView(image: #imageLiteral(resourceName: "edit_baby_photo"))
-
     fileprivate let babyNameTextField: UITextField = {
         let textField = UITextField()
         textField.returnKeyType = .done
-        textField.placeholder = Localizable.Settings.babyNamePlaceholder
+        textField.attributedPlaceholder = NSAttributedString(
+            string: Localizable.Settings.babyNamePlaceholder,
+            attributes: [
+                .font: UIFont.customFont(withSize: .h2, weight: .medium),
+                .foregroundColor: UIColor.babyMonitorPurple.withAlphaComponent(0.5)
+            ])
+        textField.font = UIFont.customFont(withSize: .h2, weight: .medium)
         textField.textColor = .babyMonitorPurple
         return textField
     }()
 
     private let editImageView = UIImageView(image: #imageLiteral(resourceName: "edit"))
-
     private let underline: UIView = {
         let view = UIView()
         view.backgroundColor = .babyMonitorPurple
         return view
     }()
 
-    private lazy var customTextInputStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [babyNameTextField, editImageView])
-        stackView.axis = .horizontal
-        stackView.distribution = .fillProportionally
-        return stackView
-    }()
-
-    private let editBabyNameStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.spacing = 12.5
-        return stackView
-    }()
-
     fileprivate let rateButton = RoundedRectangleButton(title: Localizable.Settings.rateButtonTitle, backgroundColor: .babyMonitorPurple)
-
     fileprivate let resetButton = RoundedRectangleButton(title: Localizable.Settings.resetButtonTitle, backgroundColor: .babyMonitorDarkPurple, borderColor: .babyMonitorNonTranslucentWhite)
-
     private lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [rateButton, resetButton])
         stackView.axis = .vertical
@@ -55,13 +43,10 @@ final class SettingsView: UIView {
         stackView.spacing = 16
         return stackView
     }()
-
-    private let signatureLabel: UILabel = {
-        let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: Localizable.General.craftedWithLove, attributes: [.foregroundColor: UIColor.babyMonitorNonTranslucentWhite, .font: UIFont.customFont(withSize: .caption)])
-        attributedText.append(NSAttributedString(string: Localizable.General.byNetguru, attributes: [.foregroundColor: UIColor.babyMonitorPurple, .font: UIFont.customFont(withSize: .caption)]))
-        label.attributedText = attributedText
-        return label
+    private let signatureImageView: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "Made with love"))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
 
     @available(*, unavailable, message: "Use init() instead")
@@ -83,9 +68,9 @@ final class SettingsView: UIView {
     }
 
     private func setupLayout() {
-        editBabyNameStackView.addArrangedSubview(customTextInputStackView)
-        editBabyNameStackView.addArrangedSubview(underline)
-        [editBabyPhotoImage, editBabyPhotoButton, editBabyNameStackView, buttonsStackView, signatureLabel].forEach { addSubview($0) }
+        rateButton.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
+        resetButton.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
+        [editBabyPhotoImage, editBabyPhotoButton, babyNameTextField, editImageView, underline, buttonsStackView, signatureImageView].forEach { addSubview($0) }
         setupConstraints()
     }
 
@@ -95,12 +80,30 @@ final class SettingsView: UIView {
             $0.equalConstant(.height, 16)
         ]
         }
-
         editBabyPhotoImage.addConstraints {[
-            $0.equal(.top, constant: 100),
+            $0.equal(.safeAreaTop, constant: 50),
             $0.equal(.centerX),
             $0.equalConstant(.width, 96),
             $0.equalConstant(.height, 96)
+        ]
+        }
+        editImageView.addConstraints {[
+            $0.equalTo(babyNameTextField, .centerY, .centerY),
+            $0.equalTo(underline, .trailing, .trailing, constant: -3)
+        ]
+        }
+        babyNameTextField.addConstraints {[
+            $0.equalTo(editBabyPhotoImage, .top, .bottom, constant: 41),
+            $0.equalTo(buttonsStackView, .leading, .leading),
+            $0.equalTo(editImageView, .trailing, .leading, constant: -10)
+            
+        ]
+        }
+        underline.addConstraints {[
+            $0.equalTo(babyNameTextField, .top, .bottom, constant: 12.5),
+            $0.equalTo(babyNameTextField, .leading, .leading),
+            $0.equal(.centerX),
+            $0.equalConstant(.height, 1)
         ]
         }
 
@@ -113,25 +116,15 @@ final class SettingsView: UIView {
         }
         editBabyPhotoButton.layer.zPosition = 1
         
-        underline.addConstraints {
-            [$0.equalConstant(.height, 1)]
-        }
-        editBabyNameStackView.addConstraints {[
-            $0.equalTo(editBabyPhotoButton, .top, .bottom, constant: 40),
-            $0.equal(.leading, constant: 23),
-            $0.equal(.trailing, constant: -23)
-        ]
-        }
-
         buttonsStackView.addConstraints {[
-            $0.equalTo(signatureLabel, .bottom, .top, constant: -29),
+            $0.equalTo(signatureImageView, .bottom, .top, constant: -29),
             $0.equal(.leading, constant: 23),
             $0.equal(.trailing, constant: -23),
             $0.equalTo(buttonsStackView, .height, .width, multiplier: 0.415)
         ]
         }
 
-        signatureLabel.addConstraints {[
+        signatureImageView.addConstraints {[
             $0.equal(.bottom, constant: -52),
             $0.equal(.centerX)
         ]
@@ -159,6 +152,10 @@ extension Reactive where Base: SettingsView {
 
     var rateButtonTap: ControlEvent<Void> {
         return base.rateButton.rx.tap
+    }
+    
+    var cancelButtonTap: ControlEvent<Void> {
+        return base.cancelButtonItem.rx.tap
     }
 
     var resetButtonTap: ControlEvent<Void> {

@@ -10,22 +10,32 @@ import RxSwift
 final class DashboardCoordinator: Coordinator {
 
     var appDependencies: AppDependencies
-    var childCoordinators: [Coordinator] = []
+    lazy var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var onEnding: (() -> Void)?
 
+    private weak var parentSettingsCoordinator: ParentSettingsCoordinator?
     private weak var dashboardViewController: DashboardViewController?
     private weak var cameraPreviewViewController: CameraPreviewViewController?
-    
-    private let bag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
         self.appDependencies = appDependencies
+        navigationController.isNavigationBarHidden = false
     }
 
     func start() {
+        setupParentSettingsCoordinator()
         showDashboard()
+        appDependencies.localNotificationService.getNotificationsAllowance { [unowned self] isGranted in
+            if !isGranted {
+                AlertPresenter.showDefaultAlert(title: Localizable.General.warning, message: Localizable.Errors.notificationsNotAllowed, onViewController: self.navigationController)
+            }
+        }
+        appDependencies.webSocketEventMessageService.cryingEventObservable.subscribe(onNext: { _ in
+            AlertPresenter.showDefaultAlert(title: Localizable.Server.babyIsCrying, message: nil, onViewController: self.navigationController)
+        }).disposed(by: disposeBag)
     }
 
     private func showDashboard() {
@@ -37,7 +47,7 @@ final class DashboardCoordinator: Coordinator {
             .subscribe(onNext: { [weak self] _ in
                 self?.connect(toDashboardViewModel: viewModel)
             })
-            .disposed(by: bag)
+            .disposed(by: viewModel.bag)
         navigationController.pushViewController(dashboardViewController, animated: false)
     }
 
@@ -49,21 +59,48 @@ final class DashboardCoordinator: Coordinator {
     
     private func connect(toDashboardViewModel viewModel: DashboardViewModel) {
         viewModel.liveCameraPreview?.subscribe(onNext: { [unowned self] in
-                let viewModel = self.createCameraPreviewViewModel()
-                let cameraPreviewViewController = CameraPreviewViewController(viewModel: viewModel)
-                self.cameraPreviewViewController = cameraPreviewViewController
-                let navigationController = UINavigationController(rootViewController: cameraPreviewViewController)
-                self.navigationController.present(navigationController, animated: true, completion: nil)
-            })
+            let viewModel = self.createCameraPreviewViewModel()
+            let cameraPreviewViewController = CameraPreviewViewController(viewModel: viewModel)
+            self.cameraPreviewViewController = cameraPreviewViewController
+            self.navigationController.pushViewController(cameraPreviewViewController, animated: true)
+        })
             .disposed(by: viewModel.bag)
-//        viewModel.activityLogTap?.subscribe(onNext: { [unowned self] in
-//            let viewModel = createActivityLogViewModel()
-//            let viewController = ActivityLogViewController
-//        })
+        viewModel.activityLogTap?.subscribe(onNext: { [unowned self] in
+            let viewModel = self.createActivityLogViewModel()
+            let viewController = ActivityLogViewController(viewModel: viewModel)
+            self.navigationController.pushViewController(viewController, animated: true)
+        })
+            .disposed(by: viewModel.bag)
+        viewModel.settingsTap?.subscribe(onNext: { [unowned self] in
+            self.parentSettingsCoordinator?.start()
+        })
+            .disposed(by: viewModel.bag)
+    }
+    
+    private func setupParentSettingsCoordinator() {
+        let parentSettingsCoordinator = ParentSettingsCoordinator(navigationController, appDependencies: appDependencies)
+        childCoordinators.append(parentSettingsCoordinator)
+        parentSettingsCoordinator.onEnding = { [unowned self] in
+            switch UserDefaults.appMode {
+            case .none:
+                self.onEnding?()
+            case .parent:
+                if let coordinator = self.parentSettingsCoordinator {
+                    self.remove(coordinator)
+                }
+                self.setupParentSettingsCoordinator()
+            case .baby:
+                break
+            }
+        }
+        self.parentSettingsCoordinator = parentSettingsCoordinator
     }
     
     private func createActivityLogViewModel() -> ActivityLogViewModel {
         let viewModel = ActivityLogViewModel(databaseRepository: appDependencies.databaseRepository)
+        viewModel.didSelectCancel = { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
         return viewModel
     }
 
@@ -71,7 +108,7 @@ final class DashboardCoordinator: Coordinator {
     private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
         let viewModel = CameraPreviewViewModel(webSocketWebRtcService: appDependencies.webSocketWebRtcService(appDependencies.webRtcClient()), babyModelController: appDependencies.databaseRepository)
         viewModel.didSelectCancel = { [weak self] in
-            self?.navigationController.dismiss(animated: true, completion: nil)
+            self?.navigationController.popViewController(animated: true)
         }
         return viewModel
     }

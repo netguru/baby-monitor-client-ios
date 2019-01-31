@@ -29,12 +29,19 @@ final class ActivityLogViewModel {
         rxSetup()
     }
     
+    // MARK: - Coordinator callback
+    var didSelectCancel: (() -> Void)?
+    
     // MARK: - Internal functions
     func numberOfRows(in section: Int) -> Int {
         guard section < currentSections.count else {
             return 0
         }
         return currentSections[section].items.count
+    }
+    
+    func selectCancel() {
+        didSelectCancel?()
     }
     
     func configure(cell: ActivityLogCell, for indexPath: IndexPath) {
@@ -51,7 +58,8 @@ final class ActivityLogViewModel {
         case .emptyState:
             cell.update(mainText: Localizable.ActivityLog.emptyStateMessage)
         case .cryingEvent:
-            cell.update(mainText: "\(databaseRepository.baby.name) \(Localizable.ActivityLog.wasCrying)")
+            let babyName = databaseRepository.baby.name.isEmpty ? Localizable.General.yourBaby : databaseRepository.baby.name
+            cell.update(mainText: "\(babyName) \(Localizable.ActivityLog.wasCrying)")
         }
     }
 

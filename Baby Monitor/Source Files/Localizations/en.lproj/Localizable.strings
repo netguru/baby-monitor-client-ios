@@ -13,8 +13,8 @@
 "general.attention" = "Attention!";
 "general.yesterday" = "Yesterday";
 "general.today" = "Today";
-"general.craftedWithLove" = "Crafted with ❤️";
 "general.byNetguru" = "by Netguru";
+"general.your-baby" = "Your baby";
 
 //MARK: = Intro
 "intro.title.detect" = "Automatically detect if your \nbaby is crying";

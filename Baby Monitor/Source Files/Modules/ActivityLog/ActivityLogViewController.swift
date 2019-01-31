@@ -25,6 +25,11 @@ final class ActivityLogViewController: TypedViewController<ActivityLogView>, UIT
         setup()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .babyMonitorDarkGray
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = Localizable.ActivityLog.title
@@ -36,6 +41,9 @@ final class ActivityLogViewController: TypedViewController<ActivityLogView>, UIT
     }
     
     private func setup() {
+        navigationItem.leftBarButtonItem = customView.cancelItemButton
+        customView.cancelItemButton.target = self
+        customView.cancelItemButton.action = #selector(didTouchCancelButton)
         customView.tableView.dataSource = self
         customView.tableView.delegate = self
         viewModel.sectionsChangeObservable
@@ -50,6 +58,11 @@ final class ActivityLogViewController: TypedViewController<ActivityLogView>, UIT
                 self?.customView.tableView.reloadData()
             })
         .disposed(by: bag)
+    }
+    
+    @objc
+    private func didTouchCancelButton() {
+        viewModel.selectCancel()
     }
     
     // MARK: - UITableViewDelegate

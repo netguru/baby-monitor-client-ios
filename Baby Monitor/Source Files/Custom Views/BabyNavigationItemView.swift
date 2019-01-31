@@ -9,17 +9,24 @@ import RxSwift
 
 final class BabyNavigationItemView: UIView {
 
-    fileprivate let nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.customFont(withSize: .body, weight: .medium)
-        label.textColor = .white
-        label.textAlignment = .center
-        return label
+    fileprivate let nameTextField: UITextField = {
+        let textField = UITextField()
+        textField.isUserInteractionEnabled = false
+        textField.attributedPlaceholder = NSAttributedString(
+            string: Localizable.Settings.babyNamePlaceholder,
+            attributes: [
+                .font: UIFont.customFont(withSize: .body, weight: .medium),
+                .foregroundColor: UIColor.white
+            ])
+        textField.font = UIFont.customFont(withSize: .body, weight: .medium)
+        textField.textColor = .white
+        return textField
     }()
     
     private lazy var photoImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleToFill
+        view.image = #imageLiteral(resourceName: "baby logo welcome screen")
         view.layer.masksToBounds = true
         return view
     }()
@@ -54,8 +61,8 @@ final class BabyNavigationItemView: UIView {
         photoImageView.layer.cornerRadius = photoImageView.frame.height / 2
     }
 
-    func updateBabyName(_ name: String?) {
-        nameLabel.text = name
+    func updateBabyName(_ name: String) {
+        nameTextField.text = name
     }
     
     func updateBabyPhoto(_ photo: UIImage) {
@@ -75,7 +82,7 @@ final class BabyNavigationItemView: UIView {
         }
         switch mode {
         case .baby:
-            [nameLabel, pulsatoryView].forEach {
+            [nameTextField, pulsatoryView].forEach {
                 stackView.addArrangedSubview($0)
             }
             pulsatoryView.addConstraints {[
@@ -84,7 +91,7 @@ final class BabyNavigationItemView: UIView {
             ]
             }
         case .parent:
-            [photoImageView, nameLabel].forEach {
+            [photoImageView, nameTextField].forEach {
                 stackView.addArrangedSubview($0)
             }
             photoImageView.addConstraints {[
@@ -101,7 +108,7 @@ final class BabyNavigationItemView: UIView {
 extension Reactive where Base: BabyNavigationItemView {
     
     var babyName: Binder<String> {
-        return Binder(base.nameLabel, binding: { nameLabel, name in
+        return Binder(base.nameTextField, binding: { nameLabel, name in
             nameLabel.text = name
         })
     }

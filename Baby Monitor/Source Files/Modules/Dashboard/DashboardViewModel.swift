@@ -15,6 +15,7 @@ final class DashboardViewModel {
     // MARK: - Coordinator callback
     private(set) var liveCameraPreview: Observable<Void>?
     private(set) var activityLogTap: Observable<Void>?
+    private(set) var settingsTap: Observable<Void>?
     
     private let dismissImagePickerSubject = PublishRelay<Void>()
     
@@ -34,9 +35,10 @@ final class DashboardViewModel {
         connectionChecker.stop()
     }
     
-    func attachInput(liveCameraTap: Observable<Void>, activityLogTap: Observable<Void>) {
+    func attachInput(liveCameraTap: Observable<Void>, activityLogTap: Observable<Void>, settingsTap: Observable<Void>) {
         liveCameraPreview = liveCameraTap
         self.activityLogTap = activityLogTap
+        self.settingsTap = settingsTap
     }
 
     /// Sets a new photo for the current baby.

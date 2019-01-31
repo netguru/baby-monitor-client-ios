@@ -16,7 +16,6 @@
 		20AFD00021F62B9900FC810F /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFCFFF21F62B9900FC810F /* Rubik-Bold.ttf */; };
 		20AFD00221F62BA200FC810F /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFD00121F62BA200FC810F /* Rubik-Regular.ttf */; };
 		2FD6861BC0920FE58CB3D522 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DA983E08D91DB2F19F277C9 /* Pods_Baby_Monitor.framework */; };
-		4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */; };
 		4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */; };
 		4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */; };
 		4E190CA321789E820004ED79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E190CA221789E820004ED79 /* Constants.swift */; };
@@ -77,7 +76,6 @@
 		4E8E057221AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E057121AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift */; };
 		4E8E057421AE9E4A009ACE05 /* UIColor+BabyMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E057321AE9E4A009ACE05 /* UIColor+BabyMonitor.swift */; };
 		4E8E057721AEADC5009ACE05 /* SpecifyDeviceOnboardingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E057621AEADC5009ACE05 /* SpecifyDeviceOnboardingViewModelTests.swift */; };
-		4E931330216635B700AEE942 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E93132F216635B700AEE942 /* TabBarController.swift */; };
 		4E9563182163521900289475 /* DashboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9563172163521900289475 /* DashboardButton.swift */; };
 		4E95631B21638D1500289475 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95631A21638D1500289475 /* Localizable.swift */; };
 		4E95631E21638E2200289475 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E95632021638E2200289475 /* Localizable.strings */; };
@@ -90,8 +88,6 @@
 		4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */; };
 		4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BDC216237D8009C44C5 /* DashboardViewController.swift */; };
 		4E994BE121623821009C44C5 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE021623821009C44C5 /* DashboardViewModel.swift */; };
-		4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */; };
-		4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */; };
 		4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */; };
 		4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E994BF121624835009C44C5 /* BaseViewController.swift */; };
 		4EA2802421E8BD6300262E45 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA2802321E8BD6300262E45 /* String+Regex.swift */; };
@@ -194,27 +190,13 @@
 		8AA7CBCA21871AE300FCF62A /* DashboardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBC921871AE300FCF62A /* DashboardViewModelTests.swift */; };
 		8AA7CBCC21871B3E00FCF62A /* ConnectionCheckerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBCB21871B3E00FCF62A /* ConnectionCheckerMock.swift */; };
 		8AA7CBCF2187401700FCF62A /* ActivityLogViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBCE2187401700FCF62A /* ActivityLogViewModelTests.swift */; };
-		8AA7CBD72187521500FCF62A /* LullabyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBD62187521500FCF62A /* LullabyViewModelTests.swift */; };
-		8AA7CBDA218C54BE00FCF62A /* LullabyPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBD9218C54BE00FCF62A /* LullabyPlayerTests.swift */; };
-		8AA7CBDC218C559000FCF62A /* LullabyPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBDB218C559000FCF62A /* LullabyPlayerProtocol.swift */; };
-		8AA7CBDE218C55C500FCF62A /* LullabyPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBDD218C55C500FCF62A /* LullabyPlayer.swift */; };
 		8AA7CBE2218C576D00FCF62A /* URLMediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */; };
 		8AA7CBE4218C5A5100FCF62A /* URLMediaPlayerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE3218C5A5100FCF62A /* URLMediaPlayerMock.swift */; };
 		8AA7CBE9218C626200FCF62A /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE8218C626200FCF62A /* test.mp3 */; };
-		8AA7CBF0218C62E600FCF62A /* rockAByeBaby.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEB218C62E500FCF62A /* rockAByeBaby.mp3 */; };
-		8AA7CBF1218C62E600FCF62A /* twinkleTwinkleLittleStar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEC218C62E500FCF62A /* twinkleTwinkleLittleStar.mp3 */; };
-		8AA7CBF2218C62E600FCF62A /* lullabyGoodnight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBED218C62E600FCF62A /* lullabyGoodnight.mp3 */; };
-		8AA7CBF3218C62E600FCF62A /* prettyLittleHorses.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEE218C62E600FCF62A /* prettyLittleHorses.mp3 */; };
-		8AA7CBF4218C62E600FCF62A /* hushLittleBaby.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBEF218C62E600FCF62A /* hushLittleBaby.mp3 */; };
-		8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */; };
-		8AA7CBFC218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBFB218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift */; };
-		8AA7CBFE218C70B400FCF62A /* RealmLullabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */; };
-		8AA7CC00218C72D600FCF62A /* RealmLullaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBFF218C72D600FCF62A /* RealmLullaby.swift */; };
 		8ADEE4562199623300B11B14 /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADEE4552199623300B11B14 /* libWebRTC.a */; };
 		8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */; };
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
 		8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */; };
-		8AED3178218C89D200FEFE8A /* LullabiesRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED3177218C89D200FEFE8A /* LullabiesRepositoryMock.swift */; };
 		8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED318D219045AD00FEFE8A /* BabyMonitorCellDeletable.swift */; };
 		8AFAE5AB219AAA53007013BC /* MessageServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5AA219AAA53007013BC /* MessageServer.swift */; };
 		8AFAE5AD219AAAAC007013BC /* MessageServerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5AC219AAAAC007013BC /* MessageServerProtocol.swift */; };
@@ -228,10 +210,9 @@
 		8AFAE5C3219C1FE3007013BC /* SdpAnswerDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5C2219C1FE3007013BC /* SdpAnswerDecoder.swift */; };
 		8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */; };
 		8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */; };
-		8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DF82182F07700729615 /* Lullaby.swift */; };
 		8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */; };
-		A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */; };
 		A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */; };
+		A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */; };
 		A18D3E6E21FF071200C165C6 /* CALayerBasicAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */; };
 		A18D3E7521FF6D3700C165C6 /* ActivityLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */; };
 		A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */; };
@@ -246,7 +227,6 @@
 		EC8A8FF521AE8F5F00B5FCCF /* TypedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A8FF421AE8F5F00B5FCCF /* TypedPageViewController.swift */; };
 		EC8A8FF721AE950B00B5FCCF /* IntroFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A8FF621AE950B00B5FCCF /* IntroFeatureViewController.swift */; };
 		EC8A8FF921AEA7EE00B5FCCF /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8A8FF821AEA7EE00B5FCCF /* IntroView.swift */; };
-		EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */; };
 		ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */; };
 		ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */; };
 		ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */; };
@@ -280,7 +260,6 @@
 		2DF3AA99E8050A590C2C9C86 /* Pods-Baby MonitorTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.staging.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.staging.xcconfig"; sourceTree = "<group>"; };
 		33E1959F9CAED63F1EBBC378 /* Pods-Baby Monitor.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.staging.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.staging.xcconfig"; sourceTree = "<group>"; };
 		3D35897D6D02EF8BB7728EDE /* Pods-Baby MonitorTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.production.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.production.xcconfig"; sourceTree = "<group>"; };
-		4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCoordinator.swift; sourceTree = "<group>"; };
 		4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		4E1134B321E498E5005E3583 /* BabyMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyMonitor.entitlements; sourceTree = "<group>"; };
@@ -377,7 +356,6 @@
 		4E8E057121AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceOnboardingViewModel.swift; sourceTree = "<group>"; };
 		4E8E057321AE9E4A009ACE05 /* UIColor+BabyMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+BabyMonitor.swift"; sourceTree = "<group>"; };
 		4E8E057621AEADC5009ACE05 /* SpecifyDeviceOnboardingViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceOnboardingViewModelTests.swift; sourceTree = "<group>"; };
-		4E93132F216635B700AEE942 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4E9563172163521900289475 /* DashboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardButton.swift; sourceTree = "<group>"; };
 		4E95631A21638D1500289475 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		4E95631F21638E2200289475 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -390,8 +368,6 @@
 		4E994BD9216235B5009C44C5 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
 		4E994BDC216237D8009C44C5 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		4E994BE021623821009C44C5 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
-		4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesCoordinator.swift; sourceTree = "<group>"; };
-		4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesViewModel.swift; sourceTree = "<group>"; };
 		4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewModel.swift; sourceTree = "<group>"; };
 		4E994BF121624835009C44C5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4EA2802321E8BD6300262E45 /* String+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
@@ -503,27 +479,13 @@
 		8AA7CBC921871AE300FCF62A /* DashboardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModelTests.swift; sourceTree = "<group>"; };
 		8AA7CBCB21871B3E00FCF62A /* ConnectionCheckerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCheckerMock.swift; sourceTree = "<group>"; };
 		8AA7CBCE2187401700FCF62A /* ActivityLogViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogViewModelTests.swift; sourceTree = "<group>"; };
-		8AA7CBD62187521500FCF62A /* LullabyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabyViewModelTests.swift; sourceTree = "<group>"; };
-		8AA7CBD9218C54BE00FCF62A /* LullabyPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabyPlayerTests.swift; sourceTree = "<group>"; };
-		8AA7CBDB218C559000FCF62A /* LullabyPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabyPlayerProtocol.swift; sourceTree = "<group>"; };
-		8AA7CBDD218C55C500FCF62A /* LullabyPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabyPlayer.swift; sourceTree = "<group>"; };
 		8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLMediaPlayer.swift; sourceTree = "<group>"; };
 		8AA7CBE3218C5A5100FCF62A /* URLMediaPlayerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLMediaPlayerMock.swift; sourceTree = "<group>"; };
 		8AA7CBE8218C626200FCF62A /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
-		8AA7CBEB218C62E500FCF62A /* rockAByeBaby.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rockAByeBaby.mp3; sourceTree = "<group>"; };
-		8AA7CBEC218C62E500FCF62A /* twinkleTwinkleLittleStar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = twinkleTwinkleLittleStar.mp3; sourceTree = "<group>"; };
-		8AA7CBED218C62E600FCF62A /* lullabyGoodnight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lullabyGoodnight.mp3; sourceTree = "<group>"; };
-		8AA7CBEE218C62E600FCF62A /* prettyLittleHorses.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = prettyLittleHorses.mp3; sourceTree = "<group>"; };
-		8AA7CBEF218C62E600FCF62A /* hushLittleBaby.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hushLittleBaby.mp3; sourceTree = "<group>"; };
-		8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesRepositoryProtocol.swift; sourceTree = "<group>"; };
-		8AA7CBFB218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLullabiesRepositoryTests.swift; sourceTree = "<group>"; };
-		8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLullabiesRepository.swift; sourceTree = "<group>"; };
-		8AA7CBFF218C72D600FCF62A /* RealmLullaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLullaby.swift; sourceTree = "<group>"; };
 		8ADEE4552199623300B11B14 /* libWebRTC.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWebRTC.a; path = Dependencies/WebRTC/libs/libWebRTC.a; sourceTree = "<group>"; };
 		8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepository.swift; sourceTree = "<group>"; };
 		8AEAFBB52177371B003E756F /* RealmBaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBaby.swift; sourceTree = "<group>"; };
 		8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBabiesRepositoryTests.swift; sourceTree = "<group>"; };
-		8AED3177218C89D200FEFE8A /* LullabiesRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LullabiesRepositoryMock.swift; sourceTree = "<group>"; };
 		8AED318D219045AD00FEFE8A /* BabyMonitorCellDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellDeletable.swift; sourceTree = "<group>"; };
 		8AFAE5AA219AAA53007013BC /* MessageServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServer.swift; sourceTree = "<group>"; };
 		8AFAE5AC219AAAAC007013BC /* MessageServerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServerProtocol.swift; sourceTree = "<group>"; };
@@ -537,10 +499,9 @@
 		8AFAE5C2219C1FE3007013BC /* SdpAnswerDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdpAnswerDecoder.swift; sourceTree = "<group>"; };
 		8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcMessage.swift; sourceTree = "<group>"; };
 		8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
-		8AFE3DF82182F07700729615 /* Lullaby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lullaby.swift; sourceTree = "<group>"; };
 		8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
-		A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFactory.swift; sourceTree = "<group>"; };
 		A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
+		A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFactory.swift; sourceTree = "<group>"; };
 		A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerBasicAnimation.swift; sourceTree = "<group>"; };
 		A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
@@ -560,7 +521,6 @@
 		EC8A8FF421AE8F5F00B5FCCF /* TypedPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedPageViewController.swift; sourceTree = "<group>"; };
 		EC8A8FF621AE950B00B5FCCF /* IntroFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFeatureViewController.swift; sourceTree = "<group>"; };
 		EC8A8FF821AEA7EE00B5FCCF /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
-		EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		ECB146DA213EA45E00C504FD /* App-Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Production.xcconfig"; sourceTree = "<group>"; };
 		ECB146DB213EA45E00C504FD /* App-Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Development.xcconfig"; sourceTree = "<group>"; };
 		ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Staging.xcconfig"; sourceTree = "<group>"; };
@@ -769,8 +729,6 @@
 			isa = PBXGroup;
 			children = (
 				8A7A612B21A59EB000488ED4 /* RecorderFactory.swift */,
-				8AA7CBDB218C559000FCF62A /* LullabyPlayerProtocol.swift */,
-				8AA7CBDD218C55C500FCF62A /* LullabyPlayer.swift */,
 				8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */,
 			);
 			path = MediaPlayer;
@@ -892,10 +850,8 @@
 				4E994BE221623EC3009C44C5 /* ActivityLog */,
 				4E1D2C5B21673FE200E92F29 /* CameraPreview */,
 				4E994BDB216237CB009C44C5 /* Dashboard */,
-				4E994BE5216240CD009C44C5 /* Lullabies */,
 				4E994BE6216240DA009C44C5 /* Settings */,
 				4E221D89217714D7003D8531 /* Server */,
-				EC8C943C216CBFCE00E3B478 /* TabBar */,
 				A1572D8E2200A88600AC57C4 /* AnimationFactory */,
 			);
 			path = Modules;
@@ -935,7 +891,6 @@
 				8AEAFBB42177370F003E756F /* Realm */,
 				4E9563312164DDC100289475 /* Baby.swift */,
 				8A43DB1E2181D1E700E3004D /* GeneralSection.swift */,
-				8AFE3DF82182F07700729615 /* Lullaby.swift */,
 				8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */,
 			);
 			path = Models;
@@ -973,20 +928,10 @@
 			children = (
 				A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */,
 				A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */,
-				4E075C7821634738001CD8EA /* ActivityLogCoordinator.swift */,
 				4E994BEF216247A9009C44C5 /* ActivityLogViewModel.swift */,
 				A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */,
 			);
 			path = ActivityLog;
-			sourceTree = "<group>";
-		};
-		4E994BE5216240CD009C44C5 /* Lullabies */ = {
-			isa = PBXGroup;
-			children = (
-				4E994BE7216240F9009C44C5 /* LullabiesCoordinator.swift */,
-				4E994BEB2162416B009C44C5 /* LullabiesViewModel.swift */,
-			);
-			path = Lullabies;
 			sourceTree = "<group>";
 		};
 		4E994BE6216240DA009C44C5 /* Settings */ = {
@@ -1045,7 +990,6 @@
 			children = (
 				4E592E6321B80FD0004E94F7 /* Websockets */,
 				4E8E057521AEADB2009ACE05 /* Onboarding */,
-				8AA7CBD52187520700FCF62A /* Lullaby */,
 				8AA7CBCD2187400400FCF62A /* ActivityLog */,
 				8AA7CBC621871AB700FCF62A /* Dashboard */,
 				8AA7CBBC2187100F00FCF62A /* Settings */,
@@ -1086,7 +1030,6 @@
 				8AA7CBBF2187105600FCF62A /* BabyMonitorCellMock.swift */,
 				8AA7CBCB21871B3E00FCF62A /* ConnectionCheckerMock.swift */,
 				8AA7CBE3218C5A5100FCF62A /* URLMediaPlayerMock.swift */,
-				8AED3177218C89D200FEFE8A /* LullabiesRepositoryMock.swift */,
 				8AFAE5B4219ACA5F007013BC /* WebSocketServerMock.swift */,
 				8AFAE5B7219AFF6D007013BC /* WebSocketMock.swift */,
 				8AFAE5BD219C0FF7007013BC /* MessageDecoderMock.swift */,
@@ -1247,21 +1190,12 @@
 			path = ActivityLog;
 			sourceTree = "<group>";
 		};
-		8AA7CBD52187520700FCF62A /* Lullaby */ = {
-			isa = PBXGroup;
-			children = (
-				8AA7CBD62187521500FCF62A /* LullabyViewModelTests.swift */,
-			);
-			path = Lullaby;
-			sourceTree = "<group>";
-		};
 		8AA7CBD8218C549D00FCF62A /* Media */ = {
 			isa = PBXGroup;
 			children = (
 				8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */,
 				8A7A614D21A6AC8800488ED4 /* AudioRecordServiceTests.swift */,
 				8A7A60CB21A40D2F00488ED4 /* CryingDetectionServiceTests.swift */,
-				8AA7CBD9218C54BE00FCF62A /* LullabyPlayerTests.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -1275,18 +1209,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		8AA7CBEA218C62D500FCF62A /* Lullabies */ = {
-			isa = PBXGroup;
-			children = (
-				8AA7CBEF218C62E600FCF62A /* hushLittleBaby.mp3 */,
-				8AA7CBED218C62E600FCF62A /* lullabyGoodnight.mp3 */,
-				8AA7CBEE218C62E600FCF62A /* prettyLittleHorses.mp3 */,
-				8AA7CBEB218C62E500FCF62A /* rockAByeBaby.mp3 */,
-				8AA7CBEC218C62E500FCF62A /* twinkleTwinkleLittleStar.mp3 */,
-			);
-			path = Lullabies;
-			sourceTree = "<group>";
-		};
 		8AEAFBAF217735B3003E756F /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -1298,8 +1220,6 @@
 				8A42DB062179D61B00BF5F1B /* URLConfiguration.swift */,
 				8A42DB082179D65900BF5F1B /* UserDefaultsURLConfiguration.swift */,
 				8A42DB0A2179D7D700BF5F1B /* URLUserDefaults.swift */,
-				8AA7CBF7218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift */,
-				8AA7CBFD218C70B400FCF62A /* RealmLullabiesRepository.swift */,
 				4E360CCD21E781E3002781AC /* FirebaseStorageService.swift */,
 			);
 			path = Persistence;
@@ -1310,7 +1230,6 @@
 			children = (
 				8A7A611E21A59E5D00488ED4 /* RealmActivityLogEvent.swift */,
 				8AEAFBB52177371B003E756F /* RealmBaby.swift */,
-				8AA7CBFF218C72D600FCF62A /* RealmLullaby.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -1320,7 +1239,6 @@
 			children = (
 				8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */,
 				8A42DB112179D9A300BF5F1B /* UserDefaultsURLConfiguration.swift */,
-				8AA7CBFB218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -1478,7 +1396,6 @@
 			isa = PBXGroup;
 			children = (
 				4E8E056421AD82D9009ACE05 /* Fonts */,
-				8AA7CBEA218C62D500FCF62A /* Lullabies */,
 				4E221D8C21771946003D8531 /* Bridging-Header.h */,
 				EC82B560213EA074005CA395 /* Assets.xcassets */,
 				4E190CA221789E820004ED79 /* Constants.swift */,
@@ -1501,15 +1418,6 @@
 				EC82B570213EA074005CA395 /* Info.plist */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		EC8C943C216CBFCE00E3B478 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				4E93132F216635B700AEE942 /* TabBarController.swift */,
-				EC8C943A216CB6A800E3B478 /* TabBarCoordinator.swift */,
-			);
-			path = TabBar;
 			sourceTree = "<group>";
 		};
 		ECB146D9213EA44C00C504FD /* Configuration */ = {
@@ -1635,17 +1543,12 @@
 				EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */,
 				4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */,
 				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
-				8AA7CBF3218C62E600FCF62A /* prettyLittleHorses.mp3 in Resources */,
 				20AFCFFE21F62B8D00FC810F /* Rubik-Medium.ttf in Resources */,
 				EC82B561213EA074005CA395 /* Assets.xcassets in Resources */,
-				8AA7CBF2218C62E600FCF62A /* lullabyGoodnight.mp3 in Resources */,
-				8AA7CBF0218C62E600FCF62A /* rockAByeBaby.mp3 in Resources */,
 				4E95631E21638E2200289475 /* Localizable.strings in Resources */,
 				ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */,
 				20AFD00221F62BA200FC810F /* Rubik-Regular.ttf in Resources */,
 				4E5731AC2170C1A200DEAF0B /* Tests-Production.xcconfig in Resources */,
-				8AA7CBF4218C62E600FCF62A /* hushLittleBaby.mp3 in Resources */,
-				8AA7CBF1218C62E600FCF62A /* twinkleTwinkleLittleStar.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1825,7 +1728,6 @@
 				8A6098C421EBFDA700592B01 /* PeerConnectionFactoryProtocol.swift in Sources */,
 				4E7B091321E6148600EDDD11 /* URLSessionProtocol.swift in Sources */,
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
-				EC8C943B216CB6A800E3B478 /* TabBarCoordinator.swift in Sources */,
 				4E63DC1B21E39D4B00604167 /* Request.swift in Sources */,
 				8A7A611721A59E3B00488ED4 /* CryingEventService.swift in Sources */,
 				8A045D5B21A3F685006A2E10 /* (null) in Sources */,
@@ -1836,9 +1738,6 @@
 				8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */,
 				A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */,
 				A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */,
-				8AA7CBF8218C6F9C00FCF62A /* LullabiesRepositoryProtocol.swift in Sources */,
-				8AA7CBDE218C55C500FCF62A /* LullabyPlayer.swift in Sources */,
-				4E075C7921634738001CD8EA /* ActivityLogCoordinator.swift in Sources */,
 				4E2F413721B148BB00513843 /* OnboardingContinuableViewModel.swift in Sources */,
 				8A8B76E921EE16E30063EF7E /* WebsocketConductor.swift in Sources */,
 				4E36A3B021B15FF80058DAD2 /* OnboardingSpinnerView.swift in Sources */,
@@ -1862,7 +1761,6 @@
 				ECB2428821AD4F0400B4E409 /* IntroViewModel.swift in Sources */,
 				4E63DC1D21E39D4B00604167 /* URLRequestConvertible.swift in Sources */,
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
-				4E994BEC2162416B009C44C5 /* LullabiesViewModel.swift in Sources */,
 				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
 				8A50AA3A21E602F60058C63A /* SessionDescriptionProtocol.swift in Sources */,
 				4E57319C2170BA7400DEAF0B /* BabyMonitorCellSelectable.swift in Sources */,
@@ -1885,7 +1783,6 @@
 				8A7A611F21A59E5D00488ED4 /* RealmActivityLogEvent.swift in Sources */,
 				8A7A616D21A8162000488ED4 /* UIColor+Custom.swift in Sources */,
 				EC8A8FF321AE8EE500B5FCCF /* BasePageViewController.swift in Sources */,
-				8AA7CBDC218C559000FCF62A /* LullabyPlayerProtocol.swift in Sources */,
 				8A7A611521A59E3B00488ED4 /* AudioRecordService.swift in Sources */,
 				4EB6DE6321B6687D004701EA /* EventMessage.swift in Sources */,
 				8A8EF944219C40630098A27B /* RTCSessionDescription+JSON.swift in Sources */,
@@ -1934,11 +1831,9 @@
 				8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */,
 				4E7A1A9021F1284B0015C3A3 /* UserDefaults+AppMode.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,
-				8AFE3DF92182F07700729615 /* Lullaby.swift in Sources */,
 				200681C121FB53AA00340596 /* ParentSettingsCoordinator.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
 				8A50AA4021E603080058C63A /* WebRtcStreamId.swift in Sources */,
-				8AA7CC00218C72D600FCF62A /* RealmLullaby.swift in Sources */,
 				8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */,
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
@@ -1947,7 +1842,6 @@
 				8A50AA3821E602F60058C63A /* PeerConnectionProtocol.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
 				4E36A3AE21B15F850058DAD2 /* OnboardingClientSetupViewController.swift in Sources */,
-				4E994BE8216240F9009C44C5 /* LullabiesCoordinator.swift in Sources */,
 				8A7A612721A59E8600488ED4 /* DirectoryDocumentsSavable.swift in Sources */,
 				8A7A612521A59E7500488ED4 /* FileManager+Size.swift in Sources */,
 				4E57319D2170BA7400DEAF0B /* Identifiable.swift in Sources */,
@@ -1959,7 +1853,6 @@
 				8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */,
 				4E8E056321AD81D4009ACE05 /* BaseOnboardingView.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
-				8AA7CBFE218C70B400FCF62A /* RealmLullabiesRepository.swift in Sources */,
 				8A8EF946219C46AD0098A27B /* SdpOfferDecoder.swift in Sources */,
 				8A7A611D21A59E5000488ED4 /* ActivityLogEventsRepositoryProtocol.swift in Sources */,
 				8A8B76EB21EF48980063EF7E /* WebSocketWebRtcService.swift in Sources */,
@@ -1973,7 +1866,6 @@
 				4E63DC1A21E39D4B00604167 /* ServerKeyObtainable.swift in Sources */,
 				8AFAE5AD219AAAAC007013BC /* MessageServerProtocol.swift in Sources */,
 				4E626692217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift in Sources */,
-				4E931330216635B700AEE942 /* TabBarController.swift in Sources */,
 				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
 				4E63DC1921E39D4B00604167 /* HTTPMethod.swift in Sources */,
 				8A50AA3921E602F60058C63A /* IceCandidateProtocol.swift in Sources */,
@@ -1998,7 +1890,6 @@
 			files = (
 				8A7A615221A6B00F00488ED4 /* CryingEventsServiceMock.swift in Sources */,
 				8A50AAA421E8DBA20058C63A /* PeerConnectionMock.swift in Sources */,
-				8AA7CBFC218C706A00FCF62A /* RealmLullabiesRepositoryTests.swift in Sources */,
 				8A50AA9F21E8DBA20058C63A /* SdpOfferDecoderMock.swift in Sources */,
 				8A50AA8721E8D8D60058C63A /* MessageServerTests.swift in Sources */,
 				8A42DB122179D9A300BF5F1B /* UserDefaultsURLConfiguration.swift in Sources */,
@@ -2020,7 +1911,6 @@
 				8AA7CBCA21871AE300FCF62A /* DashboardViewModelTests.swift in Sources */,
 				8A7A614A21A6AC7900488ED4 /* AudioRecordServiceMock.swift in Sources */,
 				8A42DB0E2179D8FB00BF5F1B /* URLUserDefaultsMock.swift in Sources */,
-				8AA7CBD72187521500FCF62A /* LullabyViewModelTests.swift in Sources */,
 				8A7A614921A6AC7900488ED4 /* CryingDetectionServiceMock.swift in Sources */,
 				8A8B76F221F1D8210063EF7E /* WebSocketEventMessageServiceMock.swift in Sources */,
 				8A50AA8821E8D8D60058C63A /* MessageStreamProtocolTests.swift in Sources */,
@@ -2035,7 +1925,6 @@
 				4EB93D2021ECA15F00E99BB3 /* StorageServerServiceMock.swift in Sources */,
 				8A42DB172179DD9C00BF5F1B /* URL+PrefixTests.swift in Sources */,
 				8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */,
-				8AED3178218C89D200FEFE8A /* LullabiesRepositoryMock.swift in Sources */,
 				A1C5E6E221FA2E7100D93203 /* DatabaseRepositoryMock.swift in Sources */,
 				8A50AAA321E8DBA20058C63A /* SessionDescriptionMock.swift in Sources */,
 				8A50AA9E21E8DBA20058C63A /* WebRtcServerManagerMock.swift in Sources */,
@@ -2052,7 +1941,6 @@
 				8A50AA9D21E8DBA20058C63A /* WebRtcClientManagerMock.swift in Sources */,
 				8A50AA8921E8D8D60058C63A /* DecodersTests.swift in Sources */,
 				8AA7CBBE2187103600FCF62A /* SettingsViewModelTests.swift in Sources */,
-				8AA7CBDA218C54BE00FCF62A /* LullabyPlayerTests.swift in Sources */,
 				8A50AA8D21E8D8FA0058C63A /* WebRtcServerManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

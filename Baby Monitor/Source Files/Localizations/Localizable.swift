@@ -19,6 +19,7 @@ enum Localizable {
         static let yesterday = localized("general.yesterday")
         static let craftedWithLove = localized("general.craftedWithLove")
         static let byNetguru = localized("general.byNetguru")
+        static let yourBaby = localized("general.your-baby")
     }
     
     enum Intro {

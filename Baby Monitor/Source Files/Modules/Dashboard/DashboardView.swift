@@ -13,6 +13,11 @@ class DashboardView: BaseView {
     fileprivate let activityLogButton = DashboardButtonView(role: .activityLog)
     let babyNavigationItemView = BabyNavigationItemView(mode: .parent)
     
+    let settingsBarButtonItem = UIBarButtonItem(
+        image: #imageLiteral(resourceName: "settings"),
+        style: .plain,
+        target: nil,
+        action: nil)
     private var pulseColor: UIColor = .babyMonitorLightGreen
     private lazy var backgroundPhotoImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "photo-dashboard-background"))
@@ -40,13 +45,19 @@ class DashboardView: BaseView {
         return view
     }()
 
-    fileprivate let nameLabel: UILabel = {
-        let nameLabel = UILabel()
-        nameLabel.text = Localizable.Dashboard.yourBabyName
-        nameLabel.textAlignment = .center
-        nameLabel.font = UIFont.customFont(withSize: .h1, weight: .medium)
-        nameLabel.textColor = .babyMonitorPurple
-        return nameLabel
+    fileprivate let nameTextField: UITextField = {
+        let textField = UITextField()
+        textField.isUserInteractionEnabled = false
+        textField.textAlignment = .center
+        textField.attributedPlaceholder = NSAttributedString(
+            string: Localizable.Dashboard.yourBabyName,
+            attributes: [
+                .font: UIFont.customFont(withSize: .h1, weight: .medium),
+                .foregroundColor: UIColor.babyMonitorPurple.withAlphaComponent(0.5)
+            ])
+        textField.font = UIFont.customFont(withSize: .h1, weight: .medium)
+        textField.textColor = .babyMonitorPurple
+        return textField
     }()
     
     private let connectionStatusLabel: UILabel = {
@@ -69,8 +80,8 @@ class DashboardView: BaseView {
         babyNavigationItemView.setupPhotoImageView()
     }
     
-    func updateName(_ text: String?) {
-        nameLabel.text = text
+    func updateName(_ text: String) {
+        nameTextField.text = text
         babyNavigationItemView.updateBabyName(text)
     }
 
@@ -86,7 +97,7 @@ class DashboardView: BaseView {
     // MARK: - private functions
     private func setupLayout() {
         setupBackgroundImage(UIImage())
-        [backgroundPhotoImageView, photoImageView, nameLabel, connectionStatusLabel, pulsatoryView, dashboardButtonsStackView].forEach {
+        [backgroundPhotoImageView, photoImageView, nameTextField, connectionStatusLabel, pulsatoryView, dashboardButtonsStackView].forEach {
             addSubview($0)
         }
         
@@ -108,21 +119,21 @@ class DashboardView: BaseView {
             $0.equal(.centerX)
         ]
         }
-        nameLabel.addConstraints {[
+        nameTextField.addConstraints {[
             $0.equal(.centerX),
-            $0.equal(.width, multiplier: 0.6),
+            $0.equal(.width, multiplier: 1),
             $0.equalTo(backgroundPhotoImageView, .top, .bottom, constant: 36)
         ]
         }
         connectionStatusLabel.addConstraints {[
             $0.equal(.centerX),
-            $0.equalTo(nameLabel, .top, .bottom, constant: 7)
+            $0.equalTo(nameTextField, .top, .bottom, constant: 7)
         ]
         }
         pulsatoryView.addConstraints {[
             $0.equalTo(connectionStatusLabel, .centerY, .centerY),
             $0.equalTo(connectionStatusLabel, .leading, .trailing, constant: 20),
-            $0.equalTo(nameLabel, .top, .bottom, constant: 7)
+            $0.equalTo(nameTextField, .top, .bottom, constant: 7)
         ]
         }
         dashboardButtonsStackView.addConstraints {[
@@ -144,6 +155,10 @@ class DashboardView: BaseView {
 }
 
 extension Reactive where Base: DashboardView {
+    
+    var settingsTap: ControlEvent<Void> {
+        return base.settingsBarButtonItem.rx.tap
+    }
     
     var liveCameraTap: ControlEvent<Void> {
         return base.liveCameraButton.rx.tap
