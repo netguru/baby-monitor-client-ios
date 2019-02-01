@@ -12,10 +12,10 @@ enum IntroFeature: Int, CaseIterable {
 final class IntroViewModel {
     
     // MARK: - Coordinator callback
-    /// Indicates that user has tapped a left button at the bottom of the view
+    /// Performed when the user taps a left button at the bottom of the view
     var didSelectLeftAction: (() -> Void)?
 
-    /// Indicates that user has tapped a right button at the bottom of the view
+    /// Performed when the user taps a right button at the bottom of the view
     var didSelectRightAction: (() -> Void)?
 
     func selectLeftAction() {
