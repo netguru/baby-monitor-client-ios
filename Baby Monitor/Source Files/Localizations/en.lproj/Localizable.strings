@@ -17,12 +17,12 @@
 "general.byNetguru" = "by Netguru";
 
 //MARK: = Intro
-"intro.title.monitoring" = "Do your daily and keep an\n eye on your baby";
-"intro.title.detection" = "Automatically detect if\n your baby is crying";
-"intro.title.safety" = "Using Baby Monitor is safe\n for you and your baby";
-"intro.description.monitoring" = "Easily check on your baby whenever\n and wherever you are";
-"intro.description.detection" = "Each time your baby starts crying\n you’ll get a notification";
-"intro.description.safety" = "Video will not be recorded. Voice recordings\n will be used only in development purpose\n and sent with your permission";
+"intro.title.monitoring" = "Do your daily errands and\nkeep an eye on your baby";
+"intro.title.detection" = "Crying baby alert";
+"intro.title.safety" = "Your privacy is safe when\nusing Baby Monitor";
+"intro.description.monitoring" = "Easily check on the baby anywhere\nand anytime you want.";
+"intro.description.detection" = "You'll get a notification every time your\nbaby starts crying.";
+"intro.description.safety" = "Video and audio will not be recorded, unless\nyou want to help us develop the app and\ngive your permission to do it.";
 "intro.button.skip" = "Skip";
 "intro.button.next" = "Next";
 "intro.button.setup-baby-monitor" = "Set up Baby Monitor";

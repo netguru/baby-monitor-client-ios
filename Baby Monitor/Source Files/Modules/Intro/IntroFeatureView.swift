@@ -32,7 +32,7 @@ final class IntroFeatureView: BaseView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = UIColor.babyMonitorPurple
-        let fontSize: UIFont.CustomTextSize = UIDevice.screenSizeBiggerThan4Inches ? .body : .caption
+        let fontSize: UIFont.CustomTextSize = UIDevice.screenSizeBiggerThan4Inches ? .small : .caption
         label.font = UIFont.customFont(withSize: fontSize, weight: .regular)
         return label
     }()
@@ -100,9 +100,11 @@ final class IntroFeatureView: BaseView {
     }
     
     private func setupConstraints() {
-        introStackView.setCustomSpacing(15, after: titleLabel)
+        let spacing: CGFloat = UIDevice.screenSizeBiggerThan4Inches ? 15 : 5
+        introStackView.setCustomSpacing(spacing, after: titleLabel)
         let lowPriority = UILayoutPriority(999)
-        let widthMultiplyContraint = introStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7)
+        let widthMultiplier: CGFloat = UIDevice.screenSizeBiggerThan4Point7Inches ? 0.7 : 0.8
+        let widthMultiplyContraint = introStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: widthMultiplier)
         let heightMultiplyContraint = introStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6)
         widthMultiplyContraint.priority = lowPriority
         heightMultiplyContraint.priority = lowPriority
