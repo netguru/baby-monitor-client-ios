@@ -6,16 +6,23 @@
 import Foundation
 
 enum IntroFeature: Int, CaseIterable {
-    case featureDetection = 0
-    case featureMonitoring
+    case monitoring, detection, safety
 }
 
 final class IntroViewModel {
     
     // MARK: - Coordinator callback
-    var didSelectNextAction: (() -> Void)?
-    
-    func selectNextAction() {
-        didSelectNextAction?()
+    /// Performed when the user taps a left button at the bottom of the view
+    var didSelectLeftAction: (() -> Void)?
+
+    /// Performed when the user taps a right button at the bottom of the view
+    var didSelectRightAction: (() -> Void)?
+
+    func selectLeftAction() {
+        didSelectLeftAction?()
+    }
+
+    func selectRightAction() {
+        didSelectRightAction?()
     }
 }
