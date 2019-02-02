@@ -22,6 +22,7 @@ final class OnboardingCoordinator: Coordinator {
     }
 
     func start() {
+        navigationController.setNavigationBarHidden(true, animated: false)
         switch UserDefaults.appMode {
         case .parent:
             pairingCoordinator?.start()
@@ -38,7 +39,6 @@ final class OnboardingCoordinator: Coordinator {
         introCoordinator.onEnding = { [weak self] in
             self?.showInitialSetup()
         }
-        navigationController.setNavigationBarHidden(true, animated: false)
         let pairingCoordinator = OnboardingPairingCoordinator(navigationController, appDependencies: appDependencies)
         pairingCoordinator.onEnding = { [weak self] in
             UserDefaults.appMode = .parent

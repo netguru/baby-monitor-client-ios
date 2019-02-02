@@ -14,7 +14,7 @@ final class DashboardCoordinator: Coordinator {
     var navigationController: UINavigationController
     var onEnding: (() -> Void)?
 
-    private weak var parentSettingsCoordinator: ParentSettingsCoordinator?
+    private weak var parentSettingsCoordinator: SettingsCoordinator?
     private weak var dashboardViewController: DashboardViewController?
     private weak var cameraPreviewViewController: CameraPreviewViewController?
     private let disposeBag = DisposeBag()
@@ -78,7 +78,7 @@ final class DashboardCoordinator: Coordinator {
     }
     
     private func setupParentSettingsCoordinator() {
-        let parentSettingsCoordinator = ParentSettingsCoordinator(navigationController, appDependencies: appDependencies)
+        let parentSettingsCoordinator = SettingsCoordinator(navigationController, appDependencies: appDependencies)
         childCoordinators.append(parentSettingsCoordinator)
         parentSettingsCoordinator.onEnding = { [unowned self] in
             switch UserDefaults.appMode {

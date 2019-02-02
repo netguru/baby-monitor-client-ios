@@ -11,6 +11,7 @@ extension UIColor {
     static let babyMonitorMediumGray = UIColor(hex: 0x211E35, alpha: 0.7)
     static let babyMonitorDarkGray = UIColor(hex: 0x211E35)
     static let babyMonitorBrownGray = UIColor(hex: 0x9B9B9B)
+    static let babyMonitorWhiteGray = UIColor(hex: 0x4CFFFF)
     static let babyMonitorLightPurple = UIColor(hex: 0xACA1FF)
     static let babyMonitorPurple = UIColor(hex: 0x9C8FFF)
     static let babyMonitorDarkPurple = UIColor(hex: 0x211E35)

@@ -12,9 +12,10 @@ final class ServerViewModel {
         return serverService.localStreamObservable
     }
     var onAudioRecordServiceError: (() -> Void)?
+    var settingsTap: Observable<Void>?
+    let bag = DisposeBag()
     
     private let serverService: ServerServiceProtocol
-    private let bag = DisposeBag()
     
     init(serverService: ServerServiceProtocol) {
         self.serverService = serverService

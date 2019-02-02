@@ -7,50 +7,60 @@ import UIKit
 import RxSwift
 
 final class SettingsCoordinator: Coordinator {
-    
-    var appDependencies: AppDependencies
+
     var childCoordinators: [Coordinator] = []
+    var appDependencies: AppDependencies
     var navigationController: UINavigationController
     var onEnding: (() -> Void)?
-    
+    private weak var parentSettingsViewController: ParentSettingsViewController?
     private let bag = DisposeBag()
-    private weak var settingsViewController: BabyMonitorGeneralViewController<SettingsViewModel.Cell>?
-    
+
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.appDependencies = appDependencies
         self.navigationController = navigationController
     }
-    
-    func start() {
-        showSettings()
-    }
-    
-    // MARK: - private functions
-    private func showSettings() {
-        let viewModel = SettingsViewModel(
-            babyModelController: appDependencies.databaseRepository,
-            storageServerService: appDependencies.storageServerService,
-            memoryCleaner: appDependencies.memoryCleaner,
-            urlConfiguration: appDependencies.urlConfiguration)
 
-        let settingsViewController = BabyMonitorGeneralViewController(viewModel: AnyBabyMonitorGeneralViewModelProtocol<SettingsViewModel.Cell>(viewModel: viewModel), type: .settings)
+    func start() {
+        switch UserDefaults.appMode {
+        case .parent:
+            showParentSettings()
+        case .baby:
+            showBabySettings()
+        case .none:
+            break
+        }
+    }
+
+    // MARK: - private functions
+    private func showParentSettings() {
+        let viewModel = ParentSettingsViewModel(
+            babyModelController: appDependencies.databaseRepository,
+            memoryCleaner: appDependencies.memoryCleaner,
+            urlConfiguration: appDependencies.urlConfiguration
+        )
+        let settingsViewController = ParentSettingsViewController(viewModel: viewModel)
         settingsViewController.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
-                self?.connect(toSettingsViewModel: viewModel)
-            })
-            .disposed(by: bag)
-        self.settingsViewController = settingsViewController
-        navigationController.pushViewController(settingsViewController, animated: false)
+                self?.connect(toParentSettingsViewModel: viewModel)
+        })
+        .disposed(by: bag)
+        self.parentSettingsViewController = settingsViewController
+        navigationController.pushViewController(settingsViewController, animated: true)
     }
     
-    private func connect(toSettingsViewModel viewModel: SettingsViewModel) {
-        viewModel.didSelectChangeServer = { [weak self] in
-            self?.showClientSetup()
-        }
-        viewModel.didSelectClearData = { [weak self] in
-            guard let self = self else {
-                return
-            }
+    private func showBabySettings() {
+        let viewModel = ServerSettingsViewModel(memoryCleaner: appDependencies.memoryCleaner)
+        let settingsViewController = ServerSettingsViewController(viewModel: viewModel)
+        settingsViewController.rx.viewDidLoad
+            .subscribe(onNext: { [weak self] _ in
+                self?.connect(toBaseSettingsViewModel: viewModel)
+        })
+        .disposed(by: bag)
+        navigationController.pushViewController(settingsViewController, animated: true)
+    }
+    
+    private func connect(toBaseSettingsViewModel viewModel: BaseSettingsViewModelProtocol) {
+        viewModel.resetAppTap?.subscribe(onNext: { [unowned self] in
             let continueHandler: (() -> Void) = { [weak self] in
                 viewModel.clearAllDataForNoneState()
                 self?.onEnding?()
@@ -62,39 +72,51 @@ final class SettingsCoordinator: Coordinator {
                 message: Localizable.Settings.clearDataAlertMessage,
                 onViewController: self.navigationController,
                 customActions: [continueAlertAction, cancelAlertAction])
-        }
+        })
+        .disposed(by: bag)
+        viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
+            self.navigationController.popViewController(animated: true)
+            self.onEnding?()
+        })
+        .disposed(by: bag)
     }
-    
-    private func showClientSetup() {
-        let clientSetupViewModel = ClientSetupOnboardingViewModel(
-            netServiceClient: appDependencies.netServiceClient(),
-            urlConfiguration: appDependencies.urlConfiguration,
-            activityLogEventsRepository: appDependencies.databaseRepository,
-            cacheService: appDependencies.cacheService,
-            webSocketEventMessageService: appDependencies.webSocketEventMessageService)
 
-        let clientSetupViewController = OnboardingClientSetupViewController(role: .pairing(.pairing), viewModel: clientSetupViewModel)
-        clientSetupViewController.rx.viewDidLoad
-            .subscribe(onNext: { [weak self] _ in
-                self?.connect(toClientSetupViewModel: clientSetupViewModel)
-            })
-            .disposed(by: bag)
-        
-        navigationController.pushViewController(clientSetupViewController, animated: true)
+    private func connect(toParentSettingsViewModel viewModel: ParentSettingsViewModel) {
+        viewModel.addPhotoTap?.subscribe(onNext: { [unowned self] in
+            self.showImagePickerAlert()
+        })
+        .disposed(by: bag)
+        viewModel.dismissImagePicker.subscribe(onNext: { [unowned self] in
+            self.parentSettingsViewController?.dismiss(animated: true, completion: nil)
+        })
+        .disposed(by: bag)
+        connect(toBaseSettingsViewModel: viewModel)
     }
-    
-    private func connect(toClientSetupViewModel viewModel: ClientSetupOnboardingViewModel) {
-        viewModel.didFinishDeviceSearch = { [weak self] result in
-            switch result {
-            case .success:
-                _ = self?.navigationController.popViewController(animated: true)
-            case .failure:
-                self?.appDependencies.errorHandler.showAlert(
-                    title: Localizable.Errors.errorOccured,
-                    message: Localizable.Errors.unableToFind,
-                    presenter: self?.navigationController
-                )
-            }
+
+    private func showImagePickerAlert() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = parentSettingsViewController
+
+        let alertController = UIAlertController(title: Localizable.Dashboard.chooseImage, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: Localizable.General.cancel, style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraAction = UIAlertAction(title: Localizable.Dashboard.camera, style: .default, handler: { action in
+                imagePickerController.sourceType = .camera
+                self.navigationController.present(imagePickerController, animated: true, completion: nil)
+            })
+            alertController.addAction(cameraAction)
         }
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let photoLibraryAction = UIAlertAction(title: Localizable.Dashboard.photoLibrary, style: .default, handler: { action in
+                imagePickerController.sourceType = .photoLibrary
+                self.navigationController.present(imagePickerController, animated: true, completion: nil)
+            })
+            alertController.addAction(photoLibraryAction)
+        }
+
+        navigationController.present(alertController, animated: true, completion: nil)
     }
 }

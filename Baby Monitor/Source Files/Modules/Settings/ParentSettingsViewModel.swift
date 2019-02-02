@@ -6,7 +6,14 @@
 import RxSwift
 import RxCocoa
 
-final class ParentSettingsViewModel {
+protocol BaseSettingsViewModelProtocol: AnyObject {
+    var resetAppTap: Observable<Void>? { get }
+    var cancelTap: Observable<Void>? { get }
+    
+    func clearAllDataForNoneState()
+}
+
+final class ParentSettingsViewModel: BaseSettingsViewModelProtocol {
     
     lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
