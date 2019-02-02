@@ -208,6 +208,7 @@
 		8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */; };
 		8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */; };
 		8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */; };
+		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
 		A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */; };
 		A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */; };
 		A1640E21220391D500398ED2 /* ServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E20220391D500398ED2 /* ServerSettingsView.swift */; };
@@ -500,6 +501,7 @@
 		8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcMessage.swift; sourceTree = "<group>"; };
 		8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 		8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
+		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
 		A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFactory.swift; sourceTree = "<group>"; };
 		A1640E20220391D500398ED2 /* ServerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSettingsView.swift; sourceTree = "<group>"; };
@@ -768,6 +770,7 @@
 				4E7A1A8F21F1284B0015C3A3 /* UserDefaults+AppMode.swift */,
 				A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */,
 				A1640E2822042FD200398ED2 /* UserDefaults+SendingCryingAllowance.swift */,
+				959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1802,6 +1805,7 @@
 				4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */,
 				2025564121F728F1006C6490 /* ParentSettingsView.swift in Sources */,
 				4E60697D21AFEFD500EB1DCF /* ImageOnboardingView.swift in Sources */,
+				959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				8A8B76ED21EF53A20063EF7E /* WebSocketEventMessageService.swift in Sources */,
 				EC8A8FF521AE8F5F00B5FCCF /* TypedPageViewController.swift in Sources */,
