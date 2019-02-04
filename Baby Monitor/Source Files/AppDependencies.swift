@@ -19,7 +19,11 @@ final class AppDependencies {
     /// Service for detecting baby's cry
     private(set) lazy var cryingDetectionService: CryingDetectionServiceProtocol = CryingDetectionService(microphoneTracker: AKMicrophoneTracker())
     /// Service that takes care of appropriate controling: crying detection, audio recording and saving these events to realm database
-    private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(cryingDetectionService: cryingDetectionService, audioRecordService: audioRecordService, activityLogEventsRepository: databaseRepository)
+    private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(
+        cryingDetectionService: cryingDetectionService,
+        audioRecordService: audioRecordService,
+        activityLogEventsRepository: databaseRepository,
+        storageService: storageServerService)
 
     private(set) lazy var netServiceClient: () -> NetServiceClientProtocol = { NetServiceClient() }
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()

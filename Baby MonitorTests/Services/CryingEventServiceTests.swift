@@ -11,16 +11,17 @@ import RxTest
 class CryingEventServiceTests: XCTestCase {
     
     //Given
-    lazy var sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock)
+    lazy var sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock, storageService: storageServiceMock)
     var cryingDetectionServiceMock = CryingDetectionServiceMock()
     var audioRecordServiceMock = AudioRecordServiceMock()
     var cryingEventsRepositoryMock = DatabaseRepositoryMock()
+    var storageServiceMock = StorageServerServiceMock()
 
     override func setUp() {
         cryingDetectionServiceMock = CryingDetectionServiceMock()
         audioRecordServiceMock = AudioRecordServiceMock()
         cryingEventsRepositoryMock = DatabaseRepositoryMock()
-        sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock)
+        sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock, storageService: storageServiceMock)
     }
     
     func testShouldStartCryingDetectionAnalysis() {

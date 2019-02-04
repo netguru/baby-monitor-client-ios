@@ -31,13 +31,14 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     private let cryingDetectionService: CryingDetectionServiceProtocol
     private let audioRecordService: AudioRecordServiceProtocol?
     private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
+    private let storageService: StorageServerServiceProtocol
     private let disposeBag = DisposeBag()
     
-    init(cryingDetectionService: CryingDetectionServiceProtocol, audioRecordService: AudioRecordServiceProtocol?, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol) {
+    init(cryingDetectionService: CryingDetectionServiceProtocol, audioRecordService: AudioRecordServiceProtocol?, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol, storageService: StorageServerServiceProtocol) {
         self.cryingDetectionService = cryingDetectionService
         self.audioRecordService = audioRecordService
         self.activityLogEventsRepository = activityLogEventsRepository
-        
+        self.storageService = storageService
         rxSetup()
     }
     
@@ -73,7 +74,7 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
             savableFile.save(withName: self.nextFileName, completion: { [unowned self] result in
                 switch result {
                 case .success:
-                    break
+                    self.storageService.uploadRecordingsToDatabaseIfAllowed()
                 case .failure(let error):
                     self.errorPublisher.onNext(error ?? AudioRecordService.AudioError.saveFailure)
                 }
