@@ -61,6 +61,10 @@ final class DashboardCoordinator: Coordinator {
         viewModel.liveCameraPreview?.subscribe(onNext: { [unowned self] in
             let viewModel = self.createCameraPreviewViewModel()
             let cameraPreviewViewController = CameraPreviewViewController(viewModel: viewModel)
+            cameraPreviewViewController.rx.viewDidLoad.subscribe(onNext: { [unowned self] in
+                self.connect(to: viewModel)
+            })
+                .disposed(by: viewModel.bag)
             self.cameraPreviewViewController = cameraPreviewViewController
             self.navigationController.pushViewController(cameraPreviewViewController, animated: true)
         })
@@ -107,9 +111,17 @@ final class DashboardCoordinator: Coordinator {
     // Prepare CameraPreviewViewModel
     private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
         let viewModel = CameraPreviewViewModel(webSocketWebRtcService: appDependencies.webSocketWebRtcService(appDependencies.webRtcClient()), babyModelController: appDependencies.databaseRepository)
-        viewModel.didSelectCancel = { [weak self] in
-            self?.navigationController.popViewController(animated: true)
-        }
         return viewModel
+    }
+    
+    private func connect(to viewModel: CameraPreviewViewModel) {
+        viewModel.cancelTap?.subscribe(onNext: { [weak self] _ in
+            self?.navigationController.popViewController(animated: true)
+        })
+            .disposed(by: viewModel.bag)
+        viewModel.settingsTap?.subscribe(onNext: { [weak self] _ in
+            self?.parentSettingsCoordinator?.start()
+        })
+            .disposed(by: viewModel.bag)
     }
 }

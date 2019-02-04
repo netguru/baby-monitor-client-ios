@@ -11,6 +11,11 @@ final class CameraPreviewView: BaseView {
     
     let mediaView = RTCEAGLVideoView()
     let babyNavigationItemView = BabyNavigationItemView(mode: .parent)
+    let settingsBarButtonItem = UIBarButtonItem(
+        image: #imageLiteral(resourceName: "settings"),
+        style: .plain,
+        target: nil,
+        action: nil)
     let cancelItemButton = UIBarButtonItem(image: #imageLiteral(resourceName: "arrowBack"),
                                            style: .plain,
                                            target: nil,
@@ -45,5 +50,13 @@ extension Reactive where Base: CameraPreviewView {
         return Binder(base.babyNavigationItemView, binding: { navigationView, photo in
             navigationView.updateBabyPhoto(photo ?? UIImage())
         })
+    }
+    
+    var cancelTap: ControlEvent<Void> {
+        return base.cancelItemButton.rx.tap
+    }
+    
+    var settingsTap: ControlEvent<Void> {
+        return base.settingsBarButtonItem.rx.tap
     }
 }
