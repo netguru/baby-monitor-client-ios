@@ -7,15 +7,13 @@ import Foundation
 import FirebaseStorage
 
 protocol StorageServerServiceProtocol: AnyObject {
-    func uploadRecordingsToDatabase()
-    func uploadRecordingsToDatabaseIfNeeded()
+    func uploadRecordingsToDatabaseIfAllowed()
 }
 
 final class FirebaseStorageService: StorageServerServiceProtocol {
-    private var filepathsToSend: [URL] = []
+    private var filepathsToSend: Set<URL> = []
     private var isSending = false
     private lazy var storageReference = Storage.storage().reference()
-    private let shouldSendRecordingsKey = "SHOULD_SEND_RECORDINGS"
     private let userDefaults = UserDefaults.standard
     private let memoryCleaner: MemoryCleanerProtocol
     
@@ -23,23 +21,17 @@ final class FirebaseStorageService: StorageServerServiceProtocol {
         self.memoryCleaner = memoryCleaner
     }
     
-    func uploadRecordingsToDatabase() {
+    func uploadRecordingsToDatabaseIfAllowed() {
+        guard UserDefaults.isSendingCryingsAllowed else {
+            return
+        }
+        filepathsToSend = filepathsToSend.union(getAllFilepaths())
         guard !isSending else {
             return
         }
-        let filePaths = getAllFilepaths()
-        filepathsToSend.append(contentsOf: filePaths)
         sendNextRecord { [unowned self] result in
             self.sendCompletionHandler(result: result)
         }
-    }
-    
-    func uploadRecordingsToDatabaseIfNeeded() {
-        let shouldSendRecords = userDefaults.bool(forKey: shouldSendRecordingsKey)
-        guard shouldSendRecords else {
-            return
-        }
-        uploadRecordingsToDatabase()
     }
     
     private func getAllFilepaths() -> [URL] {
@@ -58,14 +50,12 @@ final class FirebaseStorageService: StorageServerServiceProtocol {
                 self.sendCompletionHandler(result: result)
             }
         case .failure:
-            userDefaults.set(true, forKey: shouldSendRecordingsKey)
             filepathsToSend = []
         }
     }
     
     private func sendNextRecord(completion: @escaping (Result<URL>) -> Void) {
         guard !filepathsToSend.isEmpty else {
-            self.userDefaults.set(false, forKey: self.shouldSendRecordingsKey)
             isSending = false
             return
         }
