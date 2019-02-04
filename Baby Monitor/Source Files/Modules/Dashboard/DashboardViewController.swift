@@ -25,6 +25,7 @@ final class DashboardViewController: TypedViewController<DashboardView>, UINavig
         super.viewDidLoad()
         setup()
         setupViewModel()
+        navigationController?.setNavigationBarHidden(false, animated: false)
         timer = Timer.scheduledTimer(withTimeInterval: 0.8, repeats: true, block: { [weak self] _ in
             self?.customView.firePulse()
         })

@@ -32,7 +32,7 @@ final class ServerViewController: BaseViewController {
         return view
     }()
     
-    private lazy var settingsBarButtonItem = UIBarButtonItem(
+    private let settingsBarButtonItem = UIBarButtonItem(
         image: #imageLiteral(resourceName: "settings"),
         style: .plain,
         target: nil,
