@@ -4,6 +4,7 @@
 */
 
 //MARK: - General
+"general.baby-monitor" = "Baby Monitor";
 "general.cancel" = "Cancel";
 "general.disconnected" = "Disconnected";
 "general.delete" = "Delete";
@@ -108,6 +109,11 @@
 "settings.babyNameTextField.placeholder" = "Your baby name";
 "settings.rateButton.title" = "Rate us";
 "settings.resetButton.title" = "Reset the app";
+"settings.allow-sending.message" = "Allow to send baby voice\nrecordings";
+"settings.send-cryings.description.first-part" = "No worries, your data will be safe! We need\nvoice recordings only for app development.\nWhat does it mean?\n\n" ;
+"settings.send-cryings.description.with-your-help" = "With your help";
+"settings.send-cryings.description.second-part" = "will be able to\nlearn to recognize baby’s voice more\naccurately! Data will be sent automatically,\nonly using WiFi connection.";
+
 
 //MARK: - Errors
 "errors.title.error-occured" = "Error occured";

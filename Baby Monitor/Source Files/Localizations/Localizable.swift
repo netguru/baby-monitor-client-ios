@@ -8,6 +8,7 @@ import Foundation
 enum Localizable {
     
     enum General {
+        static let babyMonitor = localized("general.baby-monitor")
         static let cancel = localized("general.cancel")
         static let disconnected = localized("general.disconnected")
         static let delete = localized("general.delete")
@@ -135,6 +136,10 @@ enum Localizable {
         static let sendRecordingsToServer = localized("settings.cell.send-recordings-to-server")
         static let clearData = localized("settings.cell.clear-data")
         static let clearDataAlertMessage = localized("settings.cell.clear-data-alert-message")
+        static let allowSendingBabyVoice = localized("settings.allow-sending.message")
+        static let sendCryingsDescriptionFirstPart = localized("settings.send-cryings.description.first-part")
+        static let withYourHelp = localized("settings.send-cryings.description.with-your-help")
+        static let sendCryingsDescriptionSecondPart = localized("settings.send-cryings.description.second-part")
     }
     
     enum Errors {

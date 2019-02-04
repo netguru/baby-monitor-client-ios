@@ -8,16 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		200681BF21FB4FC600340596 /* ParentSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */; };
-		200681C121FB53AA00340596 /* ParentSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200681C021FB53AA00340596 /* ParentSettingsCoordinator.swift */; };
+		200681C121FB53AA00340596 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200681C021FB53AA00340596 /* SettingsCoordinator.swift */; };
 		200DFD4721F87862009CA3ED /* RoundedRectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */; };
 		201CF6A221F9CBDC00E06FEF /* ParentSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201CF6A121F9CBDC00E06FEF /* ParentSettingsViewController.swift */; };
-		2025564121F728F1006C6490 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025564021F728F1006C6490 /* SettingsView.swift */; };
+		2025564121F728F1006C6490 /* ParentSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2025564021F728F1006C6490 /* ParentSettingsView.swift */; };
 		20AFCFFE21F62B8D00FC810F /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFCFFD21F62B8C00FC810F /* Rubik-Medium.ttf */; };
 		20AFD00021F62B9900FC810F /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFCFFF21F62B9900FC810F /* Rubik-Bold.ttf */; };
 		20AFD00221F62BA200FC810F /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFD00121F62BA200FC810F /* Rubik-Regular.ttf */; };
 		2FD6861BC0920FE58CB3D522 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DA983E08D91DB2F19F277C9 /* Pods_Baby_Monitor.framework */; };
-		4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */; };
-		4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */; };
 		4E190CA321789E820004ED79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E190CA221789E820004ED79 /* Constants.swift */; };
 		4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CF816217856C500F48706 /* ServerViewModel.swift */; };
 		4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C5C21673FF800E92F29 /* CameraPreviewViewController.swift */; };
@@ -185,7 +183,6 @@
 		8A8EF955219D581D0098A27B /* MessageStreamMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EF954219D581D0098A27B /* MessageStreamMock.swift */; };
 		8AA7CBB92183560900FCF62A /* BabyModelControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBB82183560900FCF62A /* BabyModelControllerProtocol.swift */; };
 		8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */; };
-		8AA7CBBE2187103600FCF62A /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */; };
 		8AA7CBC02187105600FCF62A /* BabyMonitorCellMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBBF2187105600FCF62A /* BabyMonitorCellMock.swift */; };
 		8AA7CBCA21871AE300FCF62A /* DashboardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBC921871AE300FCF62A /* DashboardViewModelTests.swift */; };
 		8AA7CBCC21871B3E00FCF62A /* ConnectionCheckerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBCB21871B3E00FCF62A /* ConnectionCheckerMock.swift */; };
@@ -214,6 +211,12 @@
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
 		A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */; };
 		A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */; };
+		A1640E21220391D500398ED2 /* ServerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E20220391D500398ED2 /* ServerSettingsView.swift */; };
+		A1640E232203930F00398ED2 /* BaseSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E222203930F00398ED2 /* BaseSettingsView.swift */; };
+		A1640E252203A3DB00398ED2 /* ServerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E242203A3DB00398ED2 /* ServerSettingsViewController.swift */; };
+		A1640E272203A48F00398ED2 /* ServerSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E262203A48F00398ED2 /* ServerSettingsViewModel.swift */; };
+		A1640E2922042FD200398ED2 /* UserDefaults+SendingCryingAllowance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E2822042FD200398ED2 /* UserDefaults+SendingCryingAllowance.swift */; };
+		A1640E2B22048EA100398ED2 /* BabyMonitorSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E2A22048EA100398ED2 /* BabyMonitorSwitch.swift */; };
 		A18D3E6E21FF071200C165C6 /* CALayerBasicAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */; };
 		A18D3E7521FF6D3700C165C6 /* ActivityLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */; };
 		A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */; };
@@ -251,18 +254,16 @@
 /* Begin PBXFileReference section */
 		0806325953361018B6D7E8E8 /* Pods-Baby MonitorTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.development.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"; sourceTree = "<group>"; };
 		200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsViewModel.swift; sourceTree = "<group>"; };
-		200681C021FB53AA00340596 /* ParentSettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsCoordinator.swift; sourceTree = "<group>"; };
+		200681C021FB53AA00340596 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleButton.swift; sourceTree = "<group>"; };
 		201CF6A121F9CBDC00E06FEF /* ParentSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsViewController.swift; sourceTree = "<group>"; };
-		2025564021F728F1006C6490 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2025564021F728F1006C6490 /* ParentSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsView.swift; sourceTree = "<group>"; };
 		20AFCFFD21F62B8C00FC810F /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		20AFCFFF21F62B9900FC810F /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		20AFD00121F62BA200FC810F /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		2DF3AA99E8050A590C2C9C86 /* Pods-Baby MonitorTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.staging.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.staging.xcconfig"; sourceTree = "<group>"; };
 		33E1959F9CAED63F1EBBC378 /* Pods-Baby Monitor.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.staging.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.staging.xcconfig"; sourceTree = "<group>"; };
 		3D35897D6D02EF8BB7728EDE /* Pods-Baby MonitorTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.production.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.production.xcconfig"; sourceTree = "<group>"; };
-		4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		4E1134B321E498E5005E3583 /* BabyMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyMonitor.entitlements; sourceTree = "<group>"; };
 		4E190CA221789E820004ED79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4E1CF816217856C500F48706 /* ServerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewModel.swift; sourceTree = "<group>"; };
@@ -475,7 +476,6 @@
 		8A8EF954219D581D0098A27B /* MessageStreamMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStreamMock.swift; sourceTree = "<group>"; };
 		8AA7CBB82183560900FCF62A /* BabyModelControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabyModelControllerProtocol.swift; sourceTree = "<group>"; };
 		8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellProtocol.swift; sourceTree = "<group>"; };
-		8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		8AA7CBBF2187105600FCF62A /* BabyMonitorCellMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorCellMock.swift; sourceTree = "<group>"; };
 		8AA7CBC921871AE300FCF62A /* DashboardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModelTests.swift; sourceTree = "<group>"; };
 		8AA7CBCB21871B3E00FCF62A /* ConnectionCheckerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCheckerMock.swift; sourceTree = "<group>"; };
@@ -504,6 +504,12 @@
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
 		A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFactory.swift; sourceTree = "<group>"; };
+		A1640E20220391D500398ED2 /* ServerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSettingsView.swift; sourceTree = "<group>"; };
+		A1640E222203930F00398ED2 /* BaseSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsView.swift; sourceTree = "<group>"; };
+		A1640E242203A3DB00398ED2 /* ServerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSettingsViewController.swift; sourceTree = "<group>"; };
+		A1640E262203A48F00398ED2 /* ServerSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSettingsViewModel.swift; sourceTree = "<group>"; };
+		A1640E2822042FD200398ED2 /* UserDefaults+SendingCryingAllowance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+SendingCryingAllowance.swift"; sourceTree = "<group>"; };
+		A1640E2A22048EA100398ED2 /* BabyMonitorSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorSwitch.swift; sourceTree = "<group>"; };
 		A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerBasicAnimation.swift; sourceTree = "<group>"; };
 		A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
@@ -763,6 +769,7 @@
 				4EA2802521E8C6B100262E45 /* DateFormatter+Helpers.swift */,
 				4E7A1A8F21F1284B0015C3A3 /* UserDefaults+AppMode.swift */,
 				A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */,
+				A1640E2822042FD200398ED2 /* UserDefaults+SendingCryingAllowance.swift */,
 				959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */,
 			);
 			path = Extensions;
@@ -910,6 +917,7 @@
 				EC8A8FF221AE8EE500B5FCCF /* BasePageViewController.swift */,
 				4E1D2C682167926500E92F29 /* BaseView.swift */,
 				200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */,
+				A1640E2A22048EA100398ED2 /* BabyMonitorSwitch.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -940,12 +948,14 @@
 		4E994BE6216240DA009C44C5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				4E075C7E216348A6001CD8EA /* SettingsCoordinator.swift */,
 				200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */,
-				200681C021FB53AA00340596 /* ParentSettingsCoordinator.swift */,
-				4E075C7C2163488D001CD8EA /* SettingsViewModel.swift */,
-				2025564021F728F1006C6490 /* SettingsView.swift */,
+				200681C021FB53AA00340596 /* SettingsCoordinator.swift */,
+				2025564021F728F1006C6490 /* ParentSettingsView.swift */,
 				201CF6A121F9CBDC00E06FEF /* ParentSettingsViewController.swift */,
+				A1640E20220391D500398ED2 /* ServerSettingsView.swift */,
+				A1640E222203930F00398ED2 /* BaseSettingsView.swift */,
+				A1640E242203A3DB00398ED2 /* ServerSettingsViewController.swift */,
+				A1640E262203A48F00398ED2 /* ServerSettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -995,7 +1005,6 @@
 				4E8E057521AEADB2009ACE05 /* Onboarding */,
 				8AA7CBCD2187400400FCF62A /* ActivityLog */,
 				8AA7CBC621871AB700FCF62A /* Dashboard */,
-				8AA7CBBC2187100F00FCF62A /* Settings */,
 				8A42DAFC2179BF8C00BF5F1B /* ClientSetup */,
 			);
 			path = Modules;
@@ -1167,14 +1176,6 @@
 				8A50AA3E21E603080058C63A /* WebRtcStreamId.swift */,
 			);
 			path = WebRTC;
-			sourceTree = "<group>";
-		};
-		8AA7CBBC2187100F00FCF62A /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				8AA7CBBD2187103600FCF62A /* SettingsViewModelTests.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		8AA7CBC621871AB700FCF62A /* Dashboard */ = {
@@ -1738,6 +1739,7 @@
 				8A7A611C21A59E5000488ED4 /* ActivityLogEvent.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
 				4EA2802621E8C6B200262E45 /* DateFormatter+Helpers.swift in Sources */,
+				A1640E2B22048EA100398ED2 /* BabyMonitorSwitch.swift in Sources */,
 				8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */,
 				A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */,
 				A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */,
@@ -1750,6 +1752,7 @@
 				8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */,
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				8A42DB0B2179D7D700BF5F1B /* URLUserDefaults.swift in Sources */,
+				A1640E232203930F00398ED2 /* BaseSettingsView.swift in Sources */,
 				4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */,
 				8AFAE5BA219C0314007013BC /* String+JSON.swift in Sources */,
 				8A50AA3F21E603080058C63A /* WebRtcConstraintKey.swift in Sources */,
@@ -1760,6 +1763,7 @@
 				ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */,
 				8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */,
 				A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */,
+				A1640E252203A3DB00398ED2 /* ServerSettingsViewController.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
 				ECB2428821AD4F0400B4E409 /* IntroViewModel.swift in Sources */,
 				4E63DC1D21E39D4B00604167 /* URLRequestConvertible.swift in Sources */,
@@ -1781,6 +1785,7 @@
 				4E55435E21D4C33A005C41FD /* RTCICEServer+JSON.m in Sources */,
 				EC8A8FF721AE950B00B5FCCF /* IntroFeatureViewController.swift in Sources */,
 				8AFAE5B1219AAEC7007013BC /* WebSocketProtocol.swift in Sources */,
+				A1640E21220391D500398ED2 /* ServerSettingsView.swift in Sources */,
 				8AA7CBE2218C576D00FCF62A /* URLMediaPlayer.swift in Sources */,
 				8AFAE5BC219C0DEE007013BC /* MessageDecoderProtocol.swift in Sources */,
 				8A7A611F21A59E5D00488ED4 /* RealmActivityLogEvent.swift in Sources */,
@@ -1798,7 +1803,7 @@
 				4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */,
 				A18D3E6E21FF071200C165C6 /* CALayerBasicAnimation.swift in Sources */,
 				4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */,
-				2025564121F728F1006C6490 /* SettingsView.swift in Sources */,
+				2025564121F728F1006C6490 /* ParentSettingsView.swift in Sources */,
 				4E60697D21AFEFD500EB1DCF /* ImageOnboardingView.swift in Sources */,
 				959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
@@ -1806,6 +1811,7 @@
 				EC8A8FF521AE8F5F00B5FCCF /* TypedPageViewController.swift in Sources */,
 				8A8B76DF21EDE3640063EF7E /* WebsocketMessageDecodable.swift in Sources */,
 				4E7A1A9221F12BD00015C3A3 /* ServerCoordinator.swift in Sources */,
+				A1640E272203A48F00398ED2 /* ServerSettingsViewModel.swift in Sources */,
 				ECB2428A21AD4F9200B4E409 /* IntroViewController.swift in Sources */,
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				8A7A612A21A59E9A00488ED4 /* AlertPresenter.swift in Sources */,
@@ -1835,14 +1841,13 @@
 				8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */,
 				4E7A1A9021F1284B0015C3A3 /* UserDefaults+AppMode.swift in Sources */,
 				4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */,
-				200681C121FB53AA00340596 /* ParentSettingsCoordinator.swift in Sources */,
+				200681C121FB53AA00340596 /* SettingsCoordinator.swift in Sources */,
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
 				8A50AA4021E603080058C63A /* WebRtcStreamId.swift in Sources */,
 				8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */,
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
 				8A50AA4221E60A190058C63A /* PeerConnectionDelegate.swift in Sources */,
-				4E075C7F216348A6001CD8EA /* SettingsCoordinator.swift in Sources */,
 				8A50AA3821E602F60058C63A /* PeerConnectionProtocol.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
 				4E36A3AE21B15F850058DAD2 /* OnboardingClientSetupViewController.swift in Sources */,
@@ -1854,6 +1859,7 @@
 				8A42DB072179D61B00BF5F1B /* URLConfiguration.swift in Sources */,
 				4E8E057021AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift in Sources */,
 				4E55436021D4C33A005C41FD /* WebRtcClientManager.swift in Sources */,
+				A1640E2922042FD200398ED2 /* UserDefaults+SendingCryingAllowance.swift in Sources */,
 				8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */,
 				4E8E056321AD81D4009ACE05 /* BaseOnboardingView.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
@@ -1875,7 +1881,6 @@
 				8A50AA3921E602F60058C63A /* IceCandidateProtocol.swift in Sources */,
 				8AFAE5AF219AAE63007013BC /* WebSocketServerProtocol.swift in Sources */,
 				4E360CCE21E781E3002781AC /* FirebaseStorageService.swift in Sources */,
-				4E075C7D2163488D001CD8EA /* SettingsViewModel.swift in Sources */,
 				8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				ECB2428621AD4E1100B4E409 /* IntroCoordinator.swift in Sources */,
 				8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */,
@@ -1944,7 +1949,6 @@
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
 				8A50AA9D21E8DBA20058C63A /* WebRtcClientManagerMock.swift in Sources */,
 				8A50AA8921E8D8D60058C63A /* DecodersTests.swift in Sources */,
-				8AA7CBBE2187103600FCF62A /* SettingsViewModelTests.swift in Sources */,
 				8A50AA8D21E8D8FA0058C63A /* WebRtcServerManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -35,8 +35,8 @@ final class ServerViewController: BaseViewController {
     private lazy var settingsBarButtonItem = UIBarButtonItem(
         image: #imageLiteral(resourceName: "settings"),
         style: .plain,
-        target: self,
-        action: #selector(didTouchSettingsButton))
+        target: nil,
+        action: nil)
     private var timer: Timer?
     private let babyNavigationItemView = BabyNavigationItemView(mode: .baby)
     private let localView = RTCEAGLVideoView()
@@ -48,23 +48,20 @@ final class ServerViewController: BaseViewController {
         super.init()
         view.addSubview(localView)
         view.addSubview(buttonsStackView)
-        babyNavigationItemView.updateBabyName("Franciszek")
         localView.addConstraints { $0.equalEdges() }
         setup()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.settingsTap = settingsBarButtonItem.rx.tap.asObservable()
+        babyNavigationItemView.updateBabyName("Franciszek")
         timer = Timer.scheduledTimer(withTimeInterval: 0.8, repeats: true, block: { [weak self] _ in
             self?.babyNavigationItemView.firePulse()
         })
-        timer?.fire()
-    }
-    
-    @objc
-    private func didTouchSettingsButton() {
-        // TODO: Implement showing settings
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.timer?.fire()
+        }
     }
     
     private func setup() {

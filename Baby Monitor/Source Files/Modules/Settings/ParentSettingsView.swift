@@ -1,5 +1,5 @@
 //
-//  SettingsView.swift
+//  ParentSettingsView.swift
 //  Baby Monitor
 //
 
@@ -7,9 +7,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class SettingsView: UIView {
-
-    let cancelButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "arrow_back"), style: .plain, target: nil, action: nil)
+final class ParentSettingsView: BaseSettingsView {
     
     fileprivate let editBabyPhotoButton = UIButton(type: .custom)
     fileprivate let editBabyPhotoImage = UIImageView(image: #imageLiteral(resourceName: "edit_baby_photo"))
@@ -34,29 +32,9 @@ final class SettingsView: UIView {
         return view
     }()
 
-    fileprivate let rateButton = RoundedRectangleButton(title: Localizable.Settings.rateButtonTitle, backgroundColor: .babyMonitorPurple)
-    fileprivate let resetButton = RoundedRectangleButton(title: Localizable.Settings.resetButtonTitle, backgroundColor: .babyMonitorDarkPurple, borderColor: .babyMonitorNonTranslucentWhite)
-    private lazy var buttonsStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [rateButton, resetButton])
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 16
-        return stackView
-    }()
-    private let signatureImageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "Made with love"))
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-
-    @available(*, unavailable, message: "Use init() instead")
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     /// Initializes settings view
-    init() {
-        super.init(frame: UIScreen.main.bounds)
+    override init() {
+        super.init()
         setupLayout()
     }
 
@@ -68,9 +46,7 @@ final class SettingsView: UIView {
     }
 
     private func setupLayout() {
-        rateButton.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
-        resetButton.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
-        [editBabyPhotoImage, editBabyPhotoButton, babyNameTextField, editImageView, underline, buttonsStackView, signatureImageView].forEach { addSubview($0) }
+        [editBabyPhotoImage, editBabyPhotoButton, babyNameTextField, editImageView, underline].forEach { addSubview($0) }
         setupConstraints()
     }
 
@@ -106,7 +82,6 @@ final class SettingsView: UIView {
             $0.equalConstant(.height, 1)
         ]
         }
-
         editBabyPhotoButton.addConstraints {[
             $0.equalTo(editBabyPhotoImage, .leading, .leading),
             $0.equalTo(editBabyPhotoImage, .trailing, .trailing),
@@ -115,31 +90,16 @@ final class SettingsView: UIView {
         ]
         }
         editBabyPhotoButton.layer.zPosition = 1
-        
-        buttonsStackView.addConstraints {[
-            $0.equalTo(signatureImageView, .bottom, .top, constant: -29),
-            $0.equal(.leading, constant: 23),
-            $0.equal(.trailing, constant: -23),
-            $0.equalTo(buttonsStackView, .height, .width, multiplier: 0.415)
-        ]
-        }
-
-        signatureImageView.addConstraints {[
-            $0.equal(.bottom, constant: -52),
-            $0.equal(.centerX)
-        ]
-        }
     }
 }
 
-extension Reactive where Base: SettingsView {
+extension Reactive where Base: ParentSettingsView {
 
     var babyPhoto: Binder<UIImage?> {
         return Binder<UIImage?>(base.editBabyPhotoImage) { imageView, image in
             imageView.image = image ?? #imageLiteral(resourceName: "edit_baby_photo")
         }
     }
-
     var babyName: ControlProperty<String> {
         let name = base.babyNameTextField.rx.controlEvent(.editingDidEndOnExit)
             .withLatestFrom(base.babyNameTextField.rx.text)
@@ -149,19 +109,6 @@ extension Reactive where Base: SettingsView {
         }
         return ControlProperty(values: name, valueSink: binder)
     }
-
-    var rateButtonTap: ControlEvent<Void> {
-        return base.rateButton.rx.tap
-    }
-    
-    var cancelButtonTap: ControlEvent<Void> {
-        return base.cancelButtonItem.rx.tap
-    }
-
-    var resetButtonTap: ControlEvent<Void> {
-        return base.resetButton.rx.tap
-    }
-
     var editPhotoTap: ControlEvent<Void> {
         return base.editBabyPhotoButton.rx.tap
     }

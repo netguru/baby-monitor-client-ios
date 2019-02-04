@@ -44,32 +44,40 @@ final class RootCoordinator: RootCoordinatorProtocol {
         let dashboardCoordinator = DashboardCoordinator(navigationController, appDependencies: appDependencies)
         self.dashboardCoordinator = dashboardCoordinator
         dashboardCoordinator.onEnding = { [unowned self] in
-            // For now triggering tabBarCoordinator onEnding is only in situation where user wants to clear all data
-            switch UserDefaults.appMode {
-            case .none:
-                self.childCoordinators = []
-                self.setup()
-                self.start()
-            case .parent, .baby:
-                break
-            }
+            self.triggerOnEndingForDashboardAndServerCoordinator()
         }
         childCoordinators.append(dashboardCoordinator)
         
         let serverCoordinator = ServerCoordinator(navigationController, appDependencies: appDependencies)
         self.serverCoordinator = serverCoordinator
+        serverCoordinator.onEnding = { [unowned self] in
+            self.triggerOnEndingForDashboardAndServerCoordinator()
+        }
         childCoordinators.append(serverCoordinator)
-
         onboardingCoordinator.onEnding = { [weak self] in
-            switch UserDefaults.appMode {
-            case .parent:
-                self?.navigationController.setViewControllers([], animated: false)
-                dashboardCoordinator.start()
-            case .baby:
-                serverCoordinator.start()
-            case .none:
-                break
-            }
+            self?.navigationController.setViewControllers([], animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                switch UserDefaults.appMode {
+                case .parent:
+                    dashboardCoordinator.start()
+                case .baby:
+                    serverCoordinator.start()
+                case .none:
+                    break
+                }
+            })
+        }
+    }
+    
+    private func triggerOnEndingForDashboardAndServerCoordinator() {
+        // For now triggering dashboardCoordinator/serverCoordinator onEnding is only in situation where user wants to clear all data
+        switch UserDefaults.appMode {
+        case .none:
+            self.childCoordinators = []
+            self.setup()
+            self.start()
+        case .parent, .baby:
+            break
         }
     }
 }

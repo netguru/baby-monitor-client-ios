@@ -6,14 +6,14 @@
 import UIKit
 import RxSwift
 
-class ParentSettingsViewController: TypedViewController<SettingsView>, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+final class ParentSettingsViewController: TypedViewController<ParentSettingsView>, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     private let viewModel: ParentSettingsViewModel
     private let bag = DisposeBag()
 
     init(viewModel: ParentSettingsViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: SettingsView())
+        super.init(viewMaker: ParentSettingsView())
     }
 
     override func viewDidLoad() {
