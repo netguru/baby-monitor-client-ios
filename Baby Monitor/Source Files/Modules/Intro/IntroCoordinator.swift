@@ -48,8 +48,7 @@ final class IntroCoordinator: Coordinator {
                 self?.onEnding?()
             }
         }
-
-        navigationController.pushViewController(introViewController, animated: true)
+        navigationController.setViewControllers([introViewController], animated: true)
     }
     
     private func setFeatureViewController(_ featureViewController: IntroFeatureViewController) {

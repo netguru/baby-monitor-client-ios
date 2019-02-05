@@ -27,8 +27,11 @@ final class ServerCoordinator: Coordinator {
     private func showServerView() {
         let viewModel = ServerViewModel(serverService: appDependencies.serverService)
         let serverViewController = ServerViewController(viewModel: viewModel)
-        viewModel.onAudioRecordServiceError = { [unowned self] in
-            guard !self.isAudioServiceErrorAlreadyShown else {
+        viewModel.onAudioRecordServiceError = { [unowned self, weak serverViewController] in
+            guard
+                !self.isAudioServiceErrorAlreadyShown,
+                let serverViewController = serverViewController
+            else {
                 return
             }
             self.isAudioServiceErrorAlreadyShown = true
@@ -40,7 +43,7 @@ final class ServerCoordinator: Coordinator {
         })
         .disposed(by: viewModel.bag)
         self.navigationController.setNavigationBarHidden(false, animated: false)
-        navigationController.pushViewController(serverViewController, animated: true)
+        navigationController.setViewControllers([serverViewController], animated: true)
     }
     
     private func setupParentSettingsCoordinator() {

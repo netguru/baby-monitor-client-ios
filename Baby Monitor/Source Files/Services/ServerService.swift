@@ -10,6 +10,7 @@ protocol ServerServiceProtocol: AnyObject {
     var localStreamObservable: Observable<MediaStream> { get }
     var audioRecordServiceErrorObservable: Observable<Void> { get }
     func startStreaming()
+    func stop()
 }
 
 final class ServerService: ServerServiceProtocol {
