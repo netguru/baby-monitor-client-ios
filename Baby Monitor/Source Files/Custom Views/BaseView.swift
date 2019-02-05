@@ -9,7 +9,7 @@ import UIKit
 class BaseView: UIView {
     
     private lazy var backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "back"))
+        let imageView = UIImageView(image: UIImage(named: "base-background"))
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

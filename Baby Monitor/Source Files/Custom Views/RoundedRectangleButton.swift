@@ -13,7 +13,7 @@ final class RoundedRectangleButton: UIButton {
     ///     - title: title of button
     ///     - backgroundColor: background color of button
     ///     - borderColor: border color of button
-    init(title: String, backgroundColor: UIColor, borderColor: UIColor? = nil) {
+    init(title: String, backgroundColor: UIColor? = nil, borderColor: UIColor? = nil) {
         super.init(frame: .zero)
         setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
