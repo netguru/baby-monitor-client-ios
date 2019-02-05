@@ -54,8 +54,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
             self.triggerOnEndingForDashboardAndServerCoordinator()
         }
         childCoordinators.append(serverCoordinator)
-        onboardingCoordinator.onEnding = { [weak self] in
-            self?.navigationController.setViewControllers([], animated: true)
+        onboardingCoordinator.onEnding = {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 switch UserDefaults.appMode {
                 case .parent:
@@ -73,9 +72,9 @@ final class RootCoordinator: RootCoordinatorProtocol {
         // For now triggering dashboardCoordinator/serverCoordinator onEnding is only in situation where user wants to clear all data
         switch UserDefaults.appMode {
         case .none:
-            self.childCoordinators = []
-            self.setup()
-            self.start()
+            childCoordinators = []
+            setup()
+            start()
         case .parent, .baby:
             break
         }

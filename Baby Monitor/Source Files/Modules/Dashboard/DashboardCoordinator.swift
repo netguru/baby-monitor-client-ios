@@ -48,7 +48,7 @@ final class DashboardCoordinator: Coordinator {
                 self?.connect(toDashboardViewModel: viewModel)
             })
             .disposed(by: viewModel.bag)
-        navigationController.pushViewController(dashboardViewController, animated: false)
+        navigationController.setViewControllers([dashboardViewController], animated: true)
     }
 
     // Prepare DashboardViewModel
