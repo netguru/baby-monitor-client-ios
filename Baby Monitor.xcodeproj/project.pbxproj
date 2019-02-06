@@ -217,6 +217,9 @@
 		A1640E272203A48F00398ED2 /* ServerSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E262203A48F00398ED2 /* ServerSettingsViewModel.swift */; };
 		A1640E2B22048EA100398ED2 /* BabyMonitorSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E2A22048EA100398ED2 /* BabyMonitorSwitch.swift */; };
 		A186818F2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A186818E2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift */; };
+		A18681912209A1A60069E521 /* SendRecordingsIntroFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18681902209A1A60069E521 /* SendRecordingsIntroFeatureView.swift */; };
+		A18681932209A2350069E521 /* RecordingsIntroFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18681922209A2350069E521 /* RecordingsIntroFeatureViewController.swift */; };
+		A18681952209B9080069E521 /* RecordingsIntroFeatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18681942209B9080069E521 /* RecordingsIntroFeatureViewModel.swift */; };
 		A18D3E6E21FF071200C165C6 /* CALayerBasicAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */; };
 		A18D3E7521FF6D3700C165C6 /* ActivityLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */; };
 		A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */; };
@@ -510,6 +513,9 @@
 		A1640E262203A48F00398ED2 /* ServerSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSettingsViewModel.swift; sourceTree = "<group>"; };
 		A1640E2A22048EA100398ED2 /* BabyMonitorSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorSwitch.swift; sourceTree = "<group>"; };
 		A186818E2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+SendingCryingAllowance.swift"; sourceTree = "<group>"; };
+		A18681902209A1A60069E521 /* SendRecordingsIntroFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRecordingsIntroFeatureView.swift; sourceTree = "<group>"; };
+		A18681922209A2350069E521 /* RecordingsIntroFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsIntroFeatureViewController.swift; sourceTree = "<group>"; };
+		A18681942209B9080069E521 /* RecordingsIntroFeatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsIntroFeatureViewModel.swift; sourceTree = "<group>"; };
 		A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerBasicAnimation.swift; sourceTree = "<group>"; };
 		A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
@@ -1442,7 +1448,10 @@
 				EC8A8FF621AE950B00B5FCCF /* IntroFeatureViewController.swift */,
 				ECB2428721AD4F0400B4E409 /* IntroViewModel.swift */,
 				ECB2428B21AD4FB700B4E409 /* IntroFeatureView.swift */,
+				A18681902209A1A60069E521 /* SendRecordingsIntroFeatureView.swift */,
 				EC8A8FF821AEA7EE00B5FCCF /* IntroView.swift */,
+				A18681922209A2350069E521 /* RecordingsIntroFeatureViewController.swift */,
+				A18681942209B9080069E521 /* RecordingsIntroFeatureViewModel.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -1735,6 +1744,7 @@
 				4E63DC1B21E39D4B00604167 /* Request.swift in Sources */,
 				8A7A611721A59E3B00488ED4 /* CryingEventService.swift in Sources */,
 				8A045D5B21A3F685006A2E10 /* (null) in Sources */,
+				A18681912209A1A60069E521 /* SendRecordingsIntroFeatureView.swift in Sources */,
 				8A7A611B21A59E5000488ED4 /* MemoryCleaner.swift in Sources */,
 				8A7A611C21A59E5000488ED4 /* ActivityLogEvent.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
@@ -1796,11 +1806,13 @@
 				8A8EF944219C40630098A27B /* RTCSessionDescription+JSON.swift in Sources */,
 				8AFAE5C3219C1FE3007013BC /* SdpAnswerDecoder.swift in Sources */,
 				8A42DB092179D65900BF5F1B /* UserDefaultsURLConfiguration.swift in Sources */,
+				A18681952209B9080069E521 /* RecordingsIntroFeatureViewModel.swift in Sources */,
 				4E7B091121E5FE6D00EDDD11 /* Encodable+StringMessage.swift in Sources */,
 				A1C5E6E421FB0C9C00D93203 /* Date+Helpers.swift in Sources */,
 				4E63DC1121E39CFA00604167 /* CacheService.swift in Sources */,
 				8A6098C221EBFD0D00592B01 /* SessionDescriptionDelegate.swift in Sources */,
 				4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */,
+				A18681932209A2350069E521 /* RecordingsIntroFeatureViewController.swift in Sources */,
 				A18D3E6E21FF071200C165C6 /* CALayerBasicAnimation.swift in Sources */,
 				4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */,
 				2025564121F728F1006C6490 /* ParentSettingsView.swift in Sources */,

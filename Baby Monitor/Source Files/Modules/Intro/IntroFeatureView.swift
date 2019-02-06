@@ -5,20 +5,30 @@
 
 import UIKit
 
-final class IntroFeatureView: BaseView {
+class IntroFeatureView: BaseView {
 
     /// Performed when the user taps a left button at the bottom of the view
     var didSelectLeftAction: (() -> Void)?
 
     /// Performed when the user taps a right button at the bottom of the view
     var didSelectRightAction: (() -> Void)?
-
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+    var titleLabelConstraints: [NSLayoutConstraint] = []
+    let leftButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(didTapLeftButton), for: .touchUpInside)
+        button.titleLabel?.textColor = .white
+        button.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .medium)
+        button.layer.opacity = 0.3
+        return button
     }()
-    private let titleLabel: UILabel = {
+    let rightButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(didTapRightButton), for: .touchUpInside)
+        button.titleLabel?.textColor = .white
+        button.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
+        return button
+    }()
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -27,6 +37,12 @@ final class IntroFeatureView: BaseView {
         label.font = UIFont.customFont(withSize: fontSize, weight: .bold)
         return label
     }()
+    let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -35,29 +51,6 @@ final class IntroFeatureView: BaseView {
         let fontSize: UIFont.CustomTextSize = UIDevice.screenSizeBiggerThan4Inches ? .small : .caption
         label.font = UIFont.customFont(withSize: fontSize, weight: .regular)
         return label
-    }()
-    private let leftButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(didTapLeftButton), for: .touchUpInside)
-        button.titleLabel?.textColor = .white
-        button.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .medium)
-        button.layer.opacity = 0.3
-        return button
-    }()
-    private let rightButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(didTapRightButton), for: .touchUpInside)
-        button.titleLabel?.textColor = .white
-        button.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
-        return button
-    }()
-    private lazy var introStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel, descriptionLabel])
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        stackView.alignment = .center
-        stackView.distribution = .fill
-        return stackView
     }()
     
     init(role: IntroFeature) {
@@ -90,9 +83,13 @@ final class IntroFeatureView: BaseView {
             imageView.image = #imageLiteral(resourceName: "safety.png")
             titleLabel.text = Localizable.Intro.Title.safety
             descriptionLabel.text = Localizable.Intro.Description.safety
+        case .recordings:
+            imageView.image = #imageLiteral(resourceName: "feature baby")
+            titleLabel.text = Localizable.Intro.Title.recordings
+            descriptionLabel.text = Localizable.Intro.Description.recordings
         }
 
-        [introStackView, leftButton, rightButton].forEach {
+        [imageView, titleLabel, descriptionLabel, leftButton, rightButton].forEach {
             addSubview($0)
         }
         
@@ -100,29 +97,22 @@ final class IntroFeatureView: BaseView {
     }
     
     private func setupConstraints() {
-        let spacing: CGFloat = UIDevice.screenSizeBiggerThan4Inches ? 15 : 5
-        introStackView.setCustomSpacing(spacing, after: titleLabel)
-        let lowPriority = UILayoutPriority(999)
-        let widthMultiplier: CGFloat = UIDevice.screenSizeBiggerThan4Point7Inches ? 0.7 : 0.8
-        let widthMultiplyContraint = introStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: widthMultiplier)
-        let heightMultiplyContraint = introStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6)
-        widthMultiplyContraint.priority = lowPriority
-        heightMultiplyContraint.priority = lowPriority
-
-        NSLayoutConstraint.activate([
-            introStackView.widthAnchor.constraint(lessThanOrEqualToConstant: 400),
-            widthMultiplyContraint,
-            introStackView.heightAnchor.constraint(lessThanOrEqualToConstant: 600),
-            heightMultiplyContraint
-        ])
-
-        introStackView.addConstraints {[
+        let screenHeight = UIScreen.main.bounds.height
+        imageView.addConstraints {[
             $0.equal(.centerX),
-            $0.equal(.centerY, constant: -50)
+            $0.equal(.width, multiplier: 0.6),
+            $0.equalTo($0, .height, .height),
+            $0.equalTo(self, .top, .safeAreaTop, constant: screenHeight * 0.1)
         ]
         }
-        imageView.addConstraints {[
-            $0.equalTo(introStackView, .width, .width, multiplier: 0.8)
+        titleLabelConstraints = titleLabel.addConstraints {[
+            $0.equal(.centerX),
+            $0.equalTo(imageView, .top, .bottom, constant: 42)
+        ]
+        }
+        descriptionLabel.addConstraints {[
+            $0.equal(.centerX),
+            $0.equalTo(titleLabel, .top, .bottom, constant: 14)
         ]
         }
         let sideConstantForButtons: CGFloat = 35
