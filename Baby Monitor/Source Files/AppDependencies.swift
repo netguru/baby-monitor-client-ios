@@ -51,9 +51,9 @@ final class AppDependencies {
         return WebSocketConductor(webSocket: self.webSocket, messageEmitter: emitter, messageHandler: handler, messageDecoders: self.webRtcMessageDecoders)
     }
     private(set) lazy var webSocketEventMessageService: WebSocketEventMessageServiceProtocol = WebSocketEventMessageService(cryingEventsRepository: databaseRepository, eventMessageConductorFactory: eventMessageConductorFactory)
-    private(set) lazy var webSocketWebRtcService: (WebRtcClientManagerProtocol) -> WebSocketWebRtcServiceProtocol = { webRtcClient in
-        return WebSocketWebRtcService(webRtcClientManager: webRtcClient, webRtcConductorFactory: self.webRtcConductorFactory)
-    }
+    private(set) lazy var webSocketWebRtcService: WebSocketWebRtcServiceProtocol = {
+        return WebSocketWebRtcService(webRtcClientManager: webRtcClient(), webRtcConductorFactory: self.webRtcConductorFactory)
+    }()
     private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher(
         urlSession: URLSession(configuration: .default),
         dispatchQueue: DispatchQueue(label: "NetworkDispatcherQueue")
