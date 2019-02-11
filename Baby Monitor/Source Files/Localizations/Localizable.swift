@@ -21,6 +21,7 @@ enum Localizable {
         static let craftedWithLove = localized("general.craftedWithLove")
         static let byNetguru = localized("general.byNetguru")
         static let yourBaby = localized("general.your-baby")
+        static let letsStart = localized("general.lets-start")
     }
     
     enum Intro {
@@ -28,11 +29,13 @@ enum Localizable {
             static let monitoring = localized("intro.title.monitoring")
             static let detection = localized("intro.title.detection")
             static let safety = localized("intro.title.safety")
+            static let recordings = localized("intro.title.recordings")
         }
         enum Description {
             static let monitoring = localized("intro.description.monitoring")
             static let detection = localized("intro.description.detection")
             static let safety = localized("intro.description.safety")
+            static let recordings = localized("intro.description.recordings")
         }
         enum Buttons {
             static let skip = localized("intro.button.skip")

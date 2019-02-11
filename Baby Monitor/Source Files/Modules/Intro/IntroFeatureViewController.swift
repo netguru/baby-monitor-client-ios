@@ -5,7 +5,7 @@
 
 import UIKit
 
-class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
+final class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
 
     private let viewModel: IntroViewModel
     

@@ -58,7 +58,7 @@ final class OnboardingCoordinator: Coordinator {
     private func showInitialSetup() {
         let viewModel = SpecifyDeviceOnboardingViewModel()
         viewModel.didSelectBaby = { [weak self] in
-            self?.connectingCoordinator?.start()
+            self?.showAllowSendingRecordingsView()
         }
         viewModel.didSelectParent = { [weak self] in
             self?.pairingCoordinator?.start()
@@ -74,9 +74,19 @@ final class OnboardingCoordinator: Coordinator {
             self.connect(to: viewModel)
         })
         .disposed(by: viewModel.bag)
+            
         navigationController.pushViewController(viewController, animated: true)
     }
-    
+    private func showAllowSendingRecordingsView() {
+        let viewModel = RecordingsIntroFeatureViewModel()
+        let viewController = RecordingsIntroFeatureViewController(viewModel: viewModel)
+        viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
+            self?.connect(to: viewModel)
+        })
+        .disposed(by: viewModel.bag)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+
     private func connect(to viewModel: SpecifyDeviceInfoOnboardingViewModel) {
         viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
             self.navigationController.popViewController(animated: true)
@@ -86,5 +96,12 @@ final class OnboardingCoordinator: Coordinator {
             self.showInitialSetup()
         })
             .disposed(by: viewModel.bag)
+}
+        
+    private func connect(to viewModel: RecordingsIntroFeatureViewModel) {
+        viewModel.startButtonTap?.subscribe(onNext: { [weak self] in
+            self?.connectingCoordinator?.start()
+        })
+        .disposed(by: viewModel.bag)
     }
 }

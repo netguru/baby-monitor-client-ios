@@ -110,6 +110,20 @@ extension UIView {
         }
     }
     
+    /// Describes constraint that is greater than or equal to constraint from other view.
+    ///
+    /// - Parameters:
+    ///   - view: that constrain should relate to
+    ///   - fromAnchor: constraints key path of current view
+    ///   - toAnchor: constraints key path of related view
+    ///   - multiplier: value
+    /// - Returns: created constraint
+    func greaterThanOrEqualTo<LayoutDimension>(_ view: UIView, _ fromAnchor: KeyPath<UIView, LayoutDimension>, _ toAnchor: KeyPath<UIView, LayoutDimension>, multiplier: CGFloat) -> Constraint where LayoutDimension: NSLayoutDimension {
+        return { layoutView in
+            layoutView[keyPath: fromAnchor].constraint(greaterThanOrEqualTo: view[keyPath: toAnchor], multiplier: multiplier)
+        }
+    }
+    
     /// Describes constraint that is equal to constraint from superview.
     /// Example: `equal(\.leadingAnchor) will align view leadingAnchor to superview leadingAnchor with defined constant`
     ///
