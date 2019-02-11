@@ -18,10 +18,22 @@ final class RecordingsIntroFeatureViewController: TypedViewController<SendRecord
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = customView.cancelItemButton
         view.backgroundColor = .babyMonitorDarkGray
         customView.setupBackgroundImage(UIImage())
         viewModel.attachInput(
             recordingsSwitchChange: customView.rx.recordingsSwitch.asObservable(),
-            startButtonTap: customView.rx.startTap.asObservable())
+            startButtonTap: customView.rx.startTap.asObservable(),
+            cancelButtonTap: customView.rx.cancelTap.asObservable())
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }

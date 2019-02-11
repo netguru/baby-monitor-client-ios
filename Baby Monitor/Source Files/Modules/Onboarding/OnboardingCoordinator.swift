@@ -95,12 +95,16 @@ final class OnboardingCoordinator: Coordinator {
         viewModel.specifyDeviceTap?.subscribe(onNext: { [unowned self] in
             self.showInitialSetup()
         })
-            .disposed(by: viewModel.bag)
+        .disposed(by: viewModel.bag)
 }
         
     private func connect(to viewModel: RecordingsIntroFeatureViewModel) {
         viewModel.startButtonTap?.subscribe(onNext: { [weak self] in
             self?.connectingCoordinator?.start()
+        })
+        .disposed(by: viewModel.bag)
+        viewModel.cancelButtonTap?.subscribe(onNext: { [weak self] in
+            self?.navigationController.popViewController(animated: true)
         })
         .disposed(by: viewModel.bag)
     }

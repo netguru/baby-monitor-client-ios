@@ -9,6 +9,10 @@ import RxCocoa
 
 final class SendRecordingsIntroFeatureView: IntroFeatureView {
     
+    let cancelItemButton = UIBarButtonItem(image: #imageLiteral(resourceName: "arrowBack"),
+                                           style: .plain,
+                                           target: nil,
+                                           action: nil)
     let recordingsSwitch = BabyMonitorSwitch()
     let startButton = RoundedRectangleButton(title: Localizable.General.letsStart, backgroundColor: .babyMonitorPurple)
     
@@ -59,5 +63,9 @@ extension Reactive where Base: SendRecordingsIntroFeatureView {
     
     var recordingsSwitch: ControlProperty<Bool> {
         return base.recordingsSwitch.rx.isOn
+    }
+    
+    var cancelTap: ControlEvent<Void> {
+        return base.cancelItemButton.rx.tap
     }
 }
