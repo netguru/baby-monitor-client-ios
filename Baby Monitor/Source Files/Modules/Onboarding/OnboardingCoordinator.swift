@@ -95,7 +95,7 @@ final class OnboardingCoordinator: Coordinator {
         viewModel.specifyDeviceTap?.subscribe(onNext: { [unowned self] in
             self.showInitialSetup()
         })
-            .disposed(by: viewModel.bag)
+        .disposed(by: viewModel.bag)
 }
         
     private func connect(to viewModel: RecordingsIntroFeatureViewModel) {
