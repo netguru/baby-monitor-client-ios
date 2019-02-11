@@ -110,7 +110,7 @@ final class DashboardCoordinator: Coordinator {
 
     // Prepare CameraPreviewViewModel
     private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
-        let viewModel = CameraPreviewViewModel(webSocketWebRtcService: appDependencies.webSocketWebRtcService(appDependencies.webRtcClient()), babyModelController: appDependencies.databaseRepository)
+        let viewModel = CameraPreviewViewModel(webSocketWebRtcService: appDependencies.webSocketWebRtcService, babyModelController: appDependencies.databaseRepository)
         return viewModel
     }
     
