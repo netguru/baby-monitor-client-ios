@@ -106,6 +106,6 @@ final class OnboardingCoordinator: Coordinator {
         viewModel.cancelButtonTap?.subscribe(onNext: { [weak self] in
             self?.navigationController.popViewController(animated: true)
         })
-            .disposed(by: viewModel.bag)
+        .disposed(by: viewModel.bag)
     }
 }
