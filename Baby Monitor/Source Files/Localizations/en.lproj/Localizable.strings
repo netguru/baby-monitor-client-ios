@@ -57,6 +57,16 @@
 "onboarding.connecting.place-device" = "Place this device next to your baby’s bed \nso that you can see him on your live view";
 "onboarding.connecting.start-monitoring" = "Start monitoring";
 
+//MARK: - Onboarding Specify Device
+"onboarding.specify-device.info.title" = "Prepare two devices\nfor setup";
+"onboarding.specify-device.info.description.first-part" = "You need two devices to start using\nBaby Monitor. ";
+"onboarding.specify-device.info.description.one-text" = "One";
+"onboarding.specify-device.info.description.middle-part-text" = ", to monitor your\nbaby in a room, and ";
+"onboarding.specify-device.info.description.the-other-text" = "the other ";
+"onboarding.specify-device.info.description.last-part" = "to show\na real time view of your baby, when\nyou leave the room.";
+"onboarding.specify-device.info.step-description" = "Now go to the step where you decide if this\ndevice will stay with you or with your baby";
+"onboarding.specify-device.info.specify-button" = "Specify this device";
+
 //MARK: - Dashboard
 "dashboard.button.live-camera" = "LIVE CAMERA";
 "dashboard.button.talk" = "TALK";

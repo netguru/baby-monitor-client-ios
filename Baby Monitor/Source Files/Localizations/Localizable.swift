@@ -57,7 +57,25 @@ enum Localizable {
         static let baby = localized("onboarding.button.baby")
         static let specifyDevice = localized("onboarding.label.specify-this-device")
         static let welcomeTo = localized("onboarding.label.welcome-to")
-        
+
+        enum SpecifyDevice {
+
+            enum Info {
+                static let title = localized("onboarding.specify-device.info.title")
+                static let descriptionFirstPart = localized("onboarding.specify-device.info.description.first-part")
+                static let descriptionOneText = localized("onboarding.specify-device.info.description.one-text")
+                static let descriptionMiddlePart = localized("onboarding.specify-device.info.description.middle-part-text")
+                static let descriptionTheOtherText = localized("onboarding.specify-device.info.description.the-other-text")
+                static let descriptionLastPart = localized("onboarding.specify-device.info.description.last-part")
+                static let stepDescription = localized("onboarding.specify-device.info.step-description")
+                static let specifyButton = localized("onboarding.specify-device.info.specify-button")
+            }
+
+            enum Specification {
+                // TODO: Add in BM-321
+            }
+        }
+
         enum Connecting {
             static let connectToWiFi = localized("onboarding.connecting.connect-to-wi-fi")
             static let setupInformation = localized("onboarding.connecting.setup-information")

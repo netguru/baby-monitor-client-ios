@@ -208,6 +208,9 @@
 		8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */; };
 		8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */; };
 		8AFE3DFB2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */; };
+		95368F522209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */; };
+		95368F552209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */; };
+		95368F582209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */; };
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
 		A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */; };
 		A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */; };
@@ -504,6 +507,9 @@
 		8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcMessage.swift; sourceTree = "<group>"; };
 		8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 		8AFE3DFA2182F68000729615 /* AnyBabyMonitorGeneralViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBabyMonitorGeneralViewModelProtocol.swift; sourceTree = "<group>"; };
+		95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewController.swift; sourceTree = "<group>"; };
+		95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingView.swift; sourceTree = "<group>"; };
+		95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewModel.swift; sourceTree = "<group>"; };
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
 		A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFactory.swift; sourceTree = "<group>"; };
@@ -1292,6 +1298,35 @@
 			path = Messages;
 			sourceTree = "<group>";
 		};
+		95368F502209BBFA006E263A /* Specify Device */ = {
+			isa = PBXGroup;
+			children = (
+				95368F532209BC3C006E263A /* Info */,
+				95368F562209BC87006E263A /* Specification */,
+			);
+			path = "Specify Device";
+			sourceTree = "<group>";
+		};
+		95368F532209BC3C006E263A /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */,
+				95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */,
+				95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		95368F562209BC87006E263A /* Specification */ = {
+			isa = PBXGroup;
+			children = (
+				4E8E056F21AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift */,
+				4E8E057121AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift */,
+				4E8E056B21AD8E25009ACE05 /* SpecifyDeviceOnboardingView.swift */,
+			);
+			path = Specification;
+			sourceTree = "<group>";
+		};
 		A1572D8E2200A88600AC57C4 /* AnimationFactory */ = {
 			isa = PBXGroup;
 			children = (
@@ -1311,16 +1346,14 @@
 		EC4C9945216B944B0093EDFC /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				95368F502209BBFA006E263A /* Specify Device */,
 				4EE33F1021B54221003A1742 /* Connecting */,
 				4E60697621AFECC200EB1DCF /* Pairing */,
 				EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */,
 				4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */,
 				4E626697217F2B8400FA542F /* OnboardingView.swift */,
 				4E8E056221AD81D4009ACE05 /* BaseOnboardingView.swift */,
-				4E8E056B21AD8E25009ACE05 /* SpecifyDeviceOnboardingView.swift */,
 				4E8E056D21AD8E72009ACE05 /* OnboardingButton.swift */,
-				4E8E056F21AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift */,
-				4E8E057121AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1770,6 +1803,7 @@
 				4E8E056E21AD8E72009ACE05 /* OnboardingButton.swift in Sources */,
 				8AA7CBB92183560900FCF62A /* BabyModelControllerProtocol.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
+				95368F522209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift in Sources */,
 				ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */,
 				8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */,
 				A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */,
@@ -1882,6 +1916,7 @@
 				4E9563322164DDC100289475 /* Baby.swift in Sources */,
 				4E8E057221AE7B6A009ACE05 /* SpecifyDeviceOnboardingViewModel.swift in Sources */,
 				8A42DB142179DCAC00BF5F1B /* URL+Prefix.swift in Sources */,
+				95368F552209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift in Sources */,
 				8A7A612C21A59EB000488ED4 /* RecorderFactory.swift in Sources */,
 				8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */,
 				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
@@ -1898,6 +1933,7 @@
 				8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */,
 				A18D3E7521FF6D3700C165C6 /* ActivityLogView.swift in Sources */,
 				8A8EF94F219D55B60098A27B /* MessageStreamProtocol.swift in Sources */,
+				95368F582209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 				8A7A608421A4027E00488ED4 /* ErrorHandler.swift in Sources */,
 				4E63DC1E21E39D4B00604167 /* NetworkDispatcher.swift in Sources */,

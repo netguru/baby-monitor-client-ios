@@ -37,7 +37,7 @@ final class OnboardingCoordinator: Coordinator {
         let introCoordinator = IntroCoordinator(navigationController, appDependencies: appDependencies)
         childCoordinators.append(introCoordinator)
         introCoordinator.onEnding = { [weak self] in
-            self?.showInitialSetup()
+            self?.showSpecifyDeviceInfoView()
         }
         let pairingCoordinator = OnboardingPairingCoordinator(navigationController, appDependencies: appDependencies)
         pairingCoordinator.onEnding = { [weak self] in
@@ -67,6 +67,16 @@ final class OnboardingCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
+    private func showSpecifyDeviceInfoView() {
+        let viewModel = SpecifyDeviceInfoOnboardingViewModel()
+        let viewController = SpecifyDeviceInfoOnboardingViewController(viewModel: viewModel)
+        viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
+            self?.connect(to: viewModel)
+        })
+        .disposed(by: viewModel.bag)
+            
+        navigationController.pushViewController(viewController, animated: true)
+    }
     private func showAllowSendingRecordingsView() {
         let viewModel = RecordingsIntroFeatureViewModel()
         let viewController = RecordingsIntroFeatureViewController(viewModel: viewModel)
@@ -76,7 +86,18 @@ final class OnboardingCoordinator: Coordinator {
         .disposed(by: viewModel.bag)
         navigationController.pushViewController(viewController, animated: true)
     }
-    
+
+    private func connect(to viewModel: SpecifyDeviceInfoOnboardingViewModel) {
+        viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
+            self.navigationController.popViewController(animated: true)
+        })
+        .disposed(by: viewModel.bag)
+        viewModel.specifyDeviceTap?.subscribe(onNext: { [unowned self] in
+            self.showInitialSetup()
+        })
+            .disposed(by: viewModel.bag)
+}
+        
     private func connect(to viewModel: RecordingsIntroFeatureViewModel) {
         viewModel.startButtonTap?.subscribe(onNext: { [weak self] in
             self?.connectingCoordinator?.start()
