@@ -25,7 +25,7 @@ final class BabyNavigationItemView: UIView {
     
     private lazy var photoImageView: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleToFill
+        view.contentMode = .scaleAspectFill
         view.image = #imageLiteral(resourceName: "baby logo welcome screen")
         view.layer.masksToBounds = true
         return view
