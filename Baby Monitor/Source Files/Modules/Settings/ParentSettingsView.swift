@@ -10,7 +10,12 @@ import RxCocoa
 final class ParentSettingsView: BaseSettingsView {
     
     fileprivate let editBabyPhotoButton = UIButton(type: .custom)
-    fileprivate let editBabyPhotoImage = UIImageView(image: #imageLiteral(resourceName: "edit_baby_photo"))
+    fileprivate let editBabyPhotoImage: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "edit_baby_photo"))
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
     fileprivate let babyNameTextField: UITextField = {
         let textField = UITextField()
         textField.returnKeyType = .done
@@ -41,7 +46,6 @@ final class ParentSettingsView: BaseSettingsView {
     override func layoutSubviews() {
         super.layoutSubviews()
         backgroundColor = .babyMonitorDarkPurple
-        editBabyPhotoImage.layer.masksToBounds = true
         editBabyPhotoImage.layer.cornerRadius = editBabyPhotoImage.bounds.height / 2
     }
 
