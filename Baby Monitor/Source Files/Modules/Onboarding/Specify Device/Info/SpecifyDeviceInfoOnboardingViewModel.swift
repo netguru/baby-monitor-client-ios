@@ -30,7 +30,7 @@ final class SpecifyDeviceInfoOnboardingViewModel {
         let theOtherTextAttributedString = NSAttributedString(string: Localizable.Onboarding.SpecifyDevice.Info.descriptionTheOtherText, attributes: [
             .font: UIFont.customFont(withSize: .body, weight: .regular),
             .foregroundColor: UIColor.white])
-        let lastPartAttributedString = NSAttributedString(string: Localizable.Onboarding.SpecifyDevice.Info.descriptionlastPart, attributes: mainAttributes)
+        let lastPartAttributedString = NSAttributedString(string: Localizable.Onboarding.SpecifyDevice.Info.descriptionLastPart, attributes: mainAttributes)
         let combinationText = NSMutableAttributedString()
         [firstPartAttributedString, oneTextAttributedString, middlePartAttributedString, theOtherTextAttributedString, lastPartAttributedString].forEach {
             combinationText.append($0)

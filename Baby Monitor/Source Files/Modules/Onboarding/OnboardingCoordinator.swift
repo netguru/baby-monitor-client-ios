@@ -70,8 +70,8 @@ final class OnboardingCoordinator: Coordinator {
     private func showSpecifyDeviceInfoView() {
         let viewModel = SpecifyDeviceInfoOnboardingViewModel()
         let viewController = SpecifyDeviceInfoOnboardingViewController(viewModel: viewModel)
-        viewController.rx.viewDidLoad.subscribe(onNext: { [unowned self] in
-            self.connect(to: viewModel)
+        viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
+            self?.connect(to: viewModel)
         })
         .disposed(by: viewModel.bag)
             

@@ -66,7 +66,7 @@ enum Localizable {
                 static let descriptionOneText = localized("onboarding.specify-device.info.description.one-text")
                 static let descriptionMiddlePart = localized("onboarding.specify-device.info.description.middle-part-text")
                 static let descriptionTheOtherText = localized("onboarding.specify-device.info.description.the-other-text")
-                static let descriptionlastPart = localized("onboarding.specify-device.info.description.last-part")
+                static let descriptionLastPart = localized("onboarding.specify-device.info.description.last-part")
                 static let stepDescription = localized("onboarding.specify-device.info.step-description")
                 static let specifyButton = localized("onboarding.specify-device.info.specify-button")
             }
