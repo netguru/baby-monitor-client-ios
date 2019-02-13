@@ -36,7 +36,8 @@ final class SettingsCoordinator: Coordinator {
         let viewModel = ParentSettingsViewModel(
             babyModelController: appDependencies.databaseRepository,
             memoryCleaner: appDependencies.memoryCleaner,
-            urlConfiguration: appDependencies.urlConfiguration
+            urlConfiguration: appDependencies.urlConfiguration,
+            webSocketWebRtcService: appDependencies.webSocketWebRtcService
         )
         let settingsViewController = ParentSettingsViewController(viewModel: viewModel)
         settingsViewController.rx.viewDidLoad
