@@ -29,7 +29,7 @@ class WebRtcClientManagerTests: XCTestCase {
             .subscribe(observer)
             .disposed(by: bag)
         scheduler.start()
-        sut.startWebRtcConnection()
+        sut.startWebRtcConnectionIfNeeded()
 
         // Then
         XCTAssertEqual(observer.events.map { $0.value.element!.sdp }, [offerSdp.sdp])
@@ -47,7 +47,7 @@ class WebRtcClientManagerTests: XCTestCase {
         sessionDelegateProxy.delegate = sut
 
         // When
-        sut.startWebRtcConnection()
+        sut.startWebRtcConnectionIfNeeded()
         sut.setAnswerSDP(sdp: answerSdp)
 
         // Then
@@ -66,7 +66,7 @@ class WebRtcClientManagerTests: XCTestCase {
         sessionDelegateProxy.delegate = sut
 
         // When
-        sut.startWebRtcConnection()
+        sut.startWebRtcConnectionIfNeeded()
         sut.setICECandidates(iceCandidate: iceCandidate)
 
         // Then
@@ -86,7 +86,7 @@ class WebRtcClientManagerTests: XCTestCase {
         sessionDelegateProxy.delegate = sut
 
         // When
-        sut.startWebRtcConnection()
+        sut.startWebRtcConnectionIfNeeded()
         sut.setICECandidates(iceCandidate: iceCandidate)
         sut.setICECandidates(iceCandidate: secondIceCandidate)
 
@@ -105,7 +105,7 @@ class WebRtcClientManagerTests: XCTestCase {
         sessionDelegateProxy.delegate = sut
 
         // When
-        sut.startWebRtcConnection()
+        sut.startWebRtcConnectionIfNeeded()
         sut.disconnect()
 
         // Then
