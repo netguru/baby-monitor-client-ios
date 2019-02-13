@@ -22,6 +22,7 @@ final class WebRtcClientManager: NSObject, PeerConnectionDelegate, SessionDescri
         return mediaStreamPublisher
     }
     
+    private var isWebRtcConnectionStarted = false
     private let sdpOfferPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
     private let mediaStreamPublisher = BehaviorSubject<MediaStream?>(value: nil)
@@ -38,7 +39,11 @@ final class WebRtcClientManager: NSObject, PeerConnectionDelegate, SessionDescri
         super.init()
     }
     
-    func startWebRtcConnection() {
+    func startWebRtcConnectionIfNeeded() {
+        guard !isWebRtcConnectionStarted else {
+            return
+        }
+        isWebRtcConnectionStarted = true
         peerConnection = peerConnectionFactory?.peerConnection(with: connectionDelegateProxy)
         createOffer()
     }
@@ -80,6 +85,7 @@ final class WebRtcClientManager: NSObject, PeerConnectionDelegate, SessionDescri
     }
     
     func disconnect() {
+        isWebRtcConnectionStarted = false
         peerConnection?.close()
     }
 }
