@@ -78,6 +78,7 @@ enum Localizable {
 
         enum Connecting {
             static let connectToWiFi = localized("onboarding.connecting.connect-to-wi-fi")
+            static let connectToWiFiButtonTitle = localized("onboarding.connecting.connect-to-wi-fi.title")
             static let setupInformation = localized("onboarding.connecting.setup-information")
             static let placeDevice = localized("onboarding.connecting.place-device")
             static let startMonitoring = localized("onboarding.connecting.start-monitoring")

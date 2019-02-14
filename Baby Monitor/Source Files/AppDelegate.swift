@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        NotificationCenter.default.post(name: .ApplicationDidBecomeActive, object: nil)
         #if REGULAR_BUILD
             appDependencies.memoryCleaner.cleanMemoryIfNeeded()
         #endif

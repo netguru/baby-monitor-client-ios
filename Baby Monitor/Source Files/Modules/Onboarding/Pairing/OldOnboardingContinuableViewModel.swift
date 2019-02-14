@@ -1,11 +1,11 @@
 //
-//  OnboardingContinuableViewModel.swift
+//  OldOnboardingContinuableViewModel.swift
 //  Baby Monitor
 //
 
 import Foundation
 
-final class OnboardingContinuableViewModel {
+final class OldOnboardingContinuableViewModel {
     
     var onSelectNext: (() -> Void)?
     

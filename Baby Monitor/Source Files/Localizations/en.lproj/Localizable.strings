@@ -34,7 +34,8 @@
 //MARK: - Onboarding
 "onboarding.connecting" = "Connecting";
 "onboarding.continue" = "Continue";
-"onboarding.connecting.connect-to-wi-fi" = "Get started by connecting \nBaby Monitor to Wi-Fi";
+"onboarding.connecting.connect-to-wi-fi" = "Get started by\nconnecting\nBaby Monitor to\nWi-Fi";
+"onboarding.connecting.connect-to-wi-fi.title" = "Connect to Wi-Fi";
 "onboarding.button.start-client" = "START BABY MONITOR CLIENT";
 "onboarding.button.start-server" = "START BABY MONITOR SERVER";
 "onboarding.button.setup-address" = "Setup Address";
@@ -54,7 +55,7 @@
 "onboarding.pairing.all-done" = "All done!";
 "onboarding.pairing.get-started" = "Get started";
 "onboarding.connecting.setup-information" = "Setup information";
-"onboarding.connecting.place-device" = "Place this device next to your baby’s bed \nso that you can see him on your live view";
+"onboarding.connecting.place-device" = "Put this device next\nto your baby's bed, so\nthat you can see him\nor her in a real time\nview";
 "onboarding.connecting.start-monitoring" = "Start monitoring";
 
 //MARK: - Onboarding Specify Device
