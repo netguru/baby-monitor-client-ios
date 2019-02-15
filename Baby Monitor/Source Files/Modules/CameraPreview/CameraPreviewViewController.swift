@@ -41,6 +41,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     
     private func setupViewModel() {
         viewModel.remoteStream
+            .subscribeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] stream in
                 guard let stream = stream else {
                     return
