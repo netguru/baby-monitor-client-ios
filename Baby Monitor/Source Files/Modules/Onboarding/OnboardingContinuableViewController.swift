@@ -44,7 +44,6 @@ final class OnboardingContinuableViewModel {
         case putNextToBed
     }
     
-    
     let role: Role
     let bag = DisposeBag()
     var title: String {
@@ -190,7 +189,9 @@ final class OnboardingAccessViewModel {
                 accessPublisher.onNext(())
             } else {
                 AVCaptureDevice.requestAccess(for: .video) { _ in
-                    self.accessPublisher.onNext(())
+                    DispatchQueue.main.async {
+                        self.accessPublisher.onNext(())
+                    }
                 }
             }
         case .microphone:
@@ -198,7 +199,9 @@ final class OnboardingAccessViewModel {
                 accessPublisher.onNext(())
             } else {
                 AVCaptureDevice.requestAccess(for: .audio) { _ in
-                    self.accessPublisher.onNext(())
+                    DispatchQueue.main.async {
+                        self.accessPublisher.onNext(())
+                    }
                 }
             }
         }

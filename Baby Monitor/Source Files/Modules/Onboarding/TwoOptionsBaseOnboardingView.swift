@@ -36,10 +36,10 @@ final class TwoOptionsBaseOnboardingView: BaseOnboardingView {
     }
     
     func update(upButtonTitle title: String) {
-        upButton.titleLabel?.text = title
+        upButton.setTitle(title, for: .normal)
     }
     func update(bottomButtonTitle title: String) {
-        bottomButton.titleLabel?.text = title
+        bottomButton.setTitle(title, for: .normal)
     }
     
     private func setup() {
@@ -50,7 +50,7 @@ final class TwoOptionsBaseOnboardingView: BaseOnboardingView {
     private func setupConstraints() {
         [upButton, bottomButton].forEach { button in
             button.addConstraints {[
-                $0.equalConstant(.height, 56),
+                $0.equalConstant(.height, 56)
             ]
             }
         }

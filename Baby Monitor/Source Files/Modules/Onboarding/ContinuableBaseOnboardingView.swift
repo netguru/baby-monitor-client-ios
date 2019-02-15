@@ -24,11 +24,12 @@ final class ContinuableBaseOnboardingView: BaseOnboardingView {
     }
     
     func update(buttonTitle: String) {
-        button.titleLabel?.text = buttonTitle
+        button.setTitle(buttonTitle, for: .normal)
     }
     
     private func setup() {
         addSubview(button)
+        button.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
         setupConstraints()
     }
     

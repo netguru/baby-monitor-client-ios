@@ -12,7 +12,6 @@ final class OnboardingConnectingCoordinator: Coordinator {
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
         self.appDependencies = appDependencies
-        setupNotifications()
     }
     
     deinit {
@@ -28,34 +27,11 @@ final class OnboardingConnectingCoordinator: Coordinator {
         let isMicrophoneAccessGranted = AVCaptureDevice.authorizationStatus(for: .audio) == .authorized
         return isCameraAccessGranted && isMicrophoneAccessGranted
     }
-    var areAllRequiredPermissionsNotDetermined: Bool {
-        let isCameraAccessNotDetermined = AVCaptureDevice.authorizationStatus(for: .video) == .notDetermined
-        let isMicrophoneAccessNotDetermined = AVCaptureDevice.authorizationStatus(for: .audio) == .notDetermined
-        return isCameraAccessNotDetermined || isMicrophoneAccessNotDetermined
-    }
     
     private var isPermissionDenidedViewShown = false
     
     func start() {
         showContinuableView(role: .baby(.connectToWiFi))
-    }
-    
-    private func setupNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .ApplicationDidBecomeActive, object: nil)
-    }
-    
-    @objc
-    private func applicationDidBecomeActive() {
-        guard isPermissionDenidedViewShown else {
-            return
-        }
-        if areAllRequiredPermissionsGranted {
-            var currentViewControllers = navigationController.viewControllers
-            currentViewControllers.removeLast()
-            let putNextToBedViewController = prepareContinuableViewController(role: .baby(.putNextToBed))
-            currentViewControllers.append(putNextToBedViewController)
-            navigationController.setViewControllers(currentViewControllers, animated: true)
-        }
     }
     
     private func connectTo(viewModel: OnboardingContinuableViewModel) {
@@ -129,7 +105,9 @@ final class OnboardingConnectingCoordinator: Coordinator {
         })
         .disposed(by: viewModel.bag)
         viewModel.bottomButtonTap?.subscribe(onNext: { [weak self] in
-            self?.showContinuableView(role: .baby(.putNextToBed))
+            self?.navigationController.dismiss(animated: true, completion: { [weak self] in
+                self?.showContinuableView(role: .baby(.putNextToBed))
+            })
         })
         .disposed(by: viewModel.bag)
     }
