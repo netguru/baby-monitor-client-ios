@@ -26,10 +26,12 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
     }
     
     func save(activityLogEvent: ActivityLogEvent) {
-        let realmActivityLogEvent = RealmActivityLogEvent(with: activityLogEvent)
-        try! realm.write {
-            realm.create(RealmActivityLogEvent.self, value: realmActivityLogEvent, update: false)
-            activityLogEventsPublisher.value.append(activityLogEvent)
+        DispatchQueue.main.async {
+            let realmActivityLogEvent = RealmActivityLogEvent(with: activityLogEvent)
+            try! self.realm.write {
+                self.realm.create(RealmActivityLogEvent.self, value: realmActivityLogEvent, update: false)
+                self.activityLogEventsPublisher.value.append(activityLogEvent)
+            }
         }
     }
     
@@ -40,43 +42,50 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
     }
     
     func removeAllData() {
-        try! realm.write {
-            realm.deleteAll()
-            babyPublisher.value = Baby.initial
-            activityLogEventsPublisher.value = []
+        DispatchQueue.main.async {
+            try! self.realm.write {
+                self.realm.deleteAll()
+                self.babyPublisher.value = Baby.initial
+                self.activityLogEventsPublisher.value = []
+            }
         }
     }
     
     func updatePhoto(_ photo: UIImage) {
-        try! realm.write {
-            guard let photoData = photo.jpegData(compressionQuality: 1) else { return }
-            _ = realm.create(RealmBaby.self, value: ["id": baby.id, "photoData": photoData], update: true)
-                .toBaby()
-            babyPublisher.value.photo = photo
-            let currentBaby = self.baby
-            self.babyPublisher.value = currentBaby
+        DispatchQueue.main.async {
+            try! self.realm.write {
+                guard let photoData = photo.jpegData(compressionQuality: 1) else { return }
+                _ = self.realm.create(RealmBaby.self, value: ["id": self.baby.id, "photoData": photoData], update: true)
+                    .toBaby()
+                self.babyPublisher.value.photo = photo
+                let currentBaby = self.baby
+                self.babyPublisher.value = currentBaby
+            }
         }
-        
     }
     
     func updateName(_ name: String) {
-        try! realm.write {
-            _ = realm.create(RealmBaby.self, value: ["id": baby.id, "name": name], update: true)
-                .toBaby()
-            babyPublisher.value.name = name
-            let currentBaby = self.baby
-            self.babyPublisher.value = currentBaby
+        DispatchQueue.main.async {
+            try! self.realm.write {
+                _ = self.realm.create(RealmBaby.self, value: ["id": self.baby.id, "name": name], update: true)
+                    .toBaby()
+                self.babyPublisher.value.name = name
+                let currentBaby = self.baby
+                self.babyPublisher.value = currentBaby
+            }
         }
     }
     
     private func setup() {
-        try! realm.write {
-            if let realmBaby = realm.objects(RealmBaby.self).first {
-                babyPublisher.value = realmBaby.toBaby()
-            } else {
-                realm.create(RealmBaby.self, value: ["id": baby.id, "name": baby.name], update: false)
+        DispatchQueue.main.async {
+            try! self.realm.write {
+                if let realmBaby = self.realm.objects(RealmBaby.self).first {
+                    self.babyPublisher.value = realmBaby.toBaby()
+                } else {
+                    self.realm.create(RealmBaby.self, value: ["id": self.baby.id, "name": self.baby.name], update: false)
+                }
+                self.activityLogEventsPublisher.value = self.fetchAllActivityLogEvents()
             }
-            activityLogEventsPublisher.value = fetchAllActivityLogEvents()
         }
     }
 }

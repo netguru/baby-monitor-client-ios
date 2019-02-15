@@ -23,8 +23,10 @@ protocol WebSocketProtocol: MessageStreamProtocol {
 
 final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     
+    let dispatchQueue = DispatchQueue(label: "webRTCQueue", qos: DispatchQoS.userInteractive)
+    
     var receivedMessage: Observable<String> {
-        return receivedMessagePublisher.asObservable()
+        return receivedMessagePublisher.observeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue)).subscribeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue))
     }
     
     private var isConnected = false
