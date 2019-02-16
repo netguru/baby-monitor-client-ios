@@ -25,4 +25,10 @@ final class SpecifyDeviceOnboardingViewController: TypedViewController<SpecifyDe
             self?.viewModel.selectBaby()
         }).disposed(by: disposeBag)
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = customView.cancelItemButton
+        viewModel.attachInput(cancelTap: customView.rx.cancelTap.asObservable())
+    }
 }

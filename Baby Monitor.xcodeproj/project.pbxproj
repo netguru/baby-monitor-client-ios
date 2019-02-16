@@ -244,6 +244,7 @@
 		ECB2428821AD4F0400B4E409 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428721AD4F0400B4E409 /* IntroViewModel.swift */; };
 		ECB2428A21AD4F9200B4E409 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428921AD4F9200B4E409 /* IntroViewController.swift */; };
 		ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428B21AD4FB700B4E409 /* IntroFeatureView.swift */; };
+		F88A878C2217199400A63A46 /* DescriptiveRoundedRectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88A878B2217199400A63A46 /* DescriptiveRoundedRectangleButton.swift */; };
 		FC7230DB613AB91A16BE007E /* Pods_Baby_MonitorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0A7360EB7E7A40F5162D1F /* Pods_Baby_MonitorTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -548,6 +549,7 @@
 		ECB2428721AD4F0400B4E409 /* IntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewModel.swift; sourceTree = "<group>"; };
 		ECB2428921AD4F9200B4E409 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		ECB2428B21AD4FB700B4E409 /* IntroFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFeatureView.swift; sourceTree = "<group>"; };
+		F88A878B2217199400A63A46 /* DescriptiveRoundedRectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptiveRoundedRectangleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1354,6 +1356,7 @@
 				4E626697217F2B8400FA542F /* OnboardingView.swift */,
 				4E8E056221AD81D4009ACE05 /* BaseOnboardingView.swift */,
 				4E8E056D21AD8E72009ACE05 /* OnboardingButton.swift */,
+				F88A878B2217199400A63A46 /* DescriptiveRoundedRectangleButton.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1856,6 +1859,7 @@
 				8A8B76ED21EF53A20063EF7E /* WebSocketEventMessageService.swift in Sources */,
 				EC8A8FF521AE8F5F00B5FCCF /* TypedPageViewController.swift in Sources */,
 				8A8B76DF21EDE3640063EF7E /* WebsocketMessageDecodable.swift in Sources */,
+				F88A878C2217199400A63A46 /* DescriptiveRoundedRectangleButton.swift in Sources */,
 				4E7A1A9221F12BD00015C3A3 /* ServerCoordinator.swift in Sources */,
 				A1640E272203A48F00398ED2 /* ServerSettingsViewModel.swift in Sources */,
 				ECB2428A21AD4F9200B4E409 /* IntroViewController.swift in Sources */,

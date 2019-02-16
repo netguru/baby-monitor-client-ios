@@ -43,6 +43,8 @@
 "onboarding.button.parent" = "Parent";
 "onboarding.button.baby" = "Baby";
 "onboarding.label.specify-this-device" = "Specify this device";
+"onboarding.label.define-this-device" = "Define this device";
+"onboarding.label.define-descripion" = "Let's start with defining this device.";
 "onboarding.label.welcome-to" = "Welcome to Baby Monitor \nLet’s start by defining this device";
 "onboarding.pairing.share-link.title" = "Hello";
 "onboarding.pairing.share-link.description" = "It’s time to install Baby Monitor \non your second device";
@@ -66,6 +68,9 @@
 "onboarding.specify-device.info.description.last-part" = "to show\na real time view of your baby, when\nyou leave the room.";
 "onboarding.specify-device.info.step-description" = "Now go to the step where you decide if this\ndevice will stay with you or with your baby";
 "onboarding.specify-device.info.specify-button" = "Specify this device";
+"onboarding.specify-device.info.specify-button-parent" = "This device will stay with me";
+"onboarding.specify-device.info.specify-button-baby" = "This device will stay with my baby";
+
 
 //MARK: - Dashboard
 "dashboard.button.live-camera" = "LIVE CAMERA";

@@ -74,7 +74,9 @@ final class SpecifyDeviceInfoOnboardingView: BaseView {
     }
 
     private func setupConstraints() {
-        let topImageConstraintConstant: CGFloat = UIDevice.screenSizeBiggerThan4Inches ? 100 : 50
+        let topImageConstraintConstant: CGFloat = UIDevice.screenSizeBiggerThan4Inches ? 50 : 5
+        let verticalConstraintConstant: CGFloat = UIDevice.screenSizeBiggerThan4Inches ? 31 : 15
+
         imageView.addConstraints {[
             $0.equal(.centerX),
             $0.equalTo(self, .top, .safeAreaTop, constant: topImageConstraintConstant),
@@ -93,12 +95,12 @@ final class SpecifyDeviceInfoOnboardingView: BaseView {
         }
         stepLabel.addConstraints {[
             $0.equal(.centerX),
-            $0.equalTo(descriptionLabel, .top, .bottom, constant: 31)
+            $0.equalTo(descriptionLabel, .top, .bottom, constant: verticalConstraintConstant)
         ]
         }
         arrowImageView.addConstraints {[
             $0.equal(.centerX),
-            $0.equalTo(stepLabel, .top, .bottom, constant: 31)
+            $0.equalTo(stepLabel, .top, .bottom, constant: verticalConstraintConstant)
         ]
         }
         specifyButton.addConstraints {[
