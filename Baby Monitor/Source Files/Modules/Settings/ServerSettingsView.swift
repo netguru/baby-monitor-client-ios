@@ -31,7 +31,7 @@ final class ServerSettingsView: BaseSettingsView {
         let babyMonitorAttributedString = NSAttributedString(string: Localizable.General.babyMonitor, attributes: [
                 .font: UIFont.customFont(withSize: .caption, weight: .bold),
                 .foregroundColor: UIColor.babyMonitorPurple
-            ]
+        ]
         )
         let lastPartAttributedString = NSAttributedString(string: Localizable.Settings.sendCryingsDescriptionSecondPart, attributes: mainAttributes)
         let breakAttributedString = NSAttributedString(string: " ")

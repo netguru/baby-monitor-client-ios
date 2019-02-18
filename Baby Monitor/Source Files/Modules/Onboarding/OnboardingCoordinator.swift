@@ -20,7 +20,7 @@ final class OnboardingCoordinator: Coordinator {
         self.appDependencies = appDependencies
         setup()
     }
-
+    
     func start() {
         navigationController.setNavigationBarHidden(true, animated: false)
         switch UserDefaults.appMode {
@@ -79,7 +79,6 @@ final class OnboardingCoordinator: Coordinator {
             self?.connect(to: viewModel)
         })
         .disposed(by: viewModel.bag)
-            
         navigationController.pushViewController(viewController, animated: true)
     }
     private func showAllowSendingRecordingsView() {

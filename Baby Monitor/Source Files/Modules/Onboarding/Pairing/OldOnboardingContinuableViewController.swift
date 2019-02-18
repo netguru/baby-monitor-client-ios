@@ -1,17 +1,17 @@
 //
-//  OnboardingContinuableViewController.swift
+//  OldOnboardingContinuableViewController.swift
 //  Baby Monitor
 //
 
 import UIKit
 import RxSwift
 
-final class OnboardingContinuableViewController: TypedViewController<ImageOnboardingView> {
+final class OldOnboardingContinuableViewController: TypedViewController<ImageOnboardingView> {
     
-    private let viewModel: OnboardingContinuableViewModel
+    private let viewModel: OldOnboardingContinuableViewModel
     private let disposeBag = DisposeBag()
     
-    init(role: ImageOnboardingView.Role, viewModel: OnboardingContinuableViewModel) {
+    init(role: ImageOnboardingView.Role, viewModel: OldOnboardingContinuableViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: ImageOnboardingView(role: role))
         

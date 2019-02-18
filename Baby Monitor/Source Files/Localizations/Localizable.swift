@@ -22,6 +22,8 @@ enum Localizable {
         static let byNetguru = localized("general.byNetguru")
         static let yourBaby = localized("general.your-baby")
         static let letsStart = localized("general.lets-start")
+        static let retry = localized("general.retry")
+        static let imSure = localized("general.i-am-sure")
     }
     
     enum Intro {
@@ -59,6 +61,17 @@ enum Localizable {
         static let defineDevice = localized("onboarding.label.define-this-device")
         static let defineDescription = localized("onboarding.label.define-descripion")
         static let welcomeTo = localized("onboarding.label.welcome-to")
+        
+        enum BabySetup {
+            static let permissionsDenidedText = localized("onboarding.baby-setup.permissions-denided.text")
+            static let permissionsDenided = localized("onboarding.baby-setup.permissions-denided")
+            static let permissionsDenidedQuestion = localized("onboarding.baby-setup.permissions-denided-question.text")
+            static let accessCameraMainDescription = localized("onboarding.baby-setup.access.camera.main-description")
+            static let accessCameraSecondDescription = localized("onboarding.baby-setup.access.camera.second-description")
+            static let accessMicrophoneMainDescription = localized("onboarding.baby-setup.access.microphone.main-description")
+            static let accessMicrophoneSecondDescription = localized("onboarding.baby-setup.access.microphone.second-description")
+            
+        }
 
         enum SpecifyDevice {
 
@@ -82,6 +95,7 @@ enum Localizable {
 
         enum Connecting {
             static let connectToWiFi = localized("onboarding.connecting.connect-to-wi-fi")
+            static let connectToWiFiButtonTitle = localized("onboarding.connecting.connect-to-wi-fi.title")
             static let setupInformation = localized("onboarding.connecting.setup-information")
             static let placeDevice = localized("onboarding.connecting.place-device")
             static let startMonitoring = localized("onboarding.connecting.start-monitoring")

@@ -10,7 +10,12 @@ import RxCocoa
 
 class BaseSettingsView: UIView {
     
-    let cancelButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "arrow_back"), style: .plain, target: nil, action: nil)
+    let cancelButtonItem = UIBarButtonItem(
+        image: #imageLiteral(resourceName: "arrow_back"),
+        style: .plain,
+        target: nil,
+        action: nil
+    )
     
     fileprivate let rateButton = RoundedRectangleButton(title: Localizable.Settings.rateButtonTitle, backgroundColor: .babyMonitorPurple)
     fileprivate let resetButton = RoundedRectangleButton(title: Localizable.Settings.resetButtonTitle, backgroundColor: .babyMonitorDarkPurple, borderColor: .babyMonitorNonTranslucentWhite)

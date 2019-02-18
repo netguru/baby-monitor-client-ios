@@ -17,6 +17,8 @@
 "general.byNetguru" = "by Netguru";
 "general.your-baby" = "Your baby";
 "general.lets-start" = "Let's start";
+"general.retry" = "Retry";
+"general.i-am-sure" = "I'm sure";
 
 //MARK: = Intro
 "intro.title.monitoring" = "Do your daily errands and\nkeep an eye on your baby";
@@ -34,7 +36,8 @@
 //MARK: - Onboarding
 "onboarding.connecting" = "Connecting";
 "onboarding.continue" = "Continue";
-"onboarding.connecting.connect-to-wi-fi" = "Get started by connecting \nBaby Monitor to Wi-Fi";
+"onboarding.connecting.connect-to-wi-fi" = "Get started by\nconnecting\nBaby Monitor to\nWi-Fi";
+"onboarding.connecting.connect-to-wi-fi.title" = "Connect to Wi-Fi";
 "onboarding.button.start-client" = "START BABY MONITOR CLIENT";
 "onboarding.button.start-server" = "START BABY MONITOR SERVER";
 "onboarding.button.setup-address" = "Setup Address";
@@ -56,8 +59,15 @@
 "onboarding.pairing.all-done" = "All done!";
 "onboarding.pairing.get-started" = "Get started";
 "onboarding.connecting.setup-information" = "Setup information";
-"onboarding.connecting.place-device" = "Place this device next to your baby’s bed \nso that you can see him on your live view";
+"onboarding.connecting.place-device" = "Put this device next\nto your baby's bed, so\nthat you can see him\nor her in a real time\nview";
 "onboarding.connecting.start-monitoring" = "Start monitoring";
+"onboarding.baby-setup.permissions-denided.text" = "Baby Monitor is\nunable to work\nwithout permissions.";
+"onboarding.baby-setup.permissions-denided-question.text" = "Are you sure you want to deny\npermissions?";
+"onboarding.baby-setup.permissions-denided" = "Permissions denied";
+"onboarding.baby-setup.access.camera.main-description" = "Tap “OK” to keep an\neye on your baby!";
+"onboarding.baby-setup.access.microphone.main-description" = "Tap “OK” if you want\nto know if your baby\nis crying";
+"onboarding.baby-setup.access.camera.second-description" = "Don't worry - we care about your safety. No video\nwill be recorded and we will protect you from any\ndata leakage.";
+"onboarding.baby-setup.access.microphone.second-description" = "Don't worry - we care about your safety. Voice will\nonly be recorded with your permission, and will only\nbe used to let you know if your baby is crying.";
 
 //MARK: - Onboarding Specify Device
 "onboarding.specify-device.info.title" = "Prepare two devices\nfor setup";
