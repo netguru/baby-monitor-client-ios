@@ -32,20 +32,17 @@ final class OnboardingConnectingCoordinator: Coordinator {
     
     private func connectTo(viewModel: OnboardingContinuableViewModel) {
         viewModel.cancelTap?.subscribe(onNext: { [weak self, weak viewModel] in
-            guard
-                let self = self,
-                let viewModel = viewModel
-            else {
+            guard let viewModel = viewModel else {
                 return
             }
             switch viewModel.role {
             case .baby(.connectToWiFi):
-                self.navigationController.popViewController(animated: true)
+                self?.navigationController.popViewController(animated: true)
             case .baby(.putNextToBed):
-                guard let connectToWiFiViewController = self.connectToWiFiViewController else {
+                guard let connectToWiFiViewController = self?.connectToWiFiViewController else {
                     return
                 }
-                self.navigationController.popToViewController(connectToWiFiViewController, animated: true)
+                self?.navigationController.popToViewController(connectToWiFiViewController, animated: true)
             }
         })
         .disposed(by: viewModel.bag)
