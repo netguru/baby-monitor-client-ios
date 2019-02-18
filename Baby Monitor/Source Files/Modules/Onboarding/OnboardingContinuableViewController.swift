@@ -27,6 +27,12 @@ final class OnboardingContinuableViewController: TypedViewController<Continuable
     }
     
     private func setup() {
+        switch viewModel.role {
+        case .parent(.error):
+            customView.changeButtonBackgroundColor(.clear)
+        default:
+            break
+        }
         navigationItem.leftBarButtonItem = customView.cancelButtonItem
         customView.update(title: viewModel.title)
         customView.update(mainDescription: viewModel.description)
