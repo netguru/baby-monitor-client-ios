@@ -254,6 +254,7 @@
 		ECB2428821AD4F0400B4E409 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428721AD4F0400B4E409 /* IntroViewModel.swift */; };
 		ECB2428A21AD4F9200B4E409 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428921AD4F9200B4E409 /* IntroViewController.swift */; };
 		ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428B21AD4FB700B4E409 /* IntroFeatureView.swift */; };
+		F8DAD50C221B0E4700145F0E /* DescriptiveRoundedRectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DAD50B221B0E4700145F0E /* DescriptiveRoundedRectangleButton.swift */; };
 		FC7230DB613AB91A16BE007E /* Pods_Baby_MonitorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0A7360EB7E7A40F5162D1F /* Pods_Baby_MonitorTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -568,6 +569,7 @@
 		ECB2428721AD4F0400B4E409 /* IntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewModel.swift; sourceTree = "<group>"; };
 		ECB2428921AD4F9200B4E409 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		ECB2428B21AD4FB700B4E409 /* IntroFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFeatureView.swift; sourceTree = "<group>"; };
+		F8DAD50B221B0E4700145F0E /* DescriptiveRoundedRectangleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptiveRoundedRectangleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1384,6 +1386,7 @@
 				A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */,
 				A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */,
 				A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */,
+				F8DAD50B221B0E4700145F0E /* DescriptiveRoundedRectangleButton.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1889,6 +1892,7 @@
 				4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */,
 				2025564121F728F1006C6490 /* ParentSettingsView.swift in Sources */,
 				4E60697D21AFEFD500EB1DCF /* ImageOnboardingView.swift in Sources */,
+				F8DAD50C221B0E4700145F0E /* DescriptiveRoundedRectangleButton.swift in Sources */,
 				959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				8A8B76ED21EF53A20063EF7E /* WebSocketEventMessageService.swift in Sources */,

@@ -20,7 +20,6 @@ final class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
         customView.setupBackgroundImage(UIImage())
     }
     

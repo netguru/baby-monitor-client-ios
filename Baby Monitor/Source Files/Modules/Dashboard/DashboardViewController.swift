@@ -36,7 +36,6 @@ final class DashboardViewController: TypedViewController<DashboardView>, UINavig
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.navigationBar.isHidden = false
         navigationItem.rightBarButtonItem = customView.settingsBarButtonItem
     }
 

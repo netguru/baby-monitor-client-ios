@@ -4,11 +4,14 @@
 //
 
 import Foundation
+import RxSwift
 
 final class SpecifyDeviceOnboardingViewModel {
     
     var didSelectParent: (() -> Void)?
     var didSelectBaby: (() -> Void)?
+    private(set) var cancelTap: Observable<Void>?
+    let bag = DisposeBag()
     
     func selectParent() {
         didSelectParent?()
@@ -16,5 +19,9 @@ final class SpecifyDeviceOnboardingViewModel {
     
     func selectBaby() {
         didSelectBaby?()
+    }
+    
+    func attachInput(cancelTap: Observable<Void>) {
+        self.cancelTap = cancelTap
     }
 }

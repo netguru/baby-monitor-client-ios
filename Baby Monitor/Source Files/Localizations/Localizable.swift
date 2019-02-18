@@ -58,6 +58,8 @@ enum Localizable {
         static let parent = localized("onboarding.button.parent")
         static let baby = localized("onboarding.button.baby")
         static let specifyDevice = localized("onboarding.label.specify-this-device")
+        static let defineDevice = localized("onboarding.label.define-this-device")
+        static let defineDescription = localized("onboarding.label.define-descripion")
         static let welcomeTo = localized("onboarding.label.welcome-to")
         
         enum BabySetup {
@@ -82,6 +84,8 @@ enum Localizable {
                 static let descriptionLastPart = localized("onboarding.specify-device.info.description.last-part")
                 static let stepDescription = localized("onboarding.specify-device.info.step-description")
                 static let specifyButton = localized("onboarding.specify-device.info.specify-button")
+                static let specifyParentButton = localized("onboarding.specify-device.info.specify-button-parent")
+                static let specifyBabyButton = localized("onboarding.specify-device.info.specify-button-baby")
             }
 
             enum Specification {

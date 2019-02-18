@@ -22,7 +22,6 @@ final class DashboardCoordinator: Coordinator {
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
         self.appDependencies = appDependencies
-        navigationController.isNavigationBarHidden = false
     }
 
     func start() {

@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class RoundedRectangleButton: UIButton {
+class RoundedRectangleButton: UIButton {
 
     /// Initializes button
     ///

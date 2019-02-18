@@ -64,6 +64,11 @@ final class OnboardingCoordinator: Coordinator {
             self?.pairingCoordinator?.start()
         }
         let viewController = SpecifyDeviceOnboardingViewController(viewModel: viewModel)
+        viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
+            self?.connect(to: viewModel)
+        })
+        .disposed(by: viewModel.bag)
+        
         navigationController.pushViewController(viewController, animated: true)
     }
     
@@ -95,7 +100,14 @@ final class OnboardingCoordinator: Coordinator {
             self.showInitialSetup()
         })
         .disposed(by: viewModel.bag)
-}
+    }
+    
+    private func connect(to viewModel: SpecifyDeviceOnboardingViewModel) {
+        viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
+            self.navigationController.popViewController(animated: true)
+        })
+        .disposed(by: viewModel.bag)
+    }
         
     private func connect(to viewModel: RecordingsIntroFeatureViewModel) {
         viewModel.startButtonTap?.subscribe(onNext: { [weak self] in
