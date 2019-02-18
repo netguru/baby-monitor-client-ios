@@ -228,6 +228,10 @@
 		A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */; };
 		A1C5E6E221FA2E7100D93203 /* DatabaseRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */; };
 		A1C5E6E421FB0C9C00D93203 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */; };
+		A1EC9773221AA4EC00C27786 /* OnboardingContinuableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9772221AA4EC00C27786 /* OnboardingContinuableViewModel.swift */; };
+		A1EC9775221AA51A00C27786 /* OnboardingAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */; };
+		A1EC9777221AA53900C27786 /* OnboardingAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */; };
+		A1EC9779221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */; };
 		A1ED8F8D2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F8C2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift */; };
 		A1ED8F8F2212C70B005762E8 /* AccessBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */; };
 		A1ED8F912212C745005762E8 /* TwoOptionsBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */; };
@@ -532,6 +536,10 @@
 		A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
 		A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepositoryMock.swift; sourceTree = "<group>"; };
 		A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
+		A1EC9772221AA4EC00C27786 /* OnboardingContinuableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContinuableViewModel.swift; sourceTree = "<group>"; };
+		A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccessViewController.swift; sourceTree = "<group>"; };
+		A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccessViewModel.swift; sourceTree = "<group>"; };
+		A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoOptionsViewModel.swift; sourceTree = "<group>"; };
 		A1ED8F8C2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuableBaseOnboardingView.swift; sourceTree = "<group>"; };
 		A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessBaseOnboardingView.swift; sourceTree = "<group>"; };
 		A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsBaseOnboardingView.swift; sourceTree = "<group>"; };
@@ -1369,6 +1377,10 @@
 				A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */,
 				4E8E056D21AD8E72009ACE05 /* OnboardingButton.swift */,
 				A1ED8F942212CB8D005762E8 /* OnboardingContinuableViewController.swift */,
+				A1EC9772221AA4EC00C27786 /* OnboardingContinuableViewModel.swift */,
+				A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */,
+				A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */,
+				A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1790,6 +1802,7 @@
 				4E7B091321E6148600EDDD11 /* URLSessionProtocol.swift in Sources */,
 				A1ED8F912212C745005762E8 /* TwoOptionsBaseOnboardingView.swift in Sources */,
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
+				A1EC9777221AA53900C27786 /* OnboardingAccessViewModel.swift in Sources */,
 				4E63DC1B21E39D4B00604167 /* Request.swift in Sources */,
 				8A7A611721A59E3B00488ED4 /* CryingEventService.swift in Sources */,
 				8A045D5B21A3F685006A2E10 /* (null) in Sources */,
@@ -1823,10 +1836,12 @@
 				95368F522209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift in Sources */,
 				ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */,
 				8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */,
+				A1EC9775221AA51A00C27786 /* OnboardingAccessViewController.swift in Sources */,
 				A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */,
 				A1640E252203A3DB00398ED2 /* ServerSettingsViewController.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
 				ECB2428821AD4F0400B4E409 /* IntroViewModel.swift in Sources */,
+				A1EC9773221AA4EC00C27786 /* OnboardingContinuableViewModel.swift in Sources */,
 				4E63DC1D21E39D4B00604167 /* URLRequestConvertible.swift in Sources */,
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
 				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
@@ -1922,6 +1937,7 @@
 				8A7A612521A59E7500488ED4 /* FileManager+Size.swift in Sources */,
 				4E57319D2170BA7400DEAF0B /* Identifiable.swift in Sources */,
 				4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */,
+				A1EC9779221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift in Sources */,
 				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* URLConfiguration.swift in Sources */,
 				4E8E057021AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift in Sources */,
