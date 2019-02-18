@@ -6,7 +6,7 @@
 import UIKit
 import RxCocoa
 
-final class SpecifyDeviceOnboardingView: BaseOnboardingView {
+final class SpecifyDeviceOnboardingView: OldBaseOnboardingView {
     
     lazy var parentTapEvent = parentButton.rx.tap.asObservable()
     lazy var babyTapEvent = babyButton.rx.tap.asObservable()

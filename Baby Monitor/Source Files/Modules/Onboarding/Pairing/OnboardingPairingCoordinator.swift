@@ -30,11 +30,11 @@ final class OnboardingPairingCoordinator: Coordinator {
     }
     
     private func showInstallBMOnSecondDeviceView() {
-        let viewModel = OnboardingContinuableViewModel()
+        let viewModel = OldOnboardingContinuableViewModel()
         viewModel.onSelectNext = {
             self.showClientSetupView()
         }
-        let viewController = OnboardingContinuableViewController(role: .pairing(.shareLink), viewModel: viewModel)
+        let viewController = OldOnboardingContinuableViewController(role: .pairing(.shareLink), viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
     
@@ -65,29 +65,29 @@ final class OnboardingPairingCoordinator: Coordinator {
     }
     
     private func showPairingDoneView() {
-        let viewModel = OnboardingContinuableViewModel()
+        let viewModel = OldOnboardingContinuableViewModel()
         viewModel.onSelectNext = {
             self.showAllDoneView()
         }
-        let viewController = OnboardingContinuableViewController(role: .pairing(.pairingDone), viewModel: viewModel)
+        let viewController = OldOnboardingContinuableViewController(role: .pairing(.pairingDone), viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
     
     private func showAllDoneView() {
-        let viewModel = OnboardingContinuableViewModel()
+        let viewModel = OldOnboardingContinuableViewModel()
         viewModel.onSelectNext = {
             self.onEnding?()
         }
-        let viewController = OnboardingContinuableViewController(role: .pairing(.allDone), viewModel: viewModel)
+        let viewController = OldOnboardingContinuableViewController(role: .pairing(.allDone), viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
     
     private func showErrorPairingView() {
-        let viewModel = OnboardingContinuableViewModel()
+        let viewModel = OldOnboardingContinuableViewModel()
         viewModel.onSelectNext = { [weak self] in
             self?.navigationController.dismiss(animated: true, completion: nil)
         }
-        let viewController = OnboardingContinuableViewController(role: .pairing(.error), viewModel: viewModel)
+        let viewController = OldOnboardingContinuableViewController(role: .pairing(.error), viewModel: viewModel)
         navigationController.present(viewController, animated: true, completion: nil)
     }
 }

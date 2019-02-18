@@ -26,8 +26,8 @@
 		4E1D2C692167926500E92F29 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C682167926500E92F29 /* BaseView.swift */; };
 		4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E221D8A217716CF003D8531 /* ServerViewController.swift */; };
 		4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2D30292180AC9200722477 /* Rx+Expectations.swift */; };
-		4E2F413521B1441600513843 /* OnboardingContinuableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F413421B1441600513843 /* OnboardingContinuableViewController.swift */; };
-		4E2F413721B148BB00513843 /* OnboardingContinuableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F413621B148BB00513843 /* OnboardingContinuableViewModel.swift */; };
+		4E2F413521B1441600513843 /* OldOnboardingContinuableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F413421B1441600513843 /* OldOnboardingContinuableViewController.swift */; };
+		4E2F413721B148BB00513843 /* OldOnboardingContinuableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F413621B148BB00513843 /* OldOnboardingContinuableViewModel.swift */; };
 		4E360CCE21E781E3002781AC /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E360CCD21E781E3002781AC /* FirebaseStorageService.swift */; };
 		4E36A3AE21B15F850058DAD2 /* OnboardingClientSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E36A3AD21B15F850058DAD2 /* OnboardingClientSetupViewController.swift */; };
 		4E36A3B021B15FF80058DAD2 /* OnboardingSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E36A3AF21B15FF80058DAD2 /* OnboardingSpinnerView.swift */; };
@@ -228,6 +228,16 @@
 		A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */; };
 		A1C5E6E221FA2E7100D93203 /* DatabaseRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */; };
 		A1C5E6E421FB0C9C00D93203 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */; };
+		A1EC9773221AA4EC00C27786 /* OnboardingContinuableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9772221AA4EC00C27786 /* OnboardingContinuableViewModel.swift */; };
+		A1EC9775221AA51A00C27786 /* OnboardingAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */; };
+		A1EC9777221AA53900C27786 /* OnboardingAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */; };
+		A1EC9779221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */; };
+		A1EC977B221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC977A221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift */; };
+		A1ED8F8D2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F8C2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift */; };
+		A1ED8F8F2212C70B005762E8 /* AccessBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */; };
+		A1ED8F912212C745005762E8 /* TwoOptionsBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */; };
+		A1ED8F932212CA35005762E8 /* OldBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F922212CA35005762E8 /* OldBaseOnboardingView.swift */; };
+		A1ED8F952212CB8D005762E8 /* OnboardingContinuableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F942212CB8D005762E8 /* OnboardingContinuableViewController.swift */; };
 		EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
@@ -282,8 +292,8 @@
 		4E221D8A217716CF003D8531 /* ServerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		4E221D8C21771946003D8531 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		4E2D30292180AC9200722477 /* Rx+Expectations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Expectations.swift"; sourceTree = "<group>"; };
-		4E2F413421B1441600513843 /* OnboardingContinuableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContinuableViewController.swift; sourceTree = "<group>"; };
-		4E2F413621B148BB00513843 /* OnboardingContinuableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContinuableViewModel.swift; sourceTree = "<group>"; };
+		4E2F413421B1441600513843 /* OldOnboardingContinuableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldOnboardingContinuableViewController.swift; sourceTree = "<group>"; };
+		4E2F413621B148BB00513843 /* OldOnboardingContinuableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldOnboardingContinuableViewModel.swift; sourceTree = "<group>"; };
 		4E360CCD21E781E3002781AC /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		4E36A3AD21B15F850058DAD2 /* OnboardingClientSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingClientSetupViewController.swift; sourceTree = "<group>"; };
 		4E36A3AF21B15FF80058DAD2 /* OnboardingSpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSpinnerView.swift; sourceTree = "<group>"; };
@@ -527,6 +537,16 @@
 		A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
 		A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepositoryMock.swift; sourceTree = "<group>"; };
 		A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
+		A1EC9772221AA4EC00C27786 /* OnboardingContinuableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContinuableViewModel.swift; sourceTree = "<group>"; };
+		A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccessViewController.swift; sourceTree = "<group>"; };
+		A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccessViewModel.swift; sourceTree = "<group>"; };
+		A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoOptionsViewModel.swift; sourceTree = "<group>"; };
+		A1EC977A221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoOptionsViewController.swift; sourceTree = "<group>"; };
+		A1ED8F8C2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuableBaseOnboardingView.swift; sourceTree = "<group>"; };
+		A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessBaseOnboardingView.swift; sourceTree = "<group>"; };
+		A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsBaseOnboardingView.swift; sourceTree = "<group>"; };
+		A1ED8F922212CA35005762E8 /* OldBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldBaseOnboardingView.swift; sourceTree = "<group>"; };
+		A1ED8F942212CB8D005762E8 /* OnboardingContinuableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContinuableViewController.swift; sourceTree = "<group>"; };
 		DC0A7360EB7E7A40F5162D1F /* Pods_Baby_MonitorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_MonitorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -792,8 +812,8 @@
 			children = (
 				4E60697721AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift */,
 				4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */,
-				4E2F413421B1441600513843 /* OnboardingContinuableViewController.swift */,
-				4E2F413621B148BB00513843 /* OnboardingContinuableViewModel.swift */,
+				4E2F413421B1441600513843 /* OldOnboardingContinuableViewController.swift */,
+				4E2F413621B148BB00513843 /* OldOnboardingContinuableViewModel.swift */,
 				4E36A3AD21B15F850058DAD2 /* OnboardingClientSetupViewController.swift */,
 				4E36A3AF21B15FF80058DAD2 /* OnboardingSpinnerView.swift */,
 			);
@@ -1353,7 +1373,17 @@
 				4E626691217F1B0300FA542F /* ClientSetupOnboardingViewModel.swift */,
 				4E626697217F2B8400FA542F /* OnboardingView.swift */,
 				4E8E056221AD81D4009ACE05 /* BaseOnboardingView.swift */,
+				A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */,
+				A1ED8F922212CA35005762E8 /* OldBaseOnboardingView.swift */,
+				A1ED8F8C2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift */,
+				A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */,
 				4E8E056D21AD8E72009ACE05 /* OnboardingButton.swift */,
+				A1ED8F942212CB8D005762E8 /* OnboardingContinuableViewController.swift */,
+				A1EC977A221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift */,
+				A1EC9772221AA4EC00C27786 /* OnboardingContinuableViewModel.swift */,
+				A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */,
+				A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */,
+				A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1773,7 +1803,9 @@
 			files = (
 				8A6098C421EBFDA700592B01 /* PeerConnectionFactoryProtocol.swift in Sources */,
 				4E7B091321E6148600EDDD11 /* URLSessionProtocol.swift in Sources */,
+				A1ED8F912212C745005762E8 /* TwoOptionsBaseOnboardingView.swift in Sources */,
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
+				A1EC9777221AA53900C27786 /* OnboardingAccessViewModel.swift in Sources */,
 				4E63DC1B21E39D4B00604167 /* Request.swift in Sources */,
 				8A7A611721A59E3B00488ED4 /* CryingEventService.swift in Sources */,
 				8A045D5B21A3F685006A2E10 /* (null) in Sources */,
@@ -1786,10 +1818,11 @@
 				8AED318E219045AD00FEFE8A /* BabyMonitorCellDeletable.swift in Sources */,
 				A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */,
 				A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */,
-				4E2F413721B148BB00513843 /* OnboardingContinuableViewModel.swift in Sources */,
+				4E2F413721B148BB00513843 /* OldOnboardingContinuableViewModel.swift in Sources */,
 				8A8B76E921EE16E30063EF7E /* WebsocketConductor.swift in Sources */,
 				4E36A3B021B15FF80058DAD2 /* OnboardingSpinnerView.swift in Sources */,
 				200DFD4721F87862009CA3ED /* RoundedRectangleButton.swift in Sources */,
+				A1ED8F8F2212C70B005762E8 /* AccessBaseOnboardingView.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
 				EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */,
 				8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */,
@@ -1806,14 +1839,18 @@
 				95368F522209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift in Sources */,
 				ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */,
 				8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */,
+				A1EC9775221AA51A00C27786 /* OnboardingAccessViewController.swift in Sources */,
 				A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */,
 				A1640E252203A3DB00398ED2 /* ServerSettingsViewController.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
+				A1EC977B221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift in Sources */,
 				ECB2428821AD4F0400B4E409 /* IntroViewModel.swift in Sources */,
+				A1EC9773221AA4EC00C27786 /* OnboardingContinuableViewModel.swift in Sources */,
 				4E63DC1D21E39D4B00604167 /* URLRequestConvertible.swift in Sources */,
 				4E95633B2164F6D500289475 /* UIViewController+ChildViewController.swift in Sources */,
 				4E95632B2164CB7900289475 /* BabyMonitorCell.swift in Sources */,
 				8A50AA3A21E602F60058C63A /* SessionDescriptionProtocol.swift in Sources */,
+				A1ED8F8D2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift in Sources */,
 				4E57319C2170BA7400DEAF0B /* BabyMonitorCellSelectable.swift in Sources */,
 				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
 				8A7A611621A59E3B00488ED4 /* CryingDetectionService.swift in Sources */,
@@ -1834,6 +1871,7 @@
 				8AFAE5BC219C0DEE007013BC /* MessageDecoderProtocol.swift in Sources */,
 				8A7A611F21A59E5D00488ED4 /* RealmActivityLogEvent.swift in Sources */,
 				8A7A616D21A8162000488ED4 /* UIColor+Custom.swift in Sources */,
+				A1ED8F952212CB8D005762E8 /* OnboardingContinuableViewController.swift in Sources */,
 				EC8A8FF321AE8EE500B5FCCF /* BasePageViewController.swift in Sources */,
 				8A7A611521A59E3B00488ED4 /* AudioRecordService.swift in Sources */,
 				4EB6DE6321B6687D004701EA /* EventMessage.swift in Sources */,
@@ -1880,9 +1918,10 @@
 				4E5BEB15215E5EDD0056E5CC /* UIView+AutoLayout.swift in Sources */,
 				200681BF21FB4FC600340596 /* ParentSettingsViewModel.swift in Sources */,
 				8A7A608821A403D500488ED4 /* MicrophoneTrackerProtocol.swift in Sources */,
+				A1ED8F932212CA35005762E8 /* OldBaseOnboardingView.swift in Sources */,
 				4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */,
 				8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */,
-				4E2F413521B1441600513843 /* OnboardingContinuableViewController.swift in Sources */,
+				4E2F413521B1441600513843 /* OldOnboardingContinuableViewController.swift in Sources */,
 				8A7A60D221A416E300488ED4 /* WebRtcClientManagerProtocol.swift in Sources */,
 				4E63DC1021E39CFA00604167 /* NotificationService.swift in Sources */,
 				8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */,
@@ -1902,6 +1941,7 @@
 				8A7A612521A59E7500488ED4 /* FileManager+Size.swift in Sources */,
 				4E57319D2170BA7400DEAF0B /* Identifiable.swift in Sources */,
 				4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */,
+				A1EC9779221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift in Sources */,
 				4E626698217F2B8400FA542F /* OnboardingView.swift in Sources */,
 				8A42DB072179D61B00BF5F1B /* URLConfiguration.swift in Sources */,
 				4E8E057021AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift in Sources */,
