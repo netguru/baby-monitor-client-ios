@@ -18,7 +18,7 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
         self.localSdp = sdpOffer
     }
 
-    func startWebRtcConnection() {
+    func startWebRtcConnectionIfNeeded() {
         isStarted = true
         guard let localSdp = localSdp else {
             return

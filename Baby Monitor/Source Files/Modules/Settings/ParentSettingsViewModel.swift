@@ -24,13 +24,15 @@ final class ParentSettingsViewModel: BaseSettingsViewModelProtocol {
     private let babyModelController: BabyModelControllerProtocol
     private let memoryCleaner: MemoryCleanerProtocol
     private let urlConfiguration: URLConfiguration
+    private let webSocketWebRtcService: WebSocketWebRtcServiceProtocol
     private let bag = DisposeBag()
     private let dismissImagePickerSubject = PublishRelay<Void>()
     
-    init(babyModelController: BabyModelControllerProtocol, memoryCleaner: MemoryCleanerProtocol, urlConfiguration: URLConfiguration) {
+    init(babyModelController: BabyModelControllerProtocol, memoryCleaner: MemoryCleanerProtocol, urlConfiguration: URLConfiguration, webSocketWebRtcService: WebSocketWebRtcServiceProtocol) {
         self.babyModelController = babyModelController
         self.memoryCleaner = memoryCleaner
         self.urlConfiguration = urlConfiguration
+        self.webSocketWebRtcService = webSocketWebRtcService
     }
     
     func attachInput(babyName: Observable<String>, addPhotoTap: Observable<Void>, resetAppTap: Observable<Void>, cancelTap: Observable<Void>) {
@@ -57,6 +59,7 @@ final class ParentSettingsViewModel: BaseSettingsViewModelProtocol {
         babyModelController.removeAllData()
         memoryCleaner.cleanMemory()
         urlConfiguration.url = nil
+        webSocketWebRtcService.close()
         UserDefaults.appMode = .none
     }
 }

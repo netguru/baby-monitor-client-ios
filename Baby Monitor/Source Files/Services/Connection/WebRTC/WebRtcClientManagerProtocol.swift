@@ -6,8 +6,8 @@
 import RxSwift
 
 protocol WebRtcClientManagerProtocol {
-    /// Starts WebRTC connection
-    func startWebRtcConnection()
+    /// Starts WebRTC connection if not started yet
+    func startWebRtcConnectionIfNeeded()
 
     /// Sets session description answer
     ///

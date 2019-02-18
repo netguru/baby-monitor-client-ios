@@ -7,6 +7,7 @@ import RxSwift
 
 protocol WebSocketConductorProtocol {
     func open()
+    func close()
 }
 
 final class WebSocketConductor<MessageType>: WebSocketConductorProtocol {
@@ -39,6 +40,9 @@ final class WebSocketConductor<MessageType>: WebSocketConductorProtocol {
     }
 
     func open() {
-        self.webSocket?.open()
+        webSocket?.open()
+    }
+    func close() {
+        webSocket?.close()
     }
 }

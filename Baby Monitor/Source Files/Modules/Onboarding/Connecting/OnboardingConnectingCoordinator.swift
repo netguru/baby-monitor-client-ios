@@ -14,10 +14,6 @@ final class OnboardingConnectingCoordinator: Coordinator {
         self.appDependencies = appDependencies
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var appDependencies: AppDependencies
@@ -29,7 +25,6 @@ final class OnboardingConnectingCoordinator: Coordinator {
     }
     
     private weak var connectToWiFiViewController: UIViewController?
-    private var isPermissionDenidedViewShown = false
     
     func start() {
         showContinuableView(role: .baby(.connectToWiFi))
@@ -37,20 +32,17 @@ final class OnboardingConnectingCoordinator: Coordinator {
     
     private func connectTo(viewModel: OnboardingContinuableViewModel) {
         viewModel.cancelTap?.subscribe(onNext: { [weak self, weak viewModel] in
-            guard
-                let self = self,
-                let viewModel = viewModel
-            else {
+            guard let viewModel = viewModel else {
                 return
             }
             switch viewModel.role {
             case .baby(.connectToWiFi):
-                self.navigationController.popViewController(animated: true)
+                self?.navigationController.popViewController(animated: true)
             case .baby(.putNextToBed):
-                guard let connectToWiFiViewController = self.connectToWiFiViewController else {
+                guard let connectToWiFiViewController = self?.connectToWiFiViewController else {
                     return
                 }
-                self.navigationController.popToViewController(connectToWiFiViewController, animated: true)
+                self?.navigationController.popToViewController(connectToWiFiViewController, animated: true)
             case .parent:
                 break
             }
@@ -104,17 +96,7 @@ final class OnboardingConnectingCoordinator: Coordinator {
             self?.connect(to: viewModel)
         })
         .disposed(by: viewModel.bag)
-        viewController.rx.viewWillDisappear.subscribe(onNext: { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.isPermissionDenidedViewShown = false
-        })
-        .disposed(by: viewModel.bag)
-        isPermissionDenidedViewShown = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.navigationController.present(viewController, animated: true, completion: nil)
-        }
+        navigationController.present(viewController, animated: true, completion: nil)
     }
     
     private func connect(to viewModel: OnboardingTwoOptionsViewModel) {
