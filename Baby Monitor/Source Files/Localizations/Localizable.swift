@@ -24,6 +24,7 @@ enum Localizable {
         static let letsStart = localized("general.lets-start")
         static let retry = localized("general.retry")
         static let imSure = localized("general.i-am-sure")
+        static let important = localized("general.important")
     }
     
     enum Intro {
@@ -103,6 +104,8 @@ enum Localizable {
             static let searchingForSecondDevice = localized("onboarding.pairing.connecting.description")
             static let done = localized("onboarding.pairing.done.description")
             static let error = localized("onboarding.pairing.error-description")
+            static let errorSecondDescription = localized("onboarding.pairing.error-second-description")
+            static let errorSecondDescriptionBottomPart = localized("onboarding.pairing.hello.second-description-bottom-part")
             static let tryAgain = localized("onboarding.pairing.try-again")
             static let startUsingBabyMonitor = localized("onboarding.pairing.start-using-baby-monitor")
             static let allDone = localized("onboarding.pairing.all-done")

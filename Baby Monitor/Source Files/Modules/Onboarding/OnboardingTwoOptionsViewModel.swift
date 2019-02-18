@@ -13,7 +13,7 @@ final class OnboardingTwoOptionsViewModel {
     let title = Localizable.Onboarding.BabySetup.permissionsDenided
     let image = #imageLiteral(resourceName: "onboarding-error")
     let mainDescription = Localizable.Onboarding.BabySetup.permissionsDenidedText
-    let secondaryDescription = Localizable.Onboarding.BabySetup.permissionsDenidedQuestion
+    let secondaryDescription = NSAttributedString(string: Localizable.Onboarding.BabySetup.permissionsDenidedQuestion) 
     let upButtonTitle = Localizable.General.retry
     let bottomButtonTitle = Localizable.General.imSure
     

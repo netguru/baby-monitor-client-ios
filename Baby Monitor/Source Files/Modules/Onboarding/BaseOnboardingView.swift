@@ -8,6 +8,7 @@ import UIKit
 class BaseOnboardingView: BaseView {
     
     var imageViewTopConstraint: NSLayoutConstraint?
+    var imageCenterYAnchor: NSLayoutYAxisAnchor?
     let imageView = UIImageView()
     
     private let titleLabel: UILabel = {
@@ -35,6 +36,7 @@ class BaseOnboardingView: BaseView {
         view.axis = .vertical
         view.alignment = .leading
         view.distribution = .fillProportionally
+        view.spacing = 13
         return view
     }()
     
@@ -49,8 +51,8 @@ class BaseOnboardingView: BaseView {
     func update(mainDescription: String) {
         mainDescriptionLabel.text = mainDescription
     }
-    func update(secondaryDescription: String?) {
-        secondaryDescriptionLabel.text = secondaryDescription
+    func update(secondaryDescription: NSAttributedString?) {
+        secondaryDescriptionLabel.attributedText = secondaryDescription
     }
     func update(image: UIImage) {
         imageView.image = image
@@ -66,12 +68,14 @@ class BaseOnboardingView: BaseView {
     private func setupConstraints() {
         titleLabel.addConstraints {[
             $0.equal(.leading, constant: 24),
-            $0.equalTo(self, .top, .safeAreaTop, constant: 104)
+            $0.equal(.top, constant: 104),
+            $0.equal(.centerX)
         ]
         }
         descriptionsStackView.addConstraints {[
             $0.equalTo(titleLabel, .leading, .leading),
-            $0.equalTo(titleLabel, .top, .bottom, constant: 8),
+            $0.equal(.trailing),
+            $0.equalTo(titleLabel, .top, .bottom, constant: 8)
         ]
         }
         imageViewTopConstraint = imageView.addConstraints {[
@@ -79,5 +83,6 @@ class BaseOnboardingView: BaseView {
             $0.equal(.centerX)
         ]
         }.first
+        imageCenterYAnchor = imageView.centerYAnchor
     }
 }

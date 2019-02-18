@@ -30,7 +30,6 @@
 		4E2F413721B148BB00513843 /* OldOnboardingContinuableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F413621B148BB00513843 /* OldOnboardingContinuableViewModel.swift */; };
 		4E360CCE21E781E3002781AC /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E360CCD21E781E3002781AC /* FirebaseStorageService.swift */; };
 		4E36A3AE21B15F850058DAD2 /* OnboardingClientSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E36A3AD21B15F850058DAD2 /* OnboardingClientSetupViewController.swift */; };
-		4E36A3B021B15FF80058DAD2 /* OnboardingSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E36A3AF21B15FF80058DAD2 /* OnboardingSpinnerView.swift */; };
 		4E3943312175D4AD00AD7582 /* NetServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3943302175D4AD00AD7582 /* NetServiceClient.swift */; };
 		4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3943322175E50200AD7582 /* NetServiceServer.swift */; };
 		4E55435E21D4C33A005C41FD /* RTCICEServer+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E55435421D4C33A005C41FD /* RTCICEServer+JSON.m */; };
@@ -233,6 +232,7 @@
 		A1EC9777221AA53900C27786 /* OnboardingAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */; };
 		A1EC9779221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */; };
 		A1EC977B221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC977A221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift */; };
+		A1EC977D221ADC8100C27786 /* OnboardingSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC977C221ADC8100C27786 /* OnboardingSpinnerView.swift */; };
 		A1ED8F8D2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F8C2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift */; };
 		A1ED8F8F2212C70B005762E8 /* AccessBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */; };
 		A1ED8F912212C745005762E8 /* TwoOptionsBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */; };
@@ -296,7 +296,6 @@
 		4E2F413621B148BB00513843 /* OldOnboardingContinuableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldOnboardingContinuableViewModel.swift; sourceTree = "<group>"; };
 		4E360CCD21E781E3002781AC /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		4E36A3AD21B15F850058DAD2 /* OnboardingClientSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingClientSetupViewController.swift; sourceTree = "<group>"; };
-		4E36A3AF21B15FF80058DAD2 /* OnboardingSpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSpinnerView.swift; sourceTree = "<group>"; };
 		4E3943302175D4AD00AD7582 /* NetServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceClient.swift; sourceTree = "<group>"; };
 		4E3943322175E50200AD7582 /* NetServiceServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceServer.swift; sourceTree = "<group>"; };
 		4E55433921D4C33A005C41FD /* RTCPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCPair.h; sourceTree = "<group>"; };
@@ -542,6 +541,7 @@
 		A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccessViewModel.swift; sourceTree = "<group>"; };
 		A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoOptionsViewModel.swift; sourceTree = "<group>"; };
 		A1EC977A221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoOptionsViewController.swift; sourceTree = "<group>"; };
+		A1EC977C221ADC8100C27786 /* OnboardingSpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSpinnerView.swift; sourceTree = "<group>"; };
 		A1ED8F8C2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuableBaseOnboardingView.swift; sourceTree = "<group>"; };
 		A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessBaseOnboardingView.swift; sourceTree = "<group>"; };
 		A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsBaseOnboardingView.swift; sourceTree = "<group>"; };
@@ -810,12 +810,12 @@
 		4E60697621AFECC200EB1DCF /* Pairing */ = {
 			isa = PBXGroup;
 			children = (
+				A1EC977C221ADC8100C27786 /* OnboardingSpinnerView.swift */,
 				4E60697721AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift */,
 				4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */,
 				4E2F413421B1441600513843 /* OldOnboardingContinuableViewController.swift */,
 				4E2F413621B148BB00513843 /* OldOnboardingContinuableViewModel.swift */,
 				4E36A3AD21B15F850058DAD2 /* OnboardingClientSetupViewController.swift */,
-				4E36A3AF21B15FF80058DAD2 /* OnboardingSpinnerView.swift */,
 			);
 			path = Pairing;
 			sourceTree = "<group>";
@@ -1820,7 +1820,6 @@
 				A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */,
 				4E2F413721B148BB00513843 /* OldOnboardingContinuableViewModel.swift in Sources */,
 				8A8B76E921EE16E30063EF7E /* WebsocketConductor.swift in Sources */,
-				4E36A3B021B15FF80058DAD2 /* OnboardingSpinnerView.swift in Sources */,
 				200DFD4721F87862009CA3ED /* RoundedRectangleButton.swift in Sources */,
 				A1ED8F8F2212C70B005762E8 /* AccessBaseOnboardingView.swift in Sources */,
 				4E994BF221624835009C44C5 /* BaseViewController.swift in Sources */,
@@ -1959,6 +1958,7 @@
 				95368F552209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift in Sources */,
 				8A7A612C21A59EB000488ED4 /* RecorderFactory.swift in Sources */,
 				8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */,
+				A1EC977D221ADC8100C27786 /* OnboardingSpinnerView.swift in Sources */,
 				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
 				4E63DC1A21E39D4B00604167 /* ServerKeyObtainable.swift in Sources */,
 				8AFAE5AD219AAAAC007013BC /* MessageServerProtocol.swift in Sources */,

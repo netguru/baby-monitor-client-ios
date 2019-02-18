@@ -51,6 +51,8 @@ final class OnboardingConnectingCoordinator: Coordinator {
                     return
                 }
                 self.navigationController.popToViewController(connectToWiFiViewController, animated: true)
+            case .parent:
+                break
             }
         })
         .disposed(by: viewModel.bag)
@@ -66,6 +68,8 @@ final class OnboardingConnectingCoordinator: Coordinator {
                 case .putNextToBed:
                     self?.onEnding?()
                 }
+            case .parent:
+                break
             }
         })
         .disposed(by: viewModel.bag)
@@ -146,14 +150,5 @@ final class OnboardingConnectingCoordinator: Coordinator {
             break
         }
         return viewController
-    }
-    
-    private func showSetupInformationView() {
-        let viewModel = OldOnboardingContinuableViewModel()
-        viewModel.onSelectNext = { [weak self] in
-            self?.onEnding?()
-        }
-        let viewController = OldOnboardingContinuableViewController(role: .connecting(.setupInformation), viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: true)
     }
 }

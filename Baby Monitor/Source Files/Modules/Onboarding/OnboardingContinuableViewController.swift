@@ -32,6 +32,7 @@ final class OnboardingContinuableViewController: TypedViewController<Continuable
         customView.update(mainDescription: viewModel.description)
         customView.update(image: viewModel.image)
         customView.update(buttonTitle: viewModel.buttonTitle)
+        customView.update(secondaryDescription: viewModel.secondDescription)
         viewModel.attachInput(
             buttonTap: customView.rx.buttonTap.asObservable(),
             cancelButtonTap: customView.rx.cancelButtonTap.asObservable())

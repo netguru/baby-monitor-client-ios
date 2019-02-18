@@ -9,9 +9,19 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
     
     private let viewModel: ClientSetupOnboardingViewModel
     
-    init(role: ImageOnboardingView.Role, viewModel: ClientSetupOnboardingViewModel) {
+    init(viewModel: ClientSetupOnboardingViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: OnboardingSpinnerView(role: role))
+        super.init(viewMaker: OnboardingSpinnerView())
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -19,4 +29,9 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
         viewModel.startDiscovering(withTimeout: 5.0)
     }
     
+    private func setup() {
+        customView.update(title: viewModel.title)
+        customView.update(mainDescription: viewModel.description)
+        customView.update(image: viewModel.image)
+    }
 }
