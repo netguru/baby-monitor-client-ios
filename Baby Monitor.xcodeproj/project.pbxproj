@@ -232,6 +232,7 @@
 		A1EC9775221AA51A00C27786 /* OnboardingAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */; };
 		A1EC9777221AA53900C27786 /* OnboardingAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */; };
 		A1EC9779221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */; };
+		A1EC977B221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC977A221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift */; };
 		A1ED8F8D2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F8C2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift */; };
 		A1ED8F8F2212C70B005762E8 /* AccessBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */; };
 		A1ED8F912212C745005762E8 /* TwoOptionsBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */; };
@@ -540,6 +541,7 @@
 		A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccessViewController.swift; sourceTree = "<group>"; };
 		A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccessViewModel.swift; sourceTree = "<group>"; };
 		A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoOptionsViewModel.swift; sourceTree = "<group>"; };
+		A1EC977A221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoOptionsViewController.swift; sourceTree = "<group>"; };
 		A1ED8F8C2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuableBaseOnboardingView.swift; sourceTree = "<group>"; };
 		A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessBaseOnboardingView.swift; sourceTree = "<group>"; };
 		A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsBaseOnboardingView.swift; sourceTree = "<group>"; };
@@ -1377,6 +1379,7 @@
 				A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */,
 				4E8E056D21AD8E72009ACE05 /* OnboardingButton.swift */,
 				A1ED8F942212CB8D005762E8 /* OnboardingContinuableViewController.swift */,
+				A1EC977A221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift */,
 				A1EC9772221AA4EC00C27786 /* OnboardingContinuableViewModel.swift */,
 				A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */,
 				A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */,
@@ -1840,6 +1843,7 @@
 				A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */,
 				A1640E252203A3DB00398ED2 /* ServerSettingsViewController.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
+				A1EC977B221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift in Sources */,
 				ECB2428821AD4F0400B4E409 /* IntroViewModel.swift in Sources */,
 				A1EC9773221AA4EC00C27786 /* OnboardingContinuableViewModel.swift in Sources */,
 				4E63DC1D21E39D4B00604167 /* URLRequestConvertible.swift in Sources */,

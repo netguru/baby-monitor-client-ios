@@ -28,6 +28,7 @@ final class OnboardingConnectingCoordinator: Coordinator {
         return isCameraAccessGranted && isMicrophoneAccessGranted
     }
     
+    private weak var connectToWiFiViewController: UIViewController?
     private var isPermissionDenidedViewShown = false
     
     func start() {
@@ -35,8 +36,22 @@ final class OnboardingConnectingCoordinator: Coordinator {
     }
     
     private func connectTo(viewModel: OnboardingContinuableViewModel) {
-        viewModel.cancelTap?.subscribe(onNext: { [weak self] in
-            self?.navigationController.popViewController(animated: true)
+        viewModel.cancelTap?.subscribe(onNext: { [weak self, weak viewModel] in
+            guard
+                let self = self,
+                let viewModel = viewModel
+            else {
+                return
+            }
+            switch viewModel.role {
+            case .baby(.connectToWiFi):
+                self.navigationController.popViewController(animated: true)
+            case .baby(.putNextToBed):
+                guard let connectToWiFiViewController = self.connectToWiFiViewController else {
+                    return
+                }
+                self.navigationController.popToViewController(connectToWiFiViewController, animated: true)
+            }
         })
         .disposed(by: viewModel.bag)
         viewModel.nextButtonTap?.subscribe(onNext: { [weak self, weak viewModel] in
@@ -124,6 +139,12 @@ final class OnboardingConnectingCoordinator: Coordinator {
             self?.connectTo(viewModel: viewModel)
         })
         .disposed(by: viewModel.bag)
+        switch role {
+        case .baby(.connectToWiFi):
+            connectToWiFiViewController = viewController
+        default:
+            break
+        }
         return viewController
     }
     

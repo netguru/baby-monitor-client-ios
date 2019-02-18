@@ -20,6 +20,11 @@ final class OnboardingAccessViewController: TypedViewController<AccessBaseOnboar
         viewModel.checkAccess()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     private func setup() {
         customView.update(title: viewModel.title)
         customView.update(mainDescription: viewModel.description)
