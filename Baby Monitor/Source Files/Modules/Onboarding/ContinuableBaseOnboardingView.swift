@@ -16,7 +16,7 @@ final class ContinuableBaseOnboardingView: BaseOnboardingView {
         action: nil
     )
     
-    fileprivate let button = RoundedRectangleButton(title: "", backgroundColor: .babyMonitorPurple)
+    fileprivate let button = RoundedRectangleButton(title: "", backgroundColor: .babyMonitorPurple, borderColor: .babyMonitorPurple, borderWidth: 2.0)
     
     override init() {
         super.init()
@@ -25,6 +25,9 @@ final class ContinuableBaseOnboardingView: BaseOnboardingView {
     
     func update(buttonTitle: String) {
         button.setTitle(buttonTitle, for: .normal)
+    }
+    func changeButtonBackgroundColor(_ color: UIColor) {
+        button.backgroundColor = color
     }
     
     private func setup() {

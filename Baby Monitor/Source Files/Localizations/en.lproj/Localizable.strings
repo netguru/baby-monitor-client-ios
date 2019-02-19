@@ -19,6 +19,7 @@
 "general.lets-start" = "Let's start";
 "general.retry" = "Retry";
 "general.i-am-sure" = "I'm sure";
+"general.important" = "IMPORTANT: ";
 
 //MARK: = Intro
 "intro.title.monitoring" = "Do your daily errands and\nkeep an eye on your baby";
@@ -50,10 +51,12 @@
 "onboarding.label.define-descripion" = "Let's start with defining this device.";
 "onboarding.label.welcome-to" = "Welcome to Baby Monitor \nLet’s start by defining this device";
 "onboarding.pairing.share-link.title" = "Hello";
-"onboarding.pairing.share-link.description" = "It’s time to install Baby Monitor \non your second device";
-"onboarding.pairing.connecting.description" = "Searching for second device";
+"onboarding.pairing.share-link.description" = "It’s time to install Baby Monitor \non your second device\n\n";
+"onboarding.pairing.connecting.description" = "Searching for\nsecond device";
 "onboarding.pairing.done.description" = "Done!";
-"onboarding.pairing.error-description" = "Ups! Something went wrong :( \nMake sure that you are connected to the same \nWi-Fi network";
+"onboarding.pairing.error-description" = "Ups! Something\nwent wrong :(";
+"onboarding.pairing.error-second-description" = "Make sure that both devices are\nconnected to the same WiFi network.";
+"onboarding.pairing.hello.second-description-bottom-part" = "Make sure you have already installed\nBaby Monitor on your baby's device";
 "onboarding.pairing.try-again" = "Try again";
 "onboarding.pairing.start-using-baby-monitor" = "You can now start using Baby Monitor!";
 "onboarding.pairing.all-done" = "All done!";
