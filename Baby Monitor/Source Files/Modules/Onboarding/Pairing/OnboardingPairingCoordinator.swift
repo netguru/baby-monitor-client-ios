@@ -45,7 +45,7 @@ final class OnboardingPairingCoordinator: Coordinator {
         viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
             self?.connectTo(viewModel: viewModel)
         })
-            .disposed(by: viewModel.bag)
+        .disposed(by: viewModel.bag)
         return viewController
     }
     
@@ -53,7 +53,7 @@ final class OnboardingPairingCoordinator: Coordinator {
         viewModel.cancelTap?.subscribe(onNext: { [weak self] in
             self?.navigationController.popViewController(animated: true)
         })
-            .disposed(by: viewModel.bag)
+        .disposed(by: viewModel.bag)
         viewModel.nextButtonTap?.subscribe(onNext: { [weak self, weak viewModel] in
             guard let role = viewModel?.role else {
                 return
@@ -72,7 +72,7 @@ final class OnboardingPairingCoordinator: Coordinator {
                 break
             }
         })
-            .disposed(by: viewModel.bag)
+        .disposed(by: viewModel.bag)
     }
     
     private func showPairingView() {
