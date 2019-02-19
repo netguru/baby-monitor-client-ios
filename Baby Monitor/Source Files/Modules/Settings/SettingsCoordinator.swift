@@ -64,6 +64,7 @@ final class SettingsCoordinator: Coordinator {
         viewModel.resetAppTap?.subscribe(onNext: { [unowned self] in
             let continueHandler: (() -> Void) = { [weak self] in
                 viewModel.clearAllDataForNoneState()
+                self?.appDependencies.resetForNoneState()
                 self?.onEnding?()
             }
             let continueAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = ("Continue", UIAlertAction.Style.destructive, continueHandler)

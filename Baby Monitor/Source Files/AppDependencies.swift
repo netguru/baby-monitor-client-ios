@@ -24,7 +24,7 @@ final class AppDependencies {
         audioRecordService: audioRecordService,
         activityLogEventsRepository: databaseRepository,
         storageService: storageServerService)
-
+    
     private(set) lazy var netServiceClient: () -> NetServiceClientProtocol = { NetServiceClient() }
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
     private(set) lazy var peerConnectionFactory: PeerConnectionFactoryProtocol = RTCPeerConnectionFactory()
@@ -44,16 +44,40 @@ final class AppDependencies {
         sessionDescriptionDelegateProxy.delegate = clientManager
         return clientManager
     }
-    private(set) lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductor<EventMessage> = { emitter, handler in
+    private lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductor<EventMessage> = { emitter, handler in
         return WebSocketConductor(webSocket: self.webSocket, messageEmitter: emitter, messageHandler: handler, messageDecoders: [self.babyMonitorEventMessagesDecoder])
     }
-    private(set) lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
+    private lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
         return WebSocketConductor(webSocket: self.webSocket, messageEmitter: emitter, messageHandler: handler, messageDecoders: self.webRtcMessageDecoders)
     }
-    private(set) lazy var webSocketEventMessageService: WebSocketEventMessageServiceProtocol = WebSocketEventMessageService(cryingEventsRepository: databaseRepository, eventMessageConductorFactory: eventMessageConductorFactory)
-    private(set) lazy var webSocketWebRtcService: WebSocketWebRtcServiceProtocol = {
+    var webSocketEventMessageService: WebSocketEventMessageServiceProtocol  {
+        if let service = _webSocketEventMessageService {
+            return service
+        } else {
+            _webSocketEventMessageService = makeWebSocketEventMessageService()
+            return _webSocketEventMessageService!
+        }
+    }
+    
+    private var _webSocketEventMessageService: WebSocketEventMessageServiceProtocol?
+    
+    var webSocketWebRtcService: WebSocketWebRtcServiceProtocol {
+        if let service = _webSocketWebRtcService {
+            return service
+        } else {
+            _webSocketWebRtcService = makeWebSocketWebRtcService()
+            return _webSocketWebRtcService!
+        }
+    }
+    
+    private var _webSocketWebRtcService: WebSocketWebRtcServiceProtocol?
+    
+    private func makeWebSocketWebRtcService() -> WebSocketWebRtcServiceProtocol {
         return WebSocketWebRtcService(webRtcClientManager: webRtcClient(), webRtcConductorFactory: self.webRtcConductorFactory)
-    }()
+    }
+    private func makeWebSocketEventMessageService() -> WebSocketEventMessageServiceProtocol {
+        return WebSocketEventMessageService(cryingEventsRepository: databaseRepository, eventMessageConductorFactory: eventMessageConductorFactory)
+    }
     private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher(
         urlSession: URLSession(configuration: .default),
         dispatchQueue: DispatchQueue(label: "NetworkDispatcherQueue")
@@ -68,7 +92,7 @@ final class AppDependencies {
     
     private(set) var babyMonitorEventMessagesDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
     private(set) var cacheService: CacheServiceProtocol = CacheService()
-
+    
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient(), urlConfiguration: urlConfiguration)
     private(set) lazy var serverService: ServerServiceProtocol = ServerService(
         webRtcServerManager: webRtcServer(),
@@ -89,7 +113,10 @@ final class AppDependencies {
         let webSocketServer = PSWebSocketServer(host: nil, port: UInt(Constants.websocketPort))!
         return PSWebSocketServerWrapper(server: webSocketServer)
     }()
-    private(set) lazy var webSocket: WebSocketProtocol? = {
+    private var webSocket: WebSocketProtocol? {
+        if let ws = _webSocket {
+            return ws
+        }
         guard let url = self.urlConfiguration.url else {
             return nil
         }
@@ -98,7 +125,15 @@ final class AppDependencies {
             return nil
         }
         return PSWebSocketWrapper(socket: webSocket)
-    }()
+    }
+    
+    func resetForNoneState() {
+        _webSocket = nil
+        _webSocketWebRtcService = nil
+        _webSocketEventMessageService = nil
+    }
+    
+    private var _webSocket: WebSocketProtocol?
     /// Baby service for getting and adding babies throughout the app
     private(set) lazy var databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol = RealmBabiesRepository(realm: try! Realm())
     /// Service for handling errors and showing error alerts
