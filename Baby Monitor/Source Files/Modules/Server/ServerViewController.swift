@@ -18,13 +18,13 @@ final class ServerViewController: BaseViewController {
     private lazy var rotateCameraButton: UIButton = {
         let view = UIButton(frame: .zero)
         view.setImage(#imageLiteral(resourceName: "switchCamera"), for: .normal)
-        view.isHidden = true // remove when this functionality gets implemented
+        view.isHidden = true // TODO: remove when this functionality gets implemented
         return view
     }()
     private lazy var nightModeButton: UIButton = {
         let view = UIButton(frame: .zero)
         view.setImage(#imageLiteral(resourceName: "nightMode"), for: .normal)
-        view.isHidden = true // remove when this functionality gets implemented
+        view.isHidden = true // TODO: remove when this functionality gets implemented
         return view
     }()
     private lazy var buttonsStackView: UIStackView = {
@@ -57,7 +57,6 @@ final class ServerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.settingsTap = settingsBarButtonItem.rx.tap.asObservable()
-        babyNavigationItemView.updateBabyName("")
         navigationController?.setNavigationBarHidden(false, animated: false)
         timer = Timer.scheduledTimer(withTimeInterval: 0.8, repeats: true, block: { [weak self] _ in
             self?.babyNavigationItemView.firePulse()
