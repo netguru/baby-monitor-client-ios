@@ -18,11 +18,13 @@ final class ServerViewController: BaseViewController {
     private lazy var rotateCameraButton: UIButton = {
         let view = UIButton(frame: .zero)
         view.setImage(#imageLiteral(resourceName: "switchCamera"), for: .normal)
+        view.isHidden = true // remove when this functionality gets implemented
         return view
     }()
     private lazy var nightModeButton: UIButton = {
         let view = UIButton(frame: .zero)
         view.setImage(#imageLiteral(resourceName: "nightMode"), for: .normal)
+        view.isHidden = true // remove when this functionality gets implemented
         return view
     }()
     private lazy var buttonsStackView: UIStackView = {
