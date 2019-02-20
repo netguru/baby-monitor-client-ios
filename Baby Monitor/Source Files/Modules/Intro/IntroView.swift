@@ -13,10 +13,7 @@ final class IntroView: BaseView {
         static let textAlpha: CGFloat = 0.7
     }
     
-    private let pageControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        return pageControl
-    }()
+    private let pageControl = UIPageControl()
     
     init(numberOfPages: Int) {
         super.init()
