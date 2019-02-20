@@ -10,7 +10,6 @@ import RxCocoa
 protocol WebSocketProtocol: MessageStreamProtocol {
     
     var disconnectionObservable: Observable<Void> { get }
-    var bag: DisposeBag { get }
     
     /// Sends message to connected socket
     ///
@@ -26,7 +25,6 @@ protocol WebSocketProtocol: MessageStreamProtocol {
 
 final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     
-    let bag = DisposeBag()
     let dispatchQueue = DispatchQueue(label: "webRTCQueue", qos: DispatchQoS.userInteractive)
     
     lazy var disconnectionObservable = disconnectionPublisher.asObservable()
