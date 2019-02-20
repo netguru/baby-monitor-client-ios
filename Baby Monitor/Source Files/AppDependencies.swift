@@ -108,7 +108,12 @@ final class AppDependencies {
         guard let webSocket = PSWebSocket.clientSocket(with: urlRequest) else {
             return nil
         }
-        return PSWebSocketWrapper(socket: webSocket)
+        let websocketWrapper = PSWebSocketWrapper(socket: webSocket)
+        websocketWrapper.disconnectionObservable.subscribe(onNext: { [weak self] in
+            self?.resetForNoneState()
+        })
+            .disposed(by: websocketWrapper.bag)
+        return websocketWrapper
     }
     
     func resetForNoneState() {
