@@ -57,7 +57,7 @@ final class ServerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.settingsTap = settingsBarButtonItem.rx.tap.asObservable()
-        babyNavigationItemView.updateBabyName("Franciszek")
+        babyNavigationItemView.updateBabyName("")
         navigationController?.setNavigationBarHidden(false, animated: false)
         timer = Timer.scheduledTimer(withTimeInterval: 0.8, repeats: true, block: { [weak self] _ in
             self?.babyNavigationItemView.firePulse()

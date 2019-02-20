@@ -82,7 +82,7 @@ final class BabyNavigationItemView: UIView {
         }
         switch mode {
         case .baby:
-            [nameTextField, pulsatoryView].forEach {
+            [pulsatoryView].forEach { // add nameTextField here if you want to show it
                 stackView.addArrangedSubview($0)
             }
             pulsatoryView.addConstraints {[
