@@ -12,7 +12,7 @@ class IntroViewController: TypedPageViewController<IntroView>, UIPageViewControl
     
     init(featureControllers: [UIViewController]) {
         self.featureControllers = featureControllers
-        super.init(viewMaker: IntroView())
+        super.init(viewMaker: IntroView(numberOfPages: featureControllers.count))
     }
     
     override func viewDidLoad() {

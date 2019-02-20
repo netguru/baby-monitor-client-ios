@@ -15,21 +15,21 @@ final class IntroView: BaseView {
     
     private let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.numberOfPages = IntroFeature.allCases.count
         return pageControl
     }()
     
-    override init() {
+    init(numberOfPages: Int) {
         super.init()
-        setup()
+        setup(numberOfPages: numberOfPages)
     }
     
     func updatePageControl(to index: Int) {
         pageControl.currentPage = index
     }
     
-    private func setup() {
+    private func setup(numberOfPages: Int) {
         setupBackgroundImage(UIImage(named: "base-background"))
+        pageControl.numberOfPages = numberOfPages
         addSubview(pageControl)
         setupConstraints()
     }
