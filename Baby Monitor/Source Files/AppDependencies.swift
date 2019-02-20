@@ -12,6 +12,7 @@ import FirebaseMessaging
 
 final class AppDependencies {
     
+    private var socketDisposable: Disposable?
     /// Service for cleaning too many crying events
     private(set) lazy var memoryCleaner: MemoryCleanerProtocol = MemoryCleaner()
     /// Service for recording audio
@@ -108,7 +109,13 @@ final class AppDependencies {
         guard let webSocket = PSWebSocket.clientSocket(with: urlRequest) else {
             return nil
         }
-        return PSWebSocketWrapper(socket: webSocket)
+        let websocketWrapper = PSWebSocketWrapper(socket: webSocket)
+        self.socketDisposable = websocketWrapper.disconnectionObservable.subscribe(onNext: { [weak self] in
+            self?.socketDisposable?.dispose()
+            self?.socketDisposable = nil
+            self?.resetForNoneState()
+        })
+        return websocketWrapper
     }
     
     func resetForNoneState() {
