@@ -24,7 +24,12 @@ final class ServerViewController: BaseViewController {
     private lazy var nightModeButton: UIButton = {
         let view = UIButton(frame: .zero)
         view.setImage(#imageLiteral(resourceName: "nightMode"), for: .normal)
-        view.isHidden = true // TODO: remove when this functionality gets implemented
+        return view
+    }()
+    private lazy var nightModeOverlay: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.9)
+        view.isHidden = true
         return view
     }()
     private lazy var buttonsStackView: UIStackView = {
@@ -48,10 +53,8 @@ final class ServerViewController: BaseViewController {
     init(viewModel: ServerViewModel) {
         self.viewModel = viewModel
         super.init()
-        view.addSubview(localView)
-        view.addSubview(buttonsStackView)
-        localView.addConstraints { $0.equalEdges() }
-        setup()
+        setupView()
+        setupViewModel()
     }
     
     override func viewDidLoad() {
@@ -65,21 +68,37 @@ final class ServerViewController: BaseViewController {
             self.timer?.fire()
         }
     }
-    
-    private func setup() {
+
+    private func setupView() {
+        [localView, buttonsStackView, nightModeOverlay].forEach(view.addSubview)
+        localView.addConstraints { $0.equalEdges() }
+        nightModeOverlay.addConstraints { $0.equalEdges() }
+
         navigationItem.titleView = babyNavigationItemView
         navigationItem.rightBarButtonItem = settingsBarButtonItem
         buttonsStackView.addConstraints {[
             $0.equal(.safeAreaBottom, constant: -52),
             $0.equal(.centerX)
-        ]
+            ]
         }
+
+        view.bringSubviewToFront(nightModeOverlay)
+        view.bringSubviewToFront(buttonsStackView)
+    }
+    
+    private func setupViewModel() {
+
         viewModel.stream
             .subscribe(onNext: { [unowned self] stream in
                 self.attach(stream: stream)
             })
             .disposed(by: bag)
         viewModel.startStreaming()
+        nightModeButton.rx.tap.asObservable().subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.nightModeOverlay.isHidden = !self.nightModeOverlay.isHidden
+        })
+        .disposed(by: bag)
     }
     
     private func attach(stream: MediaStream) {
