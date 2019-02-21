@@ -79,15 +79,13 @@ final class ServerViewController: BaseViewController {
         buttonsStackView.addConstraints {[
             $0.equal(.safeAreaBottom, constant: -52),
             $0.equal(.centerX)
-            ]
-        }
+        ]}
 
         view.bringSubviewToFront(nightModeOverlay)
         view.bringSubviewToFront(buttonsStackView)
     }
     
     private func setupViewModel() {
-
         viewModel.stream
             .subscribe(onNext: { [unowned self] stream in
                 self.attach(stream: stream)
