@@ -94,7 +94,7 @@ final class ServerViewController: BaseViewController {
         viewModel.startStreaming()
         nightModeButton.rx.tap.asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            self.nightModeOverlay.isHidden = !self.nightModeOverlay.isHidden
+            self.nightModeOverlay.isHidden.toggle()
         })
         .disposed(by: bag)
     }
