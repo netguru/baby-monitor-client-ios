@@ -25,6 +25,16 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         setup()
         setupViewModel()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.isIdleTimerDisabled = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.isIdleTimerDisabled = false
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
