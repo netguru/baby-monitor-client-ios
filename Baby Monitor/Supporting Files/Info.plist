@@ -25,7 +25,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>To take a photo for your baby or streaming video</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>To detect your baby's cry</string>
+	<string>To detect your baby&apos;s cry</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To select a photo for your baby </string>
 	<key>UIAppFonts</key>
