@@ -16,7 +16,7 @@ final class PeerConnectionDelegateProxy: NSObject, RTCPeerConnectionDelegate {
 
     func peerConnection(_ peerConnection: RTCPeerConnection, signalingStateChanged stateChanged: RTCSignalingState) {}
 
-    // TODO: 🐞 This method not beeing called is the reason, why video is not showing up on parent.
+    // TODO: 🐞 This method not being called is the reason, why video is not showing up on the parent.
     // This bug happens on ios 11, and also on any system on going to preview screen right after making a connection for the first time.
     func peerConnection(_ peerConnection: RTCPeerConnection, addedStream stream: RTCMediaStream) {
         delegate?.addedStream(stream)
