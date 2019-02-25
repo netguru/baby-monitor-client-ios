@@ -26,7 +26,7 @@ final class AppDependencies {
         activityLogEventsRepository: databaseRepository,
         storageService: storageServerService)
     
-    private(set) lazy var netServiceClient: () -> NetServiceClientProtocol = { NetServiceClient() }
+    private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
     private(set) lazy var peerConnectionFactory: PeerConnectionFactoryProtocol = RTCPeerConnectionFactory()
     private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = {
@@ -81,7 +81,7 @@ final class AppDependencies {
     private(set) var babyMonitorEventMessagesDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
     private(set) var cacheService: CacheServiceProtocol = CacheService()
     
-    private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient(), urlConfiguration: urlConfiguration)
+    private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, urlConfiguration: urlConfiguration)
     private(set) lazy var serverService: ServerServiceProtocol = ServerService(
         webRtcServerManager: webRtcServer(),
         messageServer: messageServer,
@@ -98,7 +98,7 @@ final class AppDependencies {
     private(set) var urlConfiguration: URLConfiguration = UserDefaultsURLConfiguration()
     private(set) lazy var messageServer = MessageServer(server: webSocketServer)
     private(set) lazy var webSocketServer: WebSocketServerProtocol = {
-        let webSocketServer = PSWebSocketServer(host: nil, port: UInt(Constants.websocketPort))!
+        let webSocketServer = PSWebSocketServer(host: nil, port: UInt(Constants.iosWebsocketPort))!
         return PSWebSocketServerWrapper(server: webSocketServer)
     }()
     private lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in

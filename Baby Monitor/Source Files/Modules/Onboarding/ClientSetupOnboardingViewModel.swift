@@ -44,16 +44,13 @@ final class ClientSetupOnboardingViewModel {
     }
     
     func startDiscovering(withTimeout timeout: TimeInterval = 5.0) {
-        searchCancelTimer = Timer.scheduledTimer(withTimeInterval: timeout, repeats: false, block: { [weak self] _ in
-            self?.didFinishDeviceSearch?(.failure(.timeout))
-            self?.netServiceClient.stopFinding()
-            self?.searchCancelTimer = nil
-        })
-        netServiceClient.findService()
+        netServiceClient.isEnabled.value = true
     }
     
     private func setupRx() {
-        netServiceClient.serviceObservable
+        netServiceClient.service
+            .filter { $0 != nil }
+            .map { $0! }
             .take(1)
             .subscribe(onNext: { [weak self] ip, port in
                 guard let serverUrl = URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix),
@@ -63,7 +60,6 @@ final class ClientSetupOnboardingViewModel {
                 self.searchCancelTimer?.invalidate()
                 self.urlConfiguration.url = serverUrl
                 self.webSocketEventMessageService.start()
-                self.netServiceClient.stopFinding()
                 let cryingEventMessage = EventMessage.initWithPushNotificationsKey(key: self.cacheService.selfPushNotificationsToken!)
                 self.webSocketEventMessageService.sendMessage(cryingEventMessage.toStringMessage())
                 self.saveEmptyStateIfNeeded()
