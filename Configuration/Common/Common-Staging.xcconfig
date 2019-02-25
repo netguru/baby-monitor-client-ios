@@ -6,6 +6,6 @@
 #include "Common-Base.xcconfig"
 #include "../../Carthage/Checkouts/xcconfigs/Configurations/Release.xcconfig"
 
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) GLES_SILENCE_DEPRECATION=1 ENV_STAGING;
+_ENVIRONMENTS = ENV_STAGING
 
 DEBUG_INFORMATION_FORMAT = dwarf
