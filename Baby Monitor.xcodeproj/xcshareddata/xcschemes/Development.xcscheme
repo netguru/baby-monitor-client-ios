@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EC82B555213EA072005CA395"
-               BuildableName = "BabyMonitor.app"
+               BuildableName = "Baby Guard.app"
                BlueprintName = "Baby Monitor"
                ReferencedContainer = "container:Baby Monitor.xcodeproj">
             </BuildableReference>
@@ -34,7 +34,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EC82B569213EA074005CA395"
-               BuildableName = "Baby Monitor.xctest"
+               BuildableName = "Baby Guard.xctest"
                BlueprintName = "Baby MonitorTests"
                ReferencedContainer = "container:Baby Monitor.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EC82B555213EA072005CA395"
-            BuildableName = "BabyMonitor.app"
+            BuildableName = "Baby Guard.app"
             BlueprintName = "Baby Monitor"
             ReferencedContainer = "container:Baby Monitor.xcodeproj">
          </BuildableReference>
@@ -67,7 +67,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EC82B555213EA072005CA395"
-            BuildableName = "BabyMonitor.app"
+            BuildableName = "Baby Guard.app"
             BlueprintName = "Baby Monitor"
             ReferencedContainer = "container:Baby Monitor.xcodeproj">
          </BuildableReference>
@@ -86,7 +86,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EC82B555213EA072005CA395"
-            BuildableName = "BabyMonitor.app"
+            BuildableName = "Baby Guard.app"
             BlueprintName = "Baby Monitor"
             ReferencedContainer = "container:Baby Monitor.xcodeproj">
          </BuildableReference>
