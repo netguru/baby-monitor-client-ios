@@ -6,6 +6,6 @@
 #include "Common-Base.xcconfig"
 #include "../../Carthage/Checkouts/xcconfigs/Configurations/Debug.xcconfig"
 
-_ENVIROMENTS = ENV_DEVELOPMENT
+_ENVIRONMENTS = ENV_DEVELOPMENT
 
 DEBUG_INFORMATION_FORMAT = dwarf
