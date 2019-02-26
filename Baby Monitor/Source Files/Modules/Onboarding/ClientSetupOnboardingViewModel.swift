@@ -44,6 +44,11 @@ final class ClientSetupOnboardingViewModel {
     }
     
     func startDiscovering(withTimeout timeout: TimeInterval = 5.0) {
+        searchCancelTimer = Timer.scheduledTimer(withTimeInterval: timeout, repeats: false, block: { [weak self] _ in
+            self?.didFinishDeviceSearch?(.failure(.timeout))
+            self?.netServiceClient.isEnabled.value = false
+            self?.searchCancelTimer = nil
+        })
         netServiceClient.isEnabled.value = true
     }
     
