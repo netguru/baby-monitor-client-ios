@@ -104,10 +104,4 @@ extension NetServiceClient: NetServiceDelegate {
         serviceVariable.value = (ip: ip, port: String(sender.port))
     }
 
-    public func netServiceDidStop(_ sender: NetService) {
-        guard sender === netService else { return }
-        serviceVariable.value = nil
-        netService = nil
-    }
-
 }
