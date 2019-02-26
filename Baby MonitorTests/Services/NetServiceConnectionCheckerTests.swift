@@ -9,145 +9,156 @@ import RxTest
 @testable import BabyMonitor
 
 class NetServiceConnectionCheckerTests: XCTestCase {
-    
-    func testShouldUpdateStatusToConnectedIfDeviceIsFound() {
-        // Given
-        let exp = expectation(description: "Should update status")
-        let bag = DisposeBag()
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(ConnectionStatus.self)
-        let configuration = URLConfigurationMock()
-        configuration.url = URL(string: "ws://ip:port")
-        let clientMock = NetServiceClientMock(findServiceDelay: 0.1, ip: "ip", port: "port")
-        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, urlConfiguration: configuration)
-        let connection = sut.connectionStatus.share(replay: 1, scope: .whileConnected)
-        
-        // When
-        connection.fulfill(expectation: exp, afterEventCount: 1, bag: bag) {
-            sut.stop()
-        }
-        connection.subscribe(observer).disposed(by: bag)
-        scheduler.start()
-        sut.start()
-        
-        // Then
-        waitForExpectations(timeout: 0.2) { _ in
-            XCTAssertRecordedElements(observer.events, [.connected])
-        }
+
+    enum NetServiceConnectionCheckerAction {
+        case start
+        case stop
     }
-    
-    func testShouldUpdateStatusToDisconnectedIfDeviceIsNotFound() {
-        // Given
-        let exp = expectation(description: "Should update status")
-        let bag = DisposeBag()
+
+    func performStatusTest(producedActions: [Recorded<Event<NetServiceConnectionCheckerAction>>], producedServices: [Recorded<Event<NetServiceDescriptor?>>], expectedStatuses: [Recorded<Event<ConnectionStatus>>], file: StaticString = #file, line: UInt = #line) {
+
         let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(ConnectionStatus.self)
-        let configuration = URLConfigurationMock()
-        configuration.url = URL(string: "rtsp://ip:port")
-        let clientMock = NetServiceClientMock(findServiceDelay: 20, ip: "ip", port: "port")
-        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, urlConfiguration: configuration, delay: 0.1)
-        let connection = sut.connectionStatus.share(replay: 1, scope: .whileConnected)
-        
-        // When
-        connection.fulfill(expectation: exp, afterEventCount: 1, bag: bag) {
-            sut.stop()
-        }
-        connection.subscribe(observer).disposed(by: bag)
-        scheduler.start()
-        sut.start()
-        
-        // Then
-        waitForExpectations(timeout: 0.15) { _ in
-            XCTAssertRecordedElements(observer.events, [.disconnected])
-        }
-    }
-    
-    func testShouldUpdateStatusToConnectedTwiceIfDeviceIsFound() {
-        // Given
-        let exp = expectation(description: "Should update status")
-        let exp2 = expectation(description: "Should update status twice")
         let bag = DisposeBag()
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(ConnectionStatus.self)
-        let configuration = URLConfigurationMock()
-        configuration.url = URL(string: "ws://ip:port")
-        let clientMock = NetServiceClientMock(findServiceDelay: 0.1, ip: "ip", port: "port")
-        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, urlConfiguration: configuration, delay: 0.2)
-        let connection = sut.connectionStatus.share(replay: 1, scope: .whileConnected)
-        
-        // When
-        connection.fulfill(expectation: exp, afterEventCount: 1, bag: bag)
-        connection.fulfill(expectation: exp2, afterEventCount: 2, bag: bag) {
-            sut.stop()
-        }
-        connection.subscribe(observer).disposed(by: bag)
+
+        let client = NetServiceClientMock()
+        let urlConfiguration = URLConfigurationMock(url: URL(string: "ws://ip:port"))
+        let sut = NetServiceConnectionChecker(netServiceClient: client, urlConfiguration: urlConfiguration)
+
+        let services = scheduler.createHotObservable(producedServices)
+        let actions = scheduler.createColdObservable(producedActions)
+        let statuses = scheduler.createObserver(ConnectionStatus.self)
+
+        services.bind(to: client.serviceRelay).disposed(by: bag)
+        actions.subscribe(onNext: { [unowned sut] in $0 == .start ? sut.start() : sut.stop() }).disposed(by: bag)
+        sut.connectionStatus.subscribe(statuses).disposed(by: bag)
+
         scheduler.start()
-        sut.start()
-        
-        // Then
-        waitForExpectations(timeout: 0.3) { _ in
-            XCTAssertRecordedElements(observer.events, [.connected, .connected])
-        }
+
+        XCTAssertEqual(statuses.events, expectedStatuses, file: file, line: line)
+
     }
-    
-    func testShouldUpdateStatusToConnectedAndThenDisconnectedIfDeviceIsLost() {
-        // Given
-        let exp = expectation(description: "Should update status")
-        let exp2 = expectation(description: "Should update status twice")
-        let bag = DisposeBag()
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(ConnectionStatus.self)
-        let configuration = URLConfigurationMock()
-        configuration.url = URL(string: "ws://ip:port")
-        let clientMock = NetServiceClientMock(findServiceDelay: 0.1, ip: "ip", port: "port")
-        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, urlConfiguration: configuration, delay: 0.15)
-        let connection = sut.connectionStatus.share(replay: 1, scope: .whileConnected)
-        
-        // When
-        connection.fulfill(expectation: exp, afterEventCount: 1, bag: bag) {
-            clientMock.stopFinding()
-        }
-        connection.fulfill(expectation: exp2, afterEventCount: 2, bag: bag) {
-            sut.stop()
-        }
-        connection.subscribe(observer).disposed(by: bag)
-        scheduler.start()
+
+    func testShouldEnableClientWhenStarted() {
+
+        let client = NetServiceClientMock()
+        let urlConfiguration = URLConfigurationMock(url: URL(string: "ws://ip:port"))
+        let sut = NetServiceConnectionChecker(netServiceClient: client, urlConfiguration: urlConfiguration)
+
+        client.isEnabled.value = false
         sut.start()
-        
-        // Then
-        waitForExpectations(timeout: 0.3) { _ in
-            XCTAssertRecordedElements(observer.events, [.connected, .disconnected])
-        }
+
+        XCTAssertTrue(client.isEnabled.value)
+
     }
-    
-    func testShouldUpdateStatusToDisconnectedAndThenConnectedIfDeviceIsFoundAfterSomeTime() {
-        // Given
-        let exp = expectation(description: "Should update status")
-        let exp2 = expectation(description: "Should update status twice")
-        let bag = DisposeBag()
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(ConnectionStatus.self)
-        let configuration = URLConfigurationMock()
-        configuration.url = URL(string: "ws://ip:port")
-        let clientMock = NetServiceClientMock(findServiceDelay: 5.0, ip: "ip", port: "port")
-        let sut = NetServiceConnectionChecker(netServiceClient: clientMock, urlConfiguration: configuration, delay: 0.15)
-        let connection = sut.connectionStatus.share(replay: 1, scope: .whileConnected)
-        
-        // When
-        connection.fulfill(expectation: exp, afterEventCount: 1, bag: bag) {
-            clientMock.forceFind()
-        }
-        connection.fulfill(expectation: exp2, afterEventCount: 2, bag: bag) {
-            sut.stop()
-        }
-        connection.subscribe(observer).disposed(by: bag)
-        scheduler.start()
-        sut.start()
-        
-        // Then
-        waitForExpectations(timeout: 0.3) { _ in
-            XCTAssertRecordedElements(observer.events, [.disconnected, .connected])
-        }
+
+    func testShouldDisableClientWhenStopped() {
+
+        let client = NetServiceClientMock()
+        let urlConfiguration = URLConfigurationMock(url: URL(string: "ws://ip:port"))
+        let sut = NetServiceConnectionChecker(netServiceClient: client, urlConfiguration: urlConfiguration)
+
+        client.isEnabled.value = true
+        sut.stop()
+
+        XCTAssertFalse(client.isEnabled.value)
+
     }
-    
+
+    func testShouldHaveInitialStatusOfDisconnectedWhenClientIsNotStarted() {
+        performStatusTest(
+            producedActions: [
+                // no actions
+            ],
+            producedServices: [
+                // no services
+            ],
+            expectedStatuses: [
+                .next(0, .disconnected)
+            ]
+        )
+    }
+
+    func testShouldNotChangeStatusWhenClientIsNotStarted() {
+        performStatusTest(
+            producedActions: [
+                // no actions
+            ],
+            producedServices: [
+                .next(1, (ip: "0.0.0.0", port: "0"))
+            ],
+            expectedStatuses: [
+                .next(0, .disconnected)
+            ]
+        )
+    }
+
+    func testShouldChangeStatusToConnectedWhenServiceIsFound() {
+        performStatusTest(
+            producedActions: [
+                .next(1, .start)
+            ],
+            producedServices: [
+                .next(2, (ip: "0.0.0.0", port: "0"))
+            ],
+            expectedStatuses: [
+                .next(0, .disconnected),
+                .next(2, .connected)
+            ]
+        )
+    }
+
+    func testShouldChangeStatusToDisconnectedWhenServiceIsLost() {
+        performStatusTest(
+            producedActions: [
+                .next(1, .start)
+            ],
+            producedServices: [
+                .next(2, (ip: "0.0.0.0", port: "0")),
+                .next(3, nil)
+            ],
+            expectedStatuses: [
+                .next(0, .disconnected),
+                .next(2, .connected),
+                .next(3, .disconnected)
+            ]
+        )
+    }
+
+    func testShouldChangeStatusToDisconnectedIfClientIsStopped() {
+        performStatusTest(
+            producedActions: [
+                .next(1, .start),
+                .next(3, .stop)
+            ],
+            producedServices: [
+                .next(2, (ip: "0.0.0.0", port: "0"))
+            ],
+            expectedStatuses: [
+                .next(0, .disconnected),
+                .next(2, .connected),
+                .next(3, .disconnected)
+            ]
+        )
+    }
+
+    func testShouldNotChangeStatusTwice() {
+        performStatusTest(
+            producedActions: [
+                .next(1, .start)
+            ],
+            producedServices: [
+                .next(2, nil),
+                .next(3, (ip: "0.0.0.0", port: "0")),
+                .next(4, (ip: "0.0.0.0", port: "0")),
+                .next(5, nil),
+                .next(6, nil)
+            ],
+            expectedStatuses: [
+                .next(0, .disconnected),
+                .next(3, .connected),
+                .next(5, .disconnected)
+            ]
+        )
+    }
+
 }

@@ -77,7 +77,7 @@ final class OnboardingPairingCoordinator: Coordinator {
     
     private func showPairingView() {
         let viewModel = ClientSetupOnboardingViewModel(
-            netServiceClient: appDependencies.netServiceClient(),
+            netServiceClient: appDependencies.netServiceClient,
             urlConfiguration: appDependencies.urlConfiguration,
             activityLogEventsRepository: appDependencies.databaseRepository,
             cacheService: appDependencies.cacheService,

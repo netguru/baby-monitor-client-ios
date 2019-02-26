@@ -50,7 +50,7 @@ final class ServerService: ServerServiceProtocol {
     }
     
     func stop() {
-        netServiceServer.stop()
+        netServiceServer.isEnabled.value = false
         messageServer.stop()
         webRtcServerManager.disconnect()
         cryingEventService.stop()
@@ -138,7 +138,7 @@ final class ServerService: ServerServiceProtocol {
     /// Starts streaming
     func startStreaming() {
         messageServer.start()
-        netServiceServer.publish()
+        netServiceServer.isEnabled.value = true
         do {
             try cryingEventService.start()
         } catch {
