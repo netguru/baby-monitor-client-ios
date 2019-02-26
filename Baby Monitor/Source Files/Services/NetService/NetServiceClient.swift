@@ -87,7 +87,6 @@ extension NetServiceClient: NetServiceBrowserDelegate {
     }
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
-        guard service === netService else { return }
         serviceVariable.value = nil
         netService = nil
     }
@@ -98,7 +97,6 @@ extension NetServiceClient: NetServiceBrowserDelegate {
 extension NetServiceClient: NetServiceDelegate {
 
     func netServiceDidResolveAddress(_ sender: NetService) {
-        guard sender === netService else { return }
         guard let address = sender.addresses?.first else { return }
         guard netServiceAllowedPorts.contains(sender.port), let ip = ip(from: address) else { return }
         serviceVariable.value = (ip: ip, port: String(sender.port))
