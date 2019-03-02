@@ -23,6 +23,7 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     }
 
     private var isStarted = false
+    private var mediaStreamInstance: MediaStream?
     private let mediaStreamPublisher = PublishSubject<MediaStream>()
     private let sdpAnswerPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
@@ -62,17 +63,8 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         }
 
         remoteDescriptionDelegateProxy.onDidSetSessionDescription = { [weak self] connection in
-            guard let `self` = self else { return }
-            self.peerConnectionFactory.createStream { stream in
-                connection.add(stream: stream)
-                // 💩 It looks like escaping the stream from this closure to be
-                // used in ServerViewController's view as a live preview causes
-                // problems when closing and reopening the peer connection when
-                // a new offer is received. Another method of live preview needs
-                // to be used, e.g. straight from AVFoundation.
-                //
-                // self.mediaStreamPublisher.onNext(stream)
-            }
+            guard let `self` = self, let stream = self.mediaStreamInstance else { return }
+            connection.add(stream: stream)
             connection.createAnswer(for: self.streamMediaConstraints, delegate: self.localDescriptionDelegateProxy)
         }
 
@@ -87,11 +79,18 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     func start() {
         guard !isStarted else { return }
         isStarted = true
+        startMediaStream()
     }
 
     func stop() {
         peerConnection?.close()
         isStarted = false
+    }
+
+    private func startMediaStream() {
+        guard let stream = peerConnectionFactory.createStream() else { return }
+        mediaStreamInstance = stream
+        mediaStreamPublisher.onNext(stream)
     }
 
     func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol) {
