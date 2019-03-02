@@ -14,6 +14,7 @@ protocol WebSocketWebRtcServiceProtocol {
 final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
 
     lazy var mediaStream: Observable<MediaStream?> = webRtcClientManager.mediaStream
+    lazy var state: Observable<WebRtcClientManagerState> = webRtcClientManager.state
 
     private let webRtcClientManager: WebRtcClientManagerProtocol
     private var webRtcConductor: WebSocketConductorProtocol?

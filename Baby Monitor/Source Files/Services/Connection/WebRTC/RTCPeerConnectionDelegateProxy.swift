@@ -3,7 +3,12 @@
 //  Baby Monitor
 //
 
+import RxSwift
+
 final class RTCPeerConnectionDelegateProxy: NSObject, RTCPeerConnectionDelegate {
+
+    var signalingState: Observable<RTCSignalingState> { return signalingStatePublisher }
+    var signalingStatePublisher = BehaviorSubject<RTCSignalingState>(value: RTCSignalingClosed)
 
     var onSignalingStateChanged: ((RTCPeerConnection, RTCSignalingState) -> Void)?
     var onAddedStream: ((RTCPeerConnection, RTCMediaStream) -> Void)?
@@ -11,6 +16,7 @@ final class RTCPeerConnectionDelegateProxy: NSObject, RTCPeerConnectionDelegate 
 
     func peerConnection(_ peerConnection: RTCPeerConnection, signalingStateChanged stateChanged: RTCSignalingState) {
         onSignalingStateChanged?(peerConnection, stateChanged)
+        signalingStatePublisher.onNext(stateChanged)
     }
 
     func peerConnection(_ peerConnection: RTCPeerConnection, addedStream stream: RTCMediaStream) {

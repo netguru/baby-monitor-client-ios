@@ -33,7 +33,7 @@ final class AppDependencies {
         WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory)
     }
     private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = {
-        WebRtcClientManager(peerConnectionFactory: self.peerConnectionFactory)
+        WebRtcClientManager(peerConnectionFactory: self.peerConnectionFactory, connectionChecker: self.connectionChecker)
     }
     
     private lazy var webSocketDisconnectionHandler: AnyObserver<Void> = {

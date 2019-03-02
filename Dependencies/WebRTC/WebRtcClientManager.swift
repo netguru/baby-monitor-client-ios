@@ -22,15 +22,20 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     var mediaStream: Observable<MediaStream?> {
         return mediaStreamPublisher
     }
+    var state: Observable<WebRtcClientManagerState> {
+        return statePublisher
+    }
     
     private var isStarted = false
     private let sdpOfferPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
     private let mediaStreamPublisher = BehaviorSubject<MediaStream?>(value: nil)
+    private let statePublisher = PublishSubject<WebRtcClientManagerState>()
     private let disposeBag = DisposeBag()
 
     private var peerConnection: PeerConnectionProtocol?
     private let peerConnectionFactory: PeerConnectionFactoryProtocol
+    private let connectionChecker: ConnectionChecker
     private let connectionDelegateProxy: RTCPeerConnectionDelegateProxy
     private let remoteDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
     private let localDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
@@ -47,8 +52,9 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
         )
     }
 
-    init(peerConnectionFactory: PeerConnectionFactoryProtocol) {
+    init(peerConnectionFactory: PeerConnectionFactoryProtocol, connectionChecker: ConnectionChecker) {
         self.peerConnectionFactory = peerConnectionFactory
+        self.connectionChecker = connectionChecker
         self.connectionDelegateProxy = RTCPeerConnectionDelegateProxy()
         self.remoteDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         self.localDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
@@ -57,6 +63,21 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     }
 
     func setup() {
+
+        Observable.combineLatest(connectionChecker.connectionStatus, connectionDelegateProxy.signalingState)
+            .map { connStatus, peerState -> WebRtcClientManagerState? in
+                switch (connStatus, peerState) {
+                case (.disconnected, _), (_, RTCSignalingClosed): return .disconnected
+                case (.connected, RTCSignalingHaveLocalOffer): return .connecting
+                case (.connected, RTCSignalingStable): return .connected
+                default: return nil
+                }
+            }
+            .filter { $0 != nil }
+            .map { $0! }
+            .debug()
+            .bind(to: statePublisher)
+            .disposed(by: disposeBag)
 
         connectionDelegateProxy.onAddedStream = { [weak self] _, stream in
             guard let `self` = self else { return }
