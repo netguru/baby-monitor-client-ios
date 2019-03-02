@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import RxSwift
+import RxCocoa
 
 final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
 
@@ -26,6 +27,7 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     private let sdpOfferPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
     private let mediaStreamPublisher = BehaviorSubject<MediaStream?>(value: nil)
+    private let disposeBag = DisposeBag()
 
     private var peerConnection: PeerConnectionProtocol?
     private let peerConnectionFactory: PeerConnectionFactoryProtocol
@@ -72,6 +74,16 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
             self.sdpOfferPublisher.onNext(sdp)
         }
 
+        NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
+            .filter { [unowned self] _ in self.isStarted }
+            .subscribe(onNext: { [unowned self] _ in self.pause() })
+            .disposed(by: disposeBag)
+
+        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
+            .filter { [unowned self] _ in self.isStarted }
+            .subscribe(onNext: { [unowned self] _ in self.resume() })
+            .disposed(by: disposeBag)
+
     }
 
     func startIfNeeded() {
@@ -83,6 +95,14 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     func stop() {
         peerConnection?.close()
         isStarted = false
+    }
+
+    private func pause() {
+        peerConnection?.close()
+    }
+
+    private func resume() {
+        createOffer()
     }
 
     private func createOffer() {
