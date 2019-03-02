@@ -67,11 +67,11 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
 
     func start() {
         webRtcConductor?.open()
-        webRtcClientManager.startWebRtcConnectionIfNeeded()
+        webRtcClientManager.startIfNeeded()
     }
     
     func close() {
         webRtcConductor?.close()
-        webRtcClientManager.disconnect()
+        webRtcClientManager.stop()
     }
 }

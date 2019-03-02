@@ -6,8 +6,12 @@
 import RxSwift
 
 protocol WebRtcClientManagerProtocol {
+
     /// Starts WebRTC connection if not started yet
-    func startWebRtcConnectionIfNeeded()
+    func startIfNeeded()
+
+    /// Closes connection
+    func stop()
 
     /// Sets session description answer
     ///
@@ -18,9 +22,6 @@ protocol WebRtcClientManagerProtocol {
     ///
     /// - Parameter iceCandidate: ice candidate to add
     func setICECandidates(iceCandidate: IceCandidateProtocol)
-
-    /// Closes connection
-    func disconnect()
 
     /// Observable emitting session description offer
     var sdpOffer: Observable<SessionDescriptionProtocol> { get }
