@@ -29,11 +29,13 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.isIdleTimerDisabled = true
+        viewModel.play()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         UIApplication.shared.isIdleTimerDisabled = false
+        viewModel.stop()
     }
     
     override func viewDidLayoutSubviews() {
@@ -72,7 +74,6 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         viewModel.attachInput(
             cancelTap: customView.rx.cancelTap.asObservable(),
             settingsTap: customView.rx.settingsTap.asObservable())
-        viewModel.play()
     }
     
     private func attach(stream: MediaStream) {
