@@ -45,11 +45,32 @@ final class AppDependencies {
         sessionDescriptionDelegateProxy.delegate = clientManager
         return clientManager
     }
+    
+    private lazy var webSocketDisconnectionHandler: AnyObserver<Void> = {
+        AnyObserver { [unowned self] event in
+            if case .next = event {
+                self.resetForNoneState()
+            }
+        }
+    }()
+
     private lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductor<EventMessage> = { emitter, handler in
-        return WebSocketConductor(webSocket: self.webSocket.get(), messageEmitter: emitter, messageHandler: handler, messageDecoders: [self.babyMonitorEventMessagesDecoder])
+        return WebSocketConductor(
+            urlConfiguration: self.urlConfiguration,
+            messageEmitter: emitter,
+            messageHandler: handler,
+            disconnectionHandler: self.webSocketDisconnectionHandler,
+            messageDecoders: [self.babyMonitorEventMessagesDecoder]
+        )
     }
     private lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
-        return WebSocketConductor(webSocket: self.webSocket.get(), messageEmitter: emitter, messageHandler: handler, messageDecoders: self.webRtcMessageDecoders)
+        return WebSocketConductor(
+            urlConfiguration: self.urlConfiguration,
+            messageEmitter: emitter,
+            messageHandler: handler,
+            disconnectionHandler: self.webSocketDisconnectionHandler,
+            messageDecoders: self.webRtcMessageDecoders
+        )
     }
     
     lazy var webSocketEventMessageService = ClearableLazyItem<WebSocketEventMessageServiceProtocol> { [unowned self] in
@@ -101,27 +122,10 @@ final class AppDependencies {
         let webSocketServer = PSWebSocketServer(host: nil, port: UInt(Constants.iosWebsocketPort))!
         return PSWebSocketServerWrapper(server: webSocketServer)
     }()
-    private lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in
-        guard let url = self.urlConfiguration.url else {
-            return nil
-        }
-        let urlRequest = URLRequest(url: url)
-        guard let webSocket = PSWebSocket.clientSocket(with: urlRequest) else {
-            return nil
-        }
-        let websocketWrapper = PSWebSocketWrapper(socket: webSocket)
-        self.socketDisposable = websocketWrapper.disconnectionObservable.subscribe(onNext: { [weak self] in
-            self?.socketDisposable?.dispose()
-            self?.socketDisposable = nil
-            self?.resetForNoneState()
-        })
-        return websocketWrapper
-    }
     
     func resetForNoneState() {
         webSocketWebRtcService.clear()
         webSocketEventMessageService.clear()
-        webSocket.clear()
     }
     
     /// Baby service for getting and adding babies throughout the app
