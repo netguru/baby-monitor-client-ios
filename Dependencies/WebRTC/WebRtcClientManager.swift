@@ -80,17 +80,17 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
             .disposed(by: disposeBag)
 
         connectionDelegateProxy.onAddedStream = { [weak self] _, stream in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.mediaStreamPublisher.onNext(stream)
         }
 
         connectionDelegateProxy.onGotIceCandidate = { [weak self] _, iceCandidate in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.iceCandidatePublisher.onNext(iceCandidate)
         }
 
         localDescriptionDelegateProxy.onDidCreateSessionDescription = { [weak self] connection, sdp in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             connection.setLocalDescription(sdp: sdp, delegate: self.localDescriptionDelegateProxy)
             self.sdpOfferPublisher.onNext(sdp)
         }

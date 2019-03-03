@@ -8,7 +8,7 @@ import RxSwift
 final class RTCPeerConnectionDelegateProxy: NSObject, RTCPeerConnectionDelegate {
 
     var signalingState: Observable<RTCSignalingState> { return signalingStatePublisher }
-    var signalingStatePublisher = BehaviorSubject<RTCSignalingState>(value: RTCSignalingClosed)
+    private var signalingStatePublisher = BehaviorSubject<RTCSignalingState>(value: RTCSignalingClosed)
 
     var onSignalingStateChanged: ((RTCPeerConnection, RTCSignalingState) -> Void)?
     var onAddedStream: ((RTCPeerConnection, RTCMediaStream) -> Void)?

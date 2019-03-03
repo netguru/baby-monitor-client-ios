@@ -58,18 +58,18 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     func setup() {
 
         connectionDelegateProxy.onGotIceCandidate = { [weak self] _, iceCandidate in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.iceCandidatePublisher.onNext(iceCandidate)
         }
 
         remoteDescriptionDelegateProxy.onDidSetSessionDescription = { [weak self] connection in
-            guard let `self` = self, let stream = self.mediaStreamInstance else { return }
+            guard let self = self, let stream = self.mediaStreamInstance else { return }
             connection.add(stream: stream)
             connection.createAnswer(for: self.streamMediaConstraints, delegate: self.localDescriptionDelegateProxy)
         }
 
         localDescriptionDelegateProxy.onDidCreateSessionDescription = { [weak self] connection, sdp in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             connection.setLocalDescription(sdp: sdp, delegate: self.localDescriptionDelegateProxy)
             self.sdpAnswerPublisher.onNext(sdp)
         }
@@ -94,11 +94,10 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     }
 
     func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol) {
-        if isStarted {
-            peerConnection?.close()
-            peerConnection = peerConnectionFactory.peerConnection(with: connectionDelegateProxy)
-            peerConnection?.setRemoteDescription(sdp: remoteSDP, delegate: remoteDescriptionDelegateProxy)
-        }
+        guard isStarted else { return }
+        peerConnection?.close()
+        peerConnection = peerConnectionFactory.peerConnection(with: connectionDelegateProxy)
+        peerConnection?.setRemoteDescription(sdp: remoteSDP, delegate: remoteDescriptionDelegateProxy)
     }
     
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
