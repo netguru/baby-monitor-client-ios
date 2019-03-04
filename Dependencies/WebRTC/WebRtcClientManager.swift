@@ -36,6 +36,7 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     private var peerConnection: PeerConnectionProtocol?
     private let peerConnectionFactory: PeerConnectionFactoryProtocol
     private let connectionChecker: ConnectionChecker
+    private let appStateProvider: ApplicationStateProvider
     private let connectionDelegateProxy: RTCPeerConnectionDelegateProxy
     private let remoteDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
     private let localDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
@@ -52,9 +53,10 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
         )
     }
 
-    init(peerConnectionFactory: PeerConnectionFactoryProtocol, connectionChecker: ConnectionChecker) {
+    init(peerConnectionFactory: PeerConnectionFactoryProtocol, connectionChecker: ConnectionChecker, appStateProvider: ApplicationStateProvider) {
         self.peerConnectionFactory = peerConnectionFactory
         self.connectionChecker = connectionChecker
+        self.appStateProvider = appStateProvider
         self.connectionDelegateProxy = RTCPeerConnectionDelegateProxy()
         self.remoteDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         self.localDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
@@ -95,14 +97,14 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
             self.sdpOfferPublisher.onNext(sdp)
         }
 
-        NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
-            .filter { [unowned self] _ in self.isStarted }
-            .subscribe(onNext: { [unowned self] _ in self.pause() })
+        appStateProvider.willEnterBackground
+            .filter { [unowned self] in self.isStarted }
+            .subscribe(onNext: { [unowned self] in self.pause() })
             .disposed(by: disposeBag)
 
-        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
-            .filter { [unowned self] _ in self.isStarted }
-            .subscribe(onNext: { [unowned self] _ in self.resume() })
+        appStateProvider.willEnterForeground
+            .filter { [unowned self] in self.isStarted }
+            .subscribe(onNext: { [unowned self] in self.resume() })
             .disposed(by: disposeBag)
 
     }

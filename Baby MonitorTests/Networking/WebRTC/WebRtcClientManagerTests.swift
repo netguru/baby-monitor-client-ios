@@ -19,7 +19,8 @@ class WebRtcClientManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock(offerSdp: offerSdp)
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let connectionChecker = ConnectionCheckerMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker)
+        let appStateProvider = ApplicationStateProviderMock()
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker, appStateProvider: appStateProvider)
 
         // When
         sut.sdpOffer
@@ -38,7 +39,8 @@ class WebRtcClientManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let connectionChecker = ConnectionCheckerMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker)
+        let appStateProvider = ApplicationStateProviderMock()
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker, appStateProvider: appStateProvider)
 
         // When
         sut.startIfNeeded()
@@ -54,7 +56,8 @@ class WebRtcClientManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let connectionChecker = ConnectionCheckerMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker)
+        let appStateProvider = ApplicationStateProviderMock()
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker, appStateProvider: appStateProvider)
 
         // When
         sut.startIfNeeded()
@@ -71,7 +74,8 @@ class WebRtcClientManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let connectionChecker = ConnectionCheckerMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker)
+        let appStateProvider = ApplicationStateProviderMock()
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker, appStateProvider: appStateProvider)
 
         // When
         sut.startIfNeeded()
@@ -87,7 +91,8 @@ class WebRtcClientManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let connectionChecker = ConnectionCheckerMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker)
+        let appStateProvider = ApplicationStateProviderMock()
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker, appStateProvider: appStateProvider)
 
         // When
         sut.startIfNeeded()

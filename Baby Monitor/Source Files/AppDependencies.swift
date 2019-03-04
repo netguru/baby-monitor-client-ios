@@ -27,13 +27,17 @@ final class AppDependencies {
         storageService: storageServerService)
     
     private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
-    private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
+    private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer(appStateProvider: NotificationCenter.default)
     private(set) lazy var peerConnectionFactory: PeerConnectionFactoryProtocol = RTCPeerConnectionFactory()
     private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = {
         WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory)
     }
     private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = {
-        WebRtcClientManager(peerConnectionFactory: self.peerConnectionFactory, connectionChecker: self.connectionChecker)
+        WebRtcClientManager(
+            peerConnectionFactory: self.peerConnectionFactory,
+            connectionChecker: self.connectionChecker,
+            appStateProvider: NotificationCenter.default
+        )
     }
     
     private lazy var webSocketDisconnectionHandler: AnyObserver<Void> = {
