@@ -3,6 +3,7 @@
 //  Baby Monitor
 //
 
+import PocketSocket
 import RxSwift
 
 protocol WebSocketConductorProtocol {
@@ -12,14 +13,18 @@ protocol WebSocketConductorProtocol {
 
 final class WebSocketConductor<MessageType>: WebSocketConductorProtocol {
 
-    private let webSocket: WebSocketProtocol?
     private let messageEmitter: Observable<String>
     private let messageHandler: AnyObserver<MessageType>
     private let messageDecoders: [AnyMessageDecoder<MessageType>]
     private let bag = DisposeBag()
 
-    init(webSocket: WebSocketProtocol?, messageEmitter: Observable<String>, messageHandler: AnyObserver<MessageType>, messageDecoders: [AnyMessageDecoder<MessageType>]) {
-        self.webSocket = webSocket
+    private let webSocketStorage: ClearableLazyItem<WebSocketProtocol?>
+    private var webSocket: WebSocketProtocol? {
+        return webSocketStorage.get()
+    }
+
+    init(webSocket: ClearableLazyItem<WebSocketProtocol?>, messageEmitter: Observable<String>, messageHandler: AnyObserver<MessageType>, messageDecoders: [AnyMessageDecoder<MessageType>]) {
+        self.webSocketStorage = webSocket
         self.messageEmitter = messageEmitter
         self.messageHandler = messageHandler
         self.messageDecoders = messageDecoders
@@ -28,10 +33,12 @@ final class WebSocketConductor<MessageType>: WebSocketConductorProtocol {
 
     private func setup() {
         self.messageEmitter
-            .subscribe(onNext: { [weak self] json in
-                self?.webSocket?.send(message: json)
-            })
+            .subscribe(onNext: { [unowned self] in self.webSocket?.send(message: $0) })
             .disposed(by: bag)
+    }
+
+    func open() {
+        webSocket?.open()
         webSocket?.decodedMessage(using: messageDecoders)
             .filter { $0 != nil }
             .map { $0! }
@@ -39,10 +46,8 @@ final class WebSocketConductor<MessageType>: WebSocketConductorProtocol {
             .disposed(by: bag)
     }
 
-    func open() {
-        webSocket?.open()
-    }
     func close() {
         webSocket?.close()
     }
+    
 }

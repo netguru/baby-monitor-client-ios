@@ -26,9 +26,11 @@ final class NetServiceServer: NSObject, NetServiceServerProtocol, NetServiceDele
         port: Int32(Constants.iosWebsocketPort)
     )
 
+    private let appStateProvider: ApplicationStateProvider
     private let disposeBag = DisposeBag()
 
-    override init() {
+    init(appStateProvider: ApplicationStateProvider) {
+        self.appStateProvider = appStateProvider
         super.init()
         setupRx()
     }
@@ -45,14 +47,14 @@ final class NetServiceServer: NSObject, NetServiceServerProtocol, NetServiceDele
         // needs to keep track of application state in order to explicitly
         // control the broadcast and ensure it's running always when possible.
 
-        NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
-            .filter { [unowned self] _ in self.isEnabled.value }
-            .subscribe(onNext: { [unowned self] _ in self.stop() })
+        appStateProvider.willEnterBackground
+            .filter { [unowned self] in self.isEnabled.value }
+            .subscribe(onNext: { [unowned self] in self.stop() })
             .disposed(by: disposeBag)
 
-        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
-            .filter { [unowned self] _ in self.isEnabled.value }
-            .subscribe(onNext: { [unowned self] _ in self.start() })
+        appStateProvider.willEnterForeground
+            .filter { [unowned self] in self.isEnabled.value }
+            .subscribe(onNext: { [unowned self] in self.start() })
             .disposed(by: disposeBag)
 
     }

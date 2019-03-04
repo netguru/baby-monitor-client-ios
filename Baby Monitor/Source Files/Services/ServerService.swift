@@ -52,7 +52,7 @@ final class ServerService: ServerServiceProtocol {
     func stop() {
         netServiceServer.isEnabled.value = false
         messageServer.stop()
-        webRtcServerManager.disconnect()
+        webRtcServerManager.stop()
         cryingEventService.stop()
     }
     

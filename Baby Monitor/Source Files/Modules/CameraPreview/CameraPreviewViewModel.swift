@@ -32,4 +32,9 @@ final class CameraPreviewViewModel {
     func play() {
         webSocketWebRtcService.start()
     }
+
+    func stop() {
+        webSocketWebRtcService.close()
+    }
+    
 }

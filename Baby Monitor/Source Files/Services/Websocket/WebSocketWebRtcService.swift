@@ -14,6 +14,7 @@ protocol WebSocketWebRtcServiceProtocol {
 final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
 
     lazy var mediaStream: Observable<MediaStream?> = webRtcClientManager.mediaStream
+    lazy var state: Observable<WebRtcClientManagerState> = webRtcClientManager.state
 
     private let webRtcClientManager: WebRtcClientManagerProtocol
     private var webRtcConductor: WebSocketConductorProtocol?
@@ -67,11 +68,11 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
 
     func start() {
         webRtcConductor?.open()
-        webRtcClientManager.startWebRtcConnectionIfNeeded()
+        webRtcClientManager.startIfNeeded()
     }
     
     func close() {
         webRtcConductor?.close()
-        webRtcClientManager.disconnect()
+        webRtcClientManager.stop()
     }
 }

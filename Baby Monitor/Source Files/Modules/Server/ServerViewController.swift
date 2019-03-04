@@ -74,7 +74,7 @@ final class ServerViewController: BaseViewController {
         UIApplication.shared.isIdleTimerDisabled = true
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.shared.isIdleTimerDisabled = false
     }

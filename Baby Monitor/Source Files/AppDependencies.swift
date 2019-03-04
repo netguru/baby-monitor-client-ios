@@ -12,7 +12,7 @@ import FirebaseMessaging
 
 final class AppDependencies {
     
-    private var socketDisposable: Disposable?
+    private let bag = DisposeBag()
     /// Service for cleaning too many crying events
     private(set) lazy var memoryCleaner: MemoryCleanerProtocol = MemoryCleaner()
     /// Service for recording audio
@@ -27,29 +27,34 @@ final class AppDependencies {
         storageService: storageServerService)
     
     private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
-    private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer()
+    private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer(appStateProvider: NotificationCenter.default)
     private(set) lazy var peerConnectionFactory: PeerConnectionFactoryProtocol = RTCPeerConnectionFactory()
     private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = {
-        let peerConnectionDelegateProxy = PeerConnectionDelegateProxy()
-        let sessionDescriptionDelegateProxy = SessionDescriptionDelegateProxy()
-        let serverManager = WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory, connectionDelegateProxy: peerConnectionDelegateProxy, sessionDelegateProxy: sessionDescriptionDelegateProxy)
-        peerConnectionDelegateProxy.delegate = serverManager
-        sessionDescriptionDelegateProxy.delegate = serverManager
-        return serverManager
+        WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory)
     }
     private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = {
-        let peerConnectionDelegateProxy = PeerConnectionDelegateProxy()
-        let sessionDescriptionDelegateProxy = SessionDescriptionDelegateProxy()
-        let clientManager = WebRtcClientManager(peerConnectionFactory: self.peerConnectionFactory, connectionDelegateProxy: peerConnectionDelegateProxy, sessionDelegateProxy: sessionDescriptionDelegateProxy)
-        peerConnectionDelegateProxy.delegate = clientManager
-        sessionDescriptionDelegateProxy.delegate = clientManager
-        return clientManager
+        WebRtcClientManager(
+            peerConnectionFactory: self.peerConnectionFactory,
+            connectionChecker: self.connectionChecker,
+            appStateProvider: NotificationCenter.default
+        )
     }
+
     private lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductor<EventMessage> = { emitter, handler in
-        return WebSocketConductor(webSocket: self.webSocket.get(), messageEmitter: emitter, messageHandler: handler, messageDecoders: [self.babyMonitorEventMessagesDecoder])
+        WebSocketConductor(
+            webSocket: self.webSocket,
+            messageEmitter: emitter,
+            messageHandler: handler,
+            messageDecoders: [self.babyMonitorEventMessagesDecoder]
+        )
     }
     private lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
-        return WebSocketConductor(webSocket: self.webSocket.get(), messageEmitter: emitter, messageHandler: handler, messageDecoders: self.webRtcMessageDecoders)
+        WebSocketConductor(
+            webSocket: self.webSocket,
+            messageEmitter: emitter,
+            messageHandler: handler,
+            messageDecoders: self.webRtcMessageDecoders
+        )
     }
     
     lazy var webSocketEventMessageService = ClearableLazyItem<WebSocketEventMessageServiceProtocol> { [unowned self] in
@@ -102,20 +107,13 @@ final class AppDependencies {
         return PSWebSocketServerWrapper(server: webSocketServer)
     }()
     private lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in
-        guard let url = self.urlConfiguration.url else {
-            return nil
-        }
-        let urlRequest = URLRequest(url: url)
-        guard let webSocket = PSWebSocket.clientSocket(with: urlRequest) else {
-            return nil
-        }
-        let websocketWrapper = PSWebSocketWrapper(socket: webSocket)
-        self.socketDisposable = websocketWrapper.disconnectionObservable.subscribe(onNext: { [weak self] in
-            self?.socketDisposable?.dispose()
-            self?.socketDisposable = nil
-            self?.resetForNoneState()
-        })
-        return websocketWrapper
+        guard let url = self.urlConfiguration.url else { return nil }
+        guard let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else { return nil }
+        let webSocket = PSWebSocketWrapper(socket: rawSocket)
+        webSocket.disconnectionObservable
+            .subscribe(onNext: { [unowned self] in self.resetForNoneState() })
+            .disposed(by: self.bag)
+        return webSocket
     }
     
     func resetForNoneState() {
