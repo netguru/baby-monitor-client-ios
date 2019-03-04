@@ -12,7 +12,7 @@ import FirebaseMessaging
 
 final class AppDependencies {
     
-    private var socketDisposable: Disposable?
+    private let bag = DisposeBag()
     /// Service for cleaning too many crying events
     private(set) lazy var memoryCleaner: MemoryCleanerProtocol = MemoryCleaner()
     /// Service for recording audio
@@ -39,30 +39,20 @@ final class AppDependencies {
             appStateProvider: NotificationCenter.default
         )
     }
-    
-    private lazy var webSocketDisconnectionHandler: AnyObserver<Void> = {
-        AnyObserver { [unowned self] event in
-            if case .next = event {
-                self.resetForNoneState()
-            }
-        }
-    }()
 
     private lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductor<EventMessage> = { emitter, handler in
-        return WebSocketConductor(
-            urlConfiguration: self.urlConfiguration,
+        WebSocketConductor(
+            webSocket: self.webSocket,
             messageEmitter: emitter,
             messageHandler: handler,
-            disconnectionHandler: self.webSocketDisconnectionHandler,
             messageDecoders: [self.babyMonitorEventMessagesDecoder]
         )
     }
     private lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
-        return WebSocketConductor(
-            urlConfiguration: self.urlConfiguration,
+        WebSocketConductor(
+            webSocket: self.webSocket,
             messageEmitter: emitter,
             messageHandler: handler,
-            disconnectionHandler: self.webSocketDisconnectionHandler,
             messageDecoders: self.webRtcMessageDecoders
         )
     }
@@ -116,10 +106,20 @@ final class AppDependencies {
         let webSocketServer = PSWebSocketServer(host: nil, port: UInt(Constants.iosWebsocketPort))!
         return PSWebSocketServerWrapper(server: webSocketServer)
     }()
+    private lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in
+        guard let url = self.urlConfiguration.url else { return nil }
+        guard let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else { return nil }
+        let webSocket = PSWebSocketWrapper(socket: rawSocket)
+        webSocket.disconnectionObservable
+            .subscribe(onNext: { [unowned self] in self.resetForNoneState() })
+            .disposed(by: self.bag)
+        return webSocket
+    }
     
     func resetForNoneState() {
         webSocketWebRtcService.clear()
         webSocketEventMessageService.clear()
+        webSocket.clear()
     }
     
     /// Baby service for getting and adding babies throughout the app
