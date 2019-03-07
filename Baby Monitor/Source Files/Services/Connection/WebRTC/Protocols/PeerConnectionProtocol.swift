@@ -20,6 +20,7 @@ protocol PeerConnectionProtocol {
 }
 
 typealias MediaConstraints = AnyObject
+typealias MediaStream = AnyObject
 
 extension RTCPeerConnection: PeerConnectionProtocol {
 

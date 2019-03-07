@@ -18,8 +18,7 @@ final class PeerConnectionFactoryMock: PeerConnectionFactoryProtocol {
     func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol {
         return peerConnectionProtocol
     }
-    func createStream(handler: (MediaStream, VideoCapturer) -> Void) {
-        guard let mediaStream = mediaStream else { return }
-        handler(mediaStream, mediaStream)
+    func createStream() -> MediaStream? {
+        return mediaStream
     }
 }

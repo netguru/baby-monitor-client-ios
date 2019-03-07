@@ -37,7 +37,7 @@ final class SettingsCoordinator: Coordinator {
             babyModelController: appDependencies.databaseRepository,
             memoryCleaner: appDependencies.memoryCleaner,
             urlConfiguration: appDependencies.urlConfiguration,
-            webSocketWebRtcService: appDependencies.webSocketWebRtcService
+            webSocketWebRtcService: appDependencies.webSocketWebRtcService.get()
         )
         let settingsViewController = ParentSettingsViewController(viewModel: viewModel)
         settingsViewController.rx.viewDidLoad
@@ -64,6 +64,7 @@ final class SettingsCoordinator: Coordinator {
         viewModel.resetAppTap?.subscribe(onNext: { [unowned self] in
             let continueHandler: (() -> Void) = { [weak self] in
                 viewModel.clearAllDataForNoneState()
+                self?.appDependencies.resetForNoneState()
                 self?.onEnding?()
             }
             let continueAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = ("Continue", UIAlertAction.Style.destructive, continueHandler)

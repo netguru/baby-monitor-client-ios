@@ -22,10 +22,11 @@ class ClientSetupViewModelTests: XCTestCase {
 
         // When
         sut.startDiscovering()
+        netServiceClient.serviceRelay.accept((ip: "0.0.0.0", port: "0"))
         
         // Then
         waitForExpectations(timeout: 0.1) { _ in
-            XCTAssertTrue(netServiceClient.didCallFindService)
+            XCTAssertTrue(netServiceClient.isEnabled.value)
         }
     }
     
@@ -34,7 +35,7 @@ class ClientSetupViewModelTests: XCTestCase {
         let exp = expectation(description: "Should find device")
         let ip = "ip"
         let port = "port"
-        let netServiceClient = NetServiceClientMock(ip: ip, port: port)
+        let netServiceClient = NetServiceClientMock()
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let cacheService = CacheServiceMock()
@@ -44,6 +45,7 @@ class ClientSetupViewModelTests: XCTestCase {
         
         // When
         sut.startDiscovering()
+        netServiceClient.serviceRelay.accept((ip: ip, port: port))
         
         // Then
         waitForExpectations(timeout: 0.1) { _ in
@@ -65,6 +67,7 @@ class ClientSetupViewModelTests: XCTestCase {
         
         // When
         sut.startDiscovering()
+        netServiceClient.serviceRelay.accept((ip: "0.0.0.0", port: "0"))
         
         // Then
         waitForExpectations(timeout: 0.1) { _ in
@@ -85,6 +88,7 @@ class ClientSetupViewModelTests: XCTestCase {
         
         // When
         sut.startDiscovering()
+        netServiceClient.serviceRelay.accept((ip: "0.0.0.0", port: "0"))
         
         // Then
         waitForExpectations(timeout: 0.1) { _ in
@@ -95,7 +99,7 @@ class ClientSetupViewModelTests: XCTestCase {
     func testShouldEndSearchWithFailureAfterGivenTime() {
         // Given
         let exp = expectation(description: "Should find device")
-        let netServiceClient = NetServiceClientMock(findServiceDelay: 20.0)
+        let netServiceClient = NetServiceClientMock()
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let cacheService = CacheServiceMock()

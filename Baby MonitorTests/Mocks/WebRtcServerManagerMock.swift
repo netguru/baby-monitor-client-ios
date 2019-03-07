@@ -34,7 +34,7 @@ final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
         iceCandidates.append(iceCandidate)
     }
 
-    func disconnect() {
+    func stop() {
         isStarted = false
     }
 

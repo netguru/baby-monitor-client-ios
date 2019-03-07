@@ -77,11 +77,11 @@ final class OnboardingPairingCoordinator: Coordinator {
     
     private func showPairingView() {
         let viewModel = ClientSetupOnboardingViewModel(
-            netServiceClient: appDependencies.netServiceClient(),
+            netServiceClient: appDependencies.netServiceClient,
             urlConfiguration: appDependencies.urlConfiguration,
             activityLogEventsRepository: appDependencies.databaseRepository,
             cacheService: appDependencies.cacheService,
-            webSocketEventMessageService: appDependencies.webSocketEventMessageService)
+            webSocketEventMessageService: appDependencies.webSocketEventMessageService.get())
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success:

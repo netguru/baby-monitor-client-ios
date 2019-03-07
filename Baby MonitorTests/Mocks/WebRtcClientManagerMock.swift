@@ -18,7 +18,7 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
         self.localSdp = sdpOffer
     }
 
-    func startWebRtcConnectionIfNeeded() {
+    func startIfNeeded() {
         isStarted = true
         guard let localSdp = localSdp else {
             return
@@ -34,7 +34,7 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
         iceCandidates.append(iceCandidate)
     }
 
-    func disconnect() {
+    func stop() {
         isStarted = false
     }
 
@@ -52,4 +52,9 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
         return mediaStreamPublisher
     }
     let mediaStreamPublisher = PublishSubject<MediaStream?>()
+
+    var state: Observable<WebRtcClientManagerState> {
+        return statePublisher
+    }
+    let statePublisher = PublishSubject<WebRtcClientManagerState>()
 }

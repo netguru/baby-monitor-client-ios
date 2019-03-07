@@ -14,6 +14,6 @@ extension RTCSessionDescription: SessionDescriptionProtocol {
     }
     
     var stringType: String {
-        return type
+        return type ?? ""
     }
 }

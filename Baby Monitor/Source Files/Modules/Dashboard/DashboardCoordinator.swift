@@ -32,7 +32,7 @@ final class DashboardCoordinator: Coordinator {
                 AlertPresenter.showDefaultAlert(title: Localizable.General.warning, message: Localizable.Errors.notificationsNotAllowed, onViewController: self.navigationController)
             }
         }
-        appDependencies.webSocketEventMessageService.cryingEventObservable.subscribe(onNext: { _ in
+        appDependencies.webSocketEventMessageService.get().cryingEventObservable.subscribe(onNext: { _ in
             AlertPresenter.showDefaultAlert(title: Localizable.Server.babyIsCrying, message: nil, onViewController: self.navigationController)
         }).disposed(by: disposeBag)
     }
@@ -109,7 +109,7 @@ final class DashboardCoordinator: Coordinator {
 
     // Prepare CameraPreviewViewModel
     private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
-        let viewModel = CameraPreviewViewModel(webSocketWebRtcService: appDependencies.webSocketWebRtcService, babyModelController: appDependencies.databaseRepository)
+        let viewModel = CameraPreviewViewModel(webSocketWebRtcService: appDependencies.webSocketWebRtcService.get(), babyModelController: appDependencies.databaseRepository)
         return viewModel
     }
     

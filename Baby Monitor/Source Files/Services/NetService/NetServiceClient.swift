@@ -4,77 +4,102 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
+
+/// This type is used to describe a Bonjour service by its IP and port.
+typealias NetServiceDescriptor = (ip: String, port: String)
 
 protocol NetServiceClientProtocol: AnyObject {
-    var serviceObservable: Observable<(ip: String, port: String)> { get }
-    func findService()
-    func stopFinding()
+
+    /// The observable of Bonjour service, if any, that the client is currently
+    /// connected to.
+    var service: Observable<NetServiceDescriptor?> { get }
+
+    /// The variable controlling the state of the client. Changing its
+    /// underlying `value` to `true` enables the client and changing it to
+    /// `false` disables it.
+    var isEnabled: Variable<Bool> { get }
 }
 
 final class NetServiceClient: NSObject, NetServiceClientProtocol {
-    
-    lazy var serviceObservable = servicePublisher.asObservable()
-    
+
+    let isEnabled = Variable<Bool>(false)
+
+    lazy var service = serviceVariable.asObservable()
+    private let serviceVariable = Variable<NetServiceDescriptor?>(nil)
+
     private var netService: NetService?
-    
-    private let servicePublisher = PublishRelay<(ip: String, port: String)>()
     private let netServiceBrowser = NetServiceBrowser()
-    
-    private static let androidPort = 10001
-    private static let iosPort = Constants.websocketPort
-    
+    private let netServiceAllowedPorts = [Constants.androidWebsocketPort, Constants.iosWebsocketPort]
+
+    private let disposeBag = DisposeBag()
+
     override init() {
         super.init()
-        netServiceBrowser.delegate = self
+        setupRx()
     }
 
-    func findService() {
-        // Apparently net service browser doesn't allow to call stop/searchForDevices in quick succession, hence the async
-        DispatchQueue.main.async { [weak self] in
-            self?.netServiceBrowser.searchForServices(ofType: Constants.netServiceType, inDomain: Constants.domain)
+    private func setupRx() {
+        isEnabled.asObservable()
+            .distinctUntilChanged()
+            .subscribe(onNext: { [unowned self] in $0 ? self.start() : self.stop() })
+            .disposed(by: disposeBag)
+    }
+
+    private func start() {
+        netServiceBrowser.delegate = self
+        netServiceBrowser.searchForServices(ofType: Constants.netServiceType, inDomain: Constants.domain)
+    }
+
+    private func stop() {
+        netServiceBrowser.stop()
+        serviceVariable.value = nil
+        netService = nil
+    }
+
+    /// Convert IP address bytes into human readable IP address string.
+    ///
+    /// - Parameters:
+    ///     - data: Bytes representing an IP address.
+    ///
+    /// - Returns: An IP address string or `nil` if conversion failed.
+    private func ip(from data: Data) -> String? {
+        return data.withUnsafeBytes { (pointer: UnsafePointer<sockaddr>) in
+            var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+            if getnameinfo(pointer, socklen_t(data.count), &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST) == 0 {
+                return String(cString: hostname)
+            } else {
+                return nil
+            }
         }
     }
-    
-    func stopFinding() {
-        netServiceBrowser.stop()
-    }
+
 }
 
 // MARK: - NetServiceBrowserDelegate
 extension NetServiceClient: NetServiceBrowserDelegate {
-    
+
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
-        service.delegate = self
-        self.netService = service
-        service.resolve(withTimeout: 5)
+        netService = service
+        netService!.delegate = self
+        netService!.resolve(withTimeout: 5)
     }
+
+    func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
+        serviceVariable.value = nil
+        netService = nil
+    }
+
 }
 
 // MARK: - NetServiceDelegate
 extension NetServiceClient: NetServiceDelegate {
-    
+
     func netServiceDidResolveAddress(_ sender: NetService) {
-        guard let addressData = sender.addresses?.first,
-            [NetServiceClient.androidPort, NetServiceClient.iosPort].contains(sender.port),
-            let ip = getIP(from: addressData) else {
-                return
-        }
-        servicePublisher.accept((ip, "\(sender.port)"))
-        stopFinding()
-        findService()
+        guard let address = sender.addresses?.first else { return }
+        guard netServiceAllowedPorts.contains(sender.port), let ip = ip(from: address) else { return }
+        serviceVariable.value = (ip: ip, port: String(sender.port))
     }
-    
-    private func getIP(from data: Data) -> String? {
-        let theAddress = NSData(data: data)
-        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-        let pointer = theAddress.bytes.assumingMemoryBound(to: sockaddr.self)
-        if getnameinfo(pointer, socklen_t(theAddress.length), &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST) == 0 {
-            return String(cString: hostname)
-        } else {
-            return nil
-        }
-    }
-    
+
 }
