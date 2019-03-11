@@ -9,28 +9,28 @@
 import Foundation
 import Accelerate
 
-enum MfccOpError :Error {
+enum MfccOpError: Error {
     case stringerror(String)
 }
 
 class MfccOp {
-    var initialized:Bool = false
-    let upperFrequencyLimit:Double
-    let lowerFrequencyLimit:Double
-    let filterbankChannelCount:Int
-    let dctCoefficientCount:Int
-    var inputLength:Int = 0
-    var inputSampleRate:Double = 0
-    var kFilterbankFloor:Float = 1e-12
+    
+    var initialized: Bool = false
+    let upperFrequencyLimit: Double
+    let lowerFrequencyLimit: Double
+    let filterbankChannelCount: Int
+    let dctCoefficientCount: Int
+    var inputLength: Int = 0
+    var inputSampleRate: Double = 0
+    var kFilterbankFloor: Float = 1e-12
     //var mfcc_dct:MfccDct?
-    var melFilterbank:MfccMelFilterbank?
-    var dctSetup:vDSP_DFT_Setup?
+    var melFilterbank: MfccMelFilterbank?
+    var dctSetup: vDSP_DFT_Setup?
     
-    
-    init(upperFrequencyLimit:Double,
-         lowerFrequencyLimit:Double,
-         filterbankChannelCount:Int,
-         dctCoefficientCount:Int) {
+    init(upperFrequencyLimit: Double,
+         lowerFrequencyLimit: Double,
+         filterbankChannelCount: Int,
+         dctCoefficientCount: Int) {
         self.upperFrequencyLimit = upperFrequencyLimit
         self.lowerFrequencyLimit = lowerFrequencyLimit
         self.filterbankChannelCount = filterbankChannelCount
@@ -44,7 +44,11 @@ class MfccOp {
         self.inputSampleRate = inputSampleRate
         
         melFilterbank = MfccMelFilterbank()
-        if(!melFilterbank!.initialize(inputLength: inputLength, inputSampleRate: inputSampleRate, outputChannelCount: filterbankChannelCount, lowerFrequencyLimit: lowerFrequencyLimit, upperFrequencyLimit: upperFrequencyLimit)) {
+        if !melFilterbank!.initialize(inputLength: inputLength,
+                                      inputSampleRate: inputSampleRate,
+                                      outputChannelCount: filterbankChannelCount,
+                                      lowerFrequencyLimit: lowerFrequencyLimit,
+                                      upperFrequencyLimit: upperFrequencyLimit) {
             throw MfccOpError.stringerror("err")
         }
         
@@ -54,7 +58,7 @@ class MfccOp {
     }
     
     func compute(input: UnsafeMutablePointer<Float>, inputLength: Int, output: UnsafeMutablePointer<Float>) throws {
-        if(!initialized) {
+        if !initialized {
             print("ERROR")
         }
         var workingData1 = [Float](repeating: 0.0, count: filterbankChannelCount)

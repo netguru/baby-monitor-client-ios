@@ -3,13 +3,12 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 import AudioKit
 import RxSwift
 import RxCocoa
 
-class AudioKitNodeCapture: NSObject {
+final class AudioKitNodeCapture: NSObject {
     
     enum AudioCaptureError: Error {
         case initializationFailure
@@ -25,8 +24,7 @@ class AudioKitNodeCapture: NSObject {
     private var internalAudioBuffer: AVAudioPCMBuffer?
     private let bufferFormat: AVAudioFormat?
     
-
-    public init(node: AKNode? = AudioKit.output, bufferSize: UInt32 = 264600) throws {
+    init(node: AKNode? = AudioKit.output, bufferSize: UInt32 = 264600) throws {
         self.node = node
         self.bufferSize = bufferSize
 
@@ -56,7 +54,7 @@ class AudioKitNodeCapture: NSObject {
         node.avAudioUnitOrNode.installTap(
             onBus: 0,
             bufferSize: AKSettings.bufferLength.samplesCount,
-            format: internalAudioBuffer.format) { [weak self] (buffer: AVAudioPCMBuffer!, _) -> Void in
+            format: internalAudioBuffer.format) { [weak self] (buffer: AVAudioPCMBuffer, _) -> Void in
                 
                 guard let strongSelf = self else {
                     AKLog("Error: self is nil")
@@ -70,10 +68,9 @@ class AudioKitNodeCapture: NSObject {
                 
                 let samplesLeft = internalAudioBuffer.frameCapacity - internalAudioBuffer.frameLength
                 
-                if(buffer.frameLength < samplesLeft) {
+                if buffer.frameLength < samplesLeft {
                     internalAudioBuffer.copy(from: buffer)
-                }
-                else if(buffer.frameLength >= samplesLeft) {
+                } else if buffer.frameLength >= samplesLeft {
                     internalAudioBuffer.copy(from: buffer, readOffset: 0, frames: samplesLeft)
                     print("Buffer is filled. Pushing observe event")
                     strongSelf.bufferReadableSubject.onNext(internalAudioBuffer.copy() as! AVAudioPCMBuffer)
@@ -83,12 +80,12 @@ class AudioKitNodeCapture: NSObject {
                     }
                     strongSelf.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: bufferFormat, frameCapacity: strongSelf.bufferSize)
                 }
-                if(buffer.frameLength > samplesLeft) {
+                
+                if buffer.frameLength > samplesLeft {
                     internalAudioBuffer.copy(from: buffer, readOffset: samplesLeft, frames: buffer.frameLength - samplesLeft)
                 }
         }
         isCapturing = true
-
     }
     
     /// Stop Capturing

@@ -19,15 +19,14 @@ func nextPowerOfTwo(value: Int) -> Int {
     return Int(pow(2, ceil(log2(Double(value)))))
 }
 
-
 @objc(AudioSpectrogramLayer) class AudioSpectrogramLayer: NSObject, MLCustomLayer {
-    let windowSize:Int
-    let stride:Int
-    let magnitudeSquared:Bool
-    let outputChannels:NSNumber
-    let spectogramOp:SpectrogramOp
+    let windowSize: Int
+    let stride: Int
+    let magnitudeSquared: Bool
+    let outputChannels: NSNumber
+    let spectogramOp: SpectrogramOp
     
-    required init(parameters: [String : Any]) throws {
+    required init(parameters: [String: Any]) throws {
         if let windowSize = parameters["window_size"] as? Int {
             self.windowSize = windowSize
         } else {
@@ -46,8 +45,7 @@ func nextPowerOfTwo(value: Int) -> Int {
             throw AudioSpectrogramLayerError.parameterError("magnitude_squared")
         }
         
-       
-        outputChannels = NSNumber(integerLiteral: 1 + nextPowerOfTwo(value: self.windowSize) / 2)
+        outputChannels = NSNumber(value: 1 + nextPowerOfTwo(value: self.windowSize) / 2)
         
         spectogramOp = SpectrogramOp(windowLength: windowSize,
                                      stepLength: stride,
@@ -64,17 +62,17 @@ func nextPowerOfTwo(value: Int) -> Int {
         // This gives us the output shape
         // [1,1,1,N_TIME_BINS, N_FREQUENCY_BINS]
         var outputShapesArray = [[NSNumber]]()
-        let inputLength = Int(truncating:inputShapes[0][2])
-        let outputLength = NSNumber(integerLiteral: 1 + (inputLength - self.windowSize) / self.stride)
-        outputShapesArray.append([1,1,1,outputLength, outputChannels])
-        print("AudioSpectrogramLayer: ",#function, inputShapes, " -> ", outputShapesArray)
+        let inputLength = Int(truncating: inputShapes[0][2])
+        let outputLength = NSNumber(value: 1 + (inputLength - self.windowSize) / self.stride)
+        outputShapesArray.append([1, 1, 1, outputLength, outputChannels])
+        print("AudioSpectrogramLayer: ", #function, inputShapes, " -> ", outputShapesArray)
         return outputShapesArray
     }
     
     func evaluate(inputs: [MLMultiArray], outputs: [MLMultiArray]) throws {
         try spectogramOp.compute(input: UnsafeMutablePointer<Float>(OpaquePointer(inputs[0].dataPointer)),
-                                   inputLength: inputs[0].count,
-                                   output: UnsafeMutablePointer<Float>(OpaquePointer(outputs[0].dataPointer)))
+                                 inputLength: inputs[0].count,
+                                 output: UnsafeMutablePointer<Float>(OpaquePointer(outputs[0].dataPointer)))
     }
 }
 
@@ -94,4 +92,3 @@ func nextPowerOfTwo(value: Int) -> Int {
 // https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/kernels/mfcc_mel_filterbank.cc
 // https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/kernels/mfcc_mel_filterbank.h
 // https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/kernels/mfcc_op.cc
-

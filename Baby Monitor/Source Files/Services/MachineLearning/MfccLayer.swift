@@ -15,16 +15,15 @@ enum MfccLayerError: Error {
     case evaluationError(String)
 }
 
-
 @objc(MfccLayer) class MfccLayer: NSObject, MLCustomLayer {
-    let upperFrequencyLimit:Double
-    let lowerFrequencyLimit:Double
-    let filterbankChannelCount:Int
-    let dctCoefficientCount:Int
-    let sampleRate:Double
-    var mfccOp:MfccOp?
+    let upperFrequencyLimit: Double
+    let lowerFrequencyLimit: Double
+    let filterbankChannelCount: Int
+    let dctCoefficientCount: Int
+    let sampleRate: Double
+    var mfccOp: MfccOp?
     
-    required init(parameters: [String : Any]) throws {
+    required init(parameters: [String: Any]) throws {
         print(#function, parameters)
         if let sampleRate = parameters["sample_rate"] as? Double {
             self.sampleRate = sampleRate
@@ -56,9 +55,9 @@ enum MfccLayerError: Error {
         }
         
         mfccOp = MfccOp(upperFrequencyLimit: upperFrequencyLimit,
-                       lowerFrequencyLimit: lowerFrequencyLimit,
-                       filterbankChannelCount: filterbankChannelCount,
-                       dctCoefficientCount: dctCoefficientCount)
+                        lowerFrequencyLimit: lowerFrequencyLimit,
+                        filterbankChannelCount: filterbankChannelCount,
+                        dctCoefficientCount: dctCoefficientCount)
         try mfccOp!.initialize(inputLength: 1025, inputSampleRate: sampleRate)
 
         super.init()
@@ -75,8 +74,8 @@ enum MfccLayerError: Error {
         // [1,1,N_TIME_BINS, dct_coefficient_count]
         var outputShapesArray = [[NSNumber]]()
         
-        outputShapesArray.append([1,1, 1, inputShapes[0][3], NSNumber(value:dctCoefficientCount)])
-        print("MfccLayer: ",#function, inputShapes, " -> ", outputShapesArray)
+        outputShapesArray.append([1, 1, 1, inputShapes[0][3], NSNumber(value: dctCoefficientCount)])
+        print("MfccLayer: ", #function, inputShapes, " -> ", outputShapesArray)
         return outputShapesArray
     }
     
@@ -84,7 +83,6 @@ enum MfccLayerError: Error {
         let nSpectrogramSamples = Int(truncating: inputs[0].shape[3])
         let nSpectrogramChannels = Int(truncating: inputs[0].shape[4])
         
-
         let ptrSpectrogramInput = UnsafeMutablePointer<Float>(OpaquePointer(inputs[0].dataPointer))
         let ptrOutput = UnsafeMutablePointer<Float>(OpaquePointer(outputs[0].dataPointer))
 

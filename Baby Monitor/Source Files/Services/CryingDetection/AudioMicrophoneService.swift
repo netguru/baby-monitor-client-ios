@@ -3,7 +3,6 @@
 //  Baby Monitor
 //
 
-
 import Foundation
 import AudioKit
 import RxSwift
@@ -13,7 +12,6 @@ protocol ErrorProducable {
     var errorObservable: Observable<Error> { get }
 }
 
-
 protocol AudioMicrophoneRecordServiceProtocol {
     var directoryDocumentsSavableObservable: Observable<DirectoryDocumentsSavable> { get }
     var isRecording: Bool { get }
@@ -21,7 +19,6 @@ protocol AudioMicrophoneRecordServiceProtocol {
     func stopRecording()
     func startRecording()
 }
-
 
 protocol AudioMicrophoneCaptureServiceProtocol {
     var microphoneBufferReadableObservable: Observable<AVAudioPCMBuffer> { get }
@@ -46,9 +43,6 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     lazy var microphoneBufferReadableObservable = microphoneBufferReadableSubject.asObservable()
     lazy var directoryDocumentsSavableObservable = directoryDocumentsSavableSubject.asObservable()
     
-    
-    
-    
     private(set) var isCapturing = false
     private(set) var isRecording = false
     
@@ -60,7 +54,6 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     private let directoryDocumentsSavableSubject = PublishSubject<DirectoryDocumentsSavable>()
     
     private let disposeBag = DisposeBag()
-
 
     init(microphoneFactory: () throws -> AudioKitMicrophoneProtocol?) throws {
         guard let audioKitMicrophone = try microphoneFactory() else {
@@ -124,4 +117,3 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     }
 
 }
-
