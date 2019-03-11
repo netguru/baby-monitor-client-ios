@@ -15,14 +15,14 @@ final class AppDependencies {
     private let bag = DisposeBag()
     /// Service for cleaning too many crying events
     private(set) lazy var memoryCleaner: MemoryCleanerProtocol = MemoryCleaner()
-    /// Service for recording audio
-    private(set) lazy var audioRecordService: AudioRecordServiceProtocol? = try? AudioRecordService(recorderFactory: AudioKitRecorderFactory.makeRecorderFactory)
+    /// Service for capturing/recording microphone audio
+    private(set) lazy var audioMicrophoneService: AudioMicrophoneServiceProtocol? = try? AudioMicrophoneService(microphoneFactory: AudioKitMicrophoneFactory.makeMicrophoneFactory)
     /// Service for detecting baby's cry
-    private(set) lazy var cryingDetectionService: CryingDetectionServiceProtocol = CryingDetectionService(microphoneTracker: AKMicrophoneTracker())
+    private(set) lazy var cryingDetectionService: CryingDetectionServiceProtocol = CryingDetectionService(microphoneCapture: audioMicrophoneService)
     /// Service that takes care of appropriate controling: crying detection, audio recording and saving these events to realm database
     private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(
         cryingDetectionService: cryingDetectionService,
-        audioRecordService: audioRecordService,
+        microphoneRecord: audioMicrophoneService,
         activityLogEventsRepository: databaseRepository,
         storageService: storageServerService)
     
