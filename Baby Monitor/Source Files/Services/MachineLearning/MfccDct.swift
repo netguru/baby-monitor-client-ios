@@ -43,8 +43,8 @@ class MfccDct {
         let fnorm = sqrt(2.0 / Double(inputLength))
         let arg = Double.pi / Double(inputLength)
         
-        for i in 0..<coefficientCount{
-            for j in 0..<inputLength{
+        for i in 0..<coefficientCount {
+            for j in 0..<inputLength {
                 cosines[i][j] = fnorm * cos(Double(i) * arg * (Double(j) + 0.5))
             }
         }

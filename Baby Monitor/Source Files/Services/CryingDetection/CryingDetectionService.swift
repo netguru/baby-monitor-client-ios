@@ -48,18 +48,21 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
     private func rxSetup() {
         microphoneCapture?.microphoneBufferReadableObservable.subscribe(onNext: { [unowned self] bufferReadable in
             do {
-            print("RUNNING ML MODEL")
-            let audioProcessingMultiArray = try MLMultiArray(dataPointer: bufferReadable.floatChannelData!.pointee, shape: [264600], dataType: .float32, strides: [1])
+                print("RUNNING ML MODEL")
+                let audioProcessingMultiArray = try MLMultiArray(dataPointer: bufferReadable.floatChannelData!.pointee,
+                                                                 shape: [264600],
+                                                                 dataType: .float32,
+                                                                 strides: [1])
 
-            let input = audioprocessingInput(raw_audio__0: audioProcessingMultiArray)
-            let pred = try self.audioprocessingModel.prediction(input: input)
-            let crydetectionMultiArray = try MLMultiArray(shape: [1, 1, 1, 598, 64], dataType: .float32)
-            crydetectionMultiArray.dataPointer.copyMemory(from: pred.Mfcc__0.dataPointer, byteCount: 38272 * 4)
-            let input1 = crydetectionInput(Mfcc__0: crydetectionMultiArray)
-            let pred2 = try self.crydetectionModel.prediction(input: input1)
-            print(pred2.labels_softmax__0)
-            
-            self.cryingDetectionSubject.onNext(false)
+                let input = audioprocessingInput(raw_audio__0: audioProcessingMultiArray)
+                let pred = try self.audioprocessingModel.prediction(input: input)
+                let crydetectionMultiArray = try MLMultiArray(shape: [1, 1, 1, 598, 64], dataType: .float32)
+                crydetectionMultiArray.dataPointer.copyMemory(from: pred.Mfcc__0.dataPointer, byteCount: 38272 * 4)
+                let input1 = crydetectionInput(Mfcc__0: crydetectionMultiArray)
+                let pred2 = try self.crydetectionModel.prediction(input: input1)
+                print(pred2.labels_softmax__0)
+                
+                self.cryingDetectionSubject.onNext(false)
             } catch {
                 print("ERROR")
             }

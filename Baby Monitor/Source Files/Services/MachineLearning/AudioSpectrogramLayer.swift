@@ -10,16 +10,13 @@ import Foundation
 import CoreML
 import Accelerate
 
-enum AudioSpectrogramLayerError: Error {
-    case parameterError(String)
-    case opError(String)
-}
-
-func nextPowerOfTwo(value: Int) -> Int {
-    return Int(pow(2, ceil(log2(Double(value)))))
-}
-
 @objc(AudioSpectrogramLayer) class AudioSpectrogramLayer: NSObject, MLCustomLayer {
+    
+    enum AudioSpectrogramLayerError: Error {
+        case parameterError(String)
+        case evaluateError(String)
+    }
+    
     let windowSize: Int
     let stride: Int
     let magnitudeSquared: Bool
@@ -27,29 +24,25 @@ func nextPowerOfTwo(value: Int) -> Int {
     let spectogramOp: SpectrogramOp
     
     required init(parameters: [String: Any]) throws {
-        if let windowSize = parameters["window_size"] as? Int {
-            self.windowSize = windowSize
-        } else {
+        guard let windowSize = parameters["window_size"] as? Int else {
             throw AudioSpectrogramLayerError.parameterError("window_size")
         }
-
-        if let stride = parameters["stride"] as? Int {
-            self.stride = stride
-        } else {
+        self.windowSize = windowSize
+        
+        guard let stride = parameters["stride"] as? Int else {
             throw AudioSpectrogramLayerError.parameterError("stride")
         }
+        self.stride = stride
         
-        if let magnitudeSquared = parameters["magnitude_squared"] as? Bool {
-            self.magnitudeSquared = magnitudeSquared
-        } else {
+        guard let magnitudeSquared = parameters["magnitude_squared"] as? Bool else {
             throw AudioSpectrogramLayerError.parameterError("magnitude_squared")
         }
+        self.magnitudeSquared = magnitudeSquared
         
-        outputChannels = NSNumber(value: 1 + nextPowerOfTwo(value: self.windowSize) / 2)
-        
-        spectogramOp = SpectrogramOp(windowLength: windowSize,
-                                     stepLength: stride,
-                                     magnitudeSquared: magnitudeSquared)
+        outputChannels = NSNumber(value: 1 + MathUtils.nextPowerOfTwo(self.windowSize) / 2)
+        spectogramOp = try SpectrogramOp(windowLength: windowSize,
+                                         stepLength: stride,
+                                         magnitudeSquared: magnitudeSquared)
         super.init()
     }
     

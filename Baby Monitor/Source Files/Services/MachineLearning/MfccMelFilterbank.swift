@@ -10,6 +10,11 @@ import Foundation
 import Accelerate
 
 class MfccMelFilterbank {
+    
+    enum MfccMelFilterbankError: Error {
+        case parameterError(String)
+    }
+    
     var initialized: Bool = false
     var numChannels: Int
     var sampleRate: Double
@@ -29,13 +34,13 @@ class MfccMelFilterbank {
         endIndex = 0
     }
     
-    func initialize(inputLength: Int, inputSampleRate: Double, outputChannelCount: Int, lowerFrequencyLimit: Double, upperFrequencyLimit: Double) -> Bool {
+    func initialize(inputLength: Int, inputSampleRate: Double, outputChannelCount: Int, lowerFrequencyLimit: Double, upperFrequencyLimit: Double) throws {
         self.inputLength = inputLength
         self.sampleRate = inputSampleRate
         self.numChannels = outputChannelCount
         
-        let melLow = freqToMel(freq: lowerFrequencyLimit)
-        let melHi = freqToMel(freq: upperFrequencyLimit)
+        let melLow = MathUtils.freqToMel(lowerFrequencyLimit)
+        let melHi = MathUtils.freqToMel(upperFrequencyLimit)
         let melSpan = melHi - melLow
         let melSpacing = melSpan / Double(numChannels + 1)
         
@@ -54,7 +59,7 @@ class MfccMelFilterbank {
         var channel = 0
         
         for i in 0..<self.inputLength {
-            let melf = freqToMel(freq: Double(i) * hzPerSbin)
+            let melf = MathUtils.freqToMel(Double(i) * hzPerSbin)
             if (i < startIndex) || (i > endIndex) {
                 bandMapper![i] = -2
             } else {
@@ -71,24 +76,22 @@ class MfccMelFilterbank {
             if (i < startIndex) || (i > endIndex) {
                 weights![i] = 0.0
             } else {
+                let melFrequencyBin = MathUtils.freqToMel(Double(i) * hzPerSbin)
                 if channel >= 0 {
-                    weights![i] = (centerFrequencies![channel + 1] - freqToMel(freq: Double(i) * hzPerSbin)) / (centerFrequencies![channel + 1] - centerFrequencies![channel])
+                    weights![i] = (centerFrequencies![channel + 1] - melFrequencyBin) / (centerFrequencies![channel + 1] - centerFrequencies![channel])
                 } else {
-                    weights![i] = (centerFrequencies![0] - freqToMel(freq: Double(i) * hzPerSbin)) / (centerFrequencies![0] - melLow)
+                    weights![i] = (centerFrequencies![0] - melFrequencyBin) / (centerFrequencies![0] - melLow)
                 }
             }
         }
         
         workData = [Float](repeating: 0.0, count: endIndex - startIndex + 1)
-        
         initialized = true
-        return true
     }
     
     func compute(input: UnsafeMutablePointer<Float>, output: UnsafeMutablePointer<Float>) {
         for i in startIndex...endIndex {
-            //let spec_val = sqrtf(input.advanced(by: i).pointee)
-            let specVal = input.advanced(by: i).pointee
+            let specVal = sqrtf(input.advanced(by: i).pointee)
             let weighted = specVal * Float((weights![i]))
             var channel = bandMapper![i]
             if channel >= 0 {
@@ -100,9 +103,5 @@ class MfccMelFilterbank {
                 output.advanced(by: channel).pointee += specVal - weighted
             }
         }
-    }
-    
-    private func freqToMel(freq: Double) -> Double {
-        return 1127.0 * log(1.0 + (freq / 700.0))
     }
 }

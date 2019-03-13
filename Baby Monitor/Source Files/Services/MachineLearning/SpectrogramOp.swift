@@ -15,6 +15,12 @@ import Accelerate
 //
 //
 class SpectrogramOp: NSObject {
+    
+    enum SpectrogramOpError: Error {
+        case parameterError(String)
+        case computeError(String)
+    }
+    
     var stepLength: Int = 0
     var windowLength: Int = 0
     var fftLength: Int = 0
@@ -32,20 +38,20 @@ class SpectrogramOp: NSObject {
     var fftSetup: vDSP_DFT_Setup?
     var magnitudeSquared: Bool = true
 
-    init(windowLength: Int, stepLength: Int, magnitudeSquared: Bool) {
+    init(windowLength: Int, stepLength: Int, magnitudeSquared: Bool) throws {
         self.windowLength = windowLength
         self.stepLength = stepLength
         self.magnitudeSquared = magnitudeSquared
         
         if self.windowLength < 2 {
-            print("window_length too short. window_length has to be greater or equal to 2.")
+            throw SpectrogramOpError.parameterError("windowLength has to be greater or equal to 2.")
         }
         
         if self.stepLength < 1 {
-            print("step_length must be strictly positive")
+            throw SpectrogramOpError.parameterError("stepLength must be strictly positive")
         }
         
-        fftLength = nextPowerOfTwo(value: self.windowLength)
+        fftLength = MathUtils.nextPowerOfTwo(self.windowLength)
         window = [Float](repeating: 0.0, count: self.windowLength)
         
         inputReal = [Float](repeating: 0.0, count: fftLength / 2 + 1)
@@ -108,7 +114,7 @@ class SpectrogramOp: NSObject {
             var dspSplit = DSPSplitComplex(realp: &inputReal, imagp: &inputImg)
 
             // Compute output values and write to output buffer
-            if !magnitudeSquared {
+            if magnitudeSquared {
                 vDSP_zvmags(&dspSplit, 1, outputPtr, 1, vDSP_Length(fftLength / 2 + 1))
             } else {
                 vDSP_zvabs(&dspSplit, 1, outputPtr, 1, vDSP_Length(fftLength / 2 + 1))

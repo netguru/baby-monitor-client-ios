@@ -10,12 +10,13 @@ import Foundation
 import CoreML
 import Accelerate
 
-enum MfccLayerError: Error {
-    case parameterError(String)
-    case evaluationError(String)
-}
-
 @objc(MfccLayer) class MfccLayer: NSObject, MLCustomLayer {
+    enum MfccLayerError: Error {
+        case parameterError(String)
+        case opError(String)
+        case evaluationError(String)
+    }
+    
     let upperFrequencyLimit: Double
     let lowerFrequencyLimit: Double
     let filterbankChannelCount: Int
@@ -24,49 +25,45 @@ enum MfccLayerError: Error {
     var mfccOp: MfccOp?
     
     required init(parameters: [String: Any]) throws {
-        print(#function, parameters)
-        if let sampleRate = parameters["sample_rate"] as? Double {
-            self.sampleRate = sampleRate
-        } else {
+        guard let sampleRate = parameters["sample_rate"] as? Double else {
             throw MfccLayerError.parameterError("sample_rate")
         }
-        if let upperFrequencyLimit = parameters["upper_frequency_limit"] as? Double {
-            self.upperFrequencyLimit = upperFrequencyLimit
-        } else {
+        self.sampleRate = sampleRate
+        
+        guard let upperFrequencyLimit = parameters["upper_frequency_limit"] as? Double else {
             throw MfccLayerError.parameterError("upper_frequency_limit")
         }
+        self.upperFrequencyLimit = upperFrequencyLimit
         
-        if let lowerFrequencyLimit = parameters["lower_frequency_limit"] as? Double {
-            self.lowerFrequencyLimit = lowerFrequencyLimit
-        } else {
+        guard let lowerFrequencyLimit = parameters["lower_frequency_limit"] as? Double else {
             throw MfccLayerError.parameterError("lower_frequency_limit")
         }
+        self.lowerFrequencyLimit = lowerFrequencyLimit
         
-        if let filterbankChannelCount = parameters["filterbank_channel_count"] as? Int {
-            self.filterbankChannelCount = filterbankChannelCount
-        } else {
+        guard let filterbankChannelCount = parameters["filterbank_channel_count"] as? Int else {
             throw MfccLayerError.parameterError("filterbank_channel_count")
         }
+        self.filterbankChannelCount = filterbankChannelCount
        
-        if let dctCoefficientCount = parameters["dct_coefficient_count"] as? Int {
-            self.dctCoefficientCount = dctCoefficientCount
-        } else {
+        guard let dctCoefficientCount = parameters["dct_coefficient_count"] as? Int else {
             throw MfccLayerError.parameterError("dct_coefficient_count")
         }
+        self.dctCoefficientCount = dctCoefficientCount
         
         mfccOp = MfccOp(upperFrequencyLimit: upperFrequencyLimit,
                         lowerFrequencyLimit: lowerFrequencyLimit,
                         filterbankChannelCount: filterbankChannelCount,
                         dctCoefficientCount: dctCoefficientCount)
-        try mfccOp!.initialize(inputLength: 1025, inputSampleRate: sampleRate)
+        
+        guard let mfccOp = mfccOp else {
+            throw MfccLayerError.opError("MfccOp init failed for given parameters")
+        }
+        try mfccOp.initialize(inputLength: 1025, inputSampleRate: sampleRate)
 
         super.init()
     }
     
-    func setWeightData(_ weights: [Data]) throws {
-        print(#function, weights)
-        
-    }
+    func setWeightData(_ weights: [Data]) throws {}
     
     func outputShapes(forInputShapes inputShapes: [[NSNumber]]) throws -> [[NSNumber]] {
         // Input shape is [1,1,1,N_TIME_BINS, N_FREQUENCY_BINS]
@@ -91,7 +88,5 @@ enum MfccLayerError: Error {
             let outputPointer = ptrOutput.advanced(by: spectrogramIndex * dctCoefficientCount)
             try mfccOp!.compute(input: inputPointer, inputLength: nSpectrogramChannels, output: outputPointer)
         }
-        
     }
-    
 }
