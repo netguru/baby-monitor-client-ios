@@ -47,7 +47,6 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
     private func rxSetup() {
         microphoneCapture?.microphoneBufferReadableObservable.subscribe(onNext: { [unowned self] bufferReadable in
             do {
-                print("RUNNING ML MODEL")
                 let audioProcessingMultiArray = try MLMultiArray(dataPointer: bufferReadable.floatChannelData!.pointee,
                                                                  shape: [264600],
                                                                  dataType: .float32,
@@ -61,9 +60,6 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
                 let pred2 = try self.crydetectionModel.prediction(input: input1)
                 let babyCryingDetected: Bool = pred2.labels_softmax__0[0].compare(pred2.labels_softmax__0[1]) == .orderedAscending
                 self.cryingDetectionSubject.onNext(babyCryingDetected)
-                
-                print(pred2.labels_softmax__0)
-                
             } catch {
                 print("ERROR")
             }
