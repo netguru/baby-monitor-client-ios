@@ -235,6 +235,8 @@
 		A1ED8F912212C745005762E8 /* TwoOptionsBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */; };
 		A1ED8F932212CA35005762E8 /* OldBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F922212CA35005762E8 /* OldBaseOnboardingView.swift */; };
 		A1ED8F952212CB8D005762E8 /* OnboardingContinuableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F942212CB8D005762E8 /* OnboardingContinuableViewController.swift */; };
+		A7B48132223C16BB00FE4A74 /* AudioMicrophoneCaptureServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B48131223C16BB00FE4A74 /* AudioMicrophoneCaptureServiceProtocol.swift */; };
+		A7B48134223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B48133223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift */; };
 		A7D756082232DBC800F9893E /* CryingEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D756052232DBC800F9893E /* CryingEventService.swift */; };
 		A7D756092232DBC800F9893E /* CryingDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D756062232DBC800F9893E /* CryingDetectionService.swift */; };
 		A7D7561F2232DE8700F9893E /* MicrophoneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D7561E2232DE8700F9893E /* MicrophoneFactory.swift */; };
@@ -556,6 +558,8 @@
 		A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsBaseOnboardingView.swift; sourceTree = "<group>"; };
 		A1ED8F922212CA35005762E8 /* OldBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldBaseOnboardingView.swift; sourceTree = "<group>"; };
 		A1ED8F942212CB8D005762E8 /* OnboardingContinuableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContinuableViewController.swift; sourceTree = "<group>"; };
+		A7B48131223C16BB00FE4A74 /* AudioMicrophoneCaptureServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMicrophoneCaptureServiceProtocol.swift; sourceTree = "<group>"; };
+		A7B48133223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMicrophoneRecordServiceProtocol.swift; sourceTree = "<group>"; };
 		A7D756052232DBC800F9893E /* CryingEventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryingEventService.swift; sourceTree = "<group>"; };
 		A7D756062232DBC800F9893E /* CryingDetectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryingDetectionService.swift; sourceTree = "<group>"; };
 		A7D7561E2232DE8700F9893E /* MicrophoneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneFactory.swift; sourceTree = "<group>"; };
@@ -767,6 +771,8 @@
 				8AED318D219045AD00FEFE8A /* BabyMonitorCellDeletable.swift */,
 				4E7B091221E6148600EDDD11 /* URLSessionProtocol.swift */,
 				3A8DAC88222D403400427BBE /* ApplicationStateProvider.swift */,
+				A7B48131223C16BB00FE4A74 /* AudioMicrophoneCaptureServiceProtocol.swift */,
+				A7B48133223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift */,
 			);
 			path = "Other Protocols";
 			sourceTree = "<group>";
@@ -1932,6 +1938,7 @@
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				8A8B76ED21EF53A20063EF7E /* WebSocketEventMessageService.swift in Sources */,
 				EC8A8FF521AE8F5F00B5FCCF /* TypedPageViewController.swift in Sources */,
+				A7B48132223C16BB00FE4A74 /* AudioMicrophoneCaptureServiceProtocol.swift in Sources */,
 				8A8B76DF21EDE3640063EF7E /* WebsocketMessageDecodable.swift in Sources */,
 				4E7A1A9221F12BD00015C3A3 /* ServerCoordinator.swift in Sources */,
 				A7D756082232DBC800F9893E /* CryingEventService.swift in Sources */,
@@ -1977,6 +1984,7 @@
 				A7D756272236AFA000F9893E /* crydetection.mlmodel in Sources */,
 				8A50AA4021E603080058C63A /* WebRtcStreamId.swift in Sources */,
 				A7D756362237C31400F9893E /* MathUtils.swift in Sources */,
+				A7B48134223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift in Sources */,
 				8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */,
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,

@@ -12,22 +12,6 @@ protocol ErrorProducable {
     var errorObservable: Observable<Error> { get }
 }
 
-protocol AudioMicrophoneRecordServiceProtocol {
-    var directoryDocumentsSavableObservable: Observable<DirectoryDocumentsSavable> { get }
-    var isRecording: Bool { get }
-    
-    func stopRecording()
-    func startRecording()
-}
-
-protocol AudioMicrophoneCaptureServiceProtocol {
-    var microphoneBufferReadableObservable: Observable<AVAudioPCMBuffer> { get }
-    var isCapturing: Bool { get }
-    
-    func stopCapturing()
-    func startCapturing()
-}
-
 protocol AudioMicrophoneServiceProtocol: AudioMicrophoneRecordServiceProtocol, AudioMicrophoneCaptureServiceProtocol {}
 
 final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProducable {
