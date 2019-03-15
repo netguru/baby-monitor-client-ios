@@ -26,7 +26,6 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
     
     private let cryingDetectionSubject = PublishSubject<Bool>()
     
-    private var isCryingEventDetected = false
     private let microphoneCapture: AudioMicrophoneCaptureServiceProtocol?
     private let disposeBag = DisposeBag()
     private let audioprocessingModel = audioprocessing()
@@ -60,9 +59,11 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
                 crydetectionMultiArray.dataPointer.copyMemory(from: pred.Mfcc__0.dataPointer, byteCount: 38272 * 4)
                 let input1 = crydetectionInput(Mfcc__0: crydetectionMultiArray)
                 let pred2 = try self.crydetectionModel.prediction(input: input1)
+                let babyCryingDetected: Bool = pred2.labels_softmax__0[0].compare(pred2.labels_softmax__0[1]) == .orderedAscending
+                self.cryingDetectionSubject.onNext(babyCryingDetected)
+                
                 print(pred2.labels_softmax__0)
                 
-                self.cryingDetectionSubject.onNext(false)
             } catch {
                 print("ERROR")
             }

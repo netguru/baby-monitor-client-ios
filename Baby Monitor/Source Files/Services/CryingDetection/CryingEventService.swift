@@ -51,23 +51,25 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     
     func stop() {
         cryingDetectionService.stopAnalysis()
-        //microphoneRecord?.stopRecording()
+        guard self.microphoneRecord?.isRecording ?? false else {
+            return
+        }
+        self.microphoneRecord?.stopRecording()
     }
     
     private func rxSetup() {
         cryingDetectionService.cryingDetectionObservable.subscribe(onNext: { [unowned self] isBabyCrying in
             if isBabyCrying {
-                print("BABY CRYING")
                 let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
                 self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
-                //self.microphoneRecord?.startRecording()
+                self.microphoneRecord?.startRecording()
                 let cryingEventMessage = EventMessage.initWithCryingEvent(value: self.nextFileName)
                 self.cryingEventPublisher.onNext(cryingEventMessage)
             } else {
                 guard self.microphoneRecord?.isRecording ?? false else {
                     return
                 }
-                //self.microphoneRecord?.stopRecording()
+                self.microphoneRecord?.stopRecording()
             }
         }).disposed(by: disposeBag)
         
