@@ -9,7 +9,7 @@ import RxSwift
 
 final class CameraPreviewView: BaseView {
     
-    let mediaView = RTCEAGLVideoView()
+    let mediaView = StreamVideoView(contentTransform: .none)
     let babyNavigationItemView = BabyNavigationItemView(mode: .parent)
     let settingsBarButtonItem = UIBarButtonItem(
         image: #imageLiteral(resourceName: "settings"),
@@ -35,7 +35,7 @@ final class CameraPreviewView: BaseView {
         setupBackgroundImage(UIImage())
         backgroundColor = .gray
         addSubview(mediaView)
-        mediaView.addConstraints { $0.equalSafeAreaEdges() }
+        mediaView.addConstraints { $0.equalEdges() }
     }
 }
 
