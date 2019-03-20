@@ -6,6 +6,7 @@
 //MARK: - General
 "general.baby-monitor" = "Baby Guard";
 "general.cancel" = "Cancel";
+"general.continue" = "Continue";
 "general.disconnected" = "Disconnected";
 "general.delete" = "Delete";
 "general.ok" = "OK";
@@ -136,10 +137,10 @@
 "settings.header.crying-detection-method" = "Crying Detection Method";
 "settings.cell.send-recordings-to-server" = "Send crying records to server";
 "settings.cell.clear-data" = "Clear data";
-"settings.cell.clear-data-alert-message" = "All data will be cleared. Would you like to continue?";
+"settings.cell.clear-data-alert-message" = "Your current connection will be terminated. Are you sure you want to proceed?";
 "settings.babyNameTextField.placeholder" = "Your baby name";
 "settings.rateButton.title" = "Rate us";
-"settings.resetButton.title" = "Reset the app";
+"settings.resetButton.title" = "Reset the connection";
 "settings.allow-sending.message" = "Allow to send baby voice\nrecordings";
 "settings.send-cryings.description.first-part" = "No worries, your data will be safe! We need\nvoice recordings only for app development.\nWhat does it mean?\n\n" ;
 "settings.send-cryings.description.with-your-help" = "With your help";
