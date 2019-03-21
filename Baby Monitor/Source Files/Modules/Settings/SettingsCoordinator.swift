@@ -67,8 +67,8 @@ final class SettingsCoordinator: Coordinator {
                 self?.appDependencies.resetForNoneState()
                 self?.onEnding?()
             }
-            let continueAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = ("Continue", UIAlertAction.Style.destructive, continueHandler)
-            let cancelAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = (Localizable.General.cancel, UIAlertAction.Style.default, nil)
+            let continueAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = (Localizable.General.continue, UIAlertAction.Style.default, continueHandler)
+            let cancelAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = (Localizable.General.cancel, UIAlertAction.Style.cancel, nil)
             AlertPresenter.showDefaultAlert(
                 title: Localizable.General.warning,
                 message: Localizable.Settings.clearDataAlertMessage,
