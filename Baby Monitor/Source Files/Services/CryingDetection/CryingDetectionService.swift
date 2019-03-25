@@ -26,26 +26,26 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
     
     private let cryingDetectionSubject = PublishSubject<Bool>()
     
-    private let microphoneCapture: AudioMicrophoneCaptureServiceProtocol?
+    private let microphoneCaptureService: AudioMicrophoneCaptureServiceProtocol?
     private let disposeBag = DisposeBag()
     private let audioprocessingModel = audioprocessing()
     private let crydetectionModel = crydetection()
     
-    init(microphoneCapture: AudioMicrophoneCaptureServiceProtocol?) {
-        self.microphoneCapture = microphoneCapture
+    init(microphoneCaptureService: AudioMicrophoneCaptureServiceProtocol?) {
+        self.microphoneCaptureService = microphoneCaptureService
         rxSetup()
     }
     
     func startAnalysis() {
-        microphoneCapture?.startCapturing()
+        microphoneCaptureService?.startCapturing()
     }
     
     func stopAnalysis() {
-        microphoneCapture?.stopCapturing()
+        microphoneCaptureService?.stopCapturing()
     }
     
     private func rxSetup() {
-        microphoneCapture?.microphoneBufferReadableObservable.subscribe(onNext: { [unowned self] bufferReadable in
+        microphoneCaptureService?.microphoneBufferReadableObservable.subscribe(onNext: { [unowned self] bufferReadable in
             do {
                 let audioProcessingMultiArray = try MLMultiArray(dataPointer: bufferReadable.floatChannelData!.pointee,
                                                                  shape: [264600],
