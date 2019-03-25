@@ -30,8 +30,8 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     private(set) var isCapturing = false
     private(set) var isRecording = false
     
-    private var capture: MicrophoneCaptureProtocol
-    private var record: MicrophoneRecordProtocol
+    private var microphoneCapturer: MicrophoneCaptureProtocol
+    private var microphoneRecorder: MicrophoneRecordProtocol
     
     private let errorSubject = PublishSubject<Error>()
     private let microphoneBufferReadableSubject = PublishSubject<AVAudioPCMBuffer>()
@@ -43,8 +43,8 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         guard let audioKitMicrophone = try microphoneFactory() else {
             throw(AudioMicrophoneService.AudioError.initializationFailure)
         }
-        capture = audioKitMicrophone.capture
-        record = audioKitMicrophone.record
+        microphoneCapturer = audioKitMicrophone.capture
+        microphoneRecorder = audioKitMicrophone.record
         rxSetup()
     }
     
@@ -52,7 +52,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         guard isCapturing else {
             return
         }
-        capture.stop()
+        microphoneCapturer.stop()
         isCapturing = false
     }
     
@@ -61,7 +61,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
             return
         }
         do {
-            try capture.start()
+            try microphoneCapturer.start()
         } catch {
             return
         }
@@ -72,9 +72,9 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         guard isRecording else {
             return
         }
-        record.stop()
+        microphoneRecorder.stop()
         isRecording = false
-        guard let audioFile = record.audioFile else {
+        guard let audioFile = microphoneRecorder.audioFile else {
             errorSubject.onNext(AudioError.recordFailure)
             return
         }
@@ -86,8 +86,8 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
             return
         }
         do {
-            try record.reset()
-            try record.record()
+            try microphoneRecorder.reset()
+            try microphoneRecorder.record()
             isRecording = true
         } catch {
             errorSubject.onNext(AudioError.recordFailure)
@@ -95,7 +95,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     }
 
     private func rxSetup() {
-        capture.bufferReadable.subscribe(onNext: { [unowned self] bufferReadable in
+        microphoneCapturer.bufferReadable.subscribe(onNext: { [unowned self] bufferReadable in
             self.microphoneBufferReadableSubject.onNext(bufferReadable)
         }).disposed(by: disposeBag)
     }
