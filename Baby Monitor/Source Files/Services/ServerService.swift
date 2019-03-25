@@ -8,7 +8,7 @@ import RxSwift
 
 protocol ServerServiceProtocol: AnyObject {
     var localStreamObservable: Observable<MediaStream> { get }
-    var audioRecordServiceErrorObservable: Observable<Void> { get }
+    var audioMicrophoneServiceErrorObservable: Observable<Void> { get }
     func startStreaming()
     func stop()
 }
@@ -18,7 +18,7 @@ final class ServerService: ServerServiceProtocol {
     var localStreamObservable: Observable<MediaStream> {
         return webRtcServerManager.mediaStream
     }
-    lazy var audioRecordServiceErrorObservable = audioRecordServiceErrorPublisher.asObservable()
+    lazy var audioMicrophoneServiceErrorObservable = audioMicrophoneServiceErrorPublisher.asObservable()
     
     private var isCryingMessageReceivedFromClient = false
     private var timer: Timer?
@@ -32,7 +32,7 @@ final class ServerService: ServerServiceProtocol {
     private let disposeBag = DisposeBag()
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
     private let notificationsService: NotificationServiceProtocol
-    private let audioRecordServiceErrorPublisher = PublishSubject<Void>()
+    private let audioMicrophoneServiceErrorPublisher = PublishSubject<Void>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     
     init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babyModelController: BabyModelControllerProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
@@ -144,7 +144,7 @@ final class ServerService: ServerServiceProtocol {
         } catch {
             switch error {
             case CryingEventService.CryingEventServiceError.audioRecordServiceError:
-                audioRecordServiceErrorPublisher.onNext(())
+                audioMicrophoneServiceErrorPublisher.onNext(())
             default:
                 break
             }
