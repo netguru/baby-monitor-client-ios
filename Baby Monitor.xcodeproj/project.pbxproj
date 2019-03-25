@@ -249,7 +249,7 @@
 		A7D756322236B03D00F9893E /* AudioSpectrogramLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D7562D2236B03D00F9893E /* AudioSpectrogramLayer.swift */; };
 		A7D756332236B03D00F9893E /* MfccOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D7562E2236B03D00F9893E /* MfccOp.swift */; };
 		A7D756342236B03D00F9893E /* SpectrogramOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D7562F2236B03D00F9893E /* SpectrogramOp.swift */; };
-		A7D756362237C31400F9893E /* MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D756352237C31400F9893E /* MathUtils.swift */; };
+		A7D756362237C31400F9893E /* MathUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D756352237C31400F9893E /* MathUtilities.swift */; };
 		A7D756382237CAE900F9893E /* MfccDct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D756372237CAE900F9893E /* MfccDct.swift */; };
 		EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
@@ -572,7 +572,7 @@
 		A7D7562D2236B03D00F9893E /* AudioSpectrogramLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSpectrogramLayer.swift; sourceTree = "<group>"; };
 		A7D7562E2236B03D00F9893E /* MfccOp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MfccOp.swift; sourceTree = "<group>"; };
 		A7D7562F2236B03D00F9893E /* SpectrogramOp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrogramOp.swift; sourceTree = "<group>"; };
-		A7D756352237C31400F9893E /* MathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtils.swift; sourceTree = "<group>"; };
+		A7D756352237C31400F9893E /* MathUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtilities.swift; sourceTree = "<group>"; };
 		A7D756372237CAE900F9893E /* MfccDct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MfccDct.swift; sourceTree = "<group>"; };
 		DC0A7360EB7E7A40F5162D1F /* Pods_Baby_MonitorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_MonitorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
@@ -1397,7 +1397,7 @@
 				A7D7562B2236B03D00F9893E /* MfccMelFilterbank.swift */,
 				A7D7562E2236B03D00F9893E /* MfccOp.swift */,
 				A7D7562F2236B03D00F9893E /* SpectrogramOp.swift */,
-				A7D756352237C31400F9893E /* MathUtils.swift */,
+				A7D756352237C31400F9893E /* MathUtilities.swift */,
 			);
 			path = MachineLearning;
 			sourceTree = "<group>";
@@ -1983,7 +1983,7 @@
 				4E95631B21638D1500289475 /* Localizable.swift in Sources */,
 				A7D756272236AFA000F9893E /* crydetection.mlmodel in Sources */,
 				8A50AA4021E603080058C63A /* WebRtcStreamId.swift in Sources */,
-				A7D756362237C31400F9893E /* MathUtils.swift in Sources */,
+				A7D756362237C31400F9893E /* MathUtilities.swift in Sources */,
 				A7B48134223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift in Sources */,
 				8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */,
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,

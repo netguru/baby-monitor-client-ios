@@ -39,8 +39,8 @@ class MfccMelFilterbank {
         self.sampleRate = inputSampleRate
         self.numChannels = outputChannelCount
         
-        let melLow = MathUtils.freqToMel(lowerFrequencyLimit)
-        let melHi = MathUtils.freqToMel(upperFrequencyLimit)
+        let melLow = MfccMelFilterbank.freqToMel(freq: lowerFrequencyLimit)
+        let melHi = MfccMelFilterbank.freqToMel(freq: upperFrequencyLimit)
         let melSpan = melHi - melLow
         let melSpacing = melSpan / Double(numChannels + 1)
         
@@ -59,7 +59,7 @@ class MfccMelFilterbank {
         var channel = 0
         
         for i in 0..<self.inputLength {
-            let melf = MathUtils.freqToMel(Double(i) * hzPerSbin)
+            let melf = MfccMelFilterbank.freqToMel(freq: Double(i) * hzPerSbin)
             if (i < startIndex) || (i > endIndex) {
                 bandMapper![i] = -2
             } else {
@@ -76,7 +76,7 @@ class MfccMelFilterbank {
             if (i < startIndex) || (i > endIndex) {
                 weights![i] = 0.0
             } else {
-                let melFrequencyBin = MathUtils.freqToMel(Double(i) * hzPerSbin)
+                let melFrequencyBin = MfccMelFilterbank.freqToMel(freq: Double(i) * hzPerSbin)
                 if channel >= 0 {
                     weights![i] = (centerFrequencies![channel + 1] - melFrequencyBin) / (centerFrequencies![channel + 1] - centerFrequencies![channel])
                 } else {
@@ -103,5 +103,9 @@ class MfccMelFilterbank {
                 output.advanced(by: channel).pointee += specVal - weighted
             }
         }
+    }
+    
+    static func freqToMel(freq: Double) -> Double {
+        return 1127.0 * log(1.0 + (freq / 700.0))
     }
 }

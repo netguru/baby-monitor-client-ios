@@ -61,7 +61,6 @@ class MfccOp {
             mfccDct = MfccDct()
         }
         melFilterbank = MfccMelFilterbank()
-
     }
     
     func initialize(inputLength: Int, inputSampleRate: Double) throws {
@@ -121,7 +120,6 @@ class MfccOp {
             guard let mfccDct = mfccDct else {
                 throw MfccOpError.mfccDctError("mfccDCT Op not available")
             }
-            
             mfccDct.compute(input: &workingData3, output: output)
         }
     }

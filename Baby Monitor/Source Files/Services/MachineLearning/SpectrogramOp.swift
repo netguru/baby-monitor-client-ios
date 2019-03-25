@@ -34,7 +34,7 @@ class SpectrogramOp: NSObject {
     var fftReal: [Float]
     var fftImg: [Float]
     
-    var samplesToNextStep: Int = 0
+    var samplesToNextStep: Int
     var fftSetup: vDSP_DFT_Setup?
     var magnitudeSquared: Bool = true
 
@@ -51,7 +51,7 @@ class SpectrogramOp: NSObject {
             throw SpectrogramOpError.parameterError("stepLength must be strictly positive")
         }
         
-        fftLength = MathUtils.nextPowerOfTwo(self.windowLength)
+        fftLength = Int(UInt(self.windowLength).nextPowerOfTwo)
         window = [Float](repeating: 0.0, count: self.windowLength)
         
         inputReal = [Float](repeating: 0.0, count: fftLength / 2 + 1)

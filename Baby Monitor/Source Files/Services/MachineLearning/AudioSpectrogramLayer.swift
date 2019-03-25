@@ -13,8 +13,7 @@ import Accelerate
 @objc(AudioSpectrogramLayer) class AudioSpectrogramLayer: NSObject, MLCustomLayer {
     
     enum AudioSpectrogramLayerError: Error {
-        case parameterError(String)
-        case evaluateError(String)
+        case parameterError
     }
     
     let windowSize: Int
@@ -24,24 +23,18 @@ import Accelerate
     let spectogramOp: SpectrogramOp
     
     required init(parameters: [String: Any]) throws {
-        guard let windowSize = parameters["window_size"] as? Int else {
-            throw AudioSpectrogramLayerError.parameterError("window_size")
+        guard let windowSize = parameters["window_size"] as? Int,
+            let stride = parameters["stride"] as? Int,
+            let magnitudeSquared = parameters["magnitude_squared"] as? Bool else {
+                throw AudioSpectrogramLayerError.parameterError
         }
         self.windowSize = windowSize
-        
-        guard let stride = parameters["stride"] as? Int else {
-            throw AudioSpectrogramLayerError.parameterError("stride")
-        }
         self.stride = stride
-        
-        guard let magnitudeSquared = parameters["magnitude_squared"] as? Bool else {
-            throw AudioSpectrogramLayerError.parameterError("magnitude_squared")
-        }
         self.magnitudeSquared = magnitudeSquared
         
-        outputChannels = NSNumber(value: 1 + MathUtils.nextPowerOfTwo(self.windowSize) / 2)
-        spectogramOp = try SpectrogramOp(windowLength: windowSize,
-                                         stepLength: stride,
+        outputChannels = NSNumber(value: 1 + UInt(self.windowSize).nextPowerOfTwo / 2)
+        spectogramOp = try SpectrogramOp(windowLength: Int(windowSize),
+                                         stepLength: Int(stride),
                                          magnitudeSquared: magnitudeSquared)
         super.init()
     }
@@ -58,7 +51,6 @@ import Accelerate
         let inputLength = Int(truncating: inputShapes[0][2])
         let outputLength = NSNumber(value: 1 + (inputLength - self.windowSize) / self.stride)
         outputShapesArray.append([1, 1, 1, outputLength, outputChannels])
-        print("AudioSpectrogramLayer: ", #function, inputShapes, " -> ", outputShapesArray)
         return outputShapesArray
     }
     
