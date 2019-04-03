@@ -52,13 +52,7 @@ enum AudioKitMicrophoneFactory {
         captureSilenceBooster = AKBooster(captureBooster)
         captureSilenceBooster?.gain = 0.0
         
-        guard let recorder = recorder else {
-            return nil
-        }
-        guard let capture = capture else {
-            return nil
-        }
-        guard let audioFile = recorder.audioFile else {
+        guard let recorder = recorder, let capture = capture, let audioFile = recorder.audioFile else {
             return nil
         }
         player = AKPlayer(audioFile: audioFile)

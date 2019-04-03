@@ -56,12 +56,7 @@ final class AudioKitNodeCapture: NSObject {
             bufferSize: AKSettings.bufferLength.samplesCount,
             format: internalAudioBuffer.format) { [weak self] (buffer: AVAudioPCMBuffer, _) -> Void in
                 
-                guard let strongSelf = self else {
-                    AKLog("Error: self is nil")
-                    return
-                }
-                
-                guard let internalAudioBuffer = strongSelf.internalAudioBuffer else {
+                guard let self = self, let internalAudioBuffer = self.internalAudioBuffer else {
                     AKLog("Error: internalAudioBuffer is nil")
                     return
                 }
@@ -73,12 +68,12 @@ final class AudioKitNodeCapture: NSObject {
                 } else if buffer.frameLength >= samplesLeft {
                     internalAudioBuffer.copy(from: buffer, readOffset: 0, frames: samplesLeft)
                     print("Buffer is filled. Pushing observe event")
-                    strongSelf.bufferReadableSubject.onNext(internalAudioBuffer.copy() as! AVAudioPCMBuffer)
-                    guard let bufferFormat = strongSelf.bufferFormat else {
+                    self.bufferReadableSubject.onNext(internalAudioBuffer.copy() as! AVAudioPCMBuffer)
+                    guard let bufferFormat = self.bufferFormat else {
                         AKLog("Error: bufferFormat is nil")
                         return
                     }
-                    strongSelf.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: bufferFormat, frameCapacity: strongSelf.bufferSize)
+                    self.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: bufferFormat, frameCapacity: self.bufferSize)
                 }
                 
                 if buffer.frameLength > samplesLeft {

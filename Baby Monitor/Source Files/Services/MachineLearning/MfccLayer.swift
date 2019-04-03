@@ -72,7 +72,6 @@ import Accelerate
         var outputShapesArray = [[NSNumber]]()
         
         outputShapesArray.append([1, 1, 1, inputShapes[0][3], NSNumber(value: dctCoefficientCount)])
-        print("MfccLayer: ", #function, inputShapes, " -> ", outputShapesArray)
         return outputShapesArray
     }
     
