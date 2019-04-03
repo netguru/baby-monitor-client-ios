@@ -10,6 +10,7 @@ enum Localizable {
     enum General {
         static let babyMonitor = localized("general.baby-monitor")
         static let cancel = localized("general.cancel")
+        static let `continue` = localized("general.continue")
         static let disconnected = localized("general.disconnected")
         static let delete = localized("general.delete")
         static let ok = localized("general.ok")

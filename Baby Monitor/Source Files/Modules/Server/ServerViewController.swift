@@ -46,7 +46,7 @@ final class ServerViewController: BaseViewController {
         action: nil)
     private var timer: Timer?
     private let babyNavigationItemView = BabyNavigationItemView(mode: .baby)
-    private let localView = RTCEAGLVideoView()
+    private let localView = StreamVideoView(contentTransform: .flippedHorizontally)
     private let viewModel: ServerViewModel
     private let bag = DisposeBag()
     
@@ -114,7 +114,6 @@ final class ServerViewController: BaseViewController {
             return
         }
         localVideoTrack?.remove(localView)
-        localView.renderFrame(nil)
         localVideoTrack = stream.videoTracks[0] as? RTCVideoTrack
         localVideoTrack?.add(localView)
     }

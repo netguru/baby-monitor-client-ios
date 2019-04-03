@@ -16,6 +16,7 @@
 		20AFD00021F62B9900FC810F /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFCFFF21F62B9900FC810F /* Rubik-Bold.ttf */; };
 		20AFD00221F62BA200FC810F /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFD00121F62BA200FC810F /* Rubik-Regular.ttf */; };
 		2FD6861BC0920FE58CB3D522 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DA983E08D91DB2F19F277C9 /* Pods_Baby_Monitor.framework */; };
+		3A3C61AC223EC2140020FD3D /* StreamVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3C61AB223EC2140020FD3D /* StreamVideoView.swift */; };
 		3A8DAC89222D403400427BBE /* ApplicationStateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DAC88222D403400427BBE /* ApplicationStateProvider.swift */; };
 		3A8DAC8B222D512400427BBE /* ApplicationStateProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DAC8A222D512400427BBE /* ApplicationStateProviderMock.swift */; };
 		4E190CA321789E820004ED79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E190CA221789E820004ED79 /* Constants.swift */; };
@@ -293,6 +294,7 @@
 		20AFD00121F62BA200FC810F /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		2DF3AA99E8050A590C2C9C86 /* Pods-Baby MonitorTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.staging.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.staging.xcconfig"; sourceTree = "<group>"; };
 		33E1959F9CAED63F1EBBC378 /* Pods-Baby Monitor.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.staging.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.staging.xcconfig"; sourceTree = "<group>"; };
+		3A3C61AB223EC2140020FD3D /* StreamVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVideoView.swift; sourceTree = "<group>"; };
 		3A8DAC88222D403400427BBE /* ApplicationStateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStateProvider.swift; sourceTree = "<group>"; };
 		3A8DAC8A222D512400427BBE /* ApplicationStateProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStateProviderMock.swift; sourceTree = "<group>"; };
 		3D35897D6D02EF8BB7728EDE /* Pods-Baby MonitorTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.production.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.production.xcconfig"; sourceTree = "<group>"; };
@@ -976,6 +978,7 @@
 				4E1D2C682167926500E92F29 /* BaseView.swift */,
 				200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */,
 				A1640E2A22048EA100398ED2 /* BabyMonitorSwitch.swift */,
+				3A3C61AB223EC2140020FD3D /* StreamVideoView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -2030,6 +2033,7 @@
 				8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */,
 				A18D3E7521FF6D3700C165C6 /* ActivityLogView.swift in Sources */,
 				8A8EF94F219D55B60098A27B /* MessageStreamProtocol.swift in Sources */,
+				3A3C61AC223EC2140020FD3D /* StreamVideoView.swift in Sources */,
 				95368F582209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 				8A7A608421A4027E00488ED4 /* ErrorHandler.swift in Sources */,
