@@ -1,13 +1,14 @@
 //
-//  AudioRecordServiceMock.swift
+//  AudioMicrophoneServiceMock.swift
 //  Baby MonitorTests
 //
 
+import AudioKit
 import Foundation
 import RxSwift
 @testable import BabyMonitor
 
-final class AudioRecordServiceMock: AudioRecordServiceProtocol {
+final class AudioMicrophoneServiceMock: AudioMicrophoneServiceProtocol {
 
     lazy var directoryDocumentsSavableObservable: Observable<DirectoryDocumentsSavable> = directoryDocumentSavablePublihser.asObservable()
     var directoryDocumentSavablePublihser = PublishSubject<DirectoryDocumentsSavable>()
@@ -22,4 +23,18 @@ final class AudioRecordServiceMock: AudioRecordServiceProtocol {
     func startRecording() {
         isRecording = true
     }
+
+    lazy var microphoneBufferReadableObservable: Observable<AVAudioPCMBuffer> = microphoneBufferReadablePublisher.asObservable()
+    var microphoneBufferReadablePublisher = PublishSubject<AVAudioPCMBuffer>()
+    var isCapturing: Bool = false
+
+    func stopCapturing() {
+        isCapturing = true
+        microphoneBufferReadablePublisher.onNext(AVAudioPCMBuffer())
+    }
+
+    func startCapturing() {
+        isCapturing = false
+    }
+
 }

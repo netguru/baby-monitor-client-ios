@@ -19,6 +19,9 @@
 		3A3C61AC223EC2140020FD3D /* StreamVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3C61AB223EC2140020FD3D /* StreamVideoView.swift */; };
 		3A8DAC89222D403400427BBE /* ApplicationStateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DAC88222D403400427BBE /* ApplicationStateProvider.swift */; };
 		3A8DAC8B222D512400427BBE /* ApplicationStateProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DAC8A222D512400427BBE /* ApplicationStateProviderMock.swift */; };
+		3ABC41B722553F7900645ADA /* AudioKitMicrophoneMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC41B622553F7900645ADA /* AudioKitMicrophoneMock.swift */; };
+		3ABC41B922553FE700645ADA /* MicrophoneRecordMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC41B822553FE700645ADA /* MicrophoneRecordMock.swift */; };
+		3ABC41BB2255407100645ADA /* MicrophoneCaptureMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC41BA2255407100645ADA /* MicrophoneCaptureMock.swift */; };
 		4E190CA321789E820004ED79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E190CA221789E820004ED79 /* Constants.swift */; };
 		4E1CF817217856C500F48706 /* ServerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CF816217856C500F48706 /* ServerViewModel.swift */; };
 		4E1D2C5D21673FF800E92F29 /* CameraPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D2C5C21673FF800E92F29 /* CameraPreviewViewController.swift */; };
@@ -155,10 +158,9 @@
 		8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */; };
 		8A7A613E21A6AACD00488ED4 /* MessageServerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */; };
 		8A7A614921A6AC7900488ED4 /* CryingDetectionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */; };
-		8A7A614A21A6AC7900488ED4 /* AudioRecordServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614521A6AC7900488ED4 /* AudioRecordServiceMock.swift */; };
+		8A7A614A21A6AC7900488ED4 /* AudioMicrophoneServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614521A6AC7900488ED4 /* AudioMicrophoneServiceMock.swift */; };
 		8A7A614B21A6AC7900488ED4 /* DocumentsSavableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614621A6AC7900488ED4 /* DocumentsSavableMock.swift */; };
-		8A7A614C21A6AC7900488ED4 /* RecorderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614721A6AC7900488ED4 /* RecorderMock.swift */; };
-		8A7A614E21A6AC8800488ED4 /* AudioRecordServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614D21A6AC8800488ED4 /* AudioRecordServiceTests.swift */; };
+		8A7A614E21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614D21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift */; };
 		8A7A615021A6ACB000488ED4 /* CryingEventServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */; };
 		8A7A615221A6B00F00488ED4 /* CryingEventsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A615121A6B00F00488ED4 /* CryingEventsServiceMock.swift */; };
 		8A7A616D21A8162000488ED4 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A616C21A8162000488ED4 /* UIColor+Custom.swift */; };
@@ -297,6 +299,9 @@
 		3A3C61AB223EC2140020FD3D /* StreamVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVideoView.swift; sourceTree = "<group>"; };
 		3A8DAC88222D403400427BBE /* ApplicationStateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStateProvider.swift; sourceTree = "<group>"; };
 		3A8DAC8A222D512400427BBE /* ApplicationStateProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStateProviderMock.swift; sourceTree = "<group>"; };
+		3ABC41B622553F7900645ADA /* AudioKitMicrophoneMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioKitMicrophoneMock.swift; sourceTree = "<group>"; };
+		3ABC41B822553FE700645ADA /* MicrophoneRecordMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophoneRecordMock.swift; sourceTree = "<group>"; };
+		3ABC41BA2255407100645ADA /* MicrophoneCaptureMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneCaptureMock.swift; sourceTree = "<group>"; };
 		3D35897D6D02EF8BB7728EDE /* Pods-Baby MonitorTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.production.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.production.xcconfig"; sourceTree = "<group>"; };
 		4E1134B321E498E5005E3583 /* BabyMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyMonitor.entitlements; sourceTree = "<group>"; };
 		4E190CA221789E820004ED79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -480,10 +485,9 @@
 		8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerProtocol.swift; sourceTree = "<group>"; };
 		8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServerMock.swift; sourceTree = "<group>"; };
 		8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryingDetectionServiceMock.swift; sourceTree = "<group>"; };
-		8A7A614521A6AC7900488ED4 /* AudioRecordServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecordServiceMock.swift; sourceTree = "<group>"; };
+		8A7A614521A6AC7900488ED4 /* AudioMicrophoneServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMicrophoneServiceMock.swift; sourceTree = "<group>"; };
 		8A7A614621A6AC7900488ED4 /* DocumentsSavableMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsSavableMock.swift; sourceTree = "<group>"; };
-		8A7A614721A6AC7900488ED4 /* RecorderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderMock.swift; sourceTree = "<group>"; };
-		8A7A614D21A6AC8800488ED4 /* AudioRecordServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecordServiceTests.swift; sourceTree = "<group>"; };
+		8A7A614D21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMicrophoneServiceTests.swift; sourceTree = "<group>"; };
 		8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CryingEventServiceTests.swift; path = "Baby MonitorTests/Services/CryingEventServiceTests.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A615121A6B00F00488ED4 /* CryingEventsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingEventsServiceMock.swift; sourceTree = "<group>"; };
 		8A7A616C21A8162000488ED4 /* UIColor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
@@ -1090,11 +1094,10 @@
 				8A50AA9621E8DBA10058C63A /* VideoCapturerMock.swift */,
 				8A50AA9321E8DBA10058C63A /* WebRtcClientManagerMock.swift */,
 				8A50AA9421E8DBA10058C63A /* WebRtcServerManagerMock.swift */,
-				8A7A614521A6AC7900488ED4 /* AudioRecordServiceMock.swift */,
+				8A7A614521A6AC7900488ED4 /* AudioMicrophoneServiceMock.swift */,
 				8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */,
 				A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */,
 				8A7A614621A6AC7900488ED4 /* DocumentsSavableMock.swift */,
-				8A7A614721A6AC7900488ED4 /* RecorderMock.swift */,
 				8A7A60CD21A40D3B00488ED4 /* MicrophoneTrackerMock.swift */,
 				8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */,
 				8A42DB0D2179D8FB00BF5F1B /* URLUserDefaultsMock.swift */,
@@ -1113,6 +1116,9 @@
 				4EB93D1F21ECA15F00E99BB3 /* StorageServerServiceMock.swift */,
 				8A8B76F121F1D8210063EF7E /* WebSocketEventMessageServiceMock.swift */,
 				3A8DAC8A222D512400427BBE /* ApplicationStateProviderMock.swift */,
+				3ABC41B622553F7900645ADA /* AudioKitMicrophoneMock.swift */,
+				3ABC41B822553FE700645ADA /* MicrophoneRecordMock.swift */,
+				3ABC41BA2255407100645ADA /* MicrophoneCaptureMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1248,7 +1254,7 @@
 			isa = PBXGroup;
 			children = (
 				8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */,
-				8A7A614D21A6AC8800488ED4 /* AudioRecordServiceTests.swift */,
+				8A7A614D21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift */,
 				8A7A60CB21A40D2F00488ED4 /* CryingDetectionServiceTests.swift */,
 			);
 			path = Media;
@@ -2049,6 +2055,7 @@
 				8A7A615221A6B00F00488ED4 /* CryingEventsServiceMock.swift in Sources */,
 				8A50AAA421E8DBA20058C63A /* PeerConnectionMock.swift in Sources */,
 				8A50AA9F21E8DBA20058C63A /* SdpOfferDecoderMock.swift in Sources */,
+				3ABC41B722553F7900645ADA /* AudioKitMicrophoneMock.swift in Sources */,
 				8A50AA8721E8D8D60058C63A /* MessageServerTests.swift in Sources */,
 				8A42DB122179D9A300BF5F1B /* UserDefaultsURLConfiguration.swift in Sources */,
 				8AA7CBE4218C5A5100FCF62A /* URLMediaPlayerMock.swift in Sources */,
@@ -2057,15 +2064,17 @@
 				8A50AAA021E8DBA20058C63A /* VideoCapturerMock.swift in Sources */,
 				8A7A60CE21A40D3B00488ED4 /* MicrophoneTrackerMock.swift in Sources */,
 				8A6098C021EBFB1F00592B01 /* PeerConnectionFactoryMock.swift in Sources */,
+				3ABC41BB2255407100645ADA /* MicrophoneCaptureMock.swift in Sources */,
 				8AFAE5BE219C0FF7007013BC /* MessageDecoderMock.swift in Sources */,
 				4E8E057721AEADC5009ACE05 /* SpecifyDeviceOnboardingViewModelTests.swift in Sources */,
 				8AFAE5B8219AFF6D007013BC /* WebSocketMock.swift in Sources */,
 				8A50AA8E21E8D8FA0058C63A /* WebRtcClientManagerTests.swift in Sources */,
+				3ABC41B922553FE700645ADA /* MicrophoneRecordMock.swift in Sources */,
 				8AA7CBCC21871B3E00FCF62A /* ConnectionCheckerMock.swift in Sources */,
 				8A8EF955219D581D0098A27B /* MessageStreamMock.swift in Sources */,
 				8AA7CBC02187105600FCF62A /* BabyMonitorCellMock.swift in Sources */,
 				8AA7CBCA21871AE300FCF62A /* DashboardViewModelTests.swift in Sources */,
-				8A7A614A21A6AC7900488ED4 /* AudioRecordServiceMock.swift in Sources */,
+				8A7A614A21A6AC7900488ED4 /* AudioMicrophoneServiceMock.swift in Sources */,
 				8A42DB0E2179D8FB00BF5F1B /* URLUserDefaultsMock.swift in Sources */,
 				8A7A614921A6AC7900488ED4 /* CryingDetectionServiceMock.swift in Sources */,
 				8A8B76F221F1D8210063EF7E /* WebSocketEventMessageServiceMock.swift in Sources */,
@@ -2078,7 +2087,7 @@
 				8A7A613E21A6AACD00488ED4 /* MessageServerMock.swift in Sources */,
 				8A7A614B21A6AC7900488ED4 /* DocumentsSavableMock.swift in Sources */,
 				3A8DAC8B222D512400427BBE /* ApplicationStateProviderMock.swift in Sources */,
-				8A7A614E21A6AC8800488ED4 /* AudioRecordServiceTests.swift in Sources */,
+				8A7A614E21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift in Sources */,
 				4EB93D2021ECA15F00E99BB3 /* StorageServerServiceMock.swift in Sources */,
 				8A42DB172179DD9C00BF5F1B /* URL+PrefixTests.swift in Sources */,
 				8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */,
@@ -2087,7 +2096,6 @@
 				8A50AA9E21E8DBA20058C63A /* WebRtcServerManagerMock.swift in Sources */,
 				8A7A60C721A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift in Sources */,
 				8A8B76E121EDE4650063EF7E /* WebsocketMessageDecodableTests.swift in Sources */,
-				8A7A614C21A6AC7900488ED4 /* RecorderMock.swift in Sources */,
 				8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */,
 				8A50AA9C21E8DBA20058C63A /* IceCandidateDecoderMock.swift in Sources */,
 				4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */,
