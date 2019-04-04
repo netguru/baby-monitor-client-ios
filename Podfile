@@ -18,7 +18,7 @@ target 'Baby Monitor' do
   pod 'RxCocoa', '~> 4.0'
   pod 'RxDataSources', '~> 3.0'
   pod 'PocketSocket', '~> 1.0.1'
-  pod 'AudioKit', '4.5.2'
+  pod 'AudioKit', '~> 4.7.0'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'Firebase/Storage'

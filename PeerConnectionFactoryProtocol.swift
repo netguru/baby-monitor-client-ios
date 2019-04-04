@@ -27,8 +27,8 @@ extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
         let vTrack = videoTrack(withID: "ARDAMSv0", source: videoSource(with: videoCapturer, constraints: nil))
         localStream.addVideoTrack(vTrack)
 
-//        let aTrack = audioTrack(withID: "ARDAMSa0")
-//        localStream.addAudioTrack(aTrack)
+        let aTrack = audioTrack(withID: "ARDAMSa0")
+        localStream.addAudioTrack(aTrack)
 
         return localStream
 
