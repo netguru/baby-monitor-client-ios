@@ -1,11 +1,12 @@
-/* 
+/*
   Localizable.strings
   Baby Monitor
 */
 
 //MARK: - General
-"general.baby-monitor" = "Baby Guard";
+"general.baby-monitor" = "BabyGuard";
 "general.cancel" = "Cancel";
+"general.continue" = "Continue";
 "general.disconnected" = "Disconnected";
 "general.delete" = "Delete";
 "general.ok" = "OK";
@@ -24,7 +25,7 @@
 //MARK: = Intro
 "intro.title.monitoring" = "Do your daily errands and\nkeep an eye on your baby";
 "intro.title.detection" = "Crying baby alert";
-"intro.title.safety" = "Your privacy is safe when\nusing Baby Guard";
+"intro.title.safety" = "Your privacy is safe when\nusing BabyGuard";
 "intro.title.recordings" = "Send anonymized baby\nvoice recordings";
 "intro.description.monitoring" = "Easily check on the baby anywhere\nand anytime you want.";
 "intro.description.detection" = "You'll get a notification every time your\nbaby starts crying.";
@@ -32,15 +33,15 @@
 "intro.description.recordings" = "Voice recordings are only used for\ndevelopment purposes and never without\nyour permission.";
 "intro.button.skip" = "Skip";
 "intro.button.next" = "Next";
-"intro.button.setup-baby-monitor" = "Set up Baby Guard";
+"intro.button.setup-baby-monitor" = "Set up BabyGuard";
 
 //MARK: - Onboarding
 "onboarding.connecting" = "Connecting";
 "onboarding.continue" = "Continue";
-"onboarding.connecting.connect-to-wi-fi" = "Get started by\nconnecting\nBaby Guard to\nWi-Fi";
+"onboarding.connecting.connect-to-wi-fi" = "Get started by\nconnecting\nBabyGuard to\nWi-Fi";
 "onboarding.connecting.connect-to-wi-fi.title" = "Connect to Wi-Fi";
-"onboarding.button.start-client" = "START BABY GUARD CLIENT";
-"onboarding.button.start-server" = "START BABY GUARD SERVER";
+"onboarding.button.start-client" = "START BABYGUARD CLIENT";
+"onboarding.button.start-server" = "START BABYGUARD SERVER";
 "onboarding.button.setup-address" = "Setup Address";
 "onboarding.button.start-discovering" = "START DISCOVERING SERVICES";
 "onboarding.text-field-placeholder.address" = "Type address...";
@@ -49,22 +50,22 @@
 "onboarding.label.specify-this-device" = "Specify this device";
 "onboarding.label.define-this-device" = "Define this device";
 "onboarding.label.define-descripion" = "Let's start with defining this device.";
-"onboarding.label.welcome-to" = "Welcome to Baby Guard \nLet’s start by defining this device";
+"onboarding.label.welcome-to" = "Welcome to BabyGuard \nLet’s start by defining this device";
 "onboarding.pairing.share-link.title" = "Hello";
-"onboarding.pairing.share-link.description" = "It’s time to install Baby Guard \non your second device\n\n";
+"onboarding.pairing.share-link.description" = "It’s time to install BabyGuard \non your second device\n\n";
 "onboarding.pairing.connecting.description" = "Searching for\nsecond device";
 "onboarding.pairing.done.description" = "Done!";
 "onboarding.pairing.error-description" = "Ups! Something\nwent wrong :(";
 "onboarding.pairing.error-second-description" = "Make sure that both devices are\nconnected to the same WiFi network.";
-"onboarding.pairing.hello.second-description-bottom-part" = "Make sure you have already installed\nBaby Guard on your baby's device";
+"onboarding.pairing.hello.second-description-bottom-part" = "Make sure you have already installed\nBabyGuard on your baby's device";
 "onboarding.pairing.try-again" = "Try again";
-"onboarding.pairing.start-using-baby-monitor" = "You can now start using Baby Guard!";
+"onboarding.pairing.start-using-baby-monitor" = "You can now start using BabyGuard!";
 "onboarding.pairing.all-done" = "All done!";
 "onboarding.pairing.get-started" = "Get started";
 "onboarding.connecting.setup-information" = "Setup information";
 "onboarding.connecting.place-device" = "Put this device next\nto your baby's bed, so\nthat you can see him\nor her in a real time\nview";
 "onboarding.connecting.start-monitoring" = "Start monitoring";
-"onboarding.baby-setup.permissions-denided.text" = "Baby Guard is\nunable to work\nwithout permissions.";
+"onboarding.baby-setup.permissions-denided.text" = "BabyGuard is\nunable to work\nwithout permissions.";
 "onboarding.baby-setup.permissions-denided-question.text" = "Are you sure you want to deny\npermissions?";
 "onboarding.baby-setup.permissions-denided" = "Permissions denied";
 "onboarding.baby-setup.access.camera.main-description" = "Tap “OK” to keep an\neye on your baby!";
@@ -74,7 +75,7 @@
 
 //MARK: - Onboarding Specify Device
 "onboarding.specify-device.info.title" = "Prepare two devices\nfor setup";
-"onboarding.specify-device.info.description.first-part" = "You need two devices to start using\nBaby Guard. ";
+"onboarding.specify-device.info.description.first-part" = "You need two devices to start using\nBabyGuard. ";
 "onboarding.specify-device.info.description.one-text" = "One";
 "onboarding.specify-device.info.description.middle-part-text" = ", to monitor your\nbaby in a room, and ";
 "onboarding.specify-device.info.description.the-other-text" = "the other ";
@@ -115,7 +116,7 @@
 //MARK: - Activity Log
 "activity-log.title" = "Latest activity";
 "activity-log.empty-state.message" = "Device was paired and configured correctly";
-"activity-log.no-more-notifications.message" = "It seems you don’t have more notifications!\n Enjoy using Baby Guard!";
+"activity-log.no-more-notifications.message" = "It seems you don’t have more notifications!\n Enjoy using BabyGuard!";
 "activity-log.was-crying" = "was crying";
 
 //MARK: - Lullabies
@@ -136,10 +137,10 @@
 "settings.header.crying-detection-method" = "Crying Detection Method";
 "settings.cell.send-recordings-to-server" = "Send crying records to server";
 "settings.cell.clear-data" = "Clear data";
-"settings.cell.clear-data-alert-message" = "All data will be cleared. Would you like to continue?";
+"settings.cell.clear-data-alert-message" = "Your current connection will be terminated. Are you sure you want to proceed?";
 "settings.babyNameTextField.placeholder" = "Your baby name";
 "settings.rateButton.title" = "Rate us";
-"settings.resetButton.title" = "Reset the app";
+"settings.resetButton.title" = "Reset the connection";
 "settings.allow-sending.message" = "Allow to send baby voice\nrecordings";
 "settings.send-cryings.description.first-part" = "No worries, your data will be safe! We need\nvoice recordings only for app development.\nWhat does it mean?\n\n" ;
 "settings.send-cryings.description.with-your-help" = "With your help";
