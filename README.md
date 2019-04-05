@@ -85,6 +85,7 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 
 ## Related repositories
 
+- [baby-monitor-models](https://github.com/netguru/baby-monitor-models)
 - [baby-monitor-client-ios](https://github.com/netguru/baby-monitor-client-ios)
 - [baby-monitor-client-android](https://github.com/netguru/baby-monitor-client-android)
 - [baby-monitor-server-android](https://github.com/netguru/baby-monitor-server-android)
