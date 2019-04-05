@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+ This class provides computation functionality to calculate the Discrete Cosine Transform as part of determining the Mel-frequency-cepstrum coefficients for an audio signal and it mirrors the corresponding tensorflow kernel, whose implementation can be found here: https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/kernels/mfcc_dct.h
+ This class however implements a sub-optimal non-hardware accelerated method of computing the DCT and is only used when the hardware accelerated implementation cannot be used due to the specific configuration/parametrization used.
+ */
 class MfccDct {
     enum MfccDctError: Error {
         case parameterError(String)
@@ -24,7 +28,12 @@ class MfccDct {
         inputLength = 0
         cosines = []
     }
-    
+
+    /**
+     Initializes instance of MfccDCT.
+     - Parameter inputLength: length of input on which we have to apply the DCT
+     - Parameter coefficientCount: number of coefficients used in the Discrete Cosine Transform
+     */
     func initialize(inputLength: Int, coefficientCount: Int) throws {
         guard coefficientCount >= 0 else {
             throw MfccDctError.parameterError("coefficient_count must be strictly positive")
@@ -50,7 +59,12 @@ class MfccDct {
         }
         initialized = true
     }
-    
+
+    /**
+     Computes the Discrete Cosine transform for given input and writes it to output
+     - Parameter input: Pointer to input spectrogram data for which to calculate the MFCCs
+     - Parameter output: Pointer indicating where to write the evaluation via DCT of the input. Memory allocation is on the caller of this method.
+     */
     func compute(input: UnsafeMutablePointer<Float>, output: UnsafeMutablePointer<Float>) {
         for i in 0..<coefficientCount {
             var sum: Float = 0.0

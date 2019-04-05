@@ -9,11 +9,9 @@
 import Foundation
 import Accelerate
 
-// Input: [264600,1]
-// => Bin into windows => [598, 1323]
-// =>
-//
-//
+/**
+ This class implements generating Spectrograms from linear pcm audio signals. It mirrors the tensorflow implementation (written in C++) (see: https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/kernels/spectrogram.h)
+ */
 class SpectrogramOp: NSObject {
     
     enum SpectrogramOpError: Error {
@@ -38,6 +36,12 @@ class SpectrogramOp: NSObject {
     var fftSetup: vDSP_DFT_Setup?
     var magnitudeSquared: Bool = true
 
+    /**
+     Initializes a SpectrogramOp instance capable of computing a Spectrogram of a linear pcm audio signal.
+     - Parameter windowLength: Window length to be used during Spectrogram computation
+     - Parameter stepLength: Step length to be used during Spectrogram computation. A stepLength strictly smaller than windowLength results in window overlap.
+     - Parameter magnituteSquared: Whether to calculate final magnitutdes of Spectrogram as L2 norm squared or normal L2 norm
+     */
     init(windowLength: Int, stepLength: Int, magnitudeSquared: Bool) throws {
         self.windowLength = windowLength
         self.stepLength = stepLength
@@ -73,6 +77,12 @@ class SpectrogramOp: NSObject {
         vDSP_DFT_DestroySetup(fftSetup)
     }
     
+    /**
+     Computes the spectrogram based on configuration of this Op instance on a given linear pcm audio signal
+     - Parameter input: Pointer to Float (16bit/Half precision) values representing the raw linear pcm audio signal
+     - Parameter inputLength: Number of raw linear pcm audio signal samples
+     - Parameter output: Pointer to memory to be used to write the generated spectrogram. Has to be allocated by the caller of this method.
+     */
     func compute(input: UnsafeMutablePointer<Float>,
                  inputLength: Int,
                  output: UnsafeMutablePointer<Float>) throws {

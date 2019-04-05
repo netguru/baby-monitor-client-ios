@@ -10,6 +10,9 @@ import Foundation
 import CoreML
 import Accelerate
 
+/**
+ This class adds functionality to Apple's coreML in the form of a Custom Layer that allows computing the Mel frequency cepstrum for a spectrogram computed for a given linear pcm audio signal
+ */
 @objc(MfccLayer) class MfccLayer: NSObject, MLCustomLayer {
     enum MfccLayerError: Error {
         case parameterError(String)
@@ -24,6 +27,10 @@ import Accelerate
     let sampleRate: Double
     var mfccOp: MfccOp?
     
+    /**
+     Initializes instance of MfccLayer with given parameters from the .mlmodel protobufs
+     - Parameter parameters: parameters as defined in the protobuf files of the coreml .mlmodel binary file
+     */
     required init(parameters: [String: Any]) throws {
         guard let sampleRate = parameters["sample_rate"] as? Double else {
             throw MfccLayerError.parameterError("sample_rate")
@@ -63,18 +70,31 @@ import Accelerate
         super.init()
     }
     
-    func setWeightData(_ weights: [Data]) throws {}
+    /**
+     Serves no purpose, since this layer has no associated weights.
+     */
+    func setWeightData(_ weights: [Data]) throws {
+        // No weight data in this layer
+    }
     
+    /**
+     Computes the predicted output shapes for a given input shapes according to the following formula:
+     [1, 1, 1, N_TIME_BINS, N_FREQUENCY_BINS] => [1, 1, 1, N_TIME_BINS, self.dctCoefficientCount],
+     where self.self.dctCoefficientCount is given by parameters during initialization of the MfccLayer instance.
+     - Parameter inputShapes: inputShapes for which to calculate output shapes
+     - Returns: outputShapes for given inputShapes
+     */
     func outputShapes(forInputShapes inputShapes: [[NSNumber]]) throws -> [[NSNumber]] {
-        // Input shape is [1,1,1,N_TIME_BINS, N_FREQUENCY_BINS]
-        // This gives us the output shape
-        // [1,1,N_TIME_BINS, dct_coefficient_count]
         var outputShapesArray = [[NSNumber]]()
-        
         outputShapesArray.append([1, 1, 1, inputShapes[0][3], NSNumber(value: dctCoefficientCount)])
         return outputShapesArray
     }
     
+    /**
+     Evaluate the layer for a given set of inputs and write result to a given set of outputs
+     - Parameter inputs: Array of MLMultiArray instances, each representing 1 input to be evaluated.
+     - Parameter outputs: Array of MLMultiArray instances, each representing 1 output into which the evaluation of the corresponding input is written.
+     */
     func evaluate(inputs: [MLMultiArray], outputs: [MLMultiArray]) throws {
         let nSpectrogramSamples = Int(truncating: inputs[0].shape[3])
         let nSpectrogramChannels = Int(truncating: inputs[0].shape[4])
