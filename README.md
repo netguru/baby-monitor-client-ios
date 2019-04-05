@@ -61,7 +61,7 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 	bundle exec pod install
 	```
 
-6. Open `Baby Monitor.xcodeproj` file and build the project.
+6. Open `Baby Monitor.xcworkspace` file and build the project.
 
 
 ## Coding guidelines
