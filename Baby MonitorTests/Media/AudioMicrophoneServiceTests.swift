@@ -7,17 +7,20 @@ import XCTest
 import RxSwift
 @testable import BabyMonitor
 
-class AudioRecordServiceTests: XCTestCase {
+class AudioMicrophoneServiceTests: XCTestCase {
     
     //Given
-    let recorderMock = RecorderMock()
-    lazy var sut = try! AudioRecordService(recorderFactory: {
-        return recorderMock
+    lazy var recorderMock = MicrophoneRecordMock()
+    lazy var capturerMock = MicrophoneCaptureMock()
+    lazy var microphoneMock = AudioKitMicrophoneMock(record: recorderMock, capture: capturerMock)
+
+    lazy var sut = try! AudioMicrophoneService(microphoneFactory: {
+        return microphoneMock
     })
     
     override func setUp() {
-        sut = try! AudioRecordService(recorderFactory: {
-            return recorderMock
+        sut = try! AudioMicrophoneService(microphoneFactory: {
+            return microphoneMock
         })
     }
 

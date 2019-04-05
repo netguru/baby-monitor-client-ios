@@ -11,17 +11,17 @@ import RxTest
 class CryingEventServiceTests: XCTestCase {
     
     //Given
-    lazy var sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock, storageService: storageServiceMock)
+    lazy var sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, microphoneRecordService: audioMicrophoneServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock, storageService: storageServiceMock)
     var cryingDetectionServiceMock = CryingDetectionServiceMock()
-    var audioRecordServiceMock = AudioRecordServiceMock()
+    var audioMicrophoneServiceMock = AudioMicrophoneServiceMock()
     var cryingEventsRepositoryMock = DatabaseRepositoryMock()
     var storageServiceMock = StorageServerServiceMock()
 
     override func setUp() {
         cryingDetectionServiceMock = CryingDetectionServiceMock()
-        audioRecordServiceMock = AudioRecordServiceMock()
+        audioMicrophoneServiceMock = AudioMicrophoneServiceMock()
         cryingEventsRepositoryMock = DatabaseRepositoryMock()
-        sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock, storageService: storageServiceMock)
+        sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, microphoneRecordService: audioMicrophoneServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock, storageService: storageServiceMock)
     }
     
     func testShouldStartCryingDetectionAnalysis() {
@@ -37,7 +37,7 @@ class CryingEventServiceTests: XCTestCase {
         try! sut.start()
         
         //Then
-        XCTAssertFalse(audioRecordServiceMock.isRecording)
+        XCTAssertFalse(audioMicrophoneServiceMock.isRecording)
     }
     
     func testShouldStartRecordingAudio() {
@@ -46,13 +46,13 @@ class CryingEventServiceTests: XCTestCase {
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
         
         //Then
-        XCTAssertTrue(audioRecordServiceMock.isRecording)
+        XCTAssertTrue(audioMicrophoneServiceMock.isRecording)
     }
     
     func testShouldNotSaveCryingEventWithSuccessfullCryingAudioRecordSave() {
         //When
         try! sut.start()
-        audioRecordServiceMock.isSaveActionSuccess = true
+        audioMicrophoneServiceMock.isSaveActionSuccess = true
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
         
@@ -63,7 +63,7 @@ class CryingEventServiceTests: XCTestCase {
     func testShouldNotSaveCryingEvent() {
         //When
         try! sut.start()
-        audioRecordServiceMock.isSaveActionSuccess = false
+        audioMicrophoneServiceMock.isSaveActionSuccess = false
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
         

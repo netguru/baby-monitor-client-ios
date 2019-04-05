@@ -29,14 +29,14 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     private let cryingEventPublisher = PublishSubject<EventMessage>()
     private let errorPublisher = PublishSubject<Error>()
     private let cryingDetectionService: CryingDetectionServiceProtocol
-    private let audioRecordService: AudioRecordServiceProtocol?
+    private let microphoneRecordService: AudioMicrophoneRecordServiceProtocol?
     private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
     private let storageService: StorageServerServiceProtocol
     private let disposeBag = DisposeBag()
     
-    init(cryingDetectionService: CryingDetectionServiceProtocol, audioRecordService: AudioRecordServiceProtocol?, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol, storageService: StorageServerServiceProtocol) {
+    init(cryingDetectionService: CryingDetectionServiceProtocol, microphoneRecordService: AudioMicrophoneRecordServiceProtocol?, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol, storageService: StorageServerServiceProtocol) {
         self.cryingDetectionService = cryingDetectionService
-        self.audioRecordService = audioRecordService
+        self.microphoneRecordService = microphoneRecordService
         self.activityLogEventsRepository = activityLogEventsRepository
         self.storageService = storageService
         rxSetup()
@@ -44,14 +44,17 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     
     func start() throws {
         cryingDetectionService.startAnalysis()
-        if audioRecordService == nil {
+        if microphoneRecordService == nil {
             throw CryingEventServiceError.audioRecordServiceError
         }
     }
     
     func stop() {
         cryingDetectionService.stopAnalysis()
-        audioRecordService?.stopRecording()
+        guard self.microphoneRecordService?.isRecording ?? false else {
+            return
+        }
+        self.microphoneRecordService?.stopRecording()
     }
     
     private func rxSetup() {
@@ -59,24 +62,24 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
             if isBabyCrying {
                 let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
                 self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
-                self.audioRecordService?.startRecording()
+                self.microphoneRecordService?.startRecording()
                 let cryingEventMessage = EventMessage.initWithCryingEvent(value: self.nextFileName)
                 self.cryingEventPublisher.onNext(cryingEventMessage)
             } else {
-                guard self.audioRecordService?.isRecording ?? false else {
+                guard self.microphoneRecordService?.isRecording ?? false else {
                     return
                 }
-                self.audioRecordService?.stopRecording()
+                self.microphoneRecordService?.stopRecording()
             }
         }).disposed(by: disposeBag)
         
-        audioRecordService?.directoryDocumentsSavableObservable.subscribe(onNext: { [unowned self] savableFile in
+        microphoneRecordService?.directoryDocumentsSavableObservable.subscribe(onNext: { [unowned self] savableFile in
             savableFile.save(withName: self.nextFileName, completion: { [unowned self] result in
                 switch result {
                 case .success:
                     self.storageService.uploadRecordingsToDatabaseIfAllowed()
                 case .failure(let error):
-                    self.errorPublisher.onNext(error ?? AudioRecordService.AudioError.saveFailure)
+                    self.errorPublisher.onNext(error ?? AudioMicrophoneService.AudioError.saveFailure)
                 }
             })
         }).disposed(by: disposeBag)

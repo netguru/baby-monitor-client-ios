@@ -1,5 +1,5 @@
 //
-//  RecorderMock.swift
+//  MicrophoneRecordProtocol.swift
 //  Baby MonitorTests
 //
 
@@ -7,7 +7,7 @@ import Foundation
 import AudioKit
 @testable import BabyMonitor
 
-final class RecorderMock: RecorderProtocol {
+final class MicrophoneRecordMock: MicrophoneRecordProtocol {
     
     var audioFile: AKAudioFile? {
         return shouldReturnNilForAudioFile ? nil : try! AKAudioFile()
