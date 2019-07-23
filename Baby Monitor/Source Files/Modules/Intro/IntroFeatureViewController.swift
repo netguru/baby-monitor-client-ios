@@ -5,7 +5,7 @@
 
 import UIKit
 
-class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
+final class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
 
     private let viewModel: IntroViewModel
     
@@ -20,13 +20,15 @@ class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
         customView.setupBackgroundImage(UIImage())
     }
     
     private func setup() {
-        customView.didSelectNextAction = { [weak self] in
-            self?.viewModel.selectNextAction()
+        customView.didSelectRightAction = { [weak self] in
+            self?.viewModel.selectRightAction()
+        }
+        customView.didSelectLeftAction = { [weak self] in
+            self?.viewModel.selectLeftAction()
         }
     }
 }

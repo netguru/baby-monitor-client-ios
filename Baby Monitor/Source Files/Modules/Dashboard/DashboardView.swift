@@ -9,98 +9,95 @@ import RxSwift
 
 class DashboardView: BaseView {
     
-    private enum Constants {
-        static let mainOffset: CGFloat = 20
-        static let disconnectedLabelHeight: CGFloat = 40
-    }
-    
     fileprivate let liveCameraButton = DashboardButtonView(role: .liveCamera)
-    fileprivate let talkButton = DashboardButtonView(role: .talk)
-    fileprivate let playLullabyButton = DashboardButtonView(role: .playLullaby)
-    let babyNavigationItemView = BabyNavigationItemView()
-    let editProfileBarButtonItem = UIBarButtonItem(title: Localizable.Dashboard.editProfile,
-                                                   style: .plain,
-                                                   target: nil,
-                                                   action: nil)
+    fileprivate let activityLogButton = DashboardButtonView(role: .activityLog)
+    let babyNavigationItemView = BabyNavigationItemView(mode: .parent)
     
-    fileprivate let photoButtonView = DashboardPhotoButtonView()
-    
-    private lazy var disconnectedLabel: UILabel = {
-        let label = UILabel()
-        label.text = Localizable.General.disconnected
-        label.textColor = .white
-        label.backgroundColor = .red
-        label.textAlignment = .center
-        label.alpha = 0.0
-        
-        return label
+    let settingsBarButtonItem = UIBarButtonItem(
+        image: #imageLiteral(resourceName: "settings"),
+        style: .plain,
+        target: nil,
+        action: nil)
+    private var pulseColor: UIColor = .babyMonitorLightGreen
+    private lazy var backgroundPhotoImageView: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "photo-dashboard-background"))
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    fileprivate let photoImageView: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "baby-placeholder-dashboard"))
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
     }()
     private lazy var dashboardButtonsStackView: UIStackView = {
-        // TODO: playLullabyButton hidden for MVP
-        let stackView = UIStackView(arrangedSubviews: [liveCameraButton, talkButton])
+        let stackView = UIStackView(arrangedSubviews: [liveCameraButton, activityLogButton])
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         stackView.alignment = .center
+        stackView.spacing = 32
         return stackView
     }()
-
-    fileprivate let nameField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = Localizable.Dashboard.addName
-        textField.textAlignment = .center
-        textField.returnKeyType = .done
-        textField.font = UIFont.systemFont(ofSize: 18)
-        return textField
-    }()
-    private let nameFieldBorder: UIView = {
+    private let pulsatoryView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "lightGray")
+        view.backgroundColor = UIColor.clear
+        view.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         return view
     }()
-    
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 14)
-        //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
-        label.text = "Your baby is laying in bed, looks likes he is sleeping soundly."
-        return label
-    }()
-    private let tipLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        //TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
-        label.text = "Take a peek without disturbing them?"
-        return label
+
+    fileprivate let nameTextField: UITextField = {
+        let textField = UITextField()
+        textField.isUserInteractionEnabled = false
+        textField.textAlignment = .center
+        textField.attributedPlaceholder = NSAttributedString(
+            string: Localizable.Dashboard.yourBabyName,
+            attributes: [
+                .font: UIFont.customFont(withSize: .h1, weight: .medium),
+                .foregroundColor: UIColor.babyMonitorPurple.withAlphaComponent(0.5)
+            ])
+        textField.font = UIFont.customFont(withSize: .h1, weight: .medium)
+        textField.textColor = .babyMonitorPurple
+        return textField
     }()
     
-    private var disconnectedLabelTopOffsetConstraint: NSLayoutConstraint?
+    private let connectionStatusLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont.customFont(withSize: .body, weight: .regular)
+        label.text = Localizable.Dashboard.connectionStatusConnected
+        return label
+    }()
     
     override init() {
         super.init()
         setupLayout()
     }
     
-    func updateName(_ text: String?) {
-        nameField.text = text
-        babyNavigationItemView.setBabyName(text)
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        photoImageView.layer.cornerRadius = photoImageView.frame.width / 2
+        babyNavigationItemView.setupPhotoImageView()
+    }
+    
+    func updateName(_ text: String) {
+        nameTextField.text = text
+        babyNavigationItemView.updateBabyName(text)
     }
 
     func updatePhoto(_ photo: UIImage?) {
-        photoButtonView.setPhoto(photo)
-        babyNavigationItemView.setBabyPhoto(photo)
+        photoImageView.image = photo
+        babyNavigationItemView.updateBabyPhoto(photo ?? UIImage())
     }
     
-    func updatePhotoButtonLayer() {
-        photoButtonView.setupPhotoButtonLayer()
+    func firePulse() {
+        AnimationFactory.shared.firePulse(onView: pulsatoryView, fromColor: pulseColor, toColor: .babyMonitorDarkGray)
     }
 
     // MARK: - private functions
     private func setupLayout() {
-        [photoButtonView, nameField, nameFieldBorder, descriptionLabel, tipLabel, dashboardButtonsStackView, disconnectedLabel].forEach {
+        setupBackgroundImage(UIImage())
+        [backgroundPhotoImageView, photoImageView, nameTextField, connectionStatusLabel, pulsatoryView, dashboardButtonsStackView].forEach {
             addSubview($0)
         }
         
@@ -108,111 +105,73 @@ class DashboardView: BaseView {
     }
     
     private func setupConstraints() {
-        photoButtonView.addConstraints {[
-            $0.equalTo(self, .top, .safeAreaTop),
-            $0.equal(.width, multiplier: 0.9),
+        backgroundPhotoImageView.addConstraints {[
+            $0.equalTo(self, .top, .safeAreaTop, constant: 50),
+            $0.equal(.width, multiplier: 0.7),
             $0.equalTo($0, .width, .height),
             $0.equal(.centerX)
         ]
         }
-        
-        nameField.addConstraints {[
-            $0.equal(.centerX),
-            $0.equal(.width, multiplier: 0.6),
-            $0.equalTo(photoButtonView, .top, .bottom, constant: -Constants.mainOffset)
+        photoImageView.addConstraints {[
+            $0.equal(.width, multiplier: 0.5),
+            $0.equalTo($0, .width, .height),
+            $0.equalTo(backgroundPhotoImageView, .centerY, .centerY),
+            $0.equal(.centerX)
         ]
         }
-        nameFieldBorder.addConstraints {[
-            $0.equalConstant(.height, 2),
+        nameTextField.addConstraints {[
             $0.equal(.centerX),
-            $0.equalTo(nameField, .width, .width),
-            $0.equalTo(nameField, .top, .bottom, constant: 8)
+            $0.equal(.width, multiplier: 1),
+            $0.equalTo(backgroundPhotoImageView, .top, .bottom, constant: 36)
         ]
         }
-        
-        descriptionLabel.addConstraints {[
+        connectionStatusLabel.addConstraints {[
             $0.equal(.centerX),
-            $0.equal(.width, multiplier: 0.9),
-            $0.equalTo(nameField, .top, .bottom, constant: Constants.mainOffset + 25)
+            $0.equalTo(nameTextField, .top, .bottom, constant: 7)
         ]
         }
-        
-        tipLabel.addConstraints {[
-            $0.equal(.centerX),
-            $0.equal(.width, multiplier: 0.9),
-            $0.equalTo(dashboardButtonsStackView, .bottom, .top, constant: -25)
+        pulsatoryView.addConstraints {[
+            $0.equalTo(connectionStatusLabel, .centerY, .centerY),
+            $0.equalTo(connectionStatusLabel, .leading, .trailing, constant: 20),
+            $0.equalTo(nameTextField, .top, .bottom, constant: 7)
         ]
         }
-        
         dashboardButtonsStackView.addConstraints {[
             $0.equal(.centerX),
-            $0.equal(.width, multiplier: 0.8),
-            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -Constants.mainOffset * 2)
+            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -52)
         ]
         }
-        
-        disconnectedLabelTopOffsetConstraint = disconnectedLabel.addConstraints {
-            [$0.equalConstant(.height, Constants.disconnectedLabelHeight),
-             $0.equal(.leading),
-             $0.equal(.trailing),
-             $0.equalTo(self, .top, .safeAreaTop, constant: -Constants.disconnectedLabelHeight)]
-        }.last
     }
     
-    func showIsConnected() {
-        guard disconnectedLabelTopOffsetConstraint?.constant == 0.0 else {
-            return
-        }
-        animateDisconnectLabel(alpha: 0.0, offset: -Constants.disconnectedLabelHeight)
-    }
-    
-    func showIsDisconnected() {
-        guard disconnectedLabelTopOffsetConstraint?.constant == -Constants.disconnectedLabelHeight else {
-            return
-        }
-        animateDisconnectLabel(alpha: 1.0, offset: 0.0)
-    }
-    
-    private func animateDisconnectLabel(alpha: CGFloat, offset: CGFloat) {
-        disconnectedLabelTopOffsetConstraint?.constant = offset
-        UIView.animate(withDuration: 0.2) {
-            self.disconnectedLabel.alpha = alpha
-            self.layoutIfNeeded()
+    fileprivate func updateConnectionStatus(isConnected: Bool) {
+        if isConnected {
+            connectionStatusLabel.text = Localizable.Dashboard.connectionStatusConnected
+            pulseColor = .babyMonitorLightGreen
+        } else {
+            connectionStatusLabel.text = Localizable.Dashboard.connectionStatusDisconnected
+            pulseColor = .babyMonitorBrownGray
         }
     }
 }
 
 extension Reactive where Base: DashboardView {
     
+    var settingsTap: ControlEvent<Void> {
+        return base.settingsBarButtonItem.rx.tap
+    }
+    
     var liveCameraTap: ControlEvent<Void> {
         return base.liveCameraButton.rx.tap
     }
     
-    var talkTap: ControlEvent<Void> {
-        return base.talkButton.rx.tap
+    var activityLogTap: ControlEvent<Void> {
+        return base.activityLogButton.rx.tap
     }
     
-    // TODO: Hidden for MVP
-    // var playLullabyTap: ControlEvent<Void> {
-        // return base.playLullabyButton.rx.tap
-    // }
-    
-    var switchBabyTap: ControlEvent<Void> {
-        return base.babyNavigationItemView.rx.tap
-    }
-    
-    var addPhotoTap: ControlEvent<Void> {
-        return base.photoButtonView.rx.tap
-    }
-    
-    var babyName: ControlProperty<String> {
-        let name = base.nameField.rx.controlEvent(.editingDidEndOnExit)
-            .withLatestFrom(base.nameField.rx.text)
-            .map { $0 ?? "" }
-        let binder = Binder<String>(base) { dashboardView, name in
+    var babyName: Binder<String> {
+        return Binder(base) { dashboardView, name in
             dashboardView.updateName(name)
         }
-        return ControlProperty(values: name, valueSink: binder)
     }
     
     var babyPhoto: Binder<UIImage?> {
@@ -223,7 +182,7 @@ extension Reactive where Base: DashboardView {
     
     var connectionStatus: Binder<Bool> {
         return Binder(base) { dashboardView, isConnection in
-            isConnection ? dashboardView.showIsConnected() : dashboardView.showIsDisconnected()
+            isConnection ? dashboardView.updateConnectionStatus(isConnected: true) : dashboardView.updateConnectionStatus(isConnected: false)
         }
     }
 }

@@ -8,8 +8,9 @@ import RxSwift
 
 protocol ServerServiceProtocol: AnyObject {
     var localStreamObservable: Observable<MediaStream> { get }
-    var audioRecordServiceErrorObservable: Observable<Void> { get }
+    var audioMicrophoneServiceErrorObservable: Observable<Void> { get }
     func startStreaming()
+    func stop()
 }
 
 final class ServerService: ServerServiceProtocol {
@@ -17,7 +18,7 @@ final class ServerService: ServerServiceProtocol {
     var localStreamObservable: Observable<MediaStream> {
         return webRtcServerManager.mediaStream
     }
-    lazy var audioRecordServiceErrorObservable = audioRecordServiceErrorPublisher.asObservable()
+    lazy var audioMicrophoneServiceErrorObservable = audioMicrophoneServiceErrorPublisher.asObservable()
     
     private var isCryingMessageReceivedFromClient = false
     private var timer: Timer?
@@ -26,17 +27,17 @@ final class ServerService: ServerServiceProtocol {
     private let messageServer: MessageServerProtocol
     private let netServiceServer: NetServiceServerProtocol
     private let cryingEventService: CryingEventsServiceProtocol
-    private let babiesRepository: BabiesRepositoryProtocol
+    private let babyModelController: BabyModelControllerProtocol
     private let cacheService: CacheServiceProtocol
     private let disposeBag = DisposeBag()
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
     private let notificationsService: NotificationServiceProtocol
-    private let audioRecordServiceErrorPublisher = PublishSubject<Void>()
+    private let audioMicrophoneServiceErrorPublisher = PublishSubject<Void>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     
-    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babiesRepository: BabiesRepositoryProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
+    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babyModelController: BabyModelControllerProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
         self.cryingEventService = cryingService
-        self.babiesRepository = babiesRepository
+        self.babyModelController = babyModelController
         self.webRtcServerManager = webRtcServerManager
         self.messageServer = messageServer
         self.netServiceServer = netServiceServer
@@ -45,23 +46,14 @@ final class ServerService: ServerServiceProtocol {
         self.notificationsService = notificationsService
         self.babyMonitorEventMessagesDecoder = babyMonitorEventMessagesDecoder
         self.parentResponseTime = parentResponseTime
-        setup()
         rxSetup()
     }
     
     func stop() {
-        netServiceServer.stop()
+        netServiceServer.isEnabled.value = false
         messageServer.stop()
-        webRtcServerManager.disconnect()
+        webRtcServerManager.stop()
         cryingEventService.stop()
-    }
-    
-    private func setup() {
-        if babiesRepository.getCurrent() == nil {
-            let baby = Baby(name: "Anonymous")
-            try! babiesRepository.save(baby: baby)
-            babiesRepository.setCurrent(baby: baby)
-        }
     }
     
     private func rxSetup() {
@@ -146,13 +138,13 @@ final class ServerService: ServerServiceProtocol {
     /// Starts streaming
     func startStreaming() {
         messageServer.start()
-        netServiceServer.publish()
+        netServiceServer.isEnabled.value = true
         do {
             try cryingEventService.start()
         } catch {
             switch error {
             case CryingEventService.CryingEventServiceError.audioRecordServiceError:
-                audioRecordServiceErrorPublisher.onNext(())
+                audioMicrophoneServiceErrorPublisher.onNext(())
             default:
                 break
             }

@@ -8,7 +8,15 @@ import RxSwift
 
 final class WebSocketMock: WebSocketProtocol {
     
-    var isOpen = false
+    lazy var disconnectionObservable = disconnectionPublisher.asObservable()
+    private var disconnectionPublisher = PublishSubject<Void>()
+    var isOpen = false {
+        didSet {
+            if !isOpen {
+                disconnectionPublisher.onNext(())
+            }
+        }
+    }
     
     var receivedMessage: Observable<String> {
         return receivedMessagePublisher

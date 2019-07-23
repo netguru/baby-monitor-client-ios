@@ -7,27 +7,36 @@ import UIKit
 
 class BaseOnboardingView: BaseView {
     
-    var titleLeadingAnchor: NSLayoutXAxisAnchor {
-        return titleLabel.leadingAnchor
-    }
+    var imageViewTopConstraint: NSLayoutConstraint?
+    var imageCenterYAnchor: NSLayoutYAxisAnchor?
+    let imageView = UIImageView()
     
     private let titleLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont.customFont(withSize: .body, weight: .bold)
-        return label
+        let view = UILabel()
+        view.font = UIFont.customFont(withSize: .body, weight: .bold)
+        view.textColor = .babyMonitorPurple
+        return view
     }()
-    
-    private let descriptionLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont.customFont(withSize: .small, weight: .regular)
-        label.alpha = 0.5
-        label.numberOfLines = 0
-        return label
+    private let mainDescriptionLabel: UILabel = {
+        let view = UILabel()
+        view.font = UIFont.customFont(withSize: .h1, weight: .medium)
+        view.numberOfLines = 0
+        view.textColor = .white
+        return view
     }()
-    
-    private let backgroundImageView: UIImageView = {
-        let view = UIImageView(image: #imageLiteral(resourceName: "back"))
-        view.contentMode = .scaleAspectFill
+    private let secondaryDescriptionLabel: UILabel = {
+        let view = UILabel()
+        view.font = UIFont.customFont(withSize: .body, weight: .regular)
+        view.numberOfLines = 0
+        view.textColor = .babyMonitorPurple
+        return view
+    }()
+    private lazy var descriptionsStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [mainDescriptionLabel, secondaryDescriptionLabel])
+        view.axis = .vertical
+        view.alignment = .leading
+        view.distribution = .fillProportionally
+        view.spacing = 13
         return view
     }()
     
@@ -36,44 +45,45 @@ class BaseOnboardingView: BaseView {
         setup()
     }
     
-    func changeStyleToBluish() {
-        titleLabel.textColor = .babyMonitorNonTranslucentWhite
-        descriptionLabel.textColor = .babyMonitorNonTranslucentWhite
-        backgroundImageView.image = #imageLiteral(resourceName: "onboarding-bluish-background")
+    func update(title: String) {
+        titleLabel.text = title
     }
-    
-    func updateTitle(_ text: String) {
-        titleLabel.text = text
+    func update(mainDescription: String) {
+        mainDescriptionLabel.text = mainDescription
     }
-    
-    func updateDescription(_ text: String) {
-        let attributedString = NSMutableAttributedString(string: text)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 10
-        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
-        descriptionLabel.attributedText = attributedString
+    func update(secondaryDescription: NSAttributedString?) {
+        secondaryDescriptionLabel.attributedText = secondaryDescription
+    }
+    func update(image: UIImage) {
+        imageView.image = image
     }
     
     private func setup() {
-        [backgroundImageView, titleLabel, descriptionLabel].forEach {
+        [titleLabel, descriptionsStackView, imageView].forEach {
             addSubview($0)
         }
         setupConstraints()
     }
     
     private func setupConstraints() {
-        backgroundImageView.addConstraints { $0.equalEdges() }
+        let screenHeight = UIScreen.main.bounds.height
         titleLabel.addConstraints {[
-            $0.equal(.safeAreaTop, constant: frame.height * 0.13),
             $0.equal(.leading, constant: 24),
-            $0.equal(.trailing)
+            $0.equalTo(self, .top, .safeAreaTop, constant: screenHeight * 0.1),
+            $0.equal(.centerX)
         ]
         }
-        descriptionLabel.addConstraints {[
+        descriptionsStackView.addConstraints {[
             $0.equalTo(titleLabel, .leading, .leading),
             $0.equal(.trailing),
-            $0.equalTo(titleLabel, .top, .bottom, constant: 24)
+            $0.equalTo(titleLabel, .top, .bottom, constant: 8)
         ]
         }
+        imageViewTopConstraint = imageView.addConstraints {[
+            $0.equalTo(descriptionsStackView, .top, .bottom, constant: 28),
+            $0.equal(.centerX)
+        ]
+        }.first
+        imageCenterYAnchor = imageView.centerYAnchor
     }
 }

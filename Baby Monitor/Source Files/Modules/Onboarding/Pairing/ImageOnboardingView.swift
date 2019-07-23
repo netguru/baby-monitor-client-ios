@@ -5,7 +5,7 @@
 
 import UIKit
 
-class ImageOnboardingView: BaseOnboardingView {
+class ImageOnboardingView: OldBaseOnboardingView {
     
     enum `Role` {
         case pairing(PairingRole)

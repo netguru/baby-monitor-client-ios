@@ -5,9 +5,27 @@
 
 import RxSwift
 
+/// Describes different states that the WebRTC client can be in.
+enum WebRtcClientManagerState {
+
+    /// The client is disconnected and waiting for a server to show up.
+    case disconnected
+
+    /// The client found a server and is now connecting to it.
+    case connecting
+
+    /// The client has a stable connection to a server.
+    case connected
+
+}
+
 protocol WebRtcClientManagerProtocol {
-    /// Starts WebRTC connection
-    func startWebRtcConnection()
+
+    /// Starts WebRTC connection if not started yet
+    func startIfNeeded()
+
+    /// Closes connection
+    func stop()
 
     /// Sets session description answer
     ///
@@ -19,9 +37,6 @@ protocol WebRtcClientManagerProtocol {
     /// - Parameter iceCandidate: ice candidate to add
     func setICECandidates(iceCandidate: IceCandidateProtocol)
 
-    /// Closes connection
-    func disconnect()
-
     /// Observable emitting session description offer
     var sdpOffer: Observable<SessionDescriptionProtocol> { get }
 
@@ -30,4 +45,8 @@ protocol WebRtcClientManagerProtocol {
 
     /// Observable emitting media stream
     var mediaStream: Observable<MediaStream?> { get }
+
+    /// Obervable emitting client state.
+    var state: Observable<WebRtcClientManagerState> { get }
+    
 }

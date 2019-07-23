@@ -7,19 +7,17 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class DashboardCoordinator: Coordinator, BabiesViewShowable {
+final class DashboardCoordinator: Coordinator {
 
     var appDependencies: AppDependencies
-    var childCoordinators: [Coordinator] = []
+    lazy var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    weak var switchBabyViewController: BabyMonitorGeneralViewController<SwitchBabyViewModel.Cell>?
-
     var onEnding: (() -> Void)?
 
+    private weak var parentSettingsCoordinator: SettingsCoordinator?
     private weak var dashboardViewController: DashboardViewController?
     private weak var cameraPreviewViewController: CameraPreviewViewController?
-    
-    private let bag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
         self.navigationController = navigationController
@@ -27,7 +25,16 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
     }
 
     func start() {
+        setupParentSettingsCoordinator()
         showDashboard()
+        appDependencies.localNotificationService.getNotificationsAllowance { [unowned self] isGranted in
+            if !isGranted {
+                AlertPresenter.showDefaultAlert(title: Localizable.General.warning, message: Localizable.Errors.notificationsNotAllowed, onViewController: self.navigationController)
+            }
+        }
+        appDependencies.webSocketEventMessageService.get().cryingEventObservable.subscribe(onNext: { _ in
+            AlertPresenter.showDefaultAlert(title: Localizable.Server.babyIsCrying, message: nil, onViewController: self.navigationController)
+        }).disposed(by: disposeBag)
     }
 
     private func showDashboard() {
@@ -39,86 +46,81 @@ final class DashboardCoordinator: Coordinator, BabiesViewShowable {
             .subscribe(onNext: { [weak self] _ in
                 self?.connect(toDashboardViewModel: viewModel)
             })
-            .disposed(by: bag)
-        navigationController.pushViewController(dashboardViewController, animated: false)
+            .disposed(by: viewModel.bag)
+        navigationController.setViewControllers([dashboardViewController], animated: true)
     }
 
     // Prepare DashboardViewModel
     private func createDashboardViewModel() -> DashboardViewModel {
-        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyRepo: appDependencies.babiesRepository)
+        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyModelController: appDependencies.databaseRepository)
         return viewModel
     }
     
     private func connect(toDashboardViewModel viewModel: DashboardViewModel) {
-        viewModel.showBabies?
-            .subscribe(onNext: { [unowned self] in
-                guard let dashboardViewController = self.dashboardViewController else {
-                    return
-                }
-                self.toggleSwitchBabiesView(on: dashboardViewController, babyRepo: self.appDependencies.babiesRepository)
-            })
-            .disposed(by: bag)
         viewModel.liveCameraPreview?.subscribe(onNext: { [unowned self] in
-                let viewModel = self.createCameraPreviewViewModel()
-                let cameraPreviewViewController = CameraPreviewViewController(viewModel: viewModel)
-                self.cameraPreviewViewController = cameraPreviewViewController
-                let navigationController = UINavigationController(rootViewController: cameraPreviewViewController)
-                self.navigationController.present(navigationController, animated: true, completion: nil)
+            let viewModel = self.createCameraPreviewViewModel()
+            let cameraPreviewViewController = CameraPreviewViewController(viewModel: viewModel)
+            cameraPreviewViewController.rx.viewDidLoad.subscribe(onNext: { [unowned self] in
+                self.connect(to: viewModel)
             })
-            .disposed(by: bag)
-        viewModel.addPhoto?.subscribe(onNext: { [unowned self] in
-                self.showImagePickerAlert()
-            })
-            .disposed(by: bag)
-        viewModel.dismissImagePicker.subscribe(onNext: { [unowned self] in
-                guard let dashboardViewController = self.dashboardViewController else {
-                    return
-                }
-                dashboardViewController.dismiss(animated: true, completion: nil)
-            })
-            .disposed(by: bag)
+                .disposed(by: viewModel.bag)
+            self.cameraPreviewViewController = cameraPreviewViewController
+            self.navigationController.pushViewController(cameraPreviewViewController, animated: true)
+        })
+            .disposed(by: viewModel.bag)
+        viewModel.activityLogTap?.subscribe(onNext: { [unowned self] in
+            let viewModel = self.createActivityLogViewModel()
+            let viewController = ActivityLogViewController(viewModel: viewModel)
+            self.navigationController.pushViewController(viewController, animated: true)
+        })
+            .disposed(by: viewModel.bag)
+        viewModel.settingsTap?.subscribe(onNext: { [unowned self] in
+            self.parentSettingsCoordinator?.start()
+        })
+            .disposed(by: viewModel.bag)
     }
-
-    // Prepare CameraPreviewViewModel
-    private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
-        let viewModel = CameraPreviewViewModel(webSocketWebRtcService: appDependencies.webSocketWebRtcService(appDependencies.webRtcClient()), babyRepo: appDependencies.babiesRepository)
-        viewModel.didSelectCancel = { [weak self] in
-            self?.navigationController.dismiss(animated: true, completion: nil)
-        }
-        viewModel.didSelectShowBabies = { [weak self] in
-            guard let self = self, let cameraPreviewViewController = self.cameraPreviewViewController else {
-                return
+    
+    private func setupParentSettingsCoordinator() {
+        let parentSettingsCoordinator = SettingsCoordinator(navigationController, appDependencies: appDependencies)
+        childCoordinators.append(parentSettingsCoordinator)
+        parentSettingsCoordinator.onEnding = { [unowned self] in
+            switch UserDefaults.appMode {
+            case .none:
+                self.onEnding?()
+            case .parent:
+                if let coordinator = self.parentSettingsCoordinator {
+                    self.remove(coordinator)
+                }
+                self.setupParentSettingsCoordinator()
+            case .baby:
+                break
             }
-            self.toggleSwitchBabiesView(on: cameraPreviewViewController, babyRepo: self.appDependencies.babiesRepository)
+        }
+        self.parentSettingsCoordinator = parentSettingsCoordinator
+    }
+    
+    private func createActivityLogViewModel() -> ActivityLogViewModel {
+        let viewModel = ActivityLogViewModel(databaseRepository: appDependencies.databaseRepository)
+        viewModel.didSelectCancel = { [weak self] in
+            self?.navigationController.popViewController(animated: true)
         }
         return viewModel
     }
 
-    // Show alert with camera or photo library options, after choosing show image picker or camera
-    private func showImagePickerAlert() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.delegate = dashboardViewController
-
-        let alertController = UIAlertController(title: Localizable.Dashboard.chooseImage, message: nil, preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: Localizable.General.cancel, style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraAction = UIAlertAction(title: Localizable.Dashboard.camera, style: .default, handler: { action in
-                imagePickerController.sourceType = .camera
-                self.navigationController.present(imagePickerController, animated: true, completion: nil)
-            })
-            alertController.addAction(cameraAction)
-        }
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let photoLibraryAction = UIAlertAction(title: Localizable.Dashboard.photoLibrary, style: .default, handler: { action in
-                imagePickerController.sourceType = .photoLibrary
-                self.navigationController.present(imagePickerController, animated: true, completion: nil)
-            })
-            alertController.addAction(photoLibraryAction)
-        }
-
-        navigationController.present(alertController, animated: true, completion: nil)
+    // Prepare CameraPreviewViewModel
+    private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
+        let viewModel = CameraPreviewViewModel(webSocketWebRtcService: appDependencies.webSocketWebRtcService.get(), babyModelController: appDependencies.databaseRepository)
+        return viewModel
+    }
+    
+    private func connect(to viewModel: CameraPreviewViewModel) {
+        viewModel.cancelTap?.subscribe(onNext: { [weak self] _ in
+            self?.navigationController.popViewController(animated: true)
+        })
+            .disposed(by: viewModel.bag)
+        viewModel.settingsTap?.subscribe(onNext: { [weak self] _ in
+            self?.parentSettingsCoordinator?.start()
+        })
+            .disposed(by: viewModel.bag)
     }
 }

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupNotifications(application: application)
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
-        appDependencies.storageServerService.uploadRecordingsToDatabaseIfNeeded()
+        appDependencies.storageServerService.uploadRecordingsToDatabaseIfAllowed()
         return true
     }
     

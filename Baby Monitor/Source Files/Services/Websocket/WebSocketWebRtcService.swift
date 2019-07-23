@@ -8,11 +8,13 @@ import RxSwift
 protocol WebSocketWebRtcServiceProtocol {
     var mediaStream: Observable<MediaStream?> { get }
     func start()
+    func close()
 }
 
 final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
 
     lazy var mediaStream: Observable<MediaStream?> = webRtcClientManager.mediaStream
+    lazy var state: Observable<WebRtcClientManagerState> = webRtcClientManager.state
 
     private let webRtcClientManager: WebRtcClientManagerProtocol
     private var webRtcConductor: WebSocketConductorProtocol?
@@ -34,7 +36,7 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
                     return Observable.empty()
                 }
                 return Observable.just(jsonString)
-        }
+            }
     }
 
     private func iceCandidateJson() -> Observable<String> {
@@ -45,7 +47,7 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
                     return Observable.empty()
                 }
                 return Observable.just(jsonString)
-        }
+            }
     }
 
     private func webRtcMessageHandler() -> AnyObserver<WebRtcMessage> {
@@ -66,6 +68,11 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
 
     func start() {
         webRtcConductor?.open()
-        webRtcClientManager.startWebRtcConnection()
+        webRtcClientManager.startIfNeeded()
+    }
+    
+    func close() {
+        webRtcConductor?.close()
+        webRtcClientManager.stop()
     }
 }

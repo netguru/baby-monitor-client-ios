@@ -7,32 +7,34 @@ import RxSwift
 
 final class CameraPreviewViewModel {
 
-    private let babyRepo: BabiesRepositoryProtocol
-    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
-    private let webSocketWebRtcService: WebSocketWebRtcServiceProtocol
+    let bag = DisposeBag()
+    lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
+    private(set) var cancelTap: Observable<Void>?
+    private(set) var settingsTap: Observable<Void>?
     var remoteStream: Observable<MediaStream?> {
         return webSocketWebRtcService.mediaStream
     }
+    
+    private let babyModelController: BabyModelControllerProtocol
+    private let webSocketWebRtcService: WebSocketWebRtcServiceProtocol
 
-    init(webSocketWebRtcService: WebSocketWebRtcServiceProtocol, babyRepo: BabiesRepositoryProtocol) {
+    init(webSocketWebRtcService: WebSocketWebRtcServiceProtocol, babyModelController: BabyModelControllerProtocol) {
         self.webSocketWebRtcService = webSocketWebRtcService
-        self.babyRepo = babyRepo
+        self.babyModelController = babyModelController
     }
     
-    // MARK: - Coordinator callback
-    var didSelectShowBabies: (() -> Void)?
-    var didSelectCancel: (() -> Void)?
-    
     // MARK: - Internal functions
-    func selectCancel() {
-        didSelectCancel?()
+    func attachInput(cancelTap: Observable<Void>, settingsTap: Observable<Void>) {
+        self.cancelTap = cancelTap
+        self.settingsTap = settingsTap
     }
 
     func play() {
         webSocketWebRtcService.start()
     }
 
-    func selectShowBabies() {
-        didSelectShowBabies?()
+    func stop() {
+        webSocketWebRtcService.close()
     }
+    
 }

@@ -8,7 +8,7 @@ plugin 'cocoapods-keys', {
   platform :ios, '11.0'
   use_frameworks!
   inhibit_all_warnings!
-  
+
 
 target 'Baby Monitor' do
 
@@ -18,7 +18,7 @@ target 'Baby Monitor' do
   pod 'RxCocoa', '~> 4.0'
   pod 'RxDataSources', '~> 3.0'
   pod 'PocketSocket', '~> 1.0.1'
-  pod 'AudioKit', '~> 4.5.4' 
+  pod 'AudioKit', '~> 4.7.0'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'Firebase/Storage'
@@ -39,6 +39,6 @@ post_install do |installer|
         target.build_configurations.each do |config|
             config.build_settings['SWIFT_VERSION'] = '4.2'
         end
-    
+
     end
 end

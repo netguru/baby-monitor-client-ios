@@ -19,70 +19,34 @@ class ActivityLogViewModelTests: XCTestCase {
         bag = DisposeBag()
     }
     
-    func testShouldConfigureCell() {
+    func testShouldGenerateProperSections() {
         // Given
-        let babiesRepository = BabiesRepositoryMock()
-        let sut = ActivityLogViewModel(babyRepo: babiesRepository)
-        let photo = UIImage(named: "add")
-        let baby = Baby(id: "id", name: "name", photo: photo)
-        let cell = BabyMonitorCellMock()
+        let disposeBag = DisposeBag()
+        let babiesRepository = DatabaseRepositoryMock()
+        let tommorowCryingLogEvent = ActivityLogEvent(mode: .cryingEvent, date: Date.tommorow)
+        let yesterdayCryingLogEvent = ActivityLogEvent(mode: .cryingEvent, date: Date.yesterday)
+        let secondYesterdayCryingLogEvent = ActivityLogEvent(mode: .cryingEvent, date: Date.yesterday.addingTimeInterval(1))
+        let todayCryingLogEvent = ActivityLogEvent(mode: .cryingEvent, date: Date())
+        let expectedSections = [
+            GeneralSection<ActivityLogEvent>(title: "", items: [tommorowCryingLogEvent]),
+            GeneralSection<ActivityLogEvent>(title: "", items: [todayCryingLogEvent]),
+            GeneralSection<ActivityLogEvent>(title: "", items: [secondYesterdayCryingLogEvent, yesterdayCryingLogEvent])
+        ]
+        let sut = ActivityLogViewModel(databaseRepository: babiesRepository)
+        var resultSections: [GeneralSection<ActivityLogEvent>] = []
         
+        sut.sectionsChangeObservable.subscribe(onNext: {
+            resultSections = sut.currentSections
+        })
+            .disposed(by: disposeBag)
         // When
-        sut.configure(cell: cell, for: baby)
-
-        // Then
-        XCTAssertEqual(photo, cell.image)
-        XCTAssertNotNil(cell.secondaryText)
-        XCTAssertNotNil(cell.mainText)
-    }
-    
-    func testShouldConfigureHeaderCell() {
-        // Given
-        let babiesRepository = BabiesRepositoryMock()
-        let sut = ActivityLogViewModel(babyRepo: babiesRepository)
-        let cell = BabyMonitorCellMock()
         
-        // When
-        sut.configure(headerCell: cell, for: 0)
-        
-        // Then
-        XCTAssertTrue(cell.isConfiguredAsHeader)
-        XCTAssertNotNil(cell.mainText)
-    }
-    
-    func testShouldForwardSwitchBabyTap() {
-        // Given
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Void.self)
-        let babiesRepository = BabiesRepositoryMock()
-        let sut = ActivityLogViewModel(babyRepo: babiesRepository)
-        sut.attachInput(showBabiesTap: ControlEvent(events: showBabiesTap))
-        sut.showBabies?
-            .subscribe(observer)
-            .disposed(by: bag)
-        
-        // When
-        showBabiesTap.onNext(())
+        babiesRepository.save(activityLogEvent: yesterdayCryingLogEvent)
+        babiesRepository.save(activityLogEvent: secondYesterdayCryingLogEvent)
+        babiesRepository.save(activityLogEvent: todayCryingLogEvent)
+        babiesRepository.save(activityLogEvent: tommorowCryingLogEvent)
         
         // Then
-        XCTAssertEqual(1, observer.events.count)
-    }
-    
-    func testShouldReturnProperSections() {
-        // Given
-        let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver([GeneralSection<Baby>].self)
-        let baby = Baby(id: "id", name: "name", photo: nil)
-        let babiesRepository = BabiesRepositoryMock(currentBaby: baby)
-        let sut = ActivityLogViewModel(babyRepo: babiesRepository)
-        sut.attachInput(showBabiesTap: ControlEvent(events: showBabiesTap))
-        
-        // When
-        sut.sections
-            .subscribe(observer)
-            .disposed(by: bag)
-        
-        // Then
-        XCTAssertRecordedElements(observer.events, [[GeneralSection<Baby>(title: "", items: [baby])]])
+        XCTAssertEqual(expectedSections, resultSections)
     }
 }

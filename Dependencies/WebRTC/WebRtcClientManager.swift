@@ -9,8 +9,9 @@
 import Foundation
 import AVFoundation
 import RxSwift
+import RxCocoa
 
-final class WebRtcClientManager: NSObject, PeerConnectionDelegate, SessionDescriptionDelegate, WebRtcClientManagerProtocol {
+final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
 
     var iceCandidate: Observable<IceCandidateProtocol> {
         return iceCandidatePublisher
@@ -21,65 +22,118 @@ final class WebRtcClientManager: NSObject, PeerConnectionDelegate, SessionDescri
     var mediaStream: Observable<MediaStream?> {
         return mediaStreamPublisher
     }
+
+    lazy var state: Observable<WebRtcClientManagerState> = {
+        Observable.combineLatest(connectionChecker.connectionStatus, connectionDelegateProxy.signalingState)
+            .map { connStatus, peerState -> WebRtcClientManagerState? in
+                switch (connStatus, peerState) {
+                case (.disconnected, _), (_, RTCSignalingClosed): return .disconnected
+                case (.connected, RTCSignalingHaveLocalOffer): return .connecting
+                case (.connected, RTCSignalingStable): return .connected
+                default: return nil
+                }
+            }
+            .filter { $0 != nil }
+            .map { $0! }
+    }()
     
+    private var isStarted = false
     private let sdpOfferPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
     private let mediaStreamPublisher = BehaviorSubject<MediaStream?>(value: nil)
+    private let disposeBag = DisposeBag()
 
-    private let peerConnectionFactory: PeerConnectionFactoryProtocol?
     private var peerConnection: PeerConnectionProtocol?
-    private let connectionDelegateProxy: RTCPeerConnectionDelegate
-    private let sessionDelegateProxy: RTCSessionDescriptionDelegate
+    private let peerConnectionFactory: PeerConnectionFactoryProtocol
+    private let connectionChecker: ConnectionChecker
+    private let appStateProvider: ApplicationStateProvider
+    private let connectionDelegateProxy: RTCPeerConnectionDelegateProxy
+    private let remoteDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
+    private let localDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
 
-    init(peerConnectionFactory: PeerConnectionFactoryProtocol, connectionDelegateProxy: RTCPeerConnectionDelegate, sessionDelegateProxy: RTCSessionDescriptionDelegate) {
-        self.peerConnectionFactory = peerConnectionFactory
-        self.connectionDelegateProxy = connectionDelegateProxy
-        self.sessionDelegateProxy = sessionDelegateProxy
-        super.init()
+    private var streamMediaConstraints: RTCMediaConstraints {
+        return RTCMediaConstraints(
+            mandatoryConstraints: [
+                RTCPair(key: WebRtcConstraintKey.offerToReceiveVideo, value: WebRtcConstraintValue.true)!,
+                RTCPair(key: WebRtcConstraintKey.offerToReceiveAudio, value: WebRtcConstraintValue.true)!
+            ],
+            optionalConstraints: [
+                RTCPair(key: WebRtcConstraintKey.dtlsSrtpKeyAgreement, value: WebRtcConstraintValue.true)!
+            ]
+        )
     }
-    
-    func startWebRtcConnection() {
-        peerConnection = peerConnectionFactory?.peerConnection(with: connectionDelegateProxy)
+
+    init(peerConnectionFactory: PeerConnectionFactoryProtocol, connectionChecker: ConnectionChecker, appStateProvider: ApplicationStateProvider) {
+        self.peerConnectionFactory = peerConnectionFactory
+        self.connectionChecker = connectionChecker
+        self.appStateProvider = appStateProvider
+        self.connectionDelegateProxy = RTCPeerConnectionDelegateProxy()
+        self.remoteDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
+        self.localDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
+        super.init()
+        setup()
+    }
+
+    func setup() {
+
+        connectionDelegateProxy.onAddedStream = { [weak self] _, stream in
+            guard let self = self else { return }
+            self.mediaStreamPublisher.onNext(stream)
+        }
+
+        connectionDelegateProxy.onGotIceCandidate = { [weak self] _, iceCandidate in
+            guard let self = self else { return }
+            self.iceCandidatePublisher.onNext(iceCandidate)
+        }
+
+        localDescriptionDelegateProxy.onDidCreateSessionDescription = { [weak self] connection, sdp in
+            guard let self = self else { return }
+            connection.setLocalDescription(sdp: sdp, delegate: self.localDescriptionDelegateProxy)
+            self.sdpOfferPublisher.onNext(sdp)
+        }
+
+        appStateProvider.willEnterBackground
+            .filter { [unowned self] in self.isStarted }
+            .subscribe(onNext: { [unowned self] in self.pause() })
+            .disposed(by: disposeBag)
+
+        appStateProvider.willEnterForeground
+            .filter { [unowned self] in self.isStarted }
+            .subscribe(onNext: { [unowned self] in self.resume() })
+            .disposed(by: disposeBag)
+
+    }
+
+    func startIfNeeded() {
+        guard !isStarted else { return }
+        isStarted = true
         createOffer()
     }
-    
+
+    func stop() {
+        peerConnection?.close()
+        isStarted = false
+    }
+
+    private func pause() {
+        peerConnection?.close()
+    }
+
+    private func resume() {
+        createOffer()
+    }
+
     private func createOffer() {
-        let offerContratints = createConstraints()
-        peerConnection?.createOffer(for: offerContratints, delegate: sessionDelegateProxy)
+        peerConnection = peerConnectionFactory.peerConnection(with: connectionDelegateProxy)
+        peerConnection?.createOffer(for: streamMediaConstraints, delegate: localDescriptionDelegateProxy)
     }
-    
-    private func createConstraints() -> RTCMediaConstraints {
-        let pairOfferToReceiveAudio = RTCPair(key: "OfferToReceiveAudio", value: "true")!
-        let pairOfferToReceiveVideo = RTCPair(key: "OfferToReceiveVideo", value: "true")!
-        let pairDtlsSrtpKeyAgreement = RTCPair(key: "DtlsSrtpKeyAgreement", value: "true")!
-        let peerConnectionConstraints = RTCMediaConstraints(mandatoryConstraints: [pairOfferToReceiveVideo, pairOfferToReceiveAudio], optionalConstraints: [pairDtlsSrtpKeyAgreement])
-        return peerConnectionConstraints!
-    }
-    
+
     func setAnswerSDP(sdp: SessionDescriptionProtocol) {
-        peerConnection?.setRemoteDescription(sdp: sdp, delegate: sessionDelegateProxy)
+        peerConnection?.setRemoteDescription(sdp: sdp, delegate: remoteDescriptionDelegateProxy)
     }
     
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
         peerConnection?.add(iceCandidate: iceCandidate)
     }
 
-    func addedStream(_ stream: MediaStream) {
-        mediaStreamPublisher.onNext(stream)
-    }
-
-    func gotIceCandidate(_ iceCandidate: IceCandidateProtocol) {
-        iceCandidatePublisher.onNext(iceCandidate)
-    }
-
-    func didSetDescription() {}
-
-    func didCreateDescription(_ sdp: SessionDescriptionProtocol) {
-        peerConnection?.setLocalDescription(sdp: sdp, delegate: sessionDelegateProxy)
-        sdpOfferPublisher.onNext(sdp)
-    }
-    
-    func disconnect() {
-        peerConnection?.close()
-    }
 }

@@ -11,14 +11,19 @@ final class ServerViewModel {
     var stream: Observable<MediaStream> {
         return serverService.localStreamObservable
     }
-    var onAudioRecordServiceError: (() -> Void)?
+    var onAudioMicrophoneServiceError: (() -> Void)?
+    var settingsTap: Observable<Void>?
+    let bag = DisposeBag()
     
     private let serverService: ServerServiceProtocol
-    private let bag = DisposeBag()
     
     init(serverService: ServerServiceProtocol) {
         self.serverService = serverService
         rxSetup()
+    }
+    
+    deinit {
+        serverService.stop()
     }
     
     /// Starts streaming
@@ -27,8 +32,8 @@ final class ServerViewModel {
     }
     
     private func rxSetup() {
-        serverService.audioRecordServiceErrorObservable.subscribe(onNext: { [weak self] _ in
-            self?.onAudioRecordServiceError?()
+        serverService.audioMicrophoneServiceErrorObservable.subscribe(onNext: { [weak self] _ in
+            self?.onAudioMicrophoneServiceError?()
         })
             .disposed(by: bag)
     }

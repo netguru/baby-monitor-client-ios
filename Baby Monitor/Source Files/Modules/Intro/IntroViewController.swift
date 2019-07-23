@@ -12,7 +12,7 @@ class IntroViewController: TypedPageViewController<IntroView>, UIPageViewControl
     
     init(featureControllers: [UIViewController]) {
         self.featureControllers = featureControllers
-        super.init(viewMaker: IntroView())
+        super.init(viewMaker: IntroView(numberOfPages: featureControllers.count))
     }
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class IntroViewController: TypedPageViewController<IntroView>, UIPageViewControl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func updatePageControl(to index: Int) {

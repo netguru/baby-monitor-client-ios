@@ -9,6 +9,8 @@ import RxCocoa
 
 protocol WebSocketProtocol: MessageStreamProtocol {
     
+    var disconnectionObservable: Observable<Void> { get }
+    
     /// Sends message to connected socket
     ///
     /// - Parameter message: Message to be send
@@ -23,11 +25,22 @@ protocol WebSocketProtocol: MessageStreamProtocol {
 
 final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     
+    let dispatchQueue = DispatchQueue(label: "webRTCQueue", qos: DispatchQoS.userInteractive)
+    
+    lazy var disconnectionObservable = disconnectionPublisher.asObservable()
+    private var disconnectionPublisher = PublishSubject<Void>()
+    
     var receivedMessage: Observable<String> {
-        return receivedMessagePublisher.asObservable()
+        return receivedMessagePublisher.observeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue)).subscribeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue))
     }
     
-    private var isConnected = false
+    private var isConnected = false {
+        didSet {
+            if !isConnected {
+                disconnectionPublisher.onNext(())
+            }
+        }
+    }
     private let receivedMessagePublisher = PublishRelay<String>()
     private let socket: PSWebSocket
 
