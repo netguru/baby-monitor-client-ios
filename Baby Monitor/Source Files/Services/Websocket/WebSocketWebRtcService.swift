@@ -7,6 +7,7 @@ import RxSwift
 
 protocol WebSocketWebRtcServiceProtocol {
     var mediaStream: Observable<MediaStream?> { get }
+    var state: Observable<WebRtcClientManagerState> { get }
     func start()
     func close()
 }

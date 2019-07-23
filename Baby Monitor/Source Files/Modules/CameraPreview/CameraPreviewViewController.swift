@@ -71,6 +71,10 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
             .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
+        viewModel.state
+            .map { $0 == .connecting }
+            .bind(to: customView.rx.isLoading)
+            .disposed(by: bag)
         viewModel.attachInput(
             cancelTap: customView.rx.cancelTap.asObservable(),
             settingsTap: customView.rx.settingsTap.asObservable())

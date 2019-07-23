@@ -116,6 +116,7 @@
 		8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */; };
 		8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB082180971D00E3004D /* UIViewController+Rx.swift */; };
 		8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43DB1E2181D1E700E3004D /* GeneralSection.swift */; };
+		8A4EC11822E739C20076722E /* UIActivityIndicatorView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4EC11722E739C20076722E /* UIActivityIndicatorView+Rx.swift */; };
 		8A50AA3821E602F60058C63A /* PeerConnectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50AA3221E602F60058C63A /* PeerConnectionProtocol.swift */; };
 		8A50AA3921E602F60058C63A /* IceCandidateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50AA3321E602F60058C63A /* IceCandidateProtocol.swift */; };
 		8A50AA3A21E602F60058C63A /* SessionDescriptionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50AA3421E602F60058C63A /* SessionDescriptionProtocol.swift */; };
@@ -440,6 +441,7 @@
 		8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetServiceConnectionChecker.swift; sourceTree = "<group>"; };
 		8A43DB082180971D00E3004D /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		8A43DB1E2181D1E700E3004D /* GeneralSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSection.swift; sourceTree = "<group>"; };
+		8A4EC11722E739C20076722E /* UIActivityIndicatorView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Rx.swift"; sourceTree = "<group>"; };
 		8A50AA3221E602F60058C63A /* PeerConnectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeerConnectionProtocol.swift; path = "Baby Monitor/Source Files/Services/Connection/WebRTC/Protocols/PeerConnectionProtocol.swift"; sourceTree = SOURCE_ROOT; };
 		8A50AA3321E602F60058C63A /* IceCandidateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IceCandidateProtocol.swift; path = "Baby Monitor/Source Files/Services/Connection/WebRTC/Protocols/IceCandidateProtocol.swift"; sourceTree = SOURCE_ROOT; };
 		8A50AA3421E602F60058C63A /* SessionDescriptionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionDescriptionProtocol.swift; path = "Baby Monitor/Source Files/Services/Connection/WebRTC/Protocols/SessionDescriptionProtocol.swift"; sourceTree = SOURCE_ROOT; };
@@ -834,6 +836,7 @@
 				A186818E2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift */,
 				A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */,
 				959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */,
+				8A4EC11722E739C20076722E /* UIActivityIndicatorView+Rx.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1892,6 +1895,7 @@
 				95368F522209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift in Sources */,
 				ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */,
 				8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */,
+				8A4EC11822E739C20076722E /* UIActivityIndicatorView+Rx.swift in Sources */,
 				A1EC9775221AA51A00C27786 /* OnboardingAccessViewController.swift in Sources */,
 				A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */,
 				A1640E252203A3DB00398ED2 /* ServerSettingsViewController.swift in Sources */,
