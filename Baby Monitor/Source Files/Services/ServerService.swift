@@ -28,20 +28,18 @@ final class ServerService: ServerServiceProtocol {
     private let netServiceServer: NetServiceServerProtocol
     private let cryingEventService: CryingEventsServiceProtocol
     private let babyModelController: BabyModelControllerProtocol
-    private let cacheService: CacheServiceProtocol
     private let disposeBag = DisposeBag()
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
     private let notificationsService: NotificationServiceProtocol
     private let audioMicrophoneServiceErrorPublisher = PublishSubject<Void>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     
-    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babyModelController: BabyModelControllerProtocol, cacheService: CacheServiceProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
+    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babyModelController: BabyModelControllerProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
         self.cryingEventService = cryingService
         self.babyModelController = babyModelController
         self.webRtcServerManager = webRtcServerManager
         self.messageServer = messageServer
         self.netServiceServer = netServiceServer
-        self.cacheService = cacheService
         self.decoders = webRtcDecoders
         self.notificationsService = notificationsService
         self.babyMonitorEventMessagesDecoder = babyMonitorEventMessagesDecoder
@@ -107,7 +105,7 @@ final class ServerService: ServerServiceProtocol {
         case .cryingEventMessageReceived:
             isCryingMessageReceivedFromClient = true
         case .pushNotificationsKey:
-            self.cacheService.receiverPushNotificationsToken = event.value
+            UserDefaults.receiverPushNotificationsToken = event.value
         case .crying:
             break
         }

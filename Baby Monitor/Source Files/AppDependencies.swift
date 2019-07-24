@@ -77,14 +77,12 @@ final class AppDependencies {
     )
     private(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService(
         networkDispatcher: networkDispatcher,
-        cacheService: cacheService,
         serverKeyObtainable: serverKeyObtainable)
     private let serverKeyObtainable: ServerKeyObtainableProtocol = ServerKeyObtainable()
     
     private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
     
     private(set) var babyMonitorEventMessagesDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
-    private(set) var cacheService: CacheServiceProtocol = CacheService()
     
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, urlConfiguration: urlConfiguration)
     private(set) lazy var serverService: ServerServiceProtocol = ServerService(
@@ -94,7 +92,6 @@ final class AppDependencies {
         webRtcDecoders: webRtcMessageDecoders,
         cryingService: cryingEventService,
         babyModelController: databaseRepository,
-        cacheService: cacheService,
         notificationsService: localNotificationService,
         babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
     )

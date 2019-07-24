@@ -13,12 +13,10 @@ protocol NotificationServiceProtocol: AnyObject {
 final class NotificationService: NotificationServiceProtocol {
     
     private let networkDispatcher: NetworkDispatcherProtocol
-    private let cacheService: CacheServiceProtocol
     private let serverKeyObtainable: ServerKeyObtainableProtocol
     
-    init(networkDispatcher: NetworkDispatcherProtocol, cacheService: CacheServiceProtocol, serverKeyObtainable: ServerKeyObtainableProtocol) {
+    init(networkDispatcher: NetworkDispatcherProtocol, serverKeyObtainable: ServerKeyObtainableProtocol) {
         self.networkDispatcher = networkDispatcher
-        self.cacheService = cacheService
         self.serverKeyObtainable = serverKeyObtainable
     }
     
@@ -29,7 +27,7 @@ final class NotificationService: NotificationServiceProtocol {
     }
     
     func sendPushNotificationsRequest() {
-        guard let receiverId = cacheService.receiverPushNotificationsToken else {
+        guard let receiverId = UserDefaults.receiverPushNotificationsToken else {
             return
         }
         let firebasePushNotificationsRequest = FirebasePushNotificationsRequest(
