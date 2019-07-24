@@ -20,6 +20,11 @@ final class CameraPreviewView: BaseView {
                                            style: .plain,
                                            target: nil,
                                            action: nil)
+    fileprivate let activityIndicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .whiteLarge)
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     override init() {
         super.init()
@@ -36,6 +41,11 @@ final class CameraPreviewView: BaseView {
         backgroundColor = .gray
         addSubview(mediaView)
         mediaView.addConstraints { $0.equalEdges() }
+        addSubview(activityIndicatorView)
+        activityIndicatorView.addConstraints {[
+            $0.equal(.centerX),
+            $0.equal(.centerY)
+        ]}
     }
 }
 
@@ -58,5 +68,9 @@ extension Reactive where Base: CameraPreviewView {
     
     var settingsTap: ControlEvent<Void> {
         return base.settingsBarButtonItem.rx.tap
+    }
+
+    var isLoading: Binder<Bool> {
+        return base.activityIndicatorView.rx.isLoading
     }
 }

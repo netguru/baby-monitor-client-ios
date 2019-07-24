@@ -16,6 +16,7 @@ final class CameraPreviewViewModel {
     var remoteStream: Observable<MediaStream?> {
         return webSocketWebRtcService.mediaStream
     }
+    lazy var state: Observable<WebRtcClientManagerState> = webSocketWebRtcService.state
     
     private let babyModelController: BabyModelControllerProtocol
     private let webSocketWebRtcService: WebSocketWebRtcServiceProtocol
