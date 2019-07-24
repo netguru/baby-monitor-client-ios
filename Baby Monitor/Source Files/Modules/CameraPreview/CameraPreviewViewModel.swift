@@ -12,7 +12,7 @@ final class CameraPreviewViewModel {
     private(set) var cancelTap: Observable<Void>?
     private(set) var settingsTap: Observable<Void>?
     
-    var isThisViewAlreadyShown = false
+    var shouldPlayPreview = false
     var remoteStream: Observable<MediaStream?> {
         return webSocketWebRtcService.mediaStream
     }
@@ -47,7 +47,7 @@ final class CameraPreviewViewModel {
         connectionChecker.connectionStatus
             .skip(1)
             .filter { $0 == .connected }
-            .filter { [weak self] _ in self?.isThisViewAlreadyShown == true }
+            .filter { [weak self] _ in self?.shouldPlayPreview == true }
             .subscribe(onNext: { [weak self] _ in
                 self?.play()
             })
