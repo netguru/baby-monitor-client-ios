@@ -55,6 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        appDependencies.cacheService.selfPushNotificationsToken = fcmToken
+        UserDefaults.selfPushNotificationsToken = fcmToken
     }
 }

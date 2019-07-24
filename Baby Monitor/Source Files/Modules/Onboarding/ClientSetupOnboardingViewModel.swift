@@ -30,15 +30,13 @@ final class ClientSetupOnboardingViewModel {
     private let netServiceClient: NetServiceClientProtocol
     private let urlConfiguration: URLConfiguration
     private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
-    private let cacheService: CacheServiceProtocol
     private let disposeBag = DisposeBag()
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
 
-    init(netServiceClient: NetServiceClientProtocol, urlConfiguration: URLConfiguration, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol, cacheService: CacheServiceProtocol, webSocketEventMessageService: WebSocketEventMessageServiceProtocol) {
+    init(netServiceClient: NetServiceClientProtocol, urlConfiguration: URLConfiguration, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol, webSocketEventMessageService: WebSocketEventMessageServiceProtocol) {
         self.netServiceClient = netServiceClient
         self.urlConfiguration = urlConfiguration
         self.activityLogEventsRepository = activityLogEventsRepository
-        self.cacheService = cacheService
         self.webSocketEventMessageService = webSocketEventMessageService
         setupRx()
     }
@@ -65,7 +63,7 @@ final class ClientSetupOnboardingViewModel {
                 self.searchCancelTimer?.invalidate()
                 self.urlConfiguration.url = serverUrl
                 self.webSocketEventMessageService.start()
-                let cryingEventMessage = EventMessage.initWithPushNotificationsKey(key: self.cacheService.selfPushNotificationsToken!)
+                let cryingEventMessage = EventMessage.initWithPushNotificationsKey(key: UserDefaults.selfPushNotificationsToken)
                 self.webSocketEventMessageService.sendMessage(cryingEventMessage.toStringMessage())
                 self.saveEmptyStateIfNeeded()
                 self.didFinishDeviceSearch?(.success)

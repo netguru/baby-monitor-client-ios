@@ -11,9 +11,9 @@ extension UserDefaults {
     private static var selfPushNotificationsKey = "SELF_PUSH_NOTIFICATIONS_KEY"
     private static var receiverPushNotificationsKey = "RECEIVER_PUSH_NOTIFICATIONS_KEY"
     
-    static var selfPushNotificationsToken: String? {
+    static var selfPushNotificationsToken: String {
         get {
-            let token = UserDefaults.standard.string(forKey: selfPushNotificationsKey)
+            let token = UserDefaults.standard.string(forKey: selfPushNotificationsKey) ?? ""
             return token
         }
         set {
