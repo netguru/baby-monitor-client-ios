@@ -227,6 +227,7 @@
 		A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */; };
 		A1C5E6E221FA2E7100D93203 /* DatabaseRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */; };
 		A1C5E6E421FB0C9C00D93203 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */; };
+		A1D36D4222E8364E002F6B2E /* UserDefaults+PushNotificationsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D36D4122E8364E002F6B2E /* UserDefaults+PushNotificationsKey.swift */; };
 		A1EC9773221AA4EC00C27786 /* OnboardingContinuableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9772221AA4EC00C27786 /* OnboardingContinuableViewModel.swift */; };
 		A1EC9775221AA51A00C27786 /* OnboardingAccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */; };
 		A1EC9777221AA53900C27786 /* OnboardingAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */; };
@@ -553,6 +554,7 @@
 		A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
 		A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepositoryMock.swift; sourceTree = "<group>"; };
 		A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
+		A1D36D4122E8364E002F6B2E /* UserDefaults+PushNotificationsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+PushNotificationsKey.swift"; sourceTree = "<group>"; };
 		A1EC9772221AA4EC00C27786 /* OnboardingContinuableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContinuableViewModel.swift; sourceTree = "<group>"; };
 		A1EC9774221AA51A00C27786 /* OnboardingAccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccessViewController.swift; sourceTree = "<group>"; };
 		A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccessViewModel.swift; sourceTree = "<group>"; };
@@ -831,6 +833,7 @@
 				4EA2802321E8BD6300262E45 /* String+Regex.swift */,
 				4EA2802521E8C6B100262E45 /* DateFormatter+Helpers.swift */,
 				4E7A1A8F21F1284B0015C3A3 /* UserDefaults+AppMode.swift */,
+				A1D36D4122E8364E002F6B2E /* UserDefaults+PushNotificationsKey.swift */,
 				A186818E2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift */,
 				A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */,
 				959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */,
@@ -1943,6 +1946,7 @@
 				2025564121F728F1006C6490 /* ParentSettingsView.swift in Sources */,
 				4E60697D21AFEFD500EB1DCF /* ImageOnboardingView.swift in Sources */,
 				F8DAD50C221B0E4700145F0E /* DescriptiveRoundedRectangleButton.swift in Sources */,
+				A1D36D4222E8364E002F6B2E /* UserDefaults+PushNotificationsKey.swift in Sources */,
 				959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				8A8B76ED21EF53A20063EF7E /* WebSocketEventMessageService.swift in Sources */,
