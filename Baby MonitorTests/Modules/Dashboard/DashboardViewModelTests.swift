@@ -27,10 +27,11 @@ class DashboardViewModelTests: XCTestCase {
         // Given
         let babiesRepository = DatabaseRepositoryMock()
         let connectionChecker = ConnectionCheckerMock()
+        let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
         
         // When
         // We assign it to the reference to ensure that it doesn't got deallocated
-        let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository)
+        let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock)
         
         // Then
         XCTAssertTrue(connectionChecker.isStarted)
@@ -41,10 +42,11 @@ class DashboardViewModelTests: XCTestCase {
         // Given
         let babiesRepository = DatabaseRepositoryMock()
         let connectionChecker = ConnectionCheckerMock()
+        let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
         
         // When
         // And here we don't
-        _ = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository)
+        _ = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock)
         
         // Then
         XCTAssertFalse(connectionChecker.isStarted)
@@ -56,7 +58,8 @@ class DashboardViewModelTests: XCTestCase {
         let observer = scheduler.createObserver(Void.self)
         let babiesRepository = DatabaseRepositoryMock()
         let connectionChecker = ConnectionCheckerMock()
-        let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository)
+        let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
+        let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock)
         sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap, settingsTap: settingsTap)
         sut.liveCameraPreview?
             .subscribe(observer)
@@ -75,7 +78,8 @@ class DashboardViewModelTests: XCTestCase {
         let observer = scheduler.createObserver(Void.self)
         let babiesRepository = DatabaseRepositoryMock()
         let connectionChecker = ConnectionCheckerMock()
-        let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository)
+        let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
+        let sut = DashboardViewModel(connectionChecker: connectionChecker, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock)
         sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap, settingsTap: settingsTap)
         sut.activityLogTap?
             .subscribe(observer)
