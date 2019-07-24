@@ -11,16 +11,21 @@ final class CameraPreviewViewModel {
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
     private(set) var cancelTap: Observable<Void>?
     private(set) var settingsTap: Observable<Void>?
+    
+    var isThisViewAlreadyShown = false
     var remoteStream: Observable<MediaStream?> {
         return webSocketWebRtcService.mediaStream
     }
     
     private let babyModelController: BabyModelControllerProtocol
     private let webSocketWebRtcService: WebSocketWebRtcServiceProtocol
+    private let connectionChecker: ConnectionChecker
 
-    init(webSocketWebRtcService: WebSocketWebRtcServiceProtocol, babyModelController: BabyModelControllerProtocol) {
+    init(webSocketWebRtcService: WebSocketWebRtcServiceProtocol, babyModelController: BabyModelControllerProtocol, connectionChecker: ConnectionChecker) {
         self.webSocketWebRtcService = webSocketWebRtcService
         self.babyModelController = babyModelController
+        self.connectionChecker = connectionChecker
+        rxSetup()
     }
     
     // MARK: - Internal functions
@@ -37,4 +42,21 @@ final class CameraPreviewViewModel {
         webSocketWebRtcService.close()
     }
     
+    // MARK: - Private functions
+    private func rxSetup() {
+        connectionChecker.connectionStatus
+            .skip(1)
+            .filter { $0 == .connected }
+            .filter { [weak self] _ in self?.isThisViewAlreadyShown == true }
+            .subscribe(onNext: { [weak self] _ in
+                self?.play()
+            })
+            .disposed(by: bag)
+        connectionChecker.connectionStatus
+            .filter { $0 == .disconnected }
+            .subscribe(onNext: { [weak self] _ in
+                self?.stop()
+            })
+            .disposed(by: bag)
+    }
 }

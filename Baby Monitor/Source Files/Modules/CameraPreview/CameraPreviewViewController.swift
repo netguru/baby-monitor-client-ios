@@ -30,12 +30,14 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         super.viewWillAppear(animated)
         UIApplication.shared.isIdleTimerDisabled = true
         viewModel.play()
+        viewModel.isThisViewAlreadyShown = true
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         UIApplication.shared.isIdleTimerDisabled = false
         viewModel.stop()
+        viewModel.isThisViewAlreadyShown = false
     }
     
     override func viewDidLayoutSubviews() {
