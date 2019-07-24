@@ -8,8 +8,8 @@ import Foundation
 
 extension UserDefaults {
     
-    private static var selfPushNotificationsKey = "SELF_PUSH_NOTIFICATIONS_KEY"
-    private static var receiverPushNotificationsKey = "RECEIVER_PUSH_NOTIFICATIONS_KEY"
+    private static let selfPushNotificationsKey = "SELF_PUSH_NOTIFICATIONS_KEY"
+    private static let receiverPushNotificationsKey = "RECEIVER_PUSH_NOTIFICATIONS_KEY"
     
     static var selfPushNotificationsToken: String {
         get {
