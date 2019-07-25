@@ -40,7 +40,7 @@ final class AppDependencies {
         )
     }
 
-    private lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>) -> WebSocketConductor<EventMessage> = { emitter, handler in
+    private lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>?) -> WebSocketConductor<EventMessage> = { emitter, handler in
         WebSocketConductor(
             webSocket: self.webSocket,
             messageEmitter: emitter,
@@ -66,10 +66,6 @@ final class AppDependencies {
         return WebSocketWebRtcService(
             webRtcClientManager: self.webRtcClient(),
             webRtcConductorFactory: self.webRtcConductorFactory)
-    }
-    
-    private func makeWebSocketEventMessageService() -> WebSocketEventMessageServiceProtocol {
-        return WebSocketEventMessageService(cryingEventsRepository: databaseRepository, eventMessageConductorFactory: eventMessageConductorFactory)
     }
     private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher(
         urlSession: URLSession(configuration: .default),
