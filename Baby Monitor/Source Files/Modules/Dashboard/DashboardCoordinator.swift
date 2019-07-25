@@ -52,7 +52,7 @@ final class DashboardCoordinator: Coordinator {
 
     // Prepare DashboardViewModel
     private func createDashboardViewModel() -> DashboardViewModel {
-        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyModelController: appDependencies.databaseRepository, webSocketEventMessageService: appDependencies.webSocketEventMessageService.get())
+        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyModelController: appDependencies.databaseRepository, webSocketEventMessageService: appDependencies.webSocketEventMessageService.get(), microphonePermissionProvider: appDependencies.microphonePermissionProvider)
         return viewModel
     }
     
