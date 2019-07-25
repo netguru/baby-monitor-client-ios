@@ -8,7 +8,7 @@ import RxSwift
 import RxCocoa
 
 protocol CryingEventsServiceProtocol: Any {
-    var cryingEventObservable: Observable<EventMessage> { get }
+    var cryingEventObservable: Observable<Void> { get }
     
     /// Starts work of crying events service
     func start() throws
@@ -22,11 +22,11 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
         case audioRecordServiceError
     }
     
-    lazy var cryingEventObservable: Observable<EventMessage> = cryingEventPublisher.asObservable()
+    lazy var cryingEventObservable = cryingEventPublisher.asObservable()
     lazy var errorObservable = errorPublisher.asObservable()
     private var nextFileName: String = ""
     
-    private let cryingEventPublisher = PublishSubject<EventMessage>()
+    private let cryingEventPublisher = PublishSubject<Void>()
     private let errorPublisher = PublishSubject<Error>()
     private let cryingDetectionService: CryingDetectionServiceProtocol
     private let microphoneRecordService: AudioMicrophoneRecordServiceProtocol?
@@ -63,8 +63,7 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
                 let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
                 self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
                 self.microphoneRecordService?.startRecording()
-                let cryingEventMessage = EventMessage.initWithCryingEvent(value: self.nextFileName)
-                self.cryingEventPublisher.onNext(cryingEventMessage)
+                self.cryingEventPublisher.onNext(())
             } else {
                 guard self.microphoneRecordService?.isRecording ?? false else {
                     return
