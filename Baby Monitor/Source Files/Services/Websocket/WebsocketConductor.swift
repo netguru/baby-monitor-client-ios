@@ -14,7 +14,7 @@ protocol WebSocketConductorProtocol {
 final class WebSocketConductor<MessageType>: WebSocketConductorProtocol {
 
     private let messageEmitter: Observable<String>
-    private let messageHandler: AnyObserver<MessageType>
+    private let messageHandler: AnyObserver<MessageType>?
     private let messageDecoders: [AnyMessageDecoder<MessageType>]
     private let bag = DisposeBag()
 
@@ -23,7 +23,7 @@ final class WebSocketConductor<MessageType>: WebSocketConductorProtocol {
         return webSocketStorage.get()
     }
 
-    init(webSocket: ClearableLazyItem<WebSocketProtocol?>, messageEmitter: Observable<String>, messageHandler: AnyObserver<MessageType>, messageDecoders: [AnyMessageDecoder<MessageType>]) {
+    init(webSocket: ClearableLazyItem<WebSocketProtocol?>, messageEmitter: Observable<String>, messageHandler: AnyObserver<MessageType>?, messageDecoders: [AnyMessageDecoder<MessageType>]) {
         self.webSocketStorage = webSocket
         self.messageEmitter = messageEmitter
         self.messageHandler = messageHandler
@@ -39,6 +39,9 @@ final class WebSocketConductor<MessageType>: WebSocketConductorProtocol {
 
     func open() {
         webSocket?.open()
+        guard let messageHandler = messageHandler else {
+            return
+        }
         webSocket?.decodedMessage(using: messageDecoders)
             .filter { $0 != nil }
             .map { $0! }
