@@ -5,6 +5,7 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,29 +20,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootCoordinator?.start()
         window?.makeKeyAndVisible()
         setupAppearance()
-        setupNotifications(application: application)
-        FirebaseApp.configure()
-        Messaging.messaging().delegate = self
+        setupPushNotifications(application)
         appDependencies.storageServerService.uploadRecordingsToDatabaseIfAllowed()
         return true
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         #if REGULAR_BUILD
-            appDependencies.memoryCleaner.cleanMemoryIfNeeded()
+        appDependencies.memoryCleaner.cleanMemoryIfNeeded()
         #endif
     }
     
-    private func setupNotifications(application: UIApplication) {
-        appDependencies.localNotificationService.getNotificationsAllowance { isGranted in
-            guard isGranted else {
-                return
+    private func setupPushNotifications(_ application: UIApplication) {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [ .badge, .sound, .alert
+            ]) { granted, _ in
+                guard granted else { return }
+                UNUserNotificationCenter.current().delegate = self
+                DispatchQueue.main.async {
+                    application.registerForRemoteNotifications()
+                }
             }
-            DispatchQueue.main.async {
-                application.registerForRemoteNotifications()
-            }
-            
         }
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
     }
     
     private func setupAppearance() {
@@ -56,5 +58,13 @@ extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         UserDefaults.selfPushNotificationsToken = fcmToken
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound, .badge])
     }
 }
