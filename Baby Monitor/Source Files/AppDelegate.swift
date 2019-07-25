@@ -32,14 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setupPushNotifications(_ application: UIApplication) {
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [ .badge, .sound, .alert
-            ]) { granted, _ in
-                guard granted else { return }
-                UNUserNotificationCenter.current().delegate = self
-                DispatchQueue.main.async {
-                    application.registerForRemoteNotifications()
-                }
+        UNUserNotificationCenter.current().requestAuthorization(options: [ .badge, .sound, .alert
+        ]) { granted, _ in
+            guard granted else { return }
+            UNUserNotificationCenter.current().delegate = self
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
             }
         }
         FirebaseApp.configure()
@@ -52,6 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().isTranslucent = false
     }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        appDependencies.databaseRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent))
+    }
 }
 
 extension AppDelegate: MessagingDelegate {
@@ -63,7 +65,6 @@ extension AppDelegate: MessagingDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
-    @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound, .badge])
     }
