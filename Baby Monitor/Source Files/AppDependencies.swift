@@ -11,6 +11,8 @@ import AudioKit
 import FirebaseMessaging
 
 final class AppDependencies {
+
+    let microphonePermissionProvider: MicrophonePermissionProviderProtocol = MicrophonePermissionProvider()
     
     private let bag = DisposeBag()
     /// Service for cleaning too many crying events

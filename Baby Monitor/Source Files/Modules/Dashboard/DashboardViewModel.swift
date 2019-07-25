@@ -6,6 +6,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import AVFoundation
 
 final class DashboardViewModel {
     
@@ -20,6 +21,7 @@ final class DashboardViewModel {
     
     private let dismissImagePickerSubject = PublishRelay<Void>()
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
+    private let microphonePermissionProvider: MicrophonePermissionProviderProtocol
     
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
     lazy var connectionStatus: Observable<ConnectionStatus> = connectionChecker.connectionStatus
@@ -27,10 +29,11 @@ final class DashboardViewModel {
     // MARK: - Private properties
     private let connectionChecker: ConnectionChecker
     
-    init(connectionChecker: ConnectionChecker, babyModelController: BabyModelControllerProtocol, webSocketEventMessageService: WebSocketEventMessageServiceProtocol) {
+    init(connectionChecker: ConnectionChecker, babyModelController: BabyModelControllerProtocol, webSocketEventMessageService: WebSocketEventMessageServiceProtocol, microphonePermissionProvider: MicrophonePermissionProviderProtocol) {
         self.connectionChecker = connectionChecker
         self.babyModelController = babyModelController
         self.webSocketEventMessageService = webSocketEventMessageService
+        self.microphonePermissionProvider = microphonePermissionProvider
         setup()
         rxSetup()
     }
@@ -41,6 +44,9 @@ final class DashboardViewModel {
     
     func attachInput(liveCameraTap: Observable<Void>, activityLogTap: Observable<Void>, settingsTap: Observable<Void>) {
         liveCameraPreview = liveCameraTap
+            .flatMapLatest { [unowned self] _ in
+                self.microphonePermissionProvider.getMicrophonePermission()
+            }
         self.activityLogTap = activityLogTap
         self.settingsTap = settingsTap
     }
