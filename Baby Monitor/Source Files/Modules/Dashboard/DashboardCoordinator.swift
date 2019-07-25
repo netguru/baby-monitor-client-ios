@@ -32,9 +32,6 @@ final class DashboardCoordinator: Coordinator {
                 AlertPresenter.showDefaultAlert(title: Localizable.General.warning, message: Localizable.Errors.notificationsNotAllowed, onViewController: self.navigationController)
             }
         }
-        appDependencies.webSocketEventMessageService.get().cryingEventObservable.subscribe(onNext: { _ in
-            AlertPresenter.showDefaultAlert(title: Localizable.Server.babyIsCrying, message: nil, onViewController: self.navigationController)
-        }).disposed(by: disposeBag)
     }
 
     private func showDashboard() {

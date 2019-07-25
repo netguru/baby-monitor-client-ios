@@ -20,8 +20,6 @@ final class ServerService: ServerServiceProtocol {
     }
     lazy var audioMicrophoneServiceErrorObservable = audioMicrophoneServiceErrorPublisher.asObservable()
     
-    private var isCryingMessageReceivedFromClient = false
-    private var timer: Timer?
     private let parentResponseTime: TimeInterval
     private let webRtcServerManager: WebRtcServerManagerProtocol
     private let messageServer: MessageServerProtocol
@@ -55,14 +53,8 @@ final class ServerService: ServerServiceProtocol {
     }
     
     private func rxSetup() {
-        cryingEventService.cryingEventObservable.subscribe(onNext: { [unowned self] cryingEventMessage in
-            self.messageServer.send(message: cryingEventMessage.toStringMessage())
-            self.timer = Timer.scheduledTimer(withTimeInterval: self.parentResponseTime, repeats: false, block: { _ in
-                if !self.isCryingMessageReceivedFromClient {
-                    self.notificationsService.sendPushNotificationsRequest()
-                }
-                self.isCryingMessageReceivedFromClient = false
-            })
+        cryingEventService.cryingEventObservable.subscribe(onNext: { [unowned self] _ in
+            self.notificationsService.sendPushNotificationsRequest()
         }).disposed(by: disposeBag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
@@ -102,12 +94,8 @@ final class ServerService: ServerServiceProtocol {
             return
         }
         switch babyMonitorEvent {
-        case .cryingEventMessageReceived:
-            isCryingMessageReceivedFromClient = true
         case .pushNotificationsKey:
             UserDefaults.receiverPushNotificationsToken = event.value
-        case .crying:
-            break
         }
     }
     

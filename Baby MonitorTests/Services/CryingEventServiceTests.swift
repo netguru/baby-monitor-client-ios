@@ -16,7 +16,7 @@ class CryingEventServiceTests: XCTestCase {
     var audioMicrophoneServiceMock = AudioMicrophoneServiceMock()
     var cryingEventsRepositoryMock = DatabaseRepositoryMock()
     var storageServiceMock = StorageServerServiceMock()
-
+    
     override func setUp() {
         cryingDetectionServiceMock = CryingDetectionServiceMock()
         audioMicrophoneServiceMock = AudioMicrophoneServiceMock()
@@ -76,9 +76,7 @@ class CryingEventServiceTests: XCTestCase {
         let disposeBag = DisposeBag()
         let exp = expectation(description: "Should notify about crying detection")
         sut.cryingEventObservable.subscribe(onNext: { eventMessage in
-            if eventMessage.action == "BABY_IS_CRYING" {
-                exp.fulfill()
-            }
+            exp.fulfill()
         }).disposed(by: disposeBag)
         
         //When
