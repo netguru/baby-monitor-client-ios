@@ -217,6 +217,7 @@
 		A1640E252203A3DB00398ED2 /* ServerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E242203A3DB00398ED2 /* ServerSettingsViewController.swift */; };
 		A1640E272203A48F00398ED2 /* ServerSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E262203A48F00398ED2 /* ServerSettingsViewModel.swift */; };
 		A1640E2B22048EA100398ED2 /* BabyMonitorSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1640E2A22048EA100398ED2 /* BabyMonitorSwitch.swift */; };
+		A16959DD22EAF4EF0088B2FE /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16959DC22EAF4EF0088B2FE /* String+URL.swift */; };
 		A186818F2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A186818E2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift */; };
 		A18681912209A1A60069E521 /* SendRecordingsIntroFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18681902209A1A60069E521 /* SendRecordingsIntroFeatureView.swift */; };
 		A18681932209A2350069E521 /* RecordingsIntroFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18681922209A2350069E521 /* RecordingsIntroFeatureViewController.swift */; };
@@ -545,6 +546,7 @@
 		A1640E242203A3DB00398ED2 /* ServerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSettingsViewController.swift; sourceTree = "<group>"; };
 		A1640E262203A48F00398ED2 /* ServerSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSettingsViewModel.swift; sourceTree = "<group>"; };
 		A1640E2A22048EA100398ED2 /* BabyMonitorSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMonitorSwitch.swift; sourceTree = "<group>"; };
+		A16959DC22EAF4EF0088B2FE /* String+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
 		A186818E2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+SendingCryingAllowance.swift"; sourceTree = "<group>"; };
 		A18681902209A1A60069E521 /* SendRecordingsIntroFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRecordingsIntroFeatureView.swift; sourceTree = "<group>"; };
 		A18681922209A2350069E521 /* RecordingsIntroFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsIntroFeatureViewController.swift; sourceTree = "<group>"; };
@@ -832,6 +834,7 @@
 				4E8E057321AE9E4A009ACE05 /* UIColor+BabyMonitor.swift */,
 				4E7B091021E5FE6D00EDDD11 /* Encodable+StringMessage.swift */,
 				4EA2802321E8BD6300262E45 /* String+Regex.swift */,
+				A16959DC22EAF4EF0088B2FE /* String+URL.swift */,
 				4EA2802521E8C6B100262E45 /* DateFormatter+Helpers.swift */,
 				4E7A1A8F21F1284B0015C3A3 /* UserDefaults+AppMode.swift */,
 				A1D36D4122E8364E002F6B2E /* UserDefaults+PushNotificationsKey.swift */,
@@ -1890,6 +1893,7 @@
 				95368F522209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift in Sources */,
 				ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */,
 				8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */,
+				A16959DD22EAF4EF0088B2FE /* String+URL.swift in Sources */,
 				8A4EC11822E739C20076722E /* UIActivityIndicatorView+Rx.swift in Sources */,
 				A1EC9775221AA51A00C27786 /* OnboardingAccessViewController.swift in Sources */,
 				A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */,
