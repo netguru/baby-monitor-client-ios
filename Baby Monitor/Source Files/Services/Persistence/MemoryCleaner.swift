@@ -25,12 +25,13 @@ final class MemoryCleaner: MemoryCleanerProtocol {
     
     func cleanMemoryIfNeeded() {
         let twoHundredMB = 200 * 1024 * 1024
-        guard let enumerator = FileManager.default.enumerator(atPath: FileManager.cryingRecordsURL.path),
+        let cryingRecordsUrl = FileManager.cryingRecordsURL
+        guard let subpaths = FileManager.default.subpaths(atPath: cryingRecordsUrl.path),
             let memoryUsage = FileManager.documentsDirectorySize,
             memoryUsage < twoHundredMB else {
                 return
         }
-        var fileUrls = enumerator.allObjects.compactMap({ $0 as? URL })
+        var fileUrls = subpaths.compactMap { cryingRecordsUrl.appendingPathComponent($0).absoluteString.url }
         while (FileManager.documentsDirectorySize ?? 0) > UInt64(Double(twoHundredMB) * 0.7) {
             guard !fileUrls.isEmpty else {
                 break
