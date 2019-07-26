@@ -11,7 +11,7 @@ protocol StorageServerServiceProtocol: AnyObject {
 }
 
 final class FirebaseStorageService: StorageServerServiceProtocol {
-    private var filepathsToSend: Set<URL> = []
+    private var subpathsToSend: Set<String> = []
     private var isSending = false
     private lazy var storageReference = Storage.storage().reference()
     private let userDefaults = UserDefaults.standard
@@ -25,7 +25,7 @@ final class FirebaseStorageService: StorageServerServiceProtocol {
         guard UserDefaults.isSendingCryingsAllowed else {
             return
         }
-        filepathsToSend = filepathsToSend.union(getAllFilepaths())
+        subpathsToSend = subpathsToSend.union(getAllSubpaths())
         guard !isSending else {
             return
         }
@@ -34,12 +34,12 @@ final class FirebaseStorageService: StorageServerServiceProtocol {
         }
     }
     
-    private func getAllFilepaths() -> [URL] {
-        guard let enumerator = FileManager.default.enumerator(atPath: FileManager.cryingRecordsURL.path) else {
+    private func getAllSubpaths() -> [String] {
+        let cryingRecordsUrl = FileManager.cryingRecordsURL
+        guard let subpaths = FileManager.default.subpaths(atPath: cryingRecordsUrl.path) else {
             return []
         }
-        let fileUrls = enumerator.allObjects.compactMap({ $0 as? URL })
-        return fileUrls
+        return subpaths
     }
     
     private func sendCompletionHandler(result: Result<URL>) {
@@ -50,30 +50,27 @@ final class FirebaseStorageService: StorageServerServiceProtocol {
                 self.sendCompletionHandler(result: result)
             }
         case .failure:
-            filepathsToSend = []
+            subpathsToSend = []
         }
     }
     
     private func sendNextRecord(completion: @escaping (Result<URL>) -> Void) {
-        guard !filepathsToSend.isEmpty else {
+        guard !subpathsToSend.isEmpty else {
             isSending = false
             return
         }
         isSending = true
-        let filePath = filepathsToSend.removeFirst()
-        let filePathString = filePath.absoluteString
-        guard let fileName = filePathString.nameOfFileInPath() else {
-            completion(.success(filePath))
-            return
-        }
-        let recordingPath = storageReference.child(fileName)
-        recordingPath.putFile(from: filePath, metadata: nil) { [unowned self] _, error in
-            guard error != nil else {
+        let subpath = subpathsToSend.removeFirst()
+        let fileUrl = FileManager.cryingRecordsURL.appendingPathComponent(subpath).absoluteString.url!
+        let recordingPath = storageReference.child(subpath)
+        recordingPath.putFile(from: fileUrl, metadata: nil) { [unowned self] _, error in
+            guard error == nil else {
                 self.isSending = false
+
                 completion(.failure(nil))
                 return
             }
-            completion(.success(filePath))
+            completion(.success(fileUrl))
         }
     }
 }
