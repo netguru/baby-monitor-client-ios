@@ -66,7 +66,6 @@ final class FirebaseStorageService: StorageServerServiceProtocol {
         recordingPath.putFile(from: fileUrl, metadata: nil) { [unowned self] _, error in
             guard error == nil else {
                 self.isSending = false
-
                 completion(.failure(nil))
                 return
             }
