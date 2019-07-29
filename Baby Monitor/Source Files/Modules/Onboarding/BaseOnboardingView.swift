@@ -19,14 +19,14 @@ class BaseOnboardingView: BaseView {
     }()
     private let mainDescriptionLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont.customFont(withSize: .h1, weight: .medium)
+        view.font = UIFont.customFont(withSize: Constants.responsive(ofSizes: [.small: .h2, .medium: .h1]), weight: .medium)
         view.numberOfLines = 0
         view.textColor = .white
         return view
     }()
     private let secondaryDescriptionLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont.customFont(withSize: .body, weight: .regular)
+        view.font = UIFont.customFont(withSize: Constants.responsive(ofSizes: [.small: .small, .medium: .body]), weight: .regular)
         view.numberOfLines = 0
         view.textColor = .babyMonitorPurple
         return view
@@ -69,7 +69,7 @@ class BaseOnboardingView: BaseView {
         let screenHeight = UIScreen.main.bounds.height
         titleLabel.addConstraints {[
             $0.equal(.leading, constant: 24),
-            $0.equalTo(self, .top, .safeAreaTop, constant: screenHeight * 0.02),
+            $0.equalTo(self, .top, .safeAreaTop, constant: Constants.responsive(ofSizes: [.small: screenHeight * 0.02, .medium: screenHeight * 0.1])),
             $0.equal(.centerX)
         ]
         }
