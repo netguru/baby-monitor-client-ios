@@ -102,7 +102,7 @@ class IntroFeatureView: BaseView {
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.6),
             $0.equalTo($0, .height, .height),
-            $0.equalTo(self, .top, .safeAreaTop, constant: screenHeight * 0.1)
+            $0.equalTo(self, .top, .safeAreaTop, constant: screenHeight * 0.02)
         ]
         }
         titleLabelConstraints = titleLabel.addConstraints {[

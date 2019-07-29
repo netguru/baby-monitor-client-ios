@@ -69,7 +69,7 @@ class BaseOnboardingView: BaseView {
         let screenHeight = UIScreen.main.bounds.height
         titleLabel.addConstraints {[
             $0.equal(.leading, constant: 24),
-            $0.equalTo(self, .top, .safeAreaTop, constant: screenHeight * 0.1),
+            $0.equalTo(self, .top, .safeAreaTop, constant: screenHeight * 0.02),
             $0.equal(.centerX)
         ]
         }
