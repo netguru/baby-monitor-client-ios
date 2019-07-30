@@ -5,6 +5,7 @@
 
 import UIKit
 import RxSwift
+import StoreKit
 
 final class ParentSettingsViewController: TypedViewController<ParentSettingsView>, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -59,6 +60,7 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
             .disposed(by: bag)
     }
 
-    // TODO: - Redirect to Appstore and give possibility of rating after app will be on Appstore
-    private func handleRating() {}
+    private func handleRating() {
+        SKStoreReviewController.requestReview()
+    }
 }
