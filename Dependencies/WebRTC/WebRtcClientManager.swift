@@ -58,7 +58,8 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
                 RTCPair(key: WebRtcConstraintKey.offerToReceiveAudio, value: WebRtcConstraintValue.true)!
             ],
             optionalConstraints: [
-                RTCPair(key: WebRtcConstraintKey.dtlsSrtpKeyAgreement, value: WebRtcConstraintValue.true)!
+                RTCPair(key: WebRtcConstraintKey.dtlsSrtpKeyAgreement, value: WebRtcConstraintValue.true)!,
+                RTCPair(key: WebRtcConstraintKey.iceRestart, value: WebRtcConstraintValue.true)!
             ]
         )
     }
