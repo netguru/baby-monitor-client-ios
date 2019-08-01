@@ -19,6 +19,13 @@ class BaseSettingsView: UIView {
     
     fileprivate let rateButton = RoundedRectangleButton(title: Localizable.Settings.rateButtonTitle, backgroundColor: .babyMonitorPurple)
     fileprivate let resetButton = RoundedRectangleButton(title: Localizable.Settings.resetButtonTitle, backgroundColor: .babyMonitorDarkPurple, borderColor: .babyMonitorNonTranslucentWhite)
+    private lazy var buildVersionLabel: UILabel = {
+        let view = UILabel()
+        view.textColor = .white
+        view.font = UIFont.customFont(withSize: .small)
+        view.text = "\(Localizable.General.version): \(Bundle.main.buildNumber)"
+        return view
+    }()
     private(set) lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [rateButton, resetButton])
         stackView.axis = .vertical
@@ -51,7 +58,7 @@ class BaseSettingsView: UIView {
     private func setupLayout() {
         rateButton.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
         resetButton.titleLabel?.font = UIFont.customFont(withSize: .small, weight: .bold)
-        [ buttonsStackView, signatureImageView].forEach { addSubview($0) }
+        [ buttonsStackView, buildVersionLabel, signatureImageView].forEach { addSubview($0) }
         setupConstraints()
     }
     
@@ -63,6 +70,10 @@ class BaseSettingsView: UIView {
             $0.equalTo(buttonsStackView, .height, .width, multiplier: 0.415)
         ]
         }
+        buildVersionLabel.addConstraints { [
+            $0.equal(.bottom, constant: -10),
+            $0.equal(.centerX)
+        ]}
         signatureImageView.addConstraints {[
             $0.equal(.bottom, constant: -52),
             $0.equal(.centerX)

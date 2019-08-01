@@ -225,6 +225,7 @@
 		A18D3E6E21FF071200C165C6 /* CALayerBasicAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */; };
 		A18D3E7521FF6D3700C165C6 /* ActivityLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */; };
 		A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */; };
+		A1A708C322F320970058B537 /* Bundle+BuildNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A708C222F320970058B537 /* Bundle+BuildNumber.swift */; };
 		A1B57ACD22E97F4B0021B314 /* MicrophonePermissionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B57ACC22E97F4B0021B314 /* MicrophonePermissionProvider.swift */; };
 		A1B57ACF22E992C20021B314 /* MicrophonePermissionProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B57ACE22E992C20021B314 /* MicrophonePermissionProviderMock.swift */; };
 		A1C5E6E221FA2E7100D93203 /* DatabaseRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */; };
@@ -554,6 +555,7 @@
 		A18D3E6D21FF071200C165C6 /* CALayerBasicAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerBasicAnimation.swift; sourceTree = "<group>"; };
 		A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
+		A1A708C222F320970058B537 /* Bundle+BuildNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+BuildNumber.swift"; sourceTree = "<group>"; };
 		A1B57ACC22E97F4B0021B314 /* MicrophonePermissionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MicrophonePermissionProvider.swift; path = "Baby Monitor/Source Files/Services/Other/MicrophonePermissionProvider.swift"; sourceTree = SOURCE_ROOT; };
 		A1B57ACE22E992C20021B314 /* MicrophonePermissionProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionProviderMock.swift; sourceTree = "<group>"; };
 		A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepositoryMock.swift; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 				A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */,
 				959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */,
 				8A4EC11722E739C20076722E /* UIActivityIndicatorView+Rx.swift */,
+				A1A708C222F320970058B537 /* Bundle+BuildNumber.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1858,6 +1861,7 @@
 			files = (
 				8A6098C421EBFDA700592B01 /* PeerConnectionFactoryProtocol.swift in Sources */,
 				4E7B091321E6148600EDDD11 /* URLSessionProtocol.swift in Sources */,
+				A1A708C322F320970058B537 /* Bundle+BuildNumber.swift in Sources */,
 				A7D756092232DBC800F9893E /* CryingDetectionService.swift in Sources */,
 				A1ED8F912212C745005762E8 /* TwoOptionsBaseOnboardingView.swift in Sources */,
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
