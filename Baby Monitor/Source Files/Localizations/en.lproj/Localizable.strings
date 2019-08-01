@@ -21,6 +21,7 @@
 "general.retry" = "Retry";
 "general.i-am-sure" = "I'm sure";
 "general.important" = "IMPORTANT: ";
+"general.version" = "Version";
 
 //MARK: = Intro
 "intro.title.monitoring" = "Do your daily errands and\nkeep an eye on your baby";

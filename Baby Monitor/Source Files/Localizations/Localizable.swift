@@ -26,6 +26,7 @@ enum Localizable {
         static let retry = localized("general.retry")
         static let imSure = localized("general.i-am-sure")
         static let important = localized("general.important")
+        static let version = localized("general.version")
     }
     
     enum Intro {
