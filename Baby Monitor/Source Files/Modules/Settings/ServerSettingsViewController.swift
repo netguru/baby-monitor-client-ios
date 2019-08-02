@@ -6,6 +6,7 @@
 import Foundation
 import UIKit
 import RxSwift
+import StoreKit
 
 final class ServerSettingsViewController: TypedViewController<ServerSettingsView> {
     
@@ -42,6 +43,7 @@ final class ServerSettingsViewController: TypedViewController<ServerSettingsView
             allowSwitchControlProperty: customView.rx.allowSwitchChange.asObservable())
     }
     
-    // TODO: - Redirect to Appstore and give possibility of rating after app will be on Appstore
-    private func handleRating() {}
+    private func handleRating() {
+        SKStoreReviewController.requestReview()
+    }
 }
