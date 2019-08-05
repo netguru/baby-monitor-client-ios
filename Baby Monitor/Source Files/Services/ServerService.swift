@@ -9,6 +9,7 @@ import RxSwift
 protocol ServerServiceProtocol: AnyObject {
     var localStreamObservable: Observable<MediaStream> { get }
     var audioMicrophoneServiceErrorObservable: Observable<Void> { get }
+    var remoteResetEventObservable: Observable<Void> { get }
     func startStreaming()
     func stop()
 }
@@ -19,6 +20,7 @@ final class ServerService: ServerServiceProtocol {
         return webRtcServerManager.mediaStream
     }
     lazy var audioMicrophoneServiceErrorObservable = audioMicrophoneServiceErrorPublisher.asObservable()
+    lazy var remoteResetEventObservable = remoteResetEventPublisher.asObservable()
     
     private let parentResponseTime: TimeInterval
     private let webRtcServerManager: WebRtcServerManagerProtocol
@@ -30,6 +32,7 @@ final class ServerService: ServerServiceProtocol {
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
     private let notificationsService: NotificationServiceProtocol
     private let audioMicrophoneServiceErrorPublisher = PublishSubject<Void>()
+    private let remoteResetEventPublisher = PublishSubject<Void>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     
     init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babyModelController: BabyModelControllerProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
@@ -96,6 +99,8 @@ final class ServerService: ServerServiceProtocol {
         switch babyMonitorEvent {
         case .pushNotificationsKey:
             UserDefaults.receiverPushNotificationsToken = event.value
+        case .resetKey:
+            remoteResetEventPublisher.onNext(())
         }
     }
     

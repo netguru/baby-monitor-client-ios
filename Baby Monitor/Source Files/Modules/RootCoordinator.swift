@@ -72,7 +72,9 @@ final class RootCoordinator: RootCoordinatorProtocol {
         // For now triggering dashboardCoordinator/serverCoordinator onEnding is only in situation where user wants to clear all data
         switch UserDefaults.appMode {
         case .none:
-            // This line is extremely important. After resseting the app we may want to establish new WebRTC connection. Thanks to deinitializing and initializing AppDependencies again we are sure that old connection is properly cleared.
+            // This line is extremely important. After resseting the app we may want to establish new
+            // WebRTC connection. Thanks to deinitializing and initializing AppDependencies again we are
+            // sure that old connection is properly cleared.
             appDependencies = AppDependencies()
             childCoordinators = []
             setup()

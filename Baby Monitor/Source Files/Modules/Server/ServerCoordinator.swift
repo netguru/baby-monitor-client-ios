@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import RxSwift
 
 final class ServerCoordinator: Coordinator {
     init(_ navigationController: UINavigationController, appDependencies: AppDependencies) {
@@ -19,9 +20,19 @@ final class ServerCoordinator: Coordinator {
     
     private weak var parentSettingsCoordinator: SettingsCoordinator?
     private var isAudioServiceErrorAlreadyShown = false
+    private let bag = DisposeBag()
     
     func start() {
+        setupResettingState()
         showServerView()
+    }
+    
+    private func setupResettingState() {
+        appDependencies.serverService.remoteResetEventObservable.subscribe(onNext: { [weak self] in
+            self?.appDependencies.resetForNoneState()
+            self?.onEnding?()
+        })
+            .disposed(by: bag)
     }
     
     private func showServerView() {
