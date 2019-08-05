@@ -101,7 +101,7 @@ final class AppDependencies {
         guard let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else { return nil }
         let webSocket = PSWebSocketWrapper(socket: rawSocket)
         webSocket.disconnectionObservable
-            .subscribe(onNext: { [unowned self] in self.resetForNoneState() })
+            .subscribe(onNext: { [unowned self] in self.resetTheApplication() })
             .disposed(by: self.bag)
         return webSocket
     }
@@ -153,7 +153,7 @@ final class AppDependencies {
 // MARK: - Resetting app state
 extension AppDependencies {
     
-    func resetForNoneState() {
+    func resetTheApplication() {
         let resetEventString = EventMessage.initWithResetKey().toStringMessage()
         webSocketEventMessageService.get().sendMessage(resetEventString)
         databaseRepository.removeAllData()

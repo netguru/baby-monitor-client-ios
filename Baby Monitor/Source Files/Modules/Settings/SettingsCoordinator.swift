@@ -58,7 +58,7 @@ final class SettingsCoordinator: Coordinator {
     private func connect(toBaseSettingsViewModel viewModel: BaseSettingsViewModelProtocol) {
         viewModel.resetAppTap?.subscribe(onNext: { [unowned self] in
             let continueHandler: (() -> Void) = { [weak self] in
-                self?.appDependencies.resetForNoneState()
+                self?.appDependencies.resetTheApplication()
                 self?.onEnding?()
             }
             let continueAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = (Localizable.General.continue, UIAlertAction.Style.default, continueHandler)
