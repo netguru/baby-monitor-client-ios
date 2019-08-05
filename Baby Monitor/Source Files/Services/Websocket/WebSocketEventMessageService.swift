@@ -41,7 +41,8 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
                 break
             }
         })
-        
+    }
+    
     func start() {
         eventMessageConductor?.open()
     }
