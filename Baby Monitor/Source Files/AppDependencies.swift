@@ -159,6 +159,7 @@ extension AppDependencies {
         urlConfiguration.url = nil
         webSocketWebRtcService.get().close()
         UserDefaults.appMode = .none
+        UserDefaults.isSendingCryingsAllowed = false
         
         webSocketWebRtcService.clear()
         webSocketEventMessageService.clear()

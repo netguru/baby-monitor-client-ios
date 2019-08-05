@@ -45,7 +45,7 @@ final class SettingsCoordinator: Coordinator {
     }
     
     private func showBabySettings() {
-        let viewModel = ServerSettingsViewModel(memoryCleaner: appDependencies.memoryCleaner)
+        let viewModel = ServerSettingsViewModel()
         let settingsViewController = ServerSettingsViewController(viewModel: viewModel)
         settingsViewController.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
