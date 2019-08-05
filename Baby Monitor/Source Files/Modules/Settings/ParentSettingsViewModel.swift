@@ -9,8 +9,6 @@ import RxCocoa
 protocol BaseSettingsViewModelProtocol: AnyObject {
     var resetAppTap: Observable<Void>? { get }
     var cancelTap: Observable<Void>? { get }
-    
-    func clearAllDataForNoneState()
 }
 
 final class ParentSettingsViewModel: BaseSettingsViewModelProtocol {
@@ -22,17 +20,11 @@ final class ParentSettingsViewModel: BaseSettingsViewModelProtocol {
     private(set) var cancelTap: Observable<Void>?
     
     private let babyModelController: BabyModelControllerProtocol
-    private let memoryCleaner: MemoryCleanerProtocol
-    private let urlConfiguration: URLConfiguration
-    private let webSocketWebRtcService: WebSocketWebRtcServiceProtocol
     private let bag = DisposeBag()
     private let dismissImagePickerSubject = PublishRelay<Void>()
     
-    init(babyModelController: BabyModelControllerProtocol, memoryCleaner: MemoryCleanerProtocol, urlConfiguration: URLConfiguration, webSocketWebRtcService: WebSocketWebRtcServiceProtocol) {
+    init(babyModelController: BabyModelControllerProtocol) {
         self.babyModelController = babyModelController
-        self.memoryCleaner = memoryCleaner
-        self.urlConfiguration = urlConfiguration
-        self.webSocketWebRtcService = webSocketWebRtcService
     }
     
     func attachInput(babyName: Observable<String>, addPhotoTap: Observable<Void>, resetAppTap: Observable<Void>, cancelTap: Observable<Void>) {
@@ -53,13 +45,5 @@ final class ParentSettingsViewModel: BaseSettingsViewModelProtocol {
     
     func selectDismissImagePicker() {
         dismissImagePickerSubject.accept(())
-    }
-    
-    func clearAllDataForNoneState() {
-        babyModelController.removeAllData()
-        memoryCleaner.cleanMemory()
-        urlConfiguration.url = nil
-        webSocketWebRtcService.close()
-        UserDefaults.appMode = .none
     }
 }

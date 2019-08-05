@@ -32,6 +32,7 @@ final class AppDependencies {
     let microphonePermissionProvider: MicrophonePermissionProviderProtocol = MicrophonePermissionProvider()
     
     // MARK: - Bonjour
+    
     private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
     
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer(appStateProvider: NotificationCenter.default)
@@ -104,7 +105,6 @@ final class AppDependencies {
             .disposed(by: self.bag)
         return webSocket
     }
-    )
     
     // MARK: - Notifications
     
@@ -114,7 +114,7 @@ final class AppDependencies {
     
     private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher(
         urlSession: URLSession(configuration: .default),
-        dispatchQueue: DispatchQueue(label: "NetworkDispatcherQueue")
+        dispatchQueue: DispatchQueue(label: "NetworkDispatcherQueue"))
     
     private let serverKeyObtainable: ServerKeyObtainableProtocol = ServerKeyObtainable()
     
@@ -154,6 +154,12 @@ final class AppDependencies {
 extension AppDependencies {
     
     func resetForNoneState() {
+        databaseRepository.removeAllData()
+        memoryCleaner.cleanMemory()
+        urlConfiguration.url = nil
+        webSocketWebRtcService.get().close()
+        UserDefaults.appMode = .none
+        
         webSocketWebRtcService.clear()
         webSocketEventMessageService.clear()
         webSocket.clear()
