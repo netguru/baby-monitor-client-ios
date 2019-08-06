@@ -40,7 +40,7 @@ final class CameraPreviewViewModel {
     }
 
     func stop() {
-        webSocketWebRtcService.close()
+        webSocketWebRtcService.closeWebRtcConnection()
     }
     
     // MARK: - Private functions

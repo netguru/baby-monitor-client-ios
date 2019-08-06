@@ -10,6 +10,7 @@ protocol WebSocketWebRtcServiceProtocol {
     var state: Observable<WebRtcClientManagerState> { get }
     func start()
     func close()
+    func closeWebRtcConnection()
 }
 
 final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
@@ -73,6 +74,11 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
     }
     
     func close() {
+        webSocketConductor?.close()
+        webRtcClientManager.stop()
+    }
+    
+    func closeWebRtcConnection() {
         webRtcClientManager.stop()
     }
 }
