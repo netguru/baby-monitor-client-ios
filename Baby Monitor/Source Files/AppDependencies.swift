@@ -155,7 +155,14 @@ extension AppDependencies {
     
     func resetTheApplication() {
         let resetEventString = EventMessage.initWithResetKey().toStringMessage()
-        webSocketEventMessageService.get().sendMessage(resetEventString)
+        switch UserDefaults.appMode {
+        case .baby:
+            messageServer.send(message: resetEventString)
+        case .parent:
+            webSocketEventMessageService.get().sendMessage(resetEventString)
+        case .none:
+            break
+        }
         databaseRepository.removeAllData()
         memoryCleaner.cleanMemory()
         urlConfiguration.url = nil
