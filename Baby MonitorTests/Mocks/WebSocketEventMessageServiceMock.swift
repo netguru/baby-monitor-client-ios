@@ -8,8 +8,8 @@ import RxSwift
 
 final class WebSocketEventMessageServiceMock: WebSocketEventMessageServiceProtocol {
 
-    lazy var cryingEventObservable: Observable<Void> = cryingEventPublisher.asObservable()
-    private let cryingEventPublisher = PublishSubject<Void>()
+    lazy var remoteResetObservable: Observable<Void> = remoteResetPublisher.asObservable()
+    private let remoteResetPublisher = PublishSubject<Void>()
     private(set) var isStarted = false
     private(set) var messages = [String]()
 
