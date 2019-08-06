@@ -99,8 +99,8 @@
 		4EB93D2021ECA15F00E99BB3 /* StorageServerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB93D1F21ECA15F00E99BB3 /* StorageServerServiceMock.swift */; };
 		4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
-		8A045D5B21A3F685006A2E10 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		8A41D4C221C2475A00CF1E08 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		8A045D5B21A3F685006A2E10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		8A41D4C221C2475A00CF1E08 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DAFD2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift */; };
 		8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */; };
 		8A42DB072179D61B00BF5F1B /* URLConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB062179D61B00BF5F1B /* URLConfiguration.swift */; };
@@ -1726,26 +1726,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
-				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1790,40 +1775,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Keys/Keys.framework",
-				"${BUILT_PRODUCTS_DIR}/PocketSocket/PocketSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keys.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1867,7 +1823,7 @@
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
 				A1EC9777221AA53900C27786 /* OnboardingAccessViewModel.swift in Sources */,
 				4E63DC1B21E39D4B00604167 /* Request.swift in Sources */,
-				8A045D5B21A3F685006A2E10 /* (null) in Sources */,
+				8A045D5B21A3F685006A2E10 /* BuildFile in Sources */,
 				A7D756342236B03D00F9893E /* SpectrogramOp.swift in Sources */,
 				A18681912209A1A60069E521 /* SendRecordingsIntroFeatureView.swift in Sources */,
 				8A7A611B21A59E5000488ED4 /* MemoryCleaner.swift in Sources */,
@@ -2112,7 +2068,7 @@
 				8A50AA9C21E8DBA20058C63A /* IceCandidateDecoderMock.swift in Sources */,
 				4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */,
 				8A50AAA121E8DBA20058C63A /* IceCandidateMock.swift in Sources */,
-				8A41D4C221C2475A00CF1E08 /* (null) in Sources */,
+				8A41D4C221C2475A00CF1E08 /* BuildFile in Sources */,
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
 				8A50AA9D21E8DBA20058C63A /* WebRtcClientManagerMock.swift in Sources */,
 				8A50AA8921E8D8D60058C63A /* DecodersTests.swift in Sources */,
