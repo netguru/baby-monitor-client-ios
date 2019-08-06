@@ -101,7 +101,7 @@ final class AppDependencies {
         guard let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else { return nil }
         let webSocket = PSWebSocketWrapper(socket: rawSocket)
         webSocket.disconnectionObservable
-            .subscribe(onNext: { [unowned self] in self.resetTheApplication() })
+            .subscribe(onNext: { [unowned self] in self.clearConnection() })
             .disposed(by: self.bag)
         return webSocket
     }
@@ -170,6 +170,10 @@ extension AppDependencies {
         UserDefaults.appMode = .none
         UserDefaults.isSendingCryingsAllowed = false
         
+        clearConnection()
+    }
+    
+    func clearConnection() {
         webSocketWebRtcService.clear()
         webSocketEventMessageService.clear()
         webSocket.clear()
