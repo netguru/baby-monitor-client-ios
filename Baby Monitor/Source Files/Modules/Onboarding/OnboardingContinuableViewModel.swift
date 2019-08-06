@@ -8,17 +8,17 @@ import RxSwift
 
 final class OnboardingContinuableViewModel {
     
-    enum Role {
+    enum Role: Equatable {
         case baby(BabyRole)
         case parent(ParentRole)
     }
     
-    enum BabyRole {
+    enum BabyRole: Equatable {
         case connectToWiFi
         case putNextToBed
     }
     
-    enum ParentRole {
+    enum ParentRole: Equatable {
         case hello
         case error
         case allDone
