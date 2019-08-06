@@ -55,15 +55,6 @@ final class AppDependencies {
     
     private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
     
-    private lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
-        WebSocketConductor(
-            webSocket: self.webSocket,
-            messageEmitter: emitter,
-            messageHandler: handler,
-            messageDecoders: self.webRtcMessageDecoders
-        )
-    }
-    
     private(set) lazy var peerConnectionFactory: PeerConnectionFactoryProtocol = RTCPeerConnectionFactory()
     
     // MARK: - WebSockets
@@ -86,7 +77,7 @@ final class AppDependencies {
     lazy var webSocketWebRtcService = ClearableLazyItem<WebSocketWebRtcServiceProtocol> { [unowned self] in
         return WebSocketWebRtcService(
             webRtcClientManager: self.webRtcClient(),
-            webRtcConductorFactory: self.webRtcConductorFactory)
+            webSocketConductorFactory: self.webSocketConductorFactory)
     }
     
     private(set) lazy var messageServer = MessageServer(server: webSocketServer)
@@ -104,6 +95,15 @@ final class AppDependencies {
             .subscribe(onNext: { [unowned self] in self.clearConnection() })
             .disposed(by: self.bag)
         return webSocket
+    }
+    
+    private lazy var webSocketConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
+        WebSocketConductor(
+            webSocket: self.webSocket,
+            messageEmitter: emitter,
+            messageHandler: handler,
+            messageDecoders: self.webRtcMessageDecoders
+        )
     }
     
     // MARK: - Notifications

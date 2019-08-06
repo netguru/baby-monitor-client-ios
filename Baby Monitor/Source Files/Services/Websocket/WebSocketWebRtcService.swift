@@ -20,9 +20,9 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
     private let webRtcClientManager: WebRtcClientManagerProtocol
     private var webSocketConductor: WebSocketConductorProtocol?
 
-    init(webRtcClientManager: WebRtcClientManagerProtocol, webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductorProtocol) {
+    init(webRtcClientManager: WebRtcClientManagerProtocol, webSocketConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductorProtocol) {
         self.webRtcClientManager = webRtcClientManager
-        setupWebRtcConductor(with: webRtcConductorFactory)
+        setupWebRtcConductor(with: webSocketConductorFactory)
     }
 
     private func setupWebRtcConductor(with factory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductorProtocol) {
