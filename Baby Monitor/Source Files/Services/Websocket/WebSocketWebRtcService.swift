@@ -73,7 +73,6 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
     }
     
     func close() {
-        webSocketConductor?.close()
         webRtcClientManager.stop()
     }
 }
