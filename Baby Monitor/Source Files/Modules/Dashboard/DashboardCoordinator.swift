@@ -37,6 +37,7 @@ final class DashboardCoordinator: Coordinator {
     
     private func setupResettingApp() {
         appDependencies.webSocketEventMessageService.get().remoteResetObservable.subscribe(onNext: { [weak self] in
+            self?.appDependencies.resetTheApplication()
             self?.onEnding?()
         })
             .disposed(by: disposeBag)
