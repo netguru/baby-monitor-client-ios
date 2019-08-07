@@ -36,9 +36,7 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
             }
             switch babyEvent {
             case .resetKey:
-                DispatchQueue.main.async {
-                    self?.remoteResetPublisher.onNext(())
-                }
+                self?.remoteResetPublisher.onNext(())
             case .pushNotificationsKey:
                 break
             }
