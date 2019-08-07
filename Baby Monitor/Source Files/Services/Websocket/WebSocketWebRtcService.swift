@@ -10,6 +10,7 @@ protocol WebSocketWebRtcServiceProtocol {
     var state: Observable<WebRtcClientManagerState> { get }
     func start()
     func close()
+    func closeWebRtcConnection()
 }
 
 final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
@@ -18,15 +19,15 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
     lazy var state: Observable<WebRtcClientManagerState> = webRtcClientManager.state
 
     private let webRtcClientManager: WebRtcClientManagerProtocol
-    private var webRtcConductor: WebSocketConductorProtocol?
+    private var webSocketConductor: WebSocketConductorProtocol?
 
-    init(webRtcClientManager: WebRtcClientManagerProtocol, webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductorProtocol) {
+    init(webRtcClientManager: WebRtcClientManagerProtocol, webSocketConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductorProtocol) {
         self.webRtcClientManager = webRtcClientManager
-        setupWebRtcConductor(with: webRtcConductorFactory)
+        setupWebRtcConductor(with: webSocketConductorFactory)
     }
 
     private func setupWebRtcConductor(with factory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductorProtocol) {
-        webRtcConductor = factory(Observable.merge(sdpOfferJson(), iceCandidateJson()), webRtcMessageHandler())
+        webSocketConductor = factory(Observable.merge(sdpOfferJson(), iceCandidateJson()), webRtcMessageHandler())
     }
 
     private func sdpOfferJson() -> Observable<String> {
@@ -68,12 +69,16 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
     }
 
     func start() {
-        webRtcConductor?.open()
+        webSocketConductor?.open()
         webRtcClientManager.startIfNeeded()
     }
     
     func close() {
-        webRtcConductor?.close()
+        webSocketConductor?.close()
+        webRtcClientManager.stop()
+    }
+    
+    func closeWebRtcConnection() {
         webRtcClientManager.stop()
     }
 }

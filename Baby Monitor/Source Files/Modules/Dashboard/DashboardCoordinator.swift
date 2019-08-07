@@ -25,6 +25,7 @@ final class DashboardCoordinator: Coordinator {
     }
 
     func start() {
+        setupResettingApp()
         setupParentSettingsCoordinator()
         showDashboard()
         appDependencies.localNotificationService.getNotificationsAllowance { [unowned self] isGranted in
@@ -32,6 +33,16 @@ final class DashboardCoordinator: Coordinator {
                 AlertPresenter.showDefaultAlert(title: Localizable.General.warning, message: Localizable.Errors.notificationsNotAllowed, onViewController: self.navigationController)
             }
         }
+    }
+    
+    private func setupResettingApp() {
+        appDependencies.webSocketEventMessageService.get().remoteResetObservable
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] in
+                self?.appDependencies.resetTheApplication()
+                self?.onEnding?()
+            })
+            .disposed(by: disposeBag)
     }
 
     private func showDashboard() {

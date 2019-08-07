@@ -11,16 +11,14 @@ import AudioKit
 import FirebaseMessaging
 
 final class AppDependencies {
-
-    let microphonePermissionProvider: MicrophonePermissionProviderProtocol = MicrophonePermissionProvider()
     
     private let bag = DisposeBag()
-    /// Service for cleaning too many crying events
-    private(set) lazy var memoryCleaner: MemoryCleanerProtocol = MemoryCleaner()
-    /// Service for capturing/recording microphone audio
-    private(set) lazy var audioMicrophoneService: AudioMicrophoneServiceProtocol? = try? AudioMicrophoneService(microphoneFactory: AudioKitMicrophoneFactory.makeMicrophoneFactory)
+    
+    // MARK: - Audio & Crying
+    
     /// Service for detecting baby's cry
     private(set) lazy var cryingDetectionService: CryingDetectionServiceProtocol = CryingDetectionService(microphoneCaptureService: audioMicrophoneService)
+    
     /// Service that takes care of appropriate controling: crying detection, audio recording and saving these events to realm database
     private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(
         cryingDetectionService: cryingDetectionService,
@@ -28,12 +26,25 @@ final class AppDependencies {
         activityLogEventsRepository: databaseRepository,
         storageService: storageServerService)
     
+    /// Service for capturing/recording microphone audio
+    private(set) lazy var audioMicrophoneService: AudioMicrophoneServiceProtocol? = try? AudioMicrophoneService(microphoneFactory: AudioKitMicrophoneFactory.makeMicrophoneFactory)
+    
+    let microphonePermissionProvider: MicrophonePermissionProviderProtocol = MicrophonePermissionProvider()
+    
+    // MARK: - Bonjour
+    
     private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
+    
     private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer(appStateProvider: NotificationCenter.default)
-    private(set) lazy var peerConnectionFactory: PeerConnectionFactoryProtocol = RTCPeerConnectionFactory()
+    
+    private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, urlConfiguration: urlConfiguration)
+    
+    // MARK: - WebRTC
+    
     private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = {
         WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory)
     }
+    
     private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = {
         WebRtcClientManager(
             peerConnectionFactory: self.peerConnectionFactory,
@@ -41,7 +52,13 @@ final class AppDependencies {
             appStateProvider: NotificationCenter.default
         )
     }
-
+    
+    private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
+    
+    private(set) lazy var peerConnectionFactory: PeerConnectionFactoryProtocol = RTCPeerConnectionFactory()
+    
+    // MARK: - WebSockets
+    
     private lazy var eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>?) -> WebSocketConductor<EventMessage> = { emitter, handler in
         WebSocketConductor(
             webSocket: self.webSocket,
@@ -50,7 +67,37 @@ final class AppDependencies {
             messageDecoders: [self.babyMonitorEventMessagesDecoder]
         )
     }
-    private lazy var webRtcConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
+    
+    lazy var webSocketEventMessageService = ClearableLazyItem<WebSocketEventMessageServiceProtocol> { [unowned self] in
+        return WebSocketEventMessageService(
+            cryingEventsRepository: self.databaseRepository,
+            eventMessageConductorFactory: self.eventMessageConductorFactory)
+    }
+    
+    lazy var webSocketWebRtcService = ClearableLazyItem<WebSocketWebRtcServiceProtocol> { [unowned self] in
+        return WebSocketWebRtcService(
+            webRtcClientManager: self.webRtcClient(),
+            webSocketConductorFactory: self.webSocketConductorFactory)
+    }
+    
+    private(set) lazy var messageServer = MessageServer(server: webSocketServer)
+    
+    private(set) lazy var webSocketServer: WebSocketServerProtocol = {
+        let webSocketServer = PSWebSocketServer(host: nil, port: UInt(Constants.iosWebsocketPort))!
+        return PSWebSocketServerWrapper(server: webSocketServer)
+    }()
+    
+    private lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in
+        guard let url = self.urlConfiguration.url else { return nil }
+        guard let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else { return nil }
+        let webSocket = PSWebSocketWrapper(socket: rawSocket)
+        webSocket.disconnectionObservable
+            .subscribe(onNext: { [unowned self] in self.clearConnection() })
+            .disposed(by: self.bag)
+        return webSocket
+    }
+    
+    private lazy var webSocketConductorFactory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductor<WebRtcMessage> = { emitter, handler in
         WebSocketConductor(
             webSocket: self.webSocket,
             messageEmitter: emitter,
@@ -59,30 +106,20 @@ final class AppDependencies {
         )
     }
     
-    lazy var webSocketEventMessageService = ClearableLazyItem<WebSocketEventMessageServiceProtocol> { [unowned self] in
-        return WebSocketEventMessageService(
-            cryingEventsRepository: self.databaseRepository,
-            eventMessageConductorFactory: self.eventMessageConductorFactory)
-    }
-    lazy var webSocketWebRtcService = ClearableLazyItem<WebSocketWebRtcServiceProtocol> { [unowned self] in
-        return WebSocketWebRtcService(
-            webRtcClientManager: self.webRtcClient(),
-            webRtcConductorFactory: self.webRtcConductorFactory)
-    }
-    private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher(
-        urlSession: URLSession(configuration: .default),
-        dispatchQueue: DispatchQueue(label: "NetworkDispatcherQueue")
-    )
+    // MARK: - Notifications
+    
     private(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService(
         networkDispatcher: networkDispatcher,
         serverKeyObtainable: serverKeyObtainable)
-    private let serverKeyObtainable: ServerKeyObtainableProtocol = ServerKeyObtainable()
     
-    private(set) var webRtcMessageDecoders: [AnyMessageDecoder<WebRtcMessage>] = [AnyMessageDecoder<WebRtcMessage>(SdpOfferDecoder()), AnyMessageDecoder<WebRtcMessage>(SdpAnswerDecoder()), AnyMessageDecoder<WebRtcMessage>(IceCandidateDecoder())]
+    private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher(
+        urlSession: URLSession(configuration: .default),
+        dispatchQueue: DispatchQueue(label: "NetworkDispatcherQueue"))
+    
+    private let serverKeyObtainable: ServerKeyObtainableProtocol = ServerKeyObtainable()
     
     private(set) var babyMonitorEventMessagesDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
     
-    private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, urlConfiguration: urlConfiguration)
     private(set) lazy var serverService: ServerServiceProtocol = ServerService(
         webRtcServerManager: webRtcServer(),
         messageServer: messageServer,
@@ -93,32 +130,52 @@ final class AppDependencies {
         notificationsService: localNotificationService,
         babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
     )
-    private(set) lazy var storageServerService = FirebaseStorageService(memoryCleaner: memoryCleaner)
     
     private(set) var urlConfiguration: URLConfiguration = UserDefaultsURLConfiguration()
-    private(set) lazy var messageServer = MessageServer(server: webSocketServer)
-    private(set) lazy var webSocketServer: WebSocketServerProtocol = {
-        let webSocketServer = PSWebSocketServer(host: nil, port: UInt(Constants.iosWebsocketPort))!
-        return PSWebSocketServerWrapper(server: webSocketServer)
-    }()
-    private lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in
-        guard let url = self.urlConfiguration.url else { return nil }
-        guard let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else { return nil }
-        let webSocket = PSWebSocketWrapper(socket: rawSocket)
-        webSocket.disconnectionObservable
-            .subscribe(onNext: { [unowned self] in self.resetForNoneState() })
-            .disposed(by: self.bag)
-        return webSocket
+    
+    // MARK: - Persistence
+    
+    /// Baby service for getting and adding babies throughout the app
+    private(set) lazy var databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol = RealmBabiesRepository(realm: try! Realm())
+    
+    /// Service for cleaning too many crying events from application's directory
+    private(set) lazy var memoryCleaner: MemoryCleanerProtocol = MemoryCleaner()
+    
+    // Service for uploading crying tracks to Firebase & removing uploaded ones
+    private(set) lazy var storageServerService = FirebaseStorageService(memoryCleaner: memoryCleaner)
+    
+    // MARK: - Errors
+    
+    /// Service for handling errors and showing error alerts
+    private(set) var errorHandler: ErrorHandlerProtocol = ErrorHandler()
+}
+
+// MARK: - Resetting app state
+extension AppDependencies {
+    
+    func resetTheApplication() {
+        let resetEventString = EventMessage.initWithResetKey().toStringMessage()
+        switch UserDefaults.appMode {
+        case .baby:
+            messageServer.send(message: resetEventString)
+        case .parent:
+            webSocketEventMessageService.get().sendMessage(resetEventString)
+        case .none:
+            break
+        }
+        databaseRepository.removeAllData()
+        memoryCleaner.cleanMemory()
+        urlConfiguration.url = nil
+        webSocketWebRtcService.get().close()
+        UserDefaults.appMode = .none
+        UserDefaults.isSendingCryingsAllowed = false
+        
+        clearConnection()
     }
     
-    func resetForNoneState() {
+    func clearConnection() {
         webSocketWebRtcService.clear()
         webSocketEventMessageService.clear()
         webSocket.clear()
     }
-    
-    /// Baby service for getting and adding babies throughout the app
-    private(set) lazy var databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol = RealmBabiesRepository(realm: try! Realm())
-    /// Service for handling errors and showing error alerts
-    private(set) var errorHandler: ErrorHandlerProtocol = ErrorHandler()
 }
