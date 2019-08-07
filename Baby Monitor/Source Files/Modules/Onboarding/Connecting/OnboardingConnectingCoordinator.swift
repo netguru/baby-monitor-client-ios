@@ -58,12 +58,19 @@ final class OnboardingConnectingCoordinator: Coordinator {
                 case .connectToWiFi:
                     self?.showAccessView(role: .camera)
                 case .putNextToBed:
-                    self?.onEnding?()
+                    break
                 }
             case .parent:
                 break
             }
         })
+        .disposed(by: viewModel.bag)
+        viewModel.nextButtonTap?
+            .filter { viewModel.role == .baby(.putNextToBed) }
+            .take(1)
+            .subscribe(onNext: { [weak self] in
+                self?.onEnding?()
+            })
         .disposed(by: viewModel.bag)
     }
     
@@ -125,11 +132,8 @@ final class OnboardingConnectingCoordinator: Coordinator {
             self?.connectTo(viewModel: viewModel)
         })
         .disposed(by: viewModel.bag)
-        switch role {
-        case .baby(.connectToWiFi):
+        if case .baby(.connectToWiFi) = role {
             connectToWiFiViewController = viewController
-        default:
-            break
         }
         return viewController
     }

@@ -54,11 +54,11 @@ final class ServerViewController: BaseViewController {
         self.viewModel = viewModel
         super.init()
         setupView()
-        setupViewModel()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewModel()
         viewModel.settingsTap = settingsBarButtonItem.rx.tap.asObservable()
         navigationController?.setNavigationBarHidden(false, animated: false)
         timer = Timer.scheduledTimer(withTimeInterval: 0.8, repeats: true, block: { [weak self] _ in
