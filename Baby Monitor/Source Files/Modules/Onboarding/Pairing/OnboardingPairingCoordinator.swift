@@ -66,13 +66,20 @@ final class OnboardingPairingCoordinator: Coordinator {
                 case .error:
                     self?.navigationController.dismiss(animated: true, completion: nil)
                 case .allDone:
-                    self?.onEnding?()
+                    break
                 }
             case .baby:
                 break
             }
         })
-        .disposed(by: viewModel.bag)
+            .disposed(by: viewModel.bag)
+        viewModel.nextButtonTap?
+            .filter { viewModel.role == .parent(.allDone) }
+            .take(1)
+            .subscribe(onNext: { [weak self] in
+                self?.onEnding?()
+            })
+            .disposed(by: viewModel.bag)
     }
     
     private func showPairingView() {
