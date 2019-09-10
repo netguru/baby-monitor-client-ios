@@ -33,6 +33,12 @@ final class RootCoordinator: RootCoordinatorProtocol {
         }
     }
 
+    func restoreSession() {
+        if .baby == UserDefaults.appMode {
+            serverCoordinator?.restoreSession()
+        }
+    }
+
     // MARK: - private functions
     private func setup() {
         window.rootViewController = navigationController
