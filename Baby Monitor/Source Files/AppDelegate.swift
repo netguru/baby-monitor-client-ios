@@ -13,13 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var rootCoordinator: RootCoordinatorProtocol?
     let appDependencies = AppDependencies()
-    var appWillCameFromBackground = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         rootCoordinator = RootCoordinator(window!, appDependencies: appDependencies)
         rootCoordinator?.start()
-        appWillCameFromBackground = true
         window?.makeKeyAndVisible()
         setupAppearance()
         setupPushNotifications(application)
@@ -31,9 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if REGULAR_BUILD
         appDependencies.memoryCleaner.cleanMemoryIfNeeded()
         #endif
-        if appWillCameFromBackground {
-            rootCoordinator?.restoreSession()
-        }
     }
     
     private func setupPushNotifications(_ application: UIApplication) {

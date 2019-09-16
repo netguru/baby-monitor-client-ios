@@ -7,7 +7,6 @@ import UIKit
 
 protocol RootCoordinatorProtocol: PartialCoordinator, HasWindow {
     init(_ window: UIWindow, appDependencies: AppDependencies)
-    func restoreSession()
 }
 
 protocol Coordinator: PartialCoordinator, HasNavigationController {

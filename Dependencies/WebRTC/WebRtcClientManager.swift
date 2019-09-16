@@ -98,7 +98,7 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
             .subscribe(onNext: { [unowned self] in self.pause() })
             .disposed(by: disposeBag)
 
-        appStateProvider.willEnterForeground
+        appStateProvider.willReenterForeground
             .filter { [unowned self] in self.isStarted }
             .subscribe(onNext: { [unowned self] in self.resume() })
             .disposed(by: disposeBag)
