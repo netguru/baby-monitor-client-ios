@@ -52,7 +52,7 @@ final class NetServiceServer: NSObject, NetServiceServerProtocol, NetServiceDele
             .subscribe(onNext: { [unowned self] in self.stop() })
             .disposed(by: disposeBag)
 
-        appStateProvider.willEnterForeground
+        appStateProvider.willReenterForeground
             .filter { [unowned self] in self.isEnabled.value }
             .subscribe(onNext: { [unowned self] in self.start() })
             .disposed(by: disposeBag)

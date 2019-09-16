@@ -9,7 +9,7 @@ import RxCocoa
 
 protocol ApplicationStateProvider {
     var willEnterBackground: Observable<Void> { get }
-    var willEnterForeground: Observable<Void> { get }
+    var willReenterForeground: Observable<Void> { get }
 }
 
 extension NotificationCenter: ApplicationStateProvider {
@@ -18,8 +18,9 @@ extension NotificationCenter: ApplicationStateProvider {
         return rx.notification(UIApplication.willResignActiveNotification).map { _ in () }
     }
 
-    var willEnterForeground: Observable<Void> {
-        return rx.notification(UIApplication.willEnterForegroundNotification).map { _ in () }
+    var willReenterForeground: Observable<Void> {
+        // Skip the first event, because it's triggered by the first entering of the app and this method provides event for RE-entering
+        return rx.notification(UIApplication.didBecomeActiveNotification).map { _ in () }.skip(1)
     }
 
 }
