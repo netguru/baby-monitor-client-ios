@@ -26,10 +26,6 @@ final class ServerCoordinator: Coordinator {
         setupResettingState()
         showServerView()
     }
-
-    func restoreSession() {
-        setupResettingState()
-    }
     
     private func setupResettingState() {
         appDependencies.serverService.remoteResetEventObservable.subscribe(onNext: { [weak self] in
