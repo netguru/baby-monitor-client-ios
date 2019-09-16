@@ -4,16 +4,22 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class OnboardingSpinnerView: BaseOnboardingView {
-    
+
     private let spinner = UIActivityIndicatorView()
-    
+    let cancelButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "arrowBack"),
+                                           style: .plain,
+                                           target: nil,
+                                           action: nil)
+
     override init() {
         super.init()
         setup()
     }
-    
+
     private func setup() {
         addSubview(spinner)
         spinner.style = .gray
@@ -26,5 +32,12 @@ final class OnboardingSpinnerView: BaseOnboardingView {
             return
         }
         spinner.centerYAnchor.constraint(equalTo: imageCenterYAnchor).isActive = true
+    }
+}
+
+extension Reactive where Base: OnboardingSpinnerView {
+
+    var cancelTap: ControlEvent<Void> {
+        return base.cancelButtonItem.rx.tap
     }
 }

@@ -81,7 +81,14 @@ final class OnboardingPairingCoordinator: Coordinator {
             })
             .disposed(by: viewModel.bag)
     }
-    
+
+    private func connect(to viewModel: ClientSetupOnboardingViewModel) {
+        viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
+            self.navigationController.popViewController(animated: true)
+        })
+        .disposed(by: viewModel.bag)
+    }
+
     private func showPairingView() {
         let viewModel = ClientSetupOnboardingViewModel(
             netServiceClient: appDependencies.netServiceClient,
@@ -104,6 +111,11 @@ final class OnboardingPairingCoordinator: Coordinator {
             }
         }
         let viewController = OnboardingClientSetupViewController(viewModel: viewModel)
+        viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
+            self?.connect(to: viewModel)
+        })
+        .disposed(by: viewModel.bag)
+
         navigationController.pushViewController(viewController, animated: true)
     }
 }

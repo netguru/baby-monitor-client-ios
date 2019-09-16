@@ -21,7 +21,6 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -30,8 +29,10 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
     }
     
     private func setup() {
+        navigationItem.leftBarButtonItem = customView.cancelButtonItem
         customView.update(title: viewModel.title)
         customView.update(mainDescription: viewModel.description)
         customView.update(image: viewModel.image)
+        viewModel.attachInput(cancelButtonTap: customView.rx.cancelTap.asObservable())
     }
 }

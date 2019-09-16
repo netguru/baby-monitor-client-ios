@@ -16,9 +16,12 @@ enum DeviceSearchResult: Equatable {
 }
 
 final class ClientSetupOnboardingViewModel {
+
+    let bag = DisposeBag()
     var selectFirstAction: (() -> Void)?
     var selectSecondAction: (() -> Void)?
-    
+    var cancelTap: Observable<Void>?
+
     // MARK: - Coordinator callback
     var didFinishDeviceSearch: ((DeviceSearchResult) -> Void)?
     
@@ -39,6 +42,10 @@ final class ClientSetupOnboardingViewModel {
         self.activityLogEventsRepository = activityLogEventsRepository
         self.webSocketEventMessageService = webSocketEventMessageService
         setupRx()
+    }
+
+    func attachInput(cancelButtonTap: Observable<Void>) {
+        cancelTap = cancelButtonTap
     }
     
     func startDiscovering(withTimeout timeout: TimeInterval = 5.0) {
