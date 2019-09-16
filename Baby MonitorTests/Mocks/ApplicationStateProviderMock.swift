@@ -9,6 +9,6 @@ import RxCocoa
 
 final class ApplicationStateProviderMock: ApplicationStateProvider {
     let willEnterBackground: Observable<Void> = PublishSubject<Void>()
-    let willEnterForeground: Observable<Void> = PublishSubject<Void>()
+    let willReenterForeground: Observable<Void> = PublishSubject<Void>()
     init() {}
 }
