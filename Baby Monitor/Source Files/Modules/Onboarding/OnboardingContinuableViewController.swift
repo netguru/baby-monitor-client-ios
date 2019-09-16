@@ -23,7 +23,11 @@ final class OnboardingContinuableViewController: TypedViewController<Continuable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        if case .parent(.allDone) = viewModel.role {
+            navigationController?.setNavigationBarHidden(true, animated: false)
+        } else {
+            navigationController?.setNavigationBarHidden(false, animated: false)
+        }
     }
     
     private func setup() {
