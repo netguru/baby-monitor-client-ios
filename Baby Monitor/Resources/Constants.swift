@@ -12,6 +12,7 @@ enum Constants {
     static let protocolPrefix = "ws"
     static let domain = "local."
     static let netServiceName = "Baby Monitor Service"
+    static let cryingDetectionThreshold = 0.7
     
     /// Represents a size class for constraint constants
     enum ResponsiveSizeClass {

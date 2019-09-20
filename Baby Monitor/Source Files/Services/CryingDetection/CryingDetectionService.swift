@@ -58,7 +58,7 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
                 crydetectionMultiArray.dataPointer.copyMemory(from: pred.Mfcc__0.dataPointer, byteCount: 38272 * 4)
                 let input1 = crydetectionInput(Mfcc__0: crydetectionMultiArray)
                 let pred2 = try self.crydetectionModel.prediction(input: input1)
-                let babyCryingDetected: Bool = pred2.labels_softmax__0[0].compare(pred2.labels_softmax__0[1]) == .orderedAscending
+                let babyCryingDetected: Bool = (Double(exactly: pred2.labels_softmax__0[1]) ?? 0) >= Constants.cryingDetectionThreshold
                 self.cryingDetectionSubject.onNext(babyCryingDetected)
             } catch {
                 print("ERROR")
