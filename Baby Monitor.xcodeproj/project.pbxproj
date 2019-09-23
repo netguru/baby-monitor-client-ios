@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -99,8 +99,8 @@
 		4EB93D2021ECA15F00E99BB3 /* StorageServerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB93D1F21ECA15F00E99BB3 /* StorageServerServiceMock.swift */; };
 		4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
-		8A045D5B21A3F685006A2E10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		8A41D4C221C2475A00CF1E08 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		8A045D5B21A3F685006A2E10 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		8A41D4C221C2475A00CF1E08 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DAFD2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift */; };
 		8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */; };
 		8A42DB072179D61B00BF5F1B /* URLConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB062179D61B00BF5F1B /* URLConfiguration.swift */; };
@@ -1823,7 +1823,7 @@
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
 				A1EC9777221AA53900C27786 /* OnboardingAccessViewModel.swift in Sources */,
 				4E63DC1B21E39D4B00604167 /* Request.swift in Sources */,
-				8A045D5B21A3F685006A2E10 /* BuildFile in Sources */,
+				8A045D5B21A3F685006A2E10 /* (null) in Sources */,
 				A7D756342236B03D00F9893E /* SpectrogramOp.swift in Sources */,
 				A18681912209A1A60069E521 /* SendRecordingsIntroFeatureView.swift in Sources */,
 				8A7A611B21A59E5000488ED4 /* MemoryCleaner.swift in Sources */,
@@ -2068,7 +2068,7 @@
 				8A50AA9C21E8DBA20058C63A /* IceCandidateDecoderMock.swift in Sources */,
 				4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */,
 				8A50AAA121E8DBA20058C63A /* IceCandidateMock.swift in Sources */,
-				8A41D4C221C2475A00CF1E08 /* BuildFile in Sources */,
+				8A41D4C221C2475A00CF1E08 /* (null) in Sources */,
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
 				8A50AA9D21E8DBA20058C63A /* WebRtcClientManagerMock.swift in Sources */,
 				8A50AA8921E8D8D60058C63A /* DecodersTests.swift in Sources */,
@@ -2194,6 +2194,7 @@
 			baseConfigurationReference = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Baby Monitor/BabyMonitor.entitlements";
+				DEVELOPMENT_TEAM = SK8PDF7SG9;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dependencies/WebRTC/libs",
@@ -2252,6 +2253,7 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
+				PROVISIONING_PROFILE_SPECIFIER = "BabyGuard App Store";
 			};
 			name = Production;
 		};
