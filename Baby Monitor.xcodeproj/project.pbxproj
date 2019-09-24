@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -99,8 +99,6 @@
 		4EB93D2021ECA15F00E99BB3 /* StorageServerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB93D1F21ECA15F00E99BB3 /* StorageServerServiceMock.swift */; };
 		4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */; };
 		4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF36FBC21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift */; };
-		8A045D5B21A3F685006A2E10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		8A41D4C221C2475A00CF1E08 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DAFD2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift */; };
 		8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */; };
 		8A42DB072179D61B00BF5F1B /* URLConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A42DB062179D61B00BF5F1B /* URLConfiguration.swift */; };
@@ -187,7 +185,6 @@
 		8AA7CBE2218C576D00FCF62A /* URLMediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */; };
 		8AA7CBE4218C5A5100FCF62A /* URLMediaPlayerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE3218C5A5100FCF62A /* URLMediaPlayerMock.swift */; };
 		8AA7CBE9218C626200FCF62A /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE8218C626200FCF62A /* test.mp3 */; };
-		8ADEE4562199623300B11B14 /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADEE4552199623300B11B14 /* libWebRTC.a */; };
 		8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */; };
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
 		8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */; };
@@ -258,6 +255,7 @@
 		A7D756342236B03D00F9893E /* SpectrogramOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D7562F2236B03D00F9893E /* SpectrogramOp.swift */; };
 		A7D756362237C31400F9893E /* MathUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D756352237C31400F9893E /* MathUtilities.swift */; };
 		A7D756382237CAE900F9893E /* MfccDct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D756372237CAE900F9893E /* MfccDct.swift */; };
+		AE6DD98A233A102700B06730 /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E55435621D4C33A005C41FD /* libWebRTC.a */; };
 		EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
@@ -617,7 +615,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8ADEE4562199623300B11B14 /* libWebRTC.a in Frameworks */,
+				AE6DD98A233A102700B06730 /* libWebRTC.a in Frameworks */,
 				2FD6861BC0920FE58CB3D522 /* Pods_Baby_Monitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1823,7 +1821,6 @@
 				4E1D2C5F216751F400E92F29 /* CameraPreviewViewModel.swift in Sources */,
 				A1EC9777221AA53900C27786 /* OnboardingAccessViewModel.swift in Sources */,
 				4E63DC1B21E39D4B00604167 /* Request.swift in Sources */,
-				8A045D5B21A3F685006A2E10 /* BuildFile in Sources */,
 				A7D756342236B03D00F9893E /* SpectrogramOp.swift in Sources */,
 				A18681912209A1A60069E521 /* SendRecordingsIntroFeatureView.swift in Sources */,
 				8A7A611B21A59E5000488ED4 /* MemoryCleaner.swift in Sources */,
@@ -2068,7 +2065,6 @@
 				8A50AA9C21E8DBA20058C63A /* IceCandidateDecoderMock.swift in Sources */,
 				4E2D302A2180AC9200722477 /* Rx+Expectations.swift in Sources */,
 				8A50AAA121E8DBA20058C63A /* IceCandidateMock.swift in Sources */,
-				8A41D4C221C2475A00CF1E08 /* BuildFile in Sources */,
 				EC8389B7213FD7F500F00B83 /* MathTests.swift in Sources */,
 				8A50AA9D21E8DBA20058C63A /* WebRtcClientManagerMock.swift in Sources */,
 				8A50AA8921E8D8D60058C63A /* DecodersTests.swift in Sources */,
@@ -2124,68 +2120,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Baby Monitor/BabyMonitor.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 9HJ69C5G9K;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Dependencies/WebRTC/libs",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-l\"bz2\"",
-					"-l\"c++\"",
-					"-l\"iconv\"",
-					"-l\"realmcore-ios\"",
-					"-l\"system\"",
-					"-l\"xml2\"",
-					"-l\"z\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"CoreVideo\"",
-					"-framework",
-					"\"Differentiator\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"PocketSocket\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Realm\"",
-					"-framework",
-					"\"RealmSwift\"",
-					"-framework",
-					"\"RxAtomic\"",
-					"-framework",
-					"\"RxCocoa\"",
-					"-framework",
-					"\"RxDataSources\"",
-					"-framework",
-					"\"RxSwift\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"VideoToolbox\"",
-					"-l\"WebRTC\"",
-				);
-				PROVISIONING_PROFILE_SPECIFIER = "BabyMonitor Development";
 			};
 			name = Development;
 		};
@@ -2193,65 +2127,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Baby Monitor/BabyMonitor.entitlements";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Dependencies/WebRTC/libs",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"WebRTC\"",
-					"-l\"bz2\"",
-					"-l\"c++\"",
-					"-l\"iconv\"",
-					"-l\"realmcore-ios\"",
-					"-l\"system\"",
-					"-l\"xml2\"",
-					"-l\"z\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"CoreVideo\"",
-					"-framework",
-					"\"Differentiator\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"PocketSocket\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Realm\"",
-					"-framework",
-					"\"RealmSwift\"",
-					"-framework",
-					"\"RxAtomic\"",
-					"-framework",
-					"\"RxCocoa\"",
-					"-framework",
-					"\"RxDataSources\"",
-					"-framework",
-					"\"RxSwift\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"VideoToolbox\"",
-				);
 			};
 			name = Production;
 		};
@@ -2259,68 +2134,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4E5731A82170C1A200DEAF0B /* Tests-Development.xcconfig */;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Dependencies/WebRTC/libs",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"bz2\"",
-					"-l\"c++\"",
-					"-l\"iconv\"",
-					"-l\"system\"",
-					"-l\"xml2\"",
-					"-l\"z\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"CoreVideo\"",
-					"-framework",
-					"\"Differentiator\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"PocketSocket\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Realm\"",
-					"-framework",
-					"\"RealmSwift\"",
-					"-framework",
-					"\"RxAtomic\"",
-					"-framework",
-					"\"RxBlocking\"",
-					"-framework",
-					"\"RxCocoa\"",
-					"-framework",
-					"\"RxDataSources\"",
-					"-framework",
-					"\"RxSwift\"",
-					"-framework",
-					"\"RxTest\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"VideoToolbox\"",
-					"-framework",
-					"\"XCTest\"",
-				);
 			};
 			name = Development;
 		};
@@ -2328,69 +2141,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4E5731A92170C1A200DEAF0B /* Tests-Production.xcconfig */;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Dependencies/WebRTC/libs",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"WebRTC\"",
-					"-l\"bz2\"",
-					"-l\"c++\"",
-					"-l\"iconv\"",
-					"-l\"system\"",
-					"-l\"xml2\"",
-					"-l\"z\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"CoreVideo\"",
-					"-framework",
-					"\"Differentiator\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"PocketSocket\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Realm\"",
-					"-framework",
-					"\"RealmSwift\"",
-					"-framework",
-					"\"RxAtomic\"",
-					"-framework",
-					"\"RxBlocking\"",
-					"-framework",
-					"\"RxCocoa\"",
-					"-framework",
-					"\"RxDataSources\"",
-					"-framework",
-					"\"RxSwift\"",
-					"-framework",
-					"\"RxTest\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"VideoToolbox\"",
-					"-framework",
-					"\"XCTest\"",
-				);
 			};
 			name = Production;
 		};
@@ -2405,65 +2155,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Baby Monitor/BabyMonitor.entitlements";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Dependencies/WebRTC/libs",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"WebRTC\"",
-					"-l\"bz2\"",
-					"-l\"c++\"",
-					"-l\"iconv\"",
-					"-l\"realmcore-ios\"",
-					"-l\"system\"",
-					"-l\"xml2\"",
-					"-l\"z\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"CoreVideo\"",
-					"-framework",
-					"\"Differentiator\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"PocketSocket\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Realm\"",
-					"-framework",
-					"\"RealmSwift\"",
-					"-framework",
-					"\"RxAtomic\"",
-					"-framework",
-					"\"RxCocoa\"",
-					"-framework",
-					"\"RxDataSources\"",
-					"-framework",
-					"\"RxSwift\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"VideoToolbox\"",
-				);
 			};
 			name = Staging;
 		};
@@ -2471,69 +2162,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4E5731AA2170C1A200DEAF0B /* Tests-Staging.xcconfig */;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Dependencies/WebRTC/libs",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"WebRTC\"",
-					"-l\"bz2\"",
-					"-l\"c++\"",
-					"-l\"iconv\"",
-					"-l\"system\"",
-					"-l\"xml2\"",
-					"-l\"z\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"CoreVideo\"",
-					"-framework",
-					"\"Differentiator\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"PocketSocket\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Realm\"",
-					"-framework",
-					"\"RealmSwift\"",
-					"-framework",
-					"\"RxAtomic\"",
-					"-framework",
-					"\"RxBlocking\"",
-					"-framework",
-					"\"RxCocoa\"",
-					"-framework",
-					"\"RxDataSources\"",
-					"-framework",
-					"\"RxSwift\"",
-					"-framework",
-					"\"RxTest\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"VideoToolbox\"",
-					"-framework",
-					"\"XCTest\"",
-				);
 			};
 			name = Staging;
 		};
