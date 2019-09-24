@@ -6,8 +6,8 @@
 #include "App-Base.xcconfig"
 #include "../../Pods/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.production.xcconfig"
 
-__BUNDLE_IDENTIFIER_SUFFIX = .production
+_BUNDLE_IDENTIFIER = com.netguru.BabyGuard
 
-_CODESIGN_DEVELOPMENT_TEAM = 9HJ69C5G9K
+_CODESIGN_DEVELOPMENT_TEAM = SK8PDF7SG9
 _CODESIGN_IDENTITY = iPhone Distribution
-_CODESIGN_PROFILE_SPECIFIER = BabyMonitor Production
+_CODESIGN_PROFILE_SPECIFIER = BabyGuard App Store
