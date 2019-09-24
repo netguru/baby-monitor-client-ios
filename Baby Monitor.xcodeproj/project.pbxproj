@@ -185,7 +185,6 @@
 		8AA7CBE2218C576D00FCF62A /* URLMediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */; };
 		8AA7CBE4218C5A5100FCF62A /* URLMediaPlayerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE3218C5A5100FCF62A /* URLMediaPlayerMock.swift */; };
 		8AA7CBE9218C626200FCF62A /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7CBE8218C626200FCF62A /* test.mp3 */; };
-		8ADEE4562199623300B11B14 /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADEE4552199623300B11B14 /* libWebRTC.a */; };
 		8AEAFBB3217736A8003E756F /* RealmBabiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB2217736A8003E756F /* RealmBabiesRepository.swift */; };
 		8AEAFBB62177371B003E756F /* RealmBaby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBB52177371B003E756F /* RealmBaby.swift */; };
 		8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEAFBC221773D3E003E756F /* RealmBabiesRepositoryTests.swift */; };
@@ -256,6 +255,7 @@
 		A7D756342236B03D00F9893E /* SpectrogramOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D7562F2236B03D00F9893E /* SpectrogramOp.swift */; };
 		A7D756362237C31400F9893E /* MathUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D756352237C31400F9893E /* MathUtilities.swift */; };
 		A7D756382237CAE900F9893E /* MfccDct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D756372237CAE900F9893E /* MfccDct.swift */; };
+		AE6DD98A233A102700B06730 /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E55435621D4C33A005C41FD /* libWebRTC.a */; };
 		EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */; };
 		EC82B55A213EA072005CA395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82B559213EA072005CA395 /* AppDelegate.swift */; };
 		EC82B561213EA074005CA395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC82B560213EA074005CA395 /* Assets.xcassets */; };
@@ -615,7 +615,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8ADEE4562199623300B11B14 /* libWebRTC.a in Frameworks */,
+				AE6DD98A233A102700B06730 /* libWebRTC.a in Frameworks */,
 				2FD6861BC0920FE58CB3D522 /* Pods_Baby_Monitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1726,26 +1726,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
-				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1792,40 +1775,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Keys/Keys.framework",
-				"${BUILT_PRODUCTS_DIR}/PocketSocket/PocketSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keys.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
