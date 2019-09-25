@@ -17,3 +17,5 @@ _ASSET_ICON = AppIcon
 _CODESIGN_STYLE = Manual
 
 _COMPILER_SWIFT_BRIDGING_HEADER_PATH = $(SRCROOT)/Baby Monitor/Resources/Bridging-Header.h
+
+_CODESIGN_ENTITLEMENTS_PATH = $(PROJECT_DIR)/Baby Monitor/BabyMonitor.entitlements
