@@ -10,5 +10,4 @@ final class MathTests: XCTestCase {
 	func testMath() {
 		XCTAssertEqual(1 + 1, 2)
 	}
-    
 }
