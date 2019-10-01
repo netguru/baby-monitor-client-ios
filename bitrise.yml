@@ -64,13 +64,13 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
 trigger_map:
 
-  - push_branch: develop
+  - push_branch: highway
     workflow: build-staging
 
   - push_branch: master
     workflow: build-release-candidate
 
-  - pull_request_target_branch: develop
+  - pull_request_target_branch: highway
     workflow: build-pull-request
 
   - pull_request_target_branch: master
@@ -101,18 +101,13 @@ workflows:
       - XCODEBUILD_SCHEME: Staging
       - HOCKEYAPP_API_TOKEN: $HOCKEYAPP_API_TOKEN_STAGING
       - HOCKEYAPP_APP_ID: $HOCKEYAPP_APP_ID_STAGING
+      - HIGHWAY_PRESET: staging
     before_run:
       - cache-pull
-      - bootstrap-carthage
-      - bootstrap-cocoapods-keys
-      - test-xcode
-      - bootstrap-code-signing
-      - archive-xcode
+      - bundle-install
+      - run-highway
     after_run:
       - cache-push
-      - deploy-hockeyapp
-      - deploy-bitriseio
-      - notify-slack
 
   # Build, test and deploy a release candidate app.
   #
@@ -124,18 +119,13 @@ workflows:
       - XCODEBUILD_SCHEME: Production
       - HOCKEYAPP_API_TOKEN: $HOCKEYAPP_API_TOKEN_PRODUCTION
       - HOCKEYAPP_APP_ID: $HOCKEYAPP_APP_ID_PRODUCTION
+      - HIGHWAY_PRESET: release
     before_run:
       - cache-pull
-      - bootstrap-carthage
-      - bootstrap-cocoapods-keys
-      - test-xcode
-      - bootstrap-code-signing
-      - archive-xcode
+      - bundle-install
+      - run-highway
     after_run:
       - cache-push
-      - deploy-hockeyapp
-      - deploy-bitriseio
-      - notify-slack
 
   # Build and test a staging app.
   #
@@ -147,13 +137,10 @@ workflows:
       - XCODEBUILD_SCHEME: Staging
     before_run:
       - cache-pull
-      - bootstrap-carthage
-      - bootstrap-cocoapods-keys
-      - test-xcode
+      - bundle-install
+      - run-highway
     after_run:
       - cache-push
-      - deploy-bitriseio
-      - notify-slack
 
   # Pull previously cached directories.
 
@@ -175,99 +162,16 @@ workflows:
                 ./Carthage
                 ./Pods
 
-  # Bootstrap dependencies using Carthage package manager.
-  #
-  # If you don't use this package manager, you can remove this workflow.
-
-  bootstrap-carthage:
-    steps:
-      - carthage:
-          inputs:
-            - carthage_command: bootstrap
-            - carthage_options: --platform iOS --cache-builds
-            - github_access_token: $GITHUB_ACCESS_TOKEN
-  
-  # Bootstrap dependencies using CocoaPods package manager.
-  #
-  # If you don't use this package manager, you can remove this workflow.
-
-  bootstrap-cocoapods-keys:
+  bundle-install:
     steps:
       - script:
           title: 'bundle-install'
           inputs:
             - content: bundle install
-            - script:
-                      title: 'copy-dotenv'
-                      inputs:
-                        - content: cp .env.sample .env
-      - cocoapods-install: {}
 
-  # Bootstrap code signing by installing certificates and provisioning profiles.
-
-  bootstrap-code-signing:
+  run-highway:
     steps:
-      - certificate-and-profile-installer: {}
-
-  # Build and test an app using `xcodebuild` command.
-
-  test-xcode:
-    steps:
-      - xcode-test:
+      - script:
+          title: 'bundle exec fastlane highway'
           inputs:
-            - project_path: $XCODEBUILD_PROJECT
-            - scheme: $XCODEBUILD_SCHEME
-            - xcodebuild_test_options: $XCODEBUILD_OPTIONS
-            - generate_code_coverage_files: 'yes'
-            - should_build_before_test: 'no'
-
-  # Archive an app using `xcodebuild` command.
-
-  archive-xcode:
-    steps:
-      - xcode-archive@2.4.15:
-          inputs:
-            - project_path: $XCODEBUILD_PROJECT
-            - scheme: $XCODEBUILD_SCHEME
-            - xcodebuild_options: $XCODEBUILD_OPTIONS
-
-  # Deploy a built app to HockeyApp.
-
-  deploy-hockeyapp:
-    steps:
-      - hockeyapp-deploy:
-          inputs:
-            - api_token: $HOCKEYAPP_API_TOKEN
-            - app_id: $HOCKEYAPP_APP_ID
-            - notify: 0
-
-  # Deploy build artifacts to bitrise.io.
-
-  deploy-bitriseio:
-    steps:
-      - deploy-to-bitrise-io:
-          inputs:
-            - notify_user_groups: none
-            - is_enable_public_page: false
-
-  # Notify about build on Slack.
-  #
-  # If you don't use Slack integration, you can remove this workflow.
-
-  notify-slack:
-    steps:
-      - slack@2.7.2:
-          inputs:
-            - webhook_url: $SLACK_WEBHOOK_URL
-            - channel: $SLACK_CHANNEL
-            - channel_on_error: $SLACK_CHANNEL
-            - message: $GIT_CLONE_COMMIT_MESSAGE_SUBJECT
-            - author_name: 'Build #$BITRISE_BUILD_NUMBER triggered by $GIT_CLONE_COMMIT_AUTHOR_NAME'
-            - title: ''
-            - fields: |-
-                Branch|${BITRISE_GIT_BRANCH}
-                Commit|${BITRISE_GIT_COMMIT}
-                Workflow|${BITRISE_TRIGGERED_WORKFLOW_ID}
-            - buttons: |-
-                View on Bitrise|${BITRISE_BUILD_URL}
-                View on HockeyApp|https://rink.hockeyapp.net/apps/${HOCKEYAPP_APP_ID}
+            - content: bundle exec fastlane highway preset:$HIGHWAY_PRESET

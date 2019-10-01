@@ -1,0 +1,4 @@
+import_from_git(
+	url: "https://github.com/netguru/highway.git",
+	branch: "develop"
+)

@@ -1,0 +1,68 @@
+# Highway configuration file version.
+version: 1
+
+# Variables available for presets.
+variables:
+    default:
+        XCODEBUILD_SCHEME: Staging
+        XCODEBUILD_PROJECT: ./Baby Monitor.xcworkspace
+    staging:
+        XCODEBUILD_SCHEME: Staging
+        HOCKEYAPP_API_TOKEN: $(ENV:HOCKEYAPP_API_TOKEN_STAGING)
+        HOCKEYAPP_APP_ID: $(ENV:HOCKEYAPP_APP_ID_STAGING)
+    release:
+        XCODEBUILD_SCHEME: Production
+        HOCKEYAPP_API_TOKEN: $(ENV:HOCKEYAPP_API_TOKEN_PRODUCTION)
+        HOCKEYAPP_APP_ID: $(ENV:HOCKEYAPP_APP_ID_PRODUCTION)
+
+# Bootstrap stage.
+bootstrap:
+    default:
+        - carthage:
+            command: "bootstrap"
+            platforms:
+                - ios
+        - sh:
+            command: "cp .env.sample .env"
+        - cocoapods:
+            command: "install"
+
+# Test stage.
+test:
+    default:
+        - xcode_test:
+            project: $(XCODEBUILD_PROJECT)
+            scheme: $(XCODEBUILD_SCHEME)
+            settings: 
+                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+
+# Deploy stage.
+deploy:
+    staging:
+        - xcode_archive:
+            project: $(XCODEBUILD_PROJECT)
+            scheme: $(XCODEBUILD_SCHEME)
+            method: "app-store"
+            settings: 
+                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+        - hockeyapp:
+            api_token: $(HOCKEYAPP_API_TOKEN)
+            app_id: $(HOCKEYAPP_APP_ID)
+
+    release:
+        - xcode_archive:
+            project: $(XCODEBUILD_PROJECT)
+            scheme: $(XCODEBUILD_SCHEME)
+            method: "app-store"
+            settings: 
+                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+        - hockeyapp:
+            api_token: $(HOCKEYAPP_API_TOKEN)
+            app_id: $(HOCKEYAPP_APP_ID)
+
+# Report stage.
+report:
+  default:
+    - slack:
+        webhook: $(ENV:HIGHWAY_SLACK_WEBHOOK)
+        channel: "#sandbox"
