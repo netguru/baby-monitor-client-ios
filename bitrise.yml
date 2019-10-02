@@ -76,15 +76,6 @@ trigger_map:
   - pull_request_target_branch: master
     workflow: build-pull-request
 
-# Environment configuration.
-#
-# This list contains the default environment variables shared between workflows.
-
-app:
-  envs:
-    - XCODEBUILD_PROJECT: ./Baby Monitor.xcworkspace
-    - XCODEBUILD_OPTIONS: _BUILD_NUMBER=$BITRISE_BUILD_NUMBER
-
 # Workflow declarations.
 #
 # This list contains workflows used in the above trigger map.
@@ -108,6 +99,7 @@ workflows:
       - run-highway
     after_run:
       - cache-push
+      - deploy-bitriseio
 
   # Build, test and deploy a release candidate app.
   #
@@ -126,6 +118,7 @@ workflows:
       - run-highway
     after_run:
       - cache-push
+      - deploy-bitriseio
 
   # Build and test a staging app.
   #
@@ -141,6 +134,7 @@ workflows:
       - run-highway
     after_run:
       - cache-push
+      - deploy-bitriseio
 
   # Pull previously cached directories.
 
@@ -175,3 +169,12 @@ workflows:
           title: 'bundle exec fastlane highway'
           inputs:
             - content: bundle exec fastlane highway preset:$HIGHWAY_PRESET
+
+  # Deploy build artifacts to bitrise.io.
+
+  deploy-bitriseio:
+    steps:
+      - deploy-to-bitrise-io:
+          inputs:
+            - notify_user_groups: none
+            - is_enable_public_page: false

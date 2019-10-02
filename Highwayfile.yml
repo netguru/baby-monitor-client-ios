@@ -63,6 +63,8 @@ deploy:
 # Report stage.
 report:
   default:
+    - copy_artifacts:
+        path: $(ENV:BITRISE_DEPLOY_DIR)
     - slack:
         webhook: $(ENV:HIGHWAY_SLACK_WEBHOOK)
         channel: "#sandbox"
