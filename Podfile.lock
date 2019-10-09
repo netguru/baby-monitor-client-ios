@@ -1,9 +1,9 @@
 PODS:
-  - AudioKit (4.7):
-    - AudioKit/Core (= 4.7)
-    - AudioKit/UI (= 4.7)
-  - AudioKit/Core (4.7)
-  - AudioKit/UI (4.7):
+  - AudioKit (4.9):
+    - AudioKit/Core (= 4.9)
+    - AudioKit/UI (= 4.9)
+  - AudioKit/Core (4.9)
+  - AudioKit/UI (4.9):
     - AudioKit/Core
   - Differentiator (3.1.0)
   - Firebase (5.15.0):
@@ -88,11 +88,11 @@ PODS:
   - PocketSocket/Server (1.0.1):
     - PocketSocket/Client
   - Protobuf (3.6.1)
-  - Realm (3.11.2):
-    - Realm/Headers (= 3.11.2)
-  - Realm/Headers (3.11.2)
-  - RealmSwift (3.11.2):
-    - Realm (= 3.11.2)
+  - Realm (3.19.0):
+    - Realm/Headers (= 3.19.0)
+  - Realm/Headers (3.19.0)
+  - RealmSwift (3.19.0):
+    - Realm (= 3.19.0)
   - RxAtomic (4.4.0)
   - RxBlocking (4.4.0):
     - RxAtomic (~> 4.4)
@@ -111,14 +111,14 @@ PODS:
   - SwiftLint (0.27.0)
 
 DEPENDENCIES:
-  - AudioKit (~> 4.7.0)
+  - AudioKit (~> 4.9.0)
   - Firebase
   - Firebase/Core
   - Firebase/Messaging
   - Firebase/Storage
   - Keys (from `Pods/CocoaPodsKeys`)
   - PocketSocket (~> 1.0.1)
-  - RealmSwift (~> 3.11.0)
+  - RealmSwift (~> 3.19.0)
   - RxBlocking (~> 4.0)
   - RxCocoa (~> 4.0)
   - RxDataSources (~> 3.0)
@@ -159,7 +159,7 @@ EXTERNAL SOURCES:
     :path: Pods/CocoaPodsKeys
 
 SPEC CHECKSUMS:
-  AudioKit: 8b3c883fb6023d1b30764e40372991c9c66aa022
+  AudioKit: fb68dd1f3c77b9e714eaf5bb320d55e00e68427a
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
@@ -176,8 +176,8 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
-  Realm: 864477d028db77f7c5a0cba64a4892ad53db128a
-  RealmSwift: 12b8262fc08020b47de4fd88eb3d5c9425b34ec7
+  Realm: 995d585bcf699aaff226715886c849a29dd3d07f
+  RealmSwift: 35f284a537989f2187b413e5917091948cb87a3f
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxBlocking: 138ad53217434444d6eeeb4fb406a45431d92e31
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
@@ -186,6 +186,6 @@ SPEC CHECKSUMS:
   RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: ca468c0118816d13f546fe8a6efff3b209e114c3
+PODFILE CHECKSUM: ba959be6678e1c3ca70a16057ecf22f5b2d39c13
 
 COCOAPODS: 1.7.5
