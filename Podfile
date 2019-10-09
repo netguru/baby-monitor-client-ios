@@ -24,7 +24,9 @@ target 'Baby Monitor' do
   pod 'RxDataSources', '~> 3.0'
   pod 'PocketSocket', '~> 1.0.1'
   pod 'AudioKit', '~> 4.9.0'
-
+  pod 'Fabric', '~> 1.10.2'
+  pod 'Crashlytics', '~> 3.14.0'
+  
   target 'Baby MonitorTests' do
     inherit! :search_paths
     shared_pods
