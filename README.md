@@ -2,8 +2,6 @@
 
 Welcome to the **Baby Monitor** project. It's an application made for monitoring babies, which can help parents take care of their children. Application works similar to this product: https://www.philips.ie/c-p/SCD620_05/avent-baby-monitor-digital-video-baby-monitor
 
-.
-
 ## Team
 
 * [Ania Pinderak](mailto:anna.pinderak@netguru.com) - Project Manager
