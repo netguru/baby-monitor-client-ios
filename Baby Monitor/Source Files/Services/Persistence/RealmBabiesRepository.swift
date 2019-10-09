@@ -29,7 +29,7 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
         DispatchQueue.main.async {
             let realmActivityLogEvent = RealmActivityLogEvent(with: activityLogEvent)
             try! self.realm.write {
-                self.realm.create(RealmActivityLogEvent.self, value: realmActivityLogEvent, update: false)
+                self.realm.create(RealmActivityLogEvent.self, value: realmActivityLogEvent, update: .error)
                 self.activityLogEventsPublisher.value.append(activityLogEvent)
             }
         }
@@ -55,7 +55,7 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
         DispatchQueue.main.async {
             try! self.realm.write {
                 guard let photoData = photo.jpegData(compressionQuality: 1) else { return }
-                _ = self.realm.create(RealmBaby.self, value: ["id": self.baby.id, "photoData": photoData], update: true)
+                _ = self.realm.create(RealmBaby.self, value: ["id": self.baby.id, "photoData": photoData], update: .modified)
                     .toBaby()
                 self.babyPublisher.value.photo = photo
                 let currentBaby = self.baby
@@ -67,7 +67,7 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
     func updateName(_ name: String) {
         DispatchQueue.main.async {
             try! self.realm.write {
-                _ = self.realm.create(RealmBaby.self, value: ["id": self.baby.id, "name": name], update: true)
+                _ = self.realm.create(RealmBaby.self, value: ["id": self.baby.id, "name": name], update: .modified)
                     .toBaby()
                 self.babyPublisher.value.name = name
                 let currentBaby = self.baby
@@ -82,7 +82,7 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
                 if let realmBaby = self.realm.objects(RealmBaby.self).first {
                     self.babyPublisher.value = realmBaby.toBaby()
                 } else {
-                    self.realm.create(RealmBaby.self, value: ["id": self.baby.id, "name": self.baby.name], update: false)
+                    self.realm.create(RealmBaby.self, value: ["id": self.baby.id, "name": self.baby.name], update: .error)
                 }
                 self.activityLogEventsPublisher.value = self.fetchAllActivityLogEvents()
             }
