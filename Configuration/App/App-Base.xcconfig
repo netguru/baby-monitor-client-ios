@@ -18,6 +18,6 @@ _CODESIGN_STYLE = Manual
 
 _COMPILER_SWIFT_BRIDGING_HEADER_PATH = $(SRCROOT)/Baby Monitor/Resources/Bridging-Header.h
 
-_CODESIGN_ENTITLEMENTS_PATH = $(PROJECT_DIR)/Baby Monitor/BabyMonitor.entitlements
+_CODESIGN_ENTITLEMENTS_PATH = $(PROJECT_NAME)/BabyMonitor.entitlements
 
 DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
