@@ -65,9 +65,10 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     }
     
     func open() {
-        guard !isConnected else {
+        guard !isConnected && (socket.readyState == .connecting) else {
             return
         }
+        isConnected = true
         socket.open()
     }
     
