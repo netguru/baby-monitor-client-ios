@@ -56,9 +56,11 @@ final class ServerService: ServerServiceProtocol {
     }
     
     private func rxSetup() {
-        cryingEventService.cryingEventObservable.subscribe(onNext: { [unowned self] _ in
-            self.notificationsService.sendPushNotificationsRequest()
-        }).disposed(by: disposeBag)
+        cryingEventService.cryingEventObservable
+            .throttle(Constants.notificationRequestTimeLimit, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.notificationsService.sendPushNotificationsRequest()
+            }).disposed(by: disposeBag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
                 guard let message = message else {

@@ -13,6 +13,9 @@ enum Constants {
     static let domain = "local."
     static let netServiceName = "Baby Monitor Service"
     static let cryingDetectionThreshold = 0.7
+
+    /// A limit per which one notification can be sent.
+    static let notificationRequestTimeLimit: TimeInterval = 60
     
     /// Represents a size class for constraint constants
     enum ResponsiveSizeClass {
