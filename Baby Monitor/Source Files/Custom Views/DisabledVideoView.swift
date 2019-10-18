@@ -7,6 +7,7 @@ import UIKit
 
 final class DisabledVideoView: BaseView {
 
+    private(set) var tapGestureRecognizer = UITapGestureRecognizer()
     private let babyLogoView: UIImageView = {
         let view = UIImageView(image: #imageLiteral(resourceName: "childPurple"))
         view.contentMode = .scaleAspectFit
@@ -33,6 +34,7 @@ final class DisabledVideoView: BaseView {
             addSubview($0)
         }
         setupConstraints()
+        addGestureRecognizer(tapGestureRecognizer)
     }
 
     private func setupConstraints() {
