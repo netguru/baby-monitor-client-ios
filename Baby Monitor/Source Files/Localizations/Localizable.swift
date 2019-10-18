@@ -191,6 +191,10 @@ enum Localizable {
         static let unableToFind = localized("errors.message.unable-to-find")
         static let notificationsNotAllowed = localized("errors.notifications-not-allowed")
     }
+
+    enum Video {
+        static let videoDisabledDescription = localized("video.disabled.description")
+    }
 }
 
 private func localized(_ value: String) -> String {

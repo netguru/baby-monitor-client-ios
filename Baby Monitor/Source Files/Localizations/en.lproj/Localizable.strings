@@ -152,3 +152,6 @@
 "errors.title.error-occured" = "Error occured";
 "errors.message.unable-to-find" = "Unable to find a device for connection";
 "errors.notifications-not-allowed" = "Notifications are not allowed. You won't get any message if your baby starts crying";
+
+//MARK: - Video Stream
+"video.disabled.description" = "Video preview disabled to conserve energy. Tap to enable it.";
