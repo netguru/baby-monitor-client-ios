@@ -169,7 +169,8 @@ extension AppDependencies {
         webSocketWebRtcService.get().close()
         UserDefaults.appMode = .none
         UserDefaults.isSendingCryingsAllowed = false
-        
+        try? AudioKit.stop()
+
         clearConnection()
     }
     
