@@ -45,8 +45,11 @@ final class ServerViewController: BaseViewController {
         target: nil,
         action: nil)
     private var timer: Timer?
+    /// A timer for hiding video stream from view.
+    private var videoTimer: Observable<Int>?
     private let babyNavigationItemView = BabyNavigationItemView(mode: .baby)
     private let localView = StreamVideoView(contentTransform: .flippedHorizontally)
+    private let disabledVideoView = DisabledVideoView()
     private let viewModel: ServerViewModel
     private let bag = DisposeBag()
     
@@ -58,7 +61,7 @@ final class ServerViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewModel()
+        setupBindings()
         viewModel.settingsTap = settingsBarButtonItem.rx.tap.asObservable()
         navigationController?.setNavigationBarHidden(false, animated: false)
         timer = Timer.scheduledTimer(withTimeInterval: 0.8, repeats: true, block: { [weak self] _ in
@@ -80,7 +83,7 @@ final class ServerViewController: BaseViewController {
     }
 
     private func setupView() {
-        [localView, buttonsStackView, nightModeOverlay].forEach(view.addSubview)
+        [disabledVideoView, localView, buttonsStackView, nightModeOverlay].forEach(view.addSubview)
         localView.addConstraints { $0.equalEdges() }
         nightModeOverlay.addConstraints { $0.equalEdges() }
 
@@ -89,22 +92,35 @@ final class ServerViewController: BaseViewController {
         buttonsStackView.addConstraints {[
             $0.equal(.safeAreaBottom, constant: -52),
             $0.equal(.centerX)
-        ]}
-
+        ]
+        }
         view.bringSubviewToFront(nightModeOverlay)
         view.bringSubviewToFront(buttonsStackView)
     }
     
-    private func setupViewModel() {
+    private func setupBindings() {
         viewModel.stream
             .subscribe(onNext: { [unowned self] stream in
                 self.attach(stream: stream)
             })
             .disposed(by: bag)
         viewModel.startStreaming()
+        fireVideoTimer()
+        videoTimer?.subscribe(onNext: { [weak self] _ in
+            self?.localView.isHidden = true
+            self?.videoTimer = nil
+        })
+        .disposed(by: bag)
         nightModeButton.rx.tap.asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.nightModeOverlay.isHidden.toggle()
+        })
+        .disposed(by: bag)
+        disabledVideoView.tapGestureRecognizer
+            .rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.localView.isHidden = false
+                self?.fireVideoTimer()
         })
         .disposed(by: bag)
     }
@@ -116,5 +132,10 @@ final class ServerViewController: BaseViewController {
         localVideoTrack?.remove(localView)
         localVideoTrack = stream.videoTracks[0] as? RTCVideoTrack
         localVideoTrack?.add(localView)
+    }
+
+    private func fireVideoTimer() {
+        videoTimer = Observable<Int>.interval(Constants.videoStreamVisibilityTimeLimit,
+                                              scheduler: MainScheduler.instance)
     }
 }
