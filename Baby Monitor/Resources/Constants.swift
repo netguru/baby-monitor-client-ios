@@ -18,7 +18,7 @@ enum Constants {
     static let notificationRequestTimeLimit: TimeInterval = 60
 
     /// A time after which the video stream should be hidden.
-    static let videoStreamingHiddenAfterTime: TimeInterval = 5  * 60
+    static let videoStreamingHiddenAfterTime: TimeInterval = 60
     
     /// Represents a size class for constraint constants
     enum ResponsiveSizeClass {
