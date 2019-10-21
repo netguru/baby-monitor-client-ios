@@ -54,6 +54,7 @@ protocol MicrophoneRecordProtocol: Any {
     func stop()
     func record() throws
     func reset() throws
+    func removeTap()
 }
 
 protocol MicrophoneCaptureProtocol: Any {
@@ -65,5 +66,10 @@ protocol MicrophoneCaptureProtocol: Any {
     func reset() throws
 }
 
-extension AKNodeRecorder: MicrophoneRecordProtocol {}
+extension AKNodeRecorder: MicrophoneRecordProtocol {
+
+    func removeTap() {
+        node?.avAudioUnitOrNode.removeTap(onBus: 0)
+    }
+}
 extension AudioKitNodeCapture: MicrophoneCaptureProtocol {}
