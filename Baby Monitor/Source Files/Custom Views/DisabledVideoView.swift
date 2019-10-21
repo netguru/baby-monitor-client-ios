@@ -7,7 +7,7 @@ import UIKit
 
 final class DisabledVideoView: BaseView {
 
-    private(set) var tapGestureRecognizer = UITapGestureRecognizer()
+    let tapGestureRecognizer = UITapGestureRecognizer()
 
     private let babyLogoView: UIImageView = {
         let view = UIImageView(image: #imageLiteral(resourceName: "childPurple"))
