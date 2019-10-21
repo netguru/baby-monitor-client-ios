@@ -28,7 +28,7 @@ final class AudioKitNodeCapture: NSObject {
     init(node: AKNode? = AudioKit.output, bufferSize: UInt32 = 264600) throws {
         self.node = node
         self.bufferSize = bufferSize
-        self.bufferFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100.0, channels: 1, interleaved: false)!
+        self.bufferFormat = node?.avAudioUnitOrNode.inputFormat(forBus: 0) ?? AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100.0, channels: 1, interleaved: false)!
         self.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: bufferFormat, frameCapacity: bufferSize)!
     }
 
@@ -37,7 +37,7 @@ final class AudioKitNodeCapture: NSObject {
         guard !isCapturing, let node = node else {
             return
         }
-        node.avAudioUnitOrNode.installTap(onBus: 0, bufferSize: AKSettings.bufferLength.samplesCount, format: internalAudioBuffer.format) { [weak self] buffer, _ in
+        node.avAudioUnitOrNode.installTap(onBus: 0, bufferSize: AKSettings.bufferLength.samplesCount, format: node.avAudioUnitOrNode.inputFormat(forBus: 0)) { [weak self] buffer, _ in
             self?.bufferQueue.async {
                 guard let self = self else { return }
                 let samplesLeft = self.internalAudioBuffer.frameCapacity - self.internalAudioBuffer.frameLength
