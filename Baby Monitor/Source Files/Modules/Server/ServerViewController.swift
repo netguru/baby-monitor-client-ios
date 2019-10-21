@@ -106,7 +106,7 @@ final class ServerViewController: BaseViewController {
             .disposed(by: bag)
         viewModel.startStreaming()
         fireVideoTimer()
-        videoTimer?.skip(1).subscribe(onNext: { [weak self] _ in
+        videoTimer?.subscribe(onNext: { [weak self] _ in
             self?.localView.isHidden = true
             self?.videoTimer = nil
         })
@@ -137,6 +137,5 @@ final class ServerViewController: BaseViewController {
     private func fireVideoTimer() {
         videoTimer = Observable<Int>.interval(Constants.videoStreamVisibilityTimeLimit,
                                               scheduler: MainScheduler.instance)
-            .startWith(0)
     }
 }
