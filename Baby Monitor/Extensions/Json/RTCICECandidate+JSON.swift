@@ -3,16 +3,18 @@
 //  Baby Monitor
 //
 
+import WebRTC
+
 extension IceCandidateProtocol {
     func jsonDictionary() -> [AnyHashable: Any] {
         return ["type": "candidate",
                 "label": sdpMLineIndex,
-                "id": sdpMid,
+                "id": sdpMid ?? "",
                 "candidate": sdp]
     }
 }
 
-extension RTCICECandidate {
+extension RTCIceCandidate {
     convenience init?(dictionary: [AnyHashable: Any]) {
         guard dictionary["type"] as? String == "candidate",
             let label = dictionary["label"] as? Int,
@@ -20,6 +22,6 @@ extension RTCICECandidate {
             let candidate = dictionary["candidate"] as? String else {
                 return nil
         }
-        self.init(mid: id, index: label, sdp: candidate)
+        self.init(sdp: candidate, sdpMLineIndex: Int32(label), sdpMid: id)
     }
 }

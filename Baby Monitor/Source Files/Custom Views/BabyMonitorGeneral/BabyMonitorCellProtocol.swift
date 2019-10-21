@@ -3,6 +3,8 @@
 //  Baby Monitor
 //
 
+import UIKit
+
 enum BabyMonitorCellType {
     case switchBaby(BabyMonitorSwitchBabyCellType)
     case lullaby

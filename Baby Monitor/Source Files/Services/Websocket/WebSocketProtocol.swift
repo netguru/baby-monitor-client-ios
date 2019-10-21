@@ -68,10 +68,7 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
         guard !isConnected && (socket.readyState == .connecting) else {
             return
         }
-        // This is a workaround for a library bug.
-        // TODO: add more description of a workaround. 
-        isConnected = true
-        socket.open()
+        self.socket.open()
     }
     
     func close() {
@@ -90,7 +87,7 @@ extension PSWebSocketWrapper: PSWebSocketDelegate {
         buffer = []
     }
     
-    func webSocket(_ webSocket: PSWebSocket, didFailWithError error: Error) {
+    func webSocket(_ webSocket: PSWebSocket, didFailWithError error: Error?) {
         isConnected = false
     }
     

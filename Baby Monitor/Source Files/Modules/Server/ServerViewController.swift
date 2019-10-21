@@ -6,6 +6,7 @@
 import UIKit
 import PocketSocket
 import RxSwift
+import WebRTC
 
 final class ServerViewController: BaseViewController {
     
@@ -114,7 +115,7 @@ final class ServerViewController: BaseViewController {
             return
         }
         localVideoTrack?.remove(localView)
-        localVideoTrack = stream.videoTracks[0] as? RTCVideoTrack
+        localVideoTrack = stream.videoTracks[0]
         localVideoTrack?.add(localView)
     }
 }

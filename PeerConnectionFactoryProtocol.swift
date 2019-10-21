@@ -4,10 +4,11 @@
 //
 
 import AVKit
+import WebRTC
 
 protocol PeerConnectionFactoryProtocol {
     func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol
-    func createStream() -> MediaStream?
+    func createStream() -> (VideoCapturer?, MediaStream?)
 }
 
 typealias VideoCapturer = AnyObject
@@ -15,23 +16,31 @@ typealias VideoCapturer = AnyObject
 extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
 
     func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol {
-        return peerConnection(withICEServers: [], constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: [RTCPair(key: "DtlsSrtpKeyAgreement", value: "true")]), delegate: delegate)
+        let config = RTCConfiguration()
+        config.iceServers = []
+        return peerConnection(with: config, constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: ["DtlsSrtpKeyAgreement": "true"]), delegate: delegate)
     }
 
-    func createStream() -> MediaStream? {
+    func createStream() -> (VideoCapturer?, MediaStream?) {
+        let localStream = mediaStream(withStreamId: "ARDAMS")
 
-        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) else { return nil }
-        guard let videoCapturer = RTCVideoCapturer(deviceName: device.localizedName) else { return nil }
-        guard let localStream = mediaStream(withLabel: "ARDAMS") else { return nil }
+        let vSource = videoSource()
 
-        let vTrack = videoTrack(withID: "ARDAMSv0", source: videoSource(with: videoCapturer, constraints: nil))
-        localStream.addVideoTrack(vTrack)
+        let devices = RTCCameraVideoCapturer.captureDevices()
+        if let camera = devices.first,
+            let format = RTCCameraVideoCapturer.supportedFormats(for: camera).last,
+            let fps = format.videoSupportedFrameRateRanges.first?.maxFrameRate {
+            let intFps = Int(fps)
+            let capturer = RTCCameraVideoCapturer(delegate: vSource)
+            capturer.startCapture(with: camera, format: format, fps: intFps)
+            let vTrack = videoTrack(with: vSource, trackId: "ARDAMSv0")
+            localStream.addVideoTrack(vTrack)
 
-        let aTrack = audioTrack(withID: "ARDAMSa0")
-        localStream.addAudioTrack(aTrack)
+            let aTrack = audioTrack(withTrackId: "ARDAMSa0")
+            localStream.addAudioTrack(aTrack)
 
-        return localStream
-
+            return (capturer, localStream)
+        }
+        return (nil, nil)
     }
-
 }
