@@ -37,6 +37,8 @@ final class AudioKitNodeCapture: NSObject {
         guard !isCapturing, let node = node else {
             return
         }
+        // Removing tap is done in order to prevent adding a tap in case it's already added.
+        node.avAudioUnitOrNode.removeTap(onBus: 0)
         node.avAudioUnitOrNode.installTap(onBus: 0, bufferSize: AKSettings.bufferLength.samplesCount, format: node.avAudioUnitOrNode.inputFormat(forBus: 0)) { [weak self] buffer, _ in
             self?.bufferQueue.async {
                 guard let self = self else { return }
