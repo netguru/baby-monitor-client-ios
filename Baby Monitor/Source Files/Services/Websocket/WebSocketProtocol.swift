@@ -24,6 +24,12 @@ protocol WebSocketProtocol: MessageStreamProtocol {
 }
 
 final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
+
+    private enum ConnectionState {
+        case disconnected
+        case connecting
+        case connected
+    }
     
     let dispatchQueue = DispatchQueue(label: "webRTCQueue", qos: DispatchQoS.userInteractive)
     
@@ -33,31 +39,35 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     var receivedMessage: Observable<String> {
         return receivedMessagePublisher.observeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue)).subscribeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue))
     }
-    
-    private var isConnected = false {
-        didSet {
-            if !isConnected {
-                disconnectionPublisher.onNext(())
-            }
-        }
-    }
+
     private let receivedMessagePublisher = PublishRelay<String>()
     private let socket: PSWebSocket
 
     private var buffer: [Any] = []
+
+    private var connectionState = ConnectionState.disconnected {
+        didSet {
+            switch connectionState {
+            case .disconnected:
+                disconnectionPublisher.onNext(())
+            default:
+                break
+            }
+        }
+    }
     
     init(socket: PSWebSocket, assignDelegate: Bool = true) {
         self.socket = socket
         super.init()
         guard assignDelegate else {
-            isConnected = true
+            connectionState = .connected
             return
         }
         socket.delegate = self
     }
     
     func send(message: Any) {
-        if isConnected {
+        if connectionState == .connected {
             socket.send(message)
         } else {
             buffer.append(message)
@@ -65,14 +75,15 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     }
     
     func open() {
-        guard !isConnected && (socket.readyState == .connecting) else {
+        guard connectionState == .disconnected && (socket.readyState == .connecting) else {
             return
         }
+        connectionState = .connecting
         self.socket.open()
     }
     
     func close() {
-        guard isConnected else {
+        guard connectionState == .connected else {
             return
         }
         socket.close()
@@ -83,12 +94,12 @@ extension PSWebSocketWrapper: PSWebSocketDelegate {
     
     func webSocketDidOpen(_ webSocket: PSWebSocket) {
         buffer.forEach { webSocket.send($0) }
-        isConnected = true
+        connectionState = .connected
         buffer = []
     }
     
     func webSocket(_ webSocket: PSWebSocket, didFailWithError error: Error?) {
-        isConnected = false
+        connectionState = .disconnected
     }
     
     func webSocket(_ webSocket: PSWebSocket, didReceiveMessage message: Any) {
@@ -100,6 +111,6 @@ extension PSWebSocketWrapper: PSWebSocketDelegate {
     }
     
     func webSocket(_ webSocket: PSWebSocket, didCloseWithCode code: Int, reason: String, wasClean: Bool) {
-        isConnected = false
+        connectionState = .disconnected
     }
 }
