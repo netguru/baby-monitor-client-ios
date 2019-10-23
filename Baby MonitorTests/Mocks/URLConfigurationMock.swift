@@ -4,6 +4,7 @@
 //
 
 @testable import BabyMonitor
+import Foundation
 
 final class URLConfigurationMock: URLConfiguration {
     var url: URL?

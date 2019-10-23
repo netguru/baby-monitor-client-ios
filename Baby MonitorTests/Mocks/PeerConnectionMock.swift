@@ -4,6 +4,7 @@
 //
 
 @testable import BabyMonitor
+import WebRTC
 
 final class PeerConnectionMock: PeerConnectionProtocol {
 
@@ -23,11 +24,11 @@ final class PeerConnectionMock: PeerConnectionProtocol {
         self.error = error
     }
 
-    func setRemoteDescription(sdp: SessionDescriptionProtocol, delegate: RTCSessionDescriptionDelegate) {
+    func setRemoteDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?) {
         self.remoteSdp = sdp
     }
 
-    func setLocalDescription(sdp: SessionDescriptionProtocol, delegate: RTCSessionDescriptionDelegate) {
+    func setLocalDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?) {
         self.localSdp = sdp
     }
 
@@ -43,11 +44,21 @@ final class PeerConnectionMock: PeerConnectionProtocol {
         isConnected = false
     }
 
-    func createOffer(for constraints: MediaConstraints, delegate: RTCSessionDescriptionDelegate) {
-        delegate.peerConnection(nil, didCreateSessionDescription: RTCSessionDescription(type: offerSdp?.stringType, sdp: offerSdp?.sdp), error: error)
+    func createOffer(for constraints: MediaConstraints, handler: ((RTCSessionDescription?, Error?) -> Void)?) {
+        guard let sdp = offerSdp?.sdp,
+            let type = offerSdp.flatMap( { RTCSdpType.type(for: $0.stringType) }) else  {
+                handler?(nil, error)
+                return
+        }
+        handler?(RTCSessionDescription(type: type, sdp: sdp), error)
     }
 
-    func createAnswer(for constraints: MediaConstraints, delegate: RTCSessionDescriptionDelegate) {
-        delegate.peerConnection(nil, didCreateSessionDescription: RTCSessionDescription(type: offerSdp?.stringType, sdp: offerSdp?.sdp), error: error)
+    func createAnswer(for constraints: MediaConstraints, handler: ((RTCSessionDescription?, Error?) -> Void)?) {
+        guard let sdp = answerSdp?.sdp,
+            let type = answerSdp.flatMap( { RTCSdpType.type(for: $0.stringType) }) else  {
+                handler?(nil, error)
+                return
+        }
+        handler?(RTCSessionDescription(type: type, sdp: sdp), error)
     }
 }

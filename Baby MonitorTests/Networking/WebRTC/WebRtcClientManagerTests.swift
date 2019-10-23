@@ -15,7 +15,7 @@ class WebRtcClientManagerTests: XCTestCase {
         let bag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(SessionDescriptionProtocol.self)
-        let offerSdp = SessionDescriptionMock(sdp: "sdp", stringType: "type")
+        let offerSdp = SessionDescriptionMock(sdp: "sdp", stringType: "offer")
         let peerConnection = PeerConnectionMock(offerSdp: offerSdp)
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let connectionChecker = ConnectionCheckerMock()
