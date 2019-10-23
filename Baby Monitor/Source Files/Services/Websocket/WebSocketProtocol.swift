@@ -79,7 +79,7 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
             return
         }
         connectionState = .connecting
-        self.socket.open()
+        socket.open()
     }
     
     func close() {
