@@ -62,7 +62,6 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
             if isBabyCrying {
                 let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
                 self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
-                self.microphoneRecordService?.startRecording()
                 self.cryingEventPublisher.onNext(())
             } else {
                 guard self.microphoneRecordService?.isRecording ?? false else {
