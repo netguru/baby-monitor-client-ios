@@ -3,6 +3,8 @@
 //  Baby Monitor
 //
 
+import Foundation
+
 protocol WebsocketMessageDecodable {
     func decode() -> String?
 }

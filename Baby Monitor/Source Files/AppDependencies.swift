@@ -9,6 +9,7 @@ import RxSwift
 import PocketSocket
 import AudioKit
 import FirebaseMessaging
+import WebRTC
 
 final class AppDependencies {
     

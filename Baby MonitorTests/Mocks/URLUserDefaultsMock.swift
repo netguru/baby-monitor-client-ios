@@ -4,6 +4,7 @@
 //
 
 @testable import BabyMonitor
+import Foundation
 
 final class URLUserDefaultsMock: URLUserDefaults {
     private var dict: [String: URL] = [:]

@@ -3,7 +3,9 @@
 //  Baby Monitor
 //
 
-final class RTCSessionDescriptionDelegateProxy: NSObject, RTCSessionDescriptionDelegate {
+import WebRTC
+
+final class RTCSessionDescriptionDelegateProxy: NSObject {
 
     var onDidCreateSessionDescription: ((RTCPeerConnection, RTCSessionDescription) -> Void)?
     var onDidSetSessionDescription: ((RTCPeerConnection) -> Void)?
