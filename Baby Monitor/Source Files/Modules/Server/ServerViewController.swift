@@ -49,7 +49,7 @@ final class ServerViewController: BaseViewController {
     /// A timer for hiding video stream from view.
     private var videoTimer: Observable<Int>?
     private let babyNavigationItemView = BabyNavigationItemView(mode: .baby)
-    private let localView = StreamVideoView(contentTransform: .flippedHorizontally)
+    private let localView = StreamVideoView(contentTransform: .none)
     private let disabledVideoView = DisabledVideoView()
     private let viewModel: ServerViewModel
     private let bag = DisposeBag()
