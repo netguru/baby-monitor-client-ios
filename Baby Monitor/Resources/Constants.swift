@@ -15,7 +15,10 @@ enum Constants {
     static let cryingDetectionThreshold = 0.7
 
     /// A limit per which one notification can be sent.
-    static let notificationRequestTimeLimit: TimeInterval = 60
+    static let notificationRequestTimeLimit: TimeInterval = 3 * 60
+
+    /// A time after which the video stream should be hidden.
+    static let videoStreamVisibilityTimeLimit: TimeInterval = 60
     
     /// Represents a size class for constraint constants
     enum ResponsiveSizeClass {

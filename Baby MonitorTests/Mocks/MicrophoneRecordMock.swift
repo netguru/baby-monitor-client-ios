@@ -28,4 +28,6 @@ final class MicrophoneRecordMock: MicrophoneRecordProtocol {
     func reset() throws {
         isRecordReset = true
     }
+    
+    func removeTap() {}
 }
