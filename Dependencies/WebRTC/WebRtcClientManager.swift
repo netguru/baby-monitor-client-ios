@@ -10,6 +10,7 @@ import Foundation
 import AVFoundation
 import RxSwift
 import RxCocoa
+import WebRTC
 
 final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
 
@@ -27,9 +28,9 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
         Observable.combineLatest(connectionChecker.connectionStatus, connectionDelegateProxy.signalingState)
             .map { connStatus, peerState -> WebRtcClientManagerState? in
                 switch (connStatus, peerState) {
-                case (.disconnected, _), (_, RTCSignalingClosed): return .disconnected
-                case (.connected, RTCSignalingHaveLocalOffer): return .connecting
-                case (.connected, RTCSignalingStable): return .connected
+                case (.disconnected, _), (_, .closed): return .disconnected
+                case (.connected, .haveLocalOffer): return .connecting
+                case (.connected, .stable): return .connected
                 default: return nil
                 }
             }
@@ -48,18 +49,16 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     private let connectionChecker: ConnectionChecker
     private let appStateProvider: ApplicationStateProvider
     private let connectionDelegateProxy: RTCPeerConnectionDelegateProxy
-    private let remoteDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
-    private let localDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
 
     private var streamMediaConstraints: RTCMediaConstraints {
         return RTCMediaConstraints(
             mandatoryConstraints: [
-                RTCPair(key: WebRtcConstraintKey.offerToReceiveVideo, value: WebRtcConstraintValue.true)!,
-                RTCPair(key: WebRtcConstraintKey.offerToReceiveAudio, value: WebRtcConstraintValue.true)!
+                WebRtcConstraintKey.offerToReceiveVideo: WebRtcConstraintValue.true,
+                WebRtcConstraintKey.offerToReceiveAudio: WebRtcConstraintValue.true
             ],
             optionalConstraints: [
-                RTCPair(key: WebRtcConstraintKey.dtlsSrtpKeyAgreement, value: WebRtcConstraintValue.true)!,
-                RTCPair(key: WebRtcConstraintKey.iceRestart, value: WebRtcConstraintValue.true)!
+                WebRtcConstraintKey.dtlsSrtpKeyAgreement: WebRtcConstraintValue.true,
+                WebRtcConstraintKey.iceRestart: WebRtcConstraintValue.true
             ]
         )
     }
@@ -69,8 +68,6 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
         self.connectionChecker = connectionChecker
         self.appStateProvider = appStateProvider
         self.connectionDelegateProxy = RTCPeerConnectionDelegateProxy()
-        self.remoteDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
-        self.localDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         super.init()
         setup()
     }
@@ -85,12 +82,6 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
         connectionDelegateProxy.onGotIceCandidate = { [weak self] _, iceCandidate in
             guard let self = self else { return }
             self.iceCandidatePublisher.onNext(iceCandidate)
-        }
-
-        localDescriptionDelegateProxy.onDidCreateSessionDescription = { [weak self] connection, sdp in
-            guard let self = self else { return }
-            connection.setLocalDescription(sdp: sdp, delegate: self.localDescriptionDelegateProxy)
-            self.sdpOfferPublisher.onNext(sdp)
         }
 
         appStateProvider.willEnterBackground
@@ -126,15 +117,18 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
 
     private func createOffer() {
         peerConnection = peerConnectionFactory.peerConnection(with: connectionDelegateProxy)
-        peerConnection?.createOffer(for: streamMediaConstraints, delegate: localDescriptionDelegateProxy)
+        peerConnection?.createOffer(for: streamMediaConstraints) { [weak self] sdp, error in
+            guard let self = self, error == nil, let sdp = sdp else { return }
+            self.peerConnection?.setLocalDescription(sdp: sdp) { _ in }
+            self.sdpOfferPublisher.onNext(sdp)
+        }
     }
 
     func setAnswerSDP(sdp: SessionDescriptionProtocol) {
-        peerConnection?.setRemoteDescription(sdp: sdp, delegate: remoteDescriptionDelegateProxy)
+        peerConnection?.setRemoteDescription(sdp: sdp) { _ in }
     }
     
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
         peerConnection?.add(iceCandidate: iceCandidate)
     }
-
 }

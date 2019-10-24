@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import WebRTC
 
 /// A view used to render RTC stream video.
 internal final class StreamVideoView: UIView, RTCVideoRenderer {
@@ -68,12 +69,9 @@ internal final class StreamVideoView: UIView, RTCVideoRenderer {
 
         addSubview(renderView)
 
-        renderView.addConstraints {[
-            $0.equalTo(self, .centerX, .centerX),
-            $0.equalTo(self, .centerY, .centerY),
-            $0.greaterThanOrEqualTo(self, .width, .width),
-            $0.greaterThanOrEqualTo(self, .height, .height)
-        ]}
+        renderView.addConstraints {
+            $0.equalEdges()
+        }
 
         renderView.transform = contentTransform.affineTransform
 
@@ -92,7 +90,7 @@ internal final class StreamVideoView: UIView, RTCVideoRenderer {
         renderView.setSize(size)
     }
 
-    internal func renderFrame(_ frame: RTCI420Frame?) {
+    internal func renderFrame(_ frame: RTCVideoFrame?) {
         renderView.renderFrame(frame)
     }
     

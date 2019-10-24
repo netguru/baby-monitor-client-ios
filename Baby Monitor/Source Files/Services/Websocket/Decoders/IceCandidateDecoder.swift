@@ -3,6 +3,8 @@
 //  Baby Monitor
 //
 
+import WebRTC
+
 final class IceCandidateDecoder: MessageDecoderProtocol {
     
     typealias T = WebRtcMessage
@@ -10,7 +12,7 @@ final class IceCandidateDecoder: MessageDecoderProtocol {
     func decode(message: String) -> WebRtcMessage? {
         guard let jsonDictionary = message.jsonDictionary,
             let iceDictionary = jsonDictionary[WebRtcMessage.Key.iceCandidate.rawValue],
-            let candidate = RTCICECandidate(dictionary: iceDictionary) else {
+            let candidate = RTCIceCandidate(dictionary: iceDictionary) else {
                 return nil
         }
         return .iceCandidate(candidate)

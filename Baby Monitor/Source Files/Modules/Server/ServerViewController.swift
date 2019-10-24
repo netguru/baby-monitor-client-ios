@@ -6,6 +6,7 @@
 import UIKit
 import PocketSocket
 import RxSwift
+import WebRTC
 
 final class ServerViewController: BaseViewController {
     
@@ -48,7 +49,7 @@ final class ServerViewController: BaseViewController {
     /// A timer for hiding video stream from view.
     private var videoTimer: Observable<Int>?
     private let babyNavigationItemView = BabyNavigationItemView(mode: .baby)
-    private let localView = StreamVideoView(contentTransform: .flippedHorizontally)
+    private let localView = StreamVideoView(contentTransform: .none)
     private let disabledVideoView = DisabledVideoView()
     private let viewModel: ServerViewModel
     private let bag = DisposeBag()
@@ -130,7 +131,7 @@ final class ServerViewController: BaseViewController {
             return
         }
         localVideoTrack?.remove(localView)
-        localVideoTrack = stream.videoTracks[0] as? RTCVideoTrack
+        localVideoTrack = stream.videoTracks[0]
         localVideoTrack?.add(localView)
     }
 

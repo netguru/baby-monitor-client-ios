@@ -4,6 +4,7 @@
 //
 
 @testable import BabyMonitor
+import UIKit
 
 final class BabyMonitorCellMock: BabyMonitorCellProtocol {
     

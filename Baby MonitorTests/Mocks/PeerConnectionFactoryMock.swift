@@ -4,6 +4,7 @@
 //
 
 @testable import BabyMonitor
+import WebRTC
 
 final class PeerConnectionFactoryMock: PeerConnectionFactoryProtocol {
 
@@ -18,7 +19,7 @@ final class PeerConnectionFactoryMock: PeerConnectionFactoryProtocol {
     func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol {
         return peerConnectionProtocol
     }
-    func createStream() -> MediaStream? {
-        return mediaStream
+    func createStream() -> (VideoCapturer?, MediaStream?) {
+        return ("" as VideoCapturer, mediaStream)
     }
 }

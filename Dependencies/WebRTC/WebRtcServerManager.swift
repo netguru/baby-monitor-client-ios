@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import RxSwift
+import WebRTC
 
 final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
 
@@ -37,11 +38,11 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     private var streamMediaConstraints: RTCMediaConstraints {
         return RTCMediaConstraints(
             mandatoryConstraints: [
-                RTCPair(key: WebRtcConstraintKey.offerToReceiveVideo, value: WebRtcConstraintValue.true)!,
-                RTCPair(key: WebRtcConstraintKey.offerToReceiveAudio, value: WebRtcConstraintValue.true)!
+                WebRtcConstraintKey.offerToReceiveVideo: WebRtcConstraintValue.true,
+                WebRtcConstraintKey.offerToReceiveAudio: WebRtcConstraintValue.true
             ],
             optionalConstraints: [
-                RTCPair(key: WebRtcConstraintKey.dtlsSrtpKeyAgreement, value: WebRtcConstraintValue.true)!
+                WebRtcConstraintKey.dtlsSrtpKeyAgreement: WebRtcConstraintValue.true
             ]
         )
     }
@@ -61,19 +62,6 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             guard let self = self else { return }
             self.iceCandidatePublisher.onNext(iceCandidate)
         }
-
-        remoteDescriptionDelegateProxy.onDidSetSessionDescription = { [weak self] connection in
-            guard let self = self, let stream = self.mediaStreamInstance else { return }
-            connection.add(stream: stream)
-            connection.createAnswer(for: self.streamMediaConstraints, delegate: self.localDescriptionDelegateProxy)
-        }
-
-        localDescriptionDelegateProxy.onDidCreateSessionDescription = { [weak self] connection, sdp in
-            guard let self = self else { return }
-            connection.setLocalDescription(sdp: sdp, delegate: self.localDescriptionDelegateProxy)
-            self.sdpAnswerPublisher.onNext(sdp)
-        }
-
     }
 
     func start() {
@@ -86,9 +74,12 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         peerConnection?.close()
         isStarted = false
     }
+    private var videoCapturer: VideoCapturer?
 
     private func startMediaStream() {
-        guard let stream = peerConnectionFactory.createStream() else { return }
+        let (optionalCapturer, optionalStream) = peerConnectionFactory.createStream()
+        guard let capturer = optionalCapturer, let stream = optionalStream else { return }
+        videoCapturer = capturer
         mediaStreamInstance = stream
         mediaStreamPublisher.onNext(stream)
     }
@@ -97,7 +88,19 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         guard isStarted else { return }
         peerConnection?.close()
         peerConnection = peerConnectionFactory.peerConnection(with: connectionDelegateProxy)
-        peerConnection?.setRemoteDescription(sdp: remoteSDP, delegate: remoteDescriptionDelegateProxy)
+        peerConnection?.setRemoteDescription(sdp: remoteSDP) { [weak self] error in
+            guard error == nil, let stream = self?.mediaStreamInstance else { return }
+            self?.handleDidSetRemoteDescription(stream: stream)
+        }
+    }
+
+    private func handleDidSetRemoteDescription(stream: MediaStream) {
+        peerConnection?.add(stream: stream)
+        peerConnection?.createAnswer(for: self.streamMediaConstraints) { [weak self] sdp, error in
+            guard let self = self, let sdp = sdp else { return }
+            self.peerConnection?.setLocalDescription(sdp: sdp) { _ in }
+            self.sdpAnswerPublisher.onNext(sdp)
+        }
     }
     
     func setICECandidates(iceCandidate: IceCandidateProtocol) {

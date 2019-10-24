@@ -6,6 +6,7 @@
 import UIKit
 import RxSwift
 import AVKit
+import WebRTC
 
 final class CameraPreviewViewController: TypedViewController<CameraPreviewView> {
     
@@ -86,7 +87,8 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         guard let stream = stream as? RTCMediaStream else {
             return
         }
-        videoTrack = stream.videoTracks[0] as? RTCVideoTrack
+        videoTrack?.remove(videoView)
+        videoTrack = stream.videoTracks[0]
         videoTrack?.add(videoView)
     }
 }
