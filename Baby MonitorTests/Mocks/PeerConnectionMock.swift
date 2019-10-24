@@ -11,7 +11,6 @@ final class PeerConnectionMock: PeerConnectionProtocol {
     private(set) var isConnected = true
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var localSdp: SessionDescriptionProtocol?
-    private(set) var iceCandidates = [IceCandidateProtocol]()
     private(set) var mediaStream: MediaStream?
 
     private let offerSdp: SessionDescriptionProtocol?
@@ -30,10 +29,6 @@ final class PeerConnectionMock: PeerConnectionProtocol {
 
     func setLocalDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?) {
         self.localSdp = sdp
-    }
-
-    func add(iceCandidate: IceCandidateProtocol) {
-        iceCandidates.append(iceCandidate)
     }
 
     func add(stream: MediaStream) {

@@ -50,42 +50,6 @@ class WebRtcClientManagerTests: XCTestCase {
         XCTAssertEqual(answerSdp.sdp, peerConnection.remoteSdp!.sdp)
     }
 
-    func testShouldAddIceCandidate() {
-        // Given
-        let iceCandidate = IceCandidateMock(sdpMLineIndex: 0, sdpMid: "", sdp: "sdp")
-        let peerConnection = PeerConnectionMock()
-        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
-        let connectionChecker = ConnectionCheckerMock()
-        let appStateProvider = ApplicationStateProviderMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker, appStateProvider: appStateProvider)
-
-        // When
-        sut.startIfNeeded()
-        sut.setICECandidates(iceCandidate: iceCandidate)
-
-        // Then
-        XCTAssertEqual([iceCandidate], peerConnection.iceCandidates as! [IceCandidateMock])
-    }
-
-    func testShouldAddMultipleIceCandidate() {
-        // Given
-        let iceCandidate = IceCandidateMock(sdpMLineIndex: 0, sdpMid: "", sdp: "sdp")
-        let secondIceCandidate = IceCandidateMock(sdpMLineIndex: 0, sdpMid: "", sdp: "sdp2")
-        let peerConnection = PeerConnectionMock()
-        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
-        let connectionChecker = ConnectionCheckerMock()
-        let appStateProvider = ApplicationStateProviderMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, connectionChecker: connectionChecker, appStateProvider: appStateProvider)
-
-        // When
-        sut.startIfNeeded()
-        sut.setICECandidates(iceCandidate: iceCandidate)
-        sut.setICECandidates(iceCandidate: secondIceCandidate)
-
-        // Then
-        XCTAssertEqual([iceCandidate, secondIceCandidate], peerConnection.iceCandidates as! [IceCandidateMock])
-    }
-
     func testShouldDisconnect() {
         // Given
         let peerConnection = PeerConnectionMock()

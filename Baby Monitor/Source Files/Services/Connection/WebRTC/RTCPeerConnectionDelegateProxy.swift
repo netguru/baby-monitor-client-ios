@@ -13,7 +13,6 @@ final class RTCPeerConnectionDelegateProxy: NSObject, RTCPeerConnectionDelegate 
 
     var onSignalingStateChanged: ((RTCPeerConnection, RTCSignalingState) -> Void)?
     var onAddedStream: ((RTCPeerConnection, RTCMediaStream) -> Void)?
-    var onGotIceCandidate: ((RTCPeerConnection, RTCIceCandidate) -> Void)?
 
     func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCSignalingState) {
         onSignalingStateChanged?(peerConnection, newState)
@@ -24,9 +23,7 @@ final class RTCPeerConnectionDelegateProxy: NSObject, RTCPeerConnectionDelegate 
         onAddedStream?(peerConnection, stream)
     }
 
-    func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
-        onGotIceCandidate?(peerConnection, candidate)
-    }
+    func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {}
 
     func peerConnection(_ peerConnection: RTCPeerConnection, didRemove stream: RTCMediaStream) {}
     func peerConnectionShouldNegotiate(_ peerConnection: RTCPeerConnection) {}

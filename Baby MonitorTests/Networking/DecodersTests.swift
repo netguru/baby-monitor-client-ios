@@ -48,26 +48,4 @@ class DecodersTests: XCTestCase {
             XCTAssertTrue(false, "Decoded message type doesn't match")
         }
     }
-    
-    func testShouldDecodeIceCandidate() {
-        // Given
-        let sut = IceCandidateDecoder()
-        let ice = RTCIceCandidate(sdp: "sdp", sdpMLineIndex: 0, sdpMid: "mid")
-        let iceJson = ice.jsonDictionary()
-        let iceNetworkJson = [WebRtcMessage.Key.iceCandidate.rawValue: iceJson]
-        let jsonString = iceNetworkJson.jsonString!
-        
-        // When
-        let decodedMessage = sut.decode(message: jsonString)!
-        
-        // Then
-        if case let .iceCandidate(iceCandidate) = decodedMessage {
-            XCTAssertEqual(ice.sdp, iceCandidate.sdp)
-            XCTAssertEqual(ice.sdpMid, iceCandidate.sdpMid)
-            XCTAssertEqual(ice.sdpMLineIndex, iceCandidate.sdpMLineIndex)
-        } else {
-            XCTAssertTrue(false, "Decoded message type doesn't match")
-        }
-    }
-
 }

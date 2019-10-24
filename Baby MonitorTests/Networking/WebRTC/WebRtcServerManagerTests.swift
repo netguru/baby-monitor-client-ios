@@ -26,23 +26,6 @@ class WebRtcServerManagerTests: XCTestCase {
         XCTAssertFalse(peerConnection.isConnected)
     }
 
-    func testShouldAddIceCandidate() {
-        // Given
-        let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
-        let iceCandidate = IceCandidateMock(sdpMLineIndex: 0, sdpMid: "", sdp: "sdp")
-        let peerConnection = PeerConnectionMock()
-        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
-        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory)
-
-        // When
-        sut.start()
-        sut.createAnswer(remoteSdp: sdpOffer)
-        sut.setICECandidates(iceCandidate: iceCandidate)
-
-        // Then
-        XCTAssertEqual([iceCandidate], peerConnection.iceCandidates.map { $0 as! IceCandidateMock })
-    }
-
     func testShouldSetOfferWhenCreatingAnswer() {
         // Given
         let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")

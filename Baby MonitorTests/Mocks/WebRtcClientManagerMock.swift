@@ -10,7 +10,6 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
 
     private(set) var isStarted = false
     private(set) var remoteSdp: SessionDescriptionProtocol?
-    private(set) var iceCandidates = [IceCandidateProtocol]()
 
     private let localSdp: SessionDescriptionProtocol?
 
@@ -28,10 +27,6 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
 
     func setAnswerSDP(sdp: SessionDescriptionProtocol) {
         remoteSdp = sdp
-    }
-
-    func setICECandidates(iceCandidate: IceCandidateProtocol) {
-        iceCandidates.append(iceCandidate)
     }
 
     func stop() {

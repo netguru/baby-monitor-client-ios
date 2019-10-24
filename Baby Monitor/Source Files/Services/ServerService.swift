@@ -76,7 +76,7 @@ final class ServerService: ServerServiceProtocol {
             self.handle(event: event)
         })
             .disposed(by: disposeBag)
-        Observable.merge(sdpAnswerJson(), iceCandidateJson())
+        Observable.merge(sdpAnswerJson())
             .subscribe(onNext: { [unowned self] json in
                 self.messageServer.send(message: json)
             })
@@ -85,8 +85,6 @@ final class ServerService: ServerServiceProtocol {
     
     private func handle(message: WebRtcMessage) {
         switch message {
-        case .iceCandidate(let iceCandidate):
-            webRtcServerManager.setICECandidates(iceCandidate: iceCandidate)
         case .sdpOffer(let sdp):
             webRtcServerManager.createAnswer(remoteSdp: sdp)
         default:
@@ -110,17 +108,6 @@ final class ServerService: ServerServiceProtocol {
         return webRtcServerManager.sdpAnswer
             .flatMap { sdp -> Observable<String> in
                 let json = [WebRtcMessage.Key.answerSDP.rawValue: sdp.jsonDictionary()]
-                guard let jsonString = json.jsonString else {
-                    return Observable.empty()
-                }
-                return Observable.just(jsonString)
-            }
-    }
-    
-    private func iceCandidateJson() -> Observable<String> {
-        return webRtcServerManager.iceCandidate
-            .flatMap { iceCandidate -> Observable<String> in
-                let json = [WebRtcMessage.Key.iceCandidate.rawValue: iceCandidate.jsonDictionary()]
                 guard let jsonString = json.jsonString else {
                     return Observable.empty()
                 }

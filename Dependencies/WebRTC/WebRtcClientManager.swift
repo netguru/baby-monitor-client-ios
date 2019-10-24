@@ -14,9 +14,6 @@ import WebRTC
 
 final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
 
-    var iceCandidate: Observable<IceCandidateProtocol> {
-        return iceCandidatePublisher
-    }
     var sdpOffer: Observable<SessionDescriptionProtocol> {
         return sdpOfferPublisher
     }
@@ -40,7 +37,6 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     
     private var isStarted = false
     private let sdpOfferPublisher = PublishSubject<SessionDescriptionProtocol>()
-    private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
     private let mediaStreamPublisher = BehaviorSubject<MediaStream?>(value: nil)
     private let disposeBag = DisposeBag()
 
@@ -77,11 +73,6 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
         connectionDelegateProxy.onAddedStream = { [weak self] _, stream in
             guard let self = self else { return }
             self.mediaStreamPublisher.onNext(stream)
-        }
-
-        connectionDelegateProxy.onGotIceCandidate = { [weak self] _, iceCandidate in
-            guard let self = self else { return }
-            self.iceCandidatePublisher.onNext(iceCandidate)
         }
 
         appStateProvider.willEnterBackground
@@ -126,9 +117,5 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
 
     func setAnswerSDP(sdp: SessionDescriptionProtocol) {
         peerConnection?.setRemoteDescription(sdp: sdp) { _ in }
-    }
-    
-    func setICECandidates(iceCandidate: IceCandidateProtocol) {
-        peerConnection?.add(iceCandidate: iceCandidate)
     }
 }

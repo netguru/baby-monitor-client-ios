@@ -10,8 +10,6 @@ protocol PeerConnectionProtocol {
 
     func setLocalDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?)
 
-    func add(iceCandidate: IceCandidateProtocol)
-
     func close()
 
     func createAnswer(for constraints: MediaConstraints, handler: ((RTCSessionDescription?, Error?) -> Void)?)
@@ -31,13 +29,6 @@ extension RTCPeerConnection: PeerConnectionProtocol {
             return
         }
         add(stream)
-    }
-
-    func add(iceCandidate: IceCandidateProtocol) {
-        guard let iceCandidate = iceCandidate as? RTCIceCandidate else {
-            return
-        }
-        add(iceCandidate)
     }
 
     func setRemoteDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?) {

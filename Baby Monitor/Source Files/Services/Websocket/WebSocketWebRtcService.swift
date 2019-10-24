@@ -27,24 +27,13 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
     }
 
     private func setupWebRtcConductor(with factory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductorProtocol) {
-        webSocketConductor = factory(Observable.merge(sdpOfferJson(), iceCandidateJson()), webRtcMessageHandler())
+        webSocketConductor = factory(Observable.merge(sdpOfferJson()), webRtcMessageHandler())
     }
 
     private func sdpOfferJson() -> Observable<String> {
         return webRtcClientManager.sdpOffer
             .flatMap { sdp -> Observable<String> in
                 let json = [WebRtcMessage.Key.offerSDP.rawValue: sdp.jsonDictionary()]
-                guard let jsonString = json.jsonString else {
-                    return Observable.empty()
-                }
-                return Observable.just(jsonString)
-            }
-    }
-
-    private func iceCandidateJson() -> Observable<String> {
-        return webRtcClientManager.iceCandidate
-            .flatMap { iceCandidate -> Observable<String> in
-                let json = [WebRtcMessage.Key.iceCandidate.rawValue: iceCandidate.jsonDictionary()]
                 guard let jsonString = json.jsonString else {
                     return Observable.empty()
                 }
@@ -60,8 +49,6 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
             switch message {
             case .sdpAnswer(let sdp):
                 self?.webRtcClientManager.setAnswerSDP(sdp: sdp)
-            case .iceCandidate(let candidate):
-                self?.webRtcClientManager.setICECandidates(iceCandidate: candidate)
             default:
                 break
             }

@@ -16,9 +16,6 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     var sdpAnswer: Observable<SessionDescriptionProtocol> {
         return sdpAnswerPublisher
     }
-    var iceCandidate: Observable<IceCandidateProtocol> {
-        return iceCandidatePublisher
-    }
     var mediaStream: Observable<MediaStream> {
         return mediaStreamPublisher
     }
@@ -27,7 +24,6 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     private var mediaStreamInstance: MediaStream?
     private let mediaStreamPublisher = PublishSubject<MediaStream>()
     private let sdpAnswerPublisher = PublishSubject<SessionDescriptionProtocol>()
-    private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
 
     private var peerConnection: PeerConnectionProtocol?
     private let peerConnectionFactory: PeerConnectionFactoryProtocol
@@ -53,15 +49,6 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         self.remoteDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         self.localDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         super.init()
-        setup()
-    }
-
-    func setup() {
-
-        connectionDelegateProxy.onGotIceCandidate = { [weak self] _, iceCandidate in
-            guard let self = self else { return }
-            self.iceCandidatePublisher.onNext(iceCandidate)
-        }
     }
 
     func start() {
@@ -101,10 +88,6 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             self.peerConnection?.setLocalDescription(sdp: sdp) { _ in }
             self.sdpAnswerPublisher.onNext(sdp)
         }
-    }
-    
-    func setICECandidates(iceCandidate: IceCandidateProtocol) {
-        peerConnection?.add(iceCandidate: iceCandidate)
     }
     
 }

@@ -9,7 +9,6 @@ import RxSwift
 final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
     private(set) var isStarted = true
     private(set) var remoteSdp: SessionDescriptionProtocol?
-    private(set) var iceCandidates = [IceCandidateProtocol]()
     private(set) var isSetup = false
 
     private let localSdp: SessionDescriptionProtocol?
@@ -28,10 +27,6 @@ final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
             return
         }
         sdpAnswerPublisher.onNext(localSdp)
-    }
-
-    func setICECandidates(iceCandidate: IceCandidateProtocol) {
-        iceCandidates.append(iceCandidate)
     }
 
     func stop() {
