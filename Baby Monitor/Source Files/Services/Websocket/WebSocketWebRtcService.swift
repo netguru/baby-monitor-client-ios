@@ -27,7 +27,7 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
     }
 
     private func setupWebRtcConductor(with factory: (Observable<String>, AnyObserver<WebRtcMessage>) -> WebSocketConductorProtocol) {
-        webSocketConductor = factory(Observable.merge(sdpOfferJson()), webRtcMessageHandler())
+        webSocketConductor = factory(sdpOfferJson(), webRtcMessageHandler())
     }
 
     private func sdpOfferJson() -> Observable<String> {

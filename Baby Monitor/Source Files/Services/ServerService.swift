@@ -76,7 +76,7 @@ final class ServerService: ServerServiceProtocol {
             self.handle(event: event)
         })
             .disposed(by: disposeBag)
-        Observable.merge(sdpAnswerJson())
+        sdpAnswerJson()
             .subscribe(onNext: { [unowned self] json in
                 self.messageServer.send(message: json)
             })
