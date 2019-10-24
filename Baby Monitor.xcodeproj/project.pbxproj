@@ -1551,7 +1551,7 @@
 				};
 			};
 			buildConfigurationList = EC82B551213EA072005CA395 /* Build configuration list for PBXProject "Baby Monitor" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
