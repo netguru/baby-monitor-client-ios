@@ -38,11 +38,6 @@ final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
     }
     let sdpAnswerPublisher = PublishSubject<SessionDescriptionProtocol>()
 
-    var iceCandidate: Observable<IceCandidateProtocol> {
-        return iceCandidatePublisher
-    }
-    let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
-
     var mediaStream: Observable<MediaStream> {
         return mediaStreamPublisher
     }
