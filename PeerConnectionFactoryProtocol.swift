@@ -18,6 +18,10 @@ extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
     func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol {
         let config = RTCConfiguration()
         config.iceServers = []
+        config.sdpSemantics = .unifiedPlan
+
+        // gatherContinually will let WebRTC to listen to any network changes and send any new candidates to the other client
+        config.continualGatheringPolicy = .gatherContinually
         return peerConnection(with: config, constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: ["DtlsSrtpKeyAgreement": "true"]), delegate: delegate)
     }
 

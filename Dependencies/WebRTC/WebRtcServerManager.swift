@@ -87,10 +87,12 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol) {
         guard isStarted else { return }
         peerConnection?.close()
-        peerConnection = peerConnectionFactory.peerConnection(with: connectionDelegateProxy)
-        peerConnection?.setRemoteDescription(sdp: remoteSDP) { [weak self] error in
-            guard error == nil, let stream = self?.mediaStreamInstance else { return }
-            self?.handleDidSetRemoteDescription(stream: stream)
+        DispatchQueue.main.async {
+            self.peerConnection = self.peerConnectionFactory.peerConnection(with: self.connectionDelegateProxy)
+            self.peerConnection?.setRemoteDescription(sdp: remoteSDP) { [weak self] error in
+                guard error == nil, let stream = self?.mediaStreamInstance else { return }
+                self?.handleDidSetRemoteDescription(stream: stream)
+            }
         }
     }
 
