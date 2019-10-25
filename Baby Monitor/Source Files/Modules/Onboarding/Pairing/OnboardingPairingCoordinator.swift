@@ -33,6 +33,7 @@ final class OnboardingPairingCoordinator: Coordinator {
         let viewController = prepareContinuableViewController(role: role)
         switch role {
         case .parent(.error):
+            viewController.modalPresentationStyle = .fullScreen
             navigationController.present(viewController, animated: true, completion: nil)
         default:
             navigationController.pushViewController(viewController, animated: true)
