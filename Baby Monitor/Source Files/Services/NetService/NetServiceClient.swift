@@ -81,6 +81,8 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
 extension NetServiceClient: NetServiceBrowserDelegate {
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
+        guard service.name == Constants.netServiceName else { return }
+        netServiceBrowser.stop()
         netService = service
         netService!.delegate = self
         netService!.resolve(withTimeout: 5)
