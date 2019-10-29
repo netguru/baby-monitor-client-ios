@@ -15,7 +15,7 @@ class WebRtcServerManagerTests: XCTestCase {
         let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
-        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
 
         // When
         sut.start()
@@ -32,7 +32,7 @@ class WebRtcServerManagerTests: XCTestCase {
         let iceCandidate = IceCandidateMock(sdpMLineIndex: 0, sdpMid: "", sdp: "sdp")
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
-        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
 
         // When
         sut.start()
@@ -48,7 +48,7 @@ class WebRtcServerManagerTests: XCTestCase {
         let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
-        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
 
         // When
         sut.start()
@@ -67,7 +67,7 @@ class WebRtcServerManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let streamId = "test"
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection, mediaStream: streamId as MediaStream)
-        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
 
         sut.mediaStream
             .subscribe(observer)

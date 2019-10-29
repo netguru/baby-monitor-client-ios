@@ -34,6 +34,7 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     private let connectionDelegateProxy: RTCPeerConnectionDelegateProxy
     private let remoteDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
     private let localDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
+    private let scheduler: AsyncScheduler
 
     private var streamMediaConstraints: RTCMediaConstraints {
         return RTCMediaConstraints(
@@ -47,11 +48,12 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         )
     }
 
-    init(peerConnectionFactory: PeerConnectionFactoryProtocol) {
+    init(peerConnectionFactory: PeerConnectionFactoryProtocol, scheduler: AsyncScheduler = DispatchQueue.main) {
         self.peerConnectionFactory = peerConnectionFactory
         self.connectionDelegateProxy = RTCPeerConnectionDelegateProxy()
         self.remoteDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         self.localDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
+        self.scheduler = scheduler
         super.init()
         setup()
     }
@@ -87,10 +89,12 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol) {
         guard isStarted else { return }
         peerConnection?.close()
-        peerConnection = peerConnectionFactory.peerConnection(with: connectionDelegateProxy)
-        peerConnection?.setRemoteDescription(sdp: remoteSDP) { [weak self] error in
-            guard error == nil, let stream = self?.mediaStreamInstance else { return }
-            self?.handleDidSetRemoteDescription(stream: stream)
+        scheduler.scheduleAsync {
+            self.peerConnection = self.peerConnectionFactory.peerConnection(with: self.connectionDelegateProxy)
+            self.peerConnection?.setRemoteDescription(sdp: remoteSDP) { [weak self] error in
+                guard error == nil, let stream = self?.mediaStreamInstance else { return }
+                self?.handleDidSetRemoteDescription(stream: stream)
+            }
         }
     }
 

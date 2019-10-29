@@ -6,6 +6,7 @@
 import UIKit
 import Firebase
 import UserNotifications
+import WebRTC
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAppearance()
         setupPushNotifications(application)
         appDependencies.storageServerService.uploadRecordingsToDatabaseIfAllowed()
+        RTCSetMinDebugLogLevel(.verbose)
         return true
     }
     
