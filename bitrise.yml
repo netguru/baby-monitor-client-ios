@@ -155,7 +155,6 @@ workflows:
             - cache_paths: |-
                 ./Carthage
                 ./Pods
-
   bundle-install:
     steps:
       - certificate-and-profile-installer: {}
