@@ -158,6 +158,7 @@ workflows:
 
   bundle-install:
     steps:
+      - certificate-and-profile-installer: {}
       - script:
           title: 'bundle-install'
           inputs:
