@@ -27,14 +27,14 @@ bootstrap:
         - cocoapods:
             command: "install"
 
-# Test stage.
-test:
-    default:
-        - xcode_test:
-            project: $(XCODEBUILD_PROJECT)
-            scheme: $(XCODEBUILD_SCHEME)
-            settings: 
-                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+# # Test stage.
+# test:
+#     default:
+#         - xcode_test:
+#             project: $(XCODEBUILD_PROJECT)
+#             scheme: $(XCODEBUILD_SCHEME)
+#             settings: 
+#                 _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
 
 # Deploy stage.
 deploy:
@@ -42,7 +42,7 @@ deploy:
         - xcode_archive:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
-            method: "app-store"
+            method: "enterprise"
             settings: 
                 _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
         - hockeyapp:
