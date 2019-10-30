@@ -27,7 +27,7 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.startDiscovering(withTimeout: 5.0)
+        viewModel.startDiscovering(withTimeout: Constants.pairingDeviceSearchTimeLimit)
     }
     
     private func setup() {
