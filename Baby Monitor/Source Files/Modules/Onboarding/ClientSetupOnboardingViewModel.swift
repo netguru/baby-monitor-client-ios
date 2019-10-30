@@ -46,6 +46,11 @@ final class ClientSetupOnboardingViewModel {
 
     func attachInput(cancelButtonTap: Observable<Void>) {
         cancelTap = cancelButtonTap
+        cancelTap?.subscribe(onNext: { [weak self] in
+            self?.searchCancelTimer?.invalidate()
+            self?.netServiceClient.isEnabled.value = false
+        })
+        .disposed(by: bag)
     }
     
     func startDiscovering(withTimeout timeout: TimeInterval = 5.0) {
