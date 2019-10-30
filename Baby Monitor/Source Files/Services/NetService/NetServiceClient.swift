@@ -85,7 +85,8 @@ extension NetServiceClient: NetServiceBrowserDelegate {
         netServiceBrowser.stop()
         netService = service
         netService!.delegate = self
-        netService!.resolve(withTimeout: 5)
+        /// Setting an infinite timeout for the resolve process as the timeout is being controllered by the instance, which starts discoverign (ex viewModel).
+        netService!.resolve(withTimeout: 0)
     }
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
