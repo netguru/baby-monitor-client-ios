@@ -10,10 +10,10 @@ import RxCocoa
 final class OnboardingSpinnerView: BaseOnboardingView {
 
     private let spinner = UIActivityIndicatorView()
-    let cancelButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "arrowBack"),
-                                           style: .plain,
-                                           target: nil,
-                                           action: nil)
+    fileprivate let cancelButton = RoundedRectangleButton(title: Localizable.General.cancel,
+                                                          backgroundColor: .clear,
+                                                          borderColor: .babyMonitorPurple,
+                                                          borderWidth: 2.0)
 
     override init() {
         super.init()
@@ -32,12 +32,24 @@ final class OnboardingSpinnerView: BaseOnboardingView {
             return
         }
         spinner.centerYAnchor.constraint(equalTo: imageCenterYAnchor).isActive = true
+        addCancelButton()
+    }
+
+    private func addCancelButton() {
+        addSubview(cancelButton)
+        cancelButton.addConstraints {[
+            $0.equalTo(self, .bottom, .safeAreaBottom, constant: -32),
+            $0.equalConstant(.height, 56),
+            $0.equal(.centerX),
+            $0.equal(.leading, constant: 24)
+        ]
+        }
     }
 }
 
 extension Reactive where Base: OnboardingSpinnerView {
 
     var cancelTap: ControlEvent<Void> {
-        return base.cancelButtonItem.rx.tap
+        return base.cancelButton.rx.tap
     }
 }
