@@ -34,9 +34,9 @@ final class AppDependencies {
     
     // MARK: - Bonjour
     
-    private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient()
+    private(set) lazy var netServiceClient: NetServiceClientProtocol = NetServiceClient(serverErrorLogger: serverErrorLogger)
     
-    private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer(appStateProvider: NotificationCenter.default)
+    private(set) lazy var netServiceServer: NetServiceServerProtocol = NetServiceServer(appStateProvider: NotificationCenter.default, serverErrorLogger: serverErrorLogger)
     
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, urlConfiguration: urlConfiguration)
     
@@ -149,6 +149,9 @@ final class AppDependencies {
     
     /// Service for handling errors and showing error alerts
     private(set) var errorHandler: ErrorHandlerProtocol = ErrorHandler()
+
+    /// Service for sending errors to the server.
+    private(set) var serverErrorLogger: ServerErrorLogger = CrashlyticsErrorLogger()
 }
 
 // MARK: - Resetting app state

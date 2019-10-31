@@ -17,6 +17,10 @@ enum DeviceSearchResult: Equatable {
 
 final class ClientSetupOnboardingViewModel {
 
+    private enum PairingError: Error {
+        case timeout
+    }
+
     let bag = DisposeBag()
     var selectFirstAction: (() -> Void)?
     var selectSecondAction: (() -> Void)?
@@ -35,12 +39,18 @@ final class ClientSetupOnboardingViewModel {
     private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
     private let disposeBag = DisposeBag()
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
+    private let errorLogger: ServerErrorLogger
 
-    init(netServiceClient: NetServiceClientProtocol, urlConfiguration: URLConfiguration, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol, webSocketEventMessageService: WebSocketEventMessageServiceProtocol) {
+    init(netServiceClient: NetServiceClientProtocol,
+         urlConfiguration: URLConfiguration,
+         activityLogEventsRepository: ActivityLogEventsRepositoryProtocol,
+         webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
+         serverErrorLogger: ServerErrorLogger) {
         self.netServiceClient = netServiceClient
         self.urlConfiguration = urlConfiguration
         self.activityLogEventsRepository = activityLogEventsRepository
         self.webSocketEventMessageService = webSocketEventMessageService
+        self.errorLogger = serverErrorLogger
         setupRx()
     }
 
@@ -56,6 +66,7 @@ final class ClientSetupOnboardingViewModel {
     func startDiscovering(withTimeout timeout: TimeInterval = Constants.pairingDeviceSearchTimeLimit) {
         searchCancelTimer = Timer.scheduledTimer(withTimeInterval: timeout, repeats: false, block: { [weak self] _ in
             self?.didFinishDeviceSearch?(.failure(.timeout))
+            self?.errorLogger.log(error: PairingError.timeout)
             self?.netServiceClient.isEnabled.value = false
             self?.searchCancelTimer = nil
         })

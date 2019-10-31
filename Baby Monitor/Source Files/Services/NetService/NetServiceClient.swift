@@ -24,6 +24,10 @@ protocol NetServiceClientProtocol: AnyObject {
 
 final class NetServiceClient: NSObject, NetServiceClientProtocol {
 
+    private enum ServiceError: Error {
+        case didNotResolve, didNotSearch, didRemoveDomain, IPNotParsed
+    }
+
     let isEnabled = Variable<Bool>(false)
 
     lazy var service = serviceVariable.asObservable()
@@ -33,9 +37,12 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
     private let netServiceBrowser = NetServiceBrowser()
     private let netServiceAllowedPorts = [Constants.androidWebsocketPort, Constants.iosWebsocketPort]
 
+    private let errorLogger: ServerErrorLogger
+
     private let disposeBag = DisposeBag()
 
-    override init() {
+    init(serverErrorLogger: ServerErrorLogger) {
+        self.errorLogger = serverErrorLogger
         super.init()
         setupRx()
     }
@@ -94,15 +101,35 @@ extension NetServiceClient: NetServiceBrowserDelegate {
         netService = nil
     }
 
+    func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String: NSNumber]) {
+        errorLogger.log(error: ServiceError.didNotSearch, additionalInfo: errorDict)
+    }
+
+    func netServiceBrowser(_ browser: NetServiceBrowser, didRemoveDomain domainString: String, moreComing: Bool) {
+        errorLogger.log(error: ServiceError.didRemoveDomain, additionalInfo: ["name": domainString])
+    }
+
 }
 
 // MARK: - NetServiceDelegate
 extension NetServiceClient: NetServiceDelegate {
 
     func netServiceDidResolveAddress(_ sender: NetService) {
-        guard let address = sender.addresses?.first else { return }
-        guard netServiceAllowedPorts.contains(sender.port), let ip = ip(from: address) else { return }
+        guard let address = sender.addresses?.first,
+            netServiceAllowedPorts.contains(sender.port),
+            let ip = ip(from: address) else {
+                let errorDict: [String: Any] = [
+                    "adress": sender.addresses?.first ?? "null",
+                    "containsPort": netServiceAllowedPorts.contains(sender.port)
+                ]
+                errorLogger.log(error: ServiceError.IPNotParsed, additionalInfo: errorDict)
+                return
+        }
         serviceVariable.value = (ip: ip, port: String(sender.port))
+    }
+
+    func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {
+        errorLogger.log(error: ServiceError.didNotResolve, additionalInfo: errorDict)
     }
 
 }

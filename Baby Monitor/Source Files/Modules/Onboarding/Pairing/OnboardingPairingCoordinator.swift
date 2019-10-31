@@ -95,7 +95,8 @@ final class OnboardingPairingCoordinator: Coordinator {
             netServiceClient: appDependencies.netServiceClient,
             urlConfiguration: appDependencies.urlConfiguration,
             activityLogEventsRepository: appDependencies.databaseRepository,
-            webSocketEventMessageService: appDependencies.webSocketEventMessageService.get())
+            webSocketEventMessageService: appDependencies.webSocketEventMessageService.get(),
+            serverErrorLogger: appDependencies.serverErrorLogger)
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success:
