@@ -30,13 +30,13 @@ final class OnboardingPairingCoordinator: Coordinator {
     }
     
     private func showContinuableView(role: OnboardingContinuableViewModel.Role) {
-        let viewController = prepareContinuableViewController(role: role)
+        let continuableViewController = prepareContinuableViewController(role: role)
         switch role {
         case .parent(.error):
-            viewController.modalPresentationStyle = .fullScreen
-            navigationController.present(viewController, animated: true, completion: nil)
+            continuableViewController.modalPresentationStyle = .fullScreen
+            navigationController.presentedViewController?.present(continuableViewController, animated: true)
         default:
-            navigationController.pushViewController(viewController, animated: true)
+            navigationController.pushViewController(continuableViewController, animated: true)
         }
     }
     
@@ -65,7 +65,7 @@ final class OnboardingPairingCoordinator: Coordinator {
                 case .hello:
                     self?.showPairingView()
                 case .error:
-                    self?.navigationController.dismiss(animated: true, completion: nil)
+                    self?.navigationController.presentedViewController?.dismiss(animated: true)
                 case .allDone:
                     break
                 }
@@ -95,7 +95,8 @@ final class OnboardingPairingCoordinator: Coordinator {
             netServiceClient: appDependencies.netServiceClient,
             urlConfiguration: appDependencies.urlConfiguration,
             activityLogEventsRepository: appDependencies.databaseRepository,
-            webSocketEventMessageService: appDependencies.webSocketEventMessageService.get())
+            webSocketEventMessageService: appDependencies.webSocketEventMessageService.get(),
+            serverErrorLogger: appDependencies.serverErrorLogger)
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success:
@@ -103,6 +104,7 @@ final class OnboardingPairingCoordinator: Coordinator {
                 case .parent:
                     self?.onEnding?()
                 case .none:
+                    self?.navigationController.dismiss(animated: true)
                     self?.showContinuableView(role: .parent(.allDone))
                 case .baby:
                     break
@@ -116,7 +118,6 @@ final class OnboardingPairingCoordinator: Coordinator {
             self?.connect(to: viewModel)
         })
         .disposed(by: viewModel.bag)
-
-        navigationController.pushViewController(viewController, animated: true)
+        navigationController.present(viewController, animated: true)
     }
 }
