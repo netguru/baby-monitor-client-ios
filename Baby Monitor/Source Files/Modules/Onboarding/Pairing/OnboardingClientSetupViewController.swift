@@ -36,7 +36,7 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
         customView.update(image: viewModel.image)
         viewModel.attachInput(cancelButtonTap: customView.rx.cancelTap.asObservable())
         customView.rx.cancelTap.subscribe(onNext: { [weak self] in
-            self?.dismiss(animated: true, completion: nil)
+            self?.dismiss(animated: true)
         })
         .disposed(by: bag)
     }

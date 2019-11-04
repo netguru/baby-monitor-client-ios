@@ -34,7 +34,7 @@ final class OnboardingPairingCoordinator: Coordinator {
         switch role {
         case .parent(.error):
             continuableViewController.modalPresentationStyle = .fullScreen
-            navigationController.presentedViewController?.present(continuableViewController, animated: true, completion: nil)
+            navigationController.presentedViewController?.present(continuableViewController, animated: true)
         default:
             navigationController.pushViewController(continuableViewController, animated: true)
         }
@@ -65,7 +65,7 @@ final class OnboardingPairingCoordinator: Coordinator {
                 case .hello:
                     self?.showPairingView()
                 case .error:
-                    self?.navigationController.presentedViewController?.dismiss(animated: true, completion: nil)
+                    self?.navigationController.presentedViewController?.dismiss(animated: true)
                 case .allDone:
                     break
                 }
@@ -104,7 +104,7 @@ final class OnboardingPairingCoordinator: Coordinator {
                 case .parent:
                     self?.onEnding?()
                 case .none:
-                    self?.navigationController.dismiss(animated: true, completion: nil)
+                    self?.navigationController.dismiss(animated: true)
                     self?.showContinuableView(role: .parent(.allDone))
                 case .baby:
                     break
