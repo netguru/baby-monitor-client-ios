@@ -137,7 +137,7 @@ workflows:
                npm i -D webpack@latest
                npm install -g appcenter-cli
 
-deploy-appcenter:
+  deploy-appcenter:
     steps:
       - appcenter-app-release:
           inputs:
