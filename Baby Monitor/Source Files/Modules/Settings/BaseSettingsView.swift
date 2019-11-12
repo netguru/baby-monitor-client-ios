@@ -9,21 +9,24 @@ import RxSwift
 import RxCocoa
 
 class BaseSettingsView: UIView {
-    
+
+    lazy var appVersionProvider: AppVersionProvider = DefaultAppVersionProvider()
+
     let cancelButtonItem = UIBarButtonItem(
         image: #imageLiteral(resourceName: "arrow_back"),
         style: .plain,
         target: nil,
         action: nil
     )
-    
+
     fileprivate let rateButton = RoundedRectangleButton(title: Localizable.Settings.rateButtonTitle, backgroundColor: .babyMonitorPurple)
     fileprivate let resetButton = RoundedRectangleButton(title: Localizable.Settings.resetButtonTitle, backgroundColor: .babyMonitorDarkPurple, borderColor: .babyMonitorNonTranslucentWhite)
     private lazy var buildVersionLabel: UILabel = {
         let view = UILabel()
+        let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         view.textColor = .white
         view.font = UIFont.customFont(withSize: .small)
-        view.text = "\(Localizable.General.version): \(Bundle.main.buildNumber)"
+        view.text = "\(Localizable.General.version): \(appVersion)"
         return view
     }()
     private(set) lazy var buttonsStackView: UIStackView = {
