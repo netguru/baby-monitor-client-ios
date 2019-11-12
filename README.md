@@ -16,7 +16,7 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 * Services:
 	* [JIRA](https://netguru.atlassian.net/secure/RapidBoard.jspa?rapidView=620&view=detail)
 	* [Bitrise](https://app.bitrise.io/app/80545282645ad180)
-	* [HockeyApp - staging](https://rink.hockeyapp.net/manage/apps/838901)
+	* [App Center - staging](https://appcenter.ms/orgs/office-4dmm/apps/Baby-Monitor)
 
 ## Configuration
 
