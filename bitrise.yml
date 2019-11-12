@@ -23,16 +23,18 @@ app:
   envs:
     - XCODEBUILD_PROJECT: ./Baby Monitor.xcworkspace
     - XCODEBUILD_OPTIONS: _BUILD_NUMBER=$BITRISE_BUILD_NUMBER
+    - APP_CENTER_ORG_NAME_ID: office-4dmm
 
 workflows:
 
   build-staging:
     envs:
       - XCODEBUILD_SCHEME: Staging
-      - HOCKEYAPP_API_TOKEN: $HOCKEYAPP_API_TOKEN_STAGING
-      - HOCKEYAPP_APP_ID: $HOCKEYAPP_APP_ID_STAGING
+      - APP_CENTER_API_TOKEN: $APP_CENTER_API_TOKEN_STAGING
+      - APP_CENTER_APP_NAME_ID: $APP_CENTER_APP_NAME_STAGING_ID
     before_run:
       - cache-pull
+      - install-appcenter
       - bootstrap-carthage
       - bootstrap-cocoapods-keys
       - test-xcode
@@ -40,15 +42,13 @@ workflows:
       - archive-xcode
     after_run:
       - cache-push
-      - deploy-hockeyapp
+      - deploy-appcenter
       - deploy-bitriseio
       - notify-slack
 
   build-release-candidate:
     envs:
       - XCODEBUILD_SCHEME: Production
-      - HOCKEYAPP_API_TOKEN: $HOCKEYAPP_API_TOKEN_PRODUCTION
-      - HOCKEYAPP_APP_ID: $HOCKEYAPP_APP_ID_PRODUCTION
     before_run:
       - cache-pull
       - bootstrap-carthage
@@ -58,7 +58,6 @@ workflows:
       - archive-xcode
     after_run:
       - cache-push
-      - deploy-hockeyapp
       - deploy-bitriseio
       - notify-slack
 
@@ -129,13 +128,24 @@ workflows:
             - scheme: $XCODEBUILD_SCHEME
             - xcodebuild_options: $XCODEBUILD_OPTIONS
 
-  deploy-hockeyapp:
+  install-appcenter:
     steps:
-      - hockeyapp-deploy:
+      - script:
+          title: 'Install App Center CLI'
           inputs:
-            - api_token: $HOCKEYAPP_API_TOKEN
-            - app_id: $HOCKEYAPP_APP_ID
-            - notify: 0
+            - content: |-
+               npm i -D webpack@latest
+               npm install -g appcenter-cli
+
+deploy-appcenter:
+    steps:
+      - appcenter-app-release:
+          inputs:
+            - appcenter_api_token: $APP_CENTER_API_TOKEN
+            - appcenter_name: $APP_CENTER_APP_NAME_ID
+            - appcenter_org: $APP_CENTER_ORG_NAME_ID
+            - artifact_path: $BITRISE_IPA_PATH
+            - distribution_groups: $APP_CENTER_DISTRIBUTION_GROUP
 
   deploy-bitriseio:
     steps:
@@ -160,4 +170,4 @@ workflows:
                 Workflow|${BITRISE_TRIGGERED_WORKFLOW_ID}
             - buttons: |-
                 View on Bitrise|${BITRISE_BUILD_URL}
-                View on HockeyApp|https://rink.hockeyapp.net/apps/${HOCKEYAPP_APP_ID}
+                View on App Center|https://appcenter.ms/orgs/${APP_CENTER_ORG_NAME_ID}/apps/${APP_CENTER_APP_NAME_ID}
