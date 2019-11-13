@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E5F6497439177C406F45FFF /* AppVersionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F607E283F0C73D0034DE1 /* AppVersionProvider.swift */; };
 		200681BF21FB4FC600340596 /* ParentSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */; };
 		200681C121FB53AA00340596 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200681C021FB53AA00340596 /* SettingsCoordinator.swift */; };
 		200DFD4721F87862009CA3ED /* RoundedRectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */; };
@@ -290,6 +291,7 @@
 
 /* Begin PBXFileReference section */
 		0806325953361018B6D7E8E8 /* Pods-Baby MonitorTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.development.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"; sourceTree = "<group>"; };
+		1E5F607E283F0C73D0034DE1 /* AppVersionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionProvider.swift; sourceTree = "<group>"; };
 		200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsViewModel.swift; sourceTree = "<group>"; };
 		200681C021FB53AA00340596 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleButton.swift; sourceTree = "<group>"; };
@@ -617,6 +619,14 @@
 				3D35897D6D02EF8BB7728EDE /* Pods-Baby MonitorTests.production.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		1E5F6D41BBC430E4299056E5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1E5F607E283F0C73D0034DE1 /* AppVersionProvider.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		4E1D2C5B21673FE200E92F29 /* CameraPreview */ = {
@@ -1430,6 +1440,7 @@
 				4E57318F2170BA7400DEAF0B /* Other Protocols */,
 				4E9563302164DDB000289475 /* Models */,
 				4E95631921638CE400289475 /* Localizations */,
+				1E5F6D41BBC430E4299056E5 /* Utils */,
 			);
 			path = "Source Files";
 			sourceTree = "<group>";
@@ -1955,6 +1966,7 @@
 				4E63DC1E21E39D4B00604167 /* NetworkDispatcher.swift in Sources */,
 				EC8A8FF921AEA7EE00B5FCCF /* IntroView.swift in Sources */,
 				A1B57ACD22E97F4B0021B314 /* MicrophonePermissionProvider.swift in Sources */,
+				1E5F6497439177C406F45FFF /* AppVersionProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

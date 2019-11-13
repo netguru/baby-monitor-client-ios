@@ -152,6 +152,11 @@ final class AppDependencies {
 
     /// Service for sending errors to the server.
     private(set) var serverErrorLogger: ServerErrorLogger = CrashlyticsErrorLogger()
+    
+    // MARK: - Utilities
+    
+    /// Provides app version and build number
+    private(set) var appVersionProvider: AppVersionProvider = DefaultAppVersionProvider()
 }
 
 // MARK: - Resetting app state
