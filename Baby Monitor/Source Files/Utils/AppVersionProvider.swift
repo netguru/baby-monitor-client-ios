@@ -26,5 +26,4 @@ protocol BundleDataProvider: class {
     var bundleVersion: String { get }
 }
 
-extension Bundle: BundleDataProvider {
-}
+extension Bundle: BundleDataProvider { }

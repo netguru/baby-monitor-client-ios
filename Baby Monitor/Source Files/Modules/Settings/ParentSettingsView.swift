@@ -38,8 +38,8 @@ final class ParentSettingsView: BaseSettingsView {
     }()
 
     /// Initializes settings view
-    override init() {
-        super.init()
+    override init(appVersion: String) {
+        super.init(appVersion: appVersion)
         setupLayout()
     }
 
