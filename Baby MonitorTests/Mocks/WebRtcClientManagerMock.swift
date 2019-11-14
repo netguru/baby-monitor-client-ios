@@ -5,7 +5,6 @@
 
 @testable import BabyMonitor
 import RxSwift
-import WebRTC
 
 final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
 
@@ -19,7 +18,7 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
         self.localSdp = sdpOffer
     }
 
-    func startWebRtcConnection() {
+    func startIfNeeded() {
         isStarted = true
         guard let localSdp = localSdp else {
             return
@@ -35,7 +34,7 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
         iceCandidates.append(iceCandidate)
     }
 
-    func disconnect() {
+    func stop() {
         isStarted = false
     }
 
@@ -49,8 +48,13 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
     }
     let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
 
-    var mediaStream: Observable<MediaStreamProtocol> {
+    var mediaStream: Observable<MediaStream?> {
         return mediaStreamPublisher
     }
-    let mediaStreamPublisher = PublishSubject<MediaStreamProtocol>()
+    let mediaStreamPublisher = PublishSubject<MediaStream?>()
+
+    var state: Observable<WebRtcClientManagerState> {
+        return statePublisher
+    }
+    let statePublisher = PublishSubject<WebRtcClientManagerState>()
 }

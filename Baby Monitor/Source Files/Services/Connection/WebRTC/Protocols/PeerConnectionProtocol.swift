@@ -6,55 +6,68 @@
 import WebRTC
 
 protocol PeerConnectionProtocol {
-    func setRemoteDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?)
+    func setRemoteDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?)
 
-    func setLocalDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?)
+    func setLocalDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?)
 
-    func add(_ iceCandidate: IceCandidateProtocol)
+    func add(iceCandidate: IceCandidateProtocol)
 
     func close()
 
-    func createOffer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?)
+    func createAnswer(for constraints: MediaConstraints, handler: ((RTCSessionDescription?, Error?) -> Void)?)
 
-    func add(stream: MediaStreamProtocol)
+    func createOffer(for constraints: MediaConstraints, handler: ((RTCSessionDescription?, Error?) -> Void)?)
+
+    func add(stream: MediaStream)
 }
+
+typealias MediaConstraints = AnyObject
+typealias MediaStream = AnyObject
 
 extension RTCPeerConnection: PeerConnectionProtocol {
 
-    func add(stream: MediaStreamProtocol) {
-        guard let stream = stream as? RTCMediaStream else {
+    func add(stream: MediaStream) {
+        guard let stream = stream as? RTCMediaStream,
+            let videoTrack = stream.videoTracks.first,
+            let audioTrack = stream.audioTracks.first else {
             return
         }
-        add(stream)
-    }
-    
-    func createOffer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?) {
-        guard let constraints = constraints as? RTCMediaConstraints else {
-            return
-        }
-        offer(for: constraints) { sdp, error in
-            completionHandler?(sdp, error)
-        }
+        add(videoTrack, streamIds: [stream.streamId])
+        add(audioTrack, streamIds: [stream.streamId])
     }
 
-    func add(_ iceCandidate: IceCandidateProtocol) {
+    func add(iceCandidate: IceCandidateProtocol) {
         guard let iceCandidate = iceCandidate as? RTCIceCandidate else {
             return
         }
         add(iceCandidate)
     }
 
-    func setRemoteDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?) {
+    func setRemoteDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?) {
         guard let sdp = sdp as? RTCSessionDescription else {
             return
         }
-        setRemoteDescription(sdp, completionHandler: completionHandler)
+        setRemoteDescription(sdp, completionHandler: handler)
     }
 
-    func setLocalDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?) {
+    func setLocalDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?) {
         guard let sdp = sdp as? RTCSessionDescription else {
             return
         }
-        setLocalDescription(sdp, completionHandler: completionHandler)
+        setLocalDescription(sdp, completionHandler: handler)
+    }
+
+    func createAnswer(for constraints: MediaConstraints, handler: ((RTCSessionDescription?, Error?) -> Void)?) {
+        guard let constraints = constraints as? RTCMediaConstraints else {
+            return
+        }
+        answer(for: constraints, completionHandler: handler)
+    }
+
+    func createOffer(for constraints: MediaConstraints, handler: ((RTCSessionDescription?, Error?) -> Void)?) {
+        guard let constraints = constraints as? RTCMediaConstraints else {
+            return
+        }
+        offer(for: constraints, completionHandler: handler)
     }
 }

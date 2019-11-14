@@ -12,7 +12,6 @@ final class OnboardingCoordinator: Coordinator {
     var navigationController: UINavigationController
     var onEnding: (() -> Void)?
     
-    private var isAudioServiceErrorAlreadyShown = false
     private weak var pairingCoordinator: OnboardingPairingCoordinator?
     private weak var connectingCoordinator: OnboardingConnectingCoordinator?
     
@@ -21,27 +20,36 @@ final class OnboardingCoordinator: Coordinator {
         self.appDependencies = appDependencies
         setup()
     }
-
+    
     func start() {
-        childCoordinators.first?.start()
+        navigationController.setNavigationBarHidden(true, animated: false)
+        switch UserDefaults.appMode {
+        case .parent:
+            pairingCoordinator?.start()
+        case .none:
+            childCoordinators.first?.start()
+        case .baby:
+            break
+        }
     }
     
     private func setup() {
         let introCoordinator = IntroCoordinator(navigationController, appDependencies: appDependencies)
         childCoordinators.append(introCoordinator)
         introCoordinator.onEnding = { [weak self] in
-            self?.showInitialSetup()
+            self?.showSpecifyDeviceInfoView()
         }
-        navigationController.setNavigationBarHidden(true, animated: false)
         let pairingCoordinator = OnboardingPairingCoordinator(navigationController, appDependencies: appDependencies)
         pairingCoordinator.onEnding = { [weak self] in
+            UserDefaults.appMode = .parent
             self?.onEnding?()
         }
         childCoordinators.append(pairingCoordinator)
         self.pairingCoordinator = pairingCoordinator
         let connectingCoordinator = OnboardingConnectingCoordinator(navigationController, appDependencies: appDependencies)
         connectingCoordinator.onEnding = { [weak self] in
-            self?.showServerView()
+            UserDefaults.appMode = .baby
+            self?.onEnding?()
         }
         childCoordinators.append(connectingCoordinator)
         self.connectingCoordinator = connectingCoordinator
@@ -50,31 +58,65 @@ final class OnboardingCoordinator: Coordinator {
     private func showInitialSetup() {
         let viewModel = SpecifyDeviceOnboardingViewModel()
         viewModel.didSelectBaby = { [weak self] in
-            self?.connectingCoordinator?.start()
+            self?.showAllowSendingRecordingsView()
         }
         viewModel.didSelectParent = { [weak self] in
             self?.pairingCoordinator?.start()
         }
         let viewController = SpecifyDeviceOnboardingViewController(viewModel: viewModel)
+        viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
+            self?.connect(to: viewModel)
+        })
+        .disposed(by: viewModel.bag)
+        
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    private func showServerView() {
-        let viewModel = ServerViewModel(webRtcServerManager: appDependencies.webRtcServer(appDependencies.peerConnection(), appDependencies.webRtcStreamFactory), messageServer: appDependencies.messageServer, netServiceServer: appDependencies.netServiceServer, decoders: appDependencies.webRtcMessageDecoders, cryingService: appDependencies.cryingEventService, babiesRepository: appDependencies.babiesRepository)
-        let serverViewController = ServerViewController(viewModel: viewModel)
-        viewModel.onCryingEventOccurence = { isBabyCrying in
-            let title = isBabyCrying ? Localizable.Server.babyIsCrying : Localizable.Server.babyStoppedCrying
-            AlertPresenter.showDefaultAlert(title: title, message: nil, onViewController: serverViewController)
-        }
-        viewModel.onAudioRecordServiceError = { [weak self] in
-            guard let self = self,
-                !self.isAudioServiceErrorAlreadyShown else {
-                    return
-            }
-            self.isAudioServiceErrorAlreadyShown = true
-            let message = Localizable.Server.audioRecordError
-            AlertPresenter.showDefaultAlert(title: nil, message: message, onViewController: serverViewController)
-        }
-        navigationController.pushViewController(serverViewController, animated: true)
+    private func showSpecifyDeviceInfoView() {
+        let viewModel = SpecifyDeviceInfoOnboardingViewModel()
+        let viewController = SpecifyDeviceInfoOnboardingViewController(viewModel: viewModel)
+        viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
+            self?.connect(to: viewModel)
+        })
+        .disposed(by: viewModel.bag)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    private func showAllowSendingRecordingsView() {
+        let viewModel = RecordingsIntroFeatureViewModel()
+        let viewController = RecordingsIntroFeatureViewController(viewModel: viewModel)
+        viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
+            self?.connect(to: viewModel)
+        })
+        .disposed(by: viewModel.bag)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+
+    private func connect(to viewModel: SpecifyDeviceInfoOnboardingViewModel) {
+        viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
+            self.navigationController.popViewController(animated: true)
+        })
+        .disposed(by: viewModel.bag)
+        viewModel.specifyDeviceTap?.subscribe(onNext: { [unowned self] in
+            self.showInitialSetup()
+        })
+        .disposed(by: viewModel.bag)
+    }
+    
+    private func connect(to viewModel: SpecifyDeviceOnboardingViewModel) {
+        viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
+            self.navigationController.popViewController(animated: true)
+        })
+        .disposed(by: viewModel.bag)
+    }
+        
+    private func connect(to viewModel: RecordingsIntroFeatureViewModel) {
+        viewModel.startButtonTap?.subscribe(onNext: { [weak self] in
+            self?.connectingCoordinator?.start()
+        })
+        .disposed(by: viewModel.bag)
+        viewModel.cancelButtonTap?.subscribe(onNext: { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        })
+        .disposed(by: viewModel.bag)
     }
 }

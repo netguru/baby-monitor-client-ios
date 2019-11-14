@@ -10,11 +10,16 @@ final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
     private(set) var isStarted = true
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var iceCandidates = [IceCandidateProtocol]()
+    private(set) var isSetup = false
 
     private let localSdp: SessionDescriptionProtocol?
 
     init(sdpAnswer: SessionDescriptionProtocol? = nil) {
         self.localSdp = sdpAnswer
+    }
+
+    func start() {
+        isSetup = true
     }
 
     func createAnswer(remoteSdp: SessionDescriptionProtocol) {
@@ -29,7 +34,7 @@ final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
         iceCandidates.append(iceCandidate)
     }
 
-    func disconnect() {
+    func stop() {
         isStarted = false
     }
 
@@ -43,8 +48,8 @@ final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
     }
     let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
 
-    var mediaStream: Observable<MediaStreamProtocol> {
+    var mediaStream: Observable<MediaStream> {
         return mediaStreamPublisher
     }
-    let mediaStreamPublisher = PublishSubject<MediaStreamProtocol>()
+    let mediaStreamPublisher = PublishSubject<MediaStream>()
 }

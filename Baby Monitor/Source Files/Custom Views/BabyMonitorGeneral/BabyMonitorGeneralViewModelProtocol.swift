@@ -13,9 +13,6 @@ protocol BabyMonitorGeneralViewModelProtocol: AnyObject where DataType: Equatabl
     /// Data type for sections data
     associatedtype DataType
     
-    /// Observable emitting show babies events
-    var showBabies: Observable<Void>? { get }
-    
     /// Observable emitting current baby
     var baby: Observable<Baby> { get }
     

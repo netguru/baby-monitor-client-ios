@@ -7,41 +7,131 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ActivityLogViewModel: BabyMonitorGeneralViewModelProtocol, BabyMonitorHeaderCellConfigurable, BabiesViewSelectable {
+final class ActivityLogViewModel {
     
-    typealias DataType = Baby
+    typealias DataType = ActivityLogEvent
     
-    private let babyRepo: BabiesRepositoryProtocol
-
-    init(babyRepo: BabiesRepositoryProtocol) {
-        self.babyRepo = babyRepo
-        self.baby = babyRepo.babyUpdateObservable
+    lazy var sectionsChangeObservable = sectionsChangePublisher.asObservable()
+    let sectionsChangePublisher = PublishSubject<Void>()
+    var numberOfSections: Int {
+        return currentSections.count
     }
-
-    // MARK: - Coordinator callback
-    private(set) var showBabies: Observable<Void>?
     private(set) var baby: Observable<Baby>
-    var sections: Observable<[GeneralSection<Baby>]> {
-        return baby
-            .map { [GeneralSection(title: "", items: [$0])] }
+    private(set) var currentSections: [GeneralSection<ActivityLogEvent>] = []
+    
+    private let dateFormatter = DateFormatter()
+    private let databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol
+    private let disposeBag = DisposeBag()
+
+    init(databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol) {
+        self.databaseRepository = databaseRepository
+        self.baby = databaseRepository.babyUpdateObservable
+        rxSetup()
     }
+    
+    // MARK: - Coordinator callback
+    var didSelectCancel: (() -> Void)?
     
     // MARK: - Internal functions
-    func attachInput(showBabiesTap: ControlEvent<Void>) {
-        showBabies = showBabiesTap.asObservable()
+    func numberOfRows(in section: Int) -> Int {
+        guard section < currentSections.count else {
+            return 0
+        }
+        return currentSections[section].items.count
     }
     
-    func configure(cell: BabyMonitorCellProtocol, for data: Baby) {
-        cell.type = .activityLog
-        let baby = data
-        // TODO: mock for now, ticket: https://netguru.atlassian.net/browse/BM-67
-        cell.update(secondaryText: "24 minutes ago")
-        cell.update(image: baby.photo ?? UIImage())
-        cell.update(mainText: "\(baby.name) was crying!")
+    func selectCancel() {
+        didSelectCancel?()
+    }
+    
+    func configure(cell: ActivityLogCell, for indexPath: IndexPath) {
+        guard
+            indexPath.section < currentSections.count,
+            indexPath.row < currentSections[indexPath.section].items.count
+        else {
+            return
+        }
+        let activityLogEvent = currentSections[indexPath.section].items[indexPath.row]
+        let dateText = textDateForCell(from: activityLogEvent.date)
+        cell.update(secondaryText: dateText)
+        switch activityLogEvent.mode {
+        case .emptyState:
+            cell.update(mainText: Localizable.ActivityLog.emptyStateMessage)
+        case .cryingEvent:
+            let babyName = databaseRepository.baby.name.isEmpty ? Localizable.General.yourBaby : databaseRepository.baby.name
+            cell.update(mainText: "\(babyName) \(Localizable.ActivityLog.wasCrying)")
+        }
     }
 
-    func configure(headerCell: BabyMonitorCellProtocol, for section: Int) {
+    func configure(headerCell: ActivityLogCell, for section: Int) {
         headerCell.configureAsHeader()
-        headerCell.update(mainText: "Yesterday")
+        guard
+            section < currentSections.count,
+            let date = currentSections[section].items.first?.date
+        else {
+            return
+        }
+        let dateText = textDateForHeader(from: date)
+        headerCell.update(mainText: dateText)
+    }
+    
+    private func sortedActivityLogEvents(logs: [ActivityLogEvent]) -> [[ActivityLogEvent]] {
+        var sortedLogs: [[ActivityLogEvent]] = []
+        for (index, log) in logs.enumerated() {
+            if index == 0 {
+                sortedLogs.append([log])
+            } else {
+                if Calendar.current.compare(logs[index].date, to: logs[index - 1].date, toGranularity: .day) == .orderedSame {
+                    sortedLogs[sortedLogs.endIndex - 1].insert(log, at: 0)
+                } else {
+                    sortedLogs.append([log])
+                }
+            }
+        }
+        sortedLogs.reverse()
+        return sortedLogs
+    }
+    
+    private func textDateForCell(from date: Date) -> String {
+        dateFormatter.dateFormat = "HH:mm a"
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
+    
+    private func textDateForHeader(from date: Date) -> String {
+        var prefix = ""
+        if Calendar.current.isDateInToday(date) {
+            prefix = "\(Localizable.General.today), "
+        } else if Calendar.current.isDateInYesterday(date) {
+            prefix = "\(Localizable.General.yesterday), "
+        }
+        dateFormatter.dateFormat = "MMM dd, YYYY"
+        let dateString = dateFormatter.string(from: date)
+        return prefix + dateString
+    }
+    
+    private func rxSetup() {
+        databaseRepository.activityLogEventsObservable
+            .map { [weak self] events -> [[ActivityLogEvent]] in
+                guard let self = self else {
+                    return []
+                }
+                return self.sortedActivityLogEvents(logs: events)
+            }
+            .map { [weak self] sortedLogEvents in
+                guard let self = self else {
+                    return
+                }
+                var allSections: [GeneralSection<ActivityLogEvent>] = []
+                sortedLogEvents.forEach {
+                    let section = GeneralSection<ActivityLogEvent>(title: "", items: $0)
+                    allSections.append(section)
+                }
+                self.currentSections = allSections
+            }
+            .subscribe(onNext: { [weak self] _ in
+                self?.sectionsChangePublisher.onNext(())
+            })
+            .disposed(by: disposeBag)
     }
 }

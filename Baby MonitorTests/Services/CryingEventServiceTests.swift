@@ -11,16 +11,17 @@ import RxTest
 class CryingEventServiceTests: XCTestCase {
     
     //Given
-    lazy var sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, babiesRepository: cryingEventsRepositoryMock)
+    lazy var sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, microphoneRecordService: audioMicrophoneServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock, storageService: storageServiceMock)
     var cryingDetectionServiceMock = CryingDetectionServiceMock()
-    var audioRecordServiceMock = AudioRecordServiceMock()
-    var cryingEventsRepositoryMock = CryingEventsRepositoryMock()
-
+    var audioMicrophoneServiceMock = AudioMicrophoneServiceMock()
+    var cryingEventsRepositoryMock = DatabaseRepositoryMock()
+    var storageServiceMock = StorageServerServiceMock()
+    
     override func setUp() {
         cryingDetectionServiceMock = CryingDetectionServiceMock()
-        audioRecordServiceMock = AudioRecordServiceMock()
-        cryingEventsRepositoryMock = CryingEventsRepositoryMock()
-        sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, audioRecordService: audioRecordServiceMock, babiesRepository: cryingEventsRepositoryMock)
+        audioMicrophoneServiceMock = AudioMicrophoneServiceMock()
+        cryingEventsRepositoryMock = DatabaseRepositoryMock()
+        sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, microphoneRecordService: audioMicrophoneServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock, storageService: storageServiceMock)
     }
     
     func testShouldStartCryingDetectionAnalysis() {
@@ -36,48 +37,37 @@ class CryingEventServiceTests: XCTestCase {
         try! sut.start()
         
         //Then
-        XCTAssertFalse(audioRecordServiceMock.isRecording)
+        XCTAssertFalse(audioMicrophoneServiceMock.isRecording)
     }
     
-    func testShouldStartRecordingAudio() {
+    func testShouldNotSaveCryingEventWithSuccessfullCryingAudioRecordSave() {
         //When
         try! sut.start()
-        cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
-        
-        //Then
-        XCTAssertTrue(audioRecordServiceMock.isRecording)
-    }
-    
-    func testShouldSaveCryingEvent() {
-        //When
-        try! sut.start()
-        audioRecordServiceMock.isSaveActionSuccess = true
+        audioMicrophoneServiceMock.isSaveActionSuccess = true
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
         
         //Then
-        XCTAssertEqual(cryingEventsRepositoryMock.fetchAllCryingEvents().count, 1)
+        XCTAssertEqual(cryingEventsRepositoryMock.fetchAllActivityLogEvents().count, 0)
     }
     
     func testShouldNotSaveCryingEvent() {
         //When
         try! sut.start()
-        audioRecordServiceMock.isSaveActionSuccess = false
+        audioMicrophoneServiceMock.isSaveActionSuccess = false
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
         cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
         
         //Then
-        XCTAssertEqual(cryingEventsRepositoryMock.fetchAllCryingEvents().count, 0)
+        XCTAssertEqual(cryingEventsRepositoryMock.fetchAllActivityLogEvents().count, 0)
     }
     
     func testShouldNotifyAboutCryingDetecion() {
         //Given
         let disposeBag = DisposeBag()
         let exp = expectation(description: "Should notify about crying detection")
-        sut.cryingEventObservable.subscribe(onNext: { isBabyCrying in
-            if isBabyCrying {
-                exp.fulfill()
-            }
+        sut.cryingEventObservable.subscribe(onNext: { eventMessage in
+            exp.fulfill()
         }).disposed(by: disposeBag)
         
         //When
@@ -92,10 +82,8 @@ class CryingEventServiceTests: XCTestCase {
         //Given
         let disposeBag = DisposeBag()
         let exp = expectation(description: "Should not notify about stopped crying detection")
-        sut.cryingEventObservable.subscribe(onNext: { isBabyCrying in
-            if !isBabyCrying {
-                exp.fulfill()
-            }
+        sut.cryingEventObservable.subscribe(onNext: { _ in
+            exp.fulfill()
         }).disposed(by: disposeBag)
         
         //When
@@ -105,24 +93,5 @@ class CryingEventServiceTests: XCTestCase {
         //Then
         let result = XCTWaiter.wait(for: [exp], timeout: 2.0)
         XCTAssertTrue(result == .timedOut)
-    }
-    
-    func testShouldNotifyAboutStoppedCryingDetecionEvent() {
-        //Given
-        let disposeBag = DisposeBag()
-        let exp = expectation(description: "Should notify about crying detection")
-        sut.cryingEventObservable.subscribe(onNext: { isBabyCrying in
-            if !isBabyCrying {
-                exp.fulfill()
-            }
-        }).disposed(by: disposeBag)
-        
-        //When
-        try! sut.start()
-        cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
-        cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
-        
-        //Then
-        wait(for: [exp], timeout: 2.0)
     }
 }

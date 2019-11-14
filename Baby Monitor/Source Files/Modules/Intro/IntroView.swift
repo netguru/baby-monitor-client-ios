@@ -13,23 +13,20 @@ final class IntroView: BaseView {
         static let textAlpha: CGFloat = 0.7
     }
     
-    private let pageControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.numberOfPages = IntroFeature.allCases.count
-        return pageControl
-    }()
+    private let pageControl = UIPageControl()
     
-    override init() {
+    init(numberOfPages: Int) {
         super.init()
-        setup()
+        setup(numberOfPages: numberOfPages)
     }
     
     func updatePageControl(to index: Int) {
         pageControl.currentPage = index
     }
     
-    private func setup() {
-        setupBackgroundImage(#imageLiteral(resourceName: "backIntro"))
+    private func setup(numberOfPages: Int) {
+        setupBackgroundImage(UIImage(named: "base-background"))
+        pageControl.numberOfPages = numberOfPages
         addSubview(pageControl)
         setupConstraints()
     }
@@ -37,7 +34,7 @@ final class IntroView: BaseView {
     private func setupConstraints() {
         pageControl.addConstraints {[
             $0.equal(.centerX),
-            $0.equal(.safeAreaBottom, constant: -100)
+            $0.equal(.safeAreaBottom, constant: -97)
         ]
         }
     }

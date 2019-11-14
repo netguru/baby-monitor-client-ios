@@ -13,3 +13,4 @@ _BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor.test
 
 TEST_HOST = $(BUILT_PRODUCTS_DIR)/BabyMonitor.app/BabyMonitor
 BUNDLE_LOADER = $(TEST_HOST)
+HEADER_SEARCH_PATHS = $(inherited) ${SRCROOT}/Pods/Firebase/CoreOnly/Sources

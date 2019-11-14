@@ -6,11 +6,10 @@
 import UIKit
 
 /// This class should be used in case of creating new view class.
-/// For now it is only for not writing `required init?(coder aDecoder: NSCoder)`.
 class BaseView: UIView {
     
     private lazy var backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "back"))
+        let imageView = UIImageView(image: UIImage(named: "base-background"))
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -25,7 +24,7 @@ class BaseView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupBackgroundImage(_ image: UIImage) {
+    func setupBackgroundImage(_ image: UIImage?) {
         backgroundImageView.image = image
     }
     

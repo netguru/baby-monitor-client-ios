@@ -23,11 +23,9 @@ final class IntroCoordinator: Coordinator {
     }
     
     private func showFeatures() {
-        let viewModelA = IntroViewModel()
-        let viewModelB = IntroViewModel()
-        
+        let viewModels = [IntroViewModel(), IntroViewModel(), IntroViewModel()]
         var featureControllers: [IntroFeatureViewController] = []
-        for (viewModel, feature) in zip([viewModelA, viewModelB], IntroFeature.allCases) {
+        for (viewModel, feature) in zip(viewModels, IntroFeature.allCases) {
             let featureController = IntroFeatureViewController(viewModel: viewModel, role: feature)
             featureControllers.append(featureController)
         }
@@ -35,16 +33,22 @@ final class IntroCoordinator: Coordinator {
         let introViewController = IntroViewController(featureControllers: featureControllers)
         self.introViewController = introViewController
         setFeatureViewController(featureControllers.first!)
-        
-        viewModelA.didSelectNextAction = { [weak self] in
-            self?.setFeatureViewController(featureControllers[1])
-            self?.introViewController?.updatePageControl(to: 1)
+
+        for (i, viewModel) in viewModels.enumerated() {
+            let isLast = (i == viewModels.count - 1)
+            viewModel.didSelectRightAction = { [weak self] in
+                if isLast {
+                    self?.onEnding?()
+                } else {
+                    self?.setFeatureViewController(featureControllers[i + 1])
+                    self?.introViewController?.updatePageControl(to: i + 1)
+                }
+            }
+            viewModel.didSelectLeftAction = { [weak self] in
+                self?.onEnding?()
+            }
         }
-        viewModelB.didSelectNextAction = { [weak self] in
-            self?.onEnding?()
-        }
-        
-        navigationController.pushViewController(introViewController, animated: true)
+        navigationController.setViewControllers([introViewController], animated: true)
     }
     
     private func setFeatureViewController(_ featureViewController: IntroFeatureViewController) {

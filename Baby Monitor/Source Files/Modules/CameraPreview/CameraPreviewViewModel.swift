@@ -4,97 +4,60 @@
 //
 
 import RxSwift
-import WebRTC
 
 final class CameraPreviewViewModel {
 
-    private let babyRepo: BabiesRepositoryProtocol
-    lazy var baby: Observable<Baby> = babyRepo.babyUpdateObservable
-    private let webRtcClientManager: WebRtcClientManagerProtocol
-    private let webSocket: WebSocketProtocol?
-    private let decoders: [AnyMessageDecoder<WebRtcMessage>]
-    private let bag = DisposeBag()
-    var remoteStream: Observable<MediaStreamProtocol> {
-        return webRtcClientManager.mediaStream
-    }
-
-    init(webRtcClientManager: WebRtcClientManagerProtocol, webSocket: WebSocketProtocol?, babyRepo: BabiesRepositoryProtocol, decoders: [AnyMessageDecoder<WebRtcMessage>]) {
-        self.webRtcClientManager = webRtcClientManager
-        self.webSocket = webSocket
-        self.babyRepo = babyRepo
-        self.decoders = decoders
-        setup()
-    }
-
-    deinit {
-        webRtcClientManager.disconnect()
-        webSocket?.close()
-    }
-
-    // MARK: - Coordinator callback
-    var didSelectShowBabies: (() -> Void)?
-    var didSelectCancel: (() -> Void)?
-
-    private func setup() {
-        Observable.merge(sdpOfferJson(), iceCandidateJson())
-            .subscribe(onNext: { [weak self] json in
-                self?.webSocket?.send(message: json)
-            })
-            .disposed(by: bag)
-        webSocket?.decodedMessage(using: decoders)
-            .subscribe(onNext: { [unowned self] message in
-                guard let message = message else {
-                    return
-                }
-                self.handle(message: message)
-            })
-            .disposed(by: bag)
-    }
-
-    private func sdpOfferJson() -> Observable<String> {
-        return webRtcClientManager.sdpOffer
-            .flatMap { sdp -> Observable<String> in
-                let json = [WebRtcMessage.Key.offerSDP.rawValue: sdp.jsonDictionary()]
-                guard let jsonString = json.jsonString else {
-                    return Observable.empty()
-                }
-                return Observable.just(jsonString)
-            }
-    }
-
-    private func iceCandidateJson() -> Observable<String> {
-        return webRtcClientManager.iceCandidate
-            .flatMap { iceCandidate -> Observable<String> in
-                let json = [WebRtcMessage.Key.iceCandidate.rawValue: iceCandidate.jsonDictionary()]
-                guard let jsonString = json.jsonString else {
-                    return Observable.empty()
-                }
-                return Observable.just(jsonString)
-            }
-    }
+    let bag = DisposeBag()
+    lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
+    private(set) var cancelTap: Observable<Void>?
+    private(set) var settingsTap: Observable<Void>?
     
-    private func handle(message: WebRtcMessage) {
-        switch message {
-        case .sdpAnswer(let sdp):
-            webRtcClientManager.setAnswerSDP(sdp: sdp)
-        case .iceCandidate(let candidate):
-            webRtcClientManager.setICECandidates(iceCandidate: candidate)
-        default:
-            break
-        }
+    var shouldPlayPreview = false
+    var remoteStream: Observable<MediaStream?> {
+        return webSocketWebRtcService.mediaStream
+    }
+    lazy var state: Observable<WebRtcClientManagerState> = webSocketWebRtcService.state
+    
+    private let babyModelController: BabyModelControllerProtocol
+    private let webSocketWebRtcService: WebSocketWebRtcServiceProtocol
+    private let connectionChecker: ConnectionChecker
+
+    init(webSocketWebRtcService: WebSocketWebRtcServiceProtocol, babyModelController: BabyModelControllerProtocol, connectionChecker: ConnectionChecker) {
+        self.webSocketWebRtcService = webSocketWebRtcService
+        self.babyModelController = babyModelController
+        self.connectionChecker = connectionChecker
+        rxSetup()
     }
     
     // MARK: - Internal functions
-    func selectCancel() {
-        didSelectCancel?()
+    func attachInput(cancelTap: Observable<Void>, settingsTap: Observable<Void>) {
+        self.cancelTap = cancelTap
+        self.settingsTap = settingsTap
     }
 
     func play() {
-        webSocket?.open()
-        webRtcClientManager.startWebRtcConnection()
+        webSocketWebRtcService.start()
     }
 
-    func selectShowBabies() {
-        didSelectShowBabies?()
+    func stop() {
+        webSocketWebRtcService.closeWebRtcConnection()
+    }
+    
+    // MARK: - Private functions
+    private func rxSetup() {
+        connectionChecker.connectionStatus
+            .skip(1)
+            .filter { $0 == .connected }
+            .filter { [weak self] _ in self?.shouldPlayPreview == true }
+            .subscribe(onNext: { [weak self] _ in
+                self?.play()
+            })
+            .disposed(by: bag)
+        connectionChecker.connectionStatus
+            .filter { $0 == .disconnected }
+            .subscribe(onNext: { [weak self] _ in
+                self?.stop()
+            })
+            .disposed(by: bag)
     }
 }

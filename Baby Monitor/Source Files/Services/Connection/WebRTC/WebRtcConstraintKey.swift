@@ -3,8 +3,13 @@
 //  Baby Monitor
 //
 
-enum WebRtcConstraintKey: String {
-    case dtlsSrtpKeyAgreement = "DtlsSrtpKeyAgreement"
-    case offerToReceiveAudio = "OfferToReceiveAudio"
-    case offerToReceiveVideo = "OfferToReceiveVideo"
+enum WebRtcConstraintKey {
+    static let dtlsSrtpKeyAgreement = "DtlsSrtpKeyAgreement"
+    static let offerToReceiveAudio = "OfferToReceiveAudio"
+    static let offerToReceiveVideo = "OfferToReceiveVideo"
+    static let iceRestart = "iceRestart"
+}
+
+enum WebRtcConstraintValue {
+    static let `true` = "true"
 }

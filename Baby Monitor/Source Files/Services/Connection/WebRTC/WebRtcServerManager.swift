@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import WebRTC
 import RxSwift
 import RxCocoa
 
@@ -17,6 +16,8 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     private let streamFactory: StreamFactoryProtocol
     private var localSdp: SessionDescriptionProtocol?
     private var remoteSdp: SessionDescriptionProtocol?
+    private var capturer: VideoCapturer?
+    private var localStream: MediaStreamProtocol?
 
     var sdpAnswer: Observable<SessionDescriptionProtocol> {
         return sdpAnswerPublisher.asObservable()
@@ -39,20 +40,40 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     }
   
     private func addLocalMediaStream() {
-        let localStream = streamFactory.createStream()
-        peerConnection.add(stream: localStream)
-        mediaStreamPublisher.accept(localStream)
+        streamFactory.createStream { [weak self] stream, capturer in
+            self?.capturer = capturer
+            self?.localStream = stream
+            self?.mediaStreamPublisher.accept(stream)
+        }
     }
   
     private func createConstraints() -> RTCMediaConstraints {
         let peerConnectionConstraints = RTCMediaConstraints(mandatoryConstraints: [WebRtcConstraintKey.offerToReceiveAudio.rawValue: "true", WebRtcConstraintKey.offerToReceiveVideo.rawValue: "true"], optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement.rawValue: "true"])
         return peerConnectionConstraints
     }
+
+    func start() {
+        addLocalMediaStream()
+    }
   
     func createAnswer(remoteSdp: SessionDescriptionProtocol) {
         self.remoteSdp = remoteSdp
-        addLocalMediaStream()
-        peerConnection.setRemoteDescription(sdp: remoteSdp, completionHandler: nil)
+        peerConnection.setRemoteDescription(sdp: remoteSdp) { [weak self] _ in
+            guard let answerConstraints = self?.createConstraints() else {
+                return
+            }
+            self?.peerConnection.createAnswer(for: answerConstraints) { [weak self] sdp, _ in
+                guard let sdp = sdp else {
+                    return
+                }
+                self?.localSdp = sdp
+                self?.peerConnection.setLocalDescription(sdp: sdp) { [weak self] _ in
+                    guard let localStream = self?.localStream else { return }
+                    self?.peerConnection.add(stream: localStream)
+                }
+                self?.sdpAnswerPublisher.accept(sdp)
+            }
+        }
     }
   
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
@@ -65,7 +86,7 @@ class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
 }
 
 extension WebRtcServerManager: RTCPeerConnectionDelegate {
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didAdd stream: RTCMediaStream) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, removedStreamam: RTCMediaStream) {}
 
     public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {}
 
@@ -86,15 +107,6 @@ extension WebRtcServerManager: RTCPeerConnectionDelegate {
     public func peerConnection(_ peerConnection: RTCPeerConnection, didOpen dataChannel: RTCDataChannel) {}
 
     public func peerConnection(_ peerConnection: RTCPeerConnection, didSetSessionDescriptionWithError error: Error?) {
-        let answerConstraints = createConstraints()
-        peerConnection.answer(for: answerConstraints, completionHandler: { [weak self] sdp, _ in
-            guard let sdp = sdp else {
-                return
-            }
-            self?.localSdp = sdp
-            peerConnection.setLocalDescription(sdp, completionHandler: nil)
-            self?.sdpAnswerPublisher.accept(sdp)
-        })
     }
 
     public func peerConnectionShouldNegotiate(_ peerConnection: RTCPeerConnection) {}

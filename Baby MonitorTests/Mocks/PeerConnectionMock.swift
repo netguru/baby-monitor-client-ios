@@ -4,6 +4,7 @@
 //
 
 @testable import BabyMonitor
+import WebRTC
 
 final class PeerConnectionMock: PeerConnectionProtocol {
 
@@ -11,29 +12,31 @@ final class PeerConnectionMock: PeerConnectionProtocol {
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var localSdp: SessionDescriptionProtocol?
     private(set) var iceCandidates = [IceCandidateProtocol]()
-    private(set) var mediaStream: MediaStreamProtocol?
+    private(set) var mediaStream: MediaStream?
 
     private let offerSdp: SessionDescriptionProtocol?
+    private let answerSdp: SessionDescriptionProtocol?
     private let error: Error?
 
-    init(offerSdp: SessionDescriptionProtocol? = nil, error: Error? = nil) {
+    init(offerSdp: SessionDescriptionProtocol? = nil, answerSdp: SessionDescriptionProtocol? = nil, error: Error? = nil) {
         self.offerSdp = offerSdp
+        self.answerSdp = answerSdp
         self.error = error
     }
 
-    func setRemoteDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?) {
+    func setRemoteDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?) {
         self.remoteSdp = sdp
     }
 
-    func setLocalDescription(sdp: SessionDescriptionProtocol, completionHandler: ((Error?) -> Void)?) {
+    func setLocalDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?) {
         self.localSdp = sdp
     }
 
-    func add(_ iceCandidate: IceCandidateProtocol) {
+    func add(iceCandidate: IceCandidateProtocol) {
         iceCandidates.append(iceCandidate)
     }
 
-    func add(stream: MediaStreamProtocol) {
+    func add(stream: MediaStream) {
         self.mediaStream = stream
     }
 
@@ -41,7 +44,21 @@ final class PeerConnectionMock: PeerConnectionProtocol {
         isConnected = false
     }
 
-    func createOffer(for constraints: MediaConstraintsProtocol, completionHandler: ((SessionDescriptionProtocol?, Error?) -> Void)?) {
-        completionHandler?(offerSdp, error)
+    func createOffer(for constraints: MediaConstraints, handler: ((RTCSessionDescription?, Error?) -> Void)?) {
+        guard let sdp = offerSdp?.sdp,
+            let type = offerSdp.flatMap( { RTCSdpType.type(for: $0.stringType) }) else  {
+                handler?(nil, error)
+                return
+        }
+        handler?(RTCSessionDescription(type: type, sdp: sdp), error)
+    }
+
+    func createAnswer(for constraints: MediaConstraints, handler: ((RTCSessionDescription?, Error?) -> Void)?) {
+        guard let sdp = answerSdp?.sdp,
+            let type = answerSdp.flatMap( { RTCSdpType.type(for: $0.stringType) }) else  {
+                handler?(nil, error)
+                return
+        }
+        handler?(RTCSessionDescription(type: type, sdp: sdp), error)
     }
 }

@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class OnboardingPairingCoordinator: Coordinator {
     
@@ -18,59 +19,105 @@ final class OnboardingPairingCoordinator: Coordinator {
     var onEnding: (() -> Void)?
     
     func start() {
-        showInstallBMOnSecondDeviceView()
-    }
-    
-    private func showInstallBMOnSecondDeviceView() {
-        let viewModel = OnboardingContinuableViewModel()
-        viewModel.onSelectNext = {
-            self.showClientSetupView()
+        switch UserDefaults.appMode {
+        case .none:
+            showContinuableView(role: .parent(.hello))
+        case .parent:
+            showPairingView()
+        case .baby:
+            break
         }
-        let viewController = OnboardingContinuableViewController(role: .pairing(.shareLink), viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: true)
     }
     
-    private func showClientSetupView() {
+    private func showContinuableView(role: OnboardingContinuableViewModel.Role) {
+        let continuableViewController = prepareContinuableViewController(role: role)
+        switch role {
+        case .parent(.error):
+            continuableViewController.modalPresentationStyle = .fullScreen
+            navigationController.presentedViewController?.present(continuableViewController, animated: true)
+        default:
+            navigationController.pushViewController(continuableViewController, animated: true)
+        }
+    }
+    
+    private func prepareContinuableViewController(role: OnboardingContinuableViewModel.Role) -> UIViewController {
+        let viewModel = OnboardingContinuableViewModel(role: role)
+        let viewController = OnboardingContinuableViewController(viewModel: viewModel)
+        viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
+            self?.connectTo(viewModel: viewModel)
+        })
+        .disposed(by: viewModel.bag)
+        return viewController
+    }
+    
+    private func connectTo(viewModel: OnboardingContinuableViewModel) {
+        viewModel.cancelTap?.subscribe(onNext: { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        })
+        .disposed(by: viewModel.bag)
+        viewModel.nextButtonTap?.subscribe(onNext: { [weak self, weak viewModel] in
+            guard let role = viewModel?.role else {
+                return
+            }
+            switch role {
+            case .parent(let parentRole):
+                switch parentRole {
+                case .hello:
+                    self?.showPairingView()
+                case .error:
+                    self?.navigationController.presentedViewController?.dismiss(animated: true)
+                case .allDone:
+                    break
+                }
+            case .baby:
+                break
+            }
+        })
+            .disposed(by: viewModel.bag)
+        viewModel.nextButtonTap?
+            .filter { viewModel.role == .parent(.allDone) }
+            .take(1)
+            .subscribe(onNext: { [weak self] in
+                self?.onEnding?()
+            })
+            .disposed(by: viewModel.bag)
+    }
+
+    private func connect(to viewModel: ClientSetupOnboardingViewModel) {
+        viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
+            self.navigationController.popViewController(animated: true)
+        })
+        .disposed(by: viewModel.bag)
+    }
+
+    private func showPairingView() {
         let viewModel = ClientSetupOnboardingViewModel(
-            netServiceClient: appDependencies.netServiceClient(),
+            netServiceClient: appDependencies.netServiceClient,
             urlConfiguration: appDependencies.urlConfiguration,
-            babyRepo: appDependencies.babiesRepository)
+            activityLogEventsRepository: appDependencies.databaseRepository,
+            webSocketEventMessageService: appDependencies.webSocketEventMessageService.get(),
+            serverErrorLogger: appDependencies.serverErrorLogger)
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success:
-                self?.showPairingDoneView()
+                switch UserDefaults.appMode {
+                case .parent:
+                    self?.onEnding?()
+                case .none:
+                    self?.navigationController.dismiss(animated: true)
+                    self?.showContinuableView(role: .parent(.allDone))
+                case .baby:
+                    break
+                }
             case .failure:
-                self?.showErrorPairingView()
+                self?.showContinuableView(role: .parent(.error))
             }
         }
-        let viewController = OnboardingClientSetupViewController(role: .pairing(.pairing), viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    private func showPairingDoneView() {
-        let viewModel = OnboardingContinuableViewModel()
-        viewModel.onSelectNext = {
-            self.showAllDoneView()
-        }
-        let viewController = OnboardingContinuableViewController(role: .pairing(.pairingDone), viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    private func showAllDoneView() {
-        let viewModel = OnboardingContinuableViewModel()
-        viewModel.onSelectNext = {
-            self.onEnding?()
-        }
-        let viewController = OnboardingContinuableViewController(role: .pairing(.allDone), viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    private func showErrorPairingView() {
-        let viewModel = OnboardingContinuableViewModel()
-        viewModel.onSelectNext = { [weak self] in
-            self?.navigationController.dismiss(animated: true, completion: nil)
-        }
-        let viewController = OnboardingContinuableViewController(role: .pairing(.error), viewModel: viewModel)
-        navigationController.present(viewController, animated: true, completion: nil)
+        let viewController = OnboardingClientSetupViewController(viewModel: viewModel)
+        viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
+            self?.connect(to: viewModel)
+        })
+        .disposed(by: viewModel.bag)
+        navigationController.present(viewController, animated: true)
     }
 }

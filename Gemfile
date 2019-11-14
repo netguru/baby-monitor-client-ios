@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "xcode-install"
-gem "cocoapods", '>= 1.6.0.beta'
+gem 'cocoapods', '~> 1.7.5'
+gem 'cocoapods-keys', '~> 2.1.0'

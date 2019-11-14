@@ -4,6 +4,9 @@
 //
 
 import UIKit
+import Firebase
+import UserNotifications
+import WebRTC
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,13 +21,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootCoordinator?.start()
         window?.makeKeyAndVisible()
         setupAppearance()
+        setupPushNotifications(application)
+        appDependencies.storageServerService.uploadRecordingsToDatabaseIfAllowed()
+        RTCSetMinDebugLogLevel(.verbose)
         return true
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         #if REGULAR_BUILD
-            appDependencies.memoryCleaner.cleanMemoryIfNeeded()
+        appDependencies.memoryCleaner.cleanMemoryIfNeeded()
         #endif
+    }
+    
+    private func setupPushNotifications(_ application: UIApplication) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [ .badge, .sound, .alert
+        ]) { granted, _ in
+            guard granted else { return }
+            UNUserNotificationCenter.current().delegate = self
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+            }
+        }
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
     }
     
     private func setupAppearance() {
@@ -34,4 +53,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().isTranslucent = false
     }
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        appDependencies.databaseRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent))
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        UserDefaults.selfPushNotificationsToken = fcmToken
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound, .badge])
+    }
 }

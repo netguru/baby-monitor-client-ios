@@ -19,7 +19,7 @@ class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
             static let secondary: CGFloat = 8
         }
         enum Color {
-            static let font = UIColor(rgb: 0x211E35)
+            static let font = UIColor(hex: 0x211E35)
         }
         enum Spacing {
             static let labels: CGFloat = 3

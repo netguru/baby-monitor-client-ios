@@ -71,8 +71,8 @@ extension PSWebSocketServerWrapper: PSWebSocketServerDelegate {
     }
     
     func server(_ server: PSWebSocketServer, webSocket: PSWebSocket, didReceiveMessage message: Any) {
-        guard let messageData = message as? Data,
-            let stringMessage = String(data: messageData, encoding: .utf8) else {
+        guard let decodableMessage = message as? WebsocketMessageDecodable,
+            let stringMessage = decodableMessage.decode() else {
                 return
         }
         receivedMessagePublisher.accept(stringMessage)

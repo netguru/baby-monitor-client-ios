@@ -7,7 +7,6 @@ import RealmSwift
 
 final class RealmBaby: Object {
     
-    var cryingEvents: List<RealmCryingEvent> = List()
     @objc dynamic private(set) var id: String = ""
     @objc dynamic private(set) var name: String = ""
     @objc dynamic private(set) var photoData: Data?
@@ -21,9 +20,9 @@ final class RealmBaby: Object {
     
     func toBaby() -> Baby {
         if let photoData = photoData {
-            return Baby(id: id, name: name, photo: UIImage(data: photoData), cryingEvents: cryingEvents.map { $0.toCryingEvent() })
+            return Baby(id: id, name: name, photo: UIImage(data: photoData))
         } else {
-            return Baby(id: id, name: name, cryingEvents: cryingEvents.map { $0.toCryingEvent() })
+            return Baby(id: id, name: name)
         }
     }
     

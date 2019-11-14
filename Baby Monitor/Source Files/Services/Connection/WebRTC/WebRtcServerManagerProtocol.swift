@@ -4,9 +4,15 @@
 //
 
 import RxSwift
-import WebRTC
 
 protocol WebRtcServerManagerProtocol {
+
+    /// Opens connection for offers.
+    func start()
+
+    /// Closes connection
+    func stop()
+
     /// Sets session description answer
     ///
     /// - Parameter sdp: session description protocol to add
@@ -17,9 +23,6 @@ protocol WebRtcServerManagerProtocol {
     /// - Parameter iceCandidate: ice candidate to add
     func setICECandidates(iceCandidate: IceCandidateProtocol)
 
-    /// Closes connection
-    func disconnect()
-
     /// Observable emitting session description offer
     var sdpAnswer: Observable<SessionDescriptionProtocol> { get }
 
@@ -27,5 +30,6 @@ protocol WebRtcServerManagerProtocol {
     var iceCandidate: Observable<IceCandidateProtocol> { get }
 
     /// Observable emitting media stream
-    var mediaStream: Observable<MediaStreamProtocol> { get }
+    var mediaStream: Observable<MediaStream> { get }
+
 }

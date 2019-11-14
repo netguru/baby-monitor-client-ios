@@ -20,23 +20,14 @@ final class NetServiceConnectionChecker: ConnectionChecker {
     }
     
     func start() {
-        netServiceClient.findService()
+        netServiceClient.isEnabled.value = true
     }
     
     func stop() {
-        netServiceClient.stopFinding()
+        netServiceClient.isEnabled.value = false
     }
     
     private func createStatus() -> Observable<ConnectionStatus> {
-        let status = netServiceClient.serviceObservable
-            .filter { ip, port in
-                URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix) == self.urlConfiguration.url
-            }
-            .buffer(timeSpan: delay, count: 1, scheduler: MainScheduler.asyncInstance)
-            .map { !($0.isEmpty) }
-            .map { isServiceAvailable in
-                isServiceAvailable ? ConnectionStatus.connected : ConnectionStatus.disconnected
-            }
-        return status
+        return netServiceClient.service.map { $0 != nil ? .connected : .disconnected }.distinctUntilChanged()
     }
 }

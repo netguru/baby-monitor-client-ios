@@ -7,29 +7,41 @@ import Foundation
 
 protocol MemoryCleanerProtocol: Any {
     func cleanMemoryIfNeeded()
+    func cleanMemory()
+    func removeFile(path: URL)
 }
 
 final class MemoryCleaner: MemoryCleanerProtocol {
     
-    private let cryingEventsRepository: CryingEventsRepositoryProtocol
-    
-    init(cryingEventsRepository: CryingEventsRepositoryProtocol) {
-        self.cryingEventsRepository = cryingEventsRepository
+    func cleanMemory() {
+        guard let enumerator = FileManager.default.enumerator(atPath: FileManager.cryingRecordsURL.path) else {
+                return
+        }
+        let fileUrls = enumerator.allObjects.compactMap({ $0 as? URL })
+        fileUrls.forEach {
+            removeFile(path: $0)
+        }
     }
     
     func cleanMemoryIfNeeded() {
         let twoHundredMB = 200 * 1024 * 1024
-        guard let memoryUsage = FileManager.documentsDirectorySize,
+        let cryingRecordsUrl = FileManager.cryingRecordsURL
+        guard let subpaths = FileManager.default.subpaths(atPath: cryingRecordsUrl.path),
+            let memoryUsage = FileManager.documentsDirectorySize,
             memoryUsage < twoHundredMB else {
                 return
         }
-        let allCryingEvents = cryingEventsRepository.fetchAllCryingEvents()
-        var sortedCryingEvents = allCryingEvents.sorted { $0.date > $1.date }
+        var fileUrls = subpaths.compactMap { cryingRecordsUrl.appendingPathComponent($0).absoluteString.url }
         while (FileManager.documentsDirectorySize ?? 0) > UInt64(Double(twoHundredMB) * 0.7) {
-            let cryingEventToRemove = sortedCryingEvents.remove(at: 0)
-            if let _ = try? FileManager.default.removeItem(at: cryingEventToRemove.fileURL) {
-                cryingEventsRepository.remove(cryingEvent: cryingEventToRemove)
+            guard !fileUrls.isEmpty else {
+                break
             }
+            let fileToRemoveUrl = fileUrls.remove(at: 0)
+            removeFile(path: fileToRemoveUrl)
         }
+    }
+    
+    func removeFile(path: URL) {
+        try? FileManager.default.removeItem(at: path)
     }
 }

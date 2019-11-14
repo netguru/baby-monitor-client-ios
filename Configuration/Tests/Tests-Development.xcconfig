@@ -5,3 +5,5 @@
 
 #include "Tests-Base.xcconfig"
 #include "../../Pods/Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"
+
+LIBRARY_SEARCH_PATHS = $(inherited) $(PROJECT_DIR)/Dependencies/WebRTC/libs

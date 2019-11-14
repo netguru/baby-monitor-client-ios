@@ -12,12 +12,15 @@ class WebRtcServerManagerTests: XCTestCase {
 
     func testShouldDisconnect() {
         // Given
+        let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
         let peerConnection = PeerConnectionMock()
-        let streamFactory = StreamFactoryMock()
-        let sut = WebRtcServerManager(peerConnection: peerConnection, streamFactory: streamFactory)
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
 
         // When
-        sut.disconnect()
+        sut.start()
+        sut.createAnswer(remoteSdp: sdpOffer)
+        sut.stop()
 
         // Then
         XCTAssertFalse(peerConnection.isConnected)
@@ -25,12 +28,15 @@ class WebRtcServerManagerTests: XCTestCase {
 
     func testShouldAddIceCandidate() {
         // Given
-        let iceCandidate = IceCandidateMock(sdpMLineIndex: Int32(0), sdpMid: "", sdp: "sdp")
+        let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
+        let iceCandidate = IceCandidateMock(sdpMLineIndex: 0, sdpMid: "", sdp: "sdp")
         let peerConnection = PeerConnectionMock()
-        let streamFactory = StreamFactoryMock()
-        let sut = WebRtcServerManager(peerConnection: peerConnection, streamFactory: streamFactory)
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
 
         // When
+        sut.start()
+        sut.createAnswer(remoteSdp: sdpOffer)
         sut.setICECandidates(iceCandidate: iceCandidate)
 
         // Then
@@ -41,49 +47,37 @@ class WebRtcServerManagerTests: XCTestCase {
         // Given
         let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
         let peerConnection = PeerConnectionMock()
-        let streamFactory = StreamFactoryMock()
-        let sut = WebRtcServerManager(peerConnection: peerConnection, streamFactory: streamFactory)
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
 
         // When
+        sut.start()
         sut.createAnswer(remoteSdp: sdpOffer)
 
         // Then
         XCTAssertEqual(sdpOffer, peerConnection.remoteSdp as! SessionDescriptionMock)
     }
 
-    func testShouldAddStreamToConnectionWhenCreatingAnswer() {
-        // Given
-        let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
-        let peerConnection = PeerConnectionMock()
-        let streamId = "test"
-        let streamFactory = StreamFactoryMock(id: streamId)
-        let sut = WebRtcServerManager(peerConnection: peerConnection, streamFactory: streamFactory)
-
-        // When
-        sut.createAnswer(remoteSdp: sdpOffer)
-
-        // Then
-        XCTAssertEqual(streamId, (peerConnection.mediaStream as! MediaStreamMock).id)
-    }
-
     func testShouldEmitStreamWhenCreatingAnswer() {
         // Given
         let bag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(MediaStreamProtocol.self)
+        let observer = scheduler.createObserver(MediaStream.self)
         let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
         let peerConnection = PeerConnectionMock()
         let streamId = "test"
-        let streamFactory = StreamFactoryMock(id: streamId)
-        let sut = WebRtcServerManager(peerConnection: peerConnection, streamFactory: streamFactory)
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection, mediaStream: streamId as MediaStream)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
+
         sut.mediaStream
             .subscribe(observer)
             .disposed(by: bag)
 
         // When
+        sut.start()
         sut.createAnswer(remoteSdp: sdpOffer)
 
         // Then
-        XCTAssertEqual([streamId], observer.events.map { $0.value.element as! MediaStreamMock }.map { $0.id })
+        XCTAssertEqual([streamId], observer.events.map { ($0.value.element as! String) })
     }
 }

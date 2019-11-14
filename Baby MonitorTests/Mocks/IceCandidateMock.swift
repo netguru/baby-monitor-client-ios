@@ -6,7 +6,7 @@
 @testable import BabyMonitor
 
 struct IceCandidateMock: IceCandidateProtocol, Equatable {
-    let sdpMLineIndex: Int32
-    let sdpMid: String?
-    let sdp: String
+    var sdpMLineIndex: Int32
+    var sdpMid: String?
+    var sdp: String
 }

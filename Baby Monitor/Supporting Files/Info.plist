@@ -2,19 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>To select a lullaby for your baby</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>AvertaStd-Bold.otf</string>
-		<string>AvertaStd-Regular.otf</string>
-	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To select a photo for your baby </string>
-	<key>NSCameraUsageDescription</key>
-	<string>To take a photo for your baby or streaming video</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>BabyGuard</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -28,21 +19,39 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(PRODUCT_BUNDLE_VERSION_STRING)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>To select a lullaby for your baby</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To take a photo for your baby or streaming video</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>To detect your baby's cry</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To select a photo for your baby </string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Rubik-Regular.ttf</string>
+		<string>Rubik-Medium.ttf</string>
+		<string>Rubik-Bold.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>To detect your baby&apos;s cry</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -50,5 +59,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

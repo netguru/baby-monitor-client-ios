@@ -2,20 +2,17 @@
 
 Welcome to the **Baby Monitor** project. It's an application made for monitoring babies, which can help parents take care of their children. Application works similar to this product: https://www.philips.ie/c-p/SCD620_05/avent-baby-monitor-digital-video-baby-monitor
 
-.
-
 ## Team
 
-* [Paulina Walesiuk](mailto:paulina.walesiuk@netguru.pl) - Project Manager
-* [Ilya Gruzhevski](mailto:ilya.gruzhevski@netguru.co) - iOS Developer
-* [Kamil Szczepanski](mailto:kamil.szczepanski@netguru.pl) - iOS Developer
+* [Ania Pinderak](mailto:anna.pinderak@netguru.com) - Project Manager
+* [Rafał Żurawski](mailto:rafal.zurawski@netguru.com) - QA
 
 ## Tools & Services
 
 * Tools:
-	* Xcode 9.4 with latest iOS SDK (11.4)
+	* Xcode 11.0 with latest iOS SDK (13.0)
 	* [Carthage](https://github.com/Carthage/Carthage) 0.26 or higher
-	<!-- * [CocoaPods](https://github.com/CocoaPods/CocoaPods) 1.2 or higher -->
+	<!-- * [CocoaPods](https://github.com/CocoaPods/CocoaPods) 1.7.5 or higher -->
 * Services:
 	* [JIRA](https://netguru.atlassian.net/secure/RapidBoard.jspa?rapidView=620&view=detail)
 	* [Bitrise](https://app.bitrise.io/app/80545282645ad180)
@@ -61,7 +58,7 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 	bundle exec pod install
 	```
 
-6. Open `Baby Monitor.xcodeproj` file and build the project.
+6. Open `Baby Monitor.xcworkspace` file and build the project.
 
 
 ## Coding guidelines
@@ -85,6 +82,7 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 
 ## Related repositories
 
+- [baby-monitor-models](https://github.com/netguru/baby-monitor-models)
 - [baby-monitor-client-ios](https://github.com/netguru/baby-monitor-client-ios)
 - [baby-monitor-client-android](https://github.com/netguru/baby-monitor-client-android)
 - [baby-monitor-server-android](https://github.com/netguru/baby-monitor-server-android)

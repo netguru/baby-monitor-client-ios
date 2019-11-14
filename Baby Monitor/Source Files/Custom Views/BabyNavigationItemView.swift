@@ -9,96 +9,106 @@ import RxSwift
 
 final class BabyNavigationItemView: UIView {
 
-    fileprivate var isVisible = false
-    fileprivate let photoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 10
-        imageView.clipsToBounds = true
-        //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
-        imageView.backgroundColor = .lightGray
-        return imageView
+    fileprivate let nameTextField: UITextField = {
+        let textField = UITextField()
+        textField.isUserInteractionEnabled = false
+        textField.attributedPlaceholder = NSAttributedString(
+            string: Localizable.Settings.babyNamePlaceholder,
+            attributes: [
+                .font: UIFont.customFont(withSize: .body, weight: .medium),
+                .foregroundColor: UIColor.white
+            ])
+        textField.font = UIFont.customFont(withSize: .body, weight: .medium)
+        textField.textColor = .white
+        return textField
     }()
-
-    fileprivate let nameLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        return label
+    
+    private lazy var photoImageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.image = #imageLiteral(resourceName: "baby logo welcome screen")
+        view.layer.masksToBounds = true
+        return view
     }()
 
     private lazy var stackView: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: [photoImageView, nameLabel, arrowButton])
+       let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.alignment = .center
-        stackView.spacing = 5
-        
+        stackView.spacing = 10
         return stackView
     }()
 
-    fileprivate let arrowButton: UIButton = {
-        let button = UIButton()
-        button.imageView?.contentMode = .scaleToFill
-        button.setImage(#imageLiteral(resourceName: "arrowDown"), for: .normal)
-        return button
+    fileprivate let pulsatoryView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        return view
     }()
 
-    init() {
+    init(mode: AppMode) {
         super.init(frame: .zero)
-        setup()
+        setup(mode: mode)
     }
 
     @available(*, unavailable, message: "Use init() instead")
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func setBabyPhoto(_ image: UIImage?) {
-        photoImageView.image = image
+    
+    func setupPhotoImageView() {
+        photoImageView.layer.cornerRadius = photoImageView.frame.height / 2
     }
 
-    func setBabyName(_ name: String?) {
-        nameLabel.text = name
+    func updateBabyName(_ name: String) {
+        nameTextField.text = name
+    }
+    
+    func updateBabyPhoto(_ photo: UIImage) {
+        photoImageView.image = photo
+    }
+    
+    func firePulse() {
+        AnimationFactory.shared.firePulse(onView: pulsatoryView, fromColor: UIColor.babyMonitorLightGreen, toColor: UIColor(named: "darkPurple") ?? .purple)
     }
     
     // MARK: - View setup
-    private func setup() {
+    private func setup(mode: AppMode) {
+        backgroundColor = .clear
         addSubview(stackView)
         stackView.addConstraints {
             $0.equalEdges()
         }
-
-        photoImageView.addConstraints {[
-            $0.equalTo(self, .height, .height, multiplier: 0.8),
-            $0.equalTo($0, .width, .height),
-            $0.equalConstant(.width, 30)
-        ]
-        }
-
-        arrowButton.addConstraints {[
-            $0.equalTo(self, .height, .height, multiplier: 0.5),
-            $0.equalTo(arrowButton, .width, .height, multiplier: 0.8)
-        ]
+        switch mode {
+        case .baby:
+            [pulsatoryView].forEach { // TODO: add nameTextField here if you want to show it
+                stackView.addArrangedSubview($0)
+            }
+            pulsatoryView.addConstraints {[
+                $0.equalTo(stackView, .height, .height, multiplier: 0.5),
+                $0.equalTo(pulsatoryView, .width, .height)
+            ]
+            }
+        case .parent:
+            [photoImageView, nameTextField].forEach {
+                stackView.addArrangedSubview($0)
+            }
+            photoImageView.addConstraints {[
+                $0.equalTo(self, .height, .height, multiplier: 0.6),
+                $0.equalTo(photoImageView, .width, .height)
+            ]
+            }
+        case .none:
+            break
         }
     }
 }
 
 extension Reactive where Base: BabyNavigationItemView {
-    var tap: ControlEvent<Void> {
-        return ControlEvent(events: base.arrowButton.rx.tap
-            .do(onNext: { _ in
-                self.base.isVisible.toggle()
-                let arrowImage = self.base.isVisible ? #imageLiteral(resourceName: "arrowUp") : #imageLiteral(resourceName: "arrowDown")
-                self.base.arrowButton.setImage(arrowImage, for: .normal)
-            }))
-    }
-    
-    var babyPhoto: Binder<UIImage?> {
-        return base.photoImageView.rx.image
-    }
     
     var babyName: Binder<String> {
-        return Binder(base.nameLabel, binding: { nameLabel, name in
+        return Binder(base.nameTextField, binding: { nameLabel, name in
             nameLabel.text = name
         })
     }
