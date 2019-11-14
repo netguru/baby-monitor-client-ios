@@ -109,7 +109,7 @@ final class AppDependencies {
     
     // MARK: - Notifications
     
-    fileprivate(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService(
+    private(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService(
         networkDispatcher: networkDispatcher,
         serverKeyObtainable: serverKeyObtainable)
     
