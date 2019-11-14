@@ -171,7 +171,8 @@ final class AppDependencies {
             babyModelControllerProtocol: databaseRepository,
             memoryCleaner: memoryCleaner,
             urlConfiguration: urlConfiguration,
-            webSocketWebRtcService: webSocketWebRtcService)
+            webSocketWebRtcService: webSocketWebRtcService,
+            localNotificationService: localNotificationService)
         resetter.localResetCompleted.asObservable()
             .distinctUntilChanged()
             .filter {
