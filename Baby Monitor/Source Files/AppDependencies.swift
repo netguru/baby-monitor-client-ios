@@ -109,7 +109,7 @@ final class AppDependencies {
     
     // MARK: - Notifications
     
-    private(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService(
+    fileprivate(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService(
         networkDispatcher: networkDispatcher,
         serverKeyObtainable: serverKeyObtainable)
     
@@ -169,6 +169,7 @@ extension AppDependencies {
             messageServer.send(message: resetEventString)
         case .parent:
             webSocketEventMessageService.get().sendMessage(resetEventString)
+            localNotificationService.resetTokens(completion: { _ in })
         case .none:
             break
         }
@@ -176,6 +177,8 @@ extension AppDependencies {
         memoryCleaner.cleanMemory()
         urlConfiguration.url = nil
         webSocketWebRtcService.get().close()
+        UserDefaults.selfPushNotificationsToken = ""
+        UserDefaults.receiverPushNotificationsToken = nil
         UserDefaults.appMode = .none
         UserDefaults.isSendingCryingsAllowed = false
         try? AudioKit.stop()
