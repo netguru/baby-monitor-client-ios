@@ -89,11 +89,15 @@ final class AppDependencies {
     }()
     
     private lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in
-        guard let url = self.urlConfiguration.url else { return nil }
-        guard let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else { return nil }
+        guard let url = self.urlConfiguration.url else {
+            return nil
+        }
+        guard let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else {
+            return nil
+        }
         let webSocket = PSWebSocketWrapper(socket: rawSocket)
         webSocket.disconnectionObservable
-            .subscribe(onNext: { [unowned self] in self.clearConnection() })
+            .subscribe(onNext: { [weak self] in self?.clearSockets() })
             .disposed(by: self.bag)
         return webSocket
     }
@@ -149,7 +153,7 @@ final class AppDependencies {
     
     /// Service for handling errors and showing error alerts
     private(set) var errorHandler: ErrorHandlerProtocol = ErrorHandler()
-
+    
     /// Service for sending errors to the server.
     private(set) var serverErrorLogger: ServerErrorLogger = CrashlyticsErrorLogger()
     
@@ -157,36 +161,33 @@ final class AppDependencies {
     
     /// Provides app version and build number
     private(set) var appVersionProvider: AppVersionProvider = DefaultAppVersionProvider()
+    
+    /// Application reset utility
+    private(set) lazy var applicationResetter: ApplicationResetter = {
+        [unowned self] in
+        let resetter = DefaultApplicationResetter(
+            messageServer: messageServer,
+            webSocketEventMessageService: webSocketEventMessageService,
+            babyModelControllerProtocol: databaseRepository,
+            memoryCleaner: memoryCleaner,
+            urlConfiguration: urlConfiguration,
+            webSocketWebRtcService: webSocketWebRtcService)
+        resetter.localResetCompleted.asObservable()
+            .distinctUntilChanged()
+            .filter {
+                $0 == true
+            }.subscribe(onNext: {
+                [weak self] resetCompleted in
+                self?.clearSockets()
+            }).disposed(by: bag)
+        return resetter
+    }()
 }
 
 // MARK: - Resetting app state
 extension AppDependencies {
     
-    func resetTheApplication() {
-        let resetEventString = EventMessage.initWithResetKey().toStringMessage()
-        switch UserDefaults.appMode {
-        case .baby:
-            messageServer.send(message: resetEventString)
-        case .parent:
-            webSocketEventMessageService.get().sendMessage(resetEventString)
-            localNotificationService.resetTokens(completion: { _ in })
-        case .none:
-            break
-        }
-        databaseRepository.removeAllData()
-        memoryCleaner.cleanMemory()
-        urlConfiguration.url = nil
-        webSocketWebRtcService.get().close()
-        UserDefaults.selfPushNotificationsToken = ""
-        UserDefaults.receiverPushNotificationsToken = nil
-        UserDefaults.appMode = .none
-        UserDefaults.isSendingCryingsAllowed = false
-        try? AudioKit.stop()
-
-        clearConnection()
-    }
-    
-    func clearConnection() {
+    func clearSockets() {
         webSocketWebRtcService.clear()
         webSocketEventMessageService.clear()
         webSocket.clear()

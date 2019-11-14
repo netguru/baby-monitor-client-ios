@@ -5,7 +5,7 @@
 
 import Foundation
 
-protocol MemoryCleanerProtocol: Any {
+protocol MemoryCleanerProtocol: class {
     func cleanMemoryIfNeeded()
     func cleanMemory()
     func removeFile(path: URL)

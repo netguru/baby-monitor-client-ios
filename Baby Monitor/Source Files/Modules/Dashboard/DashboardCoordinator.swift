@@ -39,7 +39,7 @@ final class DashboardCoordinator: Coordinator {
         appDependencies.webSocketEventMessageService.get().remoteResetObservable
             .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] in
-                self?.appDependencies.resetTheApplication()
+                self?.appDependencies.applicationResetter.reset()
                 self?.onEnding?()
             })
             .disposed(by: disposeBag)
