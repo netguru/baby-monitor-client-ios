@@ -4,10 +4,12 @@
 //
  
 import UserNotifications
+import FirebaseInstanceID
 
 protocol NotificationServiceProtocol: AnyObject {
     func sendPushNotificationsRequest()
     func getNotificationsAllowance(completion: @escaping (Bool) -> Void)
+    func resetTokens(completion: @escaping (Error?) -> Void)
 }
 
 final class NotificationService: NotificationServiceProtocol {
@@ -35,5 +37,11 @@ final class NotificationService: NotificationServiceProtocol {
             serverKey: serverKeyObtainable.serverKey)
         .asURLRequest()
         networkDispatcher.execute(urlRequest: firebasePushNotificationsRequest, completion: nil)
+    }
+
+    func resetTokens(completion: @escaping (Error?) -> Void) {
+        InstanceID.instanceID().deleteID { error in
+            completion(error)
+        }
     }
 }
