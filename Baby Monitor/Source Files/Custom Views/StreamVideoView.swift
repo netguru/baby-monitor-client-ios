@@ -51,10 +51,16 @@ internal final class StreamVideoView: UIView, RTCVideoRenderer {
 
     private let contentTransform: ContentTransform
 
-    private lazy var renderView: RTCMTLVideoView = {
-       let view = RTCMTLVideoView()
+    private lazy var renderView: UIView & RTCVideoRenderer = {
+        #if arch(arm64)
+        // Using view with Metal support. It will be always used on physical devices.
+        let view = RTCMTLVideoView()
         view.videoContentMode = .scaleAspectFill
         return view
+        #else
+        // For simulator support only.
+        return RTCEAGLVideoView()
+        #endif
     }()
 
     // MARK: Setup
