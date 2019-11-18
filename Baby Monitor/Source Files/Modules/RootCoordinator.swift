@@ -26,7 +26,9 @@ final class RootCoordinator: RootCoordinatorProtocol {
 
     func start() {
         switch UserDefaults.appMode {
-        case .parent, .none:
+        case .parent:
+            dashboardCoordinator?.start()
+        case .none:
             onboardingCoordinator?.start()
         case .baby:
             serverCoordinator?.start()
