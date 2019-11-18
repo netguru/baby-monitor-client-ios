@@ -9,7 +9,6 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 
 ## Tools & Services
 
-
 * Tools:
 	* Xcode 11.2.1 with latest iOS SDK (13.2)
 	* [Carthage](https://github.com/Carthage/Carthage) 0.33 or higher
