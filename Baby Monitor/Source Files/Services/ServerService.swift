@@ -10,6 +10,7 @@ protocol ServerServiceProtocol: AnyObject {
     var localStreamObservable: Observable<MediaStream> { get }
     var audioMicrophoneServiceErrorObservable: Observable<Void> { get }
     var remoteResetEventObservable: Observable<Void> { get }
+    var loggingInfoObservable: Observable<String> { get }
     func startStreaming()
     func stop()
 }
@@ -21,7 +22,8 @@ final class ServerService: ServerServiceProtocol {
     }
     lazy var audioMicrophoneServiceErrorObservable = audioMicrophoneServiceErrorPublisher.asObservable()
     lazy var remoteResetEventObservable = remoteResetEventPublisher.asObservable()
-    
+    lazy var loggingInfoObservable = loggingInfoPublisher.asObservable()
+
     private let parentResponseTime: TimeInterval
     private let webRtcServerManager: WebRtcServerManagerProtocol
     private let messageServer: MessageServerProtocol
@@ -34,7 +36,8 @@ final class ServerService: ServerServiceProtocol {
     private let audioMicrophoneServiceErrorPublisher = PublishSubject<Void>()
     private let remoteResetEventPublisher = PublishSubject<Void>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
-    
+    let loggingInfoPublisher = PublishSubject<String>()
+
     init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babyModelController: BabyModelControllerProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
         self.cryingEventService = cryingService
         self.babyModelController = babyModelController
@@ -57,9 +60,13 @@ final class ServerService: ServerServiceProtocol {
     
     private func rxSetup() {
         cryingEventService.cryingEventObservable
+            .do(onNext: { [weak self] _ in
+                self?.loggingInfoPublisher.onNext("Crying detected")
+            })
             .throttle(Constants.notificationRequestTimeLimit, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.notificationsService.sendPushNotificationsRequest()
+                self?.loggingInfoPublisher.onNext("Crying passed 3 minutes limit. Push Notification was sent.")
             }).disposed(by: disposeBag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in

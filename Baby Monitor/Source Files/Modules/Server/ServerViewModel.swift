@@ -11,6 +11,9 @@ final class ServerViewModel {
     var stream: Observable<MediaStream> {
         return serverService.localStreamObservable
     }
+    var loggingInfoObservable: Observable<String> {
+        return serverService.loggingInfoObservable
+    }
     var onAudioMicrophoneServiceError: (() -> Void)?
     var settingsTap: Observable<Void>?
     let bag = DisposeBag()
