@@ -9,7 +9,9 @@ import RxCocoa
 
 protocol CryingEventsServiceProtocol: Any {
     var cryingEventObservable: Observable<Void> { get }
-    
+
+    var loggingInfoPublisher: PublishSubject<String> { get }
+
     /// Starts work of crying events service
     func start() throws
     /// Stops work of crying events service
@@ -33,6 +35,7 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
     private let storageService: StorageServerServiceProtocol
     private let disposeBag = DisposeBag()
+    var loggingInfoPublisher = PublishSubject<String>()
     
     init(cryingDetectionService: CryingDetectionServiceProtocol, microphoneRecordService: AudioMicrophoneRecordServiceProtocol?, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol, storageService: StorageServerServiceProtocol) {
         self.cryingDetectionService = cryingDetectionService
@@ -60,10 +63,12 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     private func rxSetup() {
         cryingDetectionService.cryingDetectionObservable.subscribe(onNext: { [unowned self] isBabyCrying in
             if isBabyCrying {
+                self.loggingInfoPublisher.onNext("Crying detected.")
                 let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
                 self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
                 self.cryingEventPublisher.onNext(())
             } else {
+                self.loggingInfoPublisher.onNext("Sound detected but no baby crying.")
                 guard self.microphoneRecordService?.isRecording ?? false else {
                     return
                 }

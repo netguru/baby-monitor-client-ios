@@ -21,16 +21,15 @@ final class NetworkDispatcher: NSObject, NetworkDispatcherProtocol {
         super.init()
     }
     
-    func execute(urlRequest: URLRequest, completion: ((Result<Data>) -> Void)?) {
+    func execute(urlRequest: URLRequest, completion: @escaping ((Result<Data>) -> Void)) {
         let dataTask = urlSession.dataTask(with: urlRequest) { data, response, error in
             var result = Result<Data>.failure(nil)
             if let error = error {
                 result = .failure(error)
             } else if let data = data {
                 result = .success(data)
-                
             }
-            completion?(result)
+            completion(result)
         }
         dispatchQueue.async {
             dataTask.resume()

@@ -36,7 +36,7 @@ final class ServerService: ServerServiceProtocol {
     private let audioMicrophoneServiceErrorPublisher = PublishSubject<Void>()
     private let remoteResetEventPublisher = PublishSubject<Void>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
-    let loggingInfoPublisher = PublishSubject<String>()
+    private let loggingInfoPublisher = PublishSubject<String>()
 
     init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babyModelController: BabyModelControllerProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
         self.cryingEventService = cryingService
@@ -60,13 +60,19 @@ final class ServerService: ServerServiceProtocol {
     
     private func rxSetup() {
         cryingEventService.cryingEventObservable
-            .do(onNext: { [weak self] _ in
-                self?.loggingInfoPublisher.onNext("Crying detected")
-            })
             .throttle(Constants.notificationRequestTimeLimit, scheduler: MainScheduler.instance)
+            .do(onNext: { [weak self] _ in
+                self?.loggingInfoPublisher.onNext("Crying passed 3 minutes limit. Attemps to send push notification request.")
+            })
             .subscribe(onNext: { [weak self] _ in
-                self?.notificationsService.sendPushNotificationsRequest()
-                self?.loggingInfoPublisher.onNext("Crying passed 3 minutes limit. Push Notification was sent.")
+                self?.notificationsService.sendPushNotificationsRequest(completion: { [weak self] result in
+                    switch result {
+                    case .failure(let error):
+                        self?.loggingInfoPublisher.onNext("Push notification request sending failed with error: \(error?.localizedDescription ?? "unknown")")
+                    case .success:
+                        self?.loggingInfoPublisher.onNext("Push Notification was sent successfully.")
+                    }
+                })
             }).disposed(by: disposeBag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
@@ -88,6 +94,7 @@ final class ServerService: ServerServiceProtocol {
                 self.messageServer.send(message: json)
             })
             .disposed(by: disposeBag)
+        cryingEventService.loggingInfoPublisher.bind(to: loggingInfoPublisher).disposed(by: disposeBag)
     }
     
     private func handle(message: WebRtcMessage) {
