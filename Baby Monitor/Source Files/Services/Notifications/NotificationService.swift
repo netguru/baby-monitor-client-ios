@@ -13,7 +13,7 @@ protocol NotificationServiceProtocol: AnyObject {
 }
 
 final class NotificationService: NotificationServiceProtocol {
-    private enum TokenError: Error {
+    enum TokenError: Error {
         case noReceiverTokenError
 
         var localizedDescription: String {

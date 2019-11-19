@@ -61,14 +61,15 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     }
     
     private func rxSetup() {
-        cryingDetectionService.cryingDetectionObservable.subscribe(onNext: { [unowned self] isBabyCrying in
-            if isBabyCrying {
-                self.loggingInfoPublisher.onNext("Crying detected.")
+        cryingDetectionService.cryingDetectionObservable.subscribe(onNext: { [unowned self] cryingDetectionResult in
+            let roundedProbability = String(format: "%.2f", cryingDetectionResult.probability)
+            if cryingDetectionResult.isBabyCrying {
+                self.loggingInfoPublisher.onNext("Crying detected. Probability: \(roundedProbability)")
                 let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
                 self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
                 self.cryingEventPublisher.onNext(())
             } else {
-                self.loggingInfoPublisher.onNext("Sound detected but no baby crying.")
+                self.loggingInfoPublisher.onNext("Sound detected but no baby crying. Probability: \(roundedProbability)")
                 guard self.microphoneRecordService?.isRecording ?? false else {
                     return
                 }
