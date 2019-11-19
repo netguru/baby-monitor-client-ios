@@ -46,7 +46,7 @@ final class ServerViewController: BaseViewController {
         target: nil,
         action: nil)
 
-    private lazy var logginInfoLabel: UILabel = {
+    private lazy var debugInfoLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .white
@@ -93,7 +93,7 @@ final class ServerViewController: BaseViewController {
     }
 
     private func setupView() {
-        [disabledVideoView, localView, buttonsStackView, nightModeOverlay, logginInfoLabel].forEach(view.addSubview)
+        [disabledVideoView, localView, buttonsStackView, nightModeOverlay, debugInfoLabel].forEach(view.addSubview)
         localView.addConstraints { $0.equalEdges() }
         nightModeOverlay.addConstraints { $0.equalEdges() }
 
@@ -104,7 +104,7 @@ final class ServerViewController: BaseViewController {
             $0.equal(.centerX)
         ]
         }
-        logginInfoLabel.addConstraints {[
+        debugInfoLabel.addConstraints {[
             $0.equal(.safeAreaTop, constant: 50),
             $0.equal(.centerX),
             $0.equal(.width, multiplier: 0.8)
@@ -112,7 +112,7 @@ final class ServerViewController: BaseViewController {
         }
         view.bringSubviewToFront(nightModeOverlay)
         view.bringSubviewToFront(buttonsStackView)
-        view.bringSubviewToFront(logginInfoLabel)
+        view.bringSubviewToFront(debugInfoLabel)
     }
     
     private func setupBindings() {
@@ -143,7 +143,7 @@ final class ServerViewController: BaseViewController {
         viewModel.loggingInfoObservable
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] text in
-                self?.logginInfoLabel.text = text
+                self?.debugInfoLabel.text = text
             })
         .disposed(by: bag)
     }
