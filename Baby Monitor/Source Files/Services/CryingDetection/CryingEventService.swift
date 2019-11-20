@@ -25,6 +25,7 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     }
     
     lazy var cryingEventObservable = cryingEventPublisher.asObservable()
+    private(set) var loggingInfoPublisher = PublishSubject<String>()
     lazy var errorObservable = errorPublisher.asObservable()
     private var nextFileName: String = ""
     
@@ -35,7 +36,6 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
     private let storageService: StorageServerServiceProtocol
     private let disposeBag = DisposeBag()
-    var loggingInfoPublisher = PublishSubject<String>()
     
     init(cryingDetectionService: CryingDetectionServiceProtocol, microphoneRecordService: AudioMicrophoneRecordServiceProtocol?, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol, storageService: StorageServerServiceProtocol) {
         self.cryingDetectionService = cryingDetectionService
