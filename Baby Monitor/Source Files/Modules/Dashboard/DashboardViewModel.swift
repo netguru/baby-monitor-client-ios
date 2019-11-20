@@ -68,8 +68,8 @@ final class DashboardViewModel {
             guard let self = self, self.shouldPushNotificationsKeyBeSent, status == .connected else {
                 return
             }
-            let cryingEventMessage = EventMessage.initWithPushNotificationsKey(key: UserDefaults.selfPushNotificationsToken)
-            self.webSocketEventMessageService.sendMessage(cryingEventMessage.toStringMessage())
+            let firebaseTokenMessage = EventMessage.initWithPushNotificationsKey(key: UserDefaults.selfPushNotificationsToken)
+            self.webSocketEventMessageService.sendMessage(firebaseTokenMessage.toStringMessage())
             self.shouldPushNotificationsKeyBeSent = false
         })
             .disposed(by: bag)
