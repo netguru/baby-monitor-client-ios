@@ -25,12 +25,17 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
         setup()
     }
     
-    func save(activityLogEvent: ActivityLogEvent) {
+    func save(activityLogEvent: ActivityLogEvent, completion: @escaping ((_ isSavedSuccessfully: Bool) -> Void)) {
         DispatchQueue.main.async {
             let realmActivityLogEvent = RealmActivityLogEvent(with: activityLogEvent)
-            try! self.realm.write {
-                self.realm.create(RealmActivityLogEvent.self, value: realmActivityLogEvent, update: .error)
-                self.activityLogEventsPublisher.value.append(activityLogEvent)
+            do {
+                try self.realm.write {
+                    self.realm.create(RealmActivityLogEvent.self, value: realmActivityLogEvent, update: .error)
+                    self.activityLogEventsPublisher.value.append(activityLogEvent)
+                    completion(true)
+                }
+            } catch {
+                completion(false)
             }
         }
     }

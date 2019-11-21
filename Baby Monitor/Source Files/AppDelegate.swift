@@ -54,7 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        appDependencies.databaseRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent))
+        appDependencies.databaseRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent), completion: { _ in
+            completionHandler(.noData)
+        })
     }
 }
 
