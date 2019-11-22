@@ -54,6 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        guard application.applicationState != .active else {
+            completionHandler(.noData)
+            return
+        }
         appDependencies.databaseRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent), completion: { _ in
             completionHandler(.noData)
         })
@@ -70,6 +74,9 @@ extension AppDelegate: MessagingDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .sound, .badge])
+        appDependencies.databaseRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent), completion: { _ in
+            print("notify will present saved")
+            completionHandler([.alert, .sound, .badge])
+        })
     }
 }
