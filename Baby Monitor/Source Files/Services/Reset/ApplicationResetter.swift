@@ -3,8 +3,8 @@ import AudioKit
 import RxSwift
 
 protocol ApplicationResetter: class {
-    var localResetCompleted: Variable<Bool> { get }
-    func reset()
+    var localResetCompleted: PublishSubject<Bool> { get }
+    func reset(isRemote: Bool)
 }
 
 class DefaultApplicationResetter: ApplicationResetter {
@@ -17,7 +17,7 @@ class DefaultApplicationResetter: ApplicationResetter {
     private unowned var webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>
     private unowned var localNotificationService: NotificationServiceProtocol
     
-    private(set) var localResetCompleted = Variable<Bool>(false)
+    private(set) var localResetCompleted = PublishSubject<Bool>()
     
     init(messageServer: MessageServerProtocol,
          webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>,
@@ -35,10 +35,13 @@ class DefaultApplicationResetter: ApplicationResetter {
         self.localNotificationService = localNotificationService
     }
     
-    func reset() {
-        localResetCompleted.value = false
+    func reset(isRemote: Bool) {
+        localResetCompleted.onNext(false)
         
-        sendResetEvent()
+        if !isRemote {
+            sendResetEvent()
+        }
+        clearNotificationTokens()
         clearLocalCache()
         babyModelControllerProtocol.removeAllData()
         memoryCleaner.cleanMemory()
@@ -46,7 +49,7 @@ class DefaultApplicationResetter: ApplicationResetter {
         webSocketWebRtcService.get().close()
         stopAudioKit()
         
-        localResetCompleted.value = true
+        localResetCompleted.onNext(true)
     }
 }
 
@@ -59,7 +62,6 @@ private extension DefaultApplicationResetter {
             messageServer.send(message: resetEventString)
         case .parent:
             webSocketEventMessageService.get().sendMessage(resetEventString)
-            localNotificationService.resetTokens(completion: { _ in })
         case .none:
             break
         }
@@ -70,6 +72,12 @@ private extension DefaultApplicationResetter {
         UserDefaults.isSendingCryingsAllowed = false
         UserDefaults.selfPushNotificationsToken = ""
         UserDefaults.receiverPushNotificationsToken = nil
+    }
+    
+    func clearNotificationTokens() {
+        if UserDefaults.appMode == .parent {
+            localNotificationService.resetTokens(completion: { _ in })
+        }
     }
     
     func stopAudioKit() {

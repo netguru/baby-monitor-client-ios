@@ -28,11 +28,14 @@ final class ServerCoordinator: Coordinator {
     }
     
     private func setupResettingState() {
-        appDependencies.serverService.remoteResetEventObservable.subscribe(onNext: { [weak self] in
-            self?.appDependencies.applicationResetter.reset()
-            self?.onEnding?()
-        })
-            .disposed(by: bag)
+        appDependencies.applicationResetter.localResetCompleted.asObservable()
+            .distinctUntilChanged()
+            .filter {
+                $0 == true
+            }.subscribe(onNext: {
+                [weak self] resetCompleted in
+                self?.onEnding?()
+            }).disposed(by: bag)
     }
     
     private func showServerView() {

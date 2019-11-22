@@ -70,9 +70,16 @@ final class AppDependencies {
     }
     
     lazy var webSocketEventMessageService = ClearableLazyItem<WebSocketEventMessageServiceProtocol> { [unowned self] in
-        return WebSocketEventMessageService(
+        let messageService = WebSocketEventMessageService(
             cryingEventsRepository: self.databaseRepository,
             eventMessageConductorFactory: self.eventMessageConductorFactory)
+        messageService.remoteResetObservable
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] in
+                self?.applicationResetter.reset(isRemote: true)
+            })
+            .disposed(by: self.bag)
+        return messageService
     }
     
     lazy var webSocketWebRtcService = ClearableLazyItem<WebSocketWebRtcServiceProtocol> { [unowned self] in
@@ -88,7 +95,7 @@ final class AppDependencies {
         return PSWebSocketServerWrapper(server: webSocketServer)
     }()
     
-    private lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in
+    private (set) lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in
         guard let url = self.urlConfiguration.url else {
             return nil
         }
@@ -99,6 +106,10 @@ final class AppDependencies {
         webSocket.disconnectionObservable
             .subscribe(onNext: { [weak self] in self?.clearSockets() })
             .disposed(by: self.bag)
+        webSocket.errorObservable
+            .subscribe(onNext: { [weak self] _ in
+                self?.resetSocketCommunication()
+            }).disposed(by: self.bag)
         return webSocket
     }
     
@@ -125,16 +136,24 @@ final class AppDependencies {
     
     private(set) var babyMonitorEventMessagesDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
     
-    private(set) lazy var serverService: ServerServiceProtocol = ServerService(
-        webRtcServerManager: webRtcServer(),
-        messageServer: messageServer,
-        netServiceServer: netServiceServer,
-        webRtcDecoders: webRtcMessageDecoders,
-        cryingService: cryingEventService,
-        babyModelController: databaseRepository,
-        notificationsService: localNotificationService,
-        babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
-    )
+    private(set) lazy var serverService: ServerServiceProtocol = {
+        let service = ServerService(webRtcServerManager: webRtcServer(),
+            messageServer: messageServer,
+            netServiceServer: netServiceServer,
+            webRtcDecoders: webRtcMessageDecoders,
+            cryingService: cryingEventService,
+            babyModelController: databaseRepository,
+            notificationsService: localNotificationService,
+            babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
+        )
+        service.remoteResetEventObservable
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] in
+                self?.applicationResetter.reset(isRemote: true)
+            })
+            .disposed(by: self.bag)
+        return service
+    }()
     
     private(set) var urlConfiguration: URLConfiguration = UserDefaultsURLConfiguration()
     
@@ -192,5 +211,15 @@ extension AppDependencies {
         webSocketWebRtcService.clear()
         webSocketEventMessageService.clear()
         webSocket.clear()
+    }
+    
+    func resetSocketCommunication() {
+        
+        //todo: move to CommunicationResetter
+        //todo: notify when communication is reset
+        
+        clearSockets()
+        webSocketEventMessageService.get().start()
+        webSocketWebRtcService.get().start()
     }
 }

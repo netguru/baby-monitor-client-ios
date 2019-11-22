@@ -36,13 +36,14 @@ final class DashboardCoordinator: Coordinator {
     }
     
     private func setupResettingApp() {
-        appDependencies.webSocketEventMessageService.get().remoteResetObservable
-            .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] in
-                self?.appDependencies.applicationResetter.reset()
+        appDependencies.applicationResetter.localResetCompleted.asObservable()
+            .distinctUntilChanged()
+            .filter {
+                $0 == true
+            }.subscribe(onNext: {
+                [weak self] resetCompleted in
                 self?.onEnding?()
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
 
     private func showDashboard() {
@@ -60,7 +61,9 @@ final class DashboardCoordinator: Coordinator {
 
     // Prepare DashboardViewModel
     private func createDashboardViewModel() -> DashboardViewModel {
-        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyModelController: appDependencies.databaseRepository, webSocketEventMessageService: appDependencies.webSocketEventMessageService.get(), microphonePermissionProvider: appDependencies.microphonePermissionProvider)
+        let viewModel = DashboardViewModel(
+            connectionChecker: appDependencies.connectionChecker, babyModelController: appDependencies.databaseRepository,
+            webSocketEventMessageService: appDependencies.webSocketEventMessageService.get(), microphonePermissionProvider: appDependencies.microphonePermissionProvider)
         return viewModel
     }
     
