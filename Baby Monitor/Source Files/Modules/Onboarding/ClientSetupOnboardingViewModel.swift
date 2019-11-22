@@ -86,8 +86,6 @@ final class ClientSetupOnboardingViewModel {
                 self.searchCancelTimer?.invalidate()
                 self.urlConfiguration.url = serverUrl
                 self.webSocketEventMessageService.start()
-                let cryingEventMessage = EventMessage.initWithPushNotificationsKey(key: UserDefaults.selfPushNotificationsToken)
-                self.webSocketEventMessageService.sendMessage(cryingEventMessage.toStringMessage())
                 self.saveEmptyStateIfNeeded()
                 self.didFinishDeviceSearch?(.success)
             })

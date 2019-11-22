@@ -38,13 +38,8 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
 
     private var streamMediaConstraints: RTCMediaConstraints {
         return RTCMediaConstraints(
-            mandatoryConstraints: [
-                WebRtcConstraintKey.offerToReceiveVideo: WebRtcConstraintValue.true,
-                WebRtcConstraintKey.offerToReceiveAudio: WebRtcConstraintValue.true
-            ],
-            optionalConstraints: [
-                WebRtcConstraintKey.dtlsSrtpKeyAgreement: WebRtcConstraintValue.true
-            ]
+            mandatoryConstraints: [:],
+            optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement: WebRtcConstraintValue.true]
         )
     }
 
