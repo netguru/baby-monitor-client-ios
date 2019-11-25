@@ -6,8 +6,8 @@
 import Foundation
 
 protocol NetworkDispatcherProtocol: AnyObject {
-    func execute(urlRequest: URLRequest, completion: ((Result<Data>) -> Void)?)
-    func execute<T: Decodable>(urlRequest: URLRequest, completion: ((Result<T>) -> Void)?)
+    func execute(urlRequest: URLRequest, completion: @escaping ((Result<Data>) -> Void))
+    func executeWithJsonParsing<T: Decodable>(urlRequest: URLRequest, completion: ((Result<T>) -> Void)?)
 }
 
 final class NetworkDispatcher: NSObject, NetworkDispatcherProtocol {
@@ -36,7 +36,7 @@ final class NetworkDispatcher: NSObject, NetworkDispatcherProtocol {
         }
     }
     
-    func execute<T: Decodable>(urlRequest: URLRequest, completion: ((Result<T>) -> Void)?) {
+    func executeWithJsonParsing<T: Decodable>(urlRequest: URLRequest, completion: ((Result<T>) -> Void)?) {
         execute(urlRequest: urlRequest) { result in
             completion?(result.map { try JSONDecoder().decode(T.self, from: $0) })
         }
