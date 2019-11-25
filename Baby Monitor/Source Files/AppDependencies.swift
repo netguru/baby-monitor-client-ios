@@ -104,11 +104,11 @@ final class AppDependencies {
         }
         let webSocket = PSWebSocketWrapper(socket: rawSocket)
         webSocket.disconnectionObservable
-            .subscribe(onNext: { [weak self] in self?.clearSockets() })
+            .subscribe(onNext: { [weak self] in self?.socketCommunicationsManager.terminate() })
             .disposed(by: self.bag)
         webSocket.errorObservable
             .subscribe(onNext: { [weak self] _ in
-                self?.resetSocketCommunication()
+                self?.socketCommunicationsManager.reset()
             }).disposed(by: self.bag)
         return webSocket
     }
@@ -121,6 +121,11 @@ final class AppDependencies {
             messageDecoders: self.webRtcMessageDecoders
         )
     }
+    
+    private(set) lazy var socketCommunicationsManager: SocketCommunicationManager = DefaultSocketCommunicationManager(
+        webSocketEventMessageService: webSocketEventMessageService,
+        webSocketWebRtcService: webSocketWebRtcService,
+        webSocket: webSocket)
     
     // MARK: - Notifications
     
@@ -196,30 +201,9 @@ final class AppDependencies {
             .distinctUntilChanged()
             .filter {
                 $0 == true
-            }.subscribe(onNext: {
-                [weak self] resetCompleted in
-                self?.clearSockets()
+            }.subscribe(onNext: { [weak self] resetCompleted in
+                self?.socketCommunicationsManager.terminate()
             }).disposed(by: bag)
         return resetter
     }()
-}
-
-// MARK: - Resetting app state
-extension AppDependencies {
-    
-    func clearSockets() {
-        webSocketWebRtcService.clear()
-        webSocketEventMessageService.clear()
-        webSocket.clear()
-    }
-    
-    func resetSocketCommunication() {
-        
-        //todo: move to CommunicationResetter
-        //todo: notify when communication is reset
-        
-        clearSockets()
-        webSocketEventMessageService.get().start()
-        webSocketWebRtcService.get().start()
-    }
 }
