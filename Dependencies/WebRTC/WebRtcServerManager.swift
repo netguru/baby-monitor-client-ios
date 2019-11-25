@@ -54,7 +54,6 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     }
 
     func setup() {
-
         connectionDelegateProxy.onGotIceCandidate = { [weak self] _, iceCandidate in
             guard let self = self else { return }
             self.iceCandidatePublisher.onNext(iceCandidate)
@@ -79,6 +78,14 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         videoCapturer = capturer
         mediaStreamInstance = stream
         mediaStreamPublisher.onNext(stream)
+    }
+
+    func pauseMediaStream() {
+        videoCapturer?.stopCapture()
+    }
+
+    func resumeMediaStream() {
+        startMediaStream()
     }
 
     func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol) {

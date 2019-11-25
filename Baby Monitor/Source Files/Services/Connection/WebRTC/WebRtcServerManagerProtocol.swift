@@ -13,6 +13,10 @@ protocol WebRtcServerManagerProtocol {
     /// Closes connection
     func stop()
 
+    func pauseMediaStream()
+
+    func resumeMediaStream()
+
     /// Sets session description answer
     ///
     /// - Parameter sdp: session description protocol to add
