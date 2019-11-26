@@ -3,7 +3,7 @@ import AudioKit
 import RxSwift
 
 protocol ApplicationResetter: class {
-    var localResetCompleted: PublishSubject<Bool> { get }
+    var localResetCompletionObservable: Observable<Void> { get }
     func reset(isRemote: Bool)
 }
 
@@ -16,8 +16,8 @@ class DefaultApplicationResetter: ApplicationResetter {
     private unowned var urlConfiguration: URLConfiguration
     private unowned var webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>
     private unowned var localNotificationService: NotificationServiceProtocol
-    
-    private(set) var localResetCompleted = PublishSubject<Bool>()
+    private(set) var localResetCompletionObservable: Observable<Void>
+    private var localResetCompletionPublisher = PublishSubject<Void>()
     
     init(messageServer: MessageServerProtocol,
          webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>,
@@ -33,11 +33,10 @@ class DefaultApplicationResetter: ApplicationResetter {
         self.urlConfiguration = urlConfiguration
         self.webSocketWebRtcService = webSocketWebRtcService
         self.localNotificationService = localNotificationService
+        localResetCompletionObservable = localResetCompletionPublisher.asObservable()
     }
     
     func reset(isRemote: Bool) {
-        localResetCompleted.onNext(false)
-        
         if !isRemote {
             sendResetEvent()
         }
@@ -48,8 +47,7 @@ class DefaultApplicationResetter: ApplicationResetter {
         urlConfiguration.url = nil
         webSocketWebRtcService.get().close()
         stopAudioKit()
-        
-        localResetCompleted.onNext(true)
+        localResetCompletionPublisher.onNext(())
     }
 }
 

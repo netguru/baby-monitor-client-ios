@@ -9,7 +9,7 @@ final class CameraPreviewViewModel {
     
     let bag = DisposeBag()
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
-    private(set) var streamResetted = PublishSubject<Void>()
+    private(set) var streamResettedPublisher = PublishSubject<Void>()
     private(set) var cancelTap: Observable<Void>?
     private(set) var settingsTap: Observable<Void>?
     
@@ -65,11 +65,11 @@ final class CameraPreviewViewModel {
                 self?.stop()
             })
             .disposed(by: bag)
-        socketCommunicationManager.communicationResetted
+        socketCommunicationManager.communicationResetObservable
             .throttle(1.0, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.play()
-                self?.streamResetted.onNext(())
+                self?.streamResettedPublisher.onNext(())
             })
             .disposed(by: bag)
     }

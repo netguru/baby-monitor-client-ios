@@ -37,12 +37,8 @@ final class OnboardingPairingCoordinator: Coordinator {
 private extension OnboardingPairingCoordinator {
     
     func setupRemoteResetHandling() {
-        appDependencies.applicationResetter.localResetCompleted.asObservable()
-            .distinctUntilChanged()
-            .filter {
-                $0 == true
-            }.subscribe(onNext: {
-                [weak self] resetCompleted in
+        appDependencies.applicationResetter.localResetCompletionObservable
+            .subscribe(onNext: { [weak self] resetCompleted in
                 UserDefaults.appMode = .none
                 self?.navigationController.popToRootViewController(animated: true)
             }).disposed(by: disposeBag)
@@ -63,17 +59,16 @@ private extension OnboardingPairingCoordinator {
         let viewModel = OnboardingContinuableViewModel(role: role)
         let viewController = OnboardingContinuableViewController(viewModel: viewModel)
         viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
-                self?.connectTo(viewModel: viewModel)
-            })
-            .disposed(by: viewModel.bag)
+            self?.connectTo(viewModel: viewModel)
+        }).disposed(by: viewModel.bag)
         return viewController
     }
     
     func connectTo(viewModel: OnboardingContinuableViewModel) {
         viewModel.cancelTap?.subscribe(onNext: { [weak self] in
-                self?.navigationController.popViewController(animated: true)
-            })
-            .disposed(by: viewModel.bag)
+            self?.navigationController.popViewController(animated: true)
+        })
+        .disposed(by: viewModel.bag)
         viewModel.nextButtonTap?.subscribe(onNext: { [weak self, weak viewModel] in
                 guard let role = viewModel?.role else {
                     return
@@ -106,9 +101,9 @@ private extension OnboardingPairingCoordinator {
     
     func connect(to viewModel: ClientSetupOnboardingViewModel) {
         viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
-                self.navigationController.popViewController(animated: true)
-            })
-            .disposed(by: viewModel.bag)
+            self.navigationController.popViewController(animated: true)
+        })
+        .disposed(by: viewModel.bag)
     }
     
     func showPairingView() {
@@ -136,9 +131,9 @@ private extension OnboardingPairingCoordinator {
         }
         let viewController = OnboardingClientSetupViewController(viewModel: viewModel)
         viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
-                self?.connect(to: viewModel)
-            })
-            .disposed(by: viewModel.bag)
+            self?.connect(to: viewModel)
+        })
+        .disposed(by: viewModel.bag)
         navigationController.present(viewController, animated: true)
     }
 }

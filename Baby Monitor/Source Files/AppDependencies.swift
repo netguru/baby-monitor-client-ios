@@ -96,20 +96,21 @@ final class AppDependencies {
     }()
     
     private (set) lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in
-        guard let url = self.urlConfiguration.url else {
-            return nil
-        }
-        guard let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else {
+        guard let url = self.urlConfiguration.url,
+              let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else {
             return nil
         }
         let webSocket = PSWebSocketWrapper(socket: rawSocket)
         webSocket.disconnectionObservable
-            .subscribe(onNext: { [weak self] in self?.socketCommunicationsManager.terminate() })
+            .subscribe(onNext: { [weak self] in
+                self?.socketCommunicationsManager.terminate()
+            })
             .disposed(by: self.bag)
         webSocket.errorObservable
             .subscribe(onNext: { [weak self] _ in
                 self?.socketCommunicationsManager.reset()
-            }).disposed(by: self.bag)
+            })
+            .disposed(by: self.bag)
         return webSocket
     }
     
@@ -197,13 +198,11 @@ final class AppDependencies {
             urlConfiguration: urlConfiguration,
             webSocketWebRtcService: webSocketWebRtcService,
             localNotificationService: localNotificationService)
-        resetter.localResetCompleted.asObservable()
-            .distinctUntilChanged()
-            .filter {
-                $0 == true
-            }.subscribe(onNext: { [weak self] resetCompleted in
+        resetter.localResetCompletionObservable
+            .subscribe(onNext: { [weak self] resetCompleted in
                 self?.socketCommunicationsManager.terminate()
-            }).disposed(by: bag)
+            })
+            .disposed(by: bag)
         return resetter
     }()
 }

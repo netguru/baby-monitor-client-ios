@@ -12,15 +12,15 @@ class ApplicationResetterTests: XCTestCase {
     private var initialSelfPushNotificationsToken: String!
     private var initialReceiverPushNotificationsToken: String!
     
-    private var fakeMessageServer: MessageServerMock!
-    private var fakeEventMessageService: WebSocketEventMessageServiceMock!
-    private var fakeBabyModel: DatabaseRepositoryMock!
-    private var fakeMemoryCleaner: MemoryCleanerMock!
-    private var fakeUrlConfiguration: URLConfigurationMock!
-    private var fakeWebSocketWebRtcService: WebSocketWebRtcServiceMock!
-    private var fakeNotificationServiceProtocol: NotificationServiceProtocolMock!
-    private var fakeEventMessageServiceWrapper: ClearableLazyItem<WebSocketEventMessageServiceProtocol>!
-    private var fakeWebSocketWebRtcWrapper: ClearableLazyItem<WebSocketWebRtcServiceProtocol>!
+    private var messageServerMock: MessageServerMock!
+    private var eventMessageServiceMock: WebSocketEventMessageServiceMock!
+    private var babyModelMock: DatabaseRepositoryMock!
+    private var memoryCleanerMock: MemoryCleanerMock!
+    private var urlConfigurationMock: URLConfigurationMock!
+    private var webSocketWebRtcServiceMock: WebSocketWebRtcServiceMock!
+    private var notificationServiceProtocolMock: NotificationServiceProtocolMock!
+    private var eventMessageServiceMockWrapper: ClearableLazyItem<WebSocketEventMessageServiceProtocol>!
+    private var webSocketWebRtcMockWrapper: ClearableLazyItem<WebSocketWebRtcServiceProtocol>!
     private var bag: DisposeBag!
     
     override func setUp() {
@@ -30,15 +30,15 @@ class ApplicationResetterTests: XCTestCase {
         initialSelfPushNotificationsToken = UserDefaults.selfPushNotificationsToken
         initialReceiverPushNotificationsToken = UserDefaults.receiverPushNotificationsToken
         
-        fakeMessageServer = MessageServerMock()
-        fakeEventMessageService = WebSocketEventMessageServiceMock()
-        fakeBabyModel = DatabaseRepositoryMock()
-        fakeMemoryCleaner = MemoryCleanerMock()
-        fakeUrlConfiguration = URLConfigurationMock()
-        fakeWebSocketWebRtcService = WebSocketWebRtcServiceMock()
-        fakeNotificationServiceProtocol = NotificationServiceProtocolMock()
-        fakeEventMessageServiceWrapper = ClearableLazyItem(constructor: { return self.fakeEventMessageService })
-        fakeWebSocketWebRtcWrapper = ClearableLazyItem(constructor: { return self.fakeWebSocketWebRtcService })
+        messageServerMock = MessageServerMock()
+        eventMessageServiceMock = WebSocketEventMessageServiceMock()
+        babyModelMock = DatabaseRepositoryMock()
+        memoryCleanerMock = MemoryCleanerMock()
+        urlConfigurationMock = URLConfigurationMock()
+        webSocketWebRtcServiceMock = WebSocketWebRtcServiceMock()
+        notificationServiceProtocolMock = NotificationServiceProtocolMock()
+        eventMessageServiceMockWrapper = ClearableLazyItem(constructor: { return self.eventMessageServiceMock })
+        webSocketWebRtcMockWrapper = ClearableLazyItem(constructor: { return self.webSocketWebRtcServiceMock })
         bag = DisposeBag()
     }
     
@@ -46,17 +46,17 @@ class ApplicationResetterTests: XCTestCase {
         // Given:
         UserDefaults.appMode = .parent
         let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Bool.self)
+        let observer = scheduler.createObserver(Void.self)
         let sut = makeAppResetter()
-        sut.localResetCompleted.subscribe(observer).disposed(by: bag)
+        sut.localResetCompletionObservable.subscribe(observer).disposed(by: bag)
         
         //  When:
         sut.reset(isRemote: false)
         
         //  Then:
-        XCTAssertEqual(fakeEventMessageService.messages, [resetEventMessage])    // should send reset message to remote client
-        XCTAssertEqual(fakeNotificationServiceProtocol.resetTokensCalled, true)
-        XCTAssertRecordedElements(observer.events, [false, true])               // should emit value once reset started and finished
+        XCTAssertEqual(eventMessageServiceMock.messages, [resetEventMessage])    // should send reset message to remote client
+        XCTAssertEqual(notificationServiceProtocolMock.resetTokensCalled, true)
+        XCTAssertEqual(observer.events.count, 1)
         performCommonTests()
     }
     
@@ -64,17 +64,17 @@ class ApplicationResetterTests: XCTestCase {
         // Given:
         UserDefaults.appMode = .parent
         let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Bool.self)
+        let observer = scheduler.createObserver(Void.self)
         let sut = makeAppResetter()
-        sut.localResetCompleted.subscribe(observer).disposed(by: bag)
+        sut.localResetCompletionObservable.subscribe(observer).disposed(by: bag)
         
         //  When:
         sut.reset(isRemote: true)
         
         //  Then:
-        XCTAssertEqual(fakeEventMessageService.messages, [String]())    // should not send reset message
-        XCTAssertEqual(fakeNotificationServiceProtocol.resetTokensCalled, true)
-        XCTAssertRecordedElements(observer.events, [false, true])               // should emit value once reset started and finished
+        XCTAssertEqual(eventMessageServiceMock.messages, [String]())    // should not send reset message
+        XCTAssertEqual(notificationServiceProtocolMock.resetTokensCalled, true)
+        XCTAssertEqual(observer.events.count, 1)
         performCommonTests()
     }
     
@@ -82,17 +82,17 @@ class ApplicationResetterTests: XCTestCase {
         // Given:
         UserDefaults.appMode = .baby
         let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Bool.self)
+        let observer = scheduler.createObserver(Void.self)
         let sut = makeAppResetter()
-        sut.localResetCompleted.subscribe(observer).disposed(by: bag)
+        sut.localResetCompletionObservable.subscribe(observer).disposed(by: bag)
         
         //  When:
         sut.reset(isRemote: false)
         
         //  Then:
-        XCTAssertEqual(fakeMessageServer.sentMessages, [resetEventMessage])    // should send reset message to remote client
-        XCTAssertEqual(fakeNotificationServiceProtocol.resetTokensCalled, false)    // child app does not have tokens to reset
-        XCTAssertRecordedElements(observer.events, [false, true])               // should emit value once reset started and finished
+        XCTAssertEqual(messageServerMock.sentMessages, [resetEventMessage])    // should send reset message to remote client
+        XCTAssertEqual(notificationServiceProtocolMock.resetTokensCalled, false)    // child app does not have tokens to reset
+        XCTAssertEqual(observer.events.count, 1)
         performCommonTests()
     }
     
@@ -100,17 +100,17 @@ class ApplicationResetterTests: XCTestCase {
         // Given:
         UserDefaults.appMode = .baby
         let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(Bool.self)
+        let observer = scheduler.createObserver(Void.self)
         let sut = makeAppResetter()
-        sut.localResetCompleted.subscribe(observer).disposed(by: bag)
+        sut.localResetCompletionObservable.subscribe(observer).disposed(by: bag)
         
         //  When:
         sut.reset(isRemote: true)
         
         //  Then:
-        XCTAssertEqual(fakeMessageServer.sentMessages, [String]())    // should not send reset message
-        XCTAssertEqual(fakeNotificationServiceProtocol.resetTokensCalled, false)    // child app does not have tokens to reset
-        XCTAssertRecordedElements(observer.events, [false, true])               // should emit value once reset started and finished
+        XCTAssertEqual(messageServerMock.sentMessages, [String]())    // should not send reset message
+        XCTAssertEqual(notificationServiceProtocolMock.resetTokensCalled, false)    // child app does not have tokens to reset
+        XCTAssertEqual(observer.events.count, 1)
         performCommonTests()
     }
     
@@ -130,21 +130,21 @@ private extension ApplicationResetterTests {
         XCTAssertEqual(UserDefaults.isSendingCryingsAllowed, false)
         XCTAssertEqual(UserDefaults.selfPushNotificationsToken, "")
         XCTAssertNil(UserDefaults.receiverPushNotificationsToken)
-        XCTAssertEqual(fakeBabyModel.baby, Baby.initial)
-        XCTAssertEqual(fakeMemoryCleaner.cleanMemoryCalled, true)
-        XCTAssertNil(fakeUrlConfiguration.url)
-        XCTAssertEqual(fakeWebSocketWebRtcService.closeCalled, true)
+        XCTAssertEqual(babyModelMock.baby, Baby.initial)
+        XCTAssertEqual(memoryCleanerMock.cleanMemoryCalled, true)
+        XCTAssertNil(urlConfigurationMock.url)
+        XCTAssertEqual(webSocketWebRtcServiceMock.closeCalled, true)
     }
     
     func makeAppResetter() -> DefaultApplicationResetter {
         return DefaultApplicationResetter(
-            messageServer: fakeMessageServer,
-            webSocketEventMessageService: fakeEventMessageServiceWrapper,
-            babyModelControllerProtocol: fakeBabyModel,
-            memoryCleaner: fakeMemoryCleaner,
-            urlConfiguration: fakeUrlConfiguration,
-            webSocketWebRtcService: fakeWebSocketWebRtcWrapper,
-            localNotificationService: fakeNotificationServiceProtocol
+            messageServer: messageServerMock,
+            webSocketEventMessageService: eventMessageServiceMockWrapper,
+            babyModelControllerProtocol: babyModelMock,
+            memoryCleaner: memoryCleanerMock,
+            urlConfiguration: urlConfigurationMock,
+            webSocketWebRtcService: webSocketWebRtcMockWrapper,
+            localNotificationService: notificationServiceProtocolMock
         )
     }
 }

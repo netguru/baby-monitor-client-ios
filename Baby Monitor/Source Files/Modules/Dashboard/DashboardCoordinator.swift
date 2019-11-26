@@ -36,11 +36,8 @@ final class DashboardCoordinator: Coordinator {
     }
     
     private func setupResettingApp() {
-        appDependencies.applicationResetter.localResetCompleted.asObservable()
-            .distinctUntilChanged()
-            .filter {
-                $0 == true
-            }.subscribe(onNext: {
+        appDependencies.applicationResetter.localResetCompletionObservable
+            .subscribe(onNext: {
                 [weak self] resetCompleted in
                 self?.onEnding?()
             }).disposed(by: disposeBag)
