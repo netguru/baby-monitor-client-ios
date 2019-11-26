@@ -9,7 +9,7 @@ final class VideoCapturerMock: VideoCapturer {
 
     private(set) var isCapturing = false
 
-    func resumeCapturing() {
+    func startCapturing() {
         isCapturing = true
     }
 

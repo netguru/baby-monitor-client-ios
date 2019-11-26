@@ -35,7 +35,7 @@ extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
             let intFps = Int(fps)
             let capturer = RTCCameraVideoCapturer(delegate: vSource)
             let videoCapturer = WebRTCVideoCapturer(device: camera, format: format, framesPerSecond: intFps, capturer: capturer)
-            videoCapturer.resumeCapturing()
+            videoCapturer.startCapturing()
             let vTrack = videoTrack(with: vSource, trackId: "ARDAMSv0")
             localStream.addVideoTrack(vTrack)
 

@@ -110,7 +110,7 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             }
             return
         }
-        capturer.resumeCapturing()
+        capturer.startCapturing()
         mediaStreamPublisher.onNext(stream)
     }
 

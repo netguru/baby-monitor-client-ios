@@ -7,7 +7,7 @@ import WebRTC
 
 protocol VideoCapturer {
     var isCapturing: Bool { get }
-    func resumeCapturing()
+    func startCapturing()
     func stopCapturing()
 }
 
@@ -26,7 +26,7 @@ final class WebRTCVideoCapturer: VideoCapturer {
         self.capturer = capturer
     }
 
-    func resumeCapturing() {
+    func startCapturing() {
         capturer.startCapture(with: device, format: format, fps: framesPerSecond) { [weak self] _ in
             self?.isCapturing = true
         }

@@ -25,7 +25,7 @@ final class PeerConnectionFactoryMock: PeerConnectionFactoryProtocol {
     }
     
     func createStream() -> (VideoCapturer?, MediaStream?) {
-        videoCapturer?.resumeCapturing()
+        videoCapturer?.startCapturing()
         return (videoCapturer, mediaStream)
     }
 }
