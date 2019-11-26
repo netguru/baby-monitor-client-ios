@@ -75,7 +75,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         appDependencies.databaseRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent), completion: { _ in
-            print("notify will present saved")
             completionHandler([.alert, .sound, .badge])
         })
     }
