@@ -14,7 +14,7 @@ protocol ActivityLogEventsRepositoryProtocol: Any {
     /// Persists activity log event in repository for current baby
     ///
     /// - Parameter cryingEvent: object to persist
-    func save(activityLogEvent: ActivityLogEvent, completion: @escaping ((_ isSavedSuccessfully: Bool) -> Void))
+    func save(activityLogEvent: ActivityLogEvent, completion: @escaping (Result<()>) -> Void)
     
     /// Returns all persisted activity log events
     ///
