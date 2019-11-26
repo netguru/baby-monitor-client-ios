@@ -11,7 +11,26 @@ protocol PeerConnectionFactoryProtocol {
     func createStream() -> (VideoCapturer?, MediaStream?)
 }
 
-typealias VideoCapturer = AnyObject
+protocol VideoCapturer {
+    func resumeCapturing()
+    func stopCapturing()
+}
+
+struct WebRTCVideoCapturer: VideoCapturer {
+
+    let device: AVCaptureDevice
+    let format: AVCaptureDevice.Format
+    let fps: Int
+    let capturer: RTCCameraVideoCapturer
+
+    func resumeCapturing() {
+        capturer.startCapture(with: device, format: format, fps: fps)
+    }
+
+    func stopCapturing() {
+        capturer.stopCapture()
+    }
+}
 
 extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
 
@@ -36,6 +55,7 @@ extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
             let fps = format.videoSupportedFrameRateRanges.first?.maxFrameRate {
             let intFps = Int(fps)
             let capturer = RTCCameraVideoCapturer(delegate: vSource)
+            let videoCapturer = WebRTCVideoCapturer(device: camera, format: format, fps: intFps, capturer: capturer)
             capturer.startCapture(with: camera, format: format, fps: intFps)
             let vTrack = videoTrack(with: vSource, trackId: "ARDAMSv0")
             localStream.addVideoTrack(vTrack)
@@ -43,7 +63,7 @@ extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
             let aTrack = audioTrack(withTrackId: "ARDAMSa0")
             localStream.addAudioTrack(aTrack)
 
-            return (capturer, localStream)
+            return (videoCapturer, localStream)
         }
         return (nil, nil)
     }

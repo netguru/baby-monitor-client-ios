@@ -6,6 +6,11 @@
 @testable import BabyMonitor
 import WebRTC
 
+struct VideoCapturerMock: VideoCapturer {
+    func resumeCapturing() {}
+    func stopCapturing() {}
+}
+
 final class PeerConnectionFactoryMock: PeerConnectionFactoryProtocol {
 
     private let mediaStream: MediaStream?
@@ -19,7 +24,8 @@ final class PeerConnectionFactoryMock: PeerConnectionFactoryProtocol {
     func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol {
         return peerConnectionProtocol
     }
+    
     func createStream() -> (VideoCapturer?, MediaStream?) {
-        return ("" as VideoCapturer, mediaStream)
+        return (VideoCapturerMock(), mediaStream)
     }
 }

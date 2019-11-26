@@ -27,6 +27,7 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     }
     private var streamingState = StreamingState.active
     private var isStarted = false
+    private var videoCapturer: VideoCapturer?
     private var mediaStreamInstance: MediaStream?
     private let mediaStreamPublisher = PublishSubject<MediaStream>()
     private let sdpAnswerPublisher = PublishSubject<SessionDescriptionProtocol>()
@@ -87,7 +88,6 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         peerConnection?.close()
         isStarted = false
     }
-    private var videoCapturer: VideoCapturer?
 
     private func startMediaStream() {
         let (optionalCapturer, optionalStream) = peerConnectionFactory.createStream()
@@ -100,26 +100,23 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     func pauseMediaStream() {
         /// If client previews the server stream we shouldn't pause it.
         guard streamingState == .active && lastConnectionState != .connected else { return }
-        videoCapturer?.stopCapture()
+        videoCapturer?.stopCapturing()
         streamingState = .paused
     }
 
     func resumeMediaStream() {
-        guard streamingState == .paused else {
+        guard streamingState == .paused,
+            let capturer = videoCapturer,
+            let stream = mediaStreamInstance else {
             /// If client is currently previewing a server stream we need to pass stream one more time so it would be enabled on server preview too.
             if lastConnectionState == .connected, let stream = mediaStreamInstance {
                 mediaStreamPublisher.onNext(stream)
             }
             return
         }
-        startMediaStream()
+        capturer.resumeCapturing()
         streamingState = .active
-//        let devices = RTCCameraVideoCapturer.captureDevices()
-//        if let camera = devices.first,
-//            let format = RTCCameraVideoCapturer.supportedFormats(for: camera).last,
-//            let fps = format.videoSupportedFrameRateRanges.first?.maxFrameRate  {
-//        videoCapturer?.startCapture(with: camera, format: format, fps: Int(fps))
-//        }
+        mediaStreamPublisher.onNext(stream)
     }
 
     func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol) {
