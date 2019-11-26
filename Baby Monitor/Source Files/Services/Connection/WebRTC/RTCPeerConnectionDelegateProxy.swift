@@ -12,12 +12,17 @@ final class RTCPeerConnectionDelegateProxy: NSObject, RTCPeerConnectionDelegate 
     private var signalingStatePublisher = BehaviorSubject<RTCSignalingState>(value: .closed)
 
     var onSignalingStateChanged: ((RTCPeerConnection, RTCSignalingState) -> Void)?
+    var onConnectionStateChanged: ((RTCPeerConnection, RTCPeerConnectionState) -> Void)?
     var onAddedStream: ((RTCPeerConnection, RTCMediaStream) -> Void)?
     var onGotIceCandidate: ((RTCPeerConnection, RTCIceCandidate) -> Void)?
 
     func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCSignalingState) {
         onSignalingStateChanged?(peerConnection, newState)
         signalingStatePublisher.onNext(newState)
+    }
+
+    func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCPeerConnectionState) {
+        onConnectionStateChanged?(peerConnection, newState)
     }
 
     func peerConnection(_ peerConnection: RTCPeerConnection, didAdd stream: RTCMediaStream) {

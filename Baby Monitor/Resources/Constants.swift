@@ -18,7 +18,7 @@ enum Constants {
     static let notificationRequestTimeLimit: TimeInterval = 3 * 60
 
     /// A time after which the video stream should be hidden.
-    static let videoStreamVisibilityTimeLimit: TimeInterval = 60
+    static let videoStreamVisibilityTimeLimit: TimeInterval = 15
 
     /// A limit for searching for a baby device to be paired to.
     static let pairingDeviceSearchTimeLimit: TimeInterval = 2 * 60

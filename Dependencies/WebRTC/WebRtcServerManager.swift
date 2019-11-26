@@ -22,7 +22,10 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     var mediaStream: Observable<MediaStream> {
         return mediaStreamPublisher
     }
-
+    private enum StreamingState {
+        case active, paused
+    }
+    private var streamingState = StreamingState.active
     private var isStarted = false
     private var mediaStreamInstance: MediaStream?
     private let mediaStreamPublisher = PublishSubject<MediaStream>()
@@ -35,6 +38,9 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     private let remoteDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
     private let localDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
     private let scheduler: AsyncScheduler
+    /// Connection between the client and the server.
+    /// Active when client previews stream from server.
+    private var lastConnectionState: RTCPeerConnectionState = .closed
 
     private var streamMediaConstraints: RTCMediaConstraints {
         return RTCMediaConstraints(
@@ -57,6 +63,17 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         connectionDelegateProxy.onGotIceCandidate = { [weak self] _, iceCandidate in
             guard let self = self else { return }
             self.iceCandidatePublisher.onNext(iceCandidate)
+        }
+        connectionDelegateProxy.onConnectionStateChanged = { [weak self] _, newConnectionState in
+            switch newConnectionState {
+            case .closed:
+                self?.pauseMediaStream()
+            case .connected:
+                self?.resumeMediaStream()
+            default:
+                break
+            }
+            self?.lastConnectionState = newConnectionState
         }
     }
 
@@ -81,11 +98,28 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     }
 
     func pauseMediaStream() {
+        /// If client previews the server stream we shouldn't pause it.
+        guard streamingState == .active && lastConnectionState != .connected else { return }
         videoCapturer?.stopCapture()
+        streamingState = .paused
     }
 
     func resumeMediaStream() {
+        guard streamingState == .paused else {
+            /// If client is currently previewing a server stream we need to pass stream one more time so it would be enabled on server preview too.
+            if lastConnectionState == .connected, let stream = mediaStreamInstance {
+                mediaStreamPublisher.onNext(stream)
+            }
+            return
+        }
         startMediaStream()
+        streamingState = .active
+//        let devices = RTCCameraVideoCapturer.captureDevices()
+//        if let camera = devices.first,
+//            let format = RTCCameraVideoCapturer.supportedFormats(for: camera).last,
+//            let fps = format.videoSupportedFrameRateRanges.first?.maxFrameRate  {
+//        videoCapturer?.startCapture(with: camera, format: format, fps: Int(fps))
+//        }
     }
 
     func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol) {
