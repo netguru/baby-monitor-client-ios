@@ -117,7 +117,6 @@ final class ServerViewController: BaseViewController {
     
     private func setupBindings() {
         viewModel.stream
-//            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] stream in
                 self.attach(stream: stream)
             })
