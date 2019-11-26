@@ -57,8 +57,7 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
                 WebRtcConstraintKey.offerToReceiveAudio: WebRtcConstraintValue.true
             ],
             optionalConstraints: [
-                WebRtcConstraintKey.dtlsSrtpKeyAgreement: WebRtcConstraintValue.true,
-                WebRtcConstraintKey.iceRestart: WebRtcConstraintValue.true
+                WebRtcConstraintKey.dtlsSrtpKeyAgreement: WebRtcConstraintValue.true
             ]
         )
     }
