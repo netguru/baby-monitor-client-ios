@@ -7,13 +7,13 @@ import AVKit
 import WebRTC
 
 protocol PeerConnectionFactoryProtocol {
-    func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol
+    func peerConnection(with delegate: PeerConnectionProxy) -> PeerConnectionProtocol
     func createStream() -> (VideoCapturer?, MediaStream?)
 }
 
 extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
 
-    func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol {
+    func peerConnection(with delegate: PeerConnectionProxy) -> PeerConnectionProtocol {
         let config = RTCConfiguration()
         config.iceServers = []
         config.sdpSemantics = .unifiedPlan

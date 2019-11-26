@@ -20,7 +20,7 @@ final class PeerConnectionFactoryMock: PeerConnectionFactoryProtocol {
         self.peerConnectionProtocol = peerConnectionProtocol
     }
 
-    func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol {
+    func peerConnection(with delegate: PeerConnectionProxy) -> PeerConnectionProtocol {
         return peerConnectionProtocol
     }
     

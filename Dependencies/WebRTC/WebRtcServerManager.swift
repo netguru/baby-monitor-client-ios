@@ -31,7 +31,7 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
 
     private var peerConnection: PeerConnectionProtocol?
     private let peerConnectionFactory: PeerConnectionFactoryProtocol
-    private let connectionDelegateProxy: RTCPeerConnectionDelegateProxy
+    private let connectionDelegateProxy: PeerConnectionProxy
     private let remoteDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
     private let localDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
     private let scheduler: AsyncScheduler
@@ -46,9 +46,9 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         )
     }
 
-    init(peerConnectionFactory: PeerConnectionFactoryProtocol, scheduler: AsyncScheduler = DispatchQueue.main) {
+    init(peerConnectionFactory: PeerConnectionFactoryProtocol, connectionDelegateProxy: PeerConnectionProxy, scheduler: AsyncScheduler = DispatchQueue.main) {
         self.peerConnectionFactory = peerConnectionFactory
-        self.connectionDelegateProxy = RTCPeerConnectionDelegateProxy()
+        self.connectionDelegateProxy = connectionDelegateProxy
         self.remoteDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         self.localDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         self.scheduler = scheduler
