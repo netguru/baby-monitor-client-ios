@@ -11,27 +11,6 @@ protocol PeerConnectionFactoryProtocol {
     func createStream() -> (VideoCapturer?, MediaStream?)
 }
 
-protocol VideoCapturer {
-    func resumeCapturing()
-    func stopCapturing()
-}
-
-struct WebRTCVideoCapturer: VideoCapturer {
-
-    let device: AVCaptureDevice
-    let format: AVCaptureDevice.Format
-    let fps: Int
-    let capturer: RTCCameraVideoCapturer
-
-    func resumeCapturing() {
-        capturer.startCapture(with: device, format: format, fps: fps)
-    }
-
-    func stopCapturing() {
-        capturer.stopCapture()
-    }
-}
-
 extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
 
     func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol {

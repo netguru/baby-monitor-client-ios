@@ -99,8 +99,9 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
 
     func pauseMediaStream() {
         /// If client previews the server stream we shouldn't pause it.
-        guard streamingState == .active && lastConnectionState != .connected else { return }
-        videoCapturer?.stopCapturing()
+        guard let capturer = videoCapturer,
+            streamingState == .active && lastConnectionState != .connected else { return }
+        capturer.stopCapturing()
         streamingState = .paused
     }
 
