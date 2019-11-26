@@ -8,11 +8,15 @@ import WebRTC
 
 final class PeerConnectionFactoryMock: PeerConnectionFactoryProtocol {
 
+    private let videoCapturer: VideoCapturer?
     private let mediaStream: MediaStream?
     private let peerConnectionProtocol: PeerConnectionProtocol
 
-    init(peerConnectionProtocol: PeerConnectionProtocol, mediaStream: MediaStream? = nil) {
+    init(peerConnectionProtocol: PeerConnectionProtocol,
+         videoCapturer: VideoCapturer? = nil,
+         mediaStream: MediaStream? = nil) {
         self.mediaStream = mediaStream
+        self.videoCapturer = videoCapturer
         self.peerConnectionProtocol = peerConnectionProtocol
     }
 
@@ -21,6 +25,7 @@ final class PeerConnectionFactoryMock: PeerConnectionFactoryProtocol {
     }
     
     func createStream() -> (VideoCapturer?, MediaStream?) {
-        return (VideoCapturerMock(), mediaStream)
+        videoCapturer?.resumeCapturing()
+        return (videoCapturer, mediaStream)
     }
 }

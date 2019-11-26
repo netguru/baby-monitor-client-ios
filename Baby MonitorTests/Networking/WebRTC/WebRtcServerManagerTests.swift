@@ -65,8 +65,11 @@ class WebRtcServerManagerTests: XCTestCase {
         let observer = scheduler.createObserver(MediaStream.self)
         let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
         let peerConnection = PeerConnectionMock()
+        let videoCapturerMock = VideoCapturerMock()
         let streamId = "test"
-        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection, mediaStream: streamId as MediaStream)
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
+                                                              videoCapturer: videoCapturerMock,
+                                                              mediaStream: streamId as MediaStream)
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
 
         sut.mediaStream
@@ -80,4 +83,80 @@ class WebRtcServerManagerTests: XCTestCase {
         // Then
         XCTAssertEqual([streamId], observer.events.map { ($0.value.element as! String) })
     }
+
+    func testShouldCaptureStreamAfterStart() {
+        // Given
+        let videoCapturerMock = VideoCapturerMock()
+        let peerConnection = PeerConnectionMock()
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection, videoCapturer: videoCapturerMock)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
+
+        // When
+        sut.start()
+
+        // Then
+        XCTAssertEqual(videoCapturerMock.isCapturing, true)
+    }
+
+    func testShouldStopCaptureOnPause() {
+        // Given
+        let videoCapturerMock = VideoCapturerMock()
+        let peerConnection = PeerConnectionMock()
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
+                                                              videoCapturer: videoCapturerMock,
+                                                              mediaStream: "" as MediaStream)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
+
+        // When
+        sut.start()
+        sut.pauseMediaStream()
+
+        // Then
+        XCTAssertEqual(videoCapturerMock.isCapturing, false)
+    }
+
+    func testShouldStartAgainCaptureOnResume() {
+        // Given
+        let videoCapturerMock = VideoCapturerMock()
+        let peerConnection = PeerConnectionMock()
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
+                                                              videoCapturer: videoCapturerMock,
+                                                              mediaStream: "" as MediaStream)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
+
+        // When
+        sut.start()
+        sut.pauseMediaStream()
+        sut.resumeMediaStream()
+
+        // Then
+        XCTAssertEqual(videoCapturerMock.isCapturing, true)
+    }
+
+    func testShouldEmitStreamOnResume() {
+        // Given
+        let videoCapturerMock = VideoCapturerMock()
+        let peerConnection = PeerConnectionMock()
+        let bag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let observer = scheduler.createObserver(MediaStream.self)
+        let streamId = "test"
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
+                                                              videoCapturer: videoCapturerMock,
+                                                              mediaStream: streamId as MediaStream)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
+
+        sut.mediaStream
+            .subscribe(observer)
+            .disposed(by: bag)
+
+        // When
+        sut.start() // emits stream
+        sut.pauseMediaStream()
+        sut.resumeMediaStream() // emits stream
+
+        // Then
+        XCTAssertEqual([streamId, streamId], observer.events.map { ($0.value.element as! String) })
+    }
+
 }
