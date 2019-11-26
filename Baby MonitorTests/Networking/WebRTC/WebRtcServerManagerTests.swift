@@ -84,6 +84,29 @@ class WebRtcServerManagerTests: XCTestCase {
         XCTAssertEqual([streamId], observer.events.map { ($0.value.element as! String) })
     }
 
+    func testShouldNotEmitStreamWhenNoCapturer() {
+        // Given
+        let bag = DisposeBag()
+        let scheduler = TestScheduler(initialClock: 0)
+        let observer = scheduler.createObserver(MediaStream.self)
+        let peerConnection = PeerConnectionMock()
+        let streamId = "test"
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
+                                                              videoCapturer: nil,
+                                                              mediaStream: streamId as MediaStream)
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory, scheduler: AsyncSchedulerMock())
+
+        sut.mediaStream
+            .subscribe(observer)
+            .disposed(by: bag)
+
+        // When
+        sut.start()
+
+        // Then
+        XCTAssertEqual([], observer.events.map { ($0.value.element as! String) })
+    }
+
     func testShouldCaptureStreamAfterStart() {
         // Given
         let videoCapturerMock = VideoCapturerMock()
@@ -158,5 +181,4 @@ class WebRtcServerManagerTests: XCTestCase {
         // Then
         XCTAssertEqual([streamId, streamId], observer.events.map { ($0.value.element as! String) })
     }
-
 }
