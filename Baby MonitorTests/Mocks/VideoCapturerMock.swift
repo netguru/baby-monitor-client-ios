@@ -5,7 +5,15 @@
 
 @testable import BabyMonitor
 
-struct VideoCapturerMock: VideoCapturer {
-    func resumeCapturing() {}
-    func stopCapturing() {}
+final class VideoCapturerMock: VideoCapturer {
+
+    private(set) var isCapturing = false
+
+    func resumeCapturing() {
+        isCapturing = true
+    }
+
+    func stopCapturing() {
+        isCapturing = false
+    }
 }

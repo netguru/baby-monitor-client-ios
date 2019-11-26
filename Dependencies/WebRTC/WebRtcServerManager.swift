@@ -22,10 +22,6 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     var mediaStream: Observable<MediaStream> {
         return mediaStreamPublisher
     }
-    private enum StreamingState {
-        case active, paused
-    }
-    private var streamingState = StreamingState.active
     private var isStarted = false
     private var videoCapturer: VideoCapturer?
     private var mediaStreamInstance: MediaStream?
@@ -67,7 +63,7 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         }
         connectionDelegateProxy.onConnectionStateChanged = { [weak self] _, newConnectionState in
             switch newConnectionState {
-            case .closed:
+            case .disconnected:
                 self?.pauseMediaStream()
             case .connected:
                 self?.resumeMediaStream()
@@ -100,14 +96,13 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     func pauseMediaStream() {
         /// If client previews the server stream we shouldn't pause it.
         guard let capturer = videoCapturer,
-            streamingState == .active && lastConnectionState != .connected else { return }
+            capturer.isCapturing && lastConnectionState != .connected else { return }
         capturer.stopCapturing()
-        streamingState = .paused
     }
 
     func resumeMediaStream() {
-        guard streamingState == .paused,
-            let capturer = videoCapturer,
+        guard let capturer = videoCapturer,
+            !capturer.isCapturing,
             let stream = mediaStreamInstance else {
             /// If client is currently previewing a server stream we need to pass stream one more time so it would be enabled on server preview too.
             if lastConnectionState == .connected, let stream = mediaStreamInstance {
@@ -116,7 +111,6 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             return
         }
         capturer.resumeCapturing()
-        streamingState = .active
         mediaStreamPublisher.onNext(stream)
     }
 
