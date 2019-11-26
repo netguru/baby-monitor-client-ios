@@ -28,9 +28,7 @@ final class AppDependencies {
         storageService: storageServerService)
     
     /// Service for capturing/recording microphone audio
-    private(set) lazy var audioMicrophoneService: AudioMicrophoneServiceProtocol? =
-//    nil
-        try? AudioMicrophoneService(microphoneFactory: AudioKitMicrophoneFactory.makeMicrophoneFactory)
+    private(set) lazy var audioMicrophoneService: AudioMicrophoneServiceProtocol? = try? AudioMicrophoneService(microphoneFactory: AudioKitMicrophoneFactory.makeMicrophoneFactory)
     
     let microphonePermissionProvider: MicrophonePermissionProviderProtocol = MicrophonePermissionProvider()
     
