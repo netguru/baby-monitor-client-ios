@@ -13,8 +13,10 @@ protocol WebRtcServerManagerProtocol {
     /// Closes connection
     func stop()
 
+    /// Pauses video streaming.
     func pauseMediaStream()
 
+    /// Resumes video streaming.
     func resumeMediaStream()
 
     /// Sets session description answer
