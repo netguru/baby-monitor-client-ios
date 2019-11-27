@@ -29,11 +29,13 @@ final class DashboardViewModel {
     // MARK: - Private properties
     private let connectionChecker: ConnectionChecker
     
-    init(connectionChecker: ConnectionChecker, babyModelController: BabyModelControllerProtocol, webSocketEventMessageService: WebSocketEventMessageServiceProtocol, microphonePermissionProvider: MicrophonePermissionProviderProtocol) {
+    init(connectionChecker: ConnectionChecker, babyModelController: BabyModelControllerProtocol,
+         webSocketEventMessageService: WebSocketEventMessageServiceProtocol, microphonePermissionProvider: MicrophonePermissionProviderProtocol) {
         self.connectionChecker = connectionChecker
         self.babyModelController = babyModelController
         self.webSocketEventMessageService = webSocketEventMessageService
         self.microphonePermissionProvider = microphonePermissionProvider
+        webSocketEventMessageService.start()
         setup()
         rxSetup()
     }
@@ -45,8 +47,8 @@ final class DashboardViewModel {
     func attachInput(liveCameraTap: Observable<Void>, activityLogTap: Observable<Void>, settingsTap: Observable<Void>) {
         liveCameraPreview = liveCameraTap
             .flatMapLatest { [unowned self] _ in
-                self.microphonePermissionProvider.getMicrophonePermission()
-            }
+            self.microphonePermissionProvider.getMicrophonePermission()
+        }
         self.activityLogTap = activityLogTap
         self.settingsTap = settingsTap
     }
@@ -57,13 +59,15 @@ final class DashboardViewModel {
     func updatePhoto(_ photo: UIImage) {
         babyModelController.updatePhoto(photo)
     }
+}
+
+private extension DashboardViewModel {
     
-    // MARK: - Private functions
-    private func setup() {
+    func setup() {
         connectionChecker.start()
     }
     
-    private func rxSetup() {
+    func rxSetup() {
         connectionChecker.connectionStatus.subscribe(onNext: { [weak self] status in
             guard let self = self, self.shouldPushNotificationsKeyBeSent, status == .connected else {
                 return
