@@ -98,6 +98,6 @@ final class ClientSetupOnboardingViewModel {
             return
         }
         let emptyStateLogEvent = ActivityLogEvent(mode: .emptyState)
-        activityLogEventsRepository.save(activityLogEvent: emptyStateLogEvent)
+        activityLogEventsRepository.save(activityLogEvent: emptyStateLogEvent, completion: { _ in })
     }
 }
