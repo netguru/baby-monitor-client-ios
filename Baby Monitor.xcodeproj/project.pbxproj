@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E5F63B663B2F2D005639BC6 /* WebSocketWebRtcServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F6F66C941ECD091338326 /* WebSocketWebRtcServiceMock.swift */; };
 		1E5F6497439177C406F45FFF /* AppVersionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F607E283F0C73D0034DE1 /* AppVersionProvider.swift */; };
+		1E5F66824FCBBEE9D854F0F3 /* SocketCommunicationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F65E51EC50F20E4AC004C /* SocketCommunicationManagerTests.swift */; };
+		1E5F67AF7244AFABE62F799A /* ApplicationResetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F632CADA6A2D0C7F315E0 /* ApplicationResetter.swift */; };
+		1E5F67FCCB94EB4031A0FF95 /* ApplicationResetterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F63CBA0A3D907D82FE234 /* ApplicationResetterTests.swift */; };
+		1E5F68B8A488E3F60A0DD1B7 /* NotificationServiceProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F6CB3318442AD4368F035 /* NotificationServiceProtocolMock.swift */; };
+		1E5F6BF82EC172976132B335 /* MemoryCleanerProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F61157181D05F22C21AF1 /* MemoryCleanerProtocolMock.swift */; };
+		1E5F6CF6A2F2C644AF699F68 /* SocketCommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F636F36369AD4D0E2F6BD /* SocketCommunicationManager.swift */; };
 		200681BF21FB4FC600340596 /* ParentSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */; };
 		200681C121FB53AA00340596 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200681C021FB53AA00340596 /* SettingsCoordinator.swift */; };
 		200DFD4721F87862009CA3ED /* RoundedRectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */; };
@@ -294,6 +301,13 @@
 /* Begin PBXFileReference section */
 		0806325953361018B6D7E8E8 /* Pods-Baby MonitorTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.development.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"; sourceTree = "<group>"; };
 		1E5F607E283F0C73D0034DE1 /* AppVersionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionProvider.swift; sourceTree = "<group>"; };
+		1E5F61157181D05F22C21AF1 /* MemoryCleanerProtocolMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryCleanerProtocolMock.swift; sourceTree = "<group>"; };
+		1E5F632CADA6A2D0C7F315E0 /* ApplicationResetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationResetter.swift; sourceTree = "<group>"; };
+		1E5F636F36369AD4D0E2F6BD /* SocketCommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketCommunicationManager.swift; sourceTree = "<group>"; };
+		1E5F63CBA0A3D907D82FE234 /* ApplicationResetterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationResetterTests.swift; sourceTree = "<group>"; };
+		1E5F65E51EC50F20E4AC004C /* SocketCommunicationManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketCommunicationManagerTests.swift; sourceTree = "<group>"; };
+		1E5F6CB3318442AD4368F035 /* NotificationServiceProtocolMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationServiceProtocolMock.swift; sourceTree = "<group>"; };
+		1E5F6F66C941ECD091338326 /* WebSocketWebRtcServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketWebRtcServiceMock.swift; sourceTree = "<group>"; };
 		200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsViewModel.swift; sourceTree = "<group>"; };
 		200681C021FB53AA00340596 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleButton.swift; sourceTree = "<group>"; };
@@ -625,12 +639,36 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		1E5F60B3E5B20711DA795DD1 /* App Reset */ = {
+			isa = PBXGroup;
+			children = (
+				1E5F63CBA0A3D907D82FE234 /* ApplicationResetterTests.swift */,
+			);
+			path = "App Reset";
+			sourceTree = "<group>";
+		};
+		1E5F6BF85D8998BB43E031F6 /* Reset */ = {
+			isa = PBXGroup;
+			children = (
+				1E5F632CADA6A2D0C7F315E0 /* ApplicationResetter.swift */,
+			);
+			path = Reset;
+			sourceTree = "<group>";
+		};
 		1E5F6D41BBC430E4299056E5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				1E5F607E283F0C73D0034DE1 /* AppVersionProvider.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		1E5F6D4E1B951F5EF8AF62C8 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				1E5F65E51EC50F20E4AC004C /* SocketCommunicationManagerTests.swift */,
+			);
+			path = Communication;
 			sourceTree = "<group>";
 		};
 		4E1D2C5B21673FE200E92F29 /* CameraPreview */ = {
@@ -733,6 +771,7 @@
 				4E39432F2175D48C00AD7582 /* NetService */,
 				8AEAFBAF217735B3003E756F /* Persistence */,
 				4E5731A12170BA9D00DEAF0B /* MediaPlayer */,
+				1E5F6BF85D8998BB43E031F6 /* Reset */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1000,6 +1039,8 @@
 				8AA7CBCD2187400400FCF62A /* ActivityLog */,
 				8AA7CBC621871AB700FCF62A /* Dashboard */,
 				8A42DAFC2179BF8C00BF5F1B /* ClientSetup */,
+				1E5F60B3E5B20711DA795DD1 /* App Reset */,
+				1E5F6D4E1B951F5EF8AF62C8 /* Communication */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1052,6 +1093,9 @@
 				8A03503023684E6B00CF88C7 /* AsyncSchedulerMock.swift */,
 				9557FA6C237034F7002C9483 /* ServerErrorLoggerMock.swift */,
 				952A6379238DBC2900C3837A /* VideoCapturerMock.swift */,
+				1E5F61157181D05F22C21AF1 /* MemoryCleanerProtocolMock.swift */,
+				1E5F6F66C941ECD091338326 /* WebSocketWebRtcServiceMock.swift */,
+				1E5F6CB3318442AD4368F035 /* NotificationServiceProtocolMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1072,6 +1116,7 @@
 				8A8EF98C21A3F15E0098A27B /* WebRTC */,
 				8A43DAFC217DD1D000E3004D /* ConnectionChecker.swift */,
 				8A43DB01217DD4A500E3004D /* NetServiceConnectionChecker.swift */,
+				1E5F636F36369AD4D0E2F6BD /* SocketCommunicationManager.swift */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -1974,6 +2019,8 @@
 				EC8A8FF921AEA7EE00B5FCCF /* IntroView.swift in Sources */,
 				A1B57ACD22E97F4B0021B314 /* MicrophonePermissionProvider.swift in Sources */,
 				1E5F6497439177C406F45FFF /* AppVersionProvider.swift in Sources */,
+				1E5F67AF7244AFABE62F799A /* ApplicationResetter.swift in Sources */,
+				1E5F6CF6A2F2C644AF699F68 /* SocketCommunicationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2037,6 +2084,11 @@
 				8A50AA9D21E8DBA20058C63A /* WebRtcClientManagerMock.swift in Sources */,
 				8A50AA8921E8D8D60058C63A /* DecodersTests.swift in Sources */,
 				8A50AA8D21E8D8FA0058C63A /* WebRtcServerManagerTests.swift in Sources */,
+				1E5F67FCCB94EB4031A0FF95 /* ApplicationResetterTests.swift in Sources */,
+				1E5F6BF82EC172976132B335 /* MemoryCleanerProtocolMock.swift in Sources */,
+				1E5F63B663B2F2D005639BC6 /* WebSocketWebRtcServiceMock.swift in Sources */,
+				1E5F68B8A488E3F60A0DD1B7 /* NotificationServiceProtocolMock.swift in Sources */,
+				1E5F66824FCBBEE9D854F0F3 /* SocketCommunicationManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

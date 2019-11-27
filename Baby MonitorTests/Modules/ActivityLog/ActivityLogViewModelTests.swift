@@ -41,10 +41,10 @@ class ActivityLogViewModelTests: XCTestCase {
             .disposed(by: disposeBag)
         // When
         
-        babiesRepository.save(activityLogEvent: yesterdayCryingLogEvent)
-        babiesRepository.save(activityLogEvent: secondYesterdayCryingLogEvent)
-        babiesRepository.save(activityLogEvent: todayCryingLogEvent)
-        babiesRepository.save(activityLogEvent: tommorowCryingLogEvent)
+        babiesRepository.save(activityLogEvent: yesterdayCryingLogEvent, completion: { _ in })
+        babiesRepository.save(activityLogEvent: secondYesterdayCryingLogEvent, completion: { _ in })
+        babiesRepository.save(activityLogEvent: todayCryingLogEvent, completion: { _ in })
+        babiesRepository.save(activityLogEvent: tommorowCryingLogEvent, completion: { _ in })
         
         // Then
         XCTAssertEqual(expectedSections, resultSections)

@@ -5,7 +5,7 @@
 
 import RxSwift
 
-protocol WebSocketEventMessageServiceProtocol {
+protocol WebSocketEventMessageServiceProtocol: class {
     var remoteResetObservable: Observable<Void> { get }
     
     func start()

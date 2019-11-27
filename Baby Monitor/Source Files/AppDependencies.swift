@@ -72,9 +72,16 @@ final class AppDependencies {
     }
     
     lazy var webSocketEventMessageService = ClearableLazyItem<WebSocketEventMessageServiceProtocol> { [unowned self] in
-        return WebSocketEventMessageService(
+        let messageService = WebSocketEventMessageService(
             cryingEventsRepository: self.databaseRepository,
             eventMessageConductorFactory: self.eventMessageConductorFactory)
+        messageService.remoteResetObservable
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] in
+                self?.applicationResetter.reset(isRemote: true)
+            })
+            .disposed(by: self.bag)
+        return messageService
     }
     
     lazy var webSocketWebRtcService = ClearableLazyItem<WebSocketWebRtcServiceProtocol> { [unowned self] in
@@ -90,12 +97,21 @@ final class AppDependencies {
         return PSWebSocketServerWrapper(server: webSocketServer)
     }()
     
-    private lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in
-        guard let url = self.urlConfiguration.url else { return nil }
-        guard let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else { return nil }
+    private (set) lazy var webSocket = ClearableLazyItem<WebSocketProtocol?> { [unowned self] in
+        guard let url = self.urlConfiguration.url,
+              let rawSocket = PSWebSocket.clientSocket(with: URLRequest(url: url)) else {
+            return nil
+        }
         let webSocket = PSWebSocketWrapper(socket: rawSocket)
         webSocket.disconnectionObservable
-            .subscribe(onNext: { [unowned self] in self.clearConnection() })
+            .subscribe(onNext: { [weak self] in
+                self?.socketCommunicationsManager.terminate()
+            })
+            .disposed(by: self.bag)
+        webSocket.errorObservable
+            .subscribe(onNext: { [weak self] _ in
+                self?.socketCommunicationsManager.reset()
+            })
             .disposed(by: self.bag)
         return webSocket
     }
@@ -108,6 +124,11 @@ final class AppDependencies {
             messageDecoders: self.webRtcMessageDecoders
         )
     }
+    
+    private(set) lazy var socketCommunicationsManager: SocketCommunicationManager = DefaultSocketCommunicationManager(
+        webSocketEventMessageService: webSocketEventMessageService,
+        webSocketWebRtcService: webSocketWebRtcService,
+        webSocket: webSocket)
     
     // MARK: - Notifications
     
@@ -123,16 +144,24 @@ final class AppDependencies {
     
     private(set) var babyMonitorEventMessagesDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
     
-    private(set) lazy var serverService: ServerServiceProtocol = ServerService(
-        webRtcServerManager: webRtcServer(),
-        messageServer: messageServer,
-        netServiceServer: netServiceServer,
-        webRtcDecoders: webRtcMessageDecoders,
-        cryingService: cryingEventService,
-        babyModelController: databaseRepository,
-        notificationsService: localNotificationService,
-        babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
-    )
+    private(set) lazy var serverService: ServerServiceProtocol = {
+        let service = ServerService(webRtcServerManager: webRtcServer(),
+            messageServer: messageServer,
+            netServiceServer: netServiceServer,
+            webRtcDecoders: webRtcMessageDecoders,
+            cryingService: cryingEventService,
+            babyModelController: databaseRepository,
+            notificationsService: localNotificationService,
+            babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
+        )
+        service.remoteResetEventObservable
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] in
+                self?.applicationResetter.reset(isRemote: true)
+            })
+            .disposed(by: self.bag)
+        return service
+    }()
     
     private(set) var urlConfiguration: URLConfiguration = UserDefaultsURLConfiguration()
     
@@ -151,7 +180,7 @@ final class AppDependencies {
     
     /// Service for handling errors and showing error alerts
     private(set) var errorHandler: ErrorHandlerProtocol = ErrorHandler()
-
+    
     /// Service for sending errors to the server.
     private(set) var serverErrorLogger: ServerErrorLogger = CrashlyticsErrorLogger()
     
@@ -159,38 +188,23 @@ final class AppDependencies {
     
     /// Provides app version and build number
     private(set) var appVersionProvider: AppVersionProvider = DefaultAppVersionProvider()
-}
-
-// MARK: - Resetting app state
-extension AppDependencies {
     
-    func resetTheApplication() {
-        let resetEventString = EventMessage.initWithResetKey().toStringMessage()
-        switch UserDefaults.appMode {
-        case .baby:
-            messageServer.send(message: resetEventString)
-        case .parent:
-            webSocketEventMessageService.get().sendMessage(resetEventString)
-            localNotificationService.resetTokens(completion: { _ in })
-        case .none:
-            break
-        }
-        databaseRepository.removeAllData()
-        memoryCleaner.cleanMemory()
-        urlConfiguration.url = nil
-        webSocketWebRtcService.get().close()
-        UserDefaults.selfPushNotificationsToken = ""
-        UserDefaults.receiverPushNotificationsToken = nil
-        UserDefaults.appMode = .none
-        UserDefaults.isSendingCryingsAllowed = false
-        try? AudioKit.stop()
-
-        clearConnection()
-    }
-    
-    func clearConnection() {
-        webSocketWebRtcService.clear()
-        webSocketEventMessageService.clear()
-        webSocket.clear()
-    }
+    /// Application reset utility
+    private(set) lazy var applicationResetter: ApplicationResetter = {
+        [unowned self] in
+        let resetter = DefaultApplicationResetter(
+            messageServer: messageServer,
+            webSocketEventMessageService: webSocketEventMessageService,
+            babyModelControllerProtocol: databaseRepository,
+            memoryCleaner: memoryCleaner,
+            urlConfiguration: urlConfiguration,
+            webSocketWebRtcService: webSocketWebRtcService,
+            localNotificationService: localNotificationService)
+        resetter.localResetCompletionObservable
+            .subscribe(onNext: { [weak self] resetCompleted in
+                self?.socketCommunicationsManager.terminate()
+            })
+            .disposed(by: bag)
+        return resetter
+    }()
 }
