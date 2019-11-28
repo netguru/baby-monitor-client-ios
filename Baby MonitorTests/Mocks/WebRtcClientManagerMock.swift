@@ -11,13 +11,17 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
     private(set) var isStarted = false
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var iceCandidates = [IceCandidateProtocol]()
+    private(set) var connectionStatusObservable: Observable<WebSocketConnectionStatus>
 
     private let localSdp: SessionDescriptionProtocol?
+    let statePublisher = PublishSubject<WebSocketConnectionStatus>()
 
     init(sdpOffer: SessionDescriptionProtocol? = nil) {
         self.localSdp = sdpOffer
+        self.connectionStatusObservable = statePublisher.asObservable()
     }
-
+    
+    
     func startIfNeeded() {
         isStarted = true
         guard let localSdp = localSdp else {
@@ -52,9 +56,4 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
         return mediaStreamPublisher
     }
     let mediaStreamPublisher = PublishSubject<MediaStream?>()
-
-    var state: Observable<WebRtcClientManagerState> {
-        return statePublisher
-    }
-    let statePublisher = PublishSubject<WebRtcClientManagerState>()
 }

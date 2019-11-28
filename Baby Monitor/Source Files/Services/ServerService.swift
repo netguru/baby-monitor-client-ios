@@ -11,6 +11,7 @@ protocol ServerServiceProtocol: AnyObject {
     var audioMicrophoneServiceErrorObservable: Observable<Void> { get }
     var remoteResetEventObservable: Observable<Void> { get }
     var loggingInfoObservable: Observable<String> { get }
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> { get }
     func startStreaming()
     func stop()
     func pauseVideoStreaming()
@@ -25,6 +26,7 @@ final class ServerService: ServerServiceProtocol {
     lazy var audioMicrophoneServiceErrorObservable = audioMicrophoneServiceErrorPublisher.asObservable()
     lazy var remoteResetEventObservable = remoteResetEventPublisher.asObservable()
     lazy var loggingInfoObservable = loggingInfoPublisher.asObservable()
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus>
 
     private let parentResponseTime: TimeInterval
     private let webRtcServerManager: WebRtcServerManagerProtocol
@@ -50,6 +52,7 @@ final class ServerService: ServerServiceProtocol {
         self.notificationsService = notificationsService
         self.babyMonitorEventMessagesDecoder = babyMonitorEventMessagesDecoder
         self.parentResponseTime = parentResponseTime
+        self.connectionStatusObservable = messageServer.connectionStatusObservable
         rxSetup()
     }
     

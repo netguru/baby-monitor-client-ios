@@ -23,6 +23,11 @@ final class WebSocketServerMock: WebSocketServerProtocol {
     }
     let disconnectedSocketPublisher = PublishSubject<WebSocketProtocol>()
     
+    let connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        return connectionStatusPublisher
+    }
+    
     private(set) var isStarted = false
     
     func start() {

@@ -58,9 +58,9 @@ final class DashboardCoordinator: Coordinator {
 
     // Prepare DashboardViewModel
     private func createDashboardViewModel() -> DashboardViewModel {
-        let viewModel = DashboardViewModel(
-            connectionChecker: appDependencies.connectionChecker, babyModelController: appDependencies.databaseRepository,
-            webSocketEventMessageService: appDependencies.webSocketEventMessageService.get(), microphonePermissionProvider: appDependencies.microphonePermissionProvider)
+        let viewModel = DashboardViewModel(networkDiscoveryConnectionStateProvider: appDependencies.connectionChecker,
+            socketCommunicationManager: appDependencies.socketCommunicationsManager, babyModelController: appDependencies.databaseRepository,
+            webSocketEventMessageService: appDependencies.webSocketEventMessageService, microphonePermissionProvider:  appDependencies.microphonePermissionProvider)
         return viewModel
     }
     
@@ -120,7 +120,6 @@ final class DashboardCoordinator: Coordinator {
         let viewModel = CameraPreviewViewModel(
             webSocketWebRtcService: appDependencies.webSocketWebRtcService,
             babyModelController: appDependencies.databaseRepository,
-            connectionChecker: appDependencies.connectionChecker,
             socketCommunicationManager: appDependencies.socketCommunicationsManager)
         return viewModel
     }

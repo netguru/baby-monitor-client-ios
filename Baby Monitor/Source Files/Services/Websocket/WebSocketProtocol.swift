@@ -7,7 +7,7 @@ import PocketSocket
 import RxSwift
 import RxCocoa
 
-protocol WebSocketProtocol: MessageStreamProtocol {
+protocol WebSocketProtocol: MessageStreamProtocol, WebSocketConnectionStatusProvider {
     
     var disconnectionObservable: Observable<Void> { get }
     
@@ -43,14 +43,27 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
                 return false
             }
         }
+        
+        func toWebSocketConnectionStatus() -> WebSocketConnectionStatus {
+            switch self {
+            case .connected:
+                return .connected
+            case .connecting:
+                return .connecting
+            default:
+                return .disconnected
+            }
+        }
     }
     
     let dispatchQueue = DispatchQueue(label: "webRTCQueue", qos: DispatchQoS.userInteractive)
     
-    lazy var disconnectionObservable = disconnectionPublisher.asObservable()
+    private(set) lazy var disconnectionObservable = disconnectionPublisher.asObservable()
+    private(set) lazy var connectionStatusObservable: Observable<WebSocketConnectionStatus> = connectionStatusPublisher.asObservable()
     lazy var errorObservable = errorPublisher.asObservable()
     private var disconnectionPublisher = PublishSubject<Void>()
     private var errorPublisher = PublishSubject<Error>()
+    private var connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
     
     var receivedMessage: Observable<String> {
         return receivedMessagePublisher.observeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue)).subscribeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue))
@@ -71,6 +84,7 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
             default:
                 break
             }
+            connectionStatusPublisher.onNext(connectionState.toWebSocketConnectionStatus())
         }
     }
     

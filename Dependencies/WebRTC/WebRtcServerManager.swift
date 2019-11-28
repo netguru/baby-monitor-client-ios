@@ -22,12 +22,15 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     var mediaStream: Observable<MediaStream> {
         return mediaStreamPublisher
     }
+    private(set) var connectionStatusObservable: Observable<WebSocketConnectionStatus>
+    
     private var isStarted = false
     private var videoCapturer: VideoCapturer?
     private var mediaStreamInstance: MediaStream?
     private let mediaStreamPublisher = PublishSubject<MediaStream>()
     private let sdpAnswerPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
+    private var connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
 
     private var peerConnection: PeerConnectionProtocol?
     private let peerConnectionFactory: PeerConnectionFactoryProtocol
@@ -52,6 +55,7 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         self.remoteDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         self.localDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         self.scheduler = scheduler
+        self.connectionStatusObservable = connectionStatusPublisher.asObservable()
         super.init()
         setup()
     }
@@ -61,6 +65,10 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             guard let self = self else { return }
             self.iceCandidatePublisher.onNext(iceCandidate)
         }
+    
+        connectionDelegateProxy.onSignalingStateChanged = { [weak self] _, state in
+            let newState = state.toSocketConnectionState()
+            self?.connectionStatusPublisher.onNext(newState)
         connectionDelegateProxy.onConnectionStateChanged = { [weak self] _, newConnectionState in
             switch newConnectionState {
             case .disconnected:

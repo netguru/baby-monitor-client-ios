@@ -19,10 +19,12 @@ final class MessageServer: NSObject, MessageServerProtocol {
     private let client = BehaviorRelay<WebSocketProtocol?>(value: nil)
     private let bag = DisposeBag()
     let receivedMessage: Observable<String>
+    private(set) var connectionStatusObservable: Observable<WebSocketConnectionStatus>
     
     init(server: WebSocketServerProtocol) {
         self.server = server
         self.receivedMessage = server.receivedMessage
+        self.connectionStatusObservable = server.connectionStatusObservable
         super.init()
         setup()
     }

@@ -66,7 +66,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
             .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
-        viewModel.state
+        viewModel.connectionStatusObservable
             .map { $0 == .connecting }
             .bind(to: customView.rx.isLoading)
             .disposed(by: bag)

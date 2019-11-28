@@ -18,7 +18,7 @@ class DashboardView: BaseView {
         style: .plain,
         target: nil,
         action: nil)
-    private var pulseColor: UIColor = .babyMonitorLightGreen
+    private var pulseColor: UIColor = .babyMonitorBrownGray
     private lazy var backgroundPhotoImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "photo-dashboard-background"))
         imageView.contentMode = .scaleAspectFill

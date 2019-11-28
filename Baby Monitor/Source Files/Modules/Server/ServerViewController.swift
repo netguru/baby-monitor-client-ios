@@ -146,6 +146,13 @@ final class ServerViewController: BaseViewController {
                 self?.debugInfoLabel.text = text
             })
         .disposed(by: bag)
+        viewModel.connectionStatusObservable
+            .observeOn(MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] state in
+                self?.babyNavigationItemView.updateConnectionStatus(isConnected: state == .connected)
+            })
+            .disposed(by: bag)
     }
     
     private func attach(stream: MediaStream) {

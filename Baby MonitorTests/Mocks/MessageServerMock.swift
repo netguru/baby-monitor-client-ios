@@ -10,7 +10,11 @@ final class MessageServerMock: MessageServerProtocol {
 
     private(set) var isStarted = false
     private(set) var sentMessages = [String]()
-
+    let connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        return connectionStatusPublisher
+    }
+    
     var receivedMessage: Observable<String> {
         return receivedMessagePublisher
     }

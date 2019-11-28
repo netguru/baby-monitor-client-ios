@@ -20,28 +20,32 @@ final class DashboardViewModel {
     private var shouldPushNotificationsKeyBeSent = true
     
     private let dismissImagePickerSubject = PublishRelay<Void>()
-    private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
     private let microphonePermissionProvider: MicrophonePermissionProviderProtocol
+    unowned private var webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>
+    unowned private var socketCommunicationManager: SocketCommunicationManager
     
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
-    lazy var connectionStatus: Observable<ConnectionStatus> = connectionChecker.connectionStatus
+    var connectionStateObservable: Observable<WebSocketConnectionStatus> {
+        socketCommunicationManager.connectionStatusObservable
+    }
     
     // MARK: - Private properties
-    private let connectionChecker: ConnectionChecker
+    private let networkDiscoveryConnectionStateProvider: ConnectionChecker
     
-    init(connectionChecker: ConnectionChecker, babyModelController: BabyModelControllerProtocol,
-         webSocketEventMessageService: WebSocketEventMessageServiceProtocol, microphonePermissionProvider: MicrophonePermissionProviderProtocol) {
-        self.connectionChecker = connectionChecker
+    init(networkDiscoveryConnectionStateProvider: ConnectionChecker, socketCommunicationManager: SocketCommunicationManager, babyModelController: BabyModelControllerProtocol,
+        webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>, microphonePermissionProvider: MicrophonePermissionProviderProtocol) {
+        self.networkDiscoveryConnectionStateProvider = networkDiscoveryConnectionStateProvider
         self.babyModelController = babyModelController
         self.webSocketEventMessageService = webSocketEventMessageService
         self.microphonePermissionProvider = microphonePermissionProvider
-        webSocketEventMessageService.start()
+        self.socketCommunicationManager = socketCommunicationManager
+        
         setup()
         rxSetup()
     }
     
     deinit {
-        connectionChecker.stop()
+        networkDiscoveryConnectionStateProvider.stop()
     }
     
     func attachInput(liveCameraTap: Observable<Void>, activityLogTap: Observable<Void>, settingsTap: Observable<Void>) {
@@ -59,23 +63,24 @@ final class DashboardViewModel {
     func updatePhoto(_ photo: UIImage) {
         babyModelController.updatePhoto(photo)
     }
-}
-
-private extension DashboardViewModel {
     
-    func setup() {
-        connectionChecker.start()
+    private func setup() {
+        networkDiscoveryConnectionStateProvider.start()
+        webSocketEventMessageService.get().start()
     }
     
-    func rxSetup() {
-        connectionChecker.connectionStatus.subscribe(onNext: { [weak self] status in
-            guard let self = self, self.shouldPushNotificationsKeyBeSent, status == .connected else {
-                return
-            }
-            let firebaseTokenMessage = EventMessage.initWithPushNotificationsKey(key: UserDefaults.selfPushNotificationsToken)
-            self.webSocketEventMessageService.sendMessage(firebaseTokenMessage.toStringMessage())
-            self.shouldPushNotificationsKeyBeSent = false
-        })
+    private func rxSetup() {
+        networkDiscoveryConnectionStateProvider.connectionStatus.subscribe(onNext: { [weak self] status in
+                self?.sendPushNotificationIfNeeded(connectionStatus: status)
+            })
             .disposed(by: bag)
+    }
+    
+    private func sendPushNotificationIfNeeded(connectionStatus: ConnectionStatus) {
+        if shouldPushNotificationsKeyBeSent && connectionStatus == .connected {
+            let firebaseTokenMessage = EventMessage.initWithPushNotificationsKey(key: UserDefaults.selfPushNotificationsToken)
+            self.webSocketEventMessageService.get().sendMessage(firebaseTokenMessage.toStringMessage())
+            self.shouldPushNotificationsKeyBeSent = false
+        }
     }
 }

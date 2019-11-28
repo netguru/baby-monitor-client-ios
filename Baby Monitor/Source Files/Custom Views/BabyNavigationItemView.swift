@@ -46,6 +46,8 @@ final class BabyNavigationItemView: UIView {
         view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         return view
     }()
+    
+    private var pulseColor: UIColor = .babyMonitorBrownGray
 
     init(mode: AppMode) {
         super.init(frame: .zero)
@@ -68,9 +70,13 @@ final class BabyNavigationItemView: UIView {
     func updateBabyPhoto(_ photo: UIImage) {
         photoImageView.image = photo
     }
+
+    func updateConnectionStatus(isConnected: Bool) {
+        pulseColor = isConnected ? .babyMonitorLightGreen : .babyMonitorBrownGray
+    }
     
     func firePulse() {
-        AnimationFactory.shared.firePulse(onView: pulsatoryView, fromColor: UIColor.babyMonitorLightGreen, toColor: UIColor(named: "darkPurple") ?? .purple)
+        AnimationFactory.shared.firePulse(onView: pulsatoryView, fromColor: pulseColor, toColor: UIColor(named: "darkPurple") ?? .purple)
     }
     
     // MARK: - View setup
