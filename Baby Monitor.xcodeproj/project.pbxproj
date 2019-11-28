@@ -159,7 +159,6 @@
 		8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612221A59E7500488ED4 /* FileManager+DocumentsDirectories.swift */; };
 		8A7A612521A59E7500488ED4 /* FileManager+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612321A59E7500488ED4 /* FileManager+Size.swift */; };
 		8A7A612721A59E8600488ED4 /* DirectoryDocumentsSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612621A59E8600488ED4 /* DirectoryDocumentsSavable.swift */; };
-		8A7A612A21A59E9A00488ED4 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612921A59E9A00488ED4 /* AlertPresenter.swift */; };
 		8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */; };
 		8A7A613E21A6AACD00488ED4 /* MessageServerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */; };
 		8A7A614921A6AC7900488ED4 /* CryingDetectionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */; };
@@ -217,8 +216,13 @@
 		95368F582209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */; };
 		9557FA6D237034F7002C9483 /* ServerErrorLoggerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9557FA6C237034F7002C9483 /* ServerErrorLoggerMock.swift */; };
 		955ADBC3236B3263004507F7 /* ServerErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */; };
+		955B8D2023903EEA00582330 /* LoggingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D1F23903EEA00582330 /* LoggingProtocol.swift */; };
+		955B8D2223903F0A00582330 /* CocoaLumberjackLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D2123903F0A00582330 /* CocoaLumberjackLogger.swift */; };
 		9566206E2359ADF900ACBC94 /* DisabledVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */; };
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
+		95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C382390317000AC559D /* AlertPresenter.swift */; };
+		95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */; };
+		95E75C3D2390318500AC559D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C3C2390318500AC559D /* Logger.swift */; };
 		A1492A66221D814500AA7716 /* ClearableLazyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1492A65221D814500AA7716 /* ClearableLazyItem.swift */; };
 		A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */; };
 		A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */; };
@@ -236,7 +240,6 @@
 		A18D3E7521FF6D3700C165C6 /* ActivityLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */; };
 		A18D3E7621FF6D3700C165C6 /* ActivityLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */; };
 		A1A708C322F320970058B537 /* Bundle+BuildNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A708C222F320970058B537 /* Bundle+BuildNumber.swift */; };
-		A1B57ACD22E97F4B0021B314 /* MicrophonePermissionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B57ACC22E97F4B0021B314 /* MicrophonePermissionProvider.swift */; };
 		A1B57ACF22E992C20021B314 /* MicrophonePermissionProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B57ACE22E992C20021B314 /* MicrophonePermissionProviderMock.swift */; };
 		A1C5E6E221FA2E7100D93203 /* DatabaseRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */; };
 		A1C5E6E421FB0C9C00D93203 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */; };
@@ -473,7 +476,6 @@
 		8A7A612221A59E7500488ED4 /* FileManager+DocumentsDirectories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+DocumentsDirectories.swift"; sourceTree = "<group>"; };
 		8A7A612321A59E7500488ED4 /* FileManager+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+Size.swift"; sourceTree = "<group>"; };
 		8A7A612621A59E8600488ED4 /* DirectoryDocumentsSavable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectoryDocumentsSavable.swift; sourceTree = "<group>"; };
-		8A7A612921A59E9A00488ED4 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertPresenter.swift; path = "Baby Monitor/Source Files/Services/Other/AlertPresenter.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerProtocol.swift; sourceTree = "<group>"; };
 		8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServerMock.swift; sourceTree = "<group>"; };
 		8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryingDetectionServiceMock.swift; sourceTree = "<group>"; };
@@ -531,8 +533,13 @@
 		95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewModel.swift; sourceTree = "<group>"; };
 		9557FA6C237034F7002C9483 /* ServerErrorLoggerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorLoggerMock.swift; sourceTree = "<group>"; };
 		955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorLogger.swift; sourceTree = "<group>"; };
+		955B8D1F23903EEA00582330 /* LoggingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingProtocol.swift; sourceTree = "<group>"; };
+		955B8D2123903F0A00582330 /* CocoaLumberjackLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoaLumberjackLogger.swift; sourceTree = "<group>"; };
 		9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledVideoView.swift; sourceTree = "<group>"; };
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
+		95E75C382390317000AC559D /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionProvider.swift; sourceTree = "<group>"; };
+		95E75C3C2390318500AC559D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		A1492A65221D814500AA7716 /* ClearableLazyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearableLazyItem.swift; sourceTree = "<group>"; };
 		A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFactory.swift; sourceTree = "<group>"; };
@@ -550,7 +557,6 @@
 		A18D3E7321FF6D3700C165C6 /* ActivityLogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		A18D3E7421FF6D3700C165C6 /* ActivityLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogViewController.swift; sourceTree = "<group>"; };
 		A1A708C222F320970058B537 /* Bundle+BuildNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+BuildNumber.swift"; sourceTree = "<group>"; };
-		A1B57ACC22E97F4B0021B314 /* MicrophonePermissionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MicrophonePermissionProvider.swift; path = "Baby Monitor/Source Files/Services/Other/MicrophonePermissionProvider.swift"; sourceTree = SOURCE_ROOT; };
 		A1B57ACE22E992C20021B314 /* MicrophonePermissionProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionProviderMock.swift; sourceTree = "<group>"; };
 		A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepositoryMock.swift; sourceTree = "<group>"; };
 		A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
@@ -761,8 +767,9 @@
 				4E63DC0821E39CD700604167 /* ServerService.swift */,
 				955ADBC0236B323B004507F7 /* Errors */,
 				4E63DC1221E39D4B00604167 /* Networking */,
+				95E75C3E23903E9900AC559D /* Logger */,
 				4E63DC0C21E39CFA00604167 /* Notifications */,
-				8A7A612821A59E9100488ED4 /* Other */,
+				95E75C372390317000AC559D /* Other */,
 				8A7A608221A4024100488ED4 /* ErrorHandler */,
 				8AFAE5A9219AAA40007013BC /* Websocket */,
 				8A43DAFB217DD1C300E3004D /* Connection */,
@@ -1169,16 +1176,6 @@
 			path = ErrorHander;
 			sourceTree = "<group>";
 		};
-		8A7A612821A59E9100488ED4 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				A1B57ACC22E97F4B0021B314 /* MicrophonePermissionProvider.swift */,
-				8A7A612921A59E9A00488ED4 /* AlertPresenter.swift */,
-			);
-			name = Other;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		8A8B76DD21EC8A680063EF7E /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -1357,6 +1354,25 @@
 				955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		95E75C372390317000AC559D /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				95E75C382390317000AC559D /* AlertPresenter.swift */,
+				95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		95E75C3E23903E9900AC559D /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				955B8D1F23903EEA00582330 /* LoggingProtocol.swift */,
+				95E75C3C2390318500AC559D /* Logger.swift */,
+				955B8D2123903F0A00582330 /* CocoaLumberjackLogger.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 		A1572D8E2200A88600AC57C4 /* AnimationFactory */ = {
@@ -1830,6 +1846,7 @@
 				4E63DC1B21E39D4B00604167 /* Request.swift in Sources */,
 				A7D756342236B03D00F9893E /* SpectrogramOp.swift in Sources */,
 				A18681912209A1A60069E521 /* SendRecordingsIntroFeatureView.swift in Sources */,
+				95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */,
 				8A7A611B21A59E5000488ED4 /* MemoryCleaner.swift in Sources */,
 				8A7A611C21A59E5000488ED4 /* ActivityLogEvent.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
@@ -1928,10 +1945,10 @@
 				4E1D2C67216791AD00E92F29 /* DashboardView.swift in Sources */,
 				A1492A66221D814500AA7716 /* ClearableLazyItem.swift in Sources */,
 				A7D756322236B03D00F9893E /* AudioSpectrogramLayer.swift in Sources */,
-				8A7A612A21A59E9A00488ED4 /* AlertPresenter.swift in Sources */,
 				A7D756212232DF0A00F9893E /* AudioMicrophoneService.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
 				4E63DC1C21E39D4B00604167 /* FirebasePushNotificationsRequest.swift in Sources */,
+				955B8D2023903EEA00582330 /* LoggingProtocol.swift in Sources */,
 				4EB6DE6521B67C11004701EA /* EventMessageDecoder.swift in Sources */,
 				4E8E056821AD8327009ACE05 /* UIFont+BabyMonitor.swift in Sources */,
 				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
@@ -1972,6 +1989,7 @@
 				8A50AA4221E60A190058C63A /* RTCPeerConnectionDelegateProxy.swift in Sources */,
 				8A50AA3821E602F60058C63A /* PeerConnectionProtocol.swift in Sources */,
 				A7D756312236B03D00F9893E /* MfccLayer.swift in Sources */,
+				95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
 				4E36A3AE21B15F850058DAD2 /* OnboardingClientSetupViewController.swift in Sources */,
 				8A7A612721A59E8600488ED4 /* DirectoryDocumentsSavable.swift in Sources */,
@@ -1984,6 +2002,7 @@
 				4E8E057021AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift in Sources */,
 				4E55436021D4C33A005C41FD /* WebRtcClientManager.swift in Sources */,
 				8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */,
+				955B8D2223903F0A00582330 /* CocoaLumberjackLogger.swift in Sources */,
 				4E8E056321AD81D4009ACE05 /* BaseOnboardingView.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				8A8EF946219C46AD0098A27B /* SdpOfferDecoder.swift in Sources */,
@@ -1997,6 +2016,7 @@
 				95368F552209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift in Sources */,
 				8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */,
 				A1EC977D221ADC8100C27786 /* OnboardingSpinnerView.swift in Sources */,
+				95E75C3D2390318500AC559D /* Logger.swift in Sources */,
 				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
 				4E63DC1A21E39D4B00604167 /* ServerKeyObtainable.swift in Sources */,
 				8AFAE5AD219AAAAC007013BC /* MessageServerProtocol.swift in Sources */,
@@ -2017,7 +2037,6 @@
 				8A7A608421A4027E00488ED4 /* ErrorHandler.swift in Sources */,
 				4E63DC1E21E39D4B00604167 /* NetworkDispatcher.swift in Sources */,
 				EC8A8FF921AEA7EE00B5FCCF /* IntroView.swift in Sources */,
-				A1B57ACD22E97F4B0021B314 /* MicrophonePermissionProvider.swift in Sources */,
 				1E5F6497439177C406F45FFF /* AppVersionProvider.swift in Sources */,
 				1E5F67AF7244AFABE62F799A /* ApplicationResetter.swift in Sources */,
 				1E5F6CF6A2F2C644AF699F68 /* SocketCommunicationManager.swift in Sources */,
