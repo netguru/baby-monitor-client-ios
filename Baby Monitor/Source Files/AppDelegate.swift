@@ -13,12 +13,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var rootCoordinator: RootCoordinatorProtocol?
-    let appDependencies = AppDependencies()
+    private(set) var appDependencies = AppDependencies()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         rootCoordinator = RootCoordinator(window!, appDependencies: appDependencies)
         rootCoordinator?.start()
+        rootCoordinator?.onResetApp = { [weak self] in
+            let dependencies = AppDependencies()
+            self?.rootCoordinator?.update(dependencies: dependencies)
+            self?.appDependencies = dependencies
+        }
         window?.makeKeyAndVisible()
         setupAppearance()
         setupPushNotifications(application)

@@ -9,6 +9,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var onEnding: (() -> Void)?
+    var onResetApp: (() -> Void)?
     var window: UIWindow
     var appDependencies: AppDependencies
     
@@ -33,6 +34,10 @@ final class RootCoordinator: RootCoordinatorProtocol {
         case .baby:
             serverCoordinator?.start()
         }
+    }
+
+    func update(dependencies: AppDependencies) {
+        self.appDependencies = dependencies
     }
 
     // MARK: - private functions
@@ -78,6 +83,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
             // WebRTC connection. Thanks to deinitializing and initializing AppDependencies again we are
             // sure that old connection is properly cleared.
             appDependencies = AppDependencies()
+            onResetApp?()
             childCoordinators = []
             setup()
             start()
