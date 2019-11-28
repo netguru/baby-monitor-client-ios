@@ -27,7 +27,8 @@ final class WebRTCVideoCapturer: VideoCapturer {
     }
 
     func startCapturing() {
-        capturer.startCapture(with: device, format: format, fps: framesPerSecond) { [weak self] _ in
+        capturer.startCapture(with: device, format: format, fps: framesPerSecond) { [weak self] error in
+            /// The error is error!, so it can be checked whether it actually is there or not. That's why, unfortunatelly, the true value will always be passed.
             self?.isCapturing = true
         }
     }
