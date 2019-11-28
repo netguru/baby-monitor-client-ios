@@ -33,6 +33,14 @@ final class ServerViewModel {
     func startStreaming() {
         serverService.startStreaming()
     }
+
+    func pauseVideoStreaming() {
+        serverService.pauseVideoStreaming()
+    }
+
+    func resumeVideoStreaming() {
+        serverService.resumeVideoStreaming()
+    }
     
     private func rxSetup() {
         serverService.audioMicrophoneServiceErrorObservable.subscribe(onNext: { [weak self] _ in

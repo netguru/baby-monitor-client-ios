@@ -41,9 +41,11 @@ final class AppDependencies {
     private(set) lazy var connectionChecker: ConnectionChecker = NetServiceConnectionChecker(netServiceClient: netServiceClient, urlConfiguration: urlConfiguration)
     
     // MARK: - WebRTC
-    
+
+    private(set) lazy var webRtcConnectionProxy: PeerConnectionProxy = RTCPeerConnectionDelegateProxy()
+
     private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = {
-        WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory)
+        WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory, connectionDelegateProxy: self.webRtcConnectionProxy)
     }
     
     private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = {
