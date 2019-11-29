@@ -3,14 +3,14 @@
 //  Baby Monitor
 //
 
-final class Logger {
+enum Logger {
 
     private static let defaultLogger: LoggingProtocol = SwiftyBeaverLogger.shared
 
     static func debug(_ message: String) {
         defaultLogger.log(message, level: .debug)
     }
-    
+
     static func info(_ message: String) {
         defaultLogger.log(message, level: .info)
     }
