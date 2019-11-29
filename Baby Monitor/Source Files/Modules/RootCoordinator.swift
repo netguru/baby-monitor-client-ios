@@ -9,7 +9,6 @@ final class RootCoordinator: RootCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var onEnding: (() -> Void)?
-    var onResetApp: (() -> Void)?
     var window: UIWindow
     var appDependencies: AppDependencies
     
@@ -79,7 +78,6 @@ final class RootCoordinator: RootCoordinatorProtocol {
         // For now triggering dashboardCoordinator/serverCoordinator onEnding is only in situation where user wants to clear all data
         switch UserDefaults.appMode {
         case .none:
-            onResetApp?()
             childCoordinators = []
             setup()
             start()
