@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootCoordinator = RootCoordinator(window!, appDependencies: appDependencies)
         rootCoordinator?.start()
         rootCoordinator?.onResetApp = { [weak self] in
+            // This line is extremely important. After resseting the app we may want to establish new
+            // WebRTC connection. Thanks to deinitializing and initializing AppDependencies again we are
+            // sure that old connection is properly cleared.
+            // UPD: TODO: Needed to check whether other view models are not keeping reference to the old dependencies.
             let dependencies = AppDependencies()
             self?.rootCoordinator?.update(dependencies: dependencies)
             self?.appDependencies = dependencies
