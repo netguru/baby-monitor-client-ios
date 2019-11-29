@@ -9,7 +9,7 @@ final class Logger: LoggingProtocol {
 
     private let defaultLogger: LoggingProtocol
 
-    init(with logger: LoggingProtocol) {
+    private init(with logger: LoggingProtocol) {
         self.defaultLogger = logger
     }
 
