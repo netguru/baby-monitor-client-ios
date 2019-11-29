@@ -63,6 +63,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         do {
             try microphoneCapturer.start()
         } catch {
+            Logger.error("Microphone coudn't start capturing", error: error)
             return
         }
         isCapturing = true
@@ -95,6 +96,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         } catch {
             isRecording = false
             errorSubject.onNext(AudioError.recordFailure)
+            Logger.error("Microphone coudn't start recording", error: AudioError.recordFailure)
         }
     }
 

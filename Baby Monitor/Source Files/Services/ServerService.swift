@@ -157,6 +157,7 @@ final class ServerService: ServerServiceProtocol {
             default:
                 break
             }
+            Logger.error("Logging service didn't start", error: error)
         }
         webRtcServerManager.start()
     }
