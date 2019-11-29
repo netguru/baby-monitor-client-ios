@@ -9,21 +9,21 @@ protocol SocketCommunicationManager: class, WebSocketConnectionStatusProvider {
 }
 
 class DefaultSocketCommunicationManager: SocketCommunicationManager {
-    private var communicationResetPublisher = PublishSubject<Void>()
     var communicationResetObservable: Observable<Void> {
         return communicationResetPublisher.asObservable()
     }
-    private var communicationTerminationPublisher = PublishSubject<Void>()
     var communicationTerminationObservable: Observable<Void> {
         return communicationTerminationPublisher.asObservable()
     }
-    private var socketConnectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
         return socketConnectionStatusPublisher.asObservable()
     }
     private unowned var webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>
     private unowned var webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>
     private unowned var webSocket: ClearableLazyItem<WebSocketProtocol?>
+    private var communicationResetPublisher = PublishSubject<Void>()
+    private var communicationTerminationPublisher = PublishSubject<Void>()
+    private var socketConnectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
     private let bag = DisposeBag()
     
     init(webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>,
@@ -49,15 +49,10 @@ class DefaultSocketCommunicationManager: SocketCommunicationManager {
         webSocket.clear()
         communicationTerminationPublisher.onNext(())
     }
-}
-
-private extension DefaultSocketCommunicationManager {
     
-    func setupRx() {
+    private func setupRx() {
         webSocket.get()?.connectionStatusObservable
-            .subscribe(onNext: { [weak self] state in
-                self?.socketConnectionStatusPublisher.onNext(state)
-            })
+            .bind(to: socketConnectionStatusPublisher)
             .disposed(by: bag)
     }
 }

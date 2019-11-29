@@ -181,8 +181,8 @@ extension Reactive where Base: DashboardView {
     }
     
     var connectionStatus: Binder<Bool> {
-        return Binder(base) { dashboardView, isConnection in
-            dashboardView.updateConnectionStatus(isConnected: isConnection)
+        return Binder(base) { dashboardView, isConnected in
+            dashboardView.updateConnectionStatus(isConnected: isConnected)
         }
     }
 }

@@ -23,10 +23,12 @@ final class ServerService: ServerServiceProtocol {
     var localStreamObservable: Observable<MediaStream> {
         return webRtcServerManager.mediaStream
     }
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        return messageServer.connectionStatusObservable
+    }
     lazy var audioMicrophoneServiceErrorObservable = audioMicrophoneServiceErrorPublisher.asObservable()
     lazy var remoteResetEventObservable = remoteResetEventPublisher.asObservable()
     lazy var loggingInfoObservable = loggingInfoPublisher.asObservable()
-    var connectionStatusObservable: Observable<WebSocketConnectionStatus>
 
     private let parentResponseTime: TimeInterval
     private let webRtcServerManager: WebRtcServerManagerProtocol
@@ -52,7 +54,6 @@ final class ServerService: ServerServiceProtocol {
         self.notificationsService = notificationsService
         self.babyMonitorEventMessagesDecoder = babyMonitorEventMessagesDecoder
         self.parentResponseTime = parentResponseTime
-        self.connectionStatusObservable = messageServer.connectionStatusObservable
         rxSetup()
     }
     

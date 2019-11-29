@@ -50,7 +50,7 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
                 return .connected
             case .connecting:
                 return .connecting
-            default:
+            case .disconnected, .error:
                 return .disconnected
             }
         }

@@ -70,17 +70,18 @@ final class DashboardViewModel {
     }
     
     private func rxSetup() {
-        networkDiscoveryConnectionStateProvider.connectionStatus.subscribe(onNext: { [weak self] status in
+        networkDiscoveryConnectionStateProvider.connectionStatus
+            .subscribe(onNext: { [weak self] status in
                 self?.sendPushNotificationIfNeeded(connectionStatus: status)
             })
             .disposed(by: bag)
     }
     
     private func sendPushNotificationIfNeeded(connectionStatus: ConnectionStatus) {
-        if shouldPushNotificationsKeyBeSent && connectionStatus == .connected {
-            let firebaseTokenMessage = EventMessage.initWithPushNotificationsKey(key: UserDefaults.selfPushNotificationsToken)
-            self.webSocketEventMessageService.get().sendMessage(firebaseTokenMessage.toStringMessage())
-            self.shouldPushNotificationsKeyBeSent = false
-        }
+        guard shouldPushNotificationsKeyBeSent && connectionStatus == .connected else { return }
+        
+        let firebaseTokenMessage = EventMessage.initWithPushNotificationsKey(key: UserDefaults.selfPushNotificationsToken)
+        self.webSocketEventMessageService.get().sendMessage(firebaseTokenMessage.toStringMessage())
+        self.shouldPushNotificationsKeyBeSent = false
     }
 }
