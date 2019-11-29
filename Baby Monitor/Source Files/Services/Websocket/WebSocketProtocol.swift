@@ -63,7 +63,7 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     lazy var errorObservable = errorPublisher.asObservable()
     private var disconnectionPublisher = PublishSubject<Void>()
     private var errorPublisher = PublishSubject<Error>()
-    private var connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
+    private var connectionStatusPublisher = BehaviorSubject<WebSocketConnectionStatus>(value: .disconnected)
     
     var receivedMessage: Observable<String> {
         return receivedMessagePublisher.observeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue)).subscribeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue))

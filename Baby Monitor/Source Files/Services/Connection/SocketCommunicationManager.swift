@@ -23,7 +23,7 @@ class DefaultSocketCommunicationManager: SocketCommunicationManager {
     private unowned var webSocket: ClearableLazyItem<WebSocketProtocol?>
     private var communicationResetPublisher = PublishSubject<Void>()
     private var communicationTerminationPublisher = PublishSubject<Void>()
-    private var socketConnectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
+    private var socketConnectionStatusPublisher = BehaviorSubject<WebSocketConnectionStatus>(value: .disconnected)
     private let bag = DisposeBag()
     
     init(webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>,
