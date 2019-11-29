@@ -6,6 +6,7 @@
 import UIKit
 
 protocol RootCoordinatorProtocol: PartialCoordinator, HasWindow {
+    func update(dependencies: AppDependencies)
     init(_ window: UIWindow, appDependencies: AppDependencies)
 }
 

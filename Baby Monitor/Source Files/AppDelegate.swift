@@ -7,18 +7,30 @@ import UIKit
 import Firebase
 import UserNotifications
 import WebRTC
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var rootCoordinator: RootCoordinatorProtocol?
-    let appDependencies = AppDependencies()
-    
+    private(set) var appDependencies = AppDependencies()
+    private let disposeBag = DisposeBag()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         rootCoordinator = RootCoordinator(window!, appDependencies: appDependencies)
         rootCoordinator?.start()
+        appDependencies.applicationResetter.localResetCompletionObservable
+            .subscribe(onNext:{ [weak self] in
+                // This line is extremely important. After resseting the app we may want to establish new
+                // WebRTC connection. Thanks to deinitializing and initializing AppDependencies again we are
+                // sure that old connection is properly cleared.
+                // UPD: TODO: Needed to check whether other view models are not keeping reference to the old dependencies.
+                let dependencies = AppDependencies()
+                self?.rootCoordinator?.update(dependencies: dependencies)
+                self?.appDependencies = dependencies
+            }).disposed(by: disposeBag)
         window?.makeKeyAndVisible()
         setupAppearance()
         setupPushNotifications(application)
