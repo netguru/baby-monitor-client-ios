@@ -45,6 +45,7 @@ workflows:
       - deploy-appcenter
       - deploy-bitriseio
       - notify-slack
+      - jira-ticket-transition
 
   build-release-candidate:
     envs:
@@ -171,3 +172,16 @@ workflows:
             - buttons: |-
                 View on Bitrise|${BITRISE_BUILD_URL}
                 View on App Center|https://appcenter.ms/orgs/${APP_CENTER_ORG_NAME_ID}/apps/${APP_CENTER_APP_NAME_ID}
+
+  jira-ticket-transition:
+    steps:
+      - git::https://github.com/netguru/bitrise-step-ng-jira-step.git@master:
+          title: ng-jira-step
+          inputs:
+            - host: $JIRA_HOST
+            - user: $JIRA_USER
+            - api_token: $JIRA_API_TOKEN
+            - qa_transition_id: $JIRA_QA_TRANSACTION_ID
+            - no_qa_transition_id: $JIRA_NO_QA_TRANSACTION_ID
+            - add_bitrise_public_download_url: false
+            - extra_info_in_comment: "You can download the build from project's App Center."
