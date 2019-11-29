@@ -63,7 +63,6 @@ final class DashboardViewController: TypedViewController<DashboardView>, UINavig
             .disposed(by: bag)
         viewModel.connectionStateObservable
             .observeOn(MainScheduler.instance)
-            .distinctUntilChanged()
             .map { $0 == .connected }
             .bind(to: customView.rx.connectionStatus)
             .disposed(by: bag)

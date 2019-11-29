@@ -5,7 +5,7 @@
 
 import RxSwift
 
-protocol WebRtcServerManagerProtocol: WebSocketConnectionStatusProvider {
+protocol WebRtcServerManagerProtocol {
 
     /// Opens connection for offers.
     func start()

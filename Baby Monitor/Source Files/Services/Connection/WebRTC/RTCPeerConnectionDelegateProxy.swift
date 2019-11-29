@@ -17,7 +17,7 @@ protocol PeerConnectionProxy: RTCPeerConnectionDelegate {
 final class RTCPeerConnectionDelegateProxy: NSObject, PeerConnectionProxy {
 
     var signalingState: Observable<RTCSignalingState> { return signalingStatePublisher }
-    private var signalingStatePublisher = BehaviorSubject<RTCSignalingState>(value: .closed)
+    private var signalingStatePublisher = PublishSubject<RTCSignalingState>()
 
     var onSignalingStateChanged: ((RTCPeerConnection, RTCSignalingState) -> Void)?
     var onConnectionStateChanged: ((RTCPeerConnection?, RTCPeerConnectionState) -> Void)?
