@@ -1,27 +1,40 @@
 //
-//  CocoaLumberjackLogger.swift
+//  SwiftyBeaverLogger.swift
 //  Baby Monitor
 //
 
-import CocoaLumberjack
+import SwiftyBeaver
 
-final class CocoaLumberjackLogger: LoggingProtocol {
+final class SwiftyBeaverLogger: LoggingProtocol {
 
-    init() {
-        DDLog.add(DDOSLogger.sharedInstance)
+    static let shared = SwiftyBeaverLogger()
+
+    private let log: SwiftyBeaver.Type
+
+    private init() {
+        log = SwiftyBeaver.self
+        let console = ConsoleDestination()
+        console.levelString.debug = "💚 DEBUG"
+        console.levelString.info = "💙 INFO"
+        console.levelString.warning = "💛 WARNING"
+        console.levelString.error = "❤️ ERROR"
+        console.format = "$DHH:mm:ss$d $L $M"
+        log.addDestination(console)
     }
 
     func log(_ message: String, level: LogLevel) {
         switch level {
         case .info:
-            DDLogInfo(message)
+            log.info(message)
         case .debug:
-            DDLogDebug(message)
+            log.debug(message)
+        case .warning:
+            log.warning(message)
         case .error(let error):
             if let error = error {
-                DDLogError(message + error.localizedDescription)
+                log.error(message + error.localizedDescription)
             } else {
-                DDLogError(message)
+                log.error(message)
             }
         }
     }

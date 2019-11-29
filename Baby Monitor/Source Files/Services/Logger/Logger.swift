@@ -3,17 +3,23 @@
 //  Baby Monitor
 //
 
-final class Logger: LoggingProtocol {
+final class Logger {
 
-    static let shared = Logger(with: CocoaLumberjackLogger())
+    private static let defaultLogger: LoggingProtocol = SwiftyBeaverLogger.shared
 
-    private let defaultLogger: LoggingProtocol
-
-    private init(with logger: LoggingProtocol) {
-        self.defaultLogger = logger
+    static func debug(_ message: String) {
+        defaultLogger.log(message, level: .debug)
+    }
+    
+    static func info(_ message: String) {
+        defaultLogger.log(message, level: .info)
     }
 
-    func log(_ message: String, level: LogLevel = .debug) {
-        defaultLogger.log(message, level: level)
+    static func warning(_ message: String) {
+        defaultLogger.log(message, level: .warning)
+    }
+
+    static func error(_ message: String, error: Error? = nil) {
+        defaultLogger.log(message, level: .error(error))
     }
 }

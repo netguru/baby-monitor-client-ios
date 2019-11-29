@@ -4,7 +4,7 @@
 //
 
 enum LogLevel {
-   case info, debug, error(Error?)
+   case info, debug, warning, error(Error? = nil)
 }
 
 protocol LoggingProtocol {
