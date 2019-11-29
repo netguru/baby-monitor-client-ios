@@ -17,8 +17,12 @@ final class CocoaLumberjackLogger: LoggingProtocol {
             DDLogInfo(message)
         case .debug:
             DDLogDebug(message)
-        case .error:
-            DDLogError(message)
+        case .error(let error):
+            if let error = error {
+                DDLogError(message + error.localizedDescription)
+            } else {
+                DDLogError(message)
+            }
         }
     }
 }
