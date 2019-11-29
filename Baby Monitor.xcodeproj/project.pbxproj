@@ -217,7 +217,7 @@
 		9557FA6D237034F7002C9483 /* ServerErrorLoggerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9557FA6C237034F7002C9483 /* ServerErrorLoggerMock.swift */; };
 		955ADBC3236B3263004507F7 /* ServerErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */; };
 		955B8D2023903EEA00582330 /* LoggingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D1F23903EEA00582330 /* LoggingProtocol.swift */; };
-		955B8D2223903F0A00582330 /* CocoaLumberjackLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D2123903F0A00582330 /* CocoaLumberjackLogger.swift */; };
+		955B8D2223903F0A00582330 /* SwiftyBeaverLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D2123903F0A00582330 /* SwiftyBeaverLogger.swift */; };
 		9566206E2359ADF900ACBC94 /* DisabledVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */; };
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
 		95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C382390317000AC559D /* AlertPresenter.swift */; };
@@ -534,7 +534,7 @@
 		9557FA6C237034F7002C9483 /* ServerErrorLoggerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorLoggerMock.swift; sourceTree = "<group>"; };
 		955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorLogger.swift; sourceTree = "<group>"; };
 		955B8D1F23903EEA00582330 /* LoggingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingProtocol.swift; sourceTree = "<group>"; };
-		955B8D2123903F0A00582330 /* CocoaLumberjackLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoaLumberjackLogger.swift; sourceTree = "<group>"; };
+		955B8D2123903F0A00582330 /* SwiftyBeaverLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBeaverLogger.swift; sourceTree = "<group>"; };
 		9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledVideoView.swift; sourceTree = "<group>"; };
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
 		95E75C382390317000AC559D /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
@@ -1370,7 +1370,7 @@
 			children = (
 				955B8D1F23903EEA00582330 /* LoggingProtocol.swift */,
 				95E75C3C2390318500AC559D /* Logger.swift */,
-				955B8D2123903F0A00582330 /* CocoaLumberjackLogger.swift */,
+				955B8D2123903F0A00582330 /* SwiftyBeaverLogger.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -2002,7 +2002,7 @@
 				4E8E057021AE7AF2009ACE05 /* SpecifyDeviceOnboardingViewController.swift in Sources */,
 				4E55436021D4C33A005C41FD /* WebRtcClientManager.swift in Sources */,
 				8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */,
-				955B8D2223903F0A00582330 /* CocoaLumberjackLogger.swift in Sources */,
+				955B8D2223903F0A00582330 /* SwiftyBeaverLogger.swift in Sources */,
 				4E8E056321AD81D4009ACE05 /* BaseOnboardingView.swift in Sources */,
 				4EF36FBD21660F3A00257384 /* BabyMonitorGeneralViewModelProtocol.swift in Sources */,
 				8A8EF946219C46AD0098A27B /* SdpOfferDecoder.swift in Sources */,
