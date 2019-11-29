@@ -7,15 +7,13 @@ import AVKit
 import WebRTC
 
 protocol PeerConnectionFactoryProtocol {
-    func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol
+    func peerConnection(with delegate: PeerConnectionProxy) -> PeerConnectionProtocol
     func createStream() -> (VideoCapturer?, MediaStream?)
 }
 
-typealias VideoCapturer = AnyObject
-
 extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
 
-    func peerConnection(with delegate: RTCPeerConnectionDelegate) -> PeerConnectionProtocol {
+    func peerConnection(with delegate: PeerConnectionProxy) -> PeerConnectionProtocol {
         let config = RTCConfiguration()
         config.iceServers = []
         config.sdpSemantics = .unifiedPlan
@@ -36,14 +34,15 @@ extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
             let fps = format.videoSupportedFrameRateRanges.first?.maxFrameRate {
             let intFps = Int(fps)
             let capturer = RTCCameraVideoCapturer(delegate: vSource)
-            capturer.startCapture(with: camera, format: format, fps: intFps)
+            let videoCapturer = WebRTCVideoCapturer(device: camera, format: format, framesPerSecond: intFps, capturer: capturer)
+            videoCapturer.startCapturing()
             let vTrack = videoTrack(with: vSource, trackId: "ARDAMSv0")
             localStream.addVideoTrack(vTrack)
 
             let aTrack = audioTrack(withTrackId: "ARDAMSa0")
             localStream.addAudioTrack(aTrack)
 
-            return (capturer, localStream)
+            return (videoCapturer, localStream)
         }
         return (nil, nil)
     }

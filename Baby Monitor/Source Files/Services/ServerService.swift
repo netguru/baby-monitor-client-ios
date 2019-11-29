@@ -13,6 +13,8 @@ protocol ServerServiceProtocol: AnyObject {
     var loggingInfoObservable: Observable<String> { get }
     func startStreaming()
     func stop()
+    func pauseVideoStreaming()
+    func resumeVideoStreaming()
 }
 
 final class ServerService: ServerServiceProtocol {
@@ -157,5 +159,13 @@ final class ServerService: ServerServiceProtocol {
             }
         }
         webRtcServerManager.start()
+    }
+
+    func pauseVideoStreaming() {
+        webRtcServerManager.pauseMediaStream()
+    }
+
+    func resumeVideoStreaming() {
+        webRtcServerManager.resumeMediaStream()
     }
 }

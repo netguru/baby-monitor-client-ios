@@ -124,7 +124,7 @@ final class ServerViewController: BaseViewController {
         viewModel.startStreaming()
         fireVideoTimer()
         videoTimer?.subscribe(onNext: { [weak self] _ in
-            self?.localView.isHidden = true
+            self?.disableVideoStreaming()
             self?.videoTimer = nil
         })
         .disposed(by: bag)
@@ -136,7 +136,7 @@ final class ServerViewController: BaseViewController {
         disabledVideoView.tapGestureRecognizer
             .rx.event
             .subscribe(onNext: { [weak self] _ in
-                self?.localView.isHidden = false
+                self?.enableVideoStreaming()
                 self?.fireVideoTimer()
         })
         .disposed(by: bag)
@@ -155,6 +155,19 @@ final class ServerViewController: BaseViewController {
         localVideoTrack?.remove(localView)
         localVideoTrack = stream.videoTracks[0]
         localVideoTrack?.add(localView)
+    }
+
+    private func enableVideoStreaming() {
+        viewModel.resumeVideoStreaming()
+        localView.isHidden = false
+    }
+
+    private func disableVideoStreaming() {
+        guard localVideoTrack != nil else { return }
+        self.viewModel.pauseVideoStreaming()
+        self.localVideoTrack?.remove(self.localView)
+        self.localVideoTrack = nil
+        self.localView.isHidden = true
     }
 
     private func fireVideoTimer() {

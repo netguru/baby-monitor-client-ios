@@ -7,6 +7,7 @@
 import RxSwift
 
 final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
+
     private(set) var isStarted = true
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var iceCandidates = [IceCandidateProtocol]()
@@ -37,6 +38,10 @@ final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
     func stop() {
         isStarted = false
     }
+
+    func pauseMediaStream() {}
+
+    func resumeMediaStream() {}
 
     var sdpAnswer: Observable<SessionDescriptionProtocol> {
         return sdpAnswerPublisher
