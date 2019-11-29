@@ -109,6 +109,7 @@ final class AppDependencies {
             })
             .disposed(by: self.bag)
         webSocket.errorObservable
+            .debounce(1.0, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.socketCommunicationsManager.reset()
             })

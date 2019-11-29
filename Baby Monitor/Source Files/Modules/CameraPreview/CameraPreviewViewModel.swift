@@ -66,7 +66,6 @@ final class CameraPreviewViewModel {
             })
             .disposed(by: bag)
         socketCommunicationManager.communicationResetObservable
-            .throttle(1.0, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.play()
                 self?.streamResettedPublisher.onNext(())
