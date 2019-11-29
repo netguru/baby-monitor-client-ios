@@ -8,5 +8,5 @@ enum LogLevel {
 }
 
 protocol LoggingProtocol {
-    func log(_ message: String, level: LogLevel)
+    func log(_ message: String, level: LogLevel, _ file: String, _ function: String, line: Int)
 }
