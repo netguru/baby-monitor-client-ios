@@ -82,6 +82,7 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     func stop() {
         peerConnection?.close()
         isStarted = false
+        stopMediaStream()
     }
 
     private func startMediaStream() {
@@ -111,6 +112,12 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         }
         capturer.startCapturing()
         mediaStreamPublisher.onNext(stream)
+    }
+
+    private func stopMediaStream() {
+        videoCapturer?.stopCapturing()
+        videoCapturer = nil
+        mediaStreamInstance = nil
     }
 
     func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol) {

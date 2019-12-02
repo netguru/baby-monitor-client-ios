@@ -249,4 +249,24 @@ class WebRtcServerManagerTests: XCTestCase {
         // Then
         XCTAssertEqual(videoCapturerMock.isCapturing, false)
     }
+
+    func testShouldStopCapturingOnStop() {
+        // Given
+        let videoCapturerMock = VideoCapturerMock()
+        let peerConnection = PeerConnectionMock()
+        let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
+                                                              videoCapturer: videoCapturerMock,
+                                                              mediaStream: "" as MediaStream)
+        let connectionDelegateProxy = PeerConnectionProxyMock()
+        let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
+                                      connectionDelegateProxy: connectionDelegateProxy,
+                                      scheduler: AsyncSchedulerMock())
+
+        // When
+        sut.start()
+        sut.stop()
+
+        // Then
+        XCTAssertEqual(videoCapturerMock.isCapturing, false)
+    }
 }
