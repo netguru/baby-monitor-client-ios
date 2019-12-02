@@ -12,6 +12,10 @@ final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var iceCandidates = [IceCandidateProtocol]()
     private(set) var isSetup = false
+    let connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        return connectionStatusPublisher
+    }
 
     private let localSdp: SessionDescriptionProtocol?
 

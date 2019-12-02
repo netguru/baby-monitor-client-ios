@@ -16,6 +16,7 @@ final class ServerViewModel {
     }
     var onAudioMicrophoneServiceError: (() -> Void)?
     var settingsTap: Observable<Void>?
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> { serverService.connectionStatusObservable }
     let bag = DisposeBag()
     
     private let serverService: ServerServiceProtocol
@@ -46,6 +47,6 @@ final class ServerViewModel {
         serverService.audioMicrophoneServiceErrorObservable.subscribe(onNext: { [weak self] _ in
             self?.onAudioMicrophoneServiceError?()
         })
-            .disposed(by: bag)
+        .disposed(by: bag)
     }
 }

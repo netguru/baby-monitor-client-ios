@@ -17,20 +17,19 @@ final class CameraPreviewViewModel {
     var remoteStream: Observable<MediaStream?> {
         return webSocketWebRtcService.get().mediaStream
     }
-    lazy var state: Observable<WebRtcClientManagerState> = webSocketWebRtcService.get().state
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        webSocketWebRtcService.get().connectionStatusObservable
+    }
     
     private let babyModelController: BabyModelControllerProtocol
     private unowned var webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>
-    private let connectionChecker: ConnectionChecker
-    private let socketCommunicationManager: SocketCommunicationManager
+    private unowned var socketCommunicationManager: SocketCommunicationManager
     
     init(webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
-         babyModelController: BabyModelControllerProtocol,
-         connectionChecker: ConnectionChecker,
-         socketCommunicationManager: SocketCommunicationManager) {
+        babyModelController: BabyModelControllerProtocol,
+        socketCommunicationManager: SocketCommunicationManager) {
         self.webSocketWebRtcService = webSocketWebRtcService
         self.babyModelController = babyModelController
-        self.connectionChecker = connectionChecker
         self.socketCommunicationManager = socketCommunicationManager
         rxSetup()
     }
@@ -51,18 +50,10 @@ final class CameraPreviewViewModel {
     
     // MARK: - Private functions
     private func rxSetup() {
-        connectionChecker.connectionStatus
-            .skip(1)
-            .filter { $0 == .connected }
-            .filter { [weak self] _ in self?.shouldPlayPreview == true }
-            .subscribe(onNext: { [weak self] _ in
-                self?.play()
-            })
-            .disposed(by: bag)
-        connectionChecker.connectionStatus
-            .filter { $0 == .disconnected }
-            .subscribe(onNext: { [weak self] _ in
-                self?.stop()
+        connectionStatusObservable
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] in
+                self?.handleStateChange(state: $0)
             })
             .disposed(by: bag)
         socketCommunicationManager.communicationResetObservable
@@ -71,5 +62,16 @@ final class CameraPreviewViewModel {
                 self?.streamResettedPublisher.onNext(())
             })
             .disposed(by: bag)
+    }
+    
+    private func handleStateChange(state: WebSocketConnectionStatus) {
+        switch state {
+        case .connected where shouldPlayPreview:
+            play()
+        case .disconnected:
+            stop()
+        default:
+            print("connection status: connecting")
+        }
     }
 }

@@ -9,7 +9,7 @@ class WebSocketWebRtcServiceMock: WebSocketWebRtcServiceProtocol {
     var mediaStream: Observable<MediaStream?> {
         return mediaStreamEmitter.asObservable()
     }
-    var state: Observable<WebRtcClientManagerState> {
+    var connectionStateObservable: Observable<WebSocketConnectionStatus> {
         return stateEmitter.asObservable()
     }
     
@@ -18,7 +18,12 @@ class WebSocketWebRtcServiceMock: WebSocketWebRtcServiceProtocol {
     private(set) var closeWebRtcConnectionCalled = false
     
     var mediaStreamEmitter = PublishSubject<MediaStream?>()
-    var stateEmitter = PublishSubject<WebRtcClientManagerState>()
+    var stateEmitter = PublishSubject<WebSocketConnectionStatus>()
+    
+    let connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        return connectionStatusPublisher
+    }
     
     func start() {
         startCalled = true

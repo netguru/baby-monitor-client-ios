@@ -28,7 +28,6 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     private let mediaStreamPublisher = PublishSubject<MediaStream>()
     private let sdpAnswerPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
-
     private var peerConnection: PeerConnectionProtocol?
     private let peerConnectionFactory: PeerConnectionFactoryProtocol
     private let connectionDelegateProxy: PeerConnectionProxy
