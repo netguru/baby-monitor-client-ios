@@ -26,6 +26,7 @@ target 'Baby Monitor' do
   pod 'Fabric', '~> 1.10.2'
   pod 'Crashlytics', '~> 3.14.0'
   pod 'GoogleWebRTC', '~> 1.1.29400'
+  pod 'SwiftyBeaver', '~> 1.8.0'
   
   target 'Baby MonitorTests' do
     inherit! :search_paths
