@@ -20,17 +20,15 @@ struct AudioKitMicrophone: AudioKitMicrophoneProtocol {
 enum AudioKitMicrophoneFactory {
 
     static var makeMicrophoneFactory: () throws -> AudioKitMicrophoneProtocol? = {
-
         AKSettings.bufferLength = .medium
         AKSettings.channelCount = 1
         AKSettings.audioInputEnabled = true
         AKSettings.defaultToSpeaker = true
+        
+        let recordingFormat = AudioKit.engine.inputNode.inputFormat(forBus: 0)
+        AKSettings.sampleRate = recordingFormat.sampleRate
 
         try AKSettings.setSession(category: .playAndRecord, with: .defaultToSpeaker)
-
-        let recordingFormat = AudioKit.engine.inputNode.inputFormat(forBus: 0)
-        AKSettings.sampleRate = AVAudioSession.sharedInstance().sampleRate
-
         let microphone = AKMicrophone(with: recordingFormat)
 
         let recorder = try AKNodeRecorder(node: microphone)
