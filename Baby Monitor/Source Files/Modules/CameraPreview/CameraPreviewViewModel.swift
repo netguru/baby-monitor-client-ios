@@ -67,9 +67,7 @@ final class CameraPreviewViewModel {
     private func handleStateChange(state: WebSocketConnectionStatus) {
         switch state {
         case .connected where shouldPlayPreview:
-            if shouldPlayPreview == true {
-                play()
-            }
+            play()
         case .disconnected:
             stop()
         default:
