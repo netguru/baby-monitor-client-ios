@@ -82,14 +82,7 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     func stop() {
         peerConnection?.close()
         isStarted = false
-    }
-
-    private func startMediaStream() {
-        let (optionalCapturer, optionalStream) = peerConnectionFactory.createStream()
-        guard let capturer = optionalCapturer, let stream = optionalStream else { return }
-        videoCapturer = capturer
-        mediaStreamInstance = stream
-        mediaStreamPublisher.onNext(stream)
+        stopMediaStream()
     }
 
     func pauseMediaStream() {
@@ -124,6 +117,26 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             }
         }
     }
+    
+    func setICECandidates(iceCandidate: IceCandidateProtocol) {
+        peerConnection?.add(iceCandidate: iceCandidate)
+    }
+
+    // MARK: Private methods.
+
+    private func startMediaStream() {
+         let (optionalCapturer, optionalStream) = peerConnectionFactory.createStream()
+         guard let capturer = optionalCapturer, let stream = optionalStream else { return }
+         videoCapturer = capturer
+         mediaStreamInstance = stream
+         mediaStreamPublisher.onNext(stream)
+     }
+
+    private func stopMediaStream() {
+          videoCapturer?.stopCapturing()
+          videoCapturer = nil
+          mediaStreamInstance = nil
+      }
 
     private func handleDidSetRemoteDescription(stream: MediaStream) {
         peerConnection?.add(stream: stream)
@@ -133,9 +146,4 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             self.sdpAnswerPublisher.onNext(sdp)
         }
     }
-    
-    func setICECandidates(iceCandidate: IceCandidateProtocol) {
-        peerConnection?.add(iceCandidate: iceCandidate)
-    }
-    
 }
