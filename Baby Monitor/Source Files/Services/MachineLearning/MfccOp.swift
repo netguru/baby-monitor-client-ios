@@ -118,7 +118,7 @@ class MfccOp {
      */
     func compute(input: UnsafeMutablePointer<Float>, inputLength: Int, output: UnsafeMutablePointer<Float>) throws {
         if !initialized {
-            Logger.error("MfccOp computing error: func initiaze should be called before")
+            Logger.error("MfccOp computing failed - initiaze should be called first.")
         }
         
         // Create needed temporary memory allocations

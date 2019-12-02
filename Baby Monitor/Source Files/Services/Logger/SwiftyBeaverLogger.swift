@@ -22,7 +22,7 @@ final class SwiftyBeaverLogger: LoggingProtocol {
         log.addDestination(console)
     }
 
-    func log(_ message: String, level: LogLevel, _ file: String = #file, _ function: String = #function, line: Int = #line) {
+    func log(_ message: String, level: LogLevel, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
         switch level {
         case .info:
             log.info(message, file, function, line: line)

@@ -67,7 +67,7 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
                 let babyCryingDetected: Bool = cryingProbability >= Constants.cryingDetectionThreshold
                 self.cryingDetectionSubject.onNext(CryingDetectionResult(isBabyCrying: babyCryingDetected, probability: cryingProbability))
             } catch {
-                Logger.error("CryingDetectionService audioProcessingMultiArray error", error: error)
+                Logger.error("Crying detection failed - audioProcessingMultiArray exeption", error: error)
             }
         }).disposed(by: disposeBag)
     }

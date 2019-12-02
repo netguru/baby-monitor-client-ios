@@ -29,8 +29,7 @@ final class ServerCoordinator: Coordinator {
     
     private func setupResettingState() {
         appDependencies.applicationResetter.localResetCompletionObservable
-            .subscribe(onNext: {
-                [weak self] resetCompleted in
+            .subscribe(onNext: { [weak self] resetCompleted in
                 self?.onEnding?()
             })
             .disposed(by: bag)
