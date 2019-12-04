@@ -101,9 +101,11 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     }
 
     private func rxSetup() {
-        microphoneCapturer.bufferReadable.subscribe(onNext: { [unowned self] bufferReadable in
-            self.microphoneBufferReadableSubject.onNext(bufferReadable)
-        }).disposed(by: disposeBag)
+        microphoneCapturer.bufferReadable
+            .throttle(Constants.recognizingSoundTimeLimit, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
+            .subscribe(onNext: { [weak self] bufferReadable in
+                self?.microphoneBufferReadableSubject.onNext(bufferReadable)
+            }).disposed(by: disposeBag)
     }
 
 }
