@@ -103,9 +103,9 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     private func rxSetup() {
         microphoneCapturer.bufferReadable
             .throttle(Constants.recognizingSoundTimeLimit, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
-            .subscribe(onNext: { [unowned self] bufferReadable in
-            self.microphoneBufferReadableSubject.onNext(bufferReadable)
-        }).disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] bufferReadable in
+                self?.microphoneBufferReadableSubject.onNext(bufferReadable)
+            }).disposed(by: disposeBag)
     }
 
 }
