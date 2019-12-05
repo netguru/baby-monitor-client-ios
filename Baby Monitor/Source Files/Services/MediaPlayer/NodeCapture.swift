@@ -34,24 +34,25 @@ final class AudioKitNodeCapture: NSObject {
 
     /// Start Capturing
     func start() throws {
-        guard !isCapturing, let node = node else {
+        guard !isCapturing else {
             return
         }
         // Removing tap is done in order to prevent adding a tap in case it's already added.
-        node.avAudioUnitOrNode.removeTap(onBus: 0)
-        node.avAudioUnitOrNode.installTap(onBus: 0, bufferSize: AKSettings.bufferLength.samplesCount, format: node.avAudioUnitOrNode.inputFormat(forBus: 0)) { [weak self] buffer, _ in
-            self?.bufferQueue.async {
-                guard let self = self else { return }
-                let samplesLeft = self.internalAudioBuffer.frameCapacity - self.internalAudioBuffer.frameLength
-                if buffer.frameLength < samplesLeft {
-                    self.internalAudioBuffer.copy(from: buffer)
-                } else {
-                    self.bufferReadableSubject.onNext(self.internalAudioBuffer.copy() as! AVAudioPCMBuffer)
-                    self.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: self.bufferFormat, frameCapacity: self.bufferSize)!
-                    self.internalAudioBuffer.copy(from: buffer)
-                }
-            }
+        node?.avAudioUnitOrNode.removeTap(onBus: 0)
+        node?.avAudioUnitOrNode.installTap(onBus: 0, bufferSize: AKSettings.bufferLength.samplesCount, format: node?.avAudioUnitOrNode.inputFormat(forBus: 0)) { [weak self] buffer, _ in
+                   self?.bufferQueue.async {
+                       guard let self = self else { return }
+                       let samplesLeft = self.internalAudioBuffer.frameCapacity - self.internalAudioBuffer.frameLength
+                       if buffer.frameLength < samplesLeft {
+                           self.internalAudioBuffer.copy(from: buffer)
+                       } else {
+                           self.bufferReadableSubject.onNext(self.internalAudioBuffer.copy() as! AVAudioPCMBuffer)
+                           self.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: self.bufferFormat, frameCapacity: self.bufferSize)!
+                           self.internalAudioBuffer.copy(from: buffer)
+                       }
+                   }
         }
+
         isCapturing = true
     }
     
@@ -61,6 +62,7 @@ final class AudioKitNodeCapture: NSObject {
             return
         }
         node?.avAudioUnitOrNode.removeTap(onBus: 0)
+        node = nil
     }
     
     /// Reset the Buffer to clear previous recordings

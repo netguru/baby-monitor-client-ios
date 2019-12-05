@@ -16,6 +16,7 @@ class DefaultApplicationResetter: ApplicationResetter {
     private unowned var urlConfiguration: URLConfiguration
     private unowned var webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>
     private unowned var localNotificationService: NotificationServiceProtocol
+    private unowned var serverService: ServerServiceProtocol
     private(set) var localResetCompletionObservable: Observable<Void>
     private var localResetCompletionPublisher = PublishSubject<Void>()
     
@@ -25,7 +26,8 @@ class DefaultApplicationResetter: ApplicationResetter {
          memoryCleaner: MemoryCleanerProtocol,
          urlConfiguration: URLConfiguration,
          webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
-         localNotificationService: NotificationServiceProtocol) {
+         localNotificationService: NotificationServiceProtocol,
+         serverService: ServerServiceProtocol) {
         self.messageServer = messageServer
         self.webSocketEventMessageService = webSocketEventMessageService
         self.babyModelControllerProtocol = babyModelControllerProtocol
@@ -33,6 +35,7 @@ class DefaultApplicationResetter: ApplicationResetter {
         self.urlConfiguration = urlConfiguration
         self.webSocketWebRtcService = webSocketWebRtcService
         self.localNotificationService = localNotificationService
+        self.serverService = serverService
         localResetCompletionObservable = localResetCompletionPublisher.asObservable()
     }
     
@@ -40,6 +43,7 @@ class DefaultApplicationResetter: ApplicationResetter {
         if !isRemote {
             sendResetEvent()
         }
+        serverService.stop()
         clearNotificationTokens()
         clearLocalCache()
         babyModelControllerProtocol.removeAllData()
