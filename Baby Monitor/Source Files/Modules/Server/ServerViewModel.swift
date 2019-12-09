@@ -26,10 +26,6 @@ final class ServerViewModel {
         rxSetup()
     }
     
-    deinit {
-        serverService.stop()
-    }
-    
     /// Starts streaming
     func startStreaming() {
         serverService.startStreaming()

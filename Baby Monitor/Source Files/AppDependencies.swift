@@ -199,7 +199,8 @@ final class AppDependencies {
             memoryCleaner: memoryCleaner,
             urlConfiguration: urlConfiguration,
             webSocketWebRtcService: webSocketWebRtcService,
-            localNotificationService: localNotificationService)
+            localNotificationService: localNotificationService,
+            serverService: serverService)
         resetter.localResetCompletionObservable
             .subscribe(onNext: { [weak self] resetCompleted in
                 self?.socketCommunicationsManager.terminate()

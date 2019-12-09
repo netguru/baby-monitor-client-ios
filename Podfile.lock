@@ -1,9 +1,9 @@
 PODS:
-  - AudioKit (4.9.2):
-    - AudioKit/Core (= 4.9.2)
-    - AudioKit/UI (= 4.9.2)
-  - AudioKit/Core (4.9.2)
-  - AudioKit/UI (4.9.2):
+  - AudioKit (4.9.3):
+    - AudioKit/Core (= 4.9.3)
+    - AudioKit/UI (= 4.9.3)
+  - AudioKit/Core (4.9.3)
+  - AudioKit/UI (4.9.3):
     - AudioKit/Core
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
@@ -110,7 +110,7 @@ PODS:
   - SwiftyBeaver (1.8.3)
 
 DEPENDENCIES:
-  - AudioKit (~> 4.9.2)
+  - AudioKit (~> 4.9.3)
   - Crashlytics (~> 3.14.0)
   - Fabric (~> 1.10.2)
   - Firebase/Core (~> 5.15.0)
@@ -130,7 +130,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - AudioKit
     - Crashlytics
     - Differentiator
     - Fabric
@@ -158,13 +157,15 @@ SPEC REPOS:
     - RxTest
     - SwiftLint
     - SwiftyBeaver
+  trunk:
+    - AudioKit
 
 EXTERNAL SOURCES:
   Keys:
     :path: Pods/CocoaPodsKeys
 
 SPEC CHECKSUMS:
-  AudioKit: ee388f0c9ad4e90b6106c14caaf809cd7ca220da
+  AudioKit: d025ecbb68f567bba15dab7ea80b8991155729f9
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
@@ -194,6 +195,6 @@ SPEC CHECKSUMS:
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   SwiftyBeaver: 3d3e93a12d648bd400b6f2948a7ef128b5b183c7
 
-PODFILE CHECKSUM: 3ac5735b3bc42a27f79003670a84c8fe48e686d4
+PODFILE CHECKSUM: 43537489ef657180127c62b83fd981faeb5dd285
 
 COCOAPODS: 1.8.4
