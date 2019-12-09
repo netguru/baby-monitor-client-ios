@@ -40,17 +40,17 @@ final class AudioKitNodeCapture: NSObject {
         // Removing tap is done in order to prevent adding a tap in case it's already added.
         node?.avAudioUnitOrNode.removeTap(onBus: 0)
         node?.avAudioUnitOrNode.installTap(onBus: 0, bufferSize: AKSettings.bufferLength.samplesCount, format: node?.avAudioUnitOrNode.inputFormat(forBus: 0)) { [weak self] buffer, _ in
-                   self?.bufferQueue.async {
-                       guard let self = self else { return }
-                       let samplesLeft = self.internalAudioBuffer.frameCapacity - self.internalAudioBuffer.frameLength
-                       if buffer.frameLength < samplesLeft {
-                           self.internalAudioBuffer.copy(from: buffer)
-                       } else {
-                           self.bufferReadableSubject.onNext(self.internalAudioBuffer.copy() as! AVAudioPCMBuffer)
-                           self.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: self.bufferFormat, frameCapacity: self.bufferSize)!
-                           self.internalAudioBuffer.copy(from: buffer)
-                       }
-                   }
+           self?.bufferQueue.async {
+               guard let self = self else { return }
+               let samplesLeft = self.internalAudioBuffer.frameCapacity - self.internalAudioBuffer.frameLength
+               if buffer.frameLength < samplesLeft {
+                   self.internalAudioBuffer.copy(from: buffer)
+               } else {
+                   self.bufferReadableSubject.onNext(self.internalAudioBuffer.copy() as! AVAudioPCMBuffer)
+                   self.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: self.bufferFormat, frameCapacity: self.bufferSize)!
+                   self.internalAudioBuffer.copy(from: buffer)
+               }
+           }
         }
 
         isCapturing = true
