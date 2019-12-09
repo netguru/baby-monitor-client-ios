@@ -41,7 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appDependencies.memoryCleaner.cleanMemoryIfNeeded()
         #endif
     }
-    
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        appDependencies.audioMicrophoneService?.stopCapturing()
+    }
+
     private func setupPushNotifications(_ application: UIApplication) {
         UNUserNotificationCenter.current().requestAuthorization(options: [ .badge, .sound, .alert
         ]) { granted, _ in
