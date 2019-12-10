@@ -9,7 +9,7 @@ import RxCocoa
 
 final class OnboardingSpinnerView: BaseOnboardingView {
 
-    private let spinner = UIActivityIndicatorView()
+    private let spinner = BaseSpinner()
 
     let tableView: UITableView = {
            let tableView = UITableView(frame: .zero)
@@ -23,6 +23,21 @@ final class OnboardingSpinnerView: BaseOnboardingView {
                                                           borderColor: .babyMonitorPurple,
                                                           borderWidth: 2.0)
 
+    private lazy var tableFooterView: UIView = {
+        let view = UIView()
+        let spinner = BaseSpinner()
+        view.addSubview(spinner)
+        spinner.addConstraints {[
+            $0.equal(.top, constant: 12),
+            $0.equal(.centerX),
+            $0.equalConstant(.height, 32),
+            $0.equalConstant(.width, 32)
+        ]
+        }
+        spinner.startAnimating()
+        return view
+    }()
+
     override init() {
         super.init()
         setup()
@@ -30,38 +45,43 @@ final class OnboardingSpinnerView: BaseOnboardingView {
 
     func stopLoading() {
         spinner.stopAnimating()
-        imageView.isHidden = true
         spinner.isHidden = true
     }
+
     private func setup() {
-        [spinner, tableView].forEach {
+        [spinner, tableView, cancelButton].forEach {
             addSubview($0)
         }
         setupSpinner()
+        setupCancelButton()
         setupTableView()
-        addCancelButton()
     }
 
     private func setupSpinner() {
-        spinner.style = .gray
         spinner.startAnimating()
         spinner.addConstraints {[
-            $0.equal(.centerX)
+            $0.equal(.centerX),
+            $0.equal(.centerY),
+            $0.equalConstant(.height, 80),
+            $0.equalConstant(.width, 80)
         ]
         }
-        guard let imageCenterYAnchor = imageCenterYAnchor else {
+        guard let descriptionBottomAnchor = descriptionBottomAnchor else {
             return
         }
-        spinner.centerYAnchor.constraint(equalTo: imageCenterYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            spinner.topAnchor.constraint(equalTo: descriptionBottomAnchor, constant: 24)
+        ])
     }
 
     private func setupTableView() {
         tableView.rowHeight = 60
         tableView.backgroundColor = .clear
+        tableView.tableFooterView = tableFooterView
         tableView.addConstraints {[
             $0.equal(.leading),
             $0.equal(.trailing),
-            $0.equal(.bottom)
+            $0.equalTo(cancelButton, .bottom, .top, constant: 12)
         ]
         }
         guard let descriptionBottomAnchor = descriptionBottomAnchor else { return }
@@ -70,8 +90,7 @@ final class OnboardingSpinnerView: BaseOnboardingView {
         ])
     }
 
-    private func addCancelButton() {
-        addSubview(cancelButton)
+    private func setupCancelButton() {
         cancelButton.addConstraints {[
             $0.equalTo(self, .bottom, .safeAreaBottom, constant: -32),
             $0.equalConstant(.height, 56),

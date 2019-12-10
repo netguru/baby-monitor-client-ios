@@ -34,7 +34,6 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
     private func setup() {
         customView.update(title: viewModel.title)
         customView.update(mainDescription: viewModel.description)
-        customView.update(image: viewModel.image)
         customView.tableView.isHidden = true
         customView.tableView.dataSource = self
         customView.tableView.delegate = self

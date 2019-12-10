@@ -30,9 +30,8 @@ final class ClientSetupOnboardingViewModel {
     
     let title = Localizable.Onboarding.connecting
     let description = Localizable.Onboarding.Pairing.searchingForSecondDevice
-    let image = #imageLiteral(resourceName: "onboarding-oval")
 
-    private(set) var availableDevicesPublisher =  BehaviorRelay<[NetServiceDescriptor]>(value: [])
+    private(set) var availableDevicesPublisher = BehaviorRelay<[NetServiceDescriptor]>(value: [])
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
     private let urlConfiguration: URLConfiguration
