@@ -22,8 +22,6 @@ final class ClientSetupOnboardingViewModel {
     }
 
     let bag = DisposeBag()
-    var selectFirstAction: (() -> Void)?
-    var selectSecondAction: (() -> Void)?
     var cancelTap: Observable<Void>?
 
     // MARK: - Coordinator callback
