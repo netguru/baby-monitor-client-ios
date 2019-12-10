@@ -5,6 +5,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 enum DeviceSearchError: Error {
     case timeout
@@ -30,7 +31,8 @@ final class ClientSetupOnboardingViewModel {
     let title = Localizable.Onboarding.connecting
     let description = Localizable.Onboarding.Pairing.searchingForSecondDevice
     let image = #imageLiteral(resourceName: "onboarding-oval")
-    
+
+    private(set) var availableDevicesPublisher =  BehaviorRelay<[NetServiceDescriptor]>(value: [])
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
     private let urlConfiguration: URLConfiguration
@@ -75,19 +77,24 @@ final class ClientSetupOnboardingViewModel {
         netServiceClient.service
             .filter { $0 != nil }
             .map { $0! }
-            .take(1)
-            .subscribe(onNext: { [weak self] ip, port in
-                guard let serverUrl = URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix),
-                    let self = self else {
-                        return
+            .subscribe(onNext: { [weak self] netService in
+                guard let self = self else {
+                    return
                 }
-                self.searchCancelTimer?.invalidate()
-                self.urlConfiguration.url = serverUrl
-                self.webSocketEventMessageService.start()
-                self.saveEmptyStateIfNeeded()
-                self.didFinishDeviceSearch?(.success)
+                self.availableDevicesPublisher.accept(self.availableDevicesPublisher.value + [netService])
             })
             .disposed(by: disposeBag)
+    }
+
+    private func pair(with device: NetServiceDescriptor) {
+        guard let serverUrl = URL.with(ip: device.ip, port: device.port, prefix: Constants.protocolPrefix) else {
+                return
+        }
+        searchCancelTimer?.invalidate()
+        urlConfiguration.url = serverUrl
+        webSocketEventMessageService.start()
+        saveEmptyStateIfNeeded()
+        didFinishDeviceSearch?(.success)
     }
     
     private func saveEmptyStateIfNeeded() {

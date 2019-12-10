@@ -8,8 +8,11 @@ import RxCocoa
 import RxSwift
 
 /// This type is used to describe a Bonjour service by its IP and port.
-typealias NetServiceDescriptor = (ip: String, port: String)
-
+struct NetServiceDescriptor {
+    var name: String
+    var ip: String
+    var port: String
+}
 protocol NetServiceClientProtocol: AnyObject {
 
     /// The observable of Bonjour service, if any, that the client is currently
@@ -31,9 +34,9 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
     let isEnabled = Variable<Bool>(false)
 
     lazy var service = serviceVariable.asObservable()
-    private let serviceVariable = Variable<NetServiceDescriptor?>(nil)
+    private let serviceVariable = PublishSubject<NetServiceDescriptor?>()
 
-    private var netService: NetService?
+    private var netServices: [NetService] = []
     private let netServiceBrowser = NetServiceBrowser()
     private let netServiceAllowedPorts = [Constants.androidWebsocketPort, Constants.iosWebsocketPort]
 
@@ -61,8 +64,8 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
 
     private func stop() {
         netServiceBrowser.stop()
-        serviceVariable.value = nil
-        netService = nil
+        serviceVariable.onNext(nil)
+        netServices.removeAll()
     }
 
     /// Convert IP address bytes into human readable IP address string.
@@ -88,17 +91,18 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
 extension NetServiceClient: NetServiceBrowserDelegate {
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
-        guard service.name == Constants.netServiceName else { return }
-        netServiceBrowser.stop()
-        netService = service
-        netService!.delegate = self
+        print(service.name)
+        guard service.name.contains(Constants.netServiceName) else { return }
+        let index = netServices.count
+        netServices.append(service)
+        netServices[index].delegate = self
         /// Setting an infinite timeout for the resolve process as the timeout is being controllered by the instance, which starts discoverign (ex viewModel).
-        netService!.resolve(withTimeout: 0)
+        netServices[index].resolve(withTimeout: 0)
     }
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
-        serviceVariable.value = nil
-        netService = nil
+        serviceVariable.onNext(nil)
+        netServices.removeAll(where: { $0 == service })
     }
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String: NSNumber]) {
@@ -122,10 +126,11 @@ extension NetServiceClient: NetServiceDelegate {
                     "adress": sender.addresses?.first ?? "null",
                     "containsPort": netServiceAllowedPorts.contains(sender.port)
                 ]
+                Logger.error("Failed to parse id.")
                 errorLogger.log(error: ServiceError.IPNotParsed, additionalInfo: errorDict)
                 return
         }
-        serviceVariable.value = (ip: ip, port: String(sender.port))
+        serviceVariable.onNext(NetServiceDescriptor(name: sender.name, ip: ip, port: String(sender.port)))
     }
 
     func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {

@@ -9,6 +9,7 @@ class BaseOnboardingView: BaseView {
     
     var imageViewTopConstraint: NSLayoutConstraint?
     var imageCenterYAnchor: NSLayoutYAxisAnchor?
+    var descriptionBottomAnchor: NSLayoutYAxisAnchor?
     let imageView = UIImageView()
     
     private let titleLabel: UILabel = {
@@ -85,5 +86,6 @@ class BaseOnboardingView: BaseView {
         ]
         }.first
         imageCenterYAnchor = imageView.centerYAnchor
+        descriptionBottomAnchor = descriptionsStackView.bottomAnchor
     }
 }
