@@ -37,6 +37,7 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
         customView.update(image: viewModel.image)
         customView.tableView.isHidden = true
         customView.tableView.dataSource = self
+        customView.tableView.delegate = self
         setupBindings()
     }
 
@@ -58,7 +59,7 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
     }
 }
 
-extension OnboardingClientSetupViewController: UITableViewDataSource {
+extension OnboardingClientSetupViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return devices.count
@@ -70,4 +71,7 @@ extension OnboardingClientSetupViewController: UITableViewDataSource {
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.pair(with: devices[indexPath.row])
+    }
 }

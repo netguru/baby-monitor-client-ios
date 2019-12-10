@@ -62,6 +62,17 @@ final class ClientSetupOnboardingViewModel {
         })
         .disposed(by: bag)
     }
+
+    func pair(with device: NetServiceDescriptor) {
+        guard let serverUrl = URL.with(ip: device.ip, port: device.port, prefix: Constants.protocolPrefix) else {
+                return
+        }
+        searchCancelTimer?.invalidate()
+        urlConfiguration.url = serverUrl
+        webSocketEventMessageService.start()
+        saveEmptyStateIfNeeded()
+        didFinishDeviceSearch?(.success)
+    }
     
     func startDiscovering(withTimeout timeout: TimeInterval = Constants.pairingDeviceSearchTimeLimit) {
         searchCancelTimer = Timer.scheduledTimer(withTimeInterval: timeout, repeats: false, block: { [weak self] _ in
@@ -84,17 +95,6 @@ final class ClientSetupOnboardingViewModel {
                 self.availableDevicesPublisher.accept(self.availableDevicesPublisher.value + [netService])
             })
             .disposed(by: disposeBag)
-    }
-
-    private func pair(with device: NetServiceDescriptor) {
-        guard let serverUrl = URL.with(ip: device.ip, port: device.port, prefix: Constants.protocolPrefix) else {
-                return
-        }
-        searchCancelTimer?.invalidate()
-        urlConfiguration.url = serverUrl
-        webSocketEventMessageService.start()
-        saveEmptyStateIfNeeded()
-        didFinishDeviceSearch?(.success)
     }
     
     private func saveEmptyStateIfNeeded() {
