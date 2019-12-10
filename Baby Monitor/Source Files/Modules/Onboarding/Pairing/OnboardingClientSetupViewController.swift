@@ -55,6 +55,10 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
                 self?.customView.tableView.isHidden = false
                 self?.customView.tableView.reloadData()
             }).disposed(by: bag)
+        viewModel.searchingTimeoutPublisher
+            .subscribe(onNext: { [weak self] in
+                self?.customView.tableView.tableFooterView = nil
+            }).disposed(by: bag)
     }
 }
 

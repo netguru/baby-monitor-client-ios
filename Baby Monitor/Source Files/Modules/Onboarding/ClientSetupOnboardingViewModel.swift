@@ -30,7 +30,7 @@ final class ClientSetupOnboardingViewModel {
     
     let title = Localizable.Onboarding.connecting
     let description = Localizable.Onboarding.Pairing.searchingForSecondDevice
-
+    private(set) var searchingTimeoutPublisher = PublishSubject<Void>()
     private(set) var availableDevicesPublisher = BehaviorRelay<[NetServiceDescriptor]>(value: [])
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
@@ -75,10 +75,16 @@ final class ClientSetupOnboardingViewModel {
     
     func startDiscovering(withTimeout timeout: TimeInterval = Constants.pairingDeviceSearchTimeLimit) {
         searchCancelTimer = Timer.scheduledTimer(withTimeInterval: timeout, repeats: false, block: { [weak self] _ in
-            self?.didFinishDeviceSearch?(.failure(.timeout))
-            self?.errorLogger.log(error: PairingError.timeout)
-            self?.netServiceClient.isEnabled.value = false
-            self?.searchCancelTimer = nil
+            guard let self = self else { return }
+            if self.availableDevicesPublisher.value.isEmpty {
+                self.didFinishDeviceSearch?(.failure(.timeout))
+                self.errorLogger.log(error: PairingError.timeout)
+                self.netServiceClient.isEnabled.value = false
+                self.searchCancelTimer = nil
+            } else {
+                self.netServiceClient.isEnabled.value = false
+                self.searchingTimeoutPublisher.onNext(())
+            }
         })
         netServiceClient.isEnabled.value = true
     }
