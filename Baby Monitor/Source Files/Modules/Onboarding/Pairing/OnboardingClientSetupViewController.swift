@@ -37,6 +37,7 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
     private func setup() {
         customView.update(title: viewModel.title)
         updateView(for: .noneFound)
+        navigationItem.leftBarButtonItem = customView.backButtonItem
         customView.tableView.dataSource = self
         customView.tableView.delegate = self
         setupBindings()
@@ -60,6 +61,10 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] state in
                 self?.updateView(for: state)
+            }).disposed(by: bag)
+        customView.rx.backButtonTap
+            .subscribe(onNext: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
             }).disposed(by: bag)
     }
 }

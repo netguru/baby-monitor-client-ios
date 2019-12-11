@@ -9,6 +9,13 @@ import RxCocoa
 
 final class OnboardingSpinnerView: BaseOnboardingView {
 
+    let backButtonItem = UIBarButtonItem(
+           image: #imageLiteral(resourceName: "arrow_back"),
+           style: .plain,
+           target: nil,
+           action: nil
+       )
+
     let tableView: UITableView = {
               let tableView = UITableView(frame: .zero)
               tableView.register(AvailablePairingDevicesTableViewCell.self, forCellReuseIdentifier: AvailablePairingDevicesTableViewCell.identifier)
@@ -119,6 +126,10 @@ final class OnboardingSpinnerView: BaseOnboardingView {
 }
 
 extension Reactive where Base: OnboardingSpinnerView {
+
+    var backButtonTap: ControlEvent<Void> {
+           return base.backButtonItem.rx.tap
+       }
 
     var bottomButtonTap: ControlEvent<Void> {
         return base.bottomButton.rx.tap

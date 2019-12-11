@@ -49,7 +49,7 @@ private extension OnboardingPairingCoordinator {
         switch role {
         case .parent(.error):
             continuableViewController.modalPresentationStyle = .fullScreen
-            navigationController.presentedViewController?.present(continuableViewController, animated: true)
+            navigationController.present(continuableViewController, animated: true)
         default:
             navigationController.pushViewController(continuableViewController, animated: true)
         }
@@ -134,6 +134,6 @@ private extension OnboardingPairingCoordinator {
             self?.connect(to: viewModel)
         })
         .disposed(by: viewModel.bag)
-        navigationController.present(viewController, animated: true)
+        navigationController.pushViewController(viewController, animated: true)
     }
 }
