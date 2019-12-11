@@ -9,16 +9,16 @@ import RxCocoa
 
 final class OnboardingSpinnerView: BaseOnboardingView {
 
+    let tableView: UITableView = {
+              let tableView = UITableView(frame: .zero)
+              tableView.register(AvailablePairingDevicesTableViewCell.self, forCellReuseIdentifier: AvailablePairingDevicesTableViewCell.identifier)
+              tableView.separatorStyle = .none
+              return tableView
+          }()
+
     private let spinner = BaseSpinner()
 
-    let tableView: UITableView = {
-           let tableView = UITableView(frame: .zero)
-           tableView.register(AvailablePairingDevicesTableViewCell.self, forCellReuseIdentifier: AvailablePairingDevicesTableViewCell.identifier)
-           tableView.separatorStyle = .none
-           return tableView
-       }()
-
-    fileprivate let cancelButton = RoundedRectangleButton(title: Localizable.General.cancel,
+    fileprivate let bottomButton = RoundedRectangleButton(title: Localizable.General.cancel,
                                                           backgroundColor: .clear,
                                                           borderColor: .babyMonitorPurple,
                                                           borderWidth: 2.0)
@@ -43,13 +43,25 @@ final class OnboardingSpinnerView: BaseOnboardingView {
         setup()
     }
 
-    func stopLoading() {
-        spinner.stopAnimating()
-        spinner.isHidden = true
+    func update(buttonTitle: String) {
+        bottomButton.setTitle(buttonTitle, for: .normal)
     }
 
+    func update(for state: PairingSearchState) {
+        switch state {
+        case .noneFound:
+            spinner.isHidden = false
+            tableView.isHidden = true
+            spinner.startAnimating()
+        case .someFound:
+            spinner.isHidden = true
+            tableView.isHidden = false
+            tableView.reloadData()
+        }
+    }
+    
     private func setup() {
-        [spinner, tableView, cancelButton].forEach {
+        [spinner, tableView, bottomButton].forEach {
             addSubview($0)
         }
         setupSpinner()
@@ -81,7 +93,7 @@ final class OnboardingSpinnerView: BaseOnboardingView {
         tableView.addConstraints {[
             $0.equal(.leading),
             $0.equal(.trailing),
-            $0.equalTo(cancelButton, .bottom, .top, constant: 12)
+            $0.equalTo(bottomButton, .bottom, .top, constant: -12)
         ]
         }
         guard let descriptionBottomAnchor = descriptionBottomAnchor else { return }
@@ -91,7 +103,7 @@ final class OnboardingSpinnerView: BaseOnboardingView {
     }
 
     private func setupCancelButton() {
-        cancelButton.addConstraints {[
+        bottomButton.addConstraints {[
             $0.equalTo(self, .bottom, .safeAreaBottom, constant: -32),
             $0.equalConstant(.height, 56),
             $0.equal(.centerX),
@@ -103,7 +115,7 @@ final class OnboardingSpinnerView: BaseOnboardingView {
 
 extension Reactive where Base: OnboardingSpinnerView {
 
-    var cancelTap: ControlEvent<Void> {
-        return base.cancelButton.rx.tap
+    var bottomButtonTap: ControlEvent<Void> {
+        return base.bottomButton.rx.tap
     }
 }

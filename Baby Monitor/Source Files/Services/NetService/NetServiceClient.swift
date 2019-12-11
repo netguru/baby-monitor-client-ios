@@ -12,12 +12,21 @@ struct NetServiceDescriptor {
     var name: String
     var ip: String
     var port: String
+
+    /// A name without service baby monitor string.
+    var deviceName: String {
+        var deviceName = name
+        if let range = name.range(of: Constants.netServiceName) {
+           deviceName.removeSubrange(range)
+        }
+        return deviceName
+    }
 }
 protocol NetServiceClientProtocol: AnyObject {
 
     /// The observable of Bonjour service, if any, that the client is currently
     /// connected to.
-    var service: Observable<NetServiceDescriptor?> { get }
+    var services: Observable<[NetServiceDescriptor]> { get }
 
     /// The variable controlling the state of the client. Changing its
     /// underlying `value` to `true` enables the client and changing it to
@@ -33,8 +42,8 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
 
     let isEnabled = Variable<Bool>(false)
 
-    lazy var service = serviceVariable.asObservable()
-    private let serviceVariable = PublishSubject<NetServiceDescriptor?>()
+    lazy var services = servicesVariable.asObservable()
+    private let servicesVariable = BehaviorRelay<[NetServiceDescriptor]>(value: [])
 
     private var netServices: [NetService] = []
     private let netServiceBrowser = NetServiceBrowser()
@@ -64,7 +73,6 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
 
     private func stop() {
         netServiceBrowser.stop()
-        serviceVariable.onNext(nil)
         netServices.removeAll()
     }
 
@@ -101,8 +109,11 @@ extension NetServiceClient: NetServiceBrowserDelegate {
     }
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
-        serviceVariable.onNext(nil)
-        netServices.removeAll(where: { $0 == service })
+        guard let indexToRemove = netServices.index(of: service) else { return }
+        netServices.remove(at: indexToRemove)
+        var services = servicesVariable.value
+        services.remove(at: indexToRemove)
+        servicesVariable.accept(services)
     }
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String: NSNumber]) {
@@ -128,9 +139,11 @@ extension NetServiceClient: NetServiceDelegate {
                 ]
                 Logger.error("Failed to parse id.")
                 errorLogger.log(error: ServiceError.IPNotParsed, additionalInfo: errorDict)
+                netServices.removeAll(where: { $0 == sender })
                 return
         }
-        serviceVariable.onNext(NetServiceDescriptor(name: sender.name, ip: ip, port: String(sender.port)))
+
+        servicesVariable.accept(servicesVariable.value + [NetServiceDescriptor(name: sender.name, ip: ip, port: String(sender.port))])
     }
 
     func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {

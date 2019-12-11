@@ -6,12 +6,15 @@
 import UIKit
 import RxSwift
 
+enum PairingSearchState {
+    case noneFound, someFound
+}
+
 final class OnboardingClientSetupViewController: TypedViewController<OnboardingSpinnerView> {
     
     private let viewModel: ClientSetupOnboardingViewModel
     private let bag = DisposeBag()
     private var devices: [NetServiceDescriptor] = []
-
     init(viewModel: ClientSetupOnboardingViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: OnboardingSpinnerView())
@@ -33,31 +36,38 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
     
     private func setup() {
         customView.update(title: viewModel.title)
-        customView.update(mainDescription: viewModel.description)
-        customView.tableView.isHidden = true
+        updateView(for: .noneFound)
         customView.tableView.dataSource = self
         customView.tableView.delegate = self
         setupBindings()
     }
 
+    private func updateView(for state: PairingSearchState) {
+        customView.update(mainDescription: viewModel.description)
+        customView.update(buttonTitle: viewModel.buttonTitle)
+        customView.update(for: state)
+    }
+
     private func setupBindings() {
-        viewModel.attachInput(cancelButtonTap: customView.rx.cancelTap.asObservable())
-        customView.rx.cancelTap.subscribe(onNext: { [weak self] in
+        viewModel.attachInput(cancelButtonTap: customView.rx.bottomButtonTap.asObservable())
+        customView.rx.bottomButtonTap.subscribe(onNext: { [weak self] in
             self?.dismiss(animated: true)
         })
         .disposed(by: bag)
-
         viewModel.availableDevicesPublisher
             .skip(1)
             .subscribe(onNext: { [weak self] devices in
                 self?.devices = devices
-                self?.customView.stopLoading()
-                self?.customView.tableView.isHidden = false
-                self?.customView.tableView.reloadData()
             }).disposed(by: bag)
         viewModel.searchingTimeoutPublisher
             .subscribe(onNext: { [weak self] in
                 self?.customView.tableView.tableFooterView = nil
+            }).disposed(by: bag)
+        viewModel.state
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] state in
+                self?.updateView(for: state)
             }).disposed(by: bag)
     }
 }
@@ -70,7 +80,7 @@ extension OnboardingClientSetupViewController: UITableViewDataSource, UITableVie
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as AvailablePairingDevicesTableViewCell
-        cell.configure(with: devices[indexPath.row].name)
+        cell.configure(with: devices[indexPath.row].deviceName)
         return cell
     }
 

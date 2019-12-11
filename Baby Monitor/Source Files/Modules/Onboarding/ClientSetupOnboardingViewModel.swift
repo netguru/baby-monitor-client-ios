@@ -27,9 +27,23 @@ final class ClientSetupOnboardingViewModel {
 
     // MARK: - Coordinator callback
     var didFinishDeviceSearch: ((DeviceSearchResult) -> Void)?
+
+    let title: String = Localizable.Onboarding.connecting
+
+    var description: String {
+        switch state.value {
+        case .noneFound: return Localizable.Onboarding.Pairing.searchingForSecondDevice
+        case .someFound: return "Some found"
+        }
+    }
     
-    let title = Localizable.Onboarding.connecting
-    let description = Localizable.Onboarding.Pairing.searchingForSecondDevice
+    var buttonTitle: String {
+        switch state.value {
+        case .noneFound: return Localizable.General.cancel
+        case .someFound: return "Refresh the list"
+        }
+    }
+    private(set) var state = BehaviorRelay<PairingSearchState>(value: .noneFound)
     private(set) var searchingTimeoutPublisher = PublishSubject<Void>()
     private(set) var availableDevicesPublisher = BehaviorRelay<[NetServiceDescriptor]>(value: [])
     private var searchCancelTimer: Timer?
@@ -90,14 +104,14 @@ final class ClientSetupOnboardingViewModel {
     }
     
     private func setupRx() {
-        netServiceClient.service
-            .filter { $0 != nil }
-            .map { $0! }
-            .subscribe(onNext: { [weak self] netService in
+        netServiceClient.services
+            .subscribe(onNext: { [weak self] netServices in
                 guard let self = self else {
                     return
                 }
-                self.availableDevicesPublisher.accept(self.availableDevicesPublisher.value + [netService])
+                let searchingState: PairingSearchState = netServices.isEmpty ? .noneFound : .someFound
+                self.availableDevicesPublisher.accept(netServices)
+                self.state.accept(searchingState)
             })
             .disposed(by: disposeBag)
     }
