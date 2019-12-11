@@ -71,8 +71,7 @@ class BaseOnboardingView: BaseView {
         titleLabel.addConstraints {[
             $0.equal(.leading, constant: 24),
             $0.equalTo(self, .top, .safeAreaTop, constant: Constants.responsive(ofSizes: [.small: screenHeight * 0.02, .medium: screenHeight * 0.1])),
-            $0.equal(.centerX),
-            $0.equalConstant(.height, 19)
+            $0.equal(.centerX)
         ]
         }
         descriptionsStackView.addConstraints {[
