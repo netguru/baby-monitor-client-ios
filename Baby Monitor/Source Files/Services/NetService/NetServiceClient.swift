@@ -73,6 +73,7 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
 
     private func stop() {
         netServiceBrowser.stop()
+        servicesVariable.accept([])
         netServices.removeAll()
     }
 

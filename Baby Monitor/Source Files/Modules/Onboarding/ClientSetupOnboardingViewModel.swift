@@ -33,18 +33,17 @@ final class ClientSetupOnboardingViewModel {
     var description: String {
         switch state.value {
         case .noneFound: return Localizable.Onboarding.Pairing.searchingForSecondDevice
-        case .someFound: return "Some found"
+        case .someFound, .timeoutReached: return "Some found"
         }
     }
     
     var buttonTitle: String {
         switch state.value {
         case .noneFound: return Localizable.General.cancel
-        case .someFound: return "Refresh the list"
+        case .someFound, .timeoutReached: return "Refresh the list"
         }
     }
     private(set) var state = BehaviorRelay<PairingSearchState>(value: .noneFound)
-    private(set) var searchingTimeoutPublisher = PublishSubject<Void>()
     private(set) var availableDevicesPublisher = BehaviorRelay<[NetServiceDescriptor]>(value: [])
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
@@ -71,7 +70,9 @@ final class ClientSetupOnboardingViewModel {
         cancelTap = cancelButtonTap
         cancelTap?.subscribe(onNext: { [weak self] in
             self?.searchCancelTimer?.invalidate()
+            self?.state.accept(.noneFound)
             self?.netServiceClient.isEnabled.value = false
+            self?.startDiscovering()
         })
         .disposed(by: bag)
     }
@@ -96,8 +97,9 @@ final class ClientSetupOnboardingViewModel {
                 self.netServiceClient.isEnabled.value = false
                 self.searchCancelTimer = nil
             } else {
+                self.state.accept(.timeoutReached)
                 self.netServiceClient.isEnabled.value = false
-                self.searchingTimeoutPublisher.onNext(())
+                self.searchCancelTimer = nil
             }
         })
         netServiceClient.isEnabled.value = true
@@ -106,7 +108,7 @@ final class ClientSetupOnboardingViewModel {
     private func setupRx() {
         netServiceClient.services
             .subscribe(onNext: { [weak self] netServices in
-                guard let self = self else {
+                guard let self = self, self.state.value != .timeoutReached else {
                     return
                 }
                 let searchingState: PairingSearchState = netServices.isEmpty ? .noneFound : .someFound

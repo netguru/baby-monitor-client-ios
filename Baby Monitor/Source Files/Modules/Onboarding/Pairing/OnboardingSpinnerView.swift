@@ -50,13 +50,18 @@ final class OnboardingSpinnerView: BaseOnboardingView {
     func update(for state: PairingSearchState) {
         switch state {
         case .noneFound:
+            bottomButton.isHidden = true
             spinner.isHidden = false
             tableView.isHidden = true
             spinner.startAnimating()
         case .someFound:
+            bottomButton.isHidden = false
             spinner.isHidden = true
             tableView.isHidden = false
+            tableView.tableFooterView = tableFooterView
             tableView.reloadData()
+        case .timeoutReached:
+            tableView.tableFooterView = nil
         }
     }
     

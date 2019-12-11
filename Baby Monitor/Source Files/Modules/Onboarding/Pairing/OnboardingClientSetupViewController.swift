@@ -7,7 +7,7 @@ import UIKit
 import RxSwift
 
 enum PairingSearchState {
-    case noneFound, someFound
+    case noneFound, someFound, timeoutReached
 }
 
 final class OnboardingClientSetupViewController: TypedViewController<OnboardingSpinnerView> {
@@ -50,18 +50,10 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
 
     private func setupBindings() {
         viewModel.attachInput(cancelButtonTap: customView.rx.bottomButtonTap.asObservable())
-        customView.rx.bottomButtonTap.subscribe(onNext: { [weak self] in
-            self?.dismiss(animated: true)
-        })
-        .disposed(by: bag)
         viewModel.availableDevicesPublisher
             .skip(1)
             .subscribe(onNext: { [weak self] devices in
                 self?.devices = devices
-            }).disposed(by: bag)
-        viewModel.searchingTimeoutPublisher
-            .subscribe(onNext: { [weak self] in
-                self?.customView.tableView.tableFooterView = nil
             }).disposed(by: bag)
         viewModel.state
             .skip(1)
