@@ -29,20 +29,9 @@ final class ClientSetupOnboardingViewModel {
     var didFinishDeviceSearch: ((DeviceSearchResult) -> Void)?
 
     let title: String = Localizable.Onboarding.connecting
+    let description = Localizable.Onboarding.Connecting.availableDevices
+    let buttonTitle = Localizable.Onboarding.Connecting.refreshButtonTitle
 
-    var description: String {
-        switch state.value {
-        case .noneFound: return Localizable.Onboarding.Pairing.searchingForSecondDevice
-        case .someFound, .timeoutReached: return "Some found"
-        }
-    }
-    
-    var buttonTitle: String {
-        switch state.value {
-        case .noneFound: return Localizable.General.cancel
-        case .someFound, .timeoutReached: return "Refresh the list"
-        }
-    }
     private(set) var state = BehaviorRelay<PairingSearchState>(value: .noneFound)
     private(set) var availableDevicesPublisher = BehaviorRelay<[NetServiceDescriptor]>(value: [])
     private var searchCancelTimer: Timer?
@@ -66,12 +55,9 @@ final class ClientSetupOnboardingViewModel {
         setupRx()
     }
 
-    func attachInput(cancelButtonTap: Observable<Void>) {
-        cancelTap = cancelButtonTap
-        cancelTap?.subscribe(onNext: { [weak self] in
-            self?.searchCancelTimer?.invalidate()
-            self?.state.accept(.noneFound)
-            self?.netServiceClient.isEnabled.value = false
+    func attachInput(refreshButtonTap: Observable<Void>) {
+        refreshButtonTap.subscribe(onNext: { [weak self] in
+            self?.stopDiscovering()
             self?.startDiscovering()
         })
         .disposed(by: bag)
@@ -104,7 +90,13 @@ final class ClientSetupOnboardingViewModel {
         })
         netServiceClient.isEnabled.value = true
     }
-    
+
+    func stopDiscovering() {
+        searchCancelTimer?.invalidate()
+        state.accept(.noneFound)
+        netServiceClient.isEnabled.value = false
+    }
+
     private func setupRx() {
         netServiceClient.services
             .subscribe(onNext: { [weak self] netServices in

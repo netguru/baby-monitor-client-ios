@@ -25,10 +25,10 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
         setup()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.stopDiscovering()
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.startDiscovering(withTimeout: Constants.pairingDeviceSearchTimeLimit)
@@ -36,7 +36,8 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
     
     private func setup() {
         customView.update(title: viewModel.title)
-        updateView(for: .noneFound)
+        customView.update(mainDescription: viewModel.description)
+        customView.update(buttonTitle: viewModel.buttonTitle)
         navigationItem.leftBarButtonItem = customView.backButtonItem
         customView.tableView.dataSource = self
         customView.tableView.delegate = self
@@ -44,20 +45,17 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingS
     }
 
     private func updateView(for state: PairingSearchState) {
-        customView.update(mainDescription: viewModel.description)
-        customView.update(buttonTitle: viewModel.buttonTitle)
         customView.update(for: state)
     }
 
     private func setupBindings() {
-        viewModel.attachInput(cancelButtonTap: customView.rx.bottomButtonTap.asObservable())
+        viewModel.attachInput(refreshButtonTap: customView.rx.bottomButtonTap.asObservable())
         viewModel.availableDevicesPublisher
             .skip(1)
             .subscribe(onNext: { [weak self] devices in
                 self?.devices = devices
             }).disposed(by: bag)
         viewModel.state
-            .skip(1)
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] state in
                 self?.updateView(for: state)

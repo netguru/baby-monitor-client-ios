@@ -10,25 +10,28 @@ import RxCocoa
 final class OnboardingSpinnerView: BaseOnboardingView {
 
     let backButtonItem = UIBarButtonItem(
-           image: #imageLiteral(resourceName: "arrow_back"),
-           style: .plain,
-           target: nil,
-           action: nil
-       )
+       image: #imageLiteral(resourceName: "arrow_back"),
+       style: .plain,
+       target: nil,
+       action: nil
+    )
 
     let tableView: UITableView = {
-              let tableView = UITableView(frame: .zero)
-              tableView.register(AvailablePairingDevicesTableViewCell.self, forCellReuseIdentifier: AvailablePairingDevicesTableViewCell.identifier)
-              tableView.separatorStyle = .none
-              return tableView
-          }()
+      let tableView = UITableView(frame: .zero)
+      tableView.register(AvailablePairingDevicesTableViewCell.self, forCellReuseIdentifier: AvailablePairingDevicesTableViewCell.identifier)
+      tableView.separatorStyle = .none
+      return tableView
+    }()
 
     private let spinner = BaseSpinner()
 
-    fileprivate let bottomButton = RoundedRectangleButton(title: Localizable.General.cancel,
-                                                          backgroundColor: .clear,
-                                                          borderColor: .babyMonitorPurple,
-                                                          borderWidth: 2.0)
+    private lazy var separatorView: UIView = {
+        let separator = UIView(frame: CGRect(width: self.frame.width, height: 1))
+        separator.backgroundColor = .babyMonitorSeparatorGray
+        return separator
+    }()
+
+    fileprivate let bottomButton = RoundedRectangleButton(title: Localizable.General.cancel, backgroundColor: .babyMonitorPurple)
 
     private lazy var tableFooterView: UIView = {
         let view = UIView()
@@ -96,6 +99,7 @@ final class OnboardingSpinnerView: BaseOnboardingView {
         tableView.rowHeight = 60
         tableView.backgroundColor = .clear
         tableView.tableFooterView = tableFooterView
+        tableView.tableHeaderView = separatorView
         tableView.addConstraints {[
             $0.equal(.leading),
             $0.equal(.trailing),
@@ -122,8 +126,8 @@ final class OnboardingSpinnerView: BaseOnboardingView {
 extension Reactive where Base: OnboardingSpinnerView {
 
     var backButtonTap: ControlEvent<Void> {
-           return base.backButtonItem.rx.tap
-       }
+       return base.backButtonItem.rx.tap
+   }
 
     var bottomButtonTap: ControlEvent<Void> {
         return base.bottomButton.rx.tap
