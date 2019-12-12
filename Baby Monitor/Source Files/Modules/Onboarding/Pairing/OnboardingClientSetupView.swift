@@ -1,5 +1,5 @@
 //
-//  OnboardingSpinnerView.swift
+//  OnboardingClientSetupView.swift
 //  Baby Monitor
 //
 
@@ -7,7 +7,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class OnboardingSpinnerView: BaseOnboardingView {
+final class OnboardingClientSetupView: BaseOnboardingView {
 
     let backButtonItem = UIBarButtonItem(
        image: #imageLiteral(resourceName: "arrow_back"),
@@ -106,7 +106,7 @@ final class OnboardingSpinnerView: BaseOnboardingView {
         [tableView, bottomButton].forEach {
             addSubview($0)
         }
-        setupCancelButton()
+        setupBottomButton()
         setupTableView()
         setupSpinner()
     }
@@ -139,7 +139,7 @@ final class OnboardingSpinnerView: BaseOnboardingView {
         ])
     }
 
-    private func setupCancelButton() {
+    private func setupBottomButton() {
         bottomButton.addConstraints {[
             $0.equalTo(self, .bottom, .safeAreaBottom, constant: -32),
             $0.equalConstant(.height, 56),
@@ -150,7 +150,7 @@ final class OnboardingSpinnerView: BaseOnboardingView {
     }
 }
 
-extension Reactive where Base: OnboardingSpinnerView {
+extension Reactive where Base: OnboardingClientSetupView {
 
     var backButtonTap: ControlEvent<Void> {
        return base.backButtonItem.rx.tap

@@ -252,7 +252,7 @@
 		A1EC9777221AA53900C27786 /* OnboardingAccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */; };
 		A1EC9779221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */; };
 		A1EC977B221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC977A221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift */; };
-		A1EC977D221ADC8100C27786 /* OnboardingSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC977C221ADC8100C27786 /* OnboardingSpinnerView.swift */; };
+		A1EC977D221ADC8100C27786 /* OnboardingClientSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EC977C221ADC8100C27786 /* OnboardingClientSetupView.swift */; };
 		A1ED8F8D2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F8C2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift */; };
 		A1ED8F8F2212C70B005762E8 /* AccessBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */; };
 		A1ED8F912212C745005762E8 /* TwoOptionsBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */; };
@@ -572,7 +572,7 @@
 		A1EC9776221AA53900C27786 /* OnboardingAccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAccessViewModel.swift; sourceTree = "<group>"; };
 		A1EC9778221AA58B00C27786 /* OnboardingTwoOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoOptionsViewModel.swift; sourceTree = "<group>"; };
 		A1EC977A221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTwoOptionsViewController.swift; sourceTree = "<group>"; };
-		A1EC977C221ADC8100C27786 /* OnboardingSpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSpinnerView.swift; sourceTree = "<group>"; };
+		A1EC977C221ADC8100C27786 /* OnboardingClientSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingClientSetupView.swift; sourceTree = "<group>"; };
 		A1ED8F8C2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuableBaseOnboardingView.swift; sourceTree = "<group>"; };
 		A1ED8F8E2212C70B005762E8 /* AccessBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessBaseOnboardingView.swift; sourceTree = "<group>"; };
 		A1ED8F902212C745005762E8 /* TwoOptionsBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsBaseOnboardingView.swift; sourceTree = "<group>"; };
@@ -832,7 +832,7 @@
 			isa = PBXGroup;
 			children = (
 				95F3756D239FB77400692B3A /* Multiple Devices */,
-				A1EC977C221ADC8100C27786 /* OnboardingSpinnerView.swift */,
+				A1EC977C221ADC8100C27786 /* OnboardingClientSetupView.swift */,
 				4E60697721AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift */,
 				4E60697C21AFEFD500EB1DCF /* ImageOnboardingView.swift */,
 				4E36A3AD21B15F850058DAD2 /* OnboardingClientSetupViewController.swift */,
@@ -2032,7 +2032,7 @@
 				8A42DB142179DCAC00BF5F1B /* URL+Prefix.swift in Sources */,
 				95368F552209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift in Sources */,
 				8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */,
-				A1EC977D221ADC8100C27786 /* OnboardingSpinnerView.swift in Sources */,
+				A1EC977D221ADC8100C27786 /* OnboardingClientSetupView.swift in Sources */,
 				95E75C3D2390318500AC559D /* Logger.swift in Sources */,
 				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
 				4E63DC1A21E39D4B00604167 /* ServerKeyObtainable.swift in Sources */,

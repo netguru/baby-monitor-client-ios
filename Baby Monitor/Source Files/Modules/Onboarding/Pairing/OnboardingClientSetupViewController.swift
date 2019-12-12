@@ -10,14 +10,14 @@ enum PairingSearchState {
     case noneFound, someFound, timeoutReached
 }
 
-final class OnboardingClientSetupViewController: TypedViewController<OnboardingSpinnerView> {
+final class OnboardingClientSetupViewController: TypedViewController<OnboardingClientSetupView> {
     
     private let viewModel: ClientSetupOnboardingViewModel
     private let bag = DisposeBag()
     private var devices: [NetServiceDescriptor] = []
     init(viewModel: ClientSetupOnboardingViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: OnboardingSpinnerView())
+        super.init(viewMaker: OnboardingClientSetupView())
     }
     
     override func viewDidLoad() {
