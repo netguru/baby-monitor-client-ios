@@ -35,18 +35,12 @@ final class OnboardingSpinnerView: BaseOnboardingView {
 
     private lazy var tableFooterView: UIView = {
         let view = UIView()
-        let spinner = BaseSpinner()
         view.addSubview(spinner)
-        spinner.addConstraints {[
-            $0.equal(.top, constant: 12),
-            $0.equal(.centerX),
-            $0.equalConstant(.height, 32),
-            $0.equalConstant(.width, 32)
-        ]
-        }
-        spinner.startAnimating()
         return view
     }()
+
+    private var currentSpinnerConstraints: [NSLayoutConstraint] = []
+    private var isInitialLoading = true
 
     override init() {
         super.init()
@@ -61,34 +55,67 @@ final class OnboardingSpinnerView: BaseOnboardingView {
         switch state {
         case .noneFound:
             bottomButton.isHidden = true
-            spinner.isHidden = false
-            tableView.isHidden = true
-            spinner.startAnimating()
+            tableView.tableFooterView?.isHidden = false
+            guard !isInitialLoading else { return }
+            tableView.reloadData()
+            animateSpinner(for: state)
         case .someFound:
             bottomButton.isHidden = false
-            spinner.isHidden = true
-            tableView.isHidden = false
-            tableView.tableFooterView = tableFooterView
+            tableView.tableFooterView?.isHidden = false
             tableView.reloadData()
+            animateSpinner(for: state)
+            isInitialLoading = false
         case .timeoutReached:
-            tableView.tableFooterView = nil
+            tableView.tableFooterView?.isHidden = true
         }
     }
-    
+
+    private func animateSpinner(for state: PairingSearchState) {
+        switch state {
+        case .noneFound:
+            [spinner, tableView, tableFooterView].forEach {
+                $0.removeConstraints(currentSpinnerConstraints)
+            }
+            currentSpinnerConstraints = spinner.addConstraints {[
+                $0.equalTo(tableView, .centerY, .centerY),
+                $0.equalTo(tableView, .centerX, .centerX),
+                $0.equalConstant(.height, 80),
+                $0.equalConstant(.width, 80)
+            ]
+            }
+        case .someFound:
+            [spinner, tableView, tableFooterView].forEach {
+                $0.removeConstraints(currentSpinnerConstraints)
+            }
+            currentSpinnerConstraints = spinner.addConstraints {[
+                $0.equal(.top, constant: 12),
+                $0.equal(.centerX),
+                $0.equalConstant(.height, 32),
+                $0.equalConstant(.width, 32)
+            ]
+            }
+        case .timeoutReached:
+            break
+        }
+        UIView.animate(withDuration: 0.6) {
+            self.layoutIfNeeded()
+        }
+    }
+
     private func setup() {
-        [spinner, tableView, bottomButton].forEach {
+        [tableView, bottomButton].forEach {
             addSubview($0)
         }
-        setupSpinner()
         setupCancelButton()
         setupTableView()
+        setupSpinner()
     }
 
     private func setupSpinner() {
         spinner.startAnimating()
-        spinner.addConstraints {[
-            $0.equal(.centerY),
-            $0.equal(.centerX),
+        currentSpinnerConstraints = spinner.addConstraints {[
+            $0.equalTo(tableView, .centerY, .centerY),
+            $0.equalTo(tableView, .centerX, .centerX),
             $0.equalConstant(.height, 80),
             $0.equalConstant(.width, 80)
         ]
