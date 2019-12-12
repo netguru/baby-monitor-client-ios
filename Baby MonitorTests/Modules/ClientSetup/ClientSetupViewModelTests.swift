@@ -11,30 +11,27 @@ class ClientSetupViewModelTests: XCTestCase {
 
     func testShouldStartNetClientDiscoverAfterSelect() {
         // Given
-        let exp = expectation(description: "Should find device")
         let netServiceClient = NetServiceClientMock()
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let webSocketEventMessageService = WebSocketEventMessageServiceMock()
         let errorLogger = ServerErrorLoggerMock()
         let sut = ClientSetupOnboardingViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, activityLogEventsRepository: babyRepo, webSocketEventMessageService: webSocketEventMessageService, serverErrorLogger: errorLogger)
-        sut.didFinishDeviceSearch = { _ in exp.fulfill() }
 
         // When
         sut.startDiscovering()
-        netServiceClient.serviceRelay.accept((ip: "0.0.0.0", port: "0"))
         
         // Then
-        waitForExpectations(timeout: 0.1) { _ in
-            XCTAssertTrue(netServiceClient.isEnabled.value)
-        }
+        XCTAssertTrue(netServiceClient.isEnabled.value)
     }
     
     func testShouldSaveUrlOfFoundDeviceToConfiguration() {
         // Given
         let exp = expectation(description: "Should find device")
+        let name = "name"
         let ip = "ip"
         let port = "port"
+        let service = NetServiceDescriptor(name: name, ip: ip, port: port)
         let netServiceClient = NetServiceClientMock()
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
@@ -45,8 +42,9 @@ class ClientSetupViewModelTests: XCTestCase {
         
         // When
         sut.startDiscovering()
-        netServiceClient.serviceRelay.accept((ip: ip, port: port))
-        
+        netServiceClient.servicesRelay.accept([service])
+        sut.pair(with: service)
+
         // Then
         waitForExpectations(timeout: 0.1) { _ in
             XCTAssertNotNil(configuration.url)
@@ -54,9 +52,10 @@ class ClientSetupViewModelTests: XCTestCase {
         }
     }
     
-    func testShouldCallDidFindDeviceAfterFindingDevice() {
+    func testShouldCallDidFindDeviceAfterPairingToDevice() {
         // Given
         let exp = expectation(description: "Should find device")
+        let service = NetServiceDescriptor(name: "Device", ip: "0.0.0.0", port: "0")
         let netServiceClient = NetServiceClientMock()
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
@@ -67,7 +66,8 @@ class ClientSetupViewModelTests: XCTestCase {
         
         // When
         sut.startDiscovering()
-        netServiceClient.serviceRelay.accept((ip: "0.0.0.0", port: "0"))
+        netServiceClient.servicesRelay.accept([service])
+        sut.pair(with: service)
         
         // Then
         waitForExpectations(timeout: 0.1) { _ in
@@ -78,6 +78,7 @@ class ClientSetupViewModelTests: XCTestCase {
     func testShouldCallDidStartFindingDeviceAfterSelect() {
         // Given
         let exp = expectation(description: "Should find device")
+        let service = NetServiceDescriptor(name: "Device", ip: "0.0.0.0", port: "0")
         let netServiceClient = NetServiceClientMock()
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
@@ -88,7 +89,8 @@ class ClientSetupViewModelTests: XCTestCase {
         
         // When
         sut.startDiscovering()
-        netServiceClient.serviceRelay.accept((ip: "0.0.0.0", port: "0"))
+        netServiceClient.servicesRelay.accept([service])
+        sut.pair(with: service)
         
         // Then
         waitForExpectations(timeout: 0.1) { _ in
