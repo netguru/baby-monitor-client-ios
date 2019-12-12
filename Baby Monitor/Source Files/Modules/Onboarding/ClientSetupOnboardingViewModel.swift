@@ -65,7 +65,7 @@ final class ClientSetupOnboardingViewModel {
 
     func pair(with device: NetServiceDescriptor) {
         guard let serverUrl = URL.with(ip: device.ip, port: device.port, prefix: Constants.protocolPrefix) else {
-                return
+            return
         }
         searchCancelTimer?.invalidate()
         urlConfiguration.url = serverUrl
@@ -80,13 +80,11 @@ final class ClientSetupOnboardingViewModel {
             if self.availableDevicesPublisher.value.isEmpty {
                 self.didFinishDeviceSearch?(.failure(.timeout))
                 self.errorLogger.log(error: PairingError.timeout)
-                self.netServiceClient.isEnabled.value = false
-                self.searchCancelTimer = nil
             } else {
                 self.state.accept(.timeoutReached)
-                self.netServiceClient.isEnabled.value = false
-                self.searchCancelTimer = nil
             }
+            self.netServiceClient.isEnabled.value = false
+            self.searchCancelTimer = nil
         })
         netServiceClient.isEnabled.value = true
     }

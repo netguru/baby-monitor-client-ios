@@ -17,7 +17,7 @@ final class BaseSpinner: UIView, Spinner {
         view.image = #imageLiteral(resourceName: "onboarding-oval")
         view.contentMode = .scaleAspectFit
         return view
-       }()
+    }()
 
     private let loadingIndicator = UIActivityIndicatorView()
 
@@ -38,10 +38,10 @@ final class BaseSpinner: UIView, Spinner {
                 $0.equalEdges()
             }
         }
+        loadingIndicator.style = .gray
     }
 
     func startAnimating() {
-        loadingIndicator.style = .gray
         loadingIndicator.startAnimating()
     }
 
