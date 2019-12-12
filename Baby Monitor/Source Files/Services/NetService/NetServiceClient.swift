@@ -100,7 +100,6 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
 extension NetServiceClient: NetServiceBrowserDelegate {
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
-        print(service.name)
         guard service.name.contains(Constants.netServiceName) else { return }
         let index = netServices.count
         netServices.append(service)
