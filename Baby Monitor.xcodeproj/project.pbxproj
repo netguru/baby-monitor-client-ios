@@ -214,6 +214,9 @@
 		95368F522209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */; };
 		95368F552209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */; };
 		95368F582209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */; };
+		9546908A23A674330077D2B5 /* OnboardingCompareCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */; };
+		9546908C23A674A10077D2B5 /* OnboardingCompareCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */; };
+		9546908F23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */; };
 		9557FA6D237034F7002C9483 /* ServerErrorLoggerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9557FA6C237034F7002C9483 /* ServerErrorLoggerMock.swift */; };
 		955ADBC3236B3263004507F7 /* ServerErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */; };
 		955B8D2023903EEA00582330 /* LoggingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D1F23903EEA00582330 /* LoggingProtocol.swift */; };
@@ -534,6 +537,9 @@
 		95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewController.swift; sourceTree = "<group>"; };
 		95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingView.swift; sourceTree = "<group>"; };
 		95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewModel.swift; sourceTree = "<group>"; };
+		9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingCompareCodeViewController.swift; path = "../New Group/OnboardingCompareCodeViewController.swift"; sourceTree = "<group>"; };
+		9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeView.swift; sourceTree = "<group>"; };
+		9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeViewModel.swift; sourceTree = "<group>"; };
 		9557FA6C237034F7002C9483 /* ServerErrorLoggerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorLoggerMock.swift; sourceTree = "<group>"; };
 		955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorLogger.swift; sourceTree = "<group>"; };
 		955B8D1F23903EEA00582330 /* LoggingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingProtocol.swift; sourceTree = "<group>"; };
@@ -1357,6 +1363,16 @@
 			path = Specification;
 			sourceTree = "<group>";
 		};
+		9546908D23A6770B0077D2B5 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */,
+				9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */,
+				9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
 		955ADBC0236B323B004507F7 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -1388,6 +1404,7 @@
 			isa = PBXGroup;
 			children = (
 				95F3756E239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift */,
+				9546908D23A6770B0077D2B5 /* Code */,
 			);
 			path = "Multiple Devices";
 			sourceTree = "<group>";
@@ -1883,6 +1900,7 @@
 				8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */,
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				8A42DB0B2179D7D700BF5F1B /* URLUserDefaults.swift in Sources */,
+				9546908A23A674330077D2B5 /* OnboardingCompareCodeViewController.swift in Sources */,
 				A1640E232203930F00398ED2 /* BaseSettingsView.swift in Sources */,
 				95F3756F239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift in Sources */,
 				4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */,
@@ -1971,6 +1989,7 @@
 				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
 				8A8EF94A219C47FD0098A27B /* RTCICECandidate+JSON.swift in Sources */,
 				4E57319B2170BA7400DEAF0B /* HasWindow.swift in Sources */,
+				9546908F23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift in Sources */,
 				4E55436121D4C33A005C41FD /* WebRtcServerManager.swift in Sources */,
 				4E8E056C21AD8E25009ACE05 /* SpecifyDeviceOnboardingView.swift in Sources */,
 				A186818F2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift in Sources */,
@@ -2005,6 +2024,7 @@
 				95F3757323A0017C00692B3A /* BaseSpinner.swift in Sources */,
 				8A50AA4221E60A190058C63A /* RTCPeerConnectionDelegateProxy.swift in Sources */,
 				8A50AA3821E602F60058C63A /* PeerConnectionProtocol.swift in Sources */,
+				9546908C23A674A10077D2B5 /* OnboardingCompareCodeView.swift in Sources */,
 				A7D756312236B03D00F9893E /* MfccLayer.swift in Sources */,
 				95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,

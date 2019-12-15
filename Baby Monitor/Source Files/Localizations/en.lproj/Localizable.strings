@@ -57,6 +57,7 @@
 "onboarding.pairing.connecting.description" = "Searching for\nsecond device";
 "onboarding.pairing.available-devices.title" = "Available devices";
 "onboarding.pairing.refresh.button" = "Refresh the list";
+"onboarding.pairing.compare-code" = "Compare the security code and accept on the Baby device";
 "onboarding.pairing.done.description" = "Done!";
 "onboarding.pairing.error-description" = "Ups! Something\nwent wrong :(";
 "onboarding.pairing.error-second-description" = "Make sure that both devices are\nconnected to the same WiFi network.";

@@ -104,6 +104,7 @@ enum Localizable {
             static let startMonitoring = localized("onboarding.connecting.start-monitoring")
             static let availableDevices = localized("onboarding.pairing.available-devices.title")
             static let refreshButtonTitle = localized("onboarding.pairing.refresh.button")
+            static let compareCodeDescription = localized("onboarding.pairing.compare-code")
         }
         
         enum Pairing {
