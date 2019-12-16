@@ -57,12 +57,10 @@ final class OnboardingClientSetupView: BaseOnboardingView {
             bottomButton.isHidden = true
             tableView.tableFooterView?.isHidden = false
             guard !isInitialLoading else { return }
-            tableView.reloadData()
             animateSpinner(for: state)
         case .someFound:
             bottomButton.isHidden = false
             tableView.tableFooterView?.isHidden = false
-            tableView.reloadData()
             animateSpinner(for: state)
             isInitialLoading = false
         case .timeoutReached:

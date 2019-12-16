@@ -54,6 +54,7 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingC
             .skip(1)
             .subscribe(onNext: { [weak self] devices in
                 self?.devices = devices
+                self?.customView.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
             }).disposed(by: bag)
         viewModel.state
             .distinctUntilChanged()
