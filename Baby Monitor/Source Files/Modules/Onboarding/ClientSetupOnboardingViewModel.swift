@@ -90,9 +90,10 @@ final class ClientSetupOnboardingViewModel {
     }
 
     func stopDiscovering() {
-        searchCancelTimer?.invalidate()
-        state.accept(.noneFound)
         netServiceClient.isEnabled.value = false
+        searchCancelTimer?.invalidate()
+        availableDevicesPublisher.accept([])
+        state.accept(.noneFound)
     }
 
     private func setupRx() {
