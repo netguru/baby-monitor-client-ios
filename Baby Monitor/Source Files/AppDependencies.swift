@@ -146,13 +146,13 @@ final class AppDependencies {
     
     private(set) lazy var serverService: ServerServiceProtocol = {
         let service = ServerService(webRtcServerManager: webRtcServer(),
-            messageServer: messageServer,
-            netServiceServer: netServiceServer,
-            webRtcDecoders: webRtcMessageDecoders,
-            cryingService: cryingEventService,
-            babyModelController: databaseRepository,
-            notificationsService: localNotificationService,
-            babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
+                                    messageServer: messageServer,
+                                    netServiceServer: netServiceServer,
+                                    webRtcDecoders: webRtcMessageDecoders,
+                                    cryingService: cryingEventService,
+                                    babyModelController: databaseRepository,
+                                    notificationsService: localNotificationService,
+                                    babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
         )
         service.remoteResetEventObservable
             .observeOn(MainScheduler.asyncInstance)

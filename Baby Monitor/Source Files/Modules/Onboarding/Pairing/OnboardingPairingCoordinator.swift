@@ -120,6 +120,7 @@ private extension OnboardingPairingCoordinator {
                 case .parent:
                     self?.onEnding?()
                 case .none:
+//                    self?.showCompareCodeView()
                     self?.navigationController.dismiss(animated: true)
                     self?.showContinuableView(role: .parent(.allDone))
                 case .baby:
@@ -135,5 +136,10 @@ private extension OnboardingPairingCoordinator {
         })
         .disposed(by: viewModel.bag)
         navigationController.pushViewController(viewController, animated: true)
+    }
+
+    func showCompareCodeView() {
+//        let viewController = OnboardingCompareCodeViewController(viewModel: OnboardingCompareCodeViewModel())
+//        navigationController.pushViewController(viewController, animated: true)
     }
 }
