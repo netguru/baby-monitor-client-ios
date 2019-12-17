@@ -23,7 +23,7 @@ final class OnboardingClientSetupView: BaseOnboardingView {
       return tableView
     }()
 
-    private let spinner = BaseSpinner()
+    private let progressIndicator = BaseProgressIndicator()
 
     private lazy var separatorView: UIView = {
         let separator = UIView(frame: CGRect(width: self.frame.width, height: 1))
@@ -35,7 +35,7 @@ final class OnboardingClientSetupView: BaseOnboardingView {
 
     private lazy var tableFooterView: UIView = {
         let view = UIView()
-        view.addSubview(spinner)
+        view.addSubview(progressIndicator)
         return view
     }()
 
@@ -60,27 +60,27 @@ final class OnboardingClientSetupView: BaseOnboardingView {
             bottomButton.isHidden = true
             tableView.tableFooterView?.isHidden = false
             guard !isInitialLoading else { return }
-            animateSpinner(for: state)
+            animateProgressIndicator(for: state)
         case .someFound:
             bottomButton.isHidden = false
             tableView.tableFooterView?.isHidden = false
-            animateSpinner(for: state)
+            animateProgressIndicator(for: state)
             isInitialLoading = false
         case .timeoutReached:
             tableView.tableFooterView?.isHidden = true
         }
     }
 
-    private func animateSpinner(for state: PairingSearchState) {
+    private func animateProgressIndicator(for state: PairingSearchState) {
         guard let constraint = currentTopOrCenterYSpinnerConstraint else { return }
         switch state {
         case .noneFound:
-            [spinner, tableView, tableFooterView].forEach { $0.removeConstraints([constraint]) }
-            currentTopOrCenterYSpinnerConstraint = spinner.addConstraints { [ $0.equalTo(tableView, .centerY, .centerY) ] }.first
+            [progressIndicator, tableView, tableFooterView].forEach { $0.removeConstraints([constraint]) }
+            currentTopOrCenterYSpinnerConstraint = progressIndicator.addConstraints { [ $0.equalTo(tableView, .centerY, .centerY) ] }.first
             heightAndWidthConstraints.forEach { $0.constant = largeSpinnerHeight }
         case .someFound:
-            [spinner, tableView].forEach { $0.removeConstraints([constraint]) }
-            currentTopOrCenterYSpinnerConstraint = spinner.addConstraints { [ $0.equal(.top, constant: 12) ] }.first
+            [progressIndicator, tableView].forEach { $0.removeConstraints([constraint]) }
+            currentTopOrCenterYSpinnerConstraint = progressIndicator.addConstraints { [ $0.equal(.top, constant: 12) ] }.first
             heightAndWidthConstraints.forEach { $0.constant = smallSpinnerHeight }
         case .timeoutReached:
             break
@@ -100,13 +100,13 @@ final class OnboardingClientSetupView: BaseOnboardingView {
     }
 
     private func setupSpinner() {
-        spinner.startAnimating()
-        currentTopOrCenterYSpinnerConstraint = spinner.addConstraints {[
+        progressIndicator.startAnimating()
+        currentTopOrCenterYSpinnerConstraint = progressIndicator.addConstraints {[
             $0.equalTo(tableView, .centerY, .centerY),
             $0.equalTo(tableView, .centerX, .centerX)
         ]
         }.first
-        heightAndWidthConstraints = spinner.addConstraints {[
+        heightAndWidthConstraints = progressIndicator.addConstraints {[
             $0.equalConstant(.height, largeSpinnerHeight),
             $0.equalConstant(.width, largeSpinnerHeight)
         ]

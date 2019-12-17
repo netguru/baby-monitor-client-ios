@@ -1,16 +1,16 @@
 //
-//  BaseSpinner.swift
+//  BaseProgressIndicator.swift
 //  Baby Monitor
 //
 
 import UIKit
 
-protocol Spinner {
+protocol ProgressIndicator {
     func startAnimating()
     func stopAnimating()
 }
 
-final class BaseSpinner: UIView, Spinner {
+final class BaseProgressIndicator: UIView, ProgressIndicator {
 
     private let backgroundImageView: UIImageView = {
         let view = UIImageView()

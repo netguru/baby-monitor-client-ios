@@ -225,7 +225,7 @@
 		95E75C3D2390318500AC559D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C3C2390318500AC559D /* Logger.swift */; };
 		95F3756C239EA98A00692B3A /* ServerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3756B239EA98A00692B3A /* ServerServiceMock.swift */; };
 		95F3756F239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3756E239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift */; };
-		95F3757323A0017C00692B3A /* BaseSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3757223A0017C00692B3A /* BaseSpinner.swift */; };
+		95F3757323A0017C00692B3A /* BaseProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3757223A0017C00692B3A /* BaseProgressIndicator.swift */; };
 		A1492A66221D814500AA7716 /* ClearableLazyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1492A65221D814500AA7716 /* ClearableLazyItem.swift */; };
 		A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */; };
 		A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */; };
@@ -545,7 +545,7 @@
 		95E75C3C2390318500AC559D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		95F3756B239EA98A00692B3A /* ServerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerServiceMock.swift; sourceTree = "<group>"; };
 		95F3756E239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailablePairingDevicesTableViewCell.swift; sourceTree = "<group>"; };
-		95F3757223A0017C00692B3A /* BaseSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSpinner.swift; sourceTree = "<group>"; };
+		95F3757223A0017C00692B3A /* BaseProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProgressIndicator.swift; sourceTree = "<group>"; };
 		A1492A65221D814500AA7716 /* ClearableLazyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearableLazyItem.swift; sourceTree = "<group>"; };
 		A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFactory.swift; sourceTree = "<group>"; };
@@ -956,7 +956,7 @@
 			children = (
 				4EF36FBB21660F1700257384 /* BabyMonitorGeneral */,
 				4E1D2C6421678D9100E92F29 /* TypedViewController.swift */,
-				95F3757223A0017C00692B3A /* BaseSpinner.swift */,
+				95F3757223A0017C00692B3A /* BaseProgressIndicator.swift */,
 				EC8A8FF421AE8F5F00B5FCCF /* TypedPageViewController.swift */,
 				4E9563382164F09C00289475 /* BabyNavigationItemView.swift */,
 				4E994BF121624835009C44C5 /* BaseViewController.swift */,
@@ -2002,7 +2002,7 @@
 				8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */,
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
-				95F3757323A0017C00692B3A /* BaseSpinner.swift in Sources */,
+				95F3757323A0017C00692B3A /* BaseProgressIndicator.swift in Sources */,
 				8A50AA4221E60A190058C63A /* RTCPeerConnectionDelegateProxy.swift in Sources */,
 				8A50AA3821E602F60058C63A /* PeerConnectionProtocol.swift in Sources */,
 				A7D756312236B03D00F9893E /* MfccLayer.swift in Sources */,
