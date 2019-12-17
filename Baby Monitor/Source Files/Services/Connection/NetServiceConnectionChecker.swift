@@ -28,6 +28,6 @@ final class NetServiceConnectionChecker: ConnectionChecker {
     }
     
     private func createStatus() -> Observable<ConnectionStatus> {
-        return netServiceClient.service.map { $0 != nil ? .connected : .disconnected }.distinctUntilChanged()
+        return netServiceClient.services.map { !$0.isEmpty ? .connected : .disconnected }.distinctUntilChanged()
     }
 }

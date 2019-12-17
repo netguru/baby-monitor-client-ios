@@ -15,7 +15,7 @@ class NetServiceConnectionCheckerTests: XCTestCase {
         case stop
     }
 
-    func performStatusTest(producedActions: [Recorded<Event<NetServiceConnectionCheckerAction>>], producedServices: [Recorded<Event<NetServiceDescriptor?>>], expectedStatuses: [Recorded<Event<ConnectionStatus>>], file: StaticString = #file, line: UInt = #line) {
+    func performStatusTest(producedActions: [Recorded<Event<NetServiceConnectionCheckerAction>>], producedServices: [Recorded<Event<[NetServiceDescriptor]>>], expectedStatuses: [Recorded<Event<ConnectionStatus>>], file: StaticString = #file, line: UInt = #line) {
 
         let scheduler = TestScheduler(initialClock: 0)
         let bag = DisposeBag()
@@ -28,7 +28,7 @@ class NetServiceConnectionCheckerTests: XCTestCase {
         let actions = scheduler.createColdObservable(producedActions)
         let statuses = scheduler.createObserver(ConnectionStatus.self)
 
-        services.bind(to: client.serviceRelay).disposed(by: bag)
+        services.bind(to: client.servicesRelay).disposed(by: bag)
         actions.subscribe(onNext: { [unowned sut] in $0 == .start ? sut.start() : sut.stop() }).disposed(by: bag)
         sut.connectionStatus.subscribe(statuses).disposed(by: bag)
 
@@ -84,7 +84,7 @@ class NetServiceConnectionCheckerTests: XCTestCase {
                 // no actions
             ],
             producedServices: [
-                .next(1, (ip: "0.0.0.0", port: "0"))
+                .next(1, [NetServiceDescriptor(name: "Device", ip: "0.0.0.0", port: "0")])
             ],
             expectedStatuses: [
                 .next(0, .disconnected)
@@ -98,7 +98,7 @@ class NetServiceConnectionCheckerTests: XCTestCase {
                 .next(1, .start)
             ],
             producedServices: [
-                .next(2, (ip: "0.0.0.0", port: "0"))
+                .next(2, [NetServiceDescriptor(name: "Device", ip: "0.0.0.0", port: "0")])
             ],
             expectedStatuses: [
                 .next(0, .disconnected),
@@ -113,8 +113,8 @@ class NetServiceConnectionCheckerTests: XCTestCase {
                 .next(1, .start)
             ],
             producedServices: [
-                .next(2, (ip: "0.0.0.0", port: "0")),
-                .next(3, nil)
+                .next(2, [NetServiceDescriptor(name: "Device", ip: "0.0.0.0", port: "0")]),
+                .next(3, [])
             ],
             expectedStatuses: [
                 .next(0, .disconnected),
@@ -131,7 +131,7 @@ class NetServiceConnectionCheckerTests: XCTestCase {
                 .next(3, .stop)
             ],
             producedServices: [
-                .next(2, (ip: "0.0.0.0", port: "0"))
+                .next(2, [NetServiceDescriptor(name: "Device", ip: "0.0.0.0", port: "0")])
             ],
             expectedStatuses: [
                 .next(0, .disconnected),
@@ -147,11 +147,11 @@ class NetServiceConnectionCheckerTests: XCTestCase {
                 .next(1, .start)
             ],
             producedServices: [
-                .next(2, nil),
-                .next(3, (ip: "0.0.0.0", port: "0")),
-                .next(4, (ip: "0.0.0.0", port: "0")),
-                .next(5, nil),
-                .next(6, nil)
+                .next(2, []),
+                .next(3, [NetServiceDescriptor(name: "Device", ip: "0.0.0.0", port: "0")]),
+                .next(4, [NetServiceDescriptor(name: "Device", ip: "0.0.0.0", port: "0")]),
+                .next(5, []),
+                .next(6, [])
             ],
             expectedStatuses: [
                 .next(0, .disconnected),

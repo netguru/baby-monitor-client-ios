@@ -49,7 +49,7 @@ private extension OnboardingPairingCoordinator {
         switch role {
         case .parent(.error):
             continuableViewController.modalPresentationStyle = .fullScreen
-            navigationController.presentedViewController?.present(continuableViewController, animated: true)
+            navigationController.present(continuableViewController, animated: true)
         default:
             navigationController.pushViewController(continuableViewController, animated: true)
         }
@@ -99,7 +99,7 @@ private extension OnboardingPairingCoordinator {
             .disposed(by: viewModel.bag)
     }
     
-    func connect(to viewModel: ClientSetupOnboardingViewModel) {
+    func connect(to viewModel: OnboardingClientSetupViewModel) {
         viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
             self.navigationController.popViewController(animated: true)
         })
@@ -107,7 +107,7 @@ private extension OnboardingPairingCoordinator {
     }
     
     func showPairingView() {
-        let viewModel = ClientSetupOnboardingViewModel(
+        let viewModel = OnboardingClientSetupViewModel(
             netServiceClient: appDependencies.netServiceClient,
             urlConfiguration: appDependencies.urlConfiguration,
             activityLogEventsRepository: appDependencies.databaseRepository,
@@ -134,6 +134,6 @@ private extension OnboardingPairingCoordinator {
             self?.connect(to: viewModel)
         })
         .disposed(by: viewModel.bag)
-        navigationController.present(viewController, animated: true)
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

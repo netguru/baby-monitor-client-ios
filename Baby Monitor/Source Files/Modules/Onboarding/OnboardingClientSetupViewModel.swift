@@ -1,10 +1,11 @@
 //
-//  ClientSetupOnboardingViewModel.swift
+//  OnboardingClientSetupViewModel.swift
 //  Baby Monitor
 //
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 enum DeviceSearchError: Error {
     case timeout
@@ -15,24 +16,25 @@ enum DeviceSearchResult: Equatable {
     case failure(DeviceSearchError)
 }
 
-final class ClientSetupOnboardingViewModel {
+final class OnboardingClientSetupViewModel {
 
     private enum PairingError: Error {
         case timeout
     }
 
     let bag = DisposeBag()
-    var selectFirstAction: (() -> Void)?
-    var selectSecondAction: (() -> Void)?
     var cancelTap: Observable<Void>?
 
     // MARK: - Coordinator callback
     var didFinishDeviceSearch: ((DeviceSearchResult) -> Void)?
-    
-    let title = Localizable.Onboarding.connecting
-    let description = Localizable.Onboarding.Pairing.searchingForSecondDevice
-    let image = #imageLiteral(resourceName: "onboarding-oval")
-    
+
+    let title: String = Localizable.Onboarding.connecting
+    let description = Localizable.Onboarding.Connecting.availableDevices
+    let buttonTitle = Localizable.Onboarding.Connecting.refreshButtonTitle
+
+    let state = BehaviorRelay<PairingSearchState>(value: .noneFound)
+    let availableDevicesPublisher = BehaviorRelay<[NetServiceDescriptor]>(value: [])
+
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
     private let urlConfiguration: URLConfiguration
@@ -54,40 +56,56 @@ final class ClientSetupOnboardingViewModel {
         setupRx()
     }
 
-    func attachInput(cancelButtonTap: Observable<Void>) {
-        cancelTap = cancelButtonTap
-        cancelTap?.subscribe(onNext: { [weak self] in
-            self?.searchCancelTimer?.invalidate()
-            self?.netServiceClient.isEnabled.value = false
+    func attachInput(refreshButtonTap: Observable<Void>) {
+        refreshButtonTap.subscribe(onNext: { [weak self] in
+            self?.stopDiscovering()
+            self?.startDiscovering()
         })
         .disposed(by: bag)
+    }
+
+    func pair(with device: NetServiceDescriptor) {
+        guard let serverUrl = URL.with(ip: device.ip, port: device.port, prefix: Constants.protocolPrefix) else {
+            return
+        }
+        searchCancelTimer?.invalidate()
+        urlConfiguration.url = serverUrl
+        webSocketEventMessageService.start()
+        saveEmptyStateIfNeeded()
+        didFinishDeviceSearch?(.success)
     }
     
     func startDiscovering(withTimeout timeout: TimeInterval = Constants.pairingDeviceSearchTimeLimit) {
         searchCancelTimer = Timer.scheduledTimer(withTimeInterval: timeout, repeats: false, block: { [weak self] _ in
-            self?.didFinishDeviceSearch?(.failure(.timeout))
-            self?.errorLogger.log(error: PairingError.timeout)
-            self?.netServiceClient.isEnabled.value = false
-            self?.searchCancelTimer = nil
+            guard let self = self else { return }
+            if self.availableDevicesPublisher.value.isEmpty {
+                self.didFinishDeviceSearch?(.failure(.timeout))
+                self.errorLogger.log(error: PairingError.timeout)
+            } else {
+                self.state.accept(.timeoutReached)
+            }
+            self.netServiceClient.isEnabled.value = false
+            self.searchCancelTimer = nil
         })
         netServiceClient.isEnabled.value = true
     }
-    
+
+    func stopDiscovering() {
+        netServiceClient.isEnabled.value = false
+        searchCancelTimer?.invalidate()
+        availableDevicesPublisher.accept([])
+        state.accept(.noneFound)
+    }
+
     private func setupRx() {
-        netServiceClient.service
-            .filter { $0 != nil }
-            .map { $0! }
-            .take(1)
-            .subscribe(onNext: { [weak self] ip, port in
-                guard let serverUrl = URL.with(ip: ip, port: port, prefix: Constants.protocolPrefix),
-                    let self = self else {
-                        return
+        netServiceClient.services
+            .subscribe(onNext: { [weak self] netServices in
+                guard let self = self, self.state.value != .timeoutReached else {
+                    return
                 }
-                self.searchCancelTimer?.invalidate()
-                self.urlConfiguration.url = serverUrl
-                self.webSocketEventMessageService.start()
-                self.saveEmptyStateIfNeeded()
-                self.didFinishDeviceSearch?(.success)
+                let searchingState: PairingSearchState = netServices.isEmpty ? .noneFound : .someFound
+                self.availableDevicesPublisher.accept(netServices)
+                self.state.accept(searchingState)
             })
             .disposed(by: disposeBag)
     }
