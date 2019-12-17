@@ -32,8 +32,9 @@ final class ClientSetupOnboardingViewModel {
     let description = Localizable.Onboarding.Connecting.availableDevices
     let buttonTitle = Localizable.Onboarding.Connecting.refreshButtonTitle
 
-    private(set) var state = BehaviorRelay<PairingSearchState>(value: .noneFound)
-    private(set) var availableDevicesPublisher = BehaviorRelay<[NetServiceDescriptor]>(value: [])
+    let state = BehaviorRelay<PairingSearchState>(value: .noneFound)
+    let availableDevicesPublisher = BehaviorRelay<[NetServiceDescriptor]>(value: [])
+    
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
     private let urlConfiguration: URLConfiguration
