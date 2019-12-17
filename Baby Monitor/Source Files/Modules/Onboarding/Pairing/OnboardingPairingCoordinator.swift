@@ -99,7 +99,7 @@ private extension OnboardingPairingCoordinator {
             .disposed(by: viewModel.bag)
     }
     
-    func connect(to viewModel: ClientSetupOnboardingViewModel) {
+    func connect(to viewModel: OnboardingClientSetupViewModel) {
         viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
             self.navigationController.popViewController(animated: true)
         })
@@ -107,7 +107,7 @@ private extension OnboardingPairingCoordinator {
     }
     
     func showPairingView() {
-        let viewModel = ClientSetupOnboardingViewModel(
+        let viewModel = OnboardingClientSetupViewModel(
             netServiceClient: appDependencies.netServiceClient,
             urlConfiguration: appDependencies.urlConfiguration,
             activityLogEventsRepository: appDependencies.databaseRepository,

@@ -12,10 +12,10 @@ enum PairingSearchState {
 
 final class OnboardingClientSetupViewController: TypedViewController<OnboardingClientSetupView> {
     
-    private let viewModel: ClientSetupOnboardingViewModel
+    private let viewModel: OnboardingClientSetupViewModel
     private let bag = DisposeBag()
     private var devices: [NetServiceDescriptor] = []
-    init(viewModel: ClientSetupOnboardingViewModel) {
+    init(viewModel: OnboardingClientSetupViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: OnboardingClientSetupView())
     }
