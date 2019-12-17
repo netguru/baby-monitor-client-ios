@@ -6,7 +6,7 @@
 import UIKit
 import RxSwift
 
-final class OnboardingCompareCodeViewController: TypedViewController<OnboardingCompareCodeView>  {
+final class OnboardingCompareCodeViewController: TypedViewController<OnboardingCompareCodeView> {
 
     private let viewModel: OnboardingCompareCodeViewModel
     private let bag = DisposeBag()

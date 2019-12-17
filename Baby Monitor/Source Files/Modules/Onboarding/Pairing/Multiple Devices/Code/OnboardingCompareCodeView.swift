@@ -18,8 +18,6 @@ final class OnboardingCompareCodeView: BaseOnboardingView {
 
     private let codeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.customFont(withSize: .giant)
-        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
@@ -30,7 +28,9 @@ final class OnboardingCompareCodeView: BaseOnboardingView {
     }
 
     func update(codeText: String) {
-        codeLabel.text = codeText
+        codeLabel.attributedText = codeText.withKerning(10)
+            .withFont(.customFont(withSize: .giant, weight: .semibold))
+            .withColor(.white)
     }
 
     private func setup() {
