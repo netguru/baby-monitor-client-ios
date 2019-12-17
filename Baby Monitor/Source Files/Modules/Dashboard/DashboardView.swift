@@ -18,7 +18,7 @@ class DashboardView: BaseView {
         style: .plain,
         target: nil,
         action: nil)
-    private var pulseColor: UIColor = .babyMonitorLightGreen
+    private var pulseColor: UIColor = .babyMonitorBrownGray
     private lazy var backgroundPhotoImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "photo-dashboard-background"))
         imageView.contentMode = .scaleAspectFill
@@ -181,8 +181,8 @@ extension Reactive where Base: DashboardView {
     }
     
     var connectionStatus: Binder<Bool> {
-        return Binder(base) { dashboardView, isConnection in
-            isConnection ? dashboardView.updateConnectionStatus(isConnected: true) : dashboardView.updateConnectionStatus(isConnected: false)
+        return Binder(base) { dashboardView, isConnected in
+            dashboardView.updateConnectionStatus(isConnected: isConnected)
         }
     }
 }

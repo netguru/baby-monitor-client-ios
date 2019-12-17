@@ -6,9 +6,12 @@
 import Foundation
 
 extension Bundle {
-    
-    /// Build number.
+
     var buildNumber: String {
         return object(forInfoDictionaryKey: "CFBundleVersion") as! String
+    }
+
+    var bundleVersion: String {
+        return object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }
 }

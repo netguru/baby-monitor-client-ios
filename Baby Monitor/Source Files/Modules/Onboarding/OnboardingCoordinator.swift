@@ -24,11 +24,9 @@ final class OnboardingCoordinator: Coordinator {
     func start() {
         navigationController.setNavigationBarHidden(true, animated: false)
         switch UserDefaults.appMode {
-        case .parent:
-            pairingCoordinator?.start()
         case .none:
             childCoordinators.first?.start()
-        case .baby:
+        case .baby, .parent:
             break
         }
     }

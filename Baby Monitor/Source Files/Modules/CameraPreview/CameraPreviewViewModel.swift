@@ -6,26 +6,31 @@
 import RxSwift
 
 final class CameraPreviewViewModel {
-
+    
     let bag = DisposeBag()
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
+    private(set) var streamResettedPublisher = PublishSubject<Void>()
     private(set) var cancelTap: Observable<Void>?
     private(set) var settingsTap: Observable<Void>?
     
     var shouldPlayPreview = false
     var remoteStream: Observable<MediaStream?> {
-        return webSocketWebRtcService.mediaStream
+        return webSocketWebRtcService.get().mediaStream
     }
-    lazy var state: Observable<WebRtcClientManagerState> = webSocketWebRtcService.state
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        webSocketWebRtcService.get().connectionStatusObservable
+    }
     
     private let babyModelController: BabyModelControllerProtocol
-    private let webSocketWebRtcService: WebSocketWebRtcServiceProtocol
-    private let connectionChecker: ConnectionChecker
-
-    init(webSocketWebRtcService: WebSocketWebRtcServiceProtocol, babyModelController: BabyModelControllerProtocol, connectionChecker: ConnectionChecker) {
+    private unowned var webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>
+    private unowned var socketCommunicationManager: SocketCommunicationManager
+    
+    init(webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
+        babyModelController: BabyModelControllerProtocol,
+        socketCommunicationManager: SocketCommunicationManager) {
         self.webSocketWebRtcService = webSocketWebRtcService
         self.babyModelController = babyModelController
-        self.connectionChecker = connectionChecker
+        self.socketCommunicationManager = socketCommunicationManager
         rxSetup()
     }
     
@@ -34,30 +39,39 @@ final class CameraPreviewViewModel {
         self.cancelTap = cancelTap
         self.settingsTap = settingsTap
     }
-
+    
     func play() {
-        webSocketWebRtcService.start()
+        webSocketWebRtcService.get().start()
     }
-
+    
     func stop() {
-        webSocketWebRtcService.closeWebRtcConnection()
+        webSocketWebRtcService.get().closeWebRtcConnection()
     }
     
     // MARK: - Private functions
     private func rxSetup() {
-        connectionChecker.connectionStatus
-            .skip(1)
-            .filter { $0 == .connected }
-            .filter { [weak self] _ in self?.shouldPlayPreview == true }
-            .subscribe(onNext: { [weak self] _ in
+        connectionStatusObservable
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] in
+                self?.handleStateChange(state: $0)
+            })
+            .disposed(by: bag)
+        socketCommunicationManager.communicationResetObservable
+            .subscribe(onNext: { [weak self] in
                 self?.play()
+                self?.streamResettedPublisher.onNext(())
             })
             .disposed(by: bag)
-        connectionChecker.connectionStatus
-            .filter { $0 == .disconnected }
-            .subscribe(onNext: { [weak self] _ in
-                self?.stop()
-            })
-            .disposed(by: bag)
+    }
+    
+    private func handleStateChange(state: WebSocketConnectionStatus) {
+        switch state {
+        case .connected where shouldPlayPreview:
+            play()
+        case .disconnected:
+            stop()
+        default:
+            print("connection status: connecting")
+        }
     }
 }

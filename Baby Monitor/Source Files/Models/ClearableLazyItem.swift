@@ -24,4 +24,8 @@ final class ClearableLazyItem<T> {
     func clear() {
         t = nil
     }
+    
+    var isCleared: Bool {
+        return t == nil
+    }
 }

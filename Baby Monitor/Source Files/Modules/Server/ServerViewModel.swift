@@ -11,8 +11,12 @@ final class ServerViewModel {
     var stream: Observable<MediaStream> {
         return serverService.localStreamObservable
     }
+    var loggingInfoObservable: Observable<String> {
+        return serverService.loggingInfoObservable
+    }
     var onAudioMicrophoneServiceError: (() -> Void)?
     var settingsTap: Observable<Void>?
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> { serverService.connectionStatusObservable }
     let bag = DisposeBag()
     
     private let serverService: ServerServiceProtocol
@@ -22,19 +26,23 @@ final class ServerViewModel {
         rxSetup()
     }
     
-    deinit {
-        serverService.stop()
-    }
-    
     /// Starts streaming
     func startStreaming() {
         serverService.startStreaming()
+    }
+
+    func pauseVideoStreaming() {
+        serverService.pauseVideoStreaming()
+    }
+
+    func resumeVideoStreaming() {
+        serverService.resumeVideoStreaming()
     }
     
     private func rxSetup() {
         serverService.audioMicrophoneServiceErrorObservable.subscribe(onNext: { [weak self] _ in
             self?.onAudioMicrophoneServiceError?()
         })
-            .disposed(by: bag)
+        .disposed(by: bag)
     }
 }

@@ -5,7 +5,7 @@
 
 import RxSwift
 
-protocol MessageServerProtocol: MessageStreamProtocol {
+protocol MessageServerProtocol: MessageStreamProtocol, WebSocketConnectionStatusProvider {
     
     /// Sends message to connected client
     ///

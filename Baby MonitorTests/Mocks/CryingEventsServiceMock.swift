@@ -12,6 +12,7 @@ final class CryingEventsServiceMock: CryingEventsServiceProtocol {
     var cryingEventObservable: Observable<Void> {
         return cryingEventPublisher
     }
+    var loggingInfoPublisher = PublishSubject<String>()
     let cryingEventPublisher = PublishSubject<Void>()
     private let shouldThrow: Bool
 

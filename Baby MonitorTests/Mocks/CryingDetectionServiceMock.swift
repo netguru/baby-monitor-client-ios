@@ -9,8 +9,8 @@ import RxSwift
 
 final class CryingDetectionServiceMock: CryingDetectionServiceProtocol {
     
-    lazy var cryingDetectionObservable: Observable<Bool> = cryingDetectionPublisher.asObservable()
-    var cryingDetectionPublisher = PublishSubject<Bool>()
+    lazy var cryingDetectionObservable: Observable<CryingDetectionResult> = cryingDetectionPublisher.asObservable()
+    var cryingDetectionPublisher = PublishSubject<CryingDetectionResult>()
     var analysisStarted = false
     
     func startAnalysis() {
@@ -22,6 +22,6 @@ final class CryingDetectionServiceMock: CryingDetectionServiceProtocol {
     }
     
     func notifyAboutCryingDetection(isBabyCrying isCrying: Bool) {
-        cryingDetectionPublisher.onNext(isCrying)
+        cryingDetectionPublisher.onNext(CryingDetectionResult(isBabyCrying: isCrying, probability: 1))
     }
 }

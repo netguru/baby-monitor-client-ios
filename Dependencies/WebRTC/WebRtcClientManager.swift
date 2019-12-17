@@ -23,30 +23,18 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     var mediaStream: Observable<MediaStream?> {
         return mediaStreamPublisher
     }
-
-    lazy var state: Observable<WebRtcClientManagerState> = {
-        Observable.combineLatest(connectionChecker.connectionStatus, connectionDelegateProxy.signalingState)
-            .map { connStatus, peerState -> WebRtcClientManagerState? in
-                switch (connStatus, peerState) {
-                case (.disconnected, _), (_, .closed): return .disconnected
-                case (.connected, .haveLocalOffer): return .connecting
-                case (.connected, .stable): return .connected
-                default: return nil
-                }
-            }
-            .filter { $0 != nil }
-            .map { $0! }
-    }()
+    
     
     private var isStarted = false
+    private(set) var connectionStatusObservable: Observable<WebSocketConnectionStatus>
     private let sdpOfferPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
     private let mediaStreamPublisher = BehaviorSubject<MediaStream?>(value: nil)
+    private var connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
     private let disposeBag = DisposeBag()
 
     private var peerConnection: PeerConnectionProtocol?
     private let peerConnectionFactory: PeerConnectionFactoryProtocol
-    private let connectionChecker: ConnectionChecker
     private let appStateProvider: ApplicationStateProvider
     private let connectionDelegateProxy: RTCPeerConnectionDelegateProxy
 
@@ -57,17 +45,16 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
                 WebRtcConstraintKey.offerToReceiveAudio: WebRtcConstraintValue.true
             ],
             optionalConstraints: [
-                WebRtcConstraintKey.dtlsSrtpKeyAgreement: WebRtcConstraintValue.true,
-                WebRtcConstraintKey.iceRestart: WebRtcConstraintValue.true
+                WebRtcConstraintKey.dtlsSrtpKeyAgreement: WebRtcConstraintValue.true
             ]
         )
     }
 
-    init(peerConnectionFactory: PeerConnectionFactoryProtocol, connectionChecker: ConnectionChecker, appStateProvider: ApplicationStateProvider) {
+    init(peerConnectionFactory: PeerConnectionFactoryProtocol, appStateProvider: ApplicationStateProvider) {
         self.peerConnectionFactory = peerConnectionFactory
-        self.connectionChecker = connectionChecker
         self.appStateProvider = appStateProvider
         self.connectionDelegateProxy = RTCPeerConnectionDelegateProxy()
+        connectionStatusObservable = connectionStatusPublisher.asObservable()
         super.init()
         setup()
     }
@@ -75,13 +62,16 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     func setup() {
 
         connectionDelegateProxy.onAddedStream = { [weak self] _, stream in
-            guard let self = self else { return }
-            self.mediaStreamPublisher.onNext(stream)
+            self?.mediaStreamPublisher.onNext(stream)
         }
 
         connectionDelegateProxy.onGotIceCandidate = { [weak self] _, iceCandidate in
-            guard let self = self else { return }
-            self.iceCandidatePublisher.onNext(iceCandidate)
+            self?.iceCandidatePublisher.onNext(iceCandidate)
+        }
+        
+        connectionDelegateProxy.onSignalingStateChanged = { [weak self] _, state in
+            let newState = state.toSocketConnectionState()
+            self?.connectionStatusPublisher.onNext(newState)
         }
 
         appStateProvider.willEnterBackground

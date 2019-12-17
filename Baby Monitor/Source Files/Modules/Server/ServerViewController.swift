@@ -45,6 +45,15 @@ final class ServerViewController: BaseViewController {
         style: .plain,
         target: nil,
         action: nil)
+
+    private lazy var debugInfoLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .white
+        label.textAlignment = .center
+        return label
+    }()
+
     private var timer: Timer?
     /// A timer for hiding video stream from view.
     private var videoTimer: Observable<Int>?
@@ -84,7 +93,7 @@ final class ServerViewController: BaseViewController {
     }
 
     private func setupView() {
-        [disabledVideoView, localView, buttonsStackView, nightModeOverlay].forEach(view.addSubview)
+        [disabledVideoView, localView, buttonsStackView, nightModeOverlay, debugInfoLabel].forEach(view.addSubview)
         localView.addConstraints { $0.equalEdges() }
         nightModeOverlay.addConstraints { $0.equalEdges() }
 
@@ -95,8 +104,15 @@ final class ServerViewController: BaseViewController {
             $0.equal(.centerX)
         ]
         }
+        debugInfoLabel.addConstraints {[
+            $0.equal(.safeAreaTop, constant: 50),
+            $0.equal(.centerX),
+            $0.equal(.width, multiplier: 0.8)
+        ]
+        }
         view.bringSubviewToFront(nightModeOverlay)
         view.bringSubviewToFront(buttonsStackView)
+        view.bringSubviewToFront(debugInfoLabel)
     }
     
     private func setupBindings() {
@@ -108,7 +124,7 @@ final class ServerViewController: BaseViewController {
         viewModel.startStreaming()
         fireVideoTimer()
         videoTimer?.subscribe(onNext: { [weak self] _ in
-            self?.localView.isHidden = true
+            self?.disableVideoStreaming()
             self?.videoTimer = nil
         })
         .disposed(by: bag)
@@ -120,10 +136,23 @@ final class ServerViewController: BaseViewController {
         disabledVideoView.tapGestureRecognizer
             .rx.event
             .subscribe(onNext: { [weak self] _ in
-                self?.localView.isHidden = false
+                self?.enableVideoStreaming()
                 self?.fireVideoTimer()
         })
         .disposed(by: bag)
+        viewModel.loggingInfoObservable
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] text in
+                self?.debugInfoLabel.text = text
+            })
+        .disposed(by: bag)
+        viewModel.connectionStatusObservable
+            .observeOn(MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] state in
+                self?.babyNavigationItemView.updateConnectionStatus(isConnected: state == .connected)
+            })
+            .disposed(by: bag)
     }
     
     private func attach(stream: MediaStream) {
@@ -133,6 +162,19 @@ final class ServerViewController: BaseViewController {
         localVideoTrack?.remove(localView)
         localVideoTrack = stream.videoTracks[0]
         localVideoTrack?.add(localView)
+    }
+
+    private func enableVideoStreaming() {
+        viewModel.resumeVideoStreaming()
+        localView.isHidden = false
+    }
+
+    private func disableVideoStreaming() {
+        guard localVideoTrack != nil else { return }
+        self.viewModel.pauseVideoStreaming()
+        self.localVideoTrack?.remove(self.localView)
+        self.localVideoTrack = nil
+        self.localView.isHidden = true
     }
 
     private func fireVideoTimer() {

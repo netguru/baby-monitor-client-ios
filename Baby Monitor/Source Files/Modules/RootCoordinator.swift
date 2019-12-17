@@ -9,6 +9,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
     
     var childCoordinators: [Coordinator] = []
     var onEnding: (() -> Void)?
+    var onReset: (() -> Void)?
     var window: UIWindow
     var appDependencies: AppDependencies
     
@@ -26,11 +27,17 @@ final class RootCoordinator: RootCoordinatorProtocol {
 
     func start() {
         switch UserDefaults.appMode {
-        case .parent, .none:
+        case .parent:
+            dashboardCoordinator?.start()
+        case .none:
             onboardingCoordinator?.start()
         case .baby:
             serverCoordinator?.start()
         }
+    }
+
+    func update(dependencies: AppDependencies) {
+        self.appDependencies = dependencies
     }
 
     // MARK: - private functions
@@ -72,10 +79,7 @@ final class RootCoordinator: RootCoordinatorProtocol {
         // For now triggering dashboardCoordinator/serverCoordinator onEnding is only in situation where user wants to clear all data
         switch UserDefaults.appMode {
         case .none:
-            // This line is extremely important. After resseting the app we may want to establish new
-            // WebRTC connection. Thanks to deinitializing and initializing AppDependencies again we are
-            // sure that old connection is properly cleared.
-            appDependencies = AppDependencies()
+            onReset?()
             childCoordinators = []
             setup()
             start()

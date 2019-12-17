@@ -12,10 +12,11 @@ final class ServerSettingsViewController: TypedViewController<ServerSettingsView
     
     private let viewModel: ServerSettingsViewModel
     private let bag = DisposeBag()
-    
-    init(viewModel: ServerSettingsViewModel) {
+
+    init(viewModel: ServerSettingsViewModel, appVersionProvider: AppVersionProvider) {
+        let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
-        super.init(viewMaker: ServerSettingsView())
+        super.init(viewMaker: ServerSettingsView(appVersion: appVersion))
     }
     
     override func viewDidLoad() {

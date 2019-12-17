@@ -6,8 +6,8 @@
 import Foundation
 
 protocol NetworkDispatcherProtocol: AnyObject {
-    func execute(urlRequest: URLRequest, completion: ((Result<Data>) -> Void)?)
-    func execute<T: Decodable>(urlRequest: URLRequest, completion: ((Result<T>) -> Void)?)
+    func execute(urlRequest: URLRequest, completion: @escaping ((Result<Data>) -> Void))
+    func executeWithJsonParsing<T: Decodable>(urlRequest: URLRequest, completion: ((Result<T>) -> Void)?)
 }
 
 final class NetworkDispatcher: NSObject, NetworkDispatcherProtocol {
@@ -21,23 +21,22 @@ final class NetworkDispatcher: NSObject, NetworkDispatcherProtocol {
         super.init()
     }
     
-    func execute(urlRequest: URLRequest, completion: ((Result<Data>) -> Void)?) {
+    func execute(urlRequest: URLRequest, completion: @escaping ((Result<Data>) -> Void)) {
         let dataTask = urlSession.dataTask(with: urlRequest) { data, response, error in
             var result = Result<Data>.failure(nil)
             if let error = error {
                 result = .failure(error)
             } else if let data = data {
                 result = .success(data)
-                
             }
-            completion?(result)
+            completion(result)
         }
         dispatchQueue.async {
             dataTask.resume()
         }
     }
     
-    func execute<T: Decodable>(urlRequest: URLRequest, completion: ((Result<T>) -> Void)?) {
+    func executeWithJsonParsing<T: Decodable>(urlRequest: URLRequest, completion: ((Result<T>) -> Void)?) {
         execute(urlRequest: urlRequest) { result in
             completion?(result.map { try JSONDecoder().decode(T.self, from: $0) })
         }

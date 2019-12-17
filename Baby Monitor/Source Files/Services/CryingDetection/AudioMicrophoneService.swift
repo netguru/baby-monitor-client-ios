@@ -63,6 +63,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         do {
             try microphoneCapturer.start()
         } catch {
+            Logger.error("Microphone coudn't start capturing", error: error)
             return
         }
         isCapturing = true
@@ -95,13 +96,16 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         } catch {
             isRecording = false
             errorSubject.onNext(AudioError.recordFailure)
+            Logger.error("Microphone coudn't start recording", error: AudioError.recordFailure)
         }
     }
 
     private func rxSetup() {
-        microphoneCapturer.bufferReadable.subscribe(onNext: { [unowned self] bufferReadable in
-            self.microphoneBufferReadableSubject.onNext(bufferReadable)
-        }).disposed(by: disposeBag)
+        microphoneCapturer.bufferReadable
+            .throttle(Constants.recognizingSoundTimeLimit, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
+            .subscribe(onNext: { [weak self] bufferReadable in
+                self?.microphoneBufferReadableSubject.onNext(bufferReadable)
+            }).disposed(by: disposeBag)
     }
 
 }

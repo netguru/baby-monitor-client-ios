@@ -12,9 +12,10 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
     private let viewModel: ParentSettingsViewModel
     private let bag = DisposeBag()
 
-    init(viewModel: ParentSettingsViewModel) {
+    init(viewModel: ParentSettingsViewModel, appVersionProvider: AppVersionProvider) {
+        let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
-        super.init(viewMaker: ParentSettingsView())
+        super.init(viewMaker: ParentSettingsView(appVersion: appVersion))
     }
 
     override func viewDidLoad() {

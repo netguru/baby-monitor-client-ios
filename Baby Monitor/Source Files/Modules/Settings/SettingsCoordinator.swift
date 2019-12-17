@@ -34,7 +34,7 @@ final class SettingsCoordinator: Coordinator {
     // MARK: - private functions
     private func showParentSettings() {
         let viewModel = ParentSettingsViewModel(babyModelController: appDependencies.databaseRepository)
-        let settingsViewController = ParentSettingsViewController(viewModel: viewModel)
+        let settingsViewController = ParentSettingsViewController(viewModel: viewModel, appVersionProvider: appDependencies.appVersionProvider)
         settingsViewController.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
                 self?.connect(toParentSettingsViewModel: viewModel)
@@ -46,7 +46,7 @@ final class SettingsCoordinator: Coordinator {
     
     private func showBabySettings() {
         let viewModel = ServerSettingsViewModel()
-        let settingsViewController = ServerSettingsViewController(viewModel: viewModel)
+        let settingsViewController = ServerSettingsViewController(viewModel: viewModel, appVersionProvider: appDependencies.appVersionProvider)
         settingsViewController.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
                 self?.connect(toBaseSettingsViewModel: viewModel)
@@ -58,7 +58,7 @@ final class SettingsCoordinator: Coordinator {
     private func connect(toBaseSettingsViewModel viewModel: BaseSettingsViewModelProtocol) {
         viewModel.resetAppTap?.subscribe(onNext: { [unowned self] in
             let continueHandler: (() -> Void) = { [weak self] in
-                self?.appDependencies.resetTheApplication()
+                self?.appDependencies.applicationResetter.reset(isRemote: false)
                 self?.onEnding?()
             }
             let continueAlertAction: (String, UIAlertAction.Style, (() -> Void)?) = (Localizable.General.continue, UIAlertAction.Style.default, continueHandler)

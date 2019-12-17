@@ -7,7 +7,7 @@ import PocketSocket
 import RxSwift
 import RxCocoa
 
-protocol WebSocketProtocol: MessageStreamProtocol {
+protocol WebSocketProtocol: MessageStreamProtocol, WebSocketConnectionStatusProvider {
     
     var disconnectionObservable: Observable<Void> { get }
     
@@ -25,16 +25,45 @@ protocol WebSocketProtocol: MessageStreamProtocol {
 
 final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
 
-    private enum ConnectionState {
+    private enum ConnectionState: Equatable {
         case disconnected
         case connecting
         case connected
+        case error(NSError)
+    
+        static func ==(lhs: ConnectionState, rhs: ConnectionState) -> Bool {
+            switch (lhs, rhs) {
+            case (.disconnected, .disconnected),
+                 (.connecting, .connecting),
+                 (.connected, .connected):
+                return true
+            case let (.error(lhsError), .error(rhsError)):
+                return lhsError == rhsError
+            default:
+                return false
+            }
+        }
+        
+        func toWebSocketConnectionStatus() -> WebSocketConnectionStatus {
+            switch self {
+            case .connected:
+                return .connected
+            case .connecting:
+                return .connecting
+            case .disconnected, .error:
+                return .disconnected
+            }
+        }
     }
     
     let dispatchQueue = DispatchQueue(label: "webRTCQueue", qos: DispatchQoS.userInteractive)
     
-    lazy var disconnectionObservable = disconnectionPublisher.asObservable()
+    private(set) lazy var disconnectionObservable = disconnectionPublisher.asObservable()
+    private(set) lazy var connectionStatusObservable: Observable<WebSocketConnectionStatus> = connectionStatusPublisher.asObservable()
+    lazy var errorObservable = errorPublisher.asObservable()
     private var disconnectionPublisher = PublishSubject<Void>()
+    private var errorPublisher = PublishSubject<Error>()
+    private var connectionStatusPublisher = BehaviorSubject<WebSocketConnectionStatus>(value: .disconnected)
     
     var receivedMessage: Observable<String> {
         return receivedMessagePublisher.observeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue)).subscribeOn(ConcurrentDispatchQueueScheduler(queue: dispatchQueue))
@@ -48,11 +77,14 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
     private var connectionState = ConnectionState.disconnected {
         didSet {
             switch connectionState {
+            case .error(let error):
+                errorPublisher.onNext(error)
             case .disconnected:
                 disconnectionPublisher.onNext(())
             default:
                 break
             }
+            connectionStatusPublisher.onNext(connectionState.toWebSocketConnectionStatus())
         }
     }
     
@@ -78,8 +110,7 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
         guard connectionState == .disconnected && (socket.readyState == .connecting) else {
             return
         }
-        connectionState = .connecting
-        socket.open()
+        reopen()
     }
     
     func close() {
@@ -93,13 +124,19 @@ final class PSWebSocketWrapper: NSObject, WebSocketProtocol {
 extension PSWebSocketWrapper: PSWebSocketDelegate {
     
     func webSocketDidOpen(_ webSocket: PSWebSocket) {
-        buffer.forEach { webSocket.send($0) }
+        buffer.forEach {
+            webSocket.send($0)
+        }
         connectionState = .connected
         buffer = []
     }
     
     func webSocket(_ webSocket: PSWebSocket, didFailWithError error: Error?) {
-        connectionState = .disconnected
+        if let error = error as NSError? {
+            connectionState = .error(error)
+        } else {
+            connectionState = .disconnected
+        }
     }
     
     func webSocket(_ webSocket: PSWebSocket, didReceiveMessage message: Any) {
@@ -112,5 +149,17 @@ extension PSWebSocketWrapper: PSWebSocketDelegate {
     
     func webSocket(_ webSocket: PSWebSocket, didCloseWithCode code: Int, reason: String, wasClean: Bool) {
         connectionState = .disconnected
+        if !wasClean {
+            webSocket.close()
+            reopen()
+        }
+    }
+}
+
+private extension PSWebSocketWrapper {
+    
+    func reopen() {
+        connectionState = .connecting
+        socket.open()
     }
 }

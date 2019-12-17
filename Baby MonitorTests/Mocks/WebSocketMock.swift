@@ -22,7 +22,10 @@ final class WebSocketMock: WebSocketProtocol {
         return receivedMessagePublisher
     }
     let receivedMessagePublisher = PublishSubject<String>()
-    
+    let connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        return connectionStatusPublisher
+    }
     private(set) var sentMessages = [Any]()
     
     func send(message: Any) {
