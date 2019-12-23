@@ -27,6 +27,8 @@ enum Localizable {
         static let imSure = localized("general.i-am-sure")
         static let important = localized("general.important")
         static let version = localized("general.version")
+        static let decline = localized("general.decline")
+        static let accept = localized("general.accept")
     }
     
     enum Intro {
@@ -119,6 +121,11 @@ enum Localizable {
             static let startUsingBabyMonitor = localized("onboarding.pairing.start-using-baby-monitor")
             static let allDone = localized("onboarding.pairing.all-done")
             static let getStarted = localized("onboarding.pairing.get-started")
+            static let connection = localized("onboarding.pairing.connection")
+
+            static func connectionAlertInfo(code: String) -> String {
+                return String(format: localized("onboarding.pairing.connection-alert-info"), code)
+            }
         }
     }
     

@@ -23,14 +23,19 @@ final class ServerCoordinator: Coordinator {
     private let bag = DisposeBag()
     
     func start() {
-        setupResettingState()
+        setupBindings()
         showServerView()
     }
     
-    private func setupResettingState() {
+    private func setupBindings() {
         appDependencies.applicationResetter.localResetCompletionObservable
             .subscribe(onNext: { [weak self] resetCompleted in
                 self?.onEnding?()
+            })
+            .disposed(by: bag)
+        appDependencies.serverService.remoteParingCodeObservable
+            .subscribe(onNext: { [weak self] code in
+                self?.showCodeAlert(with: code)
             })
             .disposed(by: bag)
     }
@@ -74,5 +79,14 @@ final class ServerCoordinator: Coordinator {
             }
         }
         self.parentSettingsCoordinator = parentSettingsCoordinator
+    }
+
+    private func showCodeAlert(with code: String) {
+        let declineAction = UIAlertAction(title: Localizable.General.decline, style: .default, handler: nil)
+        let acceptAction = UIAlertAction(title: Localizable.General.accept, style: .default, handler: nil)
+        let codeAlertController = UIAlertController(title: Localizable.Onboarding.Pairing.connection, message: Localizable.Onboarding.Pairing.connectionAlertInfo(code: code), preferredStyle: .alert)
+        [declineAction, acceptAction].forEach { codeAlertController.addAction($0) }
+        codeAlertController.preferredAction = acceptAction
+        navigationController.present(codeAlertController, animated: true, completion: nil)
     }
 }

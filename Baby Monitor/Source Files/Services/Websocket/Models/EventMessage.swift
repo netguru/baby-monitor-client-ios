@@ -8,7 +8,8 @@ import Foundation
 enum BabyMonitorEvent: String {
     case pushNotificationsKey = "PUSH_NOTIFICATIONS_KEY"
     case resetKey = "RESET_KEY"
-    case pairingCodeKey = "PAIRING_CODE_KEY"
+    case pairingCodeKey = "pairingCode"
+    case pairingCodeResponseKey = "pairingResponse"
 }
 
 struct EventMessage: Codable {

@@ -10,6 +10,7 @@ protocol ServerServiceProtocol: AnyObject {
     var localStreamObservable: Observable<MediaStream> { get }
     var audioMicrophoneServiceErrorObservable: Observable<Void> { get }
     var remoteResetEventObservable: Observable<Void> { get }
+    var remoteParingCodeObservable: Observable<String> { get }
     var loggingInfoObservable: Observable<String> { get }
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> { get }
     func startStreaming()
@@ -127,6 +128,8 @@ final class ServerService: ServerServiceProtocol {
             remoteResetEventPublisher.onNext(())
         case .pairingCodeKey:
             remotePairingCodePublisher.onNext(event.value ?? "")
+        case .pairingCodeResponseKey:
+            break
         }
     }
     
