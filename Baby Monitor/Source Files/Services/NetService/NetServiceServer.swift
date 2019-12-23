@@ -26,7 +26,7 @@ final class NetServiceServer: NSObject, NetServiceServerProtocol, NetServiceDele
     private lazy var netService: NetService = NetService(
         domain: Constants.domain,
         type: Constants.netServiceType,
-        name: Constants.netServiceName,
+        name: UIDevice.current.name + " " + Constants.netServiceName,
         port: Int32(Constants.iosWebsocketPort)
     )
 
