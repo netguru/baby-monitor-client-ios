@@ -113,6 +113,9 @@ final class ServerViewController: BaseViewController {
         view.bringSubviewToFront(nightModeOverlay)
         view.bringSubviewToFront(buttonsStackView)
         view.bringSubviewToFront(debugInfoLabel)
+        #if ENV_PRODUCTION
+        debugInfoLabel.isHidden = true
+        #endif
     }
     
     private func setupBindings() {
