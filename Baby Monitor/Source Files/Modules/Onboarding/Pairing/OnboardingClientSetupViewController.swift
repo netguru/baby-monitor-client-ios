@@ -12,10 +12,10 @@ enum PairingSearchState {
 
 final class OnboardingClientSetupViewController: TypedViewController<OnboardingClientSetupView> {
     
-    private let viewModel: ClientSetupOnboardingViewModel
+    private let viewModel: OnboardingClientSetupViewModel
     private let bag = DisposeBag()
     private var devices: [NetServiceDescriptor] = []
-    init(viewModel: ClientSetupOnboardingViewModel) {
+    init(viewModel: OnboardingClientSetupViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: OnboardingClientSetupView())
     }
@@ -54,6 +54,7 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingC
             .skip(1)
             .subscribe(onNext: { [weak self] devices in
                 self?.devices = devices
+                self?.customView.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
             }).disposed(by: bag)
         viewModel.state
             .distinctUntilChanged()

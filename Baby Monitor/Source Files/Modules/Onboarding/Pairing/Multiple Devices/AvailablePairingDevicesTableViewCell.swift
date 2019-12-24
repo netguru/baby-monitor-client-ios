@@ -58,7 +58,7 @@ final class AvailablePairingDevicesTableViewCell: UITableViewCell, Identifiable 
         ]
         }
         separatorView.addConstraints {[
-            $0.equalConstant(.height, 1.0),
+            $0.equalConstant(.height, 1),
             $0.equal(.centerX),
             $0.equal(.bottom),
             $0.equal(.leading, constant: 16)
