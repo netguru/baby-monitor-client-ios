@@ -18,7 +18,7 @@ class DefaultSocketCommunicationManager: SocketCommunicationManager {
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
         return socketConnectionStatusPublisher.asObservable()
     }
-    private unowned var webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>
+    private unowned var webSocketEventMessageService: WebSocketEventMessageServiceProtocol
     private unowned var webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>
     private unowned var webSocket: ClearableLazyItem<WebSocketProtocol?>
     private var communicationResetPublisher = PublishSubject<Void>()
@@ -26,7 +26,7 @@ class DefaultSocketCommunicationManager: SocketCommunicationManager {
     private var socketConnectionStatusPublisher = BehaviorSubject<WebSocketConnectionStatus>(value: .disconnected)
     private let bag = DisposeBag()
     
-    init(webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>,
+    init(webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
         webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
         webSocket: ClearableLazyItem<WebSocketProtocol?>) {
         self.webSocketEventMessageService = webSocketEventMessageService
@@ -37,7 +37,7 @@ class DefaultSocketCommunicationManager: SocketCommunicationManager {
     
     func reset() {
         terminate()
-        webSocketEventMessageService.get().start()
+        webSocketEventMessageService.start()
         webSocketWebRtcService.get().start()
         communicationResetPublisher.onNext(())
         setupRx()
@@ -45,9 +45,9 @@ class DefaultSocketCommunicationManager: SocketCommunicationManager {
     
     func terminate() {
         webSocketWebRtcService.clear()
-        webSocketEventMessageService.clear()
         webSocket.clear()
         communicationTerminationPublisher.onNext(())
+        setupRx()
     }
     
     private func setupRx() {

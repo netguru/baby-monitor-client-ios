@@ -14,33 +14,41 @@ final class OnboardingCompareCodeViewModel {
     let description = Localizable.Onboarding.Connecting.compareCodeDescription
     let codeText = Int.random(in: 1000...9999).toStringMessage()
 
-    private let webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>
+    private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
     private let webSocket: ClearableLazyItem<WebSocketProtocol?>
+    private let urlConfiguration: URLConfiguration
+    private let serverURL: URL
     private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
 
-    init(webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>,
+    init(webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
          webSocket: ClearableLazyItem<WebSocketProtocol?>,
+         urlConfiguration: URLConfiguration,
+         serverURL: URL,
          activityLogEventsRepository: ActivityLogEventsRepositoryProtocol) {
         self.webSocketEventMessageService = webSocketEventMessageService
         self.webSocket = webSocket
+        self.urlConfiguration = urlConfiguration
+        self.serverURL = serverURL
         self.activityLogEventsRepository = activityLogEventsRepository
         setupBindings()
     }
 
     func sendCode() {
+        urlConfiguration.url = serverURL
+        webSocketEventMessageService.start()
         let message = EventMessage(action: BabyMonitorEvent.pairingCodeKey.rawValue, value: codeText)
-        webSocketEventMessageService.get().sendMessage(message.toStringMessage())
+        webSocketEventMessageService.sendMessage(message.toStringMessage())
     }
 
     private func setupBindings() {
-        webSocketEventMessageService.get().remotePairingCodeResponseObservable
+        webSocketEventMessageService.remotePairingCodeResponseObservable
             .observeOn(MainScheduler.asyncInstance)
         .subscribe(onNext: { [weak self] isSuccessful in
             guard let self = self else { return }
             if isSuccessful {
                self.saveEmptyStateIfNeeded()
             } else {
-               self.webSocket.get()?.close()
+                self.webSocket.get()?.close()
             }
         }).disposed(by: bag)
     }

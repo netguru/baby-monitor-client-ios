@@ -43,7 +43,7 @@ private extension OnboardingPairingCoordinator {
                 self?.navigationController.popToRootViewController(animated: true)
             }).disposed(by: disposeBag)
 
-        appDependencies.webSocketEventMessageService.get().remotePairingCodeResponseObservable
+        appDependencies.webSocketEventMessageService.remotePairingCodeResponseObservable
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] isSuccessful in
                 guard let self = self else { return }
@@ -53,7 +53,6 @@ private extension OnboardingPairingCoordinator {
                 } else {
                     self.showContinuableView(role: .parent(.connectionError))
                     self.navigationController.popViewController(animated: false)
-                    self.appDependencies.webSocket.get()?.close()
                 }
             }).disposed(by: disposeBag)
     }
@@ -125,16 +124,16 @@ private extension OnboardingPairingCoordinator {
             netServiceClient: appDependencies.netServiceClient,
             urlConfiguration: appDependencies.urlConfiguration,
             activityLogEventsRepository: appDependencies.databaseRepository,
-            webSocketEventMessageService: appDependencies.webSocketEventMessageService.get(),
+            webSocketEventMessageService: appDependencies.webSocketEventMessageService,
             serverErrorLogger: appDependencies.serverErrorLogger)
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
-            case .success:
+            case .success(let url):
                 switch UserDefaults.appMode {
                 case .parent:
                     self?.onEnding?()
                 case .none:
-                    self?.showCompareCodeView()
+                    self?.showCompareCodeView(with: url)
                 case .baby:
                     break
                 }
@@ -150,8 +149,15 @@ private extension OnboardingPairingCoordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
 
-    func showCompareCodeView() {
-        let viewController = OnboardingCompareCodeViewController(viewModel: OnboardingCompareCodeViewModel(webSocketEventMessageService: appDependencies.webSocketEventMessageService))
+    func showCompareCodeView(with url: URL) {
+        let viewModel = OnboardingCompareCodeViewModel(
+            webSocketEventMessageService: appDependencies.webSocketEventMessageService,
+            webSocket: appDependencies.webSocket,
+            urlConfiguration: appDependencies.urlConfiguration,
+            serverURL: url,
+            activityLogEventsRepository: appDependencies.databaseRepository)
+        let viewController = OnboardingCompareCodeViewController(viewModel: viewModel
+        )
         navigationController.pushViewController(viewController, animated: true)
     }
 }
