@@ -46,14 +46,14 @@ final class OnboardingCompareCodeViewModel {
     private func setupBindings() {
         webSocketEventMessageService.remotePairingCodeResponseObservable
             .observeOn(MainScheduler.asyncInstance)
-        .subscribe(onNext: { [weak self] isSuccessful in
-            guard let self = self else { return }
-            if isSuccessful {
-               self.saveEmptyStateIfNeeded()
-            } else {
-                self.webSocketEventMessageService.close()
-            }
-        }).disposed(by: bag)
+            .subscribe(onNext: { [weak self] isSuccessful in
+                guard let self = self else { return }
+                if isSuccessful {
+                    self.saveEmptyStateIfNeeded()
+                } else {
+                    self.webSocketEventMessageService.close()
+                }
+            }).disposed(by: bag)
     }
 
     private func saveEmptyStateIfNeeded() {
