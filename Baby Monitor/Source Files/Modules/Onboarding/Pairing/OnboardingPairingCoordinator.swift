@@ -51,7 +51,9 @@ private extension OnboardingPairingCoordinator {
                     self.navigationController.dismiss(animated: true)
                     self.showContinuableView(role: .parent(.allDone))
                 } else {
-                    AlertPresenter.showDefaultAlert(title: "Error connecting", message: nil, onViewController: self.navigationController.presentingViewController ?? self.navigationController)
+                    self.showContinuableView(role: .parent(.connectionError))
+                    self.navigationController.popViewController(animated: false)
+                    self.appDependencies.webSocket.get()?.close()
                 }
             }).disposed(by: disposeBag)
     }
@@ -59,7 +61,7 @@ private extension OnboardingPairingCoordinator {
     func showContinuableView(role: OnboardingContinuableViewModel.Role) {
         let continuableViewController = prepareContinuableViewController(role: role)
         switch role {
-        case .parent(.error):
+        case .parent(.searchingError), .parent(.connectionError):
             continuableViewController.modalPresentationStyle = .fullScreen
             navigationController.present(continuableViewController, animated: true)
         default:
@@ -90,7 +92,7 @@ private extension OnboardingPairingCoordinator {
                     switch parentRole {
                     case .hello:
                         self?.showPairingView()
-                    case .error:
+                    case .searchingError, .connectionError:
                         self?.navigationController.presentedViewController?.dismiss(animated: true)
                     case .allDone:
                         break
@@ -137,7 +139,7 @@ private extension OnboardingPairingCoordinator {
                     break
                 }
             case .failure:
-                self?.showContinuableView(role: .parent(.error))
+                self?.showContinuableView(role: .parent(.searchingError))
             }
         }
         let viewController = OnboardingClientSetupViewController(viewModel: viewModel)

@@ -63,6 +63,7 @@
 "onboarding.pairing.done.description" = "Done!";
 "onboarding.pairing.error-description" = "Ups! Something\nwent wrong :(";
 "onboarding.pairing.error-second-description" = "Make sure that both devices are\nconnected to the same WiFi network.";
+"onboarding.pairing.connection-error-second-description" = "The baby device declined the connection.";
 "onboarding.pairing.hello.second-description-bottom-part" = "Make sure you have already installed\nBabyGuard on your baby's device";
 "onboarding.pairing.try-again" = "Try again";
 "onboarding.pairing.start-using-baby-monitor" = "You can now start using BabyGuard!";

@@ -116,6 +116,7 @@ enum Localizable {
             static let done = localized("onboarding.pairing.done.description")
             static let error = localized("onboarding.pairing.error-description")
             static let errorSecondDescription = localized("onboarding.pairing.error-second-description")
+            static let connectionErrorSecondDescription = localized("onboarding.pairing.connection-error-second-description")
             static let errorSecondDescriptionBottomPart = localized("onboarding.pairing.hello.second-description-bottom-part")
             static let tryAgain = localized("onboarding.pairing.try-again")
             static let startUsingBabyMonitor = localized("onboarding.pairing.start-using-baby-monitor")

@@ -91,6 +91,7 @@ final class ClientSetupOnboardingViewModel {
 
     func stopDiscovering() {
         searchCancelTimer?.invalidate()
+        availableDevicesPublisher.accept([])
         state.accept(.noneFound)
         netServiceClient.isEnabled.value = false
     }
