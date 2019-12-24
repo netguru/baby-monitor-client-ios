@@ -15,18 +15,15 @@ final class OnboardingCompareCodeViewModel {
     let codeText = Int.random(in: 1000...9999).toStringMessage()
 
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
-    private let webSocket: ClearableLazyItem<WebSocketProtocol?>
     private let urlConfiguration: URLConfiguration
     private let serverURL: URL
     private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
 
     init(webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
-         webSocket: ClearableLazyItem<WebSocketProtocol?>,
          urlConfiguration: URLConfiguration,
          serverURL: URL,
          activityLogEventsRepository: ActivityLogEventsRepositoryProtocol) {
         self.webSocketEventMessageService = webSocketEventMessageService
-        self.webSocket = webSocket
         self.urlConfiguration = urlConfiguration
         self.serverURL = serverURL
         self.activityLogEventsRepository = activityLogEventsRepository
@@ -43,7 +40,7 @@ final class OnboardingCompareCodeViewModel {
     func cancelPairingAttempt() {
         let message = EventMessage(action: BabyMonitorEvent.pairingCodeKey.rawValue, value: "")
         webSocketEventMessageService.sendMessage(message.toStringMessage())
-        webSocket.get()?.close()
+        webSocketEventMessageService.close()
     }
 
     private func setupBindings() {
@@ -54,7 +51,7 @@ final class OnboardingCompareCodeViewModel {
             if isSuccessful {
                self.saveEmptyStateIfNeeded()
             } else {
-                self.webSocket.get()?.close()
+                self.webSocketEventMessageService.close()
             }
         }).disposed(by: bag)
     }

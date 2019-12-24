@@ -8,7 +8,6 @@ class SocketCommunicationManagerTests: XCTestCase {
     private var eventMessageServiceMock: WebSocketEventMessageServiceMock!
     private var webSocketWebRtcServiceMock: WebSocketWebRtcServiceMock!
     private var webSocketMock: WebSocketMock!
-    private var eventMessageServiceMockWrapper: WebSocketEventMessageServiceProtocol!
     private var webSocketWebRtcMockWrapper: ClearableLazyItem<WebSocketWebRtcServiceProtocol>!
     private var webSocketMockWrapper: ClearableLazyItem<WebSocketProtocol?>!
     private var bag: DisposeBag!
@@ -34,6 +33,7 @@ class SocketCommunicationManagerTests: XCTestCase {
         
         //  Then:
         XCTAssertEqual(webSocketWebRtcMockWrapper.isCleared, true)
+        XCTAssertEqual(eventMessageServiceMock.isOpen, false)
         XCTAssertEqual(observer.events.count, 1)
     }
     

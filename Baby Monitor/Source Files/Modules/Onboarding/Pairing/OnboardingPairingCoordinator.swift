@@ -152,7 +152,6 @@ private extension OnboardingPairingCoordinator {
     func showCompareCodeView(with url: URL) {
         let viewModel = OnboardingCompareCodeViewModel(
             webSocketEventMessageService: appDependencies.webSocketEventMessageService,
-            webSocket: appDependencies.webSocket,
             urlConfiguration: appDependencies.urlConfiguration,
             serverURL: url,
             activityLogEventsRepository: appDependencies.databaseRepository)

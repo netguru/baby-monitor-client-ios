@@ -10,6 +10,7 @@ protocol WebSocketEventMessageServiceProtocol: class {
     var remotePairingCodeResponseObservable: Observable<Bool> { get }
 
     func start()
+    func close()
     func sendMessage(_ message: String)
 }
 
@@ -54,6 +55,10 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
     
     func start() {
         eventMessageConductor?.open()
+    }
+
+    func close() {
+        eventMessageConductor?.close()
     }
 
     func sendMessage(_ message: String) {
