@@ -82,8 +82,14 @@ final class ServerCoordinator: Coordinator {
     }
 
     private func showCodeAlert(with code: String) {
-        let declineAction = UIAlertAction(title: Localizable.General.decline, style: .default, handler: nil)
-        let acceptAction = UIAlertAction(title: Localizable.General.accept, style: .default, handler: nil)
+        let declineAction = UIAlertAction(title: Localizable.General.decline, style: .default, handler: { [weak self] _ in
+            self?.appDependencies.messageServer.send(message: EventMessage.initWithPairingCodeResponseKey(value: false).toStringMessage())
+
+        })
+        let acceptAction = UIAlertAction(title: Localizable.General.accept, style: .default, handler: { [weak self] _ in
+            self?.appDependencies.messageServer.send(message: EventMessage.initWithPairingCodeResponseKey(value: true).toStringMessage())
+
+        })
         let codeAlertController = UIAlertController(title: Localizable.Onboarding.Pairing.connection, message: Localizable.Onboarding.Pairing.connectionAlertInfo(code: code), preferredStyle: .alert)
         [declineAction, acceptAction].forEach { codeAlertController.addAction($0) }
         codeAlertController.preferredAction = acceptAction

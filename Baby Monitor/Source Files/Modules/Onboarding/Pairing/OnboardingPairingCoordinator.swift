@@ -30,17 +30,29 @@ final class OnboardingPairingCoordinator: Coordinator {
         case .baby:
             break
         }
-        setupRemoteResetHandling()
+        setupBindings()
     }
 }
 
 private extension OnboardingPairingCoordinator {
     
-    func setupRemoteResetHandling() {
+    func setupBindings() {
         appDependencies.applicationResetter.localResetCompletionObservable
             .subscribe(onNext: { [weak self] resetCompleted in
                 UserDefaults.appMode = .none
                 self?.navigationController.popToRootViewController(animated: true)
+            }).disposed(by: disposeBag)
+
+        appDependencies.webSocketEventMessageService.get().remotePairingCodeResponseObservable
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isSuccessful in
+                guard let self = self else { return }
+                if isSuccessful {
+                    self.navigationController.dismiss(animated: true)
+                    self.showContinuableView(role: .parent(.allDone))
+                } else {
+                    AlertPresenter.showDefaultAlert(title: "Error connecting", message: nil, onViewController: self.navigationController.presentingViewController ?? self.navigationController)
+                }
             }).disposed(by: disposeBag)
     }
     
@@ -120,9 +132,7 @@ private extension OnboardingPairingCoordinator {
                 case .parent:
                     self?.onEnding?()
                 case .none:
-//                    self?.showCompareCodeView()
-                    self?.navigationController.dismiss(animated: true)
-                    self?.showContinuableView(role: .parent(.allDone))
+                    self?.showCompareCodeView()
                 case .baby:
                     break
                 }
@@ -139,7 +149,7 @@ private extension OnboardingPairingCoordinator {
     }
 
     func showCompareCodeView() {
-//        let viewController = OnboardingCompareCodeViewController(viewModel: OnboardingCompareCodeViewModel())
-//        navigationController.pushViewController(viewController, animated: true)
+        let viewController = OnboardingCompareCodeViewController(viewModel: OnboardingCompareCodeViewModel(webSocketEventMessageService: appDependencies.webSocketEventMessageService))
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

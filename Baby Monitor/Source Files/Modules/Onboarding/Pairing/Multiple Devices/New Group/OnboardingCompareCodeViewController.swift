@@ -19,6 +19,7 @@ final class OnboardingCompareCodeViewController: TypedViewController<OnboardingC
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        viewModel.sendCode()
     }
 
     private func setup() {

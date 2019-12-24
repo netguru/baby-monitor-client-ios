@@ -7,7 +7,8 @@ import RxSwift
 
 protocol WebSocketEventMessageServiceProtocol: class {
     var remoteResetObservable: Observable<Void> { get }
-    
+    var remotePairingCodeResponseObservable: Observable<Bool> { get }
+
     func start()
     func sendMessage(_ message: String)
 }
@@ -15,10 +16,12 @@ protocol WebSocketEventMessageServiceProtocol: class {
 final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
 
     private(set) lazy var remoteResetObservable = remoteResetPublisher.asObservable()
-    
+    private(set) lazy var remotePairingCodeResponseObservable = remotePairingCodeResponsePublisher.asObservable()
+
     private var eventMessageConductor: WebSocketConductorProtocol?
     private let eventMessagePublisher = PublishSubject<String>()
     private let remoteResetPublisher = PublishSubject<Void>()
+    private let remotePairingCodeResponsePublisher = PublishSubject<Bool>()
 
     init(cryingEventsRepository: ActivityLogEventsRepositoryProtocol, eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>?) -> WebSocketConductorProtocol) {
         setupEventMessageConductor(with: eventMessageConductorFactory)
@@ -37,8 +40,14 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
             switch babyEvent {
             case .resetKey:
                 self?.remoteResetPublisher.onNext(())
-            case .pushNotificationsKey, .pairingCodeKey, .pairingCodeResponseKey:
+            case .pushNotificationsKey, .pairingCodeKey:
                 break
+            case .pairingCodeResponseKey:
+                guard let isPairingApproved = event.boolValue else {
+                    Logger.error("No pairing response boolean value.")
+                    return
+                }
+                self?.remotePairingCodeResponsePublisher.onNext(isPairingApproved)
             }
         })
     }
