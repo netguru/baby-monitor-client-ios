@@ -33,6 +33,7 @@ final class OnboardingCompareCodeViewController: TypedViewController<OnboardingC
     private func setupBindings() {
         customView.rx.backButtonTap
             .subscribe(onNext: { [weak self] in
+                self?.viewModel.cancelPairingAttempt()
                 self?.navigationController?.popViewController(animated: true)
             }).disposed(by: bag)
     }

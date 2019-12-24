@@ -35,6 +35,10 @@ final class ServerCoordinator: Coordinator {
             .disposed(by: bag)
         appDependencies.serverService.remoteParingCodeObservable
             .subscribe(onNext: { [weak self] code in
+                guard !code.isEmpty else {
+                    self?.navigationController.dismiss(animated: true, completion: nil)
+                    return
+                }
                 self?.showCodeAlert(with: code)
             })
             .disposed(by: bag)

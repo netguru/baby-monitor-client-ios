@@ -40,6 +40,12 @@ final class OnboardingCompareCodeViewModel {
         webSocketEventMessageService.sendMessage(message.toStringMessage())
     }
 
+    func cancelPairingAttempt() {
+        let message = EventMessage(action: BabyMonitorEvent.pairingCodeKey.rawValue, value: "")
+        webSocketEventMessageService.sendMessage(message.toStringMessage())
+        webSocket.get()?.close()
+    }
+
     private func setupBindings() {
         webSocketEventMessageService.remotePairingCodeResponseObservable
             .observeOn(MainScheduler.asyncInstance)
