@@ -14,6 +14,8 @@ final class ServerServiceMock: ServerServiceProtocol {
 
     var remoteResetEventObservable: Observable<Void> = Observable.just(())
 
+    var remoteParingCodeObservable: Observable<String> = Observable.just("")
+
     var loggingInfoObservable: Observable<String> = Observable.just("")
 
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> = Observable.just(.connected)
