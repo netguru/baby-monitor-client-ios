@@ -37,8 +37,7 @@ final class DashboardCoordinator: Coordinator {
     
     private func setupResettingApp() {
         appDependencies.applicationResetter.localResetCompletionObservable
-            .subscribe(onNext: {
-                [weak self] resetCompleted in
+            .subscribe(onNext: { [weak self] resetCompleted in
                 self?.onEnding?()
             }).disposed(by: disposeBag)
     }
@@ -59,8 +58,10 @@ final class DashboardCoordinator: Coordinator {
     // Prepare DashboardViewModel
     private func createDashboardViewModel() -> DashboardViewModel {
         let viewModel = DashboardViewModel(networkDiscoveryConnectionStateProvider: appDependencies.connectionChecker,
-            socketCommunicationManager: appDependencies.socketCommunicationsManager, babyModelController: appDependencies.databaseRepository,
-            webSocketEventMessageService: appDependencies.webSocketEventMessageService, microphonePermissionProvider:  appDependencies.microphonePermissionProvider)
+                                           socketCommunicationManager: appDependencies.socketCommunicationsManager,
+                                           babyModelController: appDependencies.databaseRepository,
+                                           webSocketEventMessageService: appDependencies.webSocketEventMessageService,
+                                           microphonePermissionProvider:  appDependencies.microphonePermissionProvider)
         return viewModel
     }
     

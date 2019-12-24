@@ -32,8 +32,13 @@ final class DashboardViewModel {
     // MARK: - Private properties
     private let networkDiscoveryConnectionStateProvider: ConnectionChecker
     
-    init(networkDiscoveryConnectionStateProvider: ConnectionChecker, socketCommunicationManager: SocketCommunicationManager, babyModelController: BabyModelControllerProtocol,
-        webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>, microphonePermissionProvider: MicrophonePermissionProviderProtocol) {
+    init(
+        networkDiscoveryConnectionStateProvider: ConnectionChecker,
+        socketCommunicationManager: SocketCommunicationManager,
+        babyModelController: BabyModelControllerProtocol,
+        webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>,
+        microphonePermissionProvider: MicrophonePermissionProviderProtocol
+    ) {
         self.networkDiscoveryConnectionStateProvider = networkDiscoveryConnectionStateProvider
         self.babyModelController = babyModelController
         self.webSocketEventMessageService = webSocketEventMessageService

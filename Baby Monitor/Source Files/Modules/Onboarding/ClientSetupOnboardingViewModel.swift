@@ -70,7 +70,7 @@ final class ClientSetupOnboardingViewModel {
         searchCancelTimer?.invalidate()
         urlConfiguration.url = serverUrl
         webSocketEventMessageService.start()
-        saveEmptyStateIfNeeded()
+//        saveEmptyStateIfNeeded()
         didFinishDeviceSearch?(.success)
     }
     
