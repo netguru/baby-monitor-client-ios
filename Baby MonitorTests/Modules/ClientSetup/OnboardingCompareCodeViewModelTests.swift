@@ -57,7 +57,7 @@ class OnboardingCompareCodeViewModelTests: XCTestCase {
         XCTAssertFalse(webSocketEventMessageServiceMock.isOpen)
     }
     
-    func testShouldCloseConnectionOnDeclinedConnection() throws {
+    func testShouldCloseConnectionOnDeclinedPairing() throws {
         // Given
         let disposeBag = DisposeBag()
         let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
@@ -72,17 +72,16 @@ class OnboardingCompareCodeViewModelTests: XCTestCase {
         )
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(Bool.self)
-        observer.onNext(false)
         webSocketEventMessageServiceMock.remotePairingCodeResponseObservable
             .bind(to: observer)
             .disposed(by: disposeBag)
 
         // When
         sut.sendCode()
+        webSocketEventMessageServiceMock.remotePairingCodeResponsePublisher.onNext(false)
         scheduler.start()
 
         // Then
         XCTAssertFalse(webSocketEventMessageServiceMock.isOpen)
     }
-
 }
