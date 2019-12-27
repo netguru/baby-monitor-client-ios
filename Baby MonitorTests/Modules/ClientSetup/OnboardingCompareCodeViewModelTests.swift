@@ -57,4 +57,32 @@ class OnboardingCompareCodeViewModelTests: XCTestCase {
         XCTAssertFalse(webSocketEventMessageServiceMock.isOpen)
     }
     
+    func testShouldCloseConnectionOnDeclinedConnection() throws {
+        // Given
+        let disposeBag = DisposeBag()
+        let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
+        let url = URL(string: "ws://ip:port")
+        let configuration = URLConfigurationMock()
+        let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
+        let sut = OnboardingCompareCodeViewModel(
+            webSocketEventMessageService: webSocketEventMessageServiceMock,
+            urlConfiguration: configuration,
+            serverURL: try XCTUnwrap(url),
+            activityLogEventsRepository: babyRepo
+        )
+        let scheduler = TestScheduler(initialClock: 0)
+        let observer = scheduler.createObserver(Bool.self)
+        observer.onNext(false)
+        webSocketEventMessageServiceMock.remotePairingCodeResponseObservable
+            .bind(to: observer)
+            .disposed(by: disposeBag)
+
+        // When
+        sut.sendCode()
+        scheduler.start()
+
+        // Then
+        XCTAssertFalse(webSocketEventMessageServiceMock.isOpen)
+    }
+
 }
