@@ -2211,11 +2211,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CX4C4YQ26W;
-				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor.develoment;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Development;
 		};
