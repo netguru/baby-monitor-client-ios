@@ -78,8 +78,8 @@ final class SettingsCoordinator: Coordinator {
     }
 
     private func connect(toParentSettingsViewModel viewModel: ParentSettingsViewModel) {
-        viewModel.addPhotoTap?.subscribe(onNext: { [unowned self] in
-            self.showImagePickerAlert()
+        viewModel.addPhotoTap?.subscribe(onNext: { [unowned self] button in
+            self.showImagePickerAlert(sender: button)
         })
         .disposed(by: bag)
         viewModel.dismissImagePicker.subscribe(onNext: { [unowned self] in
@@ -89,7 +89,7 @@ final class SettingsCoordinator: Coordinator {
         connect(toBaseSettingsViewModel: viewModel)
     }
 
-    private func showImagePickerAlert() {
+    private func showImagePickerAlert(sender: UIView) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate = parentSettingsViewController
@@ -98,6 +98,9 @@ final class SettingsCoordinator: Coordinator {
         let cancelAction = UIAlertAction(title: Localizable.General.cancel, style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
 
+        alertController.popoverPresentationController?.sourceView = sender
+        alertController.popoverPresentationController?.sourceRect = sender.bounds
+        
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let cameraAction = UIAlertAction(title: Localizable.Dashboard.camera, style: .default, handler: { action in
                 imagePickerController.sourceType = .camera
