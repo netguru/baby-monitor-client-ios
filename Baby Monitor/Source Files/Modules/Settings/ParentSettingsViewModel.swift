@@ -15,7 +15,7 @@ final class ParentSettingsViewModel: BaseSettingsViewModelProtocol {
     
     lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
-    private(set) var addPhotoTap: Observable<Void>?
+    private(set) var addPhotoTap: Observable<UIButton>?
     private(set) var resetAppTap: Observable<Void>?
     private(set) var cancelTap: Observable<Void>?
     
@@ -27,7 +27,7 @@ final class ParentSettingsViewModel: BaseSettingsViewModelProtocol {
         self.babyModelController = babyModelController
     }
     
-    func attachInput(babyName: Observable<String>, addPhotoTap: Observable<Void>, resetAppTap: Observable<Void>, cancelTap: Observable<Void>) {
+    func attachInput(babyName: Observable<String>, addPhotoTap: Observable<UIButton>, resetAppTap: Observable<Void>, cancelTap: Observable<Void>) {
         self.addPhotoTap = addPhotoTap
         self.resetAppTap = resetAppTap
         self.cancelTap = cancelTap
