@@ -10,7 +10,7 @@ protocol ApplicationResetter: class {
 class DefaultApplicationResetter: ApplicationResetter {
     
     private unowned var messageServer: MessageServerProtocol
-    private unowned var webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>
+    private unowned var webSocketEventMessageService: WebSocketEventMessageServiceProtocol
     private unowned var babyModelControllerProtocol: BabyModelControllerProtocol
     private unowned var memoryCleaner: MemoryCleanerProtocol
     private unowned var urlConfiguration: URLConfiguration
@@ -21,7 +21,7 @@ class DefaultApplicationResetter: ApplicationResetter {
     private var localResetCompletionPublisher = PublishSubject<Void>()
     
     init(messageServer: MessageServerProtocol,
-         webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>,
+         webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
          babyModelControllerProtocol: BabyModelControllerProtocol,
          memoryCleaner: MemoryCleanerProtocol,
          urlConfiguration: URLConfiguration,
@@ -63,7 +63,7 @@ private extension DefaultApplicationResetter {
         case .baby:
             messageServer.send(message: resetEventString)
         case .parent:
-            webSocketEventMessageService.get().sendMessage(resetEventString)
+            webSocketEventMessageService.sendMessage(resetEventString)
         case .none:
             break
         }

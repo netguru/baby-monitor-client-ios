@@ -27,6 +27,8 @@ enum Localizable {
         static let imSure = localized("general.i-am-sure")
         static let important = localized("general.important")
         static let version = localized("general.version")
+        static let decline = localized("general.decline")
+        static let accept = localized("general.accept")
     }
     
     enum Intro {
@@ -104,6 +106,7 @@ enum Localizable {
             static let startMonitoring = localized("onboarding.connecting.start-monitoring")
             static let availableDevices = localized("onboarding.pairing.available-devices.title")
             static let refreshButtonTitle = localized("onboarding.pairing.refresh.button")
+            static let compareCodeDescription = localized("onboarding.pairing.compare-code")
         }
         
         enum Pairing {
@@ -113,11 +116,17 @@ enum Localizable {
             static let done = localized("onboarding.pairing.done.description")
             static let error = localized("onboarding.pairing.error-description")
             static let errorSecondDescription = localized("onboarding.pairing.error-second-description")
+            static let connectionErrorSecondDescription = localized("onboarding.pairing.connection-error-second-description")
             static let errorSecondDescriptionBottomPart = localized("onboarding.pairing.hello.second-description-bottom-part")
             static let tryAgain = localized("onboarding.pairing.try-again")
             static let startUsingBabyMonitor = localized("onboarding.pairing.start-using-baby-monitor")
             static let allDone = localized("onboarding.pairing.all-done")
             static let getStarted = localized("onboarding.pairing.get-started")
+            static let connection = localized("onboarding.pairing.connection")
+
+            static func connectionAlertInfo(code: String) -> String {
+                return String(format: localized("onboarding.pairing.connection-alert-info"), code)
+            }
         }
     }
     

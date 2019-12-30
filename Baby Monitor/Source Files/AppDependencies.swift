@@ -70,7 +70,7 @@ final class AppDependencies {
         )
     }
     
-    lazy var webSocketEventMessageService = ClearableLazyItem<WebSocketEventMessageServiceProtocol> { [unowned self] in
+    lazy var webSocketEventMessageService: WebSocketEventMessageServiceProtocol = { [unowned self] in
         let messageService = WebSocketEventMessageService(
             cryingEventsRepository: self.databaseRepository,
             eventMessageConductorFactory: self.eventMessageConductorFactory)
@@ -81,8 +81,8 @@ final class AppDependencies {
             })
             .disposed(by: self.bag)
         return messageService
-    }
-    
+    }()
+
     lazy var webSocketWebRtcService = ClearableLazyItem<WebSocketWebRtcServiceProtocol> { [unowned self] in
         return WebSocketWebRtcService(
             webRtcClientManager: self.webRtcClient(),
@@ -145,7 +145,8 @@ final class AppDependencies {
     private(set) var babyMonitorEventMessagesDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
     
     private(set) lazy var serverService: ServerServiceProtocol = {
-        let service = ServerService(webRtcServerManager: webRtcServer(),
+        let service = ServerService(
+            webRtcServerManager: webRtcServer(),
             messageServer: messageServer,
             netServiceServer: netServiceServer,
             webRtcDecoders: webRtcMessageDecoders,

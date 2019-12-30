@@ -19,7 +19,6 @@ class ApplicationResetterTests: XCTestCase {
     private var urlConfigurationMock: URLConfigurationMock!
     private var webSocketWebRtcServiceMock: WebSocketWebRtcServiceMock!
     private var notificationServiceProtocolMock: NotificationServiceProtocolMock!
-    private var eventMessageServiceMockWrapper: ClearableLazyItem<WebSocketEventMessageServiceProtocol>!
     private var webSocketWebRtcMockWrapper: ClearableLazyItem<WebSocketWebRtcServiceProtocol>!
     private var serverServiceMock: ServerServiceMock!
     private var bag: DisposeBag!
@@ -38,7 +37,7 @@ class ApplicationResetterTests: XCTestCase {
         urlConfigurationMock = URLConfigurationMock()
         webSocketWebRtcServiceMock = WebSocketWebRtcServiceMock()
         notificationServiceProtocolMock = NotificationServiceProtocolMock()
-        eventMessageServiceMockWrapper = ClearableLazyItem(constructor: { return self.eventMessageServiceMock })
+        eventMessageServiceMock = WebSocketEventMessageServiceMock()
         webSocketWebRtcMockWrapper = ClearableLazyItem(constructor: { return self.webSocketWebRtcServiceMock })
         serverServiceMock = ServerServiceMock()
         bag = DisposeBag()
@@ -142,7 +141,7 @@ private extension ApplicationResetterTests {
     func makeAppResetter() -> DefaultApplicationResetter {
         return DefaultApplicationResetter(
             messageServer: messageServerMock,
-            webSocketEventMessageService: eventMessageServiceMockWrapper,
+            webSocketEventMessageService: eventMessageServiceMock,
             babyModelControllerProtocol: babyModelMock,
             memoryCleaner: memoryCleanerMock,
             urlConfiguration: urlConfigurationMock,
