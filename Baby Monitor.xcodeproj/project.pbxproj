@@ -214,11 +214,17 @@
 		95368F522209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */; };
 		95368F552209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */; };
 		95368F582209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */; };
+		9546908A23A674330077D2B5 /* OnboardingCompareCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */; };
+		9546908C23A674A10077D2B5 /* OnboardingCompareCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */; };
+		9546908F23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */; };
+		9548A8E723B23C9800B8EE95 /* OnboardingCompareCodeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548A8E623B23C9800B8EE95 /* OnboardingCompareCodeViewModelTests.swift */; };
 		9557FA6D237034F7002C9483 /* ServerErrorLoggerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9557FA6C237034F7002C9483 /* ServerErrorLoggerMock.swift */; };
 		955ADBC3236B3263004507F7 /* ServerErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */; };
 		955B8D2023903EEA00582330 /* LoggingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D1F23903EEA00582330 /* LoggingProtocol.swift */; };
 		955B8D2223903F0A00582330 /* SwiftyBeaverLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D2123903F0A00582330 /* SwiftyBeaverLogger.swift */; };
 		9566206E2359ADF900ACBC94 /* DisabledVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */; };
+		9574DBDB23A93175000D58A8 /* NSAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */; };
+		9574DBDD23A93543000D58A8 /* String+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */; };
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
 		95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C382390317000AC559D /* AlertPresenter.swift */; };
 		95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */; };
@@ -534,11 +540,17 @@
 		95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewController.swift; sourceTree = "<group>"; };
 		95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingView.swift; sourceTree = "<group>"; };
 		95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewModel.swift; sourceTree = "<group>"; };
+		9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingCompareCodeViewController.swift; path = "../New Group/OnboardingCompareCodeViewController.swift"; sourceTree = "<group>"; };
+		9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeView.swift; sourceTree = "<group>"; };
+		9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeViewModel.swift; sourceTree = "<group>"; };
+		9548A8E623B23C9800B8EE95 /* OnboardingCompareCodeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeViewModelTests.swift; sourceTree = "<group>"; };
 		9557FA6C237034F7002C9483 /* ServerErrorLoggerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorLoggerMock.swift; sourceTree = "<group>"; };
 		955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorLogger.swift; sourceTree = "<group>"; };
 		955B8D1F23903EEA00582330 /* LoggingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingProtocol.swift; sourceTree = "<group>"; };
 		955B8D2123903F0A00582330 /* SwiftyBeaverLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBeaverLogger.swift; sourceTree = "<group>"; };
 		9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledVideoView.swift; sourceTree = "<group>"; };
+		9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Attributes.swift"; sourceTree = "<group>"; };
+		9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NSAttributedString.swift"; sourceTree = "<group>"; };
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
 		95E75C382390317000AC559D /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionProvider.swift; sourceTree = "<group>"; };
@@ -819,11 +831,13 @@
 				4EA2802521E8C6B100262E45 /* DateFormatter+Helpers.swift */,
 				4E7A1A8F21F1284B0015C3A3 /* UserDefaults+AppMode.swift */,
 				A1D36D4122E8364E002F6B2E /* UserDefaults+PushNotificationsKey.swift */,
+				9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */,
 				A186818E2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift */,
 				A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */,
 				959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */,
 				8A4EC11722E739C20076722E /* UIActivityIndicatorView+Rx.swift */,
 				A1A708C222F320970058B537 /* Bundle+BuildNumber.swift */,
+				9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1062,6 +1076,7 @@
 			isa = PBXGroup;
 			children = (
 				8A42DAFD2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift */,
+				9548A8E623B23C9800B8EE95 /* OnboardingCompareCodeViewModelTests.swift */,
 			);
 			path = ClientSetup;
 			sourceTree = "<group>";
@@ -1357,6 +1372,16 @@
 			path = Specification;
 			sourceTree = "<group>";
 		};
+		9546908D23A6770B0077D2B5 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */,
+				9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */,
+				9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
 		955ADBC0236B323B004507F7 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -1388,6 +1413,7 @@
 			isa = PBXGroup;
 			children = (
 				95F3756E239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift */,
+				9546908D23A6770B0077D2B5 /* Code */,
 			);
 			path = "Multiple Devices";
 			sourceTree = "<group>";
@@ -1883,6 +1909,7 @@
 				8A43DB092180971D00E3004D /* UIViewController+Rx.swift in Sources */,
 				4E221D8B217716CF003D8531 /* ServerViewController.swift in Sources */,
 				8A42DB0B2179D7D700BF5F1B /* URLUserDefaults.swift in Sources */,
+				9546908A23A674330077D2B5 /* OnboardingCompareCodeViewController.swift in Sources */,
 				A1640E232203930F00398ED2 /* BaseSettingsView.swift in Sources */,
 				95F3756F239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift in Sources */,
 				4EE33F1221B54230003A1742 /* OnboardingConnectingCoordinator.swift in Sources */,
@@ -1917,6 +1944,7 @@
 				4E8E057421AE9E4A009ACE05 /* UIColor+BabyMonitor.swift in Sources */,
 				8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
+				9574DBDB23A93175000D58A8 /* NSAttributedString+Attributes.swift in Sources */,
 				4E60697821AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift in Sources */,
 				201CF6A221F9CBDC00E06FEF /* ParentSettingsViewController.swift in Sources */,
 				8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */,
@@ -1971,6 +1999,7 @@
 				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
 				8A8EF94A219C47FD0098A27B /* RTCICECandidate+JSON.swift in Sources */,
 				4E57319B2170BA7400DEAF0B /* HasWindow.swift in Sources */,
+				9546908F23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift in Sources */,
 				4E55436121D4C33A005C41FD /* WebRtcServerManager.swift in Sources */,
 				4E8E056C21AD8E25009ACE05 /* SpecifyDeviceOnboardingView.swift in Sources */,
 				A186818F2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift in Sources */,
@@ -1998,6 +2027,7 @@
 				A7D756272236AFA000F9893E /* crydetection.mlmodel in Sources */,
 				8A50AA4021E603080058C63A /* WebRtcStreamId.swift in Sources */,
 				A7D756362237C31400F9893E /* MathUtilities.swift in Sources */,
+				9574DBDD23A93543000D58A8 /* String+NSAttributedString.swift in Sources */,
 				A7B48134223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift in Sources */,
 				8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */,
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,
@@ -2005,6 +2035,7 @@
 				95F3757323A0017C00692B3A /* BaseProgressIndicator.swift in Sources */,
 				8A50AA4221E60A190058C63A /* RTCPeerConnectionDelegateProxy.swift in Sources */,
 				8A50AA3821E602F60058C63A /* PeerConnectionProtocol.swift in Sources */,
+				9546908C23A674A10077D2B5 /* OnboardingCompareCodeView.swift in Sources */,
 				A7D756312236B03D00F9893E /* MfccLayer.swift in Sources */,
 				95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
@@ -2105,6 +2136,7 @@
 				8A7A614B21A6AC7900488ED4 /* DocumentsSavableMock.swift in Sources */,
 				3A8DAC8B222D512400427BBE /* ApplicationStateProviderMock.swift in Sources */,
 				8A7A614E21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift in Sources */,
+				9548A8E723B23C9800B8EE95 /* OnboardingCompareCodeViewModelTests.swift in Sources */,
 				4EB93D2021ECA15F00E99BB3 /* StorageServerServiceMock.swift in Sources */,
 				8A42DB172179DD9C00BF5F1B /* URL+PrefixTests.swift in Sources */,
 				8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */,

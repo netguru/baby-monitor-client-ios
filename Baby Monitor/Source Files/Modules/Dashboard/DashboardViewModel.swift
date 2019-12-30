@@ -21,7 +21,7 @@ final class DashboardViewModel {
     
     private let dismissImagePickerSubject = PublishRelay<Void>()
     private let microphonePermissionProvider: MicrophonePermissionProviderProtocol
-    unowned private var webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>
+    unowned private var webSocketEventMessageService: WebSocketEventMessageServiceProtocol
     unowned private var socketCommunicationManager: SocketCommunicationManager
     
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
@@ -32,8 +32,13 @@ final class DashboardViewModel {
     // MARK: - Private properties
     private let networkDiscoveryConnectionStateProvider: ConnectionChecker
     
-    init(networkDiscoveryConnectionStateProvider: ConnectionChecker, socketCommunicationManager: SocketCommunicationManager, babyModelController: BabyModelControllerProtocol,
-        webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>, microphonePermissionProvider: MicrophonePermissionProviderProtocol) {
+    init(
+        networkDiscoveryConnectionStateProvider: ConnectionChecker,
+        socketCommunicationManager: SocketCommunicationManager,
+        babyModelController: BabyModelControllerProtocol,
+        webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
+        microphonePermissionProvider: MicrophonePermissionProviderProtocol
+    ) {
         self.networkDiscoveryConnectionStateProvider = networkDiscoveryConnectionStateProvider
         self.babyModelController = babyModelController
         self.webSocketEventMessageService = webSocketEventMessageService
@@ -66,7 +71,7 @@ final class DashboardViewModel {
     
     private func setup() {
         networkDiscoveryConnectionStateProvider.start()
-        webSocketEventMessageService.get().start()
+        webSocketEventMessageService.start()
     }
     
     private func rxSetup() {
@@ -81,7 +86,7 @@ final class DashboardViewModel {
         guard shouldPushNotificationsKeyBeSent && connectionStatus == .connected else { return }
         
         let firebaseTokenMessage = EventMessage.initWithPushNotificationsKey(key: UserDefaults.selfPushNotificationsToken)
-        self.webSocketEventMessageService.get().sendMessage(firebaseTokenMessage.toStringMessage())
+        self.webSocketEventMessageService.sendMessage(firebaseTokenMessage.toStringMessage())
         self.shouldPushNotificationsKeyBeSent = false
     }
 }

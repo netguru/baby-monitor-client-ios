@@ -12,7 +12,7 @@ enum DeviceSearchError: Error {
 }
 
 enum DeviceSearchResult: Equatable {
-    case success
+    case success(URL)
     case failure(DeviceSearchError)
 }
 
@@ -37,8 +37,6 @@ final class OnboardingClientSetupViewModel {
 
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
-    private let urlConfiguration: URLConfiguration
-    private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
     private let disposeBag = DisposeBag()
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
     private let errorLogger: ServerErrorLogger
@@ -49,8 +47,6 @@ final class OnboardingClientSetupViewModel {
          webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
          serverErrorLogger: ServerErrorLogger) {
         self.netServiceClient = netServiceClient
-        self.urlConfiguration = urlConfiguration
-        self.activityLogEventsRepository = activityLogEventsRepository
         self.webSocketEventMessageService = webSocketEventMessageService
         self.errorLogger = serverErrorLogger
         setupRx()
@@ -69,10 +65,7 @@ final class OnboardingClientSetupViewModel {
             return
         }
         searchCancelTimer?.invalidate()
-        urlConfiguration.url = serverUrl
-        webSocketEventMessageService.start()
-        saveEmptyStateIfNeeded()
-        didFinishDeviceSearch?(.success)
+        didFinishDeviceSearch?(.success(serverUrl))
     }
     
     func startDiscovering(withTimeout timeout: TimeInterval = Constants.pairingDeviceSearchTimeLimit) {
@@ -108,14 +101,5 @@ final class OnboardingClientSetupViewModel {
                 self.state.accept(searchingState)
             })
             .disposed(by: disposeBag)
-    }
-    
-    private func saveEmptyStateIfNeeded() {
-        let allActivityLogEvents = activityLogEventsRepository.fetchAllActivityLogEvents()
-        guard allActivityLogEvents.first(where: { $0.mode == .emptyState }) == nil else {
-            return
-        }
-        let emptyStateLogEvent = ActivityLogEvent(mode: .emptyState)
-        activityLogEventsRepository.save(activityLogEvent: emptyStateLogEvent, completion: { _ in })
     }
 }

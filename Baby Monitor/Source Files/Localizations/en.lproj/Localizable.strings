@@ -22,6 +22,8 @@
 "general.i-am-sure" = "I'm sure";
 "general.important" = "IMPORTANT: ";
 "general.version" = "Version";
+"general.decline" = "Decline";
+"general.accept" = "Accept";
 
 //MARK: = Intro
 "intro.title.monitoring" = "Do your daily errands and\nkeep an eye on your baby";
@@ -57,14 +59,18 @@
 "onboarding.pairing.connecting.description" = "Searching for\nsecond device";
 "onboarding.pairing.available-devices.title" = "Available devices";
 "onboarding.pairing.refresh.button" = "Refresh the list";
+"onboarding.pairing.compare-code" = "Compare the security code and accept on the Baby device";
 "onboarding.pairing.done.description" = "Done!";
-"onboarding.pairing.error-description" = "Ups! Something\nwent wrong :(";
+"onboarding.pairing.error-description" = "Oops! Something\nwent wrong :(";
 "onboarding.pairing.error-second-description" = "Make sure that both devices are\nconnected to the same WiFi network.";
+"onboarding.pairing.connection-error-second-description" = "The Baby device declined the connection.";
 "onboarding.pairing.hello.second-description-bottom-part" = "Make sure you have already installed\nBabyGuard on your baby's device";
 "onboarding.pairing.try-again" = "Try again";
 "onboarding.pairing.start-using-baby-monitor" = "You can now start using BabyGuard!";
 "onboarding.pairing.all-done" = "All done!";
 "onboarding.pairing.get-started" = "Get started";
+"onboarding.pairing.connection" = "Connection";
+"onboarding.pairing.connection-alert-info" = "A device with code %@ would like to connect.";
 "onboarding.connecting.setup-information" = "Setup information";
 "onboarding.connecting.place-device" = "Put this device next\nto your baby's bed, so\nthat you can see him\nor her in a real time\nview";
 "onboarding.connecting.start-monitoring" = "Start monitoring";

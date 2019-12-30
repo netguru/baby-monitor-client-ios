@@ -26,7 +26,7 @@ class ClientSetupViewModelTests: XCTestCase {
         XCTAssertTrue(netServiceClient.isEnabled.value)
     }
     
-    func testShouldSaveUrlOfFoundDeviceToConfiguration() {
+    func testShouldCallDidFindDeviceAfterPairingToDevice() {
         // Given
         let exp = expectation(description: "Should find device")
         let name = "name"
@@ -39,31 +39,13 @@ class ClientSetupViewModelTests: XCTestCase {
         let webSocketEventMessageService = WebSocketEventMessageServiceMock()
         let errorLogger = ServerErrorLoggerMock()
         let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, activityLogEventsRepository: babyRepo, webSocketEventMessageService: webSocketEventMessageService, serverErrorLogger: errorLogger)
-        sut.didFinishDeviceSearch = { _ in exp.fulfill() }
-        
-        // When
-        sut.startDiscovering()
-        netServiceClient.servicesRelay.accept([service])
-        sut.pair(with: service)
-
-        // Then
-        waitForExpectations(timeout: 0.1) { _ in
-            XCTAssertNotNil(configuration.url)
-            XCTAssertEqual(URL(string: "ws://\(ip):\(port)"), configuration.url)
+        var serverURL: URL?
+        sut.didFinishDeviceSearch = { result in
+            if case .success(let url) = result {
+                serverURL = url
+            }
+            exp.fulfill()
         }
-    }
-    
-    func testShouldCallDidFindDeviceAfterPairingToDevice() {
-        // Given
-        let exp = expectation(description: "Should find device")
-        let service = NetServiceDescriptor(name: "Device", ip: "0.0.0.0", port: "0")
-        let netServiceClient = NetServiceClientMock()
-        let configuration = URLConfigurationMock()
-        let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let webSocketEventMessageService = WebSocketEventMessageServiceMock()
-        let errorLogger = ServerErrorLoggerMock()
-        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, activityLogEventsRepository: babyRepo, webSocketEventMessageService: webSocketEventMessageService, serverErrorLogger: errorLogger)
-        sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
         sut.startDiscovering()
@@ -72,7 +54,8 @@ class ClientSetupViewModelTests: XCTestCase {
         
         // Then
         waitForExpectations(timeout: 0.1) { _ in
-            XCTAssertNotNil(configuration.url)
+            XCTAssertNotNil(serverURL)
+            XCTAssertEqual(URL(string: "ws://\(ip):\(port)"), serverURL)
         }
     }
     
