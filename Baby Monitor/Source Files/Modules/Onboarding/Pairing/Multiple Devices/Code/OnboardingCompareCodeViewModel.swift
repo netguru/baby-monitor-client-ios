@@ -12,7 +12,7 @@ final class OnboardingCompareCodeViewModel {
     let bag = DisposeBag()
     let title: String = Localizable.Onboarding.connecting
     let description = Localizable.Onboarding.Connecting.compareCodeDescription
-    let codeText = Int.random(in: 1000...9999).toStringMessage()
+    let codeText = String(Int.random(in: 1000...9999))
 
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
     private let urlConfiguration: URLConfiguration
