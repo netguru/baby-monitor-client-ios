@@ -19,6 +19,9 @@ struct NetServiceDescriptor {
         if let range = name.range(of: Constants.netServiceName) {
            deviceName.removeSubrange(range)
         }
+        if deviceName.replacingOccurrences(of: " ", with: "").isEmpty {
+            return Localizable.Onboarding.Pairing.unknownDevice
+        }
         return deviceName
     }
 }
