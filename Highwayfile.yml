@@ -1,0 +1,74 @@
+# Highway configuration file version.
+version: 1
+
+# Variables available for presets.
+variables:
+    default:
+        XCODEBUILD_SCHEME: Staging
+        XCODEBUILD_PROJECT: ./Baby Monitor.xcworkspace
+        APPCENTER_ORG_NAME: office-4dmm
+    staging:
+        XCODEBUILD_SCHEME: Staging
+        APPCENTER_API_TOKEN: $(ENV:APP_CENTER_API_TOKEN_STAGING)
+        APPCENTER_APP_NAME: $(ENV:APP_CENTER_APP_NAME_STAGING_ID)
+        APPCENTER_DISTRIBUTION_GROUP: $(ENV:APP_CENTER_DISTRIBUTION_GROUP)
+    release:
+        XCODEBUILD_SCHEME: Production
+
+# Bootstrap stage.
+bootstrap:
+    default:
+        - carthage:
+            command: "bootstrap"
+            platforms:
+                - ios
+        - sh:
+            command: "cp .env.sample .env"
+        - cocoapods:
+            command: "install"
+
+# Test stage.
+test:
+    default:
+        - xcode_test:
+            project: $(XCODEBUILD_PROJECT)
+            scheme: $(XCODEBUILD_SCHEME)
+            settings: 
+                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+
+# Deploy stage.
+deploy:
+    staging:
+        - xcode_archive:
+            project: $(XCODEBUILD_PROJECT)
+            scheme: $(XCODEBUILD_SCHEME)
+            method: "enterprise"
+            settings: 
+                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+        - appcenter:
+            api_token: $(APPCENTER_API_TOKEN)
+            owner_name: $(APPCENTER_ORG_NAME)
+            app_name: $(APPCENTER_APP_NAME)
+            distribution_group: $(APPCENTER_DISTRIBUTION_GROUP)
+            notify: false
+
+    release:
+        - xcode_archive:
+            project: $(XCODEBUILD_PROJECT)
+            scheme: $(XCODEBUILD_SCHEME)
+            method: "app-store"
+        - appstore:
+            username: $(ENV:APPSTORE_USERNAME)
+            password: $(ENV:APPSTORE_PASSWORD)
+            app_identifier: $(ENV:APPSTORE_APP_IDENTIFIER)
+            submit_for_review: false
+            team_id: $(ENV:APPSTORE_TEAM_ID)
+
+# Report stage.
+report:
+  default:
+    - copy_artifacts:
+        path: $(ENV:BITRISE_DEPLOY_DIR)
+    - slack:
+        webhook: $(ENV:SLACK_WEBHOOK_URL)
+        channel: "#notify-baby-monitor"
