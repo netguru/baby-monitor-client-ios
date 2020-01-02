@@ -64,13 +64,13 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
 trigger_map:
 
-  - push_branch: highway
+  - push_branch: develop
     workflow: build-staging
 
   - push_branch: master
     workflow: build-release-candidate
 
-  - pull_request_target_branch: highway
+  - pull_request_target_branch: develop
     workflow: build-pull-request
 
   - pull_request_target_branch: master
@@ -90,8 +90,6 @@ workflows:
   build-staging:
     envs:
       - XCODEBUILD_SCHEME: Staging
-      - HOCKEYAPP_API_TOKEN: $HOCKEYAPP_API_TOKEN_STAGING
-      - HOCKEYAPP_APP_ID: $HOCKEYAPP_APP_ID_STAGING
       - HIGHWAY_PRESET: staging
     before_run:
       - cache-pull
@@ -109,8 +107,6 @@ workflows:
   build-release-candidate:
     envs:
       - XCODEBUILD_SCHEME: Production
-      - HOCKEYAPP_API_TOKEN: $HOCKEYAPP_API_TOKEN_PRODUCTION
-      - HOCKEYAPP_APP_ID: $HOCKEYAPP_APP_ID_PRODUCTION
       - HIGHWAY_PRESET: release
     before_run:
       - cache-pull
