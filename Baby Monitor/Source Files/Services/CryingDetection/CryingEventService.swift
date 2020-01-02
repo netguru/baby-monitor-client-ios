@@ -9,7 +9,9 @@ import RxCocoa
 
 protocol CryingEventsServiceProtocol: Any {
     var cryingEventObservable: Observable<Void> { get }
-    
+
+    var loggingInfoPublisher: PublishSubject<String> { get }
+
     /// Starts work of crying events service
     func start() throws
     /// Stops work of crying events service
@@ -23,6 +25,7 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     }
     
     lazy var cryingEventObservable = cryingEventPublisher.asObservable()
+    private(set) var loggingInfoPublisher = PublishSubject<String>()
     lazy var errorObservable = errorPublisher.asObservable()
     private var nextFileName: String = ""
     
@@ -58,12 +61,16 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
     }
     
     private func rxSetup() {
-        cryingDetectionService.cryingDetectionObservable.subscribe(onNext: { [unowned self] isBabyCrying in
-            if isBabyCrying {
+        cryingDetectionService.cryingDetectionObservable.subscribe(onNext: { [unowned self] cryingDetectionResult in
+            let roundedProbability = String(format: "%.2f", cryingDetectionResult.probability)
+            if cryingDetectionResult.isBabyCrying {
+                self.loggingInfoPublisher.onNext("Crying detected. Probability: \(roundedProbability)")
                 let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
                 self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
+                self.microphoneRecordService?.startRecording()
                 self.cryingEventPublisher.onNext(())
             } else {
+                self.loggingInfoPublisher.onNext("Sound detected but no baby crying. Probability: \(roundedProbability)")
                 guard self.microphoneRecordService?.isRecording ?? false else {
                     return
                 }

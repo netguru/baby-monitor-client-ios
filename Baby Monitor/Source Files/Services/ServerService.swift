@@ -10,8 +10,13 @@ protocol ServerServiceProtocol: AnyObject {
     var localStreamObservable: Observable<MediaStream> { get }
     var audioMicrophoneServiceErrorObservable: Observable<Void> { get }
     var remoteResetEventObservable: Observable<Void> { get }
+    var remoteParingCodeObservable: Observable<String> { get }
+    var loggingInfoObservable: Observable<String> { get }
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> { get }
     func startStreaming()
     func stop()
+    func pauseVideoStreaming()
+    func resumeVideoStreaming()
 }
 
 final class ServerService: ServerServiceProtocol {
@@ -19,9 +24,14 @@ final class ServerService: ServerServiceProtocol {
     var localStreamObservable: Observable<MediaStream> {
         return webRtcServerManager.mediaStream
     }
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        return messageServer.connectionStatusObservable
+    }
     lazy var audioMicrophoneServiceErrorObservable = audioMicrophoneServiceErrorPublisher.asObservable()
     lazy var remoteResetEventObservable = remoteResetEventPublisher.asObservable()
-    
+    lazy var remoteParingCodeObservable = remotePairingCodePublisher.asObservable()
+    lazy var loggingInfoObservable = loggingInfoPublisher.asObservable()
+
     private let parentResponseTime: TimeInterval
     private let webRtcServerManager: WebRtcServerManagerProtocol
     private let messageServer: MessageServerProtocol
@@ -33,8 +43,10 @@ final class ServerService: ServerServiceProtocol {
     private let notificationsService: NotificationServiceProtocol
     private let audioMicrophoneServiceErrorPublisher = PublishSubject<Void>()
     private let remoteResetEventPublisher = PublishSubject<Void>()
+    private let remotePairingCodePublisher = PublishSubject<String>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
-    
+    private let loggingInfoPublisher = PublishSubject<String>()
+
     init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babyModelController: BabyModelControllerProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
         self.cryingEventService = cryingService
         self.babyModelController = babyModelController
@@ -58,8 +70,18 @@ final class ServerService: ServerServiceProtocol {
     private func rxSetup() {
         cryingEventService.cryingEventObservable
             .throttle(Constants.notificationRequestTimeLimit, scheduler: MainScheduler.instance)
+            .do(onNext: { [weak self] _ in
+                self?.loggingInfoPublisher.onNext("Crying passed 3 minutes limit. Attemps to send push notification request.")
+            })
             .subscribe(onNext: { [weak self] _ in
-                self?.notificationsService.sendPushNotificationsRequest()
+                self?.notificationsService.sendPushNotificationsRequest(completion: { [weak self] result in
+                    switch result {
+                    case .failure(let error):
+                        self?.loggingInfoPublisher.onNext("Push notification request sending failed with error: \(error?.localizedDescription ?? "unknown")")
+                    case .success:
+                        self?.loggingInfoPublisher.onNext("Push Notification was sent successfully.")
+                    }
+                })
             }).disposed(by: disposeBag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
@@ -81,6 +103,7 @@ final class ServerService: ServerServiceProtocol {
                 self.messageServer.send(message: json)
             })
             .disposed(by: disposeBag)
+        cryingEventService.loggingInfoPublisher.bind(to: loggingInfoPublisher).disposed(by: disposeBag)
     }
     
     private func handle(message: WebRtcMessage) {
@@ -103,6 +126,10 @@ final class ServerService: ServerServiceProtocol {
             UserDefaults.receiverPushNotificationsToken = event.value
         case .resetKey:
             remoteResetEventPublisher.onNext(())
+        case .pairingCodeKey:
+            remotePairingCodePublisher.onNext(event.value ?? "")
+        case .pairingCodeResponseKey:
+            break
         }
     }
     
@@ -141,7 +168,16 @@ final class ServerService: ServerServiceProtocol {
             default:
                 break
             }
+            Logger.error("Logging service didn't start", error: error)
         }
         webRtcServerManager.start()
+    }
+
+    func pauseVideoStreaming() {
+        webRtcServerManager.pauseMediaStream()
+    }
+
+    func resumeVideoStreaming() {
+        webRtcServerManager.resumeMediaStream()
     }
 }

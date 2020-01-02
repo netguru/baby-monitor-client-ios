@@ -22,35 +22,32 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     var mediaStream: Observable<MediaStream> {
         return mediaStreamPublisher
     }
-
     private var isStarted = false
+    private var videoCapturer: VideoCapturer?
     private var mediaStreamInstance: MediaStream?
     private let mediaStreamPublisher = PublishSubject<MediaStream>()
     private let sdpAnswerPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
-
     private var peerConnection: PeerConnectionProtocol?
     private let peerConnectionFactory: PeerConnectionFactoryProtocol
-    private let connectionDelegateProxy: RTCPeerConnectionDelegateProxy
+    private let connectionDelegateProxy: PeerConnectionProxy
     private let remoteDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
     private let localDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
     private let scheduler: AsyncScheduler
+    /// Connection between the client and the server.
+    /// Active when client previews stream from server.
+    private var lastConnectionState: RTCPeerConnectionState = .closed
 
     private var streamMediaConstraints: RTCMediaConstraints {
         return RTCMediaConstraints(
-            mandatoryConstraints: [
-                WebRtcConstraintKey.offerToReceiveVideo: WebRtcConstraintValue.true,
-                WebRtcConstraintKey.offerToReceiveAudio: WebRtcConstraintValue.true
-            ],
-            optionalConstraints: [
-                WebRtcConstraintKey.dtlsSrtpKeyAgreement: WebRtcConstraintValue.true
-            ]
+            mandatoryConstraints: [:],
+            optionalConstraints: [WebRtcConstraintKey.dtlsSrtpKeyAgreement: WebRtcConstraintValue.true]
         )
     }
 
-    init(peerConnectionFactory: PeerConnectionFactoryProtocol, scheduler: AsyncScheduler = DispatchQueue.main) {
+    init(peerConnectionFactory: PeerConnectionFactoryProtocol, connectionDelegateProxy: PeerConnectionProxy, scheduler: AsyncScheduler = DispatchQueue.main) {
         self.peerConnectionFactory = peerConnectionFactory
-        self.connectionDelegateProxy = RTCPeerConnectionDelegateProxy()
+        self.connectionDelegateProxy = connectionDelegateProxy
         self.remoteDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         self.localDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         self.scheduler = scheduler
@@ -59,10 +56,20 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     }
 
     func setup() {
-
         connectionDelegateProxy.onGotIceCandidate = { [weak self] _, iceCandidate in
             guard let self = self else { return }
             self.iceCandidatePublisher.onNext(iceCandidate)
+        }
+        connectionDelegateProxy.onConnectionStateChanged = { [weak self] _, newConnectionState in
+            switch newConnectionState {
+            case .disconnected:
+                self?.pauseMediaStream()
+            case .connected:
+                self?.resumeMediaStream()
+            default:
+                break
+            }
+            self?.lastConnectionState = newConnectionState
         }
     }
 
@@ -75,14 +82,27 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     func stop() {
         peerConnection?.close()
         isStarted = false
+        stopMediaStream()
     }
-    private var videoCapturer: VideoCapturer?
 
-    private func startMediaStream() {
-        let (optionalCapturer, optionalStream) = peerConnectionFactory.createStream()
-        guard let capturer = optionalCapturer, let stream = optionalStream else { return }
-        videoCapturer = capturer
-        mediaStreamInstance = stream
+    func pauseMediaStream() {
+        /// If client previews the server stream we shouldn't pause it.
+        guard let capturer = videoCapturer,
+            capturer.isCapturing && lastConnectionState != .connected else { return }
+        capturer.stopCapturing()
+    }
+
+    func resumeMediaStream() {
+        guard let capturer = videoCapturer,
+            !capturer.isCapturing,
+            let stream = mediaStreamInstance else {
+            /// If client is currently previewing a server stream we need to pass stream one more time so it would be enabled on server preview too.
+            if lastConnectionState == .connected, let stream = mediaStreamInstance {
+                mediaStreamPublisher.onNext(stream)
+            }
+            return
+        }
+        capturer.startCapturing()
         mediaStreamPublisher.onNext(stream)
     }
 
@@ -97,6 +117,26 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             }
         }
     }
+    
+    func setICECandidates(iceCandidate: IceCandidateProtocol) {
+        peerConnection?.add(iceCandidate: iceCandidate)
+    }
+
+    // MARK: Private methods.
+
+    private func startMediaStream() {
+         let (optionalCapturer, optionalStream) = peerConnectionFactory.createStream()
+         guard let capturer = optionalCapturer, let stream = optionalStream else { return }
+         videoCapturer = capturer
+         mediaStreamInstance = stream
+         mediaStreamPublisher.onNext(stream)
+     }
+
+    private func stopMediaStream() {
+          videoCapturer?.stopCapturing()
+          videoCapturer = nil
+          mediaStreamInstance = nil
+      }
 
     private func handleDidSetRemoteDescription(stream: MediaStream) {
         peerConnection?.add(stream: stream)
@@ -106,9 +146,4 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             self.sdpAnswerPublisher.onNext(sdp)
         }
     }
-    
-    func setICECandidates(iceCandidate: IceCandidateProtocol) {
-        peerConnection?.add(iceCandidate: iceCandidate)
-    }
-    
 }

@@ -38,8 +38,8 @@ final class ParentSettingsView: BaseSettingsView {
     }()
 
     /// Initializes settings view
-    override init() {
-        super.init()
+    override init(appVersion: String) {
+        super.init(appVersion: appVersion)
         setupLayout()
     }
 
@@ -113,7 +113,7 @@ extension Reactive where Base: ParentSettingsView {
         }
         return ControlProperty(values: name, valueSink: binder)
     }
-    var editPhotoTap: ControlEvent<Void> {
-        return base.editBabyPhotoButton.rx.tap
+    var editPhotoTap: Observable<UIButton> {
+        return base.editBabyPhotoButton.rx.tap.map { [unowned base] in base.editBabyPhotoButton }
     }
 }

@@ -31,7 +31,8 @@ final class OnboardingContinuableViewController: TypedViewController<Continuable
     }
     
     private func setup() {
-        if case .parent(.error) = viewModel.role {
+        if case .parent(.searchingError) = viewModel.role,
+            case .parent(.connectionError) = viewModel.role {
             customView.changeButtonBackgroundColor(.clear)
         }
         navigationItem.leftBarButtonItem = customView.cancelButtonItem

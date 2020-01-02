@@ -7,7 +7,7 @@ import PocketSocket
 import RxSwift
 import RxCocoa
 
-protocol WebSocketServerProtocol {
+protocol WebSocketServerProtocol: WebSocketConnectionStatusProvider {
     
     /// Observable emitting connected sockets
     var connectedSocket: Observable<WebSocketProtocol> { get }
@@ -27,6 +27,8 @@ protocol WebSocketServerProtocol {
 
 final class PSWebSocketServerWrapper: NSObject, WebSocketServerProtocol {
     
+    private(set) var connectionStatusObservable: Observable<WebSocketConnectionStatus>
+    private var connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
     private let server: PSWebSocketServer
     
     var connectedSocket: Observable<WebSocketProtocol> {
@@ -46,6 +48,7 @@ final class PSWebSocketServerWrapper: NSObject, WebSocketServerProtocol {
     
     init(server: PSWebSocketServer) {
         self.server = server
+        self.connectionStatusObservable = connectionStatusPublisher.asObservable()
         super.init()
         server.delegate = self
     }
@@ -60,27 +63,38 @@ final class PSWebSocketServerWrapper: NSObject, WebSocketServerProtocol {
 }
 
 extension PSWebSocketServerWrapper: PSWebSocketServerDelegate {
-    func serverDidStart(_ server: PSWebSocketServer) {}
+    func serverDidStart(_ server: PSWebSocketServer) {
+        connectionStatusPublisher.onNext(.connecting)
+    }
     
-    func serverDidStop(_ server: PSWebSocketServer) {}
+    func serverDidStop(_ server: PSWebSocketServer) {
+        connectionStatusPublisher.onNext(.disconnected)
+    }
     
-    func server(_ server: PSWebSocketServer, didFailWithError error: Error) {}
+    func server(_ server: PSWebSocketServer, didFailWithError error: Error) {
+        connectionStatusPublisher.onNext(.disconnected)
+    }
+    
     
     func server(_ server: PSWebSocketServer, webSocketDidOpen webSocket: PSWebSocket) {
         connectedSocketPublisher.accept(PSWebSocketWrapper(socket: webSocket, assignDelegate: false))
+        connectionStatusPublisher.onNext(.connected)
     }
     
     func server(_ server: PSWebSocketServer, webSocket: PSWebSocket, didReceiveMessage message: Any) {
         guard let decodableMessage = message as? WebsocketMessageDecodable,
-            let stringMessage = decodableMessage.decode() else {
-                return
+              let stringMessage = decodableMessage.decode() else {
+            return
         }
         receivedMessagePublisher.accept(stringMessage)
     }
     
-    func server(_ server: PSWebSocketServer, webSocket: PSWebSocket, didFailWithError error: Error) {}
+    func server(_ server: PSWebSocketServer, webSocket: PSWebSocket, didFailWithError error: Error) {
+        connectionStatusPublisher.onNext(.disconnected)
+    }
     
     func server(_ server: PSWebSocketServer, webSocket: PSWebSocket, didCloseWithCode code: Int, reason: String, wasClean: Bool) {
         disconnectedSocketPublisher.accept(PSWebSocketWrapper(socket: webSocket, assignDelegate: false))
+        connectionStatusPublisher.onNext(.disconnected)
     }
 }

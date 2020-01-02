@@ -63,6 +63,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         do {
             try microphoneCapturer.start()
         } catch {
+            Logger.error("Microphone coudn't start capturing", error: error)
             return
         }
         isCapturing = true
@@ -88,20 +89,21 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         do {
             isRecording = true
             try microphoneRecorder.reset()
-            // Removing tap is done in order to prevent adding a tap in case it's already added.
-            microphoneRecorder.removeTap()
             try microphoneRecorder.record()
 
         } catch {
             isRecording = false
             errorSubject.onNext(AudioError.recordFailure)
+            Logger.error("Microphone coudn't start recording", error: AudioError.recordFailure)
         }
     }
 
     private func rxSetup() {
-        microphoneCapturer.bufferReadable.subscribe(onNext: { [unowned self] bufferReadable in
-            self.microphoneBufferReadableSubject.onNext(bufferReadable)
-        }).disposed(by: disposeBag)
+        microphoneCapturer.bufferReadable
+            .throttle(Constants.recognizingSoundTimeLimit, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
+            .subscribe(onNext: { [weak self] bufferReadable in
+                self?.microphoneBufferReadableSubject.onNext(bufferReadable)
+            }).disposed(by: disposeBag)
     }
 
 }

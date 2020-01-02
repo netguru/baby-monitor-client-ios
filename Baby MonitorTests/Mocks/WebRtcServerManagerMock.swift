@@ -7,10 +7,15 @@
 import RxSwift
 
 final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
+
     private(set) var isStarted = true
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var iceCandidates = [IceCandidateProtocol]()
     private(set) var isSetup = false
+    let connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        return connectionStatusPublisher
+    }
 
     private let localSdp: SessionDescriptionProtocol?
 
@@ -37,6 +42,10 @@ final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
     func stop() {
         isStarted = false
     }
+
+    func pauseMediaStream() {}
+
+    func resumeMediaStream() {}
 
     var sdpAnswer: Observable<SessionDescriptionProtocol> {
         return sdpAnswerPublisher

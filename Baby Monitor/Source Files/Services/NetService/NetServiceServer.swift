@@ -17,20 +17,26 @@ protocol NetServiceServerProtocol {
 
 final class NetServiceServer: NSObject, NetServiceServerProtocol, NetServiceDelegate {
 
+    private enum ServiceError: Error {
+        case didNotPublish
+    }
+
     let isEnabled = Variable<Bool>(false)
 
     private lazy var netService: NetService = NetService(
         domain: Constants.domain,
         type: Constants.netServiceType,
-        name: Constants.netServiceName,
+        name: UIDevice.current.name + " " + Constants.netServiceName,
         port: Int32(Constants.iosWebsocketPort)
     )
 
     private let appStateProvider: ApplicationStateProvider
+    private let errorLogger: ServerErrorLogger
     private let disposeBag = DisposeBag()
 
-    init(appStateProvider: ApplicationStateProvider) {
+    init(appStateProvider: ApplicationStateProvider, serverErrorLogger: ServerErrorLogger) {
         self.appStateProvider = appStateProvider
+        self.errorLogger = serverErrorLogger
         super.init()
         setupRx()
     }
@@ -66,6 +72,10 @@ final class NetServiceServer: NSObject, NetServiceServerProtocol, NetServiceDele
 
     private func stop() {
         netService.stop()
+    }
+
+    func netService(_ sender: NetService, didNotPublish errorDict: [String: NSNumber]) {
+        errorLogger.log(error: ServiceError.didNotPublish, additionalInfo: errorDict)
     }
 
 }

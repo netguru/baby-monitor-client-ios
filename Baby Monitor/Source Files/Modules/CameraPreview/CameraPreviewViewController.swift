@@ -55,15 +55,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     }
     
     private func setupViewModel() {
-        viewModel.remoteStream
-            .subscribeOn(MainScheduler.instance)
-            .subscribe(onNext: { [unowned self] stream in
-                guard let stream = stream else {
-                    return
-                }
-                self.attach(stream: stream)
-            })
-            .disposed(by: bag)
+        setupStream()
         viewModel.baby
             .map { $0.name }
             .bind(to: customView.rx.babyName)
@@ -74,13 +66,30 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
             .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
-        viewModel.state
+        viewModel.connectionStatusObservable
             .map { $0 == .connecting }
             .bind(to: customView.rx.isLoading)
             .disposed(by: bag)
         viewModel.attachInput(
             cancelTap: customView.rx.cancelTap.asObservable(),
             settingsTap: customView.rx.settingsTap.asObservable())
+        viewModel.streamResettedPublisher.asObservable()
+            .subscribe(onNext: { [weak self] in
+                self?.setupStream()
+            })
+            .disposed(by: bag)
+    }
+    
+    private func setupStream() {
+        viewModel.remoteStream
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] stream in
+                guard let stream = stream else {
+                    return
+                }
+                self?.attach(stream: stream)
+            })
+            .disposed(by: bag)
     }
     
     private func attach(stream: MediaStream) {

@@ -47,9 +47,10 @@ final class DatabaseRepositoryMock: BabyModelControllerProtocol & ActivityLogEve
         babyUpdatePublisher.onNext(baby)
     }
     
-    func save(activityLogEvent: ActivityLogEvent) {
+    func save(activityLogEvent: ActivityLogEvent, completion: @escaping (Result<()>) -> Void) {
         activityLogEvents.append(activityLogEvent)
         activityLogEventsPublisher.onNext(activityLogEvents)
+        completion(.success(()))
     }
     
     func fetchAllActivityLogEvents() -> [ActivityLogEvent] {

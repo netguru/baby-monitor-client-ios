@@ -12,7 +12,7 @@ import RxCocoa
 protocol CryingDetectionServiceProtocol: Any {
     
     /// Observable that informs about detection of baby's cry
-    var cryingDetectionObservable: Observable<Bool> { get }
+    var cryingDetectionObservable: Observable<CryingDetectionResult> { get }
     
     /// Starts crying detection
     func startAnalysis()
@@ -20,11 +20,16 @@ protocol CryingDetectionServiceProtocol: Any {
     func stopAnalysis()
 }
 
+struct CryingDetectionResult {
+    let isBabyCrying: Bool
+    let probability: Double
+}
+
 final class CryingDetectionService: CryingDetectionServiceProtocol {
     
     lazy var cryingDetectionObservable = cryingDetectionSubject.asObservable()
     
-    private let cryingDetectionSubject = PublishSubject<Bool>()
+    private let cryingDetectionSubject = PublishSubject<CryingDetectionResult>()
     
     private let microphoneCaptureService: AudioMicrophoneCaptureServiceProtocol?
     private let disposeBag = DisposeBag()
@@ -58,10 +63,11 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
                 crydetectionMultiArray.dataPointer.copyMemory(from: pred.Mfcc__0.dataPointer, byteCount: 38272 * 4)
                 let input1 = crydetectionInput(Mfcc__0: crydetectionMultiArray)
                 let pred2 = try self.crydetectionModel.prediction(input: input1)
-                let babyCryingDetected: Bool = (Double(exactly: pred2.labels_softmax__0[1]) ?? 0) >= Constants.cryingDetectionThreshold
-                self.cryingDetectionSubject.onNext(babyCryingDetected)
+                let cryingProbability = Double(exactly: pred2.labels_softmax__0[1]) ?? 0
+                let babyCryingDetected: Bool = cryingProbability >= Constants.cryingDetectionThreshold
+                self.cryingDetectionSubject.onNext(CryingDetectionResult(isBabyCrying: babyCryingDetected, probability: cryingProbability))
             } catch {
-                print("ERROR")
+                Logger.error("Crying detection failed - audioProcessingMultiArray exeption", error: error)
             }
         }).disposed(by: disposeBag)
     }

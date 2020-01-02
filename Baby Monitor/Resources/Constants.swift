@@ -19,6 +19,12 @@ enum Constants {
 
     /// A time after which the video stream should be hidden.
     static let videoStreamVisibilityTimeLimit: TimeInterval = 60
+
+    /// A limit for searching for a baby device to be paired to.
+    static let pairingDeviceSearchTimeLimit: TimeInterval = 2 * 60
+
+    /// A limit for sending maximum one sound to an ML model for recognizing in this time.
+    static let recognizingSoundTimeLimit: TimeInterval = 10
     
     /// Represents a size class for constraint constants
     enum ResponsiveSizeClass {

@@ -5,7 +5,7 @@
 
 import RxSwift
 
-protocol MessageStreamProtocol {
+protocol MessageStreamProtocol: class {
     
     /// Observable emitting received messages
     var receivedMessage: Observable<String> { get }

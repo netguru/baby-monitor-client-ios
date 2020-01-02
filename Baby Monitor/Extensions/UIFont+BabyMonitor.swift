@@ -15,6 +15,7 @@ extension UIFont {
         case h3 = 20
         case h2 = 24
         case h1 = 32
+        case giant = 64
     }
 
     /// Creates custom font used throught the app

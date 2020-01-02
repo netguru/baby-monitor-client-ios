@@ -36,13 +36,10 @@ final class DashboardCoordinator: Coordinator {
     }
     
     private func setupResettingApp() {
-        appDependencies.webSocketEventMessageService.get().remoteResetObservable
-            .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] in
-                self?.appDependencies.resetTheApplication()
+        appDependencies.applicationResetter.localResetCompletionObservable
+            .subscribe(onNext: { [weak self] resetCompleted in
                 self?.onEnding?()
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
 
     private func showDashboard() {
@@ -60,7 +57,11 @@ final class DashboardCoordinator: Coordinator {
 
     // Prepare DashboardViewModel
     private func createDashboardViewModel() -> DashboardViewModel {
-        let viewModel = DashboardViewModel(connectionChecker: appDependencies.connectionChecker, babyModelController: appDependencies.databaseRepository, webSocketEventMessageService: appDependencies.webSocketEventMessageService.get(), microphonePermissionProvider: appDependencies.microphonePermissionProvider)
+        let viewModel = DashboardViewModel(networkDiscoveryConnectionStateProvider: appDependencies.connectionChecker,
+                                           socketCommunicationManager: appDependencies.socketCommunicationsManager,
+                                           babyModelController: appDependencies.databaseRepository,
+                                           webSocketEventMessageService: appDependencies.webSocketEventMessageService,
+                                           microphonePermissionProvider:  appDependencies.microphonePermissionProvider)
         return viewModel
     }
     
@@ -117,7 +118,10 @@ final class DashboardCoordinator: Coordinator {
 
     // Prepare CameraPreviewViewModel
     private func createCameraPreviewViewModel() -> CameraPreviewViewModel {
-        let viewModel = CameraPreviewViewModel(webSocketWebRtcService: appDependencies.webSocketWebRtcService.get(), babyModelController: appDependencies.databaseRepository, connectionChecker: appDependencies.connectionChecker)
+        let viewModel = CameraPreviewViewModel(
+            webSocketWebRtcService: appDependencies.webSocketWebRtcService,
+            babyModelController: appDependencies.databaseRepository,
+            socketCommunicationManager: appDependencies.socketCommunicationsManager)
         return viewModel
     }
     

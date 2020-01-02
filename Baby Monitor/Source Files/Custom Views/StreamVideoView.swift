@@ -51,12 +51,16 @@ internal final class StreamVideoView: UIView, RTCVideoRenderer {
 
     private let contentTransform: ContentTransform
 
-    private lazy var renderView: RTCEAGLVideoView = {
-        RTCEAGLVideoView()
-    }()
-
-    private lazy var aspectRatioConstraint: NSLayoutConstraint = {
-        renderView.heightAnchor.constraint(equalTo: renderView.widthAnchor, multiplier: 1)
+    private lazy var renderView: UIView & RTCVideoRenderer = {
+        #if arch(arm64)
+        // Using view with Metal support. It will be always used on physical devices.
+        let view = RTCMTLVideoView()
+        view.videoContentMode = .scaleAspectFill
+        return view
+        #else
+        // For simulator support only.
+        return RTCEAGLVideoView()
+        #endif
     }()
 
     // MARK: Setup
@@ -74,19 +78,11 @@ internal final class StreamVideoView: UIView, RTCVideoRenderer {
         }
 
         renderView.transform = contentTransform.affineTransform
-
-    }
-
-    private func replaceAspectRatioConstraint(_ multiplier: CGFloat) {
-        renderView.removeConstraint(aspectRatioConstraint)
-        aspectRatioConstraint = renderView.heightAnchor.constraint(equalTo: renderView.widthAnchor, multiplier: multiplier)
-        renderView.addConstraint(aspectRatioConstraint)
     }
 
     // MARK: RTCVideoRenderer
 
     internal func setSize(_ size: CGSize) {
-        DispatchQueue.main.sync { replaceAspectRatioConstraint(size.height / size.width) }
         renderView.setSize(size)
     }
 

@@ -23,15 +23,24 @@ final class ServerCoordinator: Coordinator {
     private let bag = DisposeBag()
     
     func start() {
-        setupResettingState()
+        setupBindings()
         showServerView()
     }
     
-    private func setupResettingState() {
-        appDependencies.serverService.remoteResetEventObservable.subscribe(onNext: { [weak self] in
-            self?.appDependencies.resetTheApplication()
-            self?.onEnding?()
-        })
+    private func setupBindings() {
+        appDependencies.applicationResetter.localResetCompletionObservable
+            .subscribe(onNext: { [weak self] resetCompleted in
+                self?.onEnding?()
+            })
+            .disposed(by: bag)
+        appDependencies.serverService.remoteParingCodeObservable
+            .subscribe(onNext: { [weak self] code in
+                guard !code.isEmpty else {
+                    self?.navigationController.dismiss(animated: true, completion: nil)
+                    return
+                }
+                self?.showCodeAlert(with: code)
+            })
             .disposed(by: bag)
     }
     
@@ -74,5 +83,21 @@ final class ServerCoordinator: Coordinator {
             }
         }
         self.parentSettingsCoordinator = parentSettingsCoordinator
+    }
+
+    private func showCodeAlert(with code: String) {
+        let declineAction = UIAlertAction(title: Localizable.General.decline, style: .default, handler: { [weak self] _ in
+            self?.appDependencies.messageServer.send(message: EventMessage.initWithPairingCodeResponseKey(value: false).toStringMessage())
+
+        })
+        let acceptAction = UIAlertAction(title: Localizable.General.accept, style: .default, handler: { [weak self] _ in
+            self?.appDependencies.messageServer.send(message: EventMessage.initWithPairingCodeResponseKey(value: true).toStringMessage())
+            self?.appDependencies.netServiceServer.isEnabled.value = false
+
+        })
+        let codeAlertController = UIAlertController(title: Localizable.Onboarding.Pairing.connection, message: Localizable.Onboarding.Pairing.connectionAlertInfo(code: code), preferredStyle: .alert)
+        [declineAction, acceptAction].forEach { codeAlertController.addAction($0) }
+        codeAlertController.preferredAction = acceptAction
+        navigationController.present(codeAlertController, animated: true, completion: nil)
     }
 }
