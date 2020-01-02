@@ -99,13 +99,17 @@ workflows:
             - cache_paths: |-
                 ./Carthage
                 ./Pods
+
   bundle-install:
     steps:
       - certificate-and-profile-installer: {}
       - script:
           title: 'bundle-install'
           inputs:
-            - content: bundle install
+            - content: |-
+               gem uninstall bundler --force
+               gem install bundler --force
+               bundle install
 
   run-highway:
     steps:
