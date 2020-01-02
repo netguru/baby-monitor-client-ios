@@ -24,7 +24,7 @@ class OnboardingCompareCodeViewModelTests: XCTestCase {
             serverURL: try XCTUnwrap(url),
             activityLogEventsRepository: babyRepo
         )
-        let codeEvent = EventMessage(action: BabyMonitorEvent.pairingCodeKey.rawValue, value: sut.codeText)
+        let codeEvent = EventMessage(pairingCode: sut.codeText)
 
         // When
         sut.sendCode()
@@ -41,7 +41,7 @@ class OnboardingCompareCodeViewModelTests: XCTestCase {
         let url = URL(string: "ws://ip:port")
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
-        let emptyEvent = EventMessage(action: BabyMonitorEvent.pairingCodeKey.rawValue, value: "")
+        let emptyEvent = EventMessage(pairingCode: "")
         let sut = OnboardingCompareCodeViewModel(
             webSocketEventMessageService: webSocketEventMessageServiceMock,
             urlConfiguration: configuration,
