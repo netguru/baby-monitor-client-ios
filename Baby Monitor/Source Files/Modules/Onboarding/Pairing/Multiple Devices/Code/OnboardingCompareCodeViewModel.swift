@@ -33,12 +33,12 @@ final class OnboardingCompareCodeViewModel {
     func sendCode() {
         urlConfiguration.url = serverURL
         webSocketEventMessageService.start()
-        let message = EventMessage(action: BabyMonitorEvent.pairingCodeKey.rawValue, value: codeText)
+        let message = EventMessage(pairingCode: codeText)
         webSocketEventMessageService.sendMessage(message.toStringMessage())
     }
 
     func cancelPairingAttempt() {
-        let message = EventMessage(action: BabyMonitorEvent.pairingCodeKey.rawValue, value: "")
+        let message = EventMessage(pairingCode: "")
         webSocketEventMessageService.sendMessage(message.toStringMessage())
         webSocketEventMessageService.close()
     }

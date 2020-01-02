@@ -34,20 +34,13 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
     
     private func eventMessageHandler() -> AnyObserver<EventMessage> {
         return AnyObserver<EventMessage>(eventHandler: { [weak self] event in
-            guard let event = event.element,
-                let babyEvent = BabyMonitorEvent(rawValue: event.action) else {
+            guard let event = event.element else {
                     return
             }
-            switch babyEvent {
-            case .resetKey:
+            if case .reset = event.action {
                 self?.remoteResetPublisher.onNext(())
-            case .pushNotificationsKey, .pairingCodeKey:
-                break
-            case .pairingCodeResponseKey:
-                guard let isPairingApproved = event.boolValue else {
-                    Logger.error("No pairing response boolean value.")
-                    return
-                }
+            }
+            if let isPairingApproved = event.pairingCodeResponse {
                 self?.remotePairingCodeResponsePublisher.onNext(isPairingApproved)
             }
         })

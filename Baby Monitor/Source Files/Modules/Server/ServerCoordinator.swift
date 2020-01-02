@@ -87,11 +87,11 @@ final class ServerCoordinator: Coordinator {
 
     private func showCodeAlert(with code: String) {
         let declineAction = UIAlertAction(title: Localizable.General.decline, style: .default, handler: { [weak self] _ in
-            self?.appDependencies.messageServer.send(message: EventMessage.initWithPairingCodeResponseKey(value: false).toStringMessage())
+            self?.appDependencies.messageServer.send(message: EventMessage(pairingCodeResponse: false).toStringMessage())
 
         })
         let acceptAction = UIAlertAction(title: Localizable.General.accept, style: .default, handler: { [weak self] _ in
-            self?.appDependencies.messageServer.send(message: EventMessage.initWithPairingCodeResponseKey(value: true).toStringMessage())
+            self?.appDependencies.messageServer.send(message: EventMessage(pairingCodeResponse: true).toStringMessage())
             self?.appDependencies.netServiceServer.isEnabled.value = false
 
         })

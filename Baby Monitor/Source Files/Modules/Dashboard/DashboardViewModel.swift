@@ -85,7 +85,7 @@ final class DashboardViewModel {
     private func sendPushNotificationIfNeeded(connectionStatus: ConnectionStatus) {
         guard shouldPushNotificationsKeyBeSent && connectionStatus == .connected else { return }
         
-        let firebaseTokenMessage = EventMessage.initWithPushNotificationsKey(key: UserDefaults.selfPushNotificationsToken)
+        let firebaseTokenMessage = EventMessage(pushNotificationsToken: UserDefaults.selfPushNotificationsToken)
         self.webSocketEventMessageService.sendMessage(firebaseTokenMessage.toStringMessage())
         self.shouldPushNotificationsKeyBeSent = false
     }

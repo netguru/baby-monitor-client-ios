@@ -118,18 +118,14 @@ final class ServerService: ServerServiceProtocol {
     }
     
     private func handle(event: EventMessage) {
-        guard let babyMonitorEvent = BabyMonitorEvent(rawValue: event.action) else {
-            return
+        if let pushToken = event.pushNotificationsToken {
+            UserDefaults.receiverPushNotificationsToken = pushToken
         }
-        switch babyMonitorEvent {
-        case .pushNotificationsKey:
-            UserDefaults.receiverPushNotificationsToken = event.value
-        case .resetKey:
+        if case .reset = event.action {
             remoteResetEventPublisher.onNext(())
-        case .pairingCodeKey:
-            remotePairingCodePublisher.onNext(event.value ?? "")
-        case .pairingCodeResponseKey:
-            break
+        }
+        if let pairingCode = event.pairingCode {
+            remotePairingCodePublisher.onNext(pairingCode)
         }
     }
     
