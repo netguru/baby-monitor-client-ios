@@ -123,6 +123,7 @@ enum Localizable {
             static let allDone = localized("onboarding.pairing.all-done")
             static let getStarted = localized("onboarding.pairing.get-started")
             static let connection = localized("onboarding.pairing.connection")
+            static let unknownDevice = localized("onboarding.pairing.unknown-device")
 
             static func connectionAlertInfo(code: String) -> String {
                 return String(format: localized("onboarding.pairing.connection-alert-info"), code)

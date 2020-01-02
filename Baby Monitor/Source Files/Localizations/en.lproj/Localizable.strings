@@ -71,6 +71,7 @@
 "onboarding.pairing.get-started" = "Get started";
 "onboarding.pairing.connection" = "Connection";
 "onboarding.pairing.connection-alert-info" = "A device with code %@ would like to connect.";
+"onboarding.pairing.unknown-device" = "Unknown device";
 "onboarding.connecting.setup-information" = "Setup information";
 "onboarding.connecting.place-device" = "Put this device next\nto your baby's bed, so\nthat you can see him\nor her in a real time\nview";
 "onboarding.connecting.start-monitoring" = "Start monitoring";

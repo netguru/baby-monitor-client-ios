@@ -226,6 +226,7 @@
 		9574DBDB23A93175000D58A8 /* NSAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */; };
 		9574DBDD23A93543000D58A8 /* String+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */; };
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
+		95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */; };
 		95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C382390317000AC559D /* AlertPresenter.swift */; };
 		95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */; };
 		95E75C3D2390318500AC559D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C3C2390318500AC559D /* Logger.swift */; };
@@ -470,7 +471,7 @@
 		8A6098C321EBFDA700592B01 /* PeerConnectionFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnectionFactoryProtocol.swift; sourceTree = SOURCE_ROOT; };
 		8A7A608321A4027E00488ED4 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorHandler.swift; path = "Baby Monitor/Source Files/Services/ErrorHandler/ErrorHandler.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A608721A403D500488ED4 /* MicrophoneTrackerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophoneTrackerProtocol.swift; sourceTree = "<group>"; };
-		8A7A60C321A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetServiceConnectionCheckerTests.swift; path = "Baby MonitorTests/Services/NetServiceConnectionCheckerTests.swift"; sourceTree = SOURCE_ROOT; };
+		8A7A60C321A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetServiceConnectionCheckerTests.swift; path = "Baby MonitorTests/Networking/NetService/NetServiceConnectionCheckerTests.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A60C421A40CF200488ED4 /* DecodersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecodersTests.swift; path = "Baby MonitorTests/Services/DecodersTests.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A60C521A40CF200488ED4 /* MessageStreamProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageStreamProtocolTests.swift; path = "Baby MonitorTests/Services/MessageStreamProtocolTests.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A60C621A40CF200488ED4 /* MessageServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageServerTests.swift; path = "Baby MonitorTests/Services/MessageServerTests.swift"; sourceTree = SOURCE_ROOT; };
@@ -552,6 +553,7 @@
 		9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Attributes.swift"; sourceTree = "<group>"; };
 		9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NSAttributedString.swift"; sourceTree = "<group>"; };
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
+		95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetServiceDescriptorTests.swift; path = "../New Group/NetServiceDescriptorTests.swift"; sourceTree = "<group>"; };
 		95E75C382390317000AC559D /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionProvider.swift; sourceTree = "<group>"; };
 		95E75C3C2390318500AC559D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -1154,6 +1156,7 @@
 		8A43DAFE217DD2C600E3004D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				95B6F19723BE45E100642EE3 /* NetService */,
 				8A50AA8A21E8D8EC0058C63A /* WebRtc */,
 				8A7A60C421A40CF200488ED4 /* DecodersTests.swift */,
 				8A50AA8521E8D8D60058C63A /* DecodersTests.swift */,
@@ -1161,7 +1164,6 @@
 				8A7A60C521A40CF200488ED4 /* MessageStreamProtocolTests.swift */,
 				8A50AA8321E8D8D60058C63A /* MessageServerTests.swift */,
 				8A50AA8421E8D8D60058C63A /* MessageStreamProtocolTests.swift */,
-				8A7A60C321A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1388,6 +1390,15 @@
 				955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		95B6F19723BE45E100642EE3 /* NetService */ = {
+			isa = PBXGroup;
+			children = (
+				8A7A60C321A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift */,
+				95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */,
+			);
+			path = NetService;
 			sourceTree = "<group>";
 		};
 		95E75C372390317000AC559D /* Other */ = {
@@ -2109,6 +2120,7 @@
 				A1B57ACF22E992C20021B314 /* MicrophonePermissionProviderMock.swift in Sources */,
 				8A7A60CE21A40D3B00488ED4 /* MicrophoneTrackerMock.swift in Sources */,
 				8A6098C021EBFB1F00592B01 /* PeerConnectionFactoryMock.swift in Sources */,
+				95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */,
 				3ABC41BB2255407100645ADA /* MicrophoneCaptureMock.swift in Sources */,
 				8AFAE5BE219C0FF7007013BC /* MessageDecoderMock.swift in Sources */,
 				4E8E057721AEADC5009ACE05 /* SpecifyDeviceOnboardingViewModelTests.swift in Sources */,
