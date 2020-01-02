@@ -5,7 +5,7 @@ import RxTest
 
 class ApplicationResetterTests: XCTestCase {
     
-    private let resetEventMessage = "{\"action\":\"RESET_KEY\"}"
+    private let resetEventMessage = "{\"action\":\"reset\"}"
     
     private var initialAppMode: AppMode!
     private var initialIsSendingCryingsAllowed: Bool!

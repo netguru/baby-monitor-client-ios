@@ -58,7 +58,7 @@ class DefaultApplicationResetter: ApplicationResetter {
 private extension DefaultApplicationResetter {
     
     func sendResetEvent() {
-        let resetEventString = EventMessage.initWithResetKey().toStringMessage()
+        let resetEventString = EventMessage(action: .reset).toStringMessage()
         switch UserDefaults.appMode {
         case .baby:
             messageServer.send(message: resetEventString)
