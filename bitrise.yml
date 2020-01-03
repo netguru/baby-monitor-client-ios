@@ -19,12 +19,18 @@ trigger_map:
     workflow: build-staging
 
   - push_branch: master
-    workflow: build-release-candidate
+    workflow: build-pull-request
 
   - pull_request_target_branch: develop
     workflow: build-pull-request
 
   - pull_request_target_branch: master
+    workflow: build-pull-request
+
+  - push_branch: release/*
+    workflow: build-release-candidate
+
+  - pull_request_target_branch: release/*
     workflow: build-pull-request
 
 # Workflow declarations.
