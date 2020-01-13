@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/netguru/highway.git
-  revision: ea10eefefd15f5e4a9bab5216aa4ffa91fc271a1
-  ref: ea10eefefd15f5e4a9bab5216aa4ffa91fc271a1
+  revision: dddb931a883148378e3ff771c070a4d3ddf3ca47
+  ref: dddb931a883148378e3ff771c070a4d3ddf3ca47
   specs:
     highway (0.2.0)
       fastlane (>= 2.0.0, <= 3.0.0)
