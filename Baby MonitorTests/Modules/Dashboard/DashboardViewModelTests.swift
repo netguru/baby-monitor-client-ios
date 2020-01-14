@@ -26,34 +26,16 @@ class DashboardViewModelTests: XCTestCase {
     func testShouldStartConnectionCheckingOnCreation() {
         // Given
         let babiesRepository = DatabaseRepositoryMock()
-        let connectionChecker = ConnectionCheckerMock()
         let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
         let microphonePermissionProviderMock = MicrophonePermissionProviderMock()
         let socketCommunicationManagerMock = SocketCommunicationManagerMock()
         
         // When
         // We assign it to the reference to ensure that it doesn't got deallocated
-        let sut = DashboardViewModel(networkDiscoveryConnectionStateProvider: connectionChecker, socketCommunicationManager: socketCommunicationManagerMock, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock, microphonePermissionProvider: microphonePermissionProviderMock)
+        let sut = DashboardViewModel(socketCommunicationManager: socketCommunicationManagerMock, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock, microphonePermissionProvider: microphonePermissionProviderMock)
         
         // Then
-        XCTAssertTrue(connectionChecker.isStarted)
         XCTAssertNotNil(sut)
-    }
-    
-    func testShouldEndConnectionOnDeallocation() {
-        // Given
-        let babiesRepository = DatabaseRepositoryMock()
-        let connectionChecker = ConnectionCheckerMock()
-        let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
-        let microphonePermissionProviderMock = MicrophonePermissionProviderMock()
-        let socketCommunicationManagerMock = SocketCommunicationManagerMock()
-        
-        // When
-        // And here we don't
-        _ = DashboardViewModel(networkDiscoveryConnectionStateProvider: connectionChecker, socketCommunicationManager: socketCommunicationManagerMock, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock, microphonePermissionProvider: microphonePermissionProviderMock)
-        
-        // Then
-        XCTAssertFalse(connectionChecker.isStarted)
     }
     
     func testShouldForwardLiveCameraTap() {
@@ -61,11 +43,10 @@ class DashboardViewModelTests: XCTestCase {
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(Void.self)
         let babiesRepository = DatabaseRepositoryMock()
-        let connectionChecker = ConnectionCheckerMock()
         let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
         let microphonePermissionProviderMock = MicrophonePermissionProviderMock()
         let socketCommunicationManagerMock = SocketCommunicationManagerMock()
-        let sut = DashboardViewModel(networkDiscoveryConnectionStateProvider: connectionChecker, socketCommunicationManager: socketCommunicationManagerMock, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock, microphonePermissionProvider: microphonePermissionProviderMock)
+        let sut = DashboardViewModel(socketCommunicationManager: socketCommunicationManagerMock, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock, microphonePermissionProvider: microphonePermissionProviderMock)
         sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap, settingsTap: settingsTap)
         sut.liveCameraPreview?
             .subscribe(observer)
@@ -83,11 +64,10 @@ class DashboardViewModelTests: XCTestCase {
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(Void.self)
         let babiesRepository = DatabaseRepositoryMock()
-        let connectionChecker = ConnectionCheckerMock()
         let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
         let microphonePermissionProviderMock = MicrophonePermissionProviderMock()
         let socketCommunicationManagerMock = SocketCommunicationManagerMock()
-        let sut = DashboardViewModel(networkDiscoveryConnectionStateProvider: connectionChecker, socketCommunicationManager: socketCommunicationManagerMock, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock, microphonePermissionProvider: microphonePermissionProviderMock)
+        let sut = DashboardViewModel(socketCommunicationManager: socketCommunicationManagerMock, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock, microphonePermissionProvider: microphonePermissionProviderMock)
         sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap, settingsTap: settingsTap)
         sut.activityLogTap?
             .subscribe(observer)

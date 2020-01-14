@@ -29,35 +29,25 @@ final class DashboardViewModel {
         socketCommunicationManager.connectionStatusObservable
     }
     
-    // MARK: - Private properties
-    private let networkDiscoveryConnectionStateProvider: ConnectionChecker
-    
     init(
-        networkDiscoveryConnectionStateProvider: ConnectionChecker,
         socketCommunicationManager: SocketCommunicationManager,
         babyModelController: BabyModelControllerProtocol,
         webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
         microphonePermissionProvider: MicrophonePermissionProviderProtocol
     ) {
-        self.networkDiscoveryConnectionStateProvider = networkDiscoveryConnectionStateProvider
         self.babyModelController = babyModelController
         self.webSocketEventMessageService = webSocketEventMessageService
         self.microphonePermissionProvider = microphonePermissionProvider
         self.socketCommunicationManager = socketCommunicationManager
         
         setup()
-        rxSetup()
-    }
-    
-    deinit {
-        networkDiscoveryConnectionStateProvider.stop()
     }
     
     func attachInput(liveCameraTap: Observable<Void>, activityLogTap: Observable<Void>, settingsTap: Observable<Void>) {
         liveCameraPreview = liveCameraTap
             .flatMapLatest { [unowned self] _ in
-            self.microphonePermissionProvider.getMicrophonePermission()
-        }
+                self.microphonePermissionProvider.getMicrophonePermission()
+            }
         self.activityLogTap = activityLogTap
         self.settingsTap = settingsTap
     }
@@ -70,21 +60,12 @@ final class DashboardViewModel {
     }
     
     private func setup() {
-        networkDiscoveryConnectionStateProvider.start()
         webSocketEventMessageService.start()
+        sendPushNotificationTokenIfNeeded()
     }
     
-    private func rxSetup() {
-        networkDiscoveryConnectionStateProvider.connectionStatus
-            .subscribe(onNext: { [weak self] status in
-                self?.sendPushNotificationIfNeeded(connectionStatus: status)
-            })
-            .disposed(by: bag)
-    }
-    
-    private func sendPushNotificationIfNeeded(connectionStatus: ConnectionStatus) {
-        guard shouldPushNotificationsKeyBeSent && connectionStatus == .connected else { return }
-        
+    private func sendPushNotificationTokenIfNeeded() {
+        guard shouldPushNotificationsKeyBeSent else { return }
         let firebaseTokenMessage = EventMessage(pushNotificationsToken: UserDefaults.selfPushNotificationsToken)
         self.webSocketEventMessageService.sendMessage(firebaseTokenMessage.toStringMessage())
         self.shouldPushNotificationsKeyBeSent = false
