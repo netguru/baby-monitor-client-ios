@@ -57,8 +57,7 @@ final class DashboardCoordinator: Coordinator {
 
     // Prepare DashboardViewModel
     private func createDashboardViewModel() -> DashboardViewModel {
-        let viewModel = DashboardViewModel(networkDiscoveryConnectionStateProvider: appDependencies.connectionChecker,
-                                           socketCommunicationManager: appDependencies.socketCommunicationsManager,
+        let viewModel = DashboardViewModel(socketCommunicationManager: appDependencies.socketCommunicationsManager,
                                            babyModelController: appDependencies.databaseRepository,
                                            webSocketEventMessageService: appDependencies.webSocketEventMessageService,
                                            microphonePermissionProvider:  appDependencies.microphonePermissionProvider)
