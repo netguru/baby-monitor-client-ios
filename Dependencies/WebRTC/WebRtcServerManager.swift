@@ -119,9 +119,12 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
             self.peerConnection?.setRemoteDescription(sdp: remoteSDP) { [weak self] error in
                 if let error = error {
                     self?.messageServer.send(message: EventMessage(webRtcSdpErrorMessage: error.localizedDescription).toStringMessage())
+                    Logger.error("Set remote description error.", error: error)
+                    return
                 }
                 guard let stream = self?.mediaStreamInstance else {
                     self?.messageServer.send(message: EventMessage(webRtcSdpErrorMessage: Localizable.Server.noStream).toStringMessage())
+                    Logger.error("Set remote description error: no stream")
                     return
                 }
                 self?.handleDidSetRemoteDescription(stream: stream)
