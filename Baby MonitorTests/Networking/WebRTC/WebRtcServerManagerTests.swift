@@ -16,9 +16,11 @@ class WebRtcServerManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         // When
         sut.start()
@@ -36,9 +38,11 @@ class WebRtcServerManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         // When
         sut.start()
@@ -55,9 +59,11 @@ class WebRtcServerManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         // When
         sut.start()
@@ -80,9 +86,11 @@ class WebRtcServerManagerTests: XCTestCase {
                                                               videoCapturer: videoCapturerMock,
                                                               mediaStream: streamId as MediaStream)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         sut.mediaStream
             .subscribe(observer)
@@ -107,9 +115,11 @@ class WebRtcServerManagerTests: XCTestCase {
                                                               videoCapturer: nil,
                                                               mediaStream: streamId as MediaStream)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         sut.mediaStream
             .subscribe(observer)
@@ -128,9 +138,11 @@ class WebRtcServerManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection, videoCapturer: videoCapturerMock)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         // When
         sut.start()
@@ -147,9 +159,11 @@ class WebRtcServerManagerTests: XCTestCase {
                                                               videoCapturer: videoCapturerMock,
                                                               mediaStream: "" as MediaStream)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         // When
         sut.start()
@@ -167,9 +181,11 @@ class WebRtcServerManagerTests: XCTestCase {
                                                               videoCapturer: videoCapturerMock,
                                                               mediaStream: "" as MediaStream)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         // When
         sut.start()
@@ -192,9 +208,11 @@ class WebRtcServerManagerTests: XCTestCase {
                                                               videoCapturer: videoCapturerMock,
                                                               mediaStream: streamId as MediaStream)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         sut.mediaStream
             .subscribe(observer)
@@ -217,9 +235,11 @@ class WebRtcServerManagerTests: XCTestCase {
                                                               videoCapturer: videoCapturerMock,
                                                               mediaStream: "" as MediaStream)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         // When
         sut.start()
@@ -238,9 +258,11 @@ class WebRtcServerManagerTests: XCTestCase {
                                                               videoCapturer: videoCapturerMock,
                                                               mediaStream: "" as MediaStream)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         // When
         sut.start()
@@ -258,9 +280,11 @@ class WebRtcServerManagerTests: XCTestCase {
                                                               videoCapturer: videoCapturerMock,
                                                               mediaStream: "" as MediaStream)
         let connectionDelegateProxy = PeerConnectionProxyMock()
+        let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
                                       connectionDelegateProxy: connectionDelegateProxy,
-                                      scheduler: AsyncSchedulerMock())
+                                      scheduler: AsyncSchedulerMock(),
+                                      messageServer: messageServer)
 
         // When
         sut.start()

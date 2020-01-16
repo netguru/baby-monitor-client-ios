@@ -31,6 +31,7 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     private var peerConnection: PeerConnectionProtocol?
     private let peerConnectionFactory: PeerConnectionFactoryProtocol
     private let connectionDelegateProxy: PeerConnectionProxy
+    private let messageServer: MessageServerProtocol
     private let remoteDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
     private let localDescriptionDelegateProxy: RTCSessionDescriptionDelegateProxy
     private let scheduler: AsyncScheduler
@@ -45,11 +46,15 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         )
     }
 
-    init(peerConnectionFactory: PeerConnectionFactoryProtocol, connectionDelegateProxy: PeerConnectionProxy, scheduler: AsyncScheduler = DispatchQueue.main) {
+    init(peerConnectionFactory: PeerConnectionFactoryProtocol,
+         connectionDelegateProxy: PeerConnectionProxy,
+         scheduler: AsyncScheduler = DispatchQueue.main,
+         messageServer: MessageServerProtocol) {
         self.peerConnectionFactory = peerConnectionFactory
         self.connectionDelegateProxy = connectionDelegateProxy
         self.remoteDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
         self.localDescriptionDelegateProxy = RTCSessionDescriptionDelegateProxy()
+        self.messageServer = messageServer
         self.scheduler = scheduler
         super.init()
         setup()
@@ -112,7 +117,13 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         scheduler.scheduleAsync {
             self.peerConnection = self.peerConnectionFactory.peerConnection(with: self.connectionDelegateProxy)
             self.peerConnection?.setRemoteDescription(sdp: remoteSDP) { [weak self] error in
-                guard error == nil, let stream = self?.mediaStreamInstance else { return }
+                if let error = error {
+                    self?.messageServer.send(message: EventMessage(webRtcSdpErrorMessage: error.localizedDescription).toStringMessage())
+                }
+                guard let stream = self?.mediaStreamInstance else {
+                    self?.messageServer.send(message: EventMessage(webRtcSdpErrorMessage: Localizable.Server.noStream).toStringMessage())
+                    return
+                }
                 self?.handleDidSetRemoteDescription(stream: stream)
             }
         }
