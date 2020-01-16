@@ -22,7 +22,7 @@ protocol WebRtcServerManagerProtocol {
     /// Sets session description answer
     ///
     /// - Parameter sdp: session description protocol to add
-    func createAnswer(remoteSdp: SessionDescriptionProtocol)
+    func createAnswer(remoteSdp: SessionDescriptionProtocol, completion: @escaping (_ isSuccessful: Bool) -> Void)
 
     /// Adds ice candidate
     ///

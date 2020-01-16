@@ -111,8 +111,11 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
         mediaStreamPublisher.onNext(stream)
     }
 
-    func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol) {
-        guard isStarted else { return }
+    func createAnswer(remoteSdp remoteSDP: SessionDescriptionProtocol, completion: @escaping (_ isSuccessful: Bool) -> Void) {
+        guard isStarted else {
+            completion(false)
+            return
+        }
         peerConnection?.close()
         scheduler.scheduleAsync {
             self.peerConnection = self.peerConnectionFactory.peerConnection(with: self.connectionDelegateProxy)
@@ -120,14 +123,16 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
                 if let error = error {
                     self?.messageServer.send(message: EventMessage(webRtcSdpErrorMessage: error.localizedDescription).toStringMessage())
                     Logger.error("Set remote description error.", error: error)
+                    completion(false)
                     return
                 }
                 guard let stream = self?.mediaStreamInstance else {
                     self?.messageServer.send(message: EventMessage(webRtcSdpErrorMessage: Localizable.Server.noStream).toStringMessage())
-                    Logger.error("Set remote description error: no stream")
+                    Logger.error("Set remote description error: no stream.")
+                    completion(false)
                     return
                 }
-                self?.handleDidSetRemoteDescription(stream: stream)
+                self?.handleDidSetRemoteDescription(stream: stream, completion: completion)
             }
         }
     }
@@ -152,11 +157,14 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
           mediaStreamInstance = nil
       }
 
-    private func handleDidSetRemoteDescription(stream: MediaStream) {
+    private func handleDidSetRemoteDescription(stream: MediaStream, completion: @escaping (_ isSuccessful: Bool) -> Void) {
         peerConnection?.add(stream: stream)
         peerConnection?.createAnswer(for: self.streamMediaConstraints) { [weak self] sdp, error in
-            guard let self = self, let sdp = sdp else { return }
-            self.peerConnection?.setLocalDescription(sdp: sdp) { _ in }
+            guard let self = self, let sdp = sdp, error == nil else {
+                completion(false)
+                return
+            }
+            self.peerConnection?.setLocalDescription(sdp: sdp) { _ in completion(true) }
             self.sdpAnswerPublisher.onNext(sdp)
         }
     }
