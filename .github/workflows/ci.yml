@@ -1,0 +1,21 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - develop
+jobs:
+  validate-and-test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        
+      - name: Cache RubyGems
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: ${{ runner.os }}-gem-
+
+      - name: Run Highway
+        run: bundle exec fastlane highway preset:${{ env.HIGHWAY_PRESET }}
