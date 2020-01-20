@@ -3,6 +3,7 @@ on:
   pull_request:
     branches:
       - develop
+
 jobs:
   validate-and-test:
     runs-on: macos-latest
@@ -19,6 +20,8 @@ jobs:
 
       - name: Bundle install
         run: bundle install
+        env:
+          BUNDLE_GITHUB__COM: ${{ secrets.REPO_SCOPED_TOKEN }}:x-oauth-basic
 
       - name: Run Highway
         run: bundle exec fastlane highway preset:${{ env.HIGHWAY_PRESET }}
