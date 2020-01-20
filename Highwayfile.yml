@@ -65,6 +65,7 @@ deploy:
             apple_id: $(ENV:APPSTORE_APP_ID)
             skip_submission: false
             skip_waiting_for_build_processing: false
+            team_name: $(ENV:APPSTORE_TEAM_NAME)
         - appstore:
             username: $(ENV:APPSTORE_USERNAME)
             password: $(ENV:APPSTORE_PASSWORD)
