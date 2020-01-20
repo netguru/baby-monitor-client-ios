@@ -120,7 +120,8 @@ final class DashboardCoordinator: Coordinator {
         let viewModel = CameraPreviewViewModel(
             webSocketWebRtcService: appDependencies.webSocketWebRtcService,
             babyModelController: appDependencies.databaseRepository,
-            socketCommunicationManager: appDependencies.socketCommunicationsManager)
+            socketCommunicationManager: appDependencies.socketCommunicationsManager,
+            webSocketEventMessageService: appDependencies.webSocketEventMessageService)
         return viewModel
     }
     

@@ -111,7 +111,7 @@ final class ServerService: ServerServiceProtocol {
         case .iceCandidate(let iceCandidate):
             webRtcServerManager.setICECandidates(iceCandidate: iceCandidate)
         case .sdpOffer(let sdp):
-            webRtcServerManager.createAnswer(remoteSdp: sdp)
+            webRtcServerManager.createAnswer(remoteSdp: sdp, completion: { _ in })
         default:
             break
         }

@@ -8,6 +8,7 @@ import WebRTC
 
 final class PeerConnectionMock: PeerConnectionProtocol {
 
+    var shouldSetRemoteDescriptionFail = false
     private(set) var isConnected = true
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var localSdp: SessionDescriptionProtocol?
@@ -25,11 +26,17 @@ final class PeerConnectionMock: PeerConnectionProtocol {
     }
 
     func setRemoteDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?) {
-        self.remoteSdp = sdp
+        if shouldSetRemoteDescriptionFail {
+            handler?(NSError(domain: "domain", code: 0, userInfo: nil))
+        } else {
+            self.remoteSdp = sdp
+            handler?(nil)
+        }
     }
 
     func setLocalDescription(sdp: SessionDescriptionProtocol, handler: ((Error?) -> Void)?) {
         self.localSdp = sdp
+        handler?(nil)
     }
 
     func add(iceCandidate: IceCandidateProtocol) {

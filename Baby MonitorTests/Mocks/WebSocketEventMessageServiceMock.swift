@@ -10,8 +10,10 @@ final class WebSocketEventMessageServiceMock: WebSocketEventMessageServiceProtoc
 
     lazy var remoteResetObservable: Observable<Void> = remoteResetPublisher.asObservable()
     lazy var remotePairingCodeResponseObservable: Observable<Bool> = remotePairingCodeResponsePublisher.asObservable()
-    private let remoteResetPublisher = PublishSubject<Void>()
+    lazy var remoteStreamConnectingErrorObservable: Observable<String> = remoteStreamConnectingErrorPublisher.asObservable()
     let remotePairingCodeResponsePublisher = PublishSubject<Bool>()
+    private let remoteResetPublisher = PublishSubject<Void>()
+    private let remoteStreamConnectingErrorPublisher = PublishSubject<String>()
     private(set) var isOpen = false
     private(set) var messages = [String]()
 
