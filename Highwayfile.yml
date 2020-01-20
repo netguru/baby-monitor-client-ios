@@ -72,7 +72,7 @@ deploy:
             submit_for_review: false
             skip_binary_upload: true
             build_number: $(ENV:BITRISE_BUILD_NUMBER)
-            team_id: $(ENV:APPSTORE_TEAM_ID)
+            team_name: $(ENV:APPSTORE_TEAM_NAME)
 
 # Report stage.
 report:
