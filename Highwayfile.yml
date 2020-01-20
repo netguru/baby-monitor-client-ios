@@ -57,6 +57,8 @@ deploy:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
             method: "app-store"
+            settings: 
+                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
         - testflight:
             username: $(ENV:APPSTORE_USERNAME)
             password: $(ENV:APPSTORE_PASSWORD)
