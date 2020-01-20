@@ -21,7 +21,7 @@ jobs:
       - name: Bundle install
         run: bundle install
         env:
-          BUNDLE_GITHUB__COM: ${{ secrets.REPO_SCOPED_TOKEN }}:x-oauth-basic
+          BUNDLE_GITHUB__COM: ${{ secrets.BUNDLE_GITHUB__COM }}:x-oauth-basic
 
       - name: Run Highway
         run: bundle exec fastlane highway preset:${{ env.HIGHWAY_PRESET }}
