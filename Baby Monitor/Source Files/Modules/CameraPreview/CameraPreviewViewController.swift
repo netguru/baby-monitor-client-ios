@@ -112,6 +112,6 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
             self.navigationController?.popViewController(animated: true)
         })
         alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true)
     }
 }
