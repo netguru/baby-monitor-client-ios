@@ -2,6 +2,8 @@
 //  AnalyticsProtocol.swift
 //  Baby Monitor
 
+import Foundation
+
 enum AnalyticsScreenType: String {
     case unrecognized
     case onboarding = "Onboarding"
@@ -17,7 +19,8 @@ enum AnalyticsScreenType: String {
     case parentHello = "ParentDeviceInfo"
     case availableDevices = "ServiceDiscovery"
     case pairingCode = "Pairing"
-    case connectionFailed = "ConnectionFailed" // TODO: Talk with Android and specify two cases
+    case deviceSearchingFailed = "DeviceSearchingFailed"
+    case pairingFailed = "PairingFailed"
     case parentAllDone = "AllDone"
     case parentCameraPreview = "ClientLiveCamera"
     case parentDashboard = "ClientDashboard"
@@ -26,6 +29,41 @@ enum AnalyticsScreenType: String {
     case parentSettings = "ParentSettings"
 }
 
+enum AnalyticsEventType {
+    case notificationSent
+    case resetApp
+    case rateUs
+    case nightMode(isEnabled: Bool)
+    case videoStreamConnected
+    case videoStreamError
+
+    var eventName: String {
+        switch self {
+        case .notificationSent: return "notification_sent"
+        case .resetApp: return "reset_app"
+        case .rateUs: return "rate_us"
+        case .nightMode: return "night_mode"
+        case .videoStreamConnected: return "video_stream_connected"
+        case .videoStreamError: return  "video_stream_error"
+        }
+    }
+
+    var parameters: [String: Any]? {
+        switch self {
+        case .resetApp:
+            return ["caller": UserDefaults.appMode.rawValue]
+        case .nightMode(let isEnabled):
+            return ["is_enabled": isEnabled]
+        case .notificationSent:
+            return ["type": "cry_notification"]
+        case .rateUs, .videoStreamConnected, .videoStreamError:
+            return nil
+        }
+    }
+
+}
+
 protocol AnalyticsProtocol {
     func logScreen(name: String, className: String)
+    func logEvent(_ eventName: String, parameters: [String: Any]?)
 }

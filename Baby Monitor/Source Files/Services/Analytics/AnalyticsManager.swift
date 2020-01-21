@@ -15,4 +15,8 @@ final class AnalyticsManager {
     func logScreen(_ type: AnalyticsScreenType, className: String) {
         analyticsTracker.logScreen(name: type.rawValue, className: className)
     }
+
+    func logEvent(_ event: AnalyticsEventType) {
+        analyticsTracker.logEvent(event.eventName, parameters: event.parameters)
+    }
 }

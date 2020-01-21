@@ -65,5 +65,6 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
 
     private func handleRating() {
         SKStoreReviewController.requestReview()
+        viewModel.analyticsManager.logEvent(.rateUs)
     }
 }

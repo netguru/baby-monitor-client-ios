@@ -42,8 +42,10 @@ final class OnboardingContinuableViewModel {
             switch parentRole {
             case .hello:
                 return .parentHello
-            case .searchingError, .connectionError:
-                return .connectionFailed
+            case .searchingError:
+                return .deviceSearchingFailed
+            case .connectionError:
+                return .pairingFailed
             case .allDone:
                 return .parentAllDone
             }

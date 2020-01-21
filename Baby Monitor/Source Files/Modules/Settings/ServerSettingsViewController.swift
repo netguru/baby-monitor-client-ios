@@ -48,5 +48,6 @@ final class ServerSettingsViewController: TypedViewController<ServerSettingsView
     
     private func handleRating() {
         SKStoreReviewController.requestReview()
+        viewModel.analyticsManager.logEvent(.rateUs)
     }
 }
