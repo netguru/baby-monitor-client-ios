@@ -22,6 +22,8 @@ enum AnalyticsScreenType: String {
     case parentCameraPreview = "ClientLiveCamera"
     case parentDashboard = "ClientDashboard"
     case activityLog = "ClientActivityLog"
+    case babySettings = "ChildSettings"
+    case parentSettings = "ParentSettings"
 }
 
 protocol AnalyticsProtocol {

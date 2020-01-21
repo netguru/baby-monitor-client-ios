@@ -12,7 +12,8 @@ protocol BaseSettingsViewModelProtocol: AnyObject {
 }
 
 final class ParentSettingsViewModel: BaseSettingsViewModelProtocol {
-    
+
+    let analyticsManager: AnalyticsManager
     lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
     private(set) var addPhotoTap: Observable<UIButton>?
@@ -23,8 +24,10 @@ final class ParentSettingsViewModel: BaseSettingsViewModelProtocol {
     private let bag = DisposeBag()
     private let dismissImagePickerSubject = PublishRelay<Void>()
     
-    init(babyModelController: BabyModelControllerProtocol) {
+    init(babyModelController: BabyModelControllerProtocol,
+         analyticsManager: AnalyticsManager) {
         self.babyModelController = babyModelController
+        self.analyticsManager = analyticsManager
     }
     
     func attachInput(babyName: Observable<String>, addPhotoTap: Observable<UIButton>, resetAppTap: Observable<Void>, cancelTap: Observable<Void>) {

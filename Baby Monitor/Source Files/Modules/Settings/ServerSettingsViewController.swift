@@ -16,7 +16,9 @@ final class ServerSettingsViewController: TypedViewController<ServerSettingsView
     init(viewModel: ServerSettingsViewModel, appVersionProvider: AppVersionProvider) {
         let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
-        super.init(viewMaker: ServerSettingsView(appVersion: appVersion))
+        super.init(viewMaker: ServerSettingsView(appVersion: appVersion),
+                   analyticsManager: viewModel.analyticsManager,
+                   analyticsScreenType: .babySettings)
     }
     
     override func viewDidLoad() {

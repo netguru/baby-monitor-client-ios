@@ -15,7 +15,9 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
     init(viewModel: ParentSettingsViewModel, appVersionProvider: AppVersionProvider) {
         let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
-        super.init(viewMaker: ParentSettingsView(appVersion: appVersion))
+        super.init(viewMaker: ParentSettingsView(appVersion: appVersion),
+                   analyticsManager: viewModel.analyticsManager,
+                   analyticsScreenType: .parentSettings)
     }
 
     override func viewDidLoad() {
