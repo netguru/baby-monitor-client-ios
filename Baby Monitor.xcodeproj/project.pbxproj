@@ -214,6 +214,9 @@
 		95368F522209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */; };
 		95368F552209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */; };
 		95368F582209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */; };
+		9541FDC423D6BB3700DDC1A3 /* AnalyticsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */; };
+		9541FDC623D6BB6000DDC1A3 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */; };
+		9541FDC923D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */; };
 		9546908A23A674330077D2B5 /* OnboardingCompareCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */; };
 		9546908C23A674A10077D2B5 /* OnboardingCompareCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */; };
 		9546908F23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */; };
@@ -541,6 +544,9 @@
 		95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewController.swift; sourceTree = "<group>"; };
 		95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingView.swift; sourceTree = "<group>"; };
 		95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewModel.swift; sourceTree = "<group>"; };
+		9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsProtocol.swift; sourceTree = "<group>"; };
+		9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsTracker.swift; sourceTree = "<group>"; };
 		9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingCompareCodeViewController.swift; path = "../New Group/OnboardingCompareCodeViewController.swift"; sourceTree = "<group>"; };
 		9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeView.swift; sourceTree = "<group>"; };
 		9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeViewModel.swift; sourceTree = "<group>"; };
@@ -784,6 +790,7 @@
 		4E5731A02170BA9D00DEAF0B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9541FDC223D6BB0100DDC1A3 /* Analytics */,
 				4E63DC0821E39CD700604167 /* ServerService.swift */,
 				955ADBC0236B323B004507F7 /* Errors */,
 				4E63DC1221E39D4B00604167 /* Networking */,
@@ -1374,6 +1381,16 @@
 			path = Specification;
 			sourceTree = "<group>";
 		};
+		9541FDC223D6BB0100DDC1A3 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */,
+				9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */,
+				9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
 		9546908D23A6770B0077D2B5 /* Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -1957,6 +1974,8 @@
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				9574DBDB23A93175000D58A8 /* NSAttributedString+Attributes.swift in Sources */,
 				4E60697821AFECEA00EB1DCF /* OnboardingPairingCoordinator.swift in Sources */,
+				9541FDC623D6BB6000DDC1A3 /* AnalyticsManager.swift in Sources */,
+				9541FDC423D6BB3700DDC1A3 /* AnalyticsProtocol.swift in Sources */,
 				201CF6A221F9CBDC00E06FEF /* ParentSettingsViewController.swift in Sources */,
 				8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
@@ -2090,6 +2109,7 @@
 				8AA7CBBB21870FC700FCF62A /* BabyMonitorCellProtocol.swift in Sources */,
 				A18D3E7521FF6D3700C165C6 /* ActivityLogView.swift in Sources */,
 				8A8EF94F219D55B60098A27B /* MessageStreamProtocol.swift in Sources */,
+				9541FDC923D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift in Sources */,
 				3A3C61AC223EC2140020FD3D /* StreamVideoView.swift in Sources */,
 				95368F582209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,

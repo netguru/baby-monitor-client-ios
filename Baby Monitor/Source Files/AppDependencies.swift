@@ -211,4 +211,9 @@ final class AppDependencies {
             .disposed(by: bag)
         return resetter
     }()
+
+    // MARK: - Analytics
+
+    /// Application manager of analytics services.
+    private(set) var analyticsManager = AnalyticsManager()
 }
