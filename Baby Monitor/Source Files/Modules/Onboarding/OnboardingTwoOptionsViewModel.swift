@@ -16,7 +16,12 @@ final class OnboardingTwoOptionsViewModel {
     let secondaryDescription = NSAttributedString(string: Localizable.Onboarding.BabySetup.permissionsDenidedQuestion) 
     let upButtonTitle = Localizable.General.retry
     let bottomButtonTitle = Localizable.General.imSure
-    
+    let analyticsManager: AnalyticsManager
+
+    init(analyticsManager: AnalyticsManager) {
+        self.analyticsManager = analyticsManager
+    }
+
     func attachInput(upButtonTap: Observable<Void>, bottomButtonTap: Observable<Void>) {
         self.upButtonTap = upButtonTap
         self.bottomButtonTap = bottomButtonTap

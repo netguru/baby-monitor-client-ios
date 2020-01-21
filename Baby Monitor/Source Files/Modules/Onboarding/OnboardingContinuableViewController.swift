@@ -13,7 +13,9 @@ final class OnboardingContinuableViewController: TypedViewController<Continuable
     
     init(viewModel: OnboardingContinuableViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: ContinuableBaseOnboardingView())
+        super.init(viewMaker: ContinuableBaseOnboardingView(),
+                   analyticsManager: viewModel.analyticsManager,
+                   analyticsScreenType: viewModel.analyticsScreenType)
     }
     
     override func viewDidLoad() {
@@ -29,7 +31,7 @@ final class OnboardingContinuableViewController: TypedViewController<Continuable
             navigationController?.setNavigationBarHidden(false, animated: false)
         }
     }
-    
+
     private func setup() {
         if case .parent(.searchingError) = viewModel.role,
             case .parent(.connectionError) = viewModel.role {

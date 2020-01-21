@@ -26,7 +26,30 @@ final class OnboardingContinuableViewModel {
     }
     
     let role: Role
+    let analyticsManager: AnalyticsManager
     let bag = DisposeBag()
+    
+    var analyticsScreenType: AnalyticsScreenType {
+        switch role {
+        case .baby(let babyRole):
+            switch babyRole {
+            case .connectToWiFi:
+                return .connectToWiFi
+            case .putNextToBed:
+                return .putNextToBed
+            }
+        case .parent(let parentRole):
+            switch parentRole {
+            case .hello:
+                return .parentHello
+            case .searchingError, .connectionError:
+                return .connectionFailed
+            case .allDone:
+                return .parentAllDone
+            }
+        }
+    }
+
     var title: String {
         switch role {
         case .baby(let babyRole):
@@ -152,8 +175,9 @@ final class OnboardingContinuableViewModel {
     var cancelTap: Observable<Void>?
     var nextButtonTap: Observable<Void>?
     
-    init(role: Role) {
+    init(role: Role, analyticsManager: AnalyticsManager) {
         self.role = role
+        self.analyticsManager = analyticsManager
     }
     
     func attachInput(buttonTap: Observable<Void>, cancelButtonTap: Observable<Void>) {

@@ -9,7 +9,8 @@ import RxSwift
 import AVFoundation
 
 final class DashboardViewModel {
-    
+    let analyticsManager: AnalyticsManager
+
     private let babyModelController: BabyModelControllerProtocol
     private(set) var bag = DisposeBag()
     
@@ -33,13 +34,14 @@ final class DashboardViewModel {
         socketCommunicationManager: SocketCommunicationManager,
         babyModelController: BabyModelControllerProtocol,
         webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
-        microphonePermissionProvider: MicrophonePermissionProviderProtocol
+        microphonePermissionProvider: MicrophonePermissionProviderProtocol,
+        analyticsManager: AnalyticsManager
     ) {
         self.babyModelController = babyModelController
         self.webSocketEventMessageService = webSocketEventMessageService
         self.microphonePermissionProvider = microphonePermissionProvider
         self.socketCommunicationManager = socketCommunicationManager
-        
+        self.analyticsManager = analyticsManager
         setup()
     }
     

@@ -15,6 +15,15 @@ final class OnboardingAccessViewModel {
     }
     
     let bag = DisposeBag()
+    let analyticsManager: AnalyticsManager
+
+    var analyticsScreenType: AnalyticsScreenType {
+            switch role {
+            case .camera: return .cameraPermission
+            case .microphone: return .microphonePermission
+            }
+        }
+
     var title: String {
         switch role {
         case .camera, .microphone:
@@ -48,8 +57,9 @@ final class OnboardingAccessViewModel {
     private var accessPublisher = PublishSubject<Void>()
     private let role: Role
     
-    init(role: Role) {
+    init(role: Role, analyticsManager: AnalyticsManager) {
         self.role = role
+        self.analyticsManager = analyticsManager
     }
     
     var areAllRequiredPermissionsGranted: Bool {

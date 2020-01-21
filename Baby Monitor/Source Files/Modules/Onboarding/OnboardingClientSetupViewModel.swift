@@ -34,6 +34,7 @@ final class OnboardingClientSetupViewModel {
 
     let state = BehaviorRelay<PairingSearchState>(value: .noneFound)
     let availableDevicesPublisher = BehaviorRelay<[NetServiceDescriptor]>(value: [])
+    let analyticsManager: AnalyticsManager
 
     private var searchCancelTimer: Timer?
     private let netServiceClient: NetServiceClientProtocol
@@ -45,10 +46,12 @@ final class OnboardingClientSetupViewModel {
          urlConfiguration: URLConfiguration,
          activityLogEventsRepository: ActivityLogEventsRepositoryProtocol,
          webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
-         serverErrorLogger: ServerErrorLogger) {
+         serverErrorLogger: ServerErrorLogger,
+         analyticsManager: AnalyticsManager) {
         self.netServiceClient = netServiceClient
         self.webSocketEventMessageService = webSocketEventMessageService
         self.errorLogger = serverErrorLogger
+        self.analyticsManager = analyticsManager
         setupRx()
     }
 

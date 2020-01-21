@@ -10,6 +10,7 @@ import RxCocoa
 final class OnboardingCompareCodeViewModel {
 
     let bag = DisposeBag()
+    let analyticsManager: AnalyticsManager
     let title: String = Localizable.Onboarding.connecting
     let description = Localizable.Onboarding.Connecting.compareCodeDescription
     let codeText = String(Int.random(in: 1000...9999))
@@ -22,11 +23,13 @@ final class OnboardingCompareCodeViewModel {
     init(webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
          urlConfiguration: URLConfiguration,
          serverURL: URL,
-         activityLogEventsRepository: ActivityLogEventsRepositoryProtocol) {
+         activityLogEventsRepository: ActivityLogEventsRepositoryProtocol,
+         analyticsManager: AnalyticsManager) {
         self.webSocketEventMessageService = webSocketEventMessageService
         self.urlConfiguration = urlConfiguration
         self.serverURL = serverURL
         self.activityLogEventsRepository = activityLogEventsRepository
+        self.analyticsManager = analyticsManager
         setupBindings()
     }
 

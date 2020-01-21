@@ -8,6 +8,7 @@ import RxSwift
 final class CameraPreviewViewModel {
     
     let bag = DisposeBag()
+    let analyticsManager: AnalyticsManager
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
     var remoteStreamErrorMessageObservable: Observable<String> {
         return self.webSocketEventMessageService.remoteStreamConnectingErrorObservable
@@ -30,13 +31,15 @@ final class CameraPreviewViewModel {
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
 
     init(webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
-        babyModelController: BabyModelControllerProtocol,
-        socketCommunicationManager: SocketCommunicationManager,
-        webSocketEventMessageService: WebSocketEventMessageServiceProtocol) {
+         babyModelController: BabyModelControllerProtocol,
+         socketCommunicationManager: SocketCommunicationManager,
+         webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
+         analyticsManager: AnalyticsManager) {
         self.webSocketWebRtcService = webSocketWebRtcService
         self.babyModelController = babyModelController
         self.socketCommunicationManager = socketCommunicationManager
         self.webSocketEventMessageService = webSocketEventMessageService
+        self.analyticsManager = analyticsManager
         rxSetup()
     }
     

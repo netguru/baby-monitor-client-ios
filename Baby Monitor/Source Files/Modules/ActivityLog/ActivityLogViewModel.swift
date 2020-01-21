@@ -16,6 +16,7 @@ final class ActivityLogViewModel {
     var numberOfSections: Int {
         return currentSections.count
     }
+    let analyticsManager: AnalyticsManager
     private(set) var baby: Observable<Baby>
     private(set) var currentSections: [GeneralSection<ActivityLogEvent>] = []
     
@@ -23,9 +24,11 @@ final class ActivityLogViewModel {
     private let databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol
     private let disposeBag = DisposeBag()
 
-    init(databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol) {
+    init(databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol,
+         analyticsManager: AnalyticsManager) {
         self.databaseRepository = databaseRepository
         self.baby = databaseRepository.babyUpdateObservable
+        self.analyticsManager = analyticsManager
         rxSetup()
     }
     

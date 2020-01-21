@@ -45,7 +45,7 @@ final class ServerCoordinator: Coordinator {
     }
     
     private func showServerView() {
-        let viewModel = ServerViewModel(serverService: appDependencies.serverService)
+        let viewModel = ServerViewModel(serverService: appDependencies.serverService, analyticsManager: appDependencies.analyticsManager)
         let serverViewController = ServerViewController(viewModel: viewModel)
         viewModel.onAudioMicrophoneServiceError = { [unowned self, weak serverViewController] in
             guard

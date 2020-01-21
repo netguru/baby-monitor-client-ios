@@ -11,7 +11,9 @@ final class OnboardingAccessViewController: TypedViewController<AccessBaseOnboar
     
     init(viewModel: OnboardingAccessViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: AccessBaseOnboardingView())
+        super.init(viewMaker: AccessBaseOnboardingView(),
+                   analyticsManager: viewModel.analyticsManager,
+                   analyticsScreenType: viewModel.analyticsScreenType)
     }
     
     override func viewDidLoad() {
