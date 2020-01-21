@@ -25,3 +25,5 @@ jobs:
 
       - name: Run Highway
         run: bundle exec fastlane highway preset:${{ env.HIGHWAY_PRESET }}
+        env:
+          BITRISE_BUILD_NUMBER: 20
