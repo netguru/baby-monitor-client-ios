@@ -45,7 +45,9 @@ final class AppDependencies {
     private(set) lazy var webRtcConnectionProxy: PeerConnectionProxy = RTCPeerConnectionDelegateProxy()
 
     private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = {
-        WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory, connectionDelegateProxy: self.webRtcConnectionProxy)
+        WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory,
+                            connectionDelegateProxy: self.webRtcConnectionProxy,
+                            messageServer: self.messageServer)
     }
     
     private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = {

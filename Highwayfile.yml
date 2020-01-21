@@ -57,12 +57,15 @@ deploy:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
             method: "app-store"
+            settings: 
+                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
         - testflight:
             username: $(ENV:APPSTORE_USERNAME)
             password: $(ENV:APPSTORE_PASSWORD)
             apple_id: $(ENV:APPSTORE_APP_ID)
             skip_submission: false
             skip_waiting_for_build_processing: false
+            team_name: $(ENV:APPSTORE_TEAM_NAME)
         - appstore:
             username: $(ENV:APPSTORE_USERNAME)
             password: $(ENV:APPSTORE_PASSWORD)
@@ -71,3 +74,4 @@ deploy:
             skip_binary_upload: true
             build_number: $(ENV:BITRISE_BUILD_NUMBER)
             team_id: $(ENV:APPSTORE_TEAM_ID)
+            team_name: $(ENV:APPSTORE_TEAM_NAME)

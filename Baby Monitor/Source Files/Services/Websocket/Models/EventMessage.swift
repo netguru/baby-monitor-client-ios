@@ -10,6 +10,7 @@ enum BabyMonitorEvent: String, CodingKey {
     case actionKey = "action"
     case pairingCodeKey = "pairingCode"
     case pairingCodeResponseKey = "pairingResponse"
+    case webRtcSdpErrorKey = "sdpError"
 }
 
 enum BabyMonitorEvenAction: String, Codable {
@@ -21,6 +22,7 @@ struct EventMessage {
     var action: BabyMonitorEvenAction?
     var pairingCode: String?
     var pairingCodeResponse: Bool?
+    var webRtcSdpErrorMessage: String?
 }
 
 extension EventMessage: Codable {
@@ -31,6 +33,7 @@ extension EventMessage: Codable {
         action = try container.decodeIfPresent(BabyMonitorEvenAction.self, forKey: .actionKey)
         pairingCode = try container.decodeIfPresent(String.self, forKey: .pairingCodeKey)
         pairingCodeResponse = try container.decodeIfPresent(Bool.self, forKey: .pairingCodeResponseKey)
+        webRtcSdpErrorMessage = try container.decodeIfPresent(String.self, forKey: .webRtcSdpErrorKey)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -39,5 +42,6 @@ extension EventMessage: Codable {
         try container.encodeIfPresent(action, forKey: .actionKey)
         try container.encodeIfPresent(pairingCode, forKey: .pairingCodeKey)
         try container.encodeIfPresent(pairingCodeResponse, forKey: .pairingCodeResponseKey)
+        try container.encodeIfPresent(webRtcSdpErrorMessage, forKey: .webRtcSdpErrorKey)
     }
 }

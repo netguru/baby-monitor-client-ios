@@ -27,12 +27,14 @@ final class WebRtcServerManagerMock: WebRtcServerManagerProtocol {
         isSetup = true
     }
 
-    func createAnswer(remoteSdp: SessionDescriptionProtocol) {
+    func createAnswer(remoteSdp: SessionDescriptionProtocol, completion: @escaping (_ isSuccessful: Bool) -> Void) {
         self.remoteSdp = remoteSdp
         guard let localSdp = localSdp else {
+            completion(false)
             return
         }
         sdpAnswerPublisher.onNext(localSdp)
+        completion(true)
     }
 
     func setICECandidates(iceCandidate: IceCandidateProtocol) {

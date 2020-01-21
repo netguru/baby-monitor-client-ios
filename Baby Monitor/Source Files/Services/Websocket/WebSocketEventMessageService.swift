@@ -8,7 +8,7 @@ import RxSwift
 protocol WebSocketEventMessageServiceProtocol: class {
     var remoteResetObservable: Observable<Void> { get }
     var remotePairingCodeResponseObservable: Observable<Bool> { get }
-
+    var remoteStreamConnectingErrorObservable: Observable<String> { get }
     func start()
     func close()
     func sendMessage(_ message: String)
@@ -18,11 +18,13 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
 
     private(set) lazy var remoteResetObservable = remoteResetPublisher.asObservable()
     private(set) lazy var remotePairingCodeResponseObservable = remotePairingCodeResponsePublisher.asObservable()
+    private(set) lazy var remoteStreamConnectingErrorObservable = remoteStreamConnectingErrorPublisher.asObservable()
 
     private var eventMessageConductor: WebSocketConductorProtocol?
     private let eventMessagePublisher = PublishSubject<String>()
     private let remoteResetPublisher = PublishSubject<Void>()
     private let remotePairingCodeResponsePublisher = PublishSubject<Bool>()
+    private let remoteStreamConnectingErrorPublisher = PublishSubject<String>()
 
     init(cryingEventsRepository: ActivityLogEventsRepositoryProtocol, eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>?) -> WebSocketConductorProtocol) {
         setupEventMessageConductor(with: eventMessageConductorFactory)
@@ -42,6 +44,9 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
             }
             if let isPairingApproved = event.pairingCodeResponse {
                 self?.remotePairingCodeResponsePublisher.onNext(isPairingApproved)
+            }
+            if let webRtcSdpErrorMessage = event.webRtcSdpErrorMessage {
+                self?.remoteStreamConnectingErrorPublisher.onNext(webRtcSdpErrorMessage)
             }
         })
     }
