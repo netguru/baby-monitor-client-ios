@@ -23,6 +23,9 @@ jobs:
         env:
           BUNDLE_GITHUB__COM: x-access-token:${{ secrets.Token }}
 
+      - name: Update RubyGems
+        run: gem update --system
+
       - name: Run Highway
         run: bundle exec fastlane highway preset:${{ env.HIGHWAY_PRESET }}
         env:
