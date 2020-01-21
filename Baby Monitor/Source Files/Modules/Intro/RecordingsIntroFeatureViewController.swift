@@ -31,4 +31,10 @@ final class RecordingsIntroFeatureViewController: TypedViewController<SendRecord
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.analyticsManager.logScreen(.recordingsIntroFeature, className: className)
+    }
+
 }

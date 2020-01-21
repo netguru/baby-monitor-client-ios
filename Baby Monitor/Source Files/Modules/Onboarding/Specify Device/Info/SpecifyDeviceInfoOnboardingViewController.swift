@@ -28,4 +28,9 @@ final class SpecifyDeviceInfoOnboardingViewController: TypedViewController<Speci
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.analyticsManager.logScreen(.specifyDeviceInfoOnboarding, className: className)
+    }
 }

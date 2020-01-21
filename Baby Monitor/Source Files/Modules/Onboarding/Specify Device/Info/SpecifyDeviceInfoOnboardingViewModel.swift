@@ -9,9 +9,14 @@ import RxSwift
 final class SpecifyDeviceInfoOnboardingViewModel {
 
     let bag = DisposeBag()
+    let analyticsManager: AnalyticsManager
     private(set) var specifyDeviceTap: Observable<Void>?
     private(set) var cancelTap: Observable<Void>?
-    
+
+    init(analyticsManager: AnalyticsManager) {
+        self.analyticsManager = analyticsManager
+    }
+
     func attachInput(specifyDeviceTap: Observable<Void>, cancelTap: Observable<Void>) {
         self.specifyDeviceTap = specifyDeviceTap
         self.cancelTap = cancelTap

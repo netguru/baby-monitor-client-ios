@@ -10,6 +10,10 @@ import UIKit
 /// In the future it will probably have more features.
 class BaseViewController: UIViewController {
 
+    var className: String {
+        return String(describing: type(of: self))
+    }
+
     init() {
         super.init(nibName: nil, bundle: nil)
     }

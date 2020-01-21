@@ -22,6 +22,11 @@ final class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
         super.viewWillAppear(animated)
         customView.setupBackgroundImage(UIImage())
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.analyticsManager.logScreen(.onboarding, className: className)
+    }
     
     private func setup() {
         customView.didSelectRightAction = { [weak self] in
