@@ -32,7 +32,8 @@ class ActivityLogViewModelTests: XCTestCase {
             GeneralSection<ActivityLogEvent>(title: "", items: [todayCryingLogEvent]),
             GeneralSection<ActivityLogEvent>(title: "", items: [secondYesterdayCryingLogEvent, yesterdayCryingLogEvent])
         ]
-        let sut = ActivityLogViewModel(databaseRepository: babiesRepository)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = ActivityLogViewModel(databaseRepository: babiesRepository, analytics: analyticsMock)
         var resultSections: [GeneralSection<ActivityLogEvent>] = []
         
         sut.sectionsChangeObservable.subscribe(onNext: {

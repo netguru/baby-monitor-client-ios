@@ -18,11 +18,13 @@ class OnboardingCompareCodeViewModelTests: XCTestCase {
         let url = URL(string: "ws://ip:port")
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
         let sut = OnboardingCompareCodeViewModel(
             webSocketEventMessageService: webSocketEventMessageServiceMock,
             urlConfiguration: configuration,
             serverURL: try XCTUnwrap(url),
-            activityLogEventsRepository: babyRepo
+            activityLogEventsRepository: babyRepo,
+            analytics: analyticsMock
         )
         let codeEvent = EventMessage(pairingCode: sut.codeText)
 
@@ -42,11 +44,13 @@ class OnboardingCompareCodeViewModelTests: XCTestCase {
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let emptyEvent = EventMessage(pairingCode: "")
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
         let sut = OnboardingCompareCodeViewModel(
             webSocketEventMessageService: webSocketEventMessageServiceMock,
             urlConfiguration: configuration,
             serverURL: try XCTUnwrap(url),
-            activityLogEventsRepository: babyRepo
+            activityLogEventsRepository: babyRepo,
+            analytics: analyticsMock
         )
 
         // When
@@ -64,11 +68,13 @@ class OnboardingCompareCodeViewModelTests: XCTestCase {
         let url = URL(string: "ws://ip:port")
         let configuration = URLConfigurationMock()
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
         let sut = OnboardingCompareCodeViewModel(
             webSocketEventMessageService: webSocketEventMessageServiceMock,
             urlConfiguration: configuration,
             serverURL: try XCTUnwrap(url),
-            activityLogEventsRepository: babyRepo
+            activityLogEventsRepository: babyRepo,
+            analytics: analyticsMock
         )
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(Bool.self)

@@ -21,6 +21,7 @@ class ApplicationResetterTests: XCTestCase {
     private var notificationServiceProtocolMock: NotificationServiceProtocolMock!
     private var webSocketWebRtcMockWrapper: ClearableLazyItem<WebSocketWebRtcServiceProtocol>!
     private var serverServiceMock: ServerServiceMock!
+    private var analyticsMock: AnalyticsManager!
     private var bag: DisposeBag!
     
     override func setUp() {
@@ -40,6 +41,7 @@ class ApplicationResetterTests: XCTestCase {
         eventMessageServiceMock = WebSocketEventMessageServiceMock()
         webSocketWebRtcMockWrapper = ClearableLazyItem(constructor: { return self.webSocketWebRtcServiceMock })
         serverServiceMock = ServerServiceMock()
+        analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
         bag = DisposeBag()
     }
     
@@ -147,7 +149,8 @@ private extension ApplicationResetterTests {
             urlConfiguration: urlConfigurationMock,
             webSocketWebRtcService: webSocketWebRtcMockWrapper,
             localNotificationService: notificationServiceProtocolMock,
-            serverService: serverServiceMock
+            serverService: serverServiceMock,
+            analytics: analyticsMock
         )
     }
 }

@@ -204,6 +204,7 @@
 		8AFAE5C3219C1FE3007013BC /* SdpAnswerDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5C2219C1FE3007013BC /* SdpAnswerDecoder.swift */; };
 		8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */; };
 		8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */; };
+		9514DA2823D72FC7001999E1 /* AnalyticsTrackerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9514DA2723D72FC7001999E1 /* AnalyticsTrackerMock.swift */; };
 		952A637A238DBC2900C3837A /* VideoCapturerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6379238DBC2900C3837A /* VideoCapturerMock.swift */; };
 		952A637C238DBCF300C3837A /* WebRtcVideoCapturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A637B238DBCF300C3837A /* WebRtcVideoCapturer.swift */; };
 		952A6388238DE31F00C3837A /* PeerConnectionProxyMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6387238DE31F00C3837A /* PeerConnectionProxyMock.swift */; };
@@ -530,6 +531,7 @@
 		8AFAE5C2219C1FE3007013BC /* SdpAnswerDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdpAnswerDecoder.swift; sourceTree = "<group>"; };
 		8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcMessage.swift; sourceTree = "<group>"; };
 		8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
+		9514DA2723D72FC7001999E1 /* AnalyticsTrackerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTrackerMock.swift; sourceTree = "<group>"; };
 		952A6379238DBC2900C3837A /* VideoCapturerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapturerMock.swift; sourceTree = "<group>"; };
 		952A637B238DBCF300C3837A /* WebRtcVideoCapturer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcVideoCapturer.swift; sourceTree = "<group>"; };
 		952A6387238DE31F00C3837A /* PeerConnectionProxyMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerConnectionProxyMock.swift; sourceTree = "<group>"; };
@@ -1123,6 +1125,7 @@
 				1E5F6CB3318442AD4368F035 /* NotificationServiceProtocolMock.swift */,
 				1E5F68FF26F11308D9520E8D /* SocketCommunicationManagerMock.swift */,
 				95F3756B239EA98A00692B3A /* ServerServiceMock.swift */,
+				9514DA2723D72FC7001999E1 /* AnalyticsTrackerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -2111,6 +2114,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9514DA2823D72FC7001999E1 /* AnalyticsTrackerMock.swift in Sources */,
 				8A03503123684E6B00CF88C7 /* AsyncSchedulerMock.swift in Sources */,
 				8A7A615221A6B00F00488ED4 /* CryingEventsServiceMock.swift in Sources */,
 				8A50AAA421E8DBA20058C63A /* PeerConnectionMock.swift in Sources */,
