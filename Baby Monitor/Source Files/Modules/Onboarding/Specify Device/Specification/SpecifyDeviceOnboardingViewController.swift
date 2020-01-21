@@ -14,7 +14,7 @@ final class SpecifyDeviceOnboardingViewController: TypedViewController<SpecifyDe
     init(viewModel: SpecifyDeviceOnboardingViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: SpecifyDeviceOnboardingView(),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: .specifyDevice)
         rxSetup()
     }

@@ -23,10 +23,10 @@ final class IntroCoordinator: Coordinator {
     }
     
     private func showFeatures() {
-        let analyticsManager = appDependencies.analyticsManager
-        let viewModels = [IntroViewModel(analyticsManager: analyticsManager),
-                          IntroViewModel(analyticsManager: analyticsManager),
-                          IntroViewModel(analyticsManager: analyticsManager)]
+        let analytics = appDependencies.analytics
+        let viewModels = [IntroViewModel(analytics: analytics),
+                          IntroViewModel(analytics: analytics),
+                          IntroViewModel(analytics: analytics)]
         var featureControllers: [IntroFeatureViewController] = []
         for (viewModel, feature) in zip(viewModels, IntroFeature.allCases) {
             let featureController = IntroFeatureViewController(viewModel: viewModel, role: feature)

@@ -16,7 +16,7 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
         let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
         super.init(viewMaker: ParentSettingsView(appVersion: appVersion),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: .parentSettings)
     }
 
@@ -65,6 +65,6 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
 
     private func handleRating() {
         SKStoreReviewController.requestReview()
-        viewModel.analyticsManager.logEvent(.rateUs)
+        viewModel.analytics.logEvent(.rateUs)
     }
 }

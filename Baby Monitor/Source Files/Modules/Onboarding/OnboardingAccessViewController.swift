@@ -12,7 +12,7 @@ final class OnboardingAccessViewController: TypedViewController<AccessBaseOnboar
     init(viewModel: OnboardingAccessViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: AccessBaseOnboardingView(),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: viewModel.analyticsScreenType)
     }
     

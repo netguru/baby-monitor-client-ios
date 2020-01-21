@@ -15,7 +15,7 @@ final class DashboardViewController: TypedViewController<DashboardView>, UINavig
     init(viewModel: DashboardViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: DashboardView(),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: .parentDashboard)
     }
     

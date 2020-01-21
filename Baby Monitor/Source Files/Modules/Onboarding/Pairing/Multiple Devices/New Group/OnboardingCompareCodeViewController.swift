@@ -14,7 +14,7 @@ final class OnboardingCompareCodeViewController: TypedViewController<OnboardingC
     init(viewModel: OnboardingCompareCodeViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: OnboardingCompareCodeView(),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: .pairingCode)
     }
 

@@ -9,7 +9,7 @@ import RxCocoa
 
 final class ServerSettingsViewModel: BaseSettingsViewModelProtocol {
 
-    let analyticsManager: AnalyticsManager
+    let analytics: AnalyticsManager
     var isSendingCryingsAllowed: Bool {
         return UserDefaults.isSendingCryingsAllowed
     }
@@ -18,8 +18,8 @@ final class ServerSettingsViewModel: BaseSettingsViewModelProtocol {
     
     private let bag = DisposeBag()
 
-    init(analyticsManager: AnalyticsManager) {
-        self.analyticsManager = analyticsManager
+    init(analytics: AnalyticsManager) {
+        self.analytics = analytics
     }
 
     func attachInput(resetAppTap: Observable<Void>, cancelTap: Observable<Void>, allowSwitchControlProperty: Observable<Bool>) {

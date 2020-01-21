@@ -12,7 +12,7 @@ final class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
     init(viewModel: IntroViewModel, role: IntroFeature) {
         self.viewModel = viewModel
         super.init(viewMaker: IntroFeatureView(role: role),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: .onboarding)
     }
     

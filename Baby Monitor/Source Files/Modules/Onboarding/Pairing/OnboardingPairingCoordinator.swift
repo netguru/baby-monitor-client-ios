@@ -69,7 +69,7 @@ private extension OnboardingPairingCoordinator {
     }
     
     func prepareContinuableViewController(role: OnboardingContinuableViewModel.Role) -> UIViewController {
-        let viewModel = OnboardingContinuableViewModel(role: role, analyticsManager: appDependencies.analyticsManager)
+        let viewModel = OnboardingContinuableViewModel(role: role, analytics: appDependencies.analytics)
         let viewController = OnboardingContinuableViewController(viewModel: viewModel)
         viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
             self?.connectTo(viewModel: viewModel)
@@ -126,7 +126,7 @@ private extension OnboardingPairingCoordinator {
             activityLogEventsRepository: appDependencies.databaseRepository,
             webSocketEventMessageService: appDependencies.webSocketEventMessageService,
             serverErrorLogger: appDependencies.serverErrorLogger,
-            analyticsManager: appDependencies.analyticsManager)
+            analytics: appDependencies.analytics)
         viewModel.didFinishDeviceSearch = { [weak self] result in
             switch result {
             case .success(let url):
@@ -156,7 +156,7 @@ private extension OnboardingPairingCoordinator {
             urlConfiguration: appDependencies.urlConfiguration,
             serverURL: url,
             activityLogEventsRepository: appDependencies.databaseRepository,
-            analyticsManager: appDependencies.analyticsManager)
+            analytics: appDependencies.analytics)
         let viewController = OnboardingCompareCodeViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }

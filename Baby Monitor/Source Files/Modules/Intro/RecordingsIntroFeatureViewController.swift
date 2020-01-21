@@ -14,7 +14,7 @@ final class RecordingsIntroFeatureViewController: TypedViewController<SendRecord
     init(viewModel: RecordingsIntroFeatureViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: SendRecordingsIntroFeatureView(),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: .recordingsIntroFeature)
     }
     

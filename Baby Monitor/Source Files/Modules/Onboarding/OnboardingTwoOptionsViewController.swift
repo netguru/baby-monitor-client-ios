@@ -12,7 +12,7 @@ final class OnboardingTwoOptionsViewController: TypedViewController<TwoOptionsBa
     init(viewModel: OnboardingTwoOptionsViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: TwoOptionsBaseOnboardingView(),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: .permissionDenied)
     }
     

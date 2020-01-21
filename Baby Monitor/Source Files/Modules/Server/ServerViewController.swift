@@ -65,7 +65,7 @@ final class ServerViewController: BaseViewController {
     
     init(viewModel: ServerViewModel) {
         self.viewModel = viewModel
-        super.init(analyticsManager: viewModel.analyticsManager, analyticsScreenType: .serverCamera)
+        super.init(analytics: viewModel.analytics, analyticsScreenType: .serverCamera)
         setupView()
     }
     
@@ -134,7 +134,7 @@ final class ServerViewController: BaseViewController {
         nightModeButton.rx.tap.asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.nightModeOverlay.isHidden.toggle()
-            self.viewModel.analyticsManager.logEvent(.nightMode(isEnabled: !self.nightModeOverlay.isHidden))
+            self.viewModel.analytics.logEvent(.nightMode(isEnabled: !self.nightModeOverlay.isHidden))
         })
         .disposed(by: bag)
         disabledVideoView.tapGestureRecognizer

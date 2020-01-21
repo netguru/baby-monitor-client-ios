@@ -54,7 +54,7 @@ final class OnboardingCoordinator: Coordinator {
     }
 
     private func showInitialSetup() {
-        let viewModel = SpecifyDeviceOnboardingViewModel(analyticsManager: appDependencies.analyticsManager)
+        let viewModel = SpecifyDeviceOnboardingViewModel(analytics: appDependencies.analytics)
         viewModel.didSelectBaby = { [weak self] in
             self?.showAllowSendingRecordingsView()
         }
@@ -71,7 +71,7 @@ final class OnboardingCoordinator: Coordinator {
     }
     
     private func showSpecifyDeviceInfoView() {
-        let viewModel = SpecifyDeviceInfoOnboardingViewModel(analyticsManager: appDependencies.analyticsManager)
+        let viewModel = SpecifyDeviceInfoOnboardingViewModel(analytics: appDependencies.analytics)
         let viewController = SpecifyDeviceInfoOnboardingViewController(viewModel: viewModel)
         viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
             self?.connect(to: viewModel)
@@ -80,7 +80,7 @@ final class OnboardingCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
     private func showAllowSendingRecordingsView() {
-        let viewModel = RecordingsIntroFeatureViewModel(analyticsManager: appDependencies.analyticsManager)
+        let viewModel = RecordingsIntroFeatureViewModel(analytics: appDependencies.analytics)
         let viewController = RecordingsIntroFeatureViewController(viewModel: viewModel)
         viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
             self?.connect(to: viewModel)

@@ -19,7 +19,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     init(viewModel: CameraPreviewViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: CameraPreviewView(),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: .parentCameraPreview)
     }
     

@@ -23,14 +23,14 @@ final class NotificationService: NotificationServiceProtocol {
 
     private let networkDispatcher: NetworkDispatcherProtocol
     private let serverKeyObtainable: ServerKeyObtainableProtocol
-    private let analyticsManager: AnalyticsManager
+    private let analytics: AnalyticsManager
     
     init(networkDispatcher: NetworkDispatcherProtocol,
          serverKeyObtainable: ServerKeyObtainableProtocol,
-         analyticsManager: AnalyticsManager) {
+         analytics: AnalyticsManager) {
         self.networkDispatcher = networkDispatcher
         self.serverKeyObtainable = serverKeyObtainable
-        self.analyticsManager = analyticsManager
+        self.analytics = analytics
     }
     
     func getNotificationsAllowance(completion: @escaping (Bool) -> Void) {
@@ -49,7 +49,7 @@ final class NotificationService: NotificationServiceProtocol {
             serverKey: serverKeyObtainable.serverKey)
         .asURLRequest()
         networkDispatcher.execute(urlRequest: firebasePushNotificationsRequest, completion: completion)
-        analyticsManager.logEvent(.notificationSent)
+        analytics.logEvent(.notificationSent)
     }
 
     func resetTokens(completion: @escaping (Error?) -> Void) {

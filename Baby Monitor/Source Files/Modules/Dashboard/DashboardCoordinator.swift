@@ -61,7 +61,7 @@ final class DashboardCoordinator: Coordinator {
                                            babyModelController: appDependencies.databaseRepository,
                                            webSocketEventMessageService: appDependencies.webSocketEventMessageService,
                                            microphonePermissionProvider:  appDependencies.microphonePermissionProvider,
-                                           analyticsManager: appDependencies.analyticsManager)
+                                           analytics: appDependencies.analytics)
         return viewModel
     }
     
@@ -109,7 +109,7 @@ final class DashboardCoordinator: Coordinator {
     }
     
     private func createActivityLogViewModel() -> ActivityLogViewModel {
-        let viewModel = ActivityLogViewModel(databaseRepository: appDependencies.databaseRepository, analyticsManager: appDependencies.analyticsManager)
+        let viewModel = ActivityLogViewModel(databaseRepository: appDependencies.databaseRepository, analytics: appDependencies.analytics)
         viewModel.didSelectCancel = { [weak self] in
             self?.navigationController.popViewController(animated: true)
         }
@@ -123,7 +123,7 @@ final class DashboardCoordinator: Coordinator {
             babyModelController: appDependencies.databaseRepository,
             socketCommunicationManager: appDependencies.socketCommunicationsManager,
             webSocketEventMessageService: appDependencies.webSocketEventMessageService,
-            analyticsManager: appDependencies.analyticsManager)
+            analytics: appDependencies.analytics)
         return viewModel
     }
     

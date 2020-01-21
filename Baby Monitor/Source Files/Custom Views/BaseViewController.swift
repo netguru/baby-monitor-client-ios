@@ -10,7 +10,7 @@ import UIKit
 /// In the future it will probably have more features.
 class BaseViewController: UIViewController {
 
-    let analyticsManager: AnalyticsManager
+    let analytics: AnalyticsManager
 
     let analyticsScreenType: AnalyticsScreenType
 
@@ -18,8 +18,8 @@ class BaseViewController: UIViewController {
         return String(describing: type(of: self))
     }
 
-    init(analyticsManager: AnalyticsManager, analyticsScreenType: AnalyticsScreenType) {
-        self.analyticsManager = analyticsManager
+    init(analytics: AnalyticsManager, analyticsScreenType: AnalyticsScreenType) {
+        self.analytics = analytics
         self.analyticsScreenType = analyticsScreenType
         super.init(nibName: nil, bundle: nil)
     }
@@ -31,7 +31,7 @@ class BaseViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        analyticsManager.logScreen(analyticsScreenType, className: className)
+        analytics.logScreen(analyticsScreenType, className: className)
     }
 
     @available(*, unavailable, message: "Use init() instead")

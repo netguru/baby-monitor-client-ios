@@ -15,7 +15,7 @@ final class OnboardingAccessViewModel {
     }
     
     let bag = DisposeBag()
-    let analyticsManager: AnalyticsManager
+    let analytics: AnalyticsManager
 
     var analyticsScreenType: AnalyticsScreenType {
             switch role {
@@ -57,9 +57,9 @@ final class OnboardingAccessViewModel {
     private var accessPublisher = PublishSubject<Void>()
     private let role: Role
     
-    init(role: Role, analyticsManager: AnalyticsManager) {
+    init(role: Role, analytics: AnalyticsManager) {
         self.role = role
-        self.analyticsManager = analyticsManager
+        self.analytics = analytics
     }
     
     var areAllRequiredPermissionsGranted: Bool {

@@ -14,9 +14,9 @@ internal class TypedViewController<View: UIView>: BaseViewController {
     /// Initializes view controller with given View
     ///
     /// - Parameter viewMaker: Maker for the UIView
-    init(viewMaker: @escaping @autoclosure () -> View, analyticsManager: AnalyticsManager, analyticsScreenType: AnalyticsScreenType) {
+    init(viewMaker: @escaping @autoclosure () -> View, analytics: AnalyticsManager, analyticsScreenType: AnalyticsScreenType) {
         self.customView = viewMaker()
-        super.init(analyticsManager: analyticsManager, analyticsScreenType: analyticsScreenType)
+        super.init(analytics: analytics, analyticsScreenType: analyticsScreenType)
     }
     
     /// - SeeAlso: UIViewController.loadView()

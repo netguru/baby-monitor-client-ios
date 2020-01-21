@@ -13,7 +13,7 @@ final class SpecifyDeviceInfoOnboardingViewController: TypedViewController<Speci
     init(viewModel: SpecifyDeviceInfoOnboardingViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: SpecifyDeviceInfoOnboardingView(),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: .specifyDeviceInfoOnboarding)
     }
     

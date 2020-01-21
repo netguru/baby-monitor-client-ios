@@ -14,7 +14,7 @@ final class OnboardingContinuableViewController: TypedViewController<Continuable
     init(viewModel: OnboardingContinuableViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: ContinuableBaseOnboardingView(),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: viewModel.analyticsScreenType)
     }
     

@@ -17,7 +17,7 @@ final class ServerSettingsViewController: TypedViewController<ServerSettingsView
         let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
         super.init(viewMaker: ServerSettingsView(appVersion: appVersion),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: .babySettings)
     }
     
@@ -48,6 +48,6 @@ final class ServerSettingsViewController: TypedViewController<ServerSettingsView
     
     private func handleRating() {
         SKStoreReviewController.requestReview()
-        viewModel.analyticsManager.logEvent(.rateUs)
+        viewModel.analytics.logEvent(.rateUs)
     }
 }

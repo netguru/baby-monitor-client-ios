@@ -9,12 +9,12 @@ import RxSwift
 final class RecordingsIntroFeatureViewModel {
     
     let bag = DisposeBag()
-    let analyticsManager: AnalyticsManager
+    let analytics: AnalyticsManager
     private(set) var startButtonTap: Observable<Void>?
     private(set) var cancelButtonTap: Observable<Void>?
 
-    init(analyticsManager: AnalyticsManager) {
-        self.analyticsManager = analyticsManager
+    init(analytics: AnalyticsManager) {
+        self.analytics = analytics
     }
 
     func attachInput(recordingsSwitchChange: Observable<Bool>, startButtonTap: Observable<Void>, cancelButtonTap: Observable<Void>) {

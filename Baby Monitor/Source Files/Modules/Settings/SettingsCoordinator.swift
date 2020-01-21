@@ -33,7 +33,7 @@ final class SettingsCoordinator: Coordinator {
 
     // MARK: - private functions
     private func showParentSettings() {
-        let viewModel = ParentSettingsViewModel(babyModelController: appDependencies.databaseRepository, analyticsManager: appDependencies.analyticsManager)
+        let viewModel = ParentSettingsViewModel(babyModelController: appDependencies.databaseRepository, analytics: appDependencies.analytics)
         let settingsViewController = ParentSettingsViewController(viewModel: viewModel, appVersionProvider: appDependencies.appVersionProvider)
         settingsViewController.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
@@ -45,7 +45,7 @@ final class SettingsCoordinator: Coordinator {
     }
     
     private func showBabySettings() {
-        let viewModel = ServerSettingsViewModel(analyticsManager: appDependencies.analyticsManager)
+        let viewModel = ServerSettingsViewModel(analytics: appDependencies.analytics)
         let settingsViewController = ServerSettingsViewController(viewModel: viewModel, appVersionProvider: appDependencies.appVersionProvider)
         settingsViewController.rx.viewDidLoad
             .subscribe(onNext: { [weak self] _ in

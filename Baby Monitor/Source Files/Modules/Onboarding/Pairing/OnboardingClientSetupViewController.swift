@@ -18,7 +18,7 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingC
     init(viewModel: OnboardingClientSetupViewModel) {
         self.viewModel = viewModel
         super.init(viewMaker: OnboardingClientSetupView(),
-                   analyticsManager: viewModel.analyticsManager,
+                   analytics: viewModel.analytics,
                    analyticsScreenType: .availableDevices)
     }
     

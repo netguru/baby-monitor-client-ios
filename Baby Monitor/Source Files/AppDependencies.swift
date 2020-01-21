@@ -137,7 +137,7 @@ final class AppDependencies {
     private(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService(
         networkDispatcher: networkDispatcher,
         serverKeyObtainable: serverKeyObtainable,
-        analyticsManager: analyticsManager)
+        analytics: analytics)
     
     private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher(
         urlSession: URLSession(configuration: .default),
@@ -205,7 +205,7 @@ final class AppDependencies {
             webSocketWebRtcService: webSocketWebRtcService,
             localNotificationService: localNotificationService,
             serverService: serverService,
-            analyticsManager: analyticsManager)
+            analytics: analytics)
         resetter.localResetCompletionObservable
             .subscribe(onNext: { [weak self] resetCompleted in
                 self?.socketCommunicationsManager.terminate()
@@ -217,5 +217,5 @@ final class AppDependencies {
     // MARK: - Analytics
 
     /// Application manager of analytics services.
-    private(set) var analyticsManager = AnalyticsManager()
+    private(set) var analytics = AnalyticsManager()
 }

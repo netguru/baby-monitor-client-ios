@@ -26,7 +26,7 @@ final class OnboardingContinuableViewModel {
     }
     
     let role: Role
-    let analyticsManager: AnalyticsManager
+    let analytics: AnalyticsManager
     let bag = DisposeBag()
     
     var analyticsScreenType: AnalyticsScreenType {
@@ -177,9 +177,9 @@ final class OnboardingContinuableViewModel {
     var cancelTap: Observable<Void>?
     var nextButtonTap: Observable<Void>?
     
-    init(role: Role, analyticsManager: AnalyticsManager) {
+    init(role: Role, analytics: AnalyticsManager) {
         self.role = role
-        self.analyticsManager = analyticsManager
+        self.analytics = analytics
     }
     
     func attachInput(buttonTap: Observable<Void>, cancelButtonTap: Observable<Void>) {

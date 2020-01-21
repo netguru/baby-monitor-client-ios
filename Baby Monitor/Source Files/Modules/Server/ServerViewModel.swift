@@ -17,14 +17,14 @@ final class ServerViewModel {
     var onAudioMicrophoneServiceError: (() -> Void)?
     var settingsTap: Observable<Void>?
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> { serverService.connectionStatusObservable }
-    let analyticsManager: AnalyticsManager
+    let analytics: AnalyticsManager
     let bag = DisposeBag()
     
     private let serverService: ServerServiceProtocol
     
-    init(serverService: ServerServiceProtocol, analyticsManager: AnalyticsManager) {
+    init(serverService: ServerServiceProtocol, analytics: AnalyticsManager) {
         self.serverService = serverService
-        self.analyticsManager = analyticsManager
+        self.analytics = analytics
         rxSetup()
     }
     
