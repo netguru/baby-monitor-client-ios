@@ -11,7 +11,9 @@ final class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
     
     init(viewModel: IntroViewModel, role: IntroFeature) {
         self.viewModel = viewModel
-        super.init(viewMaker: IntroFeatureView(role: role))
+        super.init(viewMaker: IntroFeatureView(role: role),
+                   analyticsManager: viewModel.analyticsManager,
+                   analyticsScreenType: .onboarding)
     }
     
     override func viewDidLoad() {
@@ -21,11 +23,6 @@ final class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         customView.setupBackgroundImage(UIImage())
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.analyticsManager.logScreen(.onboarding, className: className)
     }
     
     private func setup() {

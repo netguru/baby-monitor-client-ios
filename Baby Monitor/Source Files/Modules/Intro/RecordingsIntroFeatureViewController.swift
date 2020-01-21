@@ -13,7 +13,9 @@ final class RecordingsIntroFeatureViewController: TypedViewController<SendRecord
     
     init(viewModel: RecordingsIntroFeatureViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: SendRecordingsIntroFeatureView())
+        super.init(viewMaker: SendRecordingsIntroFeatureView(),
+                   analyticsManager: viewModel.analyticsManager,
+                   analyticsScreenType: .recordingsIntroFeature)
     }
     
     override func viewDidLoad() {
@@ -30,11 +32,6 @@ final class RecordingsIntroFeatureViewController: TypedViewController<SendRecord
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.analyticsManager.logScreen(.recordingsIntroFeature, className: className)
     }
 
 }

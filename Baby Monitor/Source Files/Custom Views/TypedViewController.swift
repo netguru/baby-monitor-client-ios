@@ -14,9 +14,15 @@ internal class TypedViewController<View: UIView>: BaseViewController {
     /// Initializes view controller with given View
     ///
     /// - Parameter viewMaker: Maker for the UIView
-    init(viewMaker: @escaping @autoclosure () -> View) {
+    init(viewMaker: @escaping @autoclosure () -> View, analyticsManager: AnalyticsManager? = nil, analyticsScreenType: AnalyticsScreenType? = nil) {
         self.customView = viewMaker()
-        super.init()
+        guard let analyticsManager = analyticsManager,
+            let analyticsScreenType = analyticsScreenType else {
+                assertionFailure("Analytics is not implemented for a screen.")
+                super.init(analyticsManager: AnalyticsManager(), analyticsScreenType: .unrecognized) // TODO: Do not set unrecognized as a default
+                return
+        }
+        super.init(analyticsManager: analyticsManager, analyticsScreenType: analyticsScreenType)
     }
     
     /// - SeeAlso: UIViewController.loadView()

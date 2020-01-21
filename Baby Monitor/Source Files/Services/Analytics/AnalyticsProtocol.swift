@@ -7,6 +7,7 @@ enum AnalyticsScreenType: String {
     case specifyDeviceInfoOnboarding = "InfoAboutDevices"
     case specifyDevice = "SpecifyDevice"
     case recordingsIntroFeature = "VoiceRecordingsSetting"
+    case unrecognized
 //    ConnectWifi
 //    PermissionCamera
 //    PermissionMicrophone

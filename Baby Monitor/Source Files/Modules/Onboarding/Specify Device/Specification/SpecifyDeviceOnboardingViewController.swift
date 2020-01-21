@@ -13,7 +13,9 @@ final class SpecifyDeviceOnboardingViewController: TypedViewController<SpecifyDe
     
     init(viewModel: SpecifyDeviceOnboardingViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: SpecifyDeviceOnboardingView())
+        super.init(viewMaker: SpecifyDeviceOnboardingView(),
+                   analyticsManager: viewModel.analyticsManager,
+                   analyticsScreenType: .specifyDevice)
         rxSetup()
     }
     
@@ -30,10 +32,5 @@ final class SpecifyDeviceOnboardingViewController: TypedViewController<SpecifyDe
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = customView.cancelItemButton
         viewModel.attachInput(cancelTap: customView.rx.cancelTap.asObservable())
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.analyticsManager.logScreen(.specifyDevice, className: className)
     }
 }

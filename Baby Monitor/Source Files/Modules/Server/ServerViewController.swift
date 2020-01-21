@@ -65,7 +65,7 @@ final class ServerViewController: BaseViewController {
     
     init(viewModel: ServerViewModel) {
         self.viewModel = viewModel
-        super.init()
+        super.init(analyticsManager: AnalyticsManager(), analyticsScreenType: .onboarding) // TODO FIX THAT
         setupView()
     }
     

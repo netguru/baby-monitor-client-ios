@@ -12,7 +12,9 @@ final class SpecifyDeviceInfoOnboardingViewController: TypedViewController<Speci
 
     init(viewModel: SpecifyDeviceInfoOnboardingViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: SpecifyDeviceInfoOnboardingView())
+        super.init(viewMaker: SpecifyDeviceInfoOnboardingView(),
+                   analyticsManager: viewModel.analyticsManager,
+                   analyticsScreenType: .specifyDeviceInfoOnboarding)
     }
     
     override func viewDidLoad() {
@@ -27,10 +29,5 @@ final class SpecifyDeviceInfoOnboardingViewController: TypedViewController<Speci
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.analyticsManager.logScreen(.specifyDeviceInfoOnboarding, className: className)
     }
 }
