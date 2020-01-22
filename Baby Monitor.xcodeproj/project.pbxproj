@@ -229,6 +229,8 @@
 		95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */; };
 		95BAA38823D80BD50016A194 /* AnalyticsScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */; };
 		95BAA38A23D80BE90016A194 /* AnalyticsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */; };
+		95BAA39123D83CEF0016A194 /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */; };
+		95BAA39323D83D910016A194 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA39223D83D910016A194 /* BaseViewModel.swift */; };
 		95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C382390317000AC559D /* AlertPresenter.swift */; };
 		95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */; };
 		95E75C3D2390318500AC559D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C3C2390318500AC559D /* Logger.swift */; };
@@ -558,6 +560,8 @@
 		95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetServiceDescriptorTests.swift; path = "../New Group/NetServiceDescriptorTests.swift"; sourceTree = "<group>"; };
 		95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreenType.swift; sourceTree = "<group>"; };
 		95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventType.swift; sourceTree = "<group>"; };
+		95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
+		95BAA39223D83D910016A194 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewModel.swift; path = "/Users/anna/Documents/projects/Baby Monitor/baby-monitor-client-ios/Baby Monitor/Source Files/Custom Modules/View Models/BaseViewModel.swift"; sourceTree = "<absolute>"; };
 		95E75C382390317000AC559D /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionProvider.swift; sourceTree = "<group>"; };
 		95E75C3C2390318500AC559D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -971,23 +975,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		4E9563372164F07A00289475 /* Custom Views */ = {
+		4E9563372164F07A00289475 /* Custom Modules */ = {
 			isa = PBXGroup;
 			children = (
-				4EF36FBB21660F1700257384 /* BabyMonitorGeneral */,
-				4E1D2C6421678D9100E92F29 /* TypedViewController.swift */,
-				95F3757223A0017C00692B3A /* BaseProgressIndicator.swift */,
-				EC8A8FF421AE8F5F00B5FCCF /* TypedPageViewController.swift */,
-				4E9563382164F09C00289475 /* BabyNavigationItemView.swift */,
-				4E994BF121624835009C44C5 /* BaseViewController.swift */,
-				EC8A8FF221AE8EE500B5FCCF /* BasePageViewController.swift */,
-				4E1D2C682167926500E92F29 /* BaseView.swift */,
-				200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */,
-				A1640E2A22048EA100398ED2 /* BabyMonitorSwitch.swift */,
-				3A3C61AB223EC2140020FD3D /* StreamVideoView.swift */,
-				9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */,
+				95BAA38F23D83CD40016A194 /* View Models */,
+				95BAA38E23D83CC50016A194 /* View Controllers */,
+				95BAA38D23D83C920016A194 /* Views */,
+				4EF36FBB21660F1700257384 /* Cell */,
 			);
-			path = "Custom Views";
+			path = "Custom Modules";
 			sourceTree = "<group>";
 		};
 		4E994BDB216237CB009C44C5 /* Dashboard */ = {
@@ -1044,13 +1040,13 @@
 			path = Connecting;
 			sourceTree = "<group>";
 		};
-		4EF36FBB21660F1700257384 /* BabyMonitorGeneral */ = {
+		4EF36FBB21660F1700257384 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				4E95632A2164CB7900289475 /* BabyMonitorCell.swift */,
 				8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */,
 			);
-			path = BabyMonitorGeneral;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5A6BEA236D04738E5E6A922E /* Frameworks */ = {
@@ -1431,6 +1427,40 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
+		95BAA38D23D83C920016A194 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4E1D2C682167926500E92F29 /* BaseView.swift */,
+				4E994BF121624835009C44C5 /* BaseViewController.swift */,
+				EC8A8FF221AE8EE500B5FCCF /* BasePageViewController.swift */,
+				200DFD4621F87862009CA3ED /* RoundedRectangleButton.swift */,
+				9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */,
+				95F3757223A0017C00692B3A /* BaseProgressIndicator.swift */,
+				3A3C61AB223EC2140020FD3D /* StreamVideoView.swift */,
+				A1640E2A22048EA100398ED2 /* BabyMonitorSwitch.swift */,
+				4E9563382164F09C00289475 /* BabyNavigationItemView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		95BAA38E23D83CC50016A194 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EC8A8FF421AE8F5F00B5FCCF /* TypedPageViewController.swift */,
+				4E1D2C6421678D9100E92F29 /* TypedViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		95BAA38F23D83CD40016A194 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				95BAA39223D83D910016A194 /* BaseViewModel.swift */,
+				95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		95E75C372390317000AC559D /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -1585,7 +1615,7 @@
 				4E5731A62170BAE000DEAF0B /* AppDependencies.swift */,
 				EC82B559213EA072005CA395 /* AppDelegate.swift */,
 				4E6EA7932161FB81005575E0 /* Modules */,
-				4E9563372164F07A00289475 /* Custom Views */,
+				4E9563372164F07A00289475 /* Custom Modules */,
 				A18D3E6C21FF06E800C165C6 /* CustomAnimations */,
 				4E5731A02170BA9D00DEAF0B /* Services */,
 				4E57318F2170BA7400DEAF0B /* Other Protocols */,
@@ -1969,6 +1999,7 @@
 				8A4EC11822E739C20076722E /* UIActivityIndicatorView+Rx.swift in Sources */,
 				A1EC9775221AA51A00C27786 /* OnboardingAccessViewController.swift in Sources */,
 				A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */,
+				95BAA39123D83CEF0016A194 /* AnalyticsViewModel.swift in Sources */,
 				A1640E252203A3DB00398ED2 /* ServerSettingsViewController.swift in Sources */,
 				4E994BDA216235B5009C44C5 /* DashboardCoordinator.swift in Sources */,
 				A1EC977B221AB07B00C27786 /* OnboardingTwoOptionsViewController.swift in Sources */,
@@ -1981,6 +2012,7 @@
 				A1ED8F8D2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift in Sources */,
 				4E57319C2170BA7400DEAF0B /* BabyMonitorCellSelectable.swift in Sources */,
 				A7D756292236AFB800F9893E /* audioprocessing.mlmodel in Sources */,
+				95BAA39323D83D910016A194 /* BaseViewModel.swift in Sources */,
 				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
 				4E8E057421AE9E4A009ACE05 /* UIColor+BabyMonitor.swift in Sources */,
@@ -2255,6 +2287,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CX4C4YQ26W;
+				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor.develoment;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Development;
 		};
