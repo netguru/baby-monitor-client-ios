@@ -33,5 +33,4 @@ final class RecordingsIntroFeatureViewController: TypedViewController<SendRecord
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
 }
