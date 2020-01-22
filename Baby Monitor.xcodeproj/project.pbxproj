@@ -214,6 +214,7 @@
 		9541FDC423D6BB3700DDC1A3 /* AnalyticsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */; };
 		9541FDC623D6BB6000DDC1A3 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */; };
 		9541FDC923D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */; };
+		9542020D23D87C9900966C78 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9542020C23D87C9900966C78 /* BaseViewModel.swift */; };
 		9546908A23A674330077D2B5 /* OnboardingCompareCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */; };
 		9546908C23A674A10077D2B5 /* OnboardingCompareCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */; };
 		9546908F23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */; };
@@ -230,7 +231,6 @@
 		95BAA38823D80BD50016A194 /* AnalyticsScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */; };
 		95BAA38A23D80BE90016A194 /* AnalyticsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */; };
 		95BAA39123D83CEF0016A194 /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */; };
-		95BAA39323D83D910016A194 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA39223D83D910016A194 /* BaseViewModel.swift */; };
 		95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C382390317000AC559D /* AlertPresenter.swift */; };
 		95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */; };
 		95E75C3D2390318500AC559D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C3C2390318500AC559D /* Logger.swift */; };
@@ -545,6 +545,7 @@
 		9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyticsProtocol.swift; path = "../New Group/AnalyticsProtocol.swift"; sourceTree = "<group>"; };
 		9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseAnalyticsTracker.swift; path = "../New Group1/FirebaseAnalyticsTracker.swift"; sourceTree = "<group>"; };
+		9542020C23D87C9900966C78 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingCompareCodeViewController.swift; path = "../New Group/OnboardingCompareCodeViewController.swift"; sourceTree = "<group>"; };
 		9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeView.swift; sourceTree = "<group>"; };
 		9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeViewModel.swift; sourceTree = "<group>"; };
@@ -561,7 +562,6 @@
 		95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreenType.swift; sourceTree = "<group>"; };
 		95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventType.swift; sourceTree = "<group>"; };
 		95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
-		95BAA39223D83D910016A194 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewModel.swift; path = "/Users/anna/Documents/projects/Baby Monitor/baby-monitor-client-ios/Baby Monitor/Source Files/Custom Modules/View Models/BaseViewModel.swift"; sourceTree = "<absolute>"; };
 		95E75C382390317000AC559D /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionProvider.swift; sourceTree = "<group>"; };
 		95E75C3C2390318500AC559D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -1455,8 +1455,8 @@
 		95BAA38F23D83CD40016A194 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				95BAA39223D83D910016A194 /* BaseViewModel.swift */,
 				95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */,
+				9542020C23D87C9900966C78 /* BaseViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -2012,7 +2012,7 @@
 				A1ED8F8D2212C6EA005762E8 /* ContinuableBaseOnboardingView.swift in Sources */,
 				4E57319C2170BA7400DEAF0B /* BabyMonitorCellSelectable.swift in Sources */,
 				A7D756292236AFB800F9893E /* audioprocessing.mlmodel in Sources */,
-				95BAA39323D83D910016A194 /* BaseViewModel.swift in Sources */,
+				9542020D23D87C9900966C78 /* BaseViewModel.swift in Sources */,
 				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
 				4E8E057421AE9E4A009ACE05 /* UIColor+BabyMonitor.swift in Sources */,
@@ -2287,11 +2287,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CX4C4YQ26W;
-				PRODUCT_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitor.develoment;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Development;
 		};
