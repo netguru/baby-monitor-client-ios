@@ -17,7 +17,9 @@ final class OnboardingClientSetupViewController: TypedViewController<OnboardingC
     private var devices: [NetServiceDescriptor] = []
     init(viewModel: OnboardingClientSetupViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: OnboardingClientSetupView())
+        super.init(viewMaker: OnboardingClientSetupView(),
+                   analytics: viewModel.analytics,
+                   analyticsScreenType: .availableDevices)
     }
     
     override func viewDidLoad() {

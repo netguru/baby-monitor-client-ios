@@ -7,7 +7,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class OnboardingCompareCodeViewModel {
+final class OnboardingCompareCodeViewModel: BaseViewModel {
 
     let bag = DisposeBag()
     let title: String = Localizable.Onboarding.connecting
@@ -22,11 +22,13 @@ final class OnboardingCompareCodeViewModel {
     init(webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
          urlConfiguration: URLConfiguration,
          serverURL: URL,
-         activityLogEventsRepository: ActivityLogEventsRepositoryProtocol) {
+         activityLogEventsRepository: ActivityLogEventsRepositoryProtocol,
+         analytics: AnalyticsManager) {
         self.webSocketEventMessageService = webSocketEventMessageService
         self.urlConfiguration = urlConfiguration
         self.serverURL = serverURL
         self.activityLogEventsRepository = activityLogEventsRepository
+        super.init(analytics: analytics)
         setupBindings()
     }
 

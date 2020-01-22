@@ -17,6 +17,8 @@ final class PeerConnectionProxyMock: NSObject, PeerConnectionProxy {
 
     var onConnectionStateChanged: ((RTCPeerConnection?, RTCPeerConnectionState) -> Void)?
 
+    var onIceConnectionStateChanged: ((RTCPeerConnection, RTCIceConnectionState) -> Void)?
+
     var onAddedStream: ((RTCPeerConnection, RTCMediaStream) -> Void)?
 
     var onGotIceCandidate: ((RTCPeerConnection, RTCIceCandidate) -> Void)?

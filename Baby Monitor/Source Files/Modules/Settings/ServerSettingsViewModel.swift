@@ -7,8 +7,8 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class ServerSettingsViewModel: BaseSettingsViewModelProtocol {
-    
+final class ServerSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtocol {
+
     var isSendingCryingsAllowed: Bool {
         return UserDefaults.isSendingCryingsAllowed
     }
@@ -16,7 +16,7 @@ final class ServerSettingsViewModel: BaseSettingsViewModelProtocol {
     private(set) var cancelTap: Observable<Void>?
     
     private let bag = DisposeBag()
-    
+
     func attachInput(resetAppTap: Observable<Void>, cancelTap: Observable<Void>, allowSwitchControlProperty: Observable<Bool>) {
         self.resetAppTap = resetAppTap
         self.cancelTap = cancelTap

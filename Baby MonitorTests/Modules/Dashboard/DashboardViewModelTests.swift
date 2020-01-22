@@ -29,10 +29,14 @@ class DashboardViewModelTests: XCTestCase {
         let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
         let microphonePermissionProviderMock = MicrophonePermissionProviderMock()
         let socketCommunicationManagerMock = SocketCommunicationManagerMock()
-        
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
         // When
         // We assign it to the reference to ensure that it doesn't got deallocated
-        let sut = DashboardViewModel(socketCommunicationManager: socketCommunicationManagerMock, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock, microphonePermissionProvider: microphonePermissionProviderMock)
+        let sut = DashboardViewModel(socketCommunicationManager: socketCommunicationManagerMock,
+                                     babyModelController: babiesRepository,
+                                     webSocketEventMessageService: webSocketEventMessageServiceMock,
+                                     microphonePermissionProvider: microphonePermissionProviderMock,
+                                     analytics: analyticsMock)
         
         // Then
         XCTAssertNotNil(sut)
@@ -46,7 +50,12 @@ class DashboardViewModelTests: XCTestCase {
         let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
         let microphonePermissionProviderMock = MicrophonePermissionProviderMock()
         let socketCommunicationManagerMock = SocketCommunicationManagerMock()
-        let sut = DashboardViewModel(socketCommunicationManager: socketCommunicationManagerMock, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock, microphonePermissionProvider: microphonePermissionProviderMock)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = DashboardViewModel(socketCommunicationManager: socketCommunicationManagerMock,
+                                     babyModelController: babiesRepository,
+                                     webSocketEventMessageService: webSocketEventMessageServiceMock,
+                                     microphonePermissionProvider: microphonePermissionProviderMock,
+                                     analytics: analyticsMock)
         sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap, settingsTap: settingsTap)
         sut.liveCameraPreview?
             .subscribe(observer)
@@ -67,7 +76,12 @@ class DashboardViewModelTests: XCTestCase {
         let webSocketEventMessageServiceMock = WebSocketEventMessageServiceMock()
         let microphonePermissionProviderMock = MicrophonePermissionProviderMock()
         let socketCommunicationManagerMock = SocketCommunicationManagerMock()
-        let sut = DashboardViewModel(socketCommunicationManager: socketCommunicationManagerMock, babyModelController: babiesRepository, webSocketEventMessageService: webSocketEventMessageServiceMock, microphonePermissionProvider: microphonePermissionProviderMock)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = DashboardViewModel(socketCommunicationManager: socketCommunicationManagerMock,
+                                     babyModelController: babiesRepository,
+                                     webSocketEventMessageService: webSocketEventMessageServiceMock,
+                                     microphonePermissionProvider: microphonePermissionProviderMock,
+                                     analytics: analyticsMock)
         sut.attachInput(liveCameraTap: liveCameraTap, activityLogTap: activityLogTap, settingsTap: settingsTap)
         sut.activityLogTap?
             .subscribe(observer)

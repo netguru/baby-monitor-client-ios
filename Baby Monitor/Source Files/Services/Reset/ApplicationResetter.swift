@@ -19,6 +19,7 @@ class DefaultApplicationResetter: ApplicationResetter {
     private unowned var serverService: ServerServiceProtocol
     private(set) var localResetCompletionObservable: Observable<Void>
     private var localResetCompletionPublisher = PublishSubject<Void>()
+    private let analytics: AnalyticsManager
     
     init(messageServer: MessageServerProtocol,
          webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
@@ -27,7 +28,8 @@ class DefaultApplicationResetter: ApplicationResetter {
          urlConfiguration: URLConfiguration,
          webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
          localNotificationService: NotificationServiceProtocol,
-         serverService: ServerServiceProtocol) {
+         serverService: ServerServiceProtocol,
+         analytics: AnalyticsManager) {
         self.messageServer = messageServer
         self.webSocketEventMessageService = webSocketEventMessageService
         self.babyModelControllerProtocol = babyModelControllerProtocol
@@ -36,6 +38,7 @@ class DefaultApplicationResetter: ApplicationResetter {
         self.webSocketWebRtcService = webSocketWebRtcService
         self.localNotificationService = localNotificationService
         self.serverService = serverService
+        self.analytics = analytics
         localResetCompletionObservable = localResetCompletionPublisher.asObservable()
     }
     
@@ -52,6 +55,7 @@ class DefaultApplicationResetter: ApplicationResetter {
         webSocketWebRtcService.get().close()
         stopAudioKit()
         localResetCompletionPublisher.onNext(())
+        analytics.logEvent(.resetApp)
     }
 }
 

@@ -16,7 +16,9 @@ final class ServerSettingsViewController: TypedViewController<ServerSettingsView
     init(viewModel: ServerSettingsViewModel, appVersionProvider: AppVersionProvider) {
         let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
-        super.init(viewMaker: ServerSettingsView(appVersion: appVersion))
+        super.init(viewMaker: ServerSettingsView(appVersion: appVersion),
+                   analytics: viewModel.analytics,
+                   analyticsScreenType: .babySettings)
     }
     
     override func viewDidLoad() {
@@ -46,5 +48,6 @@ final class ServerSettingsViewController: TypedViewController<ServerSettingsView
     
     private func handleRating() {
         SKStoreReviewController.requestReview()
+        viewModel.analytics.logEvent(.rateUs)
     }
 }

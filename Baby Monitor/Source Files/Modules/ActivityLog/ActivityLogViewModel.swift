@@ -7,7 +7,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ActivityLogViewModel {
+final class ActivityLogViewModel: BaseViewModel {
     
     typealias DataType = ActivityLogEvent
     
@@ -23,9 +23,11 @@ final class ActivityLogViewModel {
     private let databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol
     private let disposeBag = DisposeBag()
 
-    init(databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol) {
+    init(databaseRepository: BabyModelControllerProtocol & ActivityLogEventsRepositoryProtocol,
+         analytics: AnalyticsManager) {
         self.databaseRepository = databaseRepository
         self.baby = databaseRepository.babyUpdateObservable
+        super.init(analytics: analytics)
         rxSetup()
     }
     

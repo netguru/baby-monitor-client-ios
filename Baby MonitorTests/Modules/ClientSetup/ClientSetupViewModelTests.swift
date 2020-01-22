@@ -17,7 +17,13 @@ class ClientSetupViewModelTests: XCTestCase {
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let webSocketEventMessageService = WebSocketEventMessageServiceMock()
         let errorLogger = ServerErrorLoggerMock()
-        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, activityLogEventsRepository: babyRepo, webSocketEventMessageService: webSocketEventMessageService, serverErrorLogger: errorLogger)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient,
+                                                 urlConfiguration: configuration,
+                                                 activityLogEventsRepository: babyRepo,
+                                                 webSocketEventMessageService: webSocketEventMessageService,
+                                                 serverErrorLogger: errorLogger,
+                                                 analytics: analyticsMock)
 
         // When
         sut.startDiscovering()
@@ -38,7 +44,13 @@ class ClientSetupViewModelTests: XCTestCase {
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let webSocketEventMessageService = WebSocketEventMessageServiceMock()
         let errorLogger = ServerErrorLoggerMock()
-        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, activityLogEventsRepository: babyRepo, webSocketEventMessageService: webSocketEventMessageService, serverErrorLogger: errorLogger)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient,
+                                                 urlConfiguration: configuration,
+                                                 activityLogEventsRepository: babyRepo,
+                                                 webSocketEventMessageService: webSocketEventMessageService,
+                                                 serverErrorLogger: errorLogger,
+                                                 analytics: analyticsMock)
         var serverURL: URL?
         sut.didFinishDeviceSearch = { result in
             if case .success(let url) = result {
@@ -68,7 +80,13 @@ class ClientSetupViewModelTests: XCTestCase {
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let webSocketEventMessageService = WebSocketEventMessageServiceMock()
         let errorLogger = ServerErrorLoggerMock()
-        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, activityLogEventsRepository: babyRepo, webSocketEventMessageService: webSocketEventMessageService, serverErrorLogger: errorLogger)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient,
+                                                 urlConfiguration: configuration,
+                                                 activityLogEventsRepository: babyRepo,
+                                                 webSocketEventMessageService: webSocketEventMessageService,
+                                                 serverErrorLogger: errorLogger,
+                                                 analytics: analyticsMock)
         sut.didFinishDeviceSearch = { _ in exp.fulfill() }
         
         // When
@@ -90,7 +108,13 @@ class ClientSetupViewModelTests: XCTestCase {
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let webSocketEventMessageService = WebSocketEventMessageServiceMock()
         let errorLogger = ServerErrorLoggerMock()
-        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, activityLogEventsRepository: babyRepo, webSocketEventMessageService: webSocketEventMessageService, serverErrorLogger: errorLogger)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient,
+                                                 urlConfiguration: configuration,
+                                                 activityLogEventsRepository: babyRepo,
+                                                 webSocketEventMessageService: webSocketEventMessageService,
+                                                 serverErrorLogger: errorLogger,
+                                                 analytics: analyticsMock)
         sut.didFinishDeviceSearch = { result in
             XCTAssertEqual(result, DeviceSearchResult.failure(.timeout))
             exp.fulfill()
@@ -113,7 +137,13 @@ class ClientSetupViewModelTests: XCTestCase {
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let webSocketEventMessageService = WebSocketEventMessageServiceMock()
         let errorLogger = ServerErrorLoggerMock()
-        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, activityLogEventsRepository: babyRepo, webSocketEventMessageService: webSocketEventMessageService, serverErrorLogger: errorLogger)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient,
+                                                 urlConfiguration: configuration,
+                                                 activityLogEventsRepository: babyRepo,
+                                                 webSocketEventMessageService: webSocketEventMessageService,
+                                                 serverErrorLogger: errorLogger,
+                                                 analytics: analyticsMock)
         sut.attachInput(refreshButtonTap: refreshButtonTap)
 
         // When
@@ -131,7 +161,13 @@ class ClientSetupViewModelTests: XCTestCase {
         let babyRepo = RealmBabiesRepository(realm: try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "test-realm")))
         let webSocketEventMessageService = WebSocketEventMessageServiceMock()
         let errorLogger = ServerErrorLoggerMock()
-        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient, urlConfiguration: configuration, activityLogEventsRepository: babyRepo, webSocketEventMessageService: webSocketEventMessageService, serverErrorLogger: errorLogger)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = OnboardingClientSetupViewModel(netServiceClient: netServiceClient,
+                                                 urlConfiguration: configuration,
+                                                 activityLogEventsRepository: babyRepo,
+                                                 webSocketEventMessageService: webSocketEventMessageService,
+                                                 serverErrorLogger: errorLogger,
+                                                 analytics: analyticsMock)
         let disposeBag = DisposeBag()
         let exp = expectation(description: "Should change state to timeout after finding devices and no pairing")
         sut.state.skip(2).subscribe(onNext: { state in

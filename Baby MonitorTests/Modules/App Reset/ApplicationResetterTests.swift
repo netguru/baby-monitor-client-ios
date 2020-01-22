@@ -6,12 +6,13 @@ import RxTest
 class ApplicationResetterTests: XCTestCase {
     
     private let resetEventMessage = "{\"action\":\"reset\"}"
-    
+
+    // swiftlint:disable implicitly_unwrapped_optional
     private var initialAppMode: AppMode!
     private var initialIsSendingCryingsAllowed: Bool!
     private var initialSelfPushNotificationsToken: String!
     private var initialReceiverPushNotificationsToken: String!
-    
+
     private var messageServerMock: MessageServerMock!
     private var eventMessageServiceMock: WebSocketEventMessageServiceMock!
     private var babyModelMock: DatabaseRepositoryMock!
@@ -21,8 +22,12 @@ class ApplicationResetterTests: XCTestCase {
     private var notificationServiceProtocolMock: NotificationServiceProtocolMock!
     private var webSocketWebRtcMockWrapper: ClearableLazyItem<WebSocketWebRtcServiceProtocol>!
     private var serverServiceMock: ServerServiceMock!
+    private var analyticsTrackerMock: AnalyticsTrackerMock!
+    private var analytics: AnalyticsManager!
+
     private var bag: DisposeBag!
-    
+    // swiftlint:enable implicitly_unwrapped_optional
+
     override func setUp() {
         //  To prevent test overwriting Defaults for the app
         initialAppMode = UserDefaults.appMode
@@ -40,6 +45,8 @@ class ApplicationResetterTests: XCTestCase {
         eventMessageServiceMock = WebSocketEventMessageServiceMock()
         webSocketWebRtcMockWrapper = ClearableLazyItem(constructor: { return self.webSocketWebRtcServiceMock })
         serverServiceMock = ServerServiceMock()
+        analyticsTrackerMock = AnalyticsTrackerMock()
+        analytics = AnalyticsManager(analyticsTracker: analyticsTrackerMock)
         bag = DisposeBag()
     }
     
@@ -136,6 +143,7 @@ private extension ApplicationResetterTests {
         XCTAssertNil(urlConfigurationMock.url)
         XCTAssertEqual(webSocketWebRtcServiceMock.closeCalled, true)
         XCTAssertEqual(serverServiceMock.stopCalled, true)
+        XCTAssertEqual(analyticsTrackerMock.eventLogged, true)
     }
     
     func makeAppResetter() -> DefaultApplicationResetter {
@@ -147,7 +155,8 @@ private extension ApplicationResetterTests {
             urlConfiguration: urlConfigurationMock,
             webSocketWebRtcService: webSocketWebRtcMockWrapper,
             localNotificationService: notificationServiceProtocolMock,
-            serverService: serverServiceMock
+            serverService: serverServiceMock,
+            analytics: analytics
         )
     }
 }

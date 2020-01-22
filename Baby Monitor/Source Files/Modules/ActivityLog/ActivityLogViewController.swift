@@ -21,7 +21,9 @@ final class ActivityLogViewController: TypedViewController<ActivityLogView>, UIT
     
     init(viewModel: ActivityLogViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: ActivityLogView())
+        super.init(viewMaker: ActivityLogView(),
+                   analytics: viewModel.analytics,
+                   analyticsScreenType: .activityLog)
         setup()
     }
     

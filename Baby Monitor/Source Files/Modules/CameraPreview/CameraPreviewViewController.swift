@@ -18,7 +18,9 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     
     init(viewModel: CameraPreviewViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: CameraPreviewView())
+        super.init(viewMaker: CameraPreviewView(),
+                   analytics: viewModel.analytics,
+                   analyticsScreenType: .parentCameraPreview)
     }
     
     override func viewDidLoad() {

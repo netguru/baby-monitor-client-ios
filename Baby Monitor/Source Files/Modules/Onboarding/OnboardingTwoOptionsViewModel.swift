@@ -6,7 +6,7 @@
 import Foundation
 import RxSwift
 
-final class OnboardingTwoOptionsViewModel {
+final class OnboardingTwoOptionsViewModel: BaseViewModel {
     var upButtonTap: Observable<Void>?
     var bottomButtonTap: Observable<Void>?
     let bag = DisposeBag()
@@ -16,7 +16,7 @@ final class OnboardingTwoOptionsViewModel {
     let secondaryDescription = NSAttributedString(string: Localizable.Onboarding.BabySetup.permissionsDenidedQuestion) 
     let upButtonTitle = Localizable.General.retry
     let bottomButtonTitle = Localizable.General.imSure
-    
+
     func attachInput(upButtonTap: Observable<Void>, bottomButtonTap: Observable<Void>) {
         self.upButtonTap = upButtonTap
         self.bottomButtonTap = bottomButtonTap

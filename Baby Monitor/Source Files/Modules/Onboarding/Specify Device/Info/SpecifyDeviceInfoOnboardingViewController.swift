@@ -12,7 +12,9 @@ final class SpecifyDeviceInfoOnboardingViewController: TypedViewController<Speci
 
     init(viewModel: SpecifyDeviceInfoOnboardingViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: SpecifyDeviceInfoOnboardingView())
+        super.init(viewMaker: SpecifyDeviceInfoOnboardingView(),
+                   analytics: viewModel.analytics,
+                   analyticsScreenType: .specifyDeviceInfoOnboarding)
     }
     
     override func viewDidLoad() {

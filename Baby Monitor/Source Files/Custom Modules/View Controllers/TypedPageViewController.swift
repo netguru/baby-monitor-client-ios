@@ -13,10 +13,15 @@ internal class TypedPageViewController<BackgroundView: UIView>: BasePageViewCont
     
     /// Initializes view controller with given BackgroundView
     ///
-    /// - Parameter viewMaker: Maker for the UIView
-    init(viewMaker: @escaping @autoclosure () -> BackgroundView) {
+    /// - Parameters:
+    ///     - viewMaker: Maker for the UIView.
+    ///     - analytics: Analytics manager for tracking screens appearance.
+    ///     - analyticsScreenType: The type of the screen in terms of analytics tracking.
+    init(viewMaker: @escaping @autoclosure () -> BackgroundView,
+         analytics: AnalyticsManager,
+         analyticsScreenType: AnalyticsScreenType){
         self.customView = viewMaker()
-        super.init()
+        super.init(analytics: analytics, analyticsScreenType: analyticsScreenType)
     }
     
     /// - SeeAlso: UIViewController.loadView()

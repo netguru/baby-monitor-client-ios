@@ -5,7 +5,7 @@
 
 import RxSwift
 
-final class CameraPreviewViewModel {
+final class CameraPreviewViewModel: BaseViewModel {
     
     let bag = DisposeBag()
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
@@ -30,13 +30,15 @@ final class CameraPreviewViewModel {
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
 
     init(webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
-        babyModelController: BabyModelControllerProtocol,
-        socketCommunicationManager: SocketCommunicationManager,
-        webSocketEventMessageService: WebSocketEventMessageServiceProtocol) {
+         babyModelController: BabyModelControllerProtocol,
+         socketCommunicationManager: SocketCommunicationManager,
+         webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
+         analytics: AnalyticsManager) {
         self.webSocketWebRtcService = webSocketWebRtcService
         self.babyModelController = babyModelController
         self.socketCommunicationManager = socketCommunicationManager
         self.webSocketEventMessageService = webSocketEventMessageService
+        super.init(analytics: analytics)
         rxSetup()
     }
     

@@ -13,7 +13,9 @@ final class OnboardingContinuableViewController: TypedViewController<Continuable
     
     init(viewModel: OnboardingContinuableViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: ContinuableBaseOnboardingView())
+        super.init(viewMaker: ContinuableBaseOnboardingView(),
+                   analytics: viewModel.analytics,
+                   analyticsScreenType: viewModel.analyticsScreenType)
     }
     
     override func viewDidLoad() {

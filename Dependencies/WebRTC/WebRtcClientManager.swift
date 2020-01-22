@@ -37,6 +37,7 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     private let peerConnectionFactory: PeerConnectionFactoryProtocol
     private let appStateProvider: ApplicationStateProvider
     private let connectionDelegateProxy: RTCPeerConnectionDelegateProxy
+    private let analytics: AnalyticsManager
 
     private var streamMediaConstraints: RTCMediaConstraints {
         return RTCMediaConstraints(
@@ -50,10 +51,13 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
         )
     }
 
-    init(peerConnectionFactory: PeerConnectionFactoryProtocol, appStateProvider: ApplicationStateProvider) {
+    init(peerConnectionFactory: PeerConnectionFactoryProtocol,
+         appStateProvider: ApplicationStateProvider,
+         analytics: AnalyticsManager) {
         self.peerConnectionFactory = peerConnectionFactory
         self.appStateProvider = appStateProvider
         self.connectionDelegateProxy = RTCPeerConnectionDelegateProxy()
+        self.analytics = analytics
         connectionStatusObservable = connectionStatusPublisher.asObservable()
         super.init()
         setup()
@@ -72,6 +76,16 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
         connectionDelegateProxy.onSignalingStateChanged = { [weak self] _, state in
             let newState = state.toSocketConnectionState()
             self?.connectionStatusPublisher.onNext(newState)
+        }
+
+        connectionDelegateProxy.onIceConnectionStateChanged = { [weak self] _, state in
+            switch state {
+            case .connected:
+                self?.analytics.logEvent(.videoStreamConnected)
+            case .failed:
+                self?.analytics.logEvent(.videoStreamError)
+            default: break
+            }
         }
 
         appStateProvider.willEnterBackground

@@ -16,7 +16,7 @@ enum DeviceSearchResult: Equatable {
     case failure(DeviceSearchError)
 }
 
-final class OnboardingClientSetupViewModel {
+final class OnboardingClientSetupViewModel: BaseViewModel {
 
     private enum PairingError: Error {
         case timeout
@@ -45,10 +45,12 @@ final class OnboardingClientSetupViewModel {
          urlConfiguration: URLConfiguration,
          activityLogEventsRepository: ActivityLogEventsRepositoryProtocol,
          webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
-         serverErrorLogger: ServerErrorLogger) {
+         serverErrorLogger: ServerErrorLogger,
+         analytics: AnalyticsManager) {
         self.netServiceClient = netServiceClient
         self.webSocketEventMessageService = webSocketEventMessageService
         self.errorLogger = serverErrorLogger
+        super.init(analytics: analytics)
         setupRx()
     }
 

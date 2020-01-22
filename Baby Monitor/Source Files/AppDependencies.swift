@@ -53,7 +53,8 @@ final class AppDependencies {
     private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = {
         WebRtcClientManager(
             peerConnectionFactory: self.peerConnectionFactory,
-            appStateProvider: NotificationCenter.default
+            appStateProvider: NotificationCenter.default,
+            analytics: self.analytics
         )
     }
     
@@ -136,7 +137,8 @@ final class AppDependencies {
     
     private(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService(
         networkDispatcher: networkDispatcher,
-        serverKeyObtainable: serverKeyObtainable)
+        serverKeyObtainable: serverKeyObtainable,
+        analytics: analytics)
     
     private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher(
         urlSession: URLSession(configuration: .default),
@@ -203,7 +205,8 @@ final class AppDependencies {
             urlConfiguration: urlConfiguration,
             webSocketWebRtcService: webSocketWebRtcService,
             localNotificationService: localNotificationService,
-            serverService: serverService)
+            serverService: serverService,
+            analytics: analytics)
         resetter.localResetCompletionObservable
             .subscribe(onNext: { [weak self] resetCompleted in
                 self?.socketCommunicationsManager.terminate()
@@ -211,4 +214,9 @@ final class AppDependencies {
             .disposed(by: bag)
         return resetter
     }()
+
+    // MARK: - Analytics
+
+    /// Application manager of analytics services.
+    private(set) var analytics = AnalyticsManager()
 }
