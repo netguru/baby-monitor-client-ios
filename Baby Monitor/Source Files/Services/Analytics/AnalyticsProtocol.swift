@@ -5,7 +5,6 @@
 import Foundation
 
 enum AnalyticsScreenType: String {
-    case unrecognized
     case onboarding = "Onboarding"
     case specifyDeviceInfoOnboarding = "InfoAboutDevices"
     case specifyDevice = "SpecifyDevice"
