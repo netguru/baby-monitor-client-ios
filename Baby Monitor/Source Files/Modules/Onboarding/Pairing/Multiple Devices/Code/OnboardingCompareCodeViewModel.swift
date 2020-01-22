@@ -7,10 +7,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class OnboardingCompareCodeViewModel {
+final class OnboardingCompareCodeViewModel: BaseViewModel {
 
     let bag = DisposeBag()
-    let analytics: AnalyticsManager
     let title: String = Localizable.Onboarding.connecting
     let description = Localizable.Onboarding.Connecting.compareCodeDescription
     let codeText = String(Int.random(in: 1000...9999))
@@ -29,7 +28,7 @@ final class OnboardingCompareCodeViewModel {
         self.urlConfiguration = urlConfiguration
         self.serverURL = serverURL
         self.activityLogEventsRepository = activityLogEventsRepository
-        self.analytics = analytics
+        super.init(analytics: analytics)
         setupBindings()
     }
 

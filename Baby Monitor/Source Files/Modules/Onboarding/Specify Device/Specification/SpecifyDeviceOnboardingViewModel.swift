@@ -6,17 +6,12 @@
 import Foundation
 import RxSwift
 
-final class SpecifyDeviceOnboardingViewModel {
+final class SpecifyDeviceOnboardingViewModel: BaseViewModel {
 
-    let analytics: AnalyticsManager
     var didSelectParent: (() -> Void)?
     var didSelectBaby: (() -> Void)?
     private(set) var cancelTap: Observable<Void>?
     let bag = DisposeBag()
-
-    init(analytics: AnalyticsManager) {
-        self.analytics = analytics
-    }
 
     func selectParent() {
         didSelectParent?()

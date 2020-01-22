@@ -134,7 +134,8 @@ final class ServerViewController: BaseViewController {
         nightModeButton.rx.tap.asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.nightModeOverlay.isHidden.toggle()
-            self.viewModel.analytics.logEvent(.nightMode(isEnabled: !self.nightModeOverlay.isHidden))
+            let analytics = self.viewModel.analytics
+            analytics.logEvent(.nightMode(isEnabled: !self.nightModeOverlay.isHidden))
         })
         .disposed(by: bag)
         disabledVideoView.tapGestureRecognizer

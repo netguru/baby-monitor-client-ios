@@ -6,7 +6,7 @@
 import Foundation
 import RxSwift
 
-final class OnboardingContinuableViewModel {
+final class OnboardingContinuableViewModel: BaseViewModel {
     
     enum Role: Equatable {
         case baby(BabyRole)
@@ -26,7 +26,6 @@ final class OnboardingContinuableViewModel {
     }
     
     let role: Role
-    let analytics: AnalyticsManager
     let bag = DisposeBag()
     
     var analyticsScreenType: AnalyticsScreenType {
@@ -179,7 +178,7 @@ final class OnboardingContinuableViewModel {
     
     init(role: Role, analytics: AnalyticsManager) {
         self.role = role
-        self.analytics = analytics
+        super.init(analytics: analytics)
     }
     
     func attachInput(buttonTap: Observable<Void>, cancelButtonTap: Observable<Void>) {

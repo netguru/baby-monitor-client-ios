@@ -7,7 +7,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ActivityLogViewModel {
+final class ActivityLogViewModel: BaseViewModel {
     
     typealias DataType = ActivityLogEvent
     
@@ -16,7 +16,6 @@ final class ActivityLogViewModel {
     var numberOfSections: Int {
         return currentSections.count
     }
-    let analytics: AnalyticsManager
     private(set) var baby: Observable<Baby>
     private(set) var currentSections: [GeneralSection<ActivityLogEvent>] = []
     
@@ -28,7 +27,7 @@ final class ActivityLogViewModel {
          analytics: AnalyticsManager) {
         self.databaseRepository = databaseRepository
         self.baby = databaseRepository.babyUpdateObservable
-        self.analytics = analytics
+        super.init(analytics: analytics)
         rxSetup()
     }
     

@@ -6,7 +6,7 @@
 import Foundation
 import RxSwift
 
-final class ServerViewModel {
+final class ServerViewModel: BaseViewModel {
     
     var stream: Observable<MediaStream> {
         return serverService.localStreamObservable
@@ -17,14 +17,13 @@ final class ServerViewModel {
     var onAudioMicrophoneServiceError: (() -> Void)?
     var settingsTap: Observable<Void>?
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> { serverService.connectionStatusObservable }
-    let analytics: AnalyticsManager
     let bag = DisposeBag()
     
     private let serverService: ServerServiceProtocol
     
     init(serverService: ServerServiceProtocol, analytics: AnalyticsManager) {
         self.serverService = serverService
-        self.analytics = analytics
+        super.init(analytics: analytics)
         rxSetup()
     }
     
