@@ -7,14 +7,14 @@ import UIKit
 
 class BasePageViewController: UIPageViewController {
 
-    let analytics: AnalyticsManager
-
-    let analyticsScreenType: AnalyticsScreenType
-
     var className: String {
         return String(describing: type(of: self))
     }
 
+    private let analytics: AnalyticsManager
+
+    private let analyticsScreenType: AnalyticsScreenType
+    
     init(analytics: AnalyticsManager, analyticsScreenType: AnalyticsScreenType) {
         self.analytics = analytics
         self.analyticsScreenType = analyticsScreenType

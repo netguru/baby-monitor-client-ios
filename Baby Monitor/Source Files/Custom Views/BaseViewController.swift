@@ -10,14 +10,14 @@ import UIKit
 /// In the future it will probably have more features.
 class BaseViewController: UIViewController {
 
-    let analytics: AnalyticsManager?
-
-    let analyticsScreenType: AnalyticsScreenType?
-
     var className: String {
         return String(describing: type(of: self))
     }
 
+    private let analytics: AnalyticsManager?
+
+    private let analyticsScreenType: AnalyticsScreenType?
+    
     init(analytics: AnalyticsManager?, analyticsScreenType: AnalyticsScreenType?) {
         self.analytics = analytics
         self.analyticsScreenType = analyticsScreenType
