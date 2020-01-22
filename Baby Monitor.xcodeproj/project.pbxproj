@@ -227,6 +227,8 @@
 		9574DBDD23A93543000D58A8 /* String+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */; };
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
 		95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */; };
+		95BAA38823D80BD50016A194 /* AnalyticsScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */; };
+		95BAA38A23D80BE90016A194 /* AnalyticsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */; };
 		95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C382390317000AC559D /* AlertPresenter.swift */; };
 		95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */; };
 		95E75C3D2390318500AC559D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C3C2390318500AC559D /* Logger.swift */; };
@@ -538,9 +540,9 @@
 		95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewController.swift; sourceTree = "<group>"; };
 		95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingView.swift; sourceTree = "<group>"; };
 		95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewModel.swift; sourceTree = "<group>"; };
-		9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsProtocol.swift; sourceTree = "<group>"; };
+		9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyticsProtocol.swift; path = "../New Group/AnalyticsProtocol.swift"; sourceTree = "<group>"; };
 		9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
-		9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsTracker.swift; sourceTree = "<group>"; };
+		9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseAnalyticsTracker.swift; path = "../New Group1/FirebaseAnalyticsTracker.swift"; sourceTree = "<group>"; };
 		9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingCompareCodeViewController.swift; path = "../New Group/OnboardingCompareCodeViewController.swift"; sourceTree = "<group>"; };
 		9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeView.swift; sourceTree = "<group>"; };
 		9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeViewModel.swift; sourceTree = "<group>"; };
@@ -554,6 +556,8 @@
 		9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NSAttributedString.swift"; sourceTree = "<group>"; };
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
 		95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetServiceDescriptorTests.swift; path = "../New Group/NetServiceDescriptorTests.swift"; sourceTree = "<group>"; };
+		95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreenType.swift; sourceTree = "<group>"; };
+		95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventType.swift; sourceTree = "<group>"; };
 		95E75C382390317000AC559D /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionProvider.swift; sourceTree = "<group>"; };
 		95E75C3C2390318500AC559D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -1375,9 +1379,9 @@
 		9541FDC223D6BB0100DDC1A3 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */,
 				9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */,
-				9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */,
+				95BAA38B23D80C460016A194 /* Protocol */,
+				95BAA38C23D80C590016A194 /* Firebase */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -1407,6 +1411,24 @@
 				95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */,
 			);
 			path = NetService;
+			sourceTree = "<group>";
+		};
+		95BAA38B23D80C460016A194 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */,
+				95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */,
+				95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		95BAA38C23D80C590016A194 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		95E75C372390317000AC559D /* Other */ = {
@@ -1908,6 +1930,7 @@
 				4E63DC1B21E39D4B00604167 /* Request.swift in Sources */,
 				A7D756342236B03D00F9893E /* SpectrogramOp.swift in Sources */,
 				A18681912209A1A60069E521 /* SendRecordingsIntroFeatureView.swift in Sources */,
+				95BAA38A23D80BE90016A194 /* AnalyticsEventType.swift in Sources */,
 				95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */,
 				8A7A611B21A59E5000488ED4 /* MemoryCleaner.swift in Sources */,
 				8A7A611C21A59E5000488ED4 /* ActivityLogEvent.swift in Sources */,
@@ -2098,6 +2121,7 @@
 				8A8EF94F219D55B60098A27B /* MessageStreamProtocol.swift in Sources */,
 				9541FDC923D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift in Sources */,
 				3A3C61AC223EC2140020FD3D /* StreamVideoView.swift in Sources */,
+				95BAA38823D80BD50016A194 /* AnalyticsScreenType.swift in Sources */,
 				95368F582209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 				8A7A608421A4027E00488ED4 /* ErrorHandler.swift in Sources */,
