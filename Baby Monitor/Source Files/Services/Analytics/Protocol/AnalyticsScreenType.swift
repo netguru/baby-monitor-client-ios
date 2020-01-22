@@ -2,6 +2,7 @@
 //  AnalyticsScreenType.swift
 //  Baby Monitor
 
+/// The screens to be logged into analytics service.
 enum AnalyticsScreenType: String {
     case onboarding = "Onboarding"
     case specifyDeviceInfoOnboarding = "InfoAboutDevices"

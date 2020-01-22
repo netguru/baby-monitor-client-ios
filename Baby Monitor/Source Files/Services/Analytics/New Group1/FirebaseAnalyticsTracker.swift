@@ -4,6 +4,7 @@
 
 import FirebaseAnalytics
 
+/// The analytics service using Firebase.
 struct FirebaseAnalyticsTracker: AnalyticsProtocol {
 
     func logScreen(name: String, className: String) {

@@ -4,6 +4,7 @@
 
 import Foundation
 
+/// The custom events to be logged in to analytics service.
 enum AnalyticsEventType {
     case notificationSent
     case resetApp
@@ -12,6 +13,7 @@ enum AnalyticsEventType {
     case videoStreamConnected
     case videoStreamError
 
+    /// The custom name of the event.
     var eventName: String {
         switch self {
         case .notificationSent: return "notification_sent"
@@ -23,6 +25,7 @@ enum AnalyticsEventType {
         }
     }
 
+    /// The parameters to be passed with the event.
     var parameters: [String: Any]? {
         switch self {
         case .resetApp:

@@ -14,7 +14,11 @@ class BasePageViewController: UIPageViewController {
     private let analytics: AnalyticsManager
 
     private let analyticsScreenType: AnalyticsScreenType
-    
+
+    /// Initializes the view controller.
+    /// - Parameters:
+    ///     - analytics: Analytics manager for tracking screens appearance.
+    ///     - analyticsScreenType: The type of the screen in terms of analytics tracking.
     init(analytics: AnalyticsManager, analyticsScreenType: AnalyticsScreenType) {
         self.analytics = analytics
         self.analyticsScreenType = analyticsScreenType
