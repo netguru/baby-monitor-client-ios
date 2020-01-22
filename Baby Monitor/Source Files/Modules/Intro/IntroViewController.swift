@@ -10,9 +10,11 @@ class IntroViewController: TypedPageViewController<IntroView>, UIPageViewControl
     private var featureControllers: [UIViewController]
     private var pendingIndex = 0
     
-    init(featureControllers: [UIViewController]) {
+    init(featureControllers: [UIViewController], analytics: AnalyticsManager) {
         self.featureControllers = featureControllers
-        super.init(viewMaker: IntroView(numberOfPages: featureControllers.count))
+        super.init(viewMaker: IntroView(numberOfPages: featureControllers.count),
+                   analytics: analytics,
+                   analyticsScreenType: .onboarding)
     }
     
     override func viewDidLoad() {

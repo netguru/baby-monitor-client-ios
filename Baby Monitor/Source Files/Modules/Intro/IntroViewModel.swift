@@ -11,18 +11,12 @@ enum IntroFeature: Int, CaseIterable {
 
 final class IntroViewModel {
 
-    let analytics: AnalyticsManager
-
     // MARK: - Coordinator callback
     /// Performed when the user taps a left button at the bottom of the view
     var didSelectLeftAction: (() -> Void)?
 
     /// Performed when the user taps a right button at the bottom of the view
     var didSelectRightAction: (() -> Void)?
-
-    init(analytics: AnalyticsManager) {
-        self.analytics = analytics
-    }
     
     func selectLeftAction() {
         didSelectLeftAction?()

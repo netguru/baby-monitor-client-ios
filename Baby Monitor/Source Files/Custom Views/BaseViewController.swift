@@ -10,15 +10,15 @@ import UIKit
 /// In the future it will probably have more features.
 class BaseViewController: UIViewController {
 
-    let analytics: AnalyticsManager
+    let analytics: AnalyticsManager?
 
-    let analyticsScreenType: AnalyticsScreenType
+    let analyticsScreenType: AnalyticsScreenType?
 
     var className: String {
         return String(describing: type(of: self))
     }
 
-    init(analytics: AnalyticsManager, analyticsScreenType: AnalyticsScreenType) {
+    init(analytics: AnalyticsManager?, analyticsScreenType: AnalyticsScreenType?) {
         self.analytics = analytics
         self.analyticsScreenType = analyticsScreenType
         super.init(nibName: nil, bundle: nil)
@@ -31,7 +31,11 @@ class BaseViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        analytics.logScreen(analyticsScreenType, className: className)
+        guard let analytics = analytics, let screenType = analyticsScreenType else {
+            Logger.warning("Analytics is not implemented for the screen \(className)")
+            return
+        }
+        analytics.logScreen(screenType, className: className)
     }
 
     @available(*, unavailable, message: "Use init() instead")

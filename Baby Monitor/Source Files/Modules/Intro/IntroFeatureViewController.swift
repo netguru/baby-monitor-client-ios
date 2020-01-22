@@ -11,9 +11,7 @@ final class IntroFeatureViewController: TypedViewController<IntroFeatureView> {
     
     init(viewModel: IntroViewModel, role: IntroFeature) {
         self.viewModel = viewModel
-        super.init(viewMaker: IntroFeatureView(role: role),
-                   analytics: viewModel.analytics,
-                   analyticsScreenType: .onboarding)
+        super.init(viewMaker: IntroFeatureView(role: role))
     }
     
     override func viewDidLoad() {
