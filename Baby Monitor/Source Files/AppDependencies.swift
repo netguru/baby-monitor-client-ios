@@ -53,7 +53,8 @@ final class AppDependencies {
     private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = {
         WebRtcClientManager(
             peerConnectionFactory: self.peerConnectionFactory,
-            appStateProvider: NotificationCenter.default
+            appStateProvider: NotificationCenter.default,
+            analytics: self.analytics
         )
     }
     

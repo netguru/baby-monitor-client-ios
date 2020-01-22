@@ -19,7 +19,8 @@ class WebRtcClientManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock(offerSdp: offerSdp)
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let appStateProvider = ApplicationStateProviderMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, appStateProvider: appStateProvider)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, appStateProvider: appStateProvider, analytics: analyticsMock)
 
         // When
         sut.sdpOffer
@@ -38,7 +39,8 @@ class WebRtcClientManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let appStateProvider = ApplicationStateProviderMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, appStateProvider: appStateProvider)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, appStateProvider: appStateProvider, analytics: analyticsMock)
 
         // When
         sut.startIfNeeded()
@@ -54,7 +56,8 @@ class WebRtcClientManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let appStateProvider = ApplicationStateProviderMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, appStateProvider: appStateProvider)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, appStateProvider: appStateProvider, analytics: analyticsMock)
 
         // When
         sut.startIfNeeded()
@@ -71,7 +74,8 @@ class WebRtcClientManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let appStateProvider = ApplicationStateProviderMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, appStateProvider: appStateProvider)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, appStateProvider: appStateProvider, analytics: analyticsMock)
 
         // When
         sut.startIfNeeded()
@@ -87,7 +91,8 @@ class WebRtcClientManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection)
         let appStateProvider = ApplicationStateProviderMock()
-        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, appStateProvider: appStateProvider)
+        let analyticsMock = AnalyticsManager(analyticsTracker: AnalyticsTrackerMock())
+        let sut = WebRtcClientManager(peerConnectionFactory: peerConnectionFactory, appStateProvider: appStateProvider, analytics: analyticsMock)
 
         // When
         sut.startIfNeeded()
