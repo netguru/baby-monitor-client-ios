@@ -211,6 +211,7 @@
 		95368F522209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */; };
 		95368F552209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */; };
 		95368F582209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */; };
+		953C853823D979530087A819 /* UserDefaults+Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953C853723D979530087A819 /* UserDefaults+Onboarding.swift */; };
 		9541FDC423D6BB3700DDC1A3 /* AnalyticsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */; };
 		9541FDC623D6BB6000DDC1A3 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */; };
 		9541FDC923D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */; };
@@ -542,6 +543,7 @@
 		95368F512209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewController.swift; sourceTree = "<group>"; };
 		95368F542209BC6A006E263A /* SpecifyDeviceInfoOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingView.swift; sourceTree = "<group>"; };
 		95368F572209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecifyDeviceInfoOnboardingViewModel.swift; sourceTree = "<group>"; };
+		953C853723D979530087A819 /* UserDefaults+Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Onboarding.swift"; sourceTree = "<group>"; };
 		9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnalyticsProtocol.swift; path = "../New Group/AnalyticsProtocol.swift"; sourceTree = "<group>"; };
 		9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseAnalyticsTracker.swift; path = "../New Group1/FirebaseAnalyticsTracker.swift"; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 				4EA2802521E8C6B100262E45 /* DateFormatter+Helpers.swift */,
 				4E7A1A8F21F1284B0015C3A3 /* UserDefaults+AppMode.swift */,
 				A1D36D4122E8364E002F6B2E /* UserDefaults+PushNotificationsKey.swift */,
+				953C853723D979530087A819 /* UserDefaults+Onboarding.swift */,
 				9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */,
 				A186818E2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift */,
 				A1C5E6E321FB0C9C00D93203 /* Date+Helpers.swift */,
@@ -2113,6 +2116,7 @@
 				A7D756312236B03D00F9893E /* MfccLayer.swift in Sources */,
 				95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
+				953C853823D979530087A819 /* UserDefaults+Onboarding.swift in Sources */,
 				4E36A3AE21B15F850058DAD2 /* OnboardingClientSetupViewController.swift in Sources */,
 				8A7A612721A59E8600488ED4 /* DirectoryDocumentsSavable.swift in Sources */,
 				8A7A612521A59E7500488ED4 /* FileManager+Size.swift in Sources */,

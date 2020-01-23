@@ -25,7 +25,11 @@ final class OnboardingCoordinator: Coordinator {
         navigationController.setNavigationBarHidden(true, animated: false)
         switch UserDefaults.appMode {
         case .none:
-            childCoordinators.first?.start()
+            if UserDefaults.didShowOnboarding {
+                showSpecifyDeviceInfoView()
+            } else {
+                childCoordinators.first?.start()
+            }
         case .baby, .parent:
             break
         }
@@ -36,6 +40,7 @@ final class OnboardingCoordinator: Coordinator {
         childCoordinators.append(introCoordinator)
         introCoordinator.onEnding = { [weak self] in
             self?.showSpecifyDeviceInfoView()
+            UserDefaults.didShowOnboarding = true
         }
         let pairingCoordinator = OnboardingPairingCoordinator(navigationController, appDependencies: appDependencies)
         pairingCoordinator.onEnding = { [weak self] in
@@ -77,7 +82,7 @@ final class OnboardingCoordinator: Coordinator {
             self?.connect(to: viewModel)
         })
         .disposed(by: viewModel.bag)
-        navigationController.pushViewController(viewController, animated: true)
+        navigationController.setViewControllers([viewController], animated: true)
     }
     private func showAllowSendingRecordingsView() {
         let viewModel = RecordingsIntroFeatureViewModel(analytics: appDependencies.analytics)
@@ -90,10 +95,6 @@ final class OnboardingCoordinator: Coordinator {
     }
 
     private func connect(to viewModel: SpecifyDeviceInfoOnboardingViewModel) {
-        viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
-            self.navigationController.popViewController(animated: true)
-        })
-        .disposed(by: viewModel.bag)
         viewModel.specifyDeviceTap?.subscribe(onNext: { [unowned self] in
             self.showInitialSetup()
         })

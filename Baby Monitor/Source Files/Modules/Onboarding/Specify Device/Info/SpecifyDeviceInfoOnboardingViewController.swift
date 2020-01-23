@@ -19,10 +19,8 @@ final class SpecifyDeviceInfoOnboardingViewController: TypedViewController<Speci
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = customView.cancelItemButton
         viewModel.attachInput(
-            specifyDeviceTap: customView.rx.specifyDeviceTap.asObservable(),
-            cancelTap: customView.rx.cancelTap.asObservable())
+            specifyDeviceTap: customView.rx.specifyDeviceTap.asObservable())
         customView.descriptionLabel.attributedText = viewModel.descriptionText
     }
     
