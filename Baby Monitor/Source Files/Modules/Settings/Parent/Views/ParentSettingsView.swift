@@ -207,7 +207,7 @@ final class ParentSettingsView: BaseSettingsView {
         let animation = CATransition()
         animation.duration = 0.3
         noiseSliderView.layer.add(animation, forKey: nil)
-        noiseSliderView.isHidden = soundDetectionModeControl.selectedSegmentIndex != soundDetectionModes.index(of: .noiseDetection)
+        noiseSliderView.isHidden = soundDetectionModeControl.selectedSegmentIndex != soundDetectionModes.firstIndex(of: .noiseDetection)
     }
 }
 

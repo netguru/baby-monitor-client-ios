@@ -1869,7 +1869,7 @@
 				TargetAttributes = {
 					EC82B555213EA072005CA395 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1130;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1881,7 +1881,7 @@
 					};
 					EC82B569213EA074005CA395 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1130;
 						TestTargetID = EC82B555213EA072005CA395;
 					};
 				};

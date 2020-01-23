@@ -87,9 +87,11 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
     ///
     /// - Returns: An IP address string or `nil` if conversion failed.
     private func ip(from data: Data) -> String? {
-        return data.withUnsafeBytes { (pointer: UnsafePointer<sockaddr>) in
+        return data.withUnsafeBytes { (pointer: UnsafeRawBufferPointer) -> String? in
             var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-            if getnameinfo(pointer, socklen_t(data.count), &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST) == 0 {
+            let unsafeBufferPointer = pointer.bindMemory(to: sockaddr.self)
+            if let unsafePointer = unsafeBufferPointer.baseAddress,
+                getnameinfo(unsafePointer, socklen_t(data.count), &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST) == 0 {
                 return String(cString: hostname)
             } else {
                 return nil
@@ -112,7 +114,7 @@ extension NetServiceClient: NetServiceBrowserDelegate {
     }
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
-        guard let indexToRemove = netServices.index(of: service) else { return }
+        guard let indexToRemove = netServices.firstIndex(of: service) else { return }
         netServices.remove(at: indexToRemove)
         var services = servicesVariable.value
         services.remove(at: indexToRemove)

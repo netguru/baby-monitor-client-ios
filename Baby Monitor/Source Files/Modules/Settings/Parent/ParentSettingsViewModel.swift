@@ -147,6 +147,6 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     }
 
     private func updateSelectedSoundMode() {
-        selectedVoiceModeIndexPublisher.onNext(soundDetectionModes.index(of: UserDefaults.soundDetectionMode) ?? 0)
+        selectedVoiceModeIndexPublisher.onNext(soundDetectionModes.firstIndex(of: UserDefaults.soundDetectionMode) ?? 0)
     }
 }
