@@ -82,11 +82,7 @@ final class OnboardingCoordinator: Coordinator {
             self?.connect(to: viewModel)
         })
         .disposed(by: viewModel.bag)
-        if UserDefaults.didShowOnboarding {
-            navigationController.setViewControllers([viewController], animated: true)
-        } else {
-            navigationController.pushViewController(viewController, animated: true)
-        }
+        navigationController.setViewControllers([viewController], animated: true)
     }
     private func showAllowSendingRecordingsView() {
         let viewModel = RecordingsIntroFeatureViewModel(analytics: appDependencies.analytics)
@@ -99,10 +95,6 @@ final class OnboardingCoordinator: Coordinator {
     }
 
     private func connect(to viewModel: SpecifyDeviceInfoOnboardingViewModel) {
-        viewModel.cancelTap?.subscribe(onNext: { [unowned self] in
-            self.navigationController.popViewController(animated: true)
-        })
-        .disposed(by: viewModel.bag)
         viewModel.specifyDeviceTap?.subscribe(onNext: { [unowned self] in
             self.showInitialSetup()
         })

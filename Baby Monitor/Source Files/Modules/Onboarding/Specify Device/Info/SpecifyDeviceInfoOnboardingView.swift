@@ -8,11 +8,7 @@ import RxCocoa
 import RxSwift
 
 final class SpecifyDeviceInfoOnboardingView: BaseView {
-    
-    let backItemButton = UIBarButtonItem(image: #imageLiteral(resourceName: "arrowBack"),
-                                           style: .plain,
-                                           target: nil,
-                                           action: nil)
+
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -118,9 +114,5 @@ extension Reactive where Base: SpecifyDeviceInfoOnboardingView {
     
     var specifyDeviceTap: ControlEvent<Void> {
         return base.specifyButton.rx.tap
-    }
-    
-    var cancelTap: ControlEvent<Void> {
-        return base.backItemButton.rx.tap
     }
 }
