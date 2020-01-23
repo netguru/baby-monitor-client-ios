@@ -60,7 +60,7 @@ final class DashboardCoordinator: Coordinator {
         let viewModel = DashboardViewModel(socketCommunicationManager: appDependencies.socketCommunicationsManager,
                                            babyModelController: appDependencies.databaseRepository,
                                            webSocketEventMessageService: appDependencies.webSocketEventMessageService,
-                                           microphonePermissionProvider:  appDependencies.microphonePermissionProvider,
+                                           microphonePermissionProvider: appDependencies.microphonePermissionProvider,
                                            analytics: appDependencies.analytics)
         return viewModel
     }

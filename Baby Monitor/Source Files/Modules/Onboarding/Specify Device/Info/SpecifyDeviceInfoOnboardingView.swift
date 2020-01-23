@@ -9,7 +9,7 @@ import RxSwift
 
 final class SpecifyDeviceInfoOnboardingView: BaseView {
     
-    let cancelItemButton = UIBarButtonItem(image: #imageLiteral(resourceName: "arrowBack"),
+    let backItemButton = UIBarButtonItem(image: #imageLiteral(resourceName: "arrowBack"),
                                            style: .plain,
                                            target: nil,
                                            action: nil)
@@ -121,6 +121,6 @@ extension Reactive where Base: SpecifyDeviceInfoOnboardingView {
     }
     
     var cancelTap: ControlEvent<Void> {
-        return base.cancelItemButton.rx.tap
+        return base.backItemButton.rx.tap
     }
 }
