@@ -13,7 +13,7 @@ final class OnboardingTwoOptionsViewModel: BaseViewModel {
     var title: String {
         switch permissionProvider.deniedPermissions {
         case .cameraAndMicrophone:
-            return "Permissions denied"
+            return "Camera and microphone permissions denied"
         case .onlyCamera:
             return "Camera permission denied"
         case .onlyMicrophone:
