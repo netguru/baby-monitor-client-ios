@@ -2,8 +2,6 @@
 //  PermissionsProvider.swift
 //  Baby Monitor
 
-import AVFoundation
-
 /// Permission which user had denied to give to the app.
 enum DeniedPermissions {
     case onlyCamera, onlyMicrophone, cameraAndMicrophone, none
@@ -29,40 +27,4 @@ protocol PermissionsProvider {
 
     /// Permissions which the user had denied for the app.
     var deniedPermissions: DeniedPermissions { get }
-}
-
-//// Provides the information to the permissions which user was asked.
-final class PermissionsService: PermissionsProvider {
-
-    var isCameraAccessDecisionMade: Bool {
-        return AVCaptureDevice.authorizationStatus(for: .video) != .notDetermined
-    }
-
-    var isMicrophoneAccessDecisionMade: Bool {
-        return AVCaptureDevice.authorizationStatus(for: .audio) != .notDetermined
-    }
-
-    var isCameraAccessGranted: Bool {
-        return AVCaptureDevice.authorizationStatus(for: .video) == .authorized
-    }
-
-    var isMicrophoneAccessGranted: Bool {
-        return AVCaptureDevice.authorizationStatus(for: .audio) == .authorized
-    }
-
-    var isCameraAndMicrophoneAccessGranted: Bool {
-        return isCameraAccessGranted && isMicrophoneAccessGranted
-    }
-
-    var deniedPermissions: DeniedPermissions {
-        if isCameraAndMicrophoneAccessGranted {
-            return .none
-        } else if isCameraAccessGranted && !isMicrophoneAccessGranted {
-            return .onlyMicrophone
-        } else if !isCameraAccessGranted && isMicrophoneAccessGranted {
-            return .onlyCamera
-        } else {
-            return .cameraAndMicrophone
-        }
-    }
 }

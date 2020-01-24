@@ -235,6 +235,7 @@
 		95E75C3D2390318500AC559D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C3C2390318500AC559D /* Logger.swift */; };
 		95E83A1923DAA6FD00AECDE4 /* PermissionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E83A1723DAA6FD00AECDE4 /* PermissionsProvider.swift */; };
 		95E83A1A23DAA6FD00AECDE4 /* MicrophonePermissionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E83A1823DAA6FD00AECDE4 /* MicrophonePermissionProvider.swift */; };
+		95E83A1C23DABA9000AECDE4 /* PermissionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E83A1B23DABA9000AECDE4 /* PermissionsService.swift */; };
 		95F3756C239EA98A00692B3A /* ServerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3756B239EA98A00692B3A /* ServerServiceMock.swift */; };
 		95F3756F239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3756E239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift */; };
 		95F3757323A0017C00692B3A /* BaseProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3757223A0017C00692B3A /* BaseProgressIndicator.swift */; };
@@ -567,6 +568,7 @@
 		95E75C3C2390318500AC559D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		95E83A1723DAA6FD00AECDE4 /* PermissionsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionsProvider.swift; sourceTree = "<group>"; };
 		95E83A1823DAA6FD00AECDE4 /* MicrophonePermissionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionProvider.swift; sourceTree = "<group>"; };
+		95E83A1B23DABA9000AECDE4 /* PermissionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsService.swift; sourceTree = "<group>"; };
 		95F3756B239EA98A00692B3A /* ServerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerServiceMock.swift; sourceTree = "<group>"; };
 		95F3756E239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailablePairingDevicesTableViewCell.swift; sourceTree = "<group>"; };
 		95F3757223A0017C00692B3A /* BaseProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProgressIndicator.swift; sourceTree = "<group>"; };
@@ -1486,6 +1488,7 @@
 			isa = PBXGroup;
 			children = (
 				95E83A1723DAA6FD00AECDE4 /* PermissionsProvider.swift */,
+				95E83A1B23DABA9000AECDE4 /* PermissionsService.swift */,
 				95E83A1823DAA6FD00AECDE4 /* MicrophonePermissionProvider.swift */,
 			);
 			name = Permissions;
@@ -1961,6 +1964,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95E83A1C23DABA9000AECDE4 /* PermissionsService.swift in Sources */,
 				952A637C238DBCF300C3837A /* WebRtcVideoCapturer.swift in Sources */,
 				8A6098C421EBFDA700592B01 /* PeerConnectionFactoryProtocol.swift in Sources */,
 				4E7B091321E6148600EDDD11 /* URLSessionProtocol.swift in Sources */,
