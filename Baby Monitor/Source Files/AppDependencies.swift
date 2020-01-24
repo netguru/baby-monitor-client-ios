@@ -219,4 +219,9 @@ final class AppDependencies {
 
     /// Application manager of analytics services.
     private(set) var analytics = AnalyticsManager()
+
+    // MARK: - Permissions
+
+     /// Handling permissions, which user has granted.
+    private(set) var permissionsService: PermissionsProvider = PermissionsService()
 }

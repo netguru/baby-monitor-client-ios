@@ -232,8 +232,9 @@
 		95BAA38A23D80BE90016A194 /* AnalyticsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */; };
 		95BAA39123D83CEF0016A194 /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */; };
 		95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C382390317000AC559D /* AlertPresenter.swift */; };
-		95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */; };
 		95E75C3D2390318500AC559D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C3C2390318500AC559D /* Logger.swift */; };
+		95E83A1923DAA6FD00AECDE4 /* PermissionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E83A1723DAA6FD00AECDE4 /* PermissionsProvider.swift */; };
+		95E83A1A23DAA6FD00AECDE4 /* MicrophonePermissionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E83A1823DAA6FD00AECDE4 /* MicrophonePermissionProvider.swift */; };
 		95F3756C239EA98A00692B3A /* ServerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3756B239EA98A00692B3A /* ServerServiceMock.swift */; };
 		95F3756F239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3756E239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift */; };
 		95F3757323A0017C00692B3A /* BaseProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3757223A0017C00692B3A /* BaseProgressIndicator.swift */; };
@@ -563,8 +564,9 @@
 		95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventType.swift; sourceTree = "<group>"; };
 		95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
 		95E75C382390317000AC559D /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
-		95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionProvider.swift; sourceTree = "<group>"; };
 		95E75C3C2390318500AC559D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		95E83A1723DAA6FD00AECDE4 /* PermissionsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionsProvider.swift; sourceTree = "<group>"; };
+		95E83A1823DAA6FD00AECDE4 /* MicrophonePermissionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophonePermissionProvider.swift; sourceTree = "<group>"; };
 		95F3756B239EA98A00692B3A /* ServerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerServiceMock.swift; sourceTree = "<group>"; };
 		95F3756E239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailablePairingDevicesTableViewCell.swift; sourceTree = "<group>"; };
 		95F3757223A0017C00692B3A /* BaseProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProgressIndicator.swift; sourceTree = "<group>"; };
@@ -796,6 +798,7 @@
 				4E63DC0821E39CD700604167 /* ServerService.swift */,
 				955ADBC0236B323B004507F7 /* Errors */,
 				4E63DC1221E39D4B00604167 /* Networking */,
+				95E83A1623DAA6FD00AECDE4 /* Permissions */,
 				95E75C3E23903E9900AC559D /* Logger */,
 				4E63DC0C21E39CFA00604167 /* Notifications */,
 				95E75C372390317000AC559D /* Other */,
@@ -1465,7 +1468,6 @@
 			isa = PBXGroup;
 			children = (
 				95E75C382390317000AC559D /* AlertPresenter.swift */,
-				95E75C392390317000AC559D /* MicrophonePermissionProvider.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1479,6 +1481,16 @@
 			);
 			path = Logger;
 			sourceTree = "<group>";
+		};
+		95E83A1623DAA6FD00AECDE4 /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				95E83A1723DAA6FD00AECDE4 /* PermissionsProvider.swift */,
+				95E83A1823DAA6FD00AECDE4 /* MicrophonePermissionProvider.swift */,
+			);
+			name = Permissions;
+			path = "Baby Monitor/Source Files/Services/Permissions";
+			sourceTree = SOURCE_ROOT;
 		};
 		95F3756D239FB77400692B3A /* Multiple Devices */ = {
 			isa = PBXGroup;
@@ -1996,6 +2008,7 @@
 				8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */,
 				955ADBC3236B3263004507F7 /* ServerErrorLogger.swift in Sources */,
 				A16959DD22EAF4EF0088B2FE /* String+URL.swift in Sources */,
+				95E83A1923DAA6FD00AECDE4 /* PermissionsProvider.swift in Sources */,
 				8A4EC11822E739C20076722E /* UIActivityIndicatorView+Rx.swift in Sources */,
 				A1EC9775221AA51A00C27786 /* OnboardingAccessViewController.swift in Sources */,
 				A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */,
@@ -2111,7 +2124,6 @@
 				8A50AA3821E602F60058C63A /* PeerConnectionProtocol.swift in Sources */,
 				9546908C23A674A10077D2B5 /* OnboardingCompareCodeView.swift in Sources */,
 				A7D756312236B03D00F9893E /* MfccLayer.swift in Sources */,
-				95E75C3B2390317100AC559D /* MicrophonePermissionProvider.swift in Sources */,
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
 				4E36A3AE21B15F850058DAD2 /* OnboardingClientSetupViewController.swift in Sources */,
 				8A7A612721A59E8600488ED4 /* DirectoryDocumentsSavable.swift in Sources */,
@@ -2138,6 +2150,7 @@
 				8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */,
 				A1EC977D221ADC8100C27786 /* OnboardingClientSetupView.swift in Sources */,
 				95E75C3D2390318500AC559D /* Logger.swift in Sources */,
+				95E83A1A23DAA6FD00AECDE4 /* MicrophonePermissionProvider.swift in Sources */,
 				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
 				4E63DC1A21E39D4B00604167 /* ServerKeyObtainable.swift in Sources */,
 				8AFAE5AD219AAAAC007013BC /* MessageServerProtocol.swift in Sources */,
