@@ -77,7 +77,9 @@
 "onboarding.connecting.start-monitoring" = "Start monitoring";
 "onboarding.baby-setup.permissions-denided.text" = "BabyGuard is\nunable to work\nwithout permissions.";
 "onboarding.baby-setup.permissions-denided-question.text" = "Are you sure you want to deny\npermissions?";
-"onboarding.baby-setup.permissions-denided" = "Permissions denied";
+"onboarding.baby-setup.camera-and-microphone-permissions-denied" = "Camera and microphone permissions denied";
+"onboarding.baby-setup.camera-permission-denied" = "Camera permission denied";
+"onboarding.baby-setup.microphone-permission-denied" = "Microphone permission denied";
 "onboarding.baby-setup.access.camera.main-description" = "Tap “OK” to keep an\neye on your baby!";
 "onboarding.baby-setup.access.microphone.main-description" = "Tap “OK” if you want\nto know if your baby\nis crying";
 "onboarding.baby-setup.access.camera.second-description" = "Don't worry - we care about your safety. No video\nwill be recorded and we will protect you from any\ndata leakage.";
@@ -166,3 +168,4 @@
 
 //MARK: - Video Stream
 "video.disabled.description" = "Video preview disabled to conserve energy. Tap to enable it.";
+"video.camera-denied.description" = "The camera access has not been given to the app. Please, update the access in the Settings in order to monitor a baby.";

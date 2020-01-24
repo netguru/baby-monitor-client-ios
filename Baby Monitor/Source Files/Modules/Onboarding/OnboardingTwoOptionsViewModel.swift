@@ -13,11 +13,11 @@ final class OnboardingTwoOptionsViewModel: BaseViewModel {
     var title: String {
         switch permissionProvider.deniedPermissions {
         case .cameraAndMicrophone:
-            return "Camera and microphone permissions denied"
+            return Localizable.Onboarding.BabySetup.cameraAndMicrophonePermissionsDenied
         case .onlyCamera:
-            return "Camera permission denied"
+            return Localizable.Onboarding.BabySetup.cameraPermissionsDenied
         case .onlyMicrophone:
-            return "Microphone permission denied"
+            return Localizable.Onboarding.BabySetup.microphonePermissionsDenied
         case .none:
             assertionFailure("The view should not be loaded in the case when permissions granted")
             return ""
