@@ -116,12 +116,6 @@ final class ServerViewController: BaseViewController {
         #if ENV_PRODUCTION
         debugInfoLabel.isHidden = true
         #endif
-        if viewModel.permissionsProvider.isCameraAccessGranted {
-            disabledVideoView.updateDescription(with: Localizable.Video.videoDisabledDescription)
-        } else {
-            disabledVideoView.updateDescription(with: Localizable.Video.videoDisabledDueToCameraAccessDenied)
-        }
-
     }
     
     private func setupBindings() {

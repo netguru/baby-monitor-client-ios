@@ -20,6 +20,7 @@ final class DisabledVideoView: BaseView {
         label.font = UIFont.customFont(withSize: .body, weight: .light)
         label.textColor = .babyMonitorNonTranslucentWhite
         label.numberOfLines = 0
+        label.text = Localizable.Video.videoDisabledDescription
         label.textAlignment = .center
         return label
     }()
@@ -27,12 +28,6 @@ final class DisabledVideoView: BaseView {
     override init() {
         super.init()
         setup()
-    }
-
-    /// Updates the text in the description label.
-    /// - Parameter text: The text which will be set.
-    func updateDescription(with text: String) {
-        descriptionLabel.text = text
     }
 
     private func setup() {

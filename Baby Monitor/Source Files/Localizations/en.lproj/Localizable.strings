@@ -19,7 +19,7 @@
 "general.your-baby" = "Your baby";
 "general.lets-start" = "Let's start";
 "general.retry" = "Retry";
-"general.i-am-sure" = "I'm sure";
+"general.i-am-sure-exit" = "I'm sure, exit the app";
 "general.important" = "IMPORTANT: ";
 "general.version" = "Version";
 "general.decline" = "Decline";
@@ -168,4 +168,3 @@
 
 //MARK: - Video Stream
 "video.disabled.description" = "Video preview disabled to conserve energy. Tap to enable it.";
-"video.camera-denied.description" = "The camera access has not been given to the app. Please, update the access in the Settings in order to monitor a baby.";

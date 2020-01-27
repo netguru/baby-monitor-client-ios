@@ -126,10 +126,8 @@ final class OnboardingConnectingCoordinator: Coordinator {
             UIApplication.shared.open(settingsUrl)
         })
         .disposed(by: viewModel.bag)
-        viewModel.bottomButtonTap?.subscribe(onNext: { [weak self] in
-            self?.navigationController.dismiss(animated: true, completion: { [weak self] in
-                self?.showContinuableView(role: .baby(.putNextToBed))
-            })
+        viewModel.bottomButtonTap?.subscribe(onNext: { _ in
+            exit(0)
         })
         .disposed(by: viewModel.bag)
     }

@@ -24,7 +24,7 @@ enum Localizable {
         static let yourBaby = localized("general.your-baby")
         static let letsStart = localized("general.lets-start")
         static let retry = localized("general.retry")
-        static let imSure = localized("general.i-am-sure")
+        static let imSureExitApp = localized("general.i-am-sure-exit")
         static let important = localized("general.important")
         static let version = localized("general.version")
         static let decline = localized("general.decline")
@@ -210,7 +210,6 @@ enum Localizable {
 
     enum Video {
         static let videoDisabledDescription = localized("video.disabled.description")
-        static let videoDisabledDueToCameraAccessDenied = localized("video.camera-denied.description")
     }
 }
 

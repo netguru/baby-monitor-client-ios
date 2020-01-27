@@ -27,7 +27,7 @@ final class OnboardingTwoOptionsViewModel: BaseViewModel {
     let mainDescription = Localizable.Onboarding.BabySetup.permissionsDenidedText
     let secondaryDescription = NSAttributedString(string: Localizable.Onboarding.BabySetup.permissionsDenidedQuestion) 
     let upButtonTitle = Localizable.General.retry
-    let bottomButtonTitle = Localizable.General.imSure
+    let bottomButtonTitle = Localizable.General.imSureExitApp
     private let permissionProvider: PermissionsProvider
 
     init(permissionProvider: PermissionsProvider, analytics: AnalyticsManager) {
