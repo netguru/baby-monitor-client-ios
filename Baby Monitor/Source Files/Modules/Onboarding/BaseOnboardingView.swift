@@ -16,6 +16,7 @@ class BaseOnboardingView: BaseView {
         let view = UILabel()
         view.font = UIFont.customFont(withSize: .body, weight: .bold)
         view.textColor = .babyMonitorPurple
+        view.numberOfLines = 0
         return view
     }()
     private let mainDescriptionLabel: UILabel = {

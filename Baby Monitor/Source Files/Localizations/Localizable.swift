@@ -24,7 +24,7 @@ enum Localizable {
         static let yourBaby = localized("general.your-baby")
         static let letsStart = localized("general.lets-start")
         static let retry = localized("general.retry")
-        static let imSure = localized("general.i-am-sure")
+        static let imSureExitApp = localized("general.i-am-sure-exit")
         static let important = localized("general.important")
         static let version = localized("general.version")
         static let decline = localized("general.decline")
@@ -69,7 +69,9 @@ enum Localizable {
         
         enum BabySetup {
             static let permissionsDenidedText = localized("onboarding.baby-setup.permissions-denided.text")
-            static let permissionsDenided = localized("onboarding.baby-setup.permissions-denided")
+            static let cameraAndMicrophonePermissionsDenied = localized("onboarding.baby-setup.camera-and-microphone-permissions-denied")
+            static let cameraPermissionsDenied = localized("onboarding.baby-setup.camera-permission-denied")
+            static let microphonePermissionsDenied = localized("onboarding.baby-setup.microphone-permission-denied")
             static let permissionsDenidedQuestion = localized("onboarding.baby-setup.permissions-denided-question.text")
             static let accessCameraMainDescription = localized("onboarding.baby-setup.access.camera.main-description")
             static let accessCameraSecondDescription = localized("onboarding.baby-setup.access.camera.second-description")

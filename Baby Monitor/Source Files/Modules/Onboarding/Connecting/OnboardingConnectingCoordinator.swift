@@ -18,13 +18,11 @@ final class OnboardingConnectingCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var appDependencies: AppDependencies
     var onEnding: (() -> Void)?
-    var areAllRequiredPermissionsGranted: Bool {
-        let isCameraAccessGranted = AVCaptureDevice.authorizationStatus(for: .video) == .authorized
-        let isMicrophoneAccessGranted = AVCaptureDevice.authorizationStatus(for: .audio) == .authorized
-        return isCameraAccessGranted && isMicrophoneAccessGranted
-    }
     
     private weak var connectToWiFiViewController: UIViewController?
+    private var permissionsService: PermissionsProvider {
+        return appDependencies.permissionsService
+    }
     
     func start() {
         showContinuableView(role: .baby(.connectToWiFi))
@@ -49,14 +47,22 @@ final class OnboardingConnectingCoordinator: Coordinator {
         })
         .disposed(by: viewModel.bag)
         viewModel.nextButtonTap?.subscribe(onNext: { [weak self, weak viewModel] in
-            guard let role = viewModel?.role else {
+            guard let self = self, let role = viewModel?.role else {
                 return
             }
             switch role {
             case .baby(let babyRole):
                 switch babyRole {
                 case .connectToWiFi:
-                    self?.showAccessView(role: .camera)
+                    if !self.permissionsService.isCameraAccessDecisionMade {
+                        self.showAccessView(role: .camera)
+                    } else if !self.permissionsService.isMicrophoneAccessDecisionMade {
+                        self.showAccessView(role: .microphone)
+                    } else if self.permissionsService.isCameraAndMicrophoneAccessGranted {
+                        self.showContinuableView(role: .baby(.putNextToBed))
+                    } else {
+                        self.showPermissionsDeniedView()
+                    }
                 case .putNextToBed:
                     break
                 }
@@ -83,9 +89,15 @@ final class OnboardingConnectingCoordinator: Coordinator {
             }
             switch role {
             case .camera:
-                self.showAccessView(role: .microphone)
+                if !self.permissionsService.isMicrophoneAccessDecisionMade {
+                    self.showAccessView(role: .microphone)
+                } else if self.permissionsService.isMicrophoneAccessGranted {
+                    self.showContinuableView(role: .baby(.putNextToBed))
+                } else {
+                    self.showPermissionsDeniedView()
+                }
             case .microphone:
-                if self.areAllRequiredPermissionsGranted {
+                if self.permissionsService.isCameraAndMicrophoneAccessGranted {
                     self.showContinuableView(role: .baby(.putNextToBed))
                 } else {
                     self.showPermissionsDeniedView()
@@ -97,12 +109,14 @@ final class OnboardingConnectingCoordinator: Coordinator {
     }
     
     private func showPermissionsDeniedView() {
-        let viewModel = OnboardingTwoOptionsViewModel(analytics: appDependencies.analytics)
+        let viewModel = OnboardingTwoOptionsViewModel(permissionProvider: appDependencies.permissionsService,
+                                                      analytics: appDependencies.analytics)
         let viewController = OnboardingTwoOptionsViewController(viewModel: viewModel)
         viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
             self?.connect(to: viewModel)
         })
         .disposed(by: viewModel.bag)
+        viewController.modalPresentationStyle = .fullScreen
         navigationController.present(viewController, animated: true, completion: nil)
     }
     
@@ -112,10 +126,8 @@ final class OnboardingConnectingCoordinator: Coordinator {
             UIApplication.shared.open(settingsUrl)
         })
         .disposed(by: viewModel.bag)
-        viewModel.bottomButtonTap?.subscribe(onNext: { [weak self] in
-            self?.navigationController.dismiss(animated: true, completion: { [weak self] in
-                self?.showContinuableView(role: .baby(.putNextToBed))
-            })
+        viewModel.bottomButtonTap?.subscribe(onNext: { _ in
+            exit(0)
         })
         .disposed(by: viewModel.bag)
     }

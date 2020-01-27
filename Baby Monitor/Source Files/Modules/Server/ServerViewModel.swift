@@ -18,11 +18,15 @@ final class ServerViewModel: BaseViewModel {
     var settingsTap: Observable<Void>?
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> { serverService.connectionStatusObservable }
     let bag = DisposeBag()
+    var permissionsProvider: PermissionsProvider
     
     private let serverService: ServerServiceProtocol
     
-    init(serverService: ServerServiceProtocol, analytics: AnalyticsManager) {
+    init(serverService: ServerServiceProtocol,
+         permissionsProvider: PermissionsProvider,
+         analytics: AnalyticsManager) {
         self.serverService = serverService
+        self.permissionsProvider = permissionsProvider
         super.init(analytics: analytics)
         rxSetup()
     }
