@@ -10,9 +10,9 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 ## Tools & Services
 
 * Tools:
-	* Xcode 11.2.1 with latest iOS SDK (13.2)
+	* Xcode 11.3 with latest iOS SDK (13.3)
 	* [Carthage](https://github.com/Carthage/Carthage) 0.33 or higher
-	<!-- * [CocoaPods](https://github.com/CocoaPods/CocoaPods) 1.7.5 or higher -->
+	* [CocoaPods](https://github.com/CocoaPods/CocoaPods) 1.8.4 or higher
 * Services:
 	* [JIRA](https://netguru.atlassian.net/secure/RapidBoard.jspa?rapidView=620&view=detail)
 	* [Bitrise](https://app.bitrise.io/app/80545282645ad180)
