@@ -5,6 +5,7 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 ## Team
 
 * [Ania Pinderak](mailto:anna.pinderak@netguru.com) - Project Manager
+* [Anna-Mariia Shkarlinska](mailto:anna-mariia.shkarlinska@netguru.com) - iOS Developer
 * [Rafał Żurawski](mailto:rafal.zurawski@netguru.com) - QA
 
 ## Tools & Services
