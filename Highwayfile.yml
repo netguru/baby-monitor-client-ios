@@ -22,7 +22,7 @@ variables:
 bootstrap:
     default:
         - sh:
-            command: "wget '$(FIREBASE_PLIST_URL)' --output-document=$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist"
+            command: "wget '$(FIREBASE_PLIST_URL)' --output-document='$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist'"
         - carthage:
             command: "bootstrap"
             platforms:
@@ -81,10 +81,10 @@ deploy:
             team_name: $(ENV:APPSTORE_TEAM_NAME)
 
 # Report stage.
-report:
-  default:
-    - copy_artifacts:
-        path: $(ENV:BITRISE_DEPLOY_DIR)
-    - slack:
-        webhook: $(ENV:SLACK_WEBHOOK_URL)
-        channel: "#notify-baby-monitor"
+# report:
+#   default:
+#     - copy_artifacts:
+#         path: $(ENV:BITRISE_DEPLOY_DIR)
+#     - slack:
+#         webhook: $(ENV:SLACK_WEBHOOK_URL)
+#         channel: "#notify-baby-monitor"
