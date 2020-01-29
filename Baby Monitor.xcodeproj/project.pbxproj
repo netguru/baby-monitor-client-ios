@@ -216,9 +216,8 @@
 		9541FDC623D6BB6000DDC1A3 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */; };
 		9541FDC923D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */; };
 		9542020D23D87C9900966C78 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9542020C23D87C9900966C78 /* BaseViewModel.swift */; };
-		95462E9823E177B600354666 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95462E9523E177B500354666 /* GoogleService-Info-Staging.plist */; };
-		95462E9923E177B600354666 /* GoogleService-Info-Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95462E9623E177B500354666 /* GoogleService-Info-Production.plist */; };
-		95462E9A23E177B600354666 /* GoogleService-Info-Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95462E9723E177B600354666 /* GoogleService-Info-Development.plist */; };
+		95462E9C23E1B6D700354666 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95462E9B23E1B6D700354666 /* GoogleService-Info-Staging.plist */; };
+		95462E9E23E1B71900354666 /* GoogleService-Info-Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95462E9D23E1B71900354666 /* GoogleService-Info-Production.plist */; };
 		9546908A23A674330077D2B5 /* OnboardingCompareCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */; };
 		9546908C23A674A10077D2B5 /* OnboardingCompareCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */; };
 		9546908F23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */; };
@@ -550,9 +549,8 @@
 		9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseAnalyticsTracker.swift; path = "../New Group1/FirebaseAnalyticsTracker.swift"; sourceTree = "<group>"; };
 		9542020C23D87C9900966C78 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		95462E9523E177B500354666 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
-		95462E9623E177B500354666 /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
-		95462E9723E177B600354666 /* GoogleService-Info-Development.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Development.plist"; sourceTree = "<group>"; };
+		95462E9B23E1B6D700354666 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
+		95462E9D23E1B71900354666 /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
 		9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingCompareCodeViewController.swift; path = "../New Group/OnboardingCompareCodeViewController.swift"; sourceTree = "<group>"; };
 		9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeView.swift; sourceTree = "<group>"; };
 		9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeViewModel.swift; sourceTree = "<group>"; };
@@ -900,9 +898,8 @@
 		4E63DC1F21E485E300604167 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				95462E9723E177B600354666 /* GoogleService-Info-Development.plist */,
-				95462E9623E177B500354666 /* GoogleService-Info-Production.plist */,
-				95462E9523E177B500354666 /* GoogleService-Info-Staging.plist */,
+				95462E9D23E1B71900354666 /* GoogleService-Info-Production.plist */,
+				95462E9B23E1B6D700354666 /* GoogleService-Info-Staging.plist */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -1787,16 +1784,15 @@
 				20AFD00021F62B9900FC810F /* Rubik-Bold.ttf in Resources */,
 				4E5731AB2170C1A200DEAF0B /* Tests-Development.xcconfig in Resources */,
 				EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */,
-				95462E9A23E177B600354666 /* GoogleService-Info-Development.plist in Resources */,
 				4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */,
 				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
 				20AFCFFE21F62B8D00FC810F /* Rubik-Medium.ttf in Resources */,
 				EC82B561213EA074005CA395 /* Assets.xcassets in Resources */,
-				95462E9823E177B600354666 /* GoogleService-Info-Staging.plist in Resources */,
+				95462E9C23E1B6D700354666 /* GoogleService-Info-Staging.plist in Resources */,
 				4E95631E21638E2200289475 /* Localizable.strings in Resources */,
 				ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */,
 				20AFD00221F62BA200FC810F /* Rubik-Regular.ttf in Resources */,
-				95462E9923E177B600354666 /* GoogleService-Info-Production.plist in Resources */,
+				95462E9E23E1B71900354666 /* GoogleService-Info-Production.plist in Resources */,
 				4E5731AC2170C1A200DEAF0B /* Tests-Production.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
