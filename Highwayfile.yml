@@ -22,7 +22,7 @@ variables:
 bootstrap:
     default:
         - sh:
-            command: "wget '$(FIREBASE_PLIST_URL)' --output-document='$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist'"
+            command: "wget '$(FIREBASE_PLIST_URL)' -P '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist'"
         - carthage:
             command: "bootstrap"
             platforms:
