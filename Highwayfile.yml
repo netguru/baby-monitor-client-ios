@@ -24,7 +24,7 @@ bootstrap:
         - sh:
             command: "wget '$(FIREBASE_PLIST_URL)' -O '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist'"
         - sh:
-            command: "cp '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist' '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info.plist'"
+            command: "cp '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist' '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-Development.plist'"
         - carthage:
             command: "bootstrap"
             platforms:
