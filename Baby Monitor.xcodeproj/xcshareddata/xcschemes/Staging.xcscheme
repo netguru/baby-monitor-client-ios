@@ -23,11 +23,20 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Development"
+      buildConfiguration = "Staging"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      codeCoverageEnabled = "YES"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EC82B555213EA072005CA395"
+            BuildableName = "BabyMonitor.app"
+            BlueprintName = "Baby Monitor"
+            ReferencedContainer = "container:Baby Monitor.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -40,17 +49,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EC82B555213EA072005CA395"
-            BuildableName = "BabyMonitor.app"
-            BlueprintName = "Baby Monitor"
-            ReferencedContainer = "container:Baby Monitor.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Staging"
@@ -72,8 +70,6 @@
             ReferencedContainer = "container:Baby Monitor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Staging"
