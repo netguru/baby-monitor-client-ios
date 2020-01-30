@@ -1692,10 +1692,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC82B573213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby Monitor" */;
 			buildPhases = (
+				4E363B5321E487320085BB09 /* Setup Firebase Environment GoogleService-Info.plist */,
 				E8D010A476555CE6364C9AA2 /* [CP] Check Pods Manifest.lock */,
 				EC82B552213EA072005CA395 /* Sources */,
 				EC82B553213EA072005CA395 /* Frameworks */,
-				4E363B5321E487320085BB09 /* Setup Firebase Environment GoogleService-Info.plist */,
 				EC82B554213EA072005CA395 /* Resources */,
 				8AEAFBC5217765E4003E756F /* ShellScript */,
 				A26267CED18B34A62F4B5C27 /* [CP] Embed Pods Frameworks */,
