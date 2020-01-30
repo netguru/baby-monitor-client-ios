@@ -216,8 +216,9 @@
 		9541FDC623D6BB6000DDC1A3 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */; };
 		9541FDC923D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */; };
 		9542020D23D87C9900966C78 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9542020C23D87C9900966C78 /* BaseViewModel.swift */; };
-		95462E9C23E1B6D700354666 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95462E9B23E1B6D700354666 /* GoogleService-Info-Staging.plist */; };
-		95462E9E23E1B71900354666 /* GoogleService-Info-Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95462E9D23E1B71900354666 /* GoogleService-Info-Production.plist */; };
+		95462EAA23E1EA3800354666 /* GoogleService-Info-Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95462EA723E1EA3700354666 /* GoogleService-Info-Development.plist */; };
+		95462EAB23E1EA3800354666 /* GoogleService-Info-Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95462EA823E1EA3700354666 /* GoogleService-Info-Production.plist */; };
+		95462EAE23E2A50000354666 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95462EAD23E2A50000354666 /* GoogleService-Info.plist */; };
 		9546908A23A674330077D2B5 /* OnboardingCompareCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */; };
 		9546908C23A674A10077D2B5 /* OnboardingCompareCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */; };
 		9546908F23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */; };
@@ -230,6 +231,7 @@
 		9574DBDB23A93175000D58A8 /* NSAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */; };
 		9574DBDD23A93543000D58A8 /* String+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */; };
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
+		959E7C9A23E2A996006C5ED5 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 959E7C9923E2A996006C5ED5 /* GoogleService-Info-Staging.plist */; };
 		95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */; };
 		95BAA38823D80BD50016A194 /* AnalyticsScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */; };
 		95BAA38A23D80BE90016A194 /* AnalyticsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */; };
@@ -549,8 +551,9 @@
 		9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseAnalyticsTracker.swift; path = "../New Group1/FirebaseAnalyticsTracker.swift"; sourceTree = "<group>"; };
 		9542020C23D87C9900966C78 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		95462E9B23E1B6D700354666 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
-		95462E9D23E1B71900354666 /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
+		95462EA723E1EA3700354666 /* GoogleService-Info-Development.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Development.plist"; sourceTree = "<group>"; };
+		95462EA823E1EA3700354666 /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
+		95462EAD23E2A50000354666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingCompareCodeViewController.swift; path = "../New Group/OnboardingCompareCodeViewController.swift"; sourceTree = "<group>"; };
 		9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeView.swift; sourceTree = "<group>"; };
 		9546908E23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeViewModel.swift; sourceTree = "<group>"; };
@@ -563,6 +566,7 @@
 		9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Attributes.swift"; sourceTree = "<group>"; };
 		9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NSAttributedString.swift"; sourceTree = "<group>"; };
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
+		959E7C9923E2A996006C5ED5 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
 		95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetServiceDescriptorTests.swift; path = "../New Group/NetServiceDescriptorTests.swift"; sourceTree = "<group>"; };
 		95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreenType.swift; sourceTree = "<group>"; };
 		95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventType.swift; sourceTree = "<group>"; };
@@ -898,8 +902,10 @@
 		4E63DC1F21E485E300604167 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				95462E9D23E1B71900354666 /* GoogleService-Info-Production.plist */,
-				95462E9B23E1B6D700354666 /* GoogleService-Info-Staging.plist */,
+				95462EAD23E2A50000354666 /* GoogleService-Info.plist */,
+				959E7C9923E2A996006C5ED5 /* GoogleService-Info-Staging.plist */,
+				95462EA723E1EA3700354666 /* GoogleService-Info-Development.plist */,
+				95462EA823E1EA3700354666 /* GoogleService-Info-Production.plist */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -1781,18 +1787,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECB146E0213EA45E00C504FD /* App-Development.xcconfig in Resources */,
+				95462EAA23E1EA3800354666 /* GoogleService-Info-Development.plist in Resources */,
 				20AFD00021F62B9900FC810F /* Rubik-Bold.ttf in Resources */,
 				4E5731AB2170C1A200DEAF0B /* Tests-Development.xcconfig in Resources */,
+				95462EAE23E2A50000354666 /* GoogleService-Info.plist in Resources */,
 				EC82B564213EA074005CA395 /* LaunchScreen.storyboard in Resources */,
 				4E5731AD2170C1A200DEAF0B /* Tests-Staging.xcconfig in Resources */,
 				ECB146E1213EA45E00C504FD /* App-Staging.xcconfig in Resources */,
 				20AFCFFE21F62B8D00FC810F /* Rubik-Medium.ttf in Resources */,
 				EC82B561213EA074005CA395 /* Assets.xcassets in Resources */,
-				95462E9C23E1B6D700354666 /* GoogleService-Info-Staging.plist in Resources */,
 				4E95631E21638E2200289475 /* Localizable.strings in Resources */,
 				ECB146DF213EA45E00C504FD /* App-Production.xcconfig in Resources */,
 				20AFD00221F62BA200FC810F /* Rubik-Regular.ttf in Resources */,
-				95462E9E23E1B71900354666 /* GoogleService-Info-Production.plist in Resources */,
+				959E7C9A23E2A996006C5ED5 /* GoogleService-Info-Staging.plist in Resources */,
+				95462EAB23E1EA3800354666 /* GoogleService-Info-Production.plist in Resources */,
 				4E5731AC2170C1A200DEAF0B /* Tests-Production.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1864,7 +1872,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp \"${PROJECT_DIR}/${TARGET_NAME}/Supporting Files/Firebase/GoogleService-Info-$GOOGLE_SERVICES_CONFIGURATION.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n";
+			shellScript = "cp \"${PROJECT_DIR}/${TARGET_NAME}/Supporting Files/Firebase/GoogleService-Info-$GOOGLE_SERVICES_CONFIGURATION.plist\" \"${PROJECT_DIR}/${TARGET_NAME}/Supporting Files/Firebase/GoogleService-Info.plist\"\n";
 		};
 		8AEAFBC5217765E4003E756F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
