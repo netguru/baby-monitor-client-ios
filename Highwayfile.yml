@@ -23,6 +23,8 @@ bootstrap:
     default:
         - sh:
             command: "wget '$(FIREBASE_PLIST_URL)' -O '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist'"
+        - sh:
+            command: "cp '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist' '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info.plist'"
         - carthage:
             command: "bootstrap"
             platforms:
@@ -38,6 +40,7 @@ test:
         - xcode_test:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
+            skip_build: true
             settings: 
                 _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
 
