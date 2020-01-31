@@ -62,7 +62,7 @@ In case of lack of access:
 5. **IMPORTANT:** Open terminal and ignore changes being made to `GoogleService-Info.plist`:
 
    ```bash
-   git update-index --assume-unchanged "Baby Monitor/Supporting Files/GoogleService-Info.plist"
+   git update-index --assume-unchanged "Baby Monitor/Supporting Files/Firebase"
    ```
 
 6. Install pods through Bundler:
