@@ -51,13 +51,15 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 	carthage bootstrap --platform iOS --cache-builds
 	```
 
-4. 
-For Developers from Netguru:
-	Download from project's vault:
-	   - `.env` file into the project's root directory
-	   - `GoogleService-Info-Development`, `GoogleService-Info-Staging`, `GoogleService-Info-Production.plist` files to the location: `Baby Monitor/Supporting Files/Firebase/`
-In case of lack of access:
-	For a full integration please configure your own application in Firebase, download and paste `plist`s from there as well as a key to `.env`.
+4. For Developers from Netguru:
+
+Download from project's vault:
+- `.env` file into the project's root directory
+- `GoogleService-Info-Development`, `GoogleService-Info-Staging`, `GoogleService-Info-Production.plist` files to the location: `Baby Monitor/Supporting Files/Firebase/`
+	   
+In case of the lack of an access:
+
+For a full integration please configure your own application in Firebase, download and paste `plist`s from there as well as a key to `.env`.
 
 5. **IMPORTANT:** Open terminal and ignore changes being made to `GoogleService-Info.plist`:
 
