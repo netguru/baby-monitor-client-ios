@@ -548,8 +548,6 @@
 		9541FDC523D6BB6000DDC1A3 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		9541FDC823D6BB9400DDC1A3 /* FirebaseAnalyticsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseAnalyticsTracker.swift; path = "../New Group1/FirebaseAnalyticsTracker.swift"; sourceTree = "<group>"; };
 		9542020C23D87C9900966C78 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		95462EA723E1EA3700354666 /* GoogleService-Info-Development.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Development.plist"; sourceTree = "<group>"; };
-		95462EA823E1EA3700354666 /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
 		95462EAD23E2A50000354666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9546908923A674330077D2B5 /* OnboardingCompareCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingCompareCodeViewController.swift; path = "../New Group/OnboardingCompareCodeViewController.swift"; sourceTree = "<group>"; };
 		9546908B23A674A10077D2B5 /* OnboardingCompareCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompareCodeView.swift; sourceTree = "<group>"; };
@@ -563,7 +561,6 @@
 		9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Attributes.swift"; sourceTree = "<group>"; };
 		9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NSAttributedString.swift"; sourceTree = "<group>"; };
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
-		959E7C9923E2A996006C5ED5 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
 		95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetServiceDescriptorTests.swift; path = "../New Group/NetServiceDescriptorTests.swift"; sourceTree = "<group>"; };
 		95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreenType.swift; sourceTree = "<group>"; };
 		95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventType.swift; sourceTree = "<group>"; };
@@ -900,9 +897,6 @@
 			isa = PBXGroup;
 			children = (
 				95462EAD23E2A50000354666 /* GoogleService-Info.plist */,
-				959E7C9923E2A996006C5ED5 /* GoogleService-Info-Staging.plist */,
-				95462EA723E1EA3700354666 /* GoogleService-Info-Development.plist */,
-				95462EA823E1EA3700354666 /* GoogleService-Info-Production.plist */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
