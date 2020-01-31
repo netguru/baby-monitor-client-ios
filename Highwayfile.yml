@@ -25,7 +25,7 @@ bootstrap:
             # copying firebase plist from bitrise.
             command: "wget '$(FIREBASE_PLIST_URL)' -O '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist'"
         - sh:
-            # copying firebase development plist for buikding project for tests.
+            # copying firebase development plist for building project for tests.
             command: "cp '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist' '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-Development.plist'"
         - carthage:
             command: "bootstrap"
