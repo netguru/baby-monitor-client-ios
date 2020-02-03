@@ -50,7 +50,6 @@ class SocketCommunicationManagerTests: XCTestCase {
         sut.reset()
         
         //  Then:
-        XCTAssertEqual(webSocketWebRtcMockWrapper.isCleared, false)
         XCTAssertEqual(terminationObserver.events.count, 1)
         XCTAssertEqual(resetObserver.events.count, 1)
     }

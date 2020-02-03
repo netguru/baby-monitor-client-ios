@@ -21,7 +21,6 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
         self.connectionStatusObservable = statePublisher.asObservable()
     }
     
-    
     func startIfNeeded() {
         isStarted = true
         guard let localSdp = localSdp else {
