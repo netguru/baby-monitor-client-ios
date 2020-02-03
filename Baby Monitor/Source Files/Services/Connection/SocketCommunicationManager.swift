@@ -38,7 +38,6 @@ class DefaultSocketCommunicationManager: SocketCommunicationManager {
     func reset() {
         terminate()
         webSocketEventMessageService.start()
-        webSocketWebRtcService.get().start()
         communicationResetPublisher.onNext(())
         setupRx()
     }
