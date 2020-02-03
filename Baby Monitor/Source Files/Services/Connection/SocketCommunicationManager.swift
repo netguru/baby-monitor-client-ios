@@ -1,7 +1,7 @@
 import Foundation
 import RxSwift
 
-protocol SocketCommunicationManager: class, WebSocketConnectionStatusProvider {
+protocol SocketCommunicationManager: AnyObject, WebSocketConnectionStatusProvider {
     var communicationResetObservable: Observable<Void> { get }
     var communicationTerminationObservable: Observable<Void> { get }
     func reset()
@@ -27,8 +27,8 @@ class DefaultSocketCommunicationManager: SocketCommunicationManager {
     private let bag = DisposeBag()
     
     init(webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
-        webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
-        webSocket: ClearableLazyItem<WebSocketProtocol?>) {
+         webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
+         webSocket: ClearableLazyItem<WebSocketProtocol?>) {
         self.webSocketEventMessageService = webSocketEventMessageService
         self.webSocketWebRtcService = webSocketWebRtcService
         self.webSocket = webSocket

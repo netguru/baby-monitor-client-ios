@@ -23,8 +23,7 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     var mediaStream: Observable<MediaStream?> {
         return mediaStreamPublisher
     }
-    
-    
+
     private var isStarted = false
     private(set) var connectionStatusObservable: Observable<WebSocketConnectionStatus>
     private let sdpOfferPublisher = PublishSubject<SessionDescriptionProtocol>()
