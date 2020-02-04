@@ -32,7 +32,8 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     
     private var microphoneCapturer: MicrophoneCaptureProtocol
     private var microphoneRecorder: MicrophoneRecordProtocol
-    
+    private var microphoneTracker: MicrophoneFrequencyTracker
+
     private let errorSubject = PublishSubject<Error>()
     private let microphoneBufferReadableSubject = PublishSubject<AVAudioPCMBuffer>()
     private let directoryDocumentsSavableSubject = PublishSubject<DirectoryDocumentsSavable>()
@@ -45,6 +46,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         }
         microphoneCapturer = audioKitMicrophone.capture
         microphoneRecorder = audioKitMicrophone.record
+        microphoneTracker = audioKitMicrophone.tracker
         rxSetup()
     }
     
@@ -102,7 +104,9 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         microphoneCapturer.bufferReadable
             .throttle(Constants.recognizingSoundTimeLimit, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
             .subscribe(onNext: { [weak self] bufferReadable in
-                self?.microphoneBufferReadableSubject.onNext(bufferReadable)
+                guard let self = self,
+                    self.microphoneTracker.frequency > Constants.frequencyLimit else { return }
+                self.microphoneBufferReadableSubject.onNext(bufferReadable)
             }).disposed(by: disposeBag)
     }
 
