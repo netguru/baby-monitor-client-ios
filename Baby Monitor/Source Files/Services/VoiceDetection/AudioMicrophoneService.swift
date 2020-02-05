@@ -25,6 +25,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     
     lazy var errorObservable = errorSubject.asObservable()
     lazy var microphoneBufferReadableObservable = microphoneBufferReadableSubject.asObservable()
+    lazy var microphoneFrequencyObservable = microphoneFrequencySubject.asObservable()
     lazy var directoryDocumentsSavableObservable = directoryDocumentsSavableSubject.asObservable()
     
     private(set) var isCapturing = false
@@ -36,6 +37,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
 
     private let errorSubject = PublishSubject<Error>()
     private let microphoneBufferReadableSubject = PublishSubject<AVAudioPCMBuffer>()
+    private let microphoneFrequencySubject = PublishSubject<Double>()
     private let directoryDocumentsSavableSubject = PublishSubject<DirectoryDocumentsSavable>()
     
     private let disposeBag = DisposeBag()
@@ -104,8 +106,8 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         microphoneCapturer.bufferReadable
             .throttle(Constants.recognizingSoundTimeLimit, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
             .subscribe(onNext: { [weak self] bufferReadable in
-                guard let self = self,
-                    self.microphoneTracker.frequency > Constants.frequencyLimit else { return }
+                guard let self = self else { return }
+                self.microphoneFrequencySubject.onNext(self.microphoneTracker.frequency)
                 self.microphoneBufferReadableSubject.onNext(bufferReadable)
             }).disposed(by: disposeBag)
     }

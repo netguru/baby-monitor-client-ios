@@ -16,9 +16,18 @@ final class AppDependencies {
     private let bag = DisposeBag()
     
     // MARK: - Audio & Crying
-    
+
+    private(set) lazy var voiceDetectionService: VoiceDetectionServiceProtocol = VoiceDetectionService(
+        microphoneCaptureService: audioMicrophoneService,
+        microphoneRecordService: audioMicrophoneService,
+        noiseDetectionService: noiseDetectionService,
+        cryingDetectionService: cryingDetectionService,
+        cryingEventService: cryingEventService)
+
+    private(set) lazy var noiseDetectionService: NoiseDetectionServiceProtocol = NoiseDetectionService()
+
     /// Service for detecting baby's cry
-    private(set) lazy var cryingDetectionService: CryingDetectionServiceProtocol = CryingDetectionService(microphoneCaptureService: audioMicrophoneService)
+    private(set) lazy var cryingDetectionService: CryingDetectionServiceProtocol = CryingDetectionService()
     
     /// Service that takes care of appropriate controling: crying detection, audio recording and saving these events to realm database
     private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(
@@ -154,7 +163,7 @@ final class AppDependencies {
             messageServer: messageServer,
             netServiceServer: netServiceServer,
             webRtcDecoders: webRtcMessageDecoders,
-            cryingService: cryingEventService,
+            voiceDetectionService: voiceDetectionService,
             babyModelController: databaseRepository,
             notificationsService: localNotificationService,
             babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
