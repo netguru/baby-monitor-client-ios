@@ -75,7 +75,8 @@ final class VoiceDetectionService: VoiceDetectionServiceProtocol {
                 guard self?.mode == .machineLearningCryRecognition else { return }
                 self?.cryingDetectionService.predict(on: bufferReadable)
             }).disposed(by: disposeBag)
-        
+
+        noiseDetectionService.loggingInfoPublisher.bind(to: loggingInfoPublisher).disposed(by: disposeBag)
         cryingEventService.loggingInfoPublisher.bind(to: loggingInfoPublisher).disposed(by: disposeBag)
     }
 
