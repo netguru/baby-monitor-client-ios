@@ -37,6 +37,18 @@ final class ParentSettingsView: BaseSettingsView {
         return view
     }()
 
+    private let voiceDetectionModeControl: UISegmentedControl = {
+        let items = [Localizable.Settings.noiseDetection, Localizable.Settings.cryDetection]
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.selectedSegmentIndex = 0
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.customFont(withSize: .body),
+            .foregroundColor: UIColor.babyMonitorPurple
+        ]
+        segmentedControl.setTitleTextAttributes(attributes, for: .normal)
+        return segmentedControl
+    }()
+
     /// Initializes settings view
     override init(appVersion: String) {
         super.init(appVersion: appVersion)
@@ -50,7 +62,12 @@ final class ParentSettingsView: BaseSettingsView {
     }
 
     private func setupLayout() {
-        [editBabyPhotoImage, editBabyPhotoButton, babyNameTextField, editImageView, underline].forEach { addSubview($0) }
+        [editBabyPhotoImage,
+         editBabyPhotoButton,
+         babyNameTextField,
+         editImageView,
+         underline,
+         voiceDetectionModeControl].forEach { addSubview($0) }
         setupConstraints()
     }
 
@@ -84,6 +101,12 @@ final class ParentSettingsView: BaseSettingsView {
             $0.equalTo(babyNameTextField, .leading, .leading),
             $0.equal(.centerX),
             $0.equalConstant(.height, 1)
+        ]
+        }
+        voiceDetectionModeControl.addConstraints {[
+            $0.equalTo(underline, .top, .bottom, constant: 30),
+            $0.equalTo(underline, .width, .width),
+            $0.equal(.centerX)
         ]
         }
         editBabyPhotoButton.addConstraints {[
