@@ -35,7 +35,7 @@ final class ParentSettingsView: BaseSettingsView {
     fileprivate lazy var voiceDetectionModeControl: UISegmentedControl  = {
         let segmentedControl = UISegmentedControl(items: voiceDetectionTitles)
         segmentedControl.tintColor = .white
-        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.selectedSegmentIndex = selectedVoiceModeIndex
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.customFont(withSize: .body),
             .foregroundColor: UIColor.babyMonitorPurple
@@ -45,6 +45,7 @@ final class ParentSettingsView: BaseSettingsView {
     }()
 
     private let voiceDetectionTitles: [String]
+    private let selectedVoiceModeIndex: Int
 
     private let editImageView = UIImageView(image: #imageLiteral(resourceName: "edit"))
     
@@ -55,8 +56,9 @@ final class ParentSettingsView: BaseSettingsView {
     }()
 
     /// Initializes settings view
-    init(appVersion: String, voiceDetectionTitles: [String]) {
+    init(appVersion: String, voiceDetectionTitles: [String], selectedVoiceModeIndex: Int) {
         self.voiceDetectionTitles = voiceDetectionTitles
+        self.selectedVoiceModeIndex = selectedVoiceModeIndex
         super.init(appVersion: appVersion)
         setupLayout()
     }

@@ -5,7 +5,7 @@
 import RxSwift
 
 protocol VoiceDetectionServiceProtocol {
-    var mode: VoiceDetectionMode { get set }
+    var mode: VoiceDetectionMode { get }
     var cryingEventObservable: Observable<Void> { get }
     var loggingInfoPublisher: PublishSubject<String> { get }
     func startAnalysis() throws
@@ -18,7 +18,9 @@ final class VoiceDetectionService: VoiceDetectionServiceProtocol {
         case audioRecordServiceError
     }
 
-    var mode: VoiceDetectionMode = .noiseDetection
+    var mode: VoiceDetectionMode {
+        return UserDefaults.voiceDetectionMode
+    }
     
     var cryingEventObservable: Observable<Void> {
         return cryingEventService.cryingEventObservable

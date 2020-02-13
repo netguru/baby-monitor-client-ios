@@ -19,6 +19,9 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     var voiceDetectionTitles: [String] {
         return voiceDetectionModes.map { $0.localizedTitle }
     }
+    var selectedVoiceModeIndex: Int {
+        return voiceDetectionModes.index(of: UserDefaults.voiceDetectionMode) ?? 0
+    }
     private(set) var addPhotoTap: Observable<UIButton>?
     private(set) var voiceDetectionTap: Observable<Int>?
     private(set) var resetAppTap: Observable<Void>?
@@ -74,6 +77,7 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
             let voiceDetectionMode = self.voiceDetectionModes[index]
             let message = EventMessage(voiceDetectionMode: voiceDetectionMode)
             self.webSocketEventMessageService.sendMessage(message.toStringMessage())
+            UserDefaults.voiceDetectionMode = voiceDetectionMode
         }).disposed(by: bag)
     }
 }

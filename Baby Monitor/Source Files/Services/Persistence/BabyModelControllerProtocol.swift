@@ -6,7 +6,7 @@
 import Foundation
 import RxSwift
 
-protocol BabyModelControllerProtocol: class {
+protocol BabyModelControllerProtocol: AnyObject {
     
     /// Current baby observable
     var babyUpdateObservable: Observable<Baby> { get }

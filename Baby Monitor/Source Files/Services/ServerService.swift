@@ -136,7 +136,7 @@ final class ServerService: ServerServiceProtocol {
             remotePairingCodePublisher.onNext(pairingCode)
         }
         if let voiceDetectionMode = event.voiceDetectionMode {
-            voiceDetectionService.mode = voiceDetectionMode
+            UserDefaults.voiceDetectionMode = voiceDetectionMode
         }
     }
     
