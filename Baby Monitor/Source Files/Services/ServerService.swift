@@ -36,7 +36,7 @@ final class ServerService: ServerServiceProtocol {
     private let webRtcServerManager: WebRtcServerManagerProtocol
     private let messageServer: MessageServerProtocol
     private let netServiceServer: NetServiceServerProtocol
-    private let voiceDetectionService: VoiceDetectionServiceProtocol
+    private var voiceDetectionService: VoiceDetectionServiceProtocol
     private let babyModelController: BabyModelControllerProtocol
     private let disposeBag = DisposeBag()
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
@@ -134,6 +134,9 @@ final class ServerService: ServerServiceProtocol {
         }
         if let pairingCode = event.pairingCode {
             remotePairingCodePublisher.onNext(pairingCode)
+        }
+        if let voiceDetectionMode = event.voiceDetectionMode {
+            voiceDetectionService.mode = voiceDetectionMode
         }
     }
     

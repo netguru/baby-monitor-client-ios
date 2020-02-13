@@ -153,6 +153,8 @@
 "settings.cell.clear-data" = "Clear data";
 "settings.cell.clear-data-alert-message" = "Your current connection will be terminated. Are you sure you want to proceed?";
 "settings.babyNameTextField.placeholder" = "Your baby name";
+"settings.voiceMode.noiseDetection" = "Noise Detection";
+"settings.voiceMode.cryDetection" = "Cry Detection";
 "settings.rateButton.title" = "Rate us";
 "settings.resetButton.title" = "Reset the connection";
 "settings.allow-sending.message" = "Allow to send baby voice\nrecordings";

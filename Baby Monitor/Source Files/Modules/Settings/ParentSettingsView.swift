@@ -10,12 +10,14 @@ import RxCocoa
 final class ParentSettingsView: BaseSettingsView {
     
     fileprivate let editBabyPhotoButton = UIButton(type: .custom)
+
     fileprivate let editBabyPhotoImage: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "edit_baby_photo"))
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
+    
     fileprivate let babyNameTextField: UITextField = {
         let textField = UITextField()
         textField.returnKeyType = .done
@@ -30,16 +32,9 @@ final class ParentSettingsView: BaseSettingsView {
         return textField
     }()
 
-    private let editImageView = UIImageView(image: #imageLiteral(resourceName: "edit"))
-    private let underline: UIView = {
-        let view = UIView()
-        view.backgroundColor = .babyMonitorPurple
-        return view
-    }()
-
-    private let voiceDetectionModeControl: UISegmentedControl = {
-        let items = [Localizable.Settings.noiseDetection, Localizable.Settings.cryDetection]
-        let segmentedControl = UISegmentedControl(items: items)
+    fileprivate lazy var voiceDetectionModeControl: UISegmentedControl  = {
+        let segmentedControl = UISegmentedControl(items: voiceDetectionTitles)
+        segmentedControl.tintColor = .white
         segmentedControl.selectedSegmentIndex = 0
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.customFont(withSize: .body),
@@ -49,8 +44,19 @@ final class ParentSettingsView: BaseSettingsView {
         return segmentedControl
     }()
 
+    private let voiceDetectionTitles: [String]
+
+    private let editImageView = UIImageView(image: #imageLiteral(resourceName: "edit"))
+    
+    private let underline: UIView = {
+        let view = UIView()
+        view.backgroundColor = .babyMonitorPurple
+        return view
+    }()
+
     /// Initializes settings view
-    override init(appVersion: String) {
+    init(appVersion: String, voiceDetectionTitles: [String]) {
+        self.voiceDetectionTitles = voiceDetectionTitles
         super.init(appVersion: appVersion)
         setupLayout()
     }
@@ -136,6 +142,11 @@ extension Reactive where Base: ParentSettingsView {
         }
         return ControlProperty(values: name, valueSink: binder)
     }
+
+    var voiceModeTap: ControlProperty<Int> {
+        return base.voiceDetectionModeControl.rx.selectedSegmentIndex
+    }
+
     var editPhotoTap: Observable<UIButton> {
         return base.editBabyPhotoButton.rx.tap.map { [unowned base] in base.editBabyPhotoButton }
     }

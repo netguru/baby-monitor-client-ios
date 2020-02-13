@@ -15,7 +15,7 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
     init(viewModel: ParentSettingsViewModel, appVersionProvider: AppVersionProvider) {
         let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
-        super.init(viewMaker: ParentSettingsView(appVersion: appVersion),
+        super.init(viewMaker: ParentSettingsView(appVersion: appVersion, voiceDetectionTitles: viewModel.voiceDetectionTitles),
                    analytics: viewModel.analytics,
                    analyticsScreenType: .parentSettings)
     }
@@ -48,6 +48,7 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
         viewModel.attachInput(
             babyName: customView.rx.babyName.asObservable(),
             addPhotoTap: customView.rx.editPhotoTap.asObservable(),
+            voiceDetectionTap: customView.rx.voiceModeTap.asObservable(),
             resetAppTap: customView.rx.resetButtonTap.asObservable(),
             cancelTap: customView.rx.cancelButtonTap.asObservable()
         )
