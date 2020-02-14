@@ -155,6 +155,8 @@
 "settings.babyNameTextField.placeholder" = "Your baby name";
 "settings.voiceMode.noiseDetection" = "Noise Detection";
 "settings.voiceMode.cryDetection" = "Cry Detection";
+"settings.voiceMode.failed-title" = "Failed to set a new voice detection mode.";
+"settings.voiceMode.failed-description" = "Please try again and make sure the baby device is connected.";
 "settings.rateButton.title" = "Rate us";
 "settings.resetButton.title" = "Reset the connection";
 "settings.allow-sending.message" = "Allow to send baby voice\nrecordings";

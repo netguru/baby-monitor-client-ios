@@ -135,8 +135,10 @@ final class ServerService: ServerServiceProtocol {
         if let pairingCode = event.pairingCode {
             remotePairingCodePublisher.onNext(pairingCode)
         }
-        if let voiceDetectionMode = event.voiceDetectionMode {
+        if let voiceDetectionMode = event.voiceDetectionMode,
+            let confirmationId = event.confirmationId {
             UserDefaults.voiceDetectionMode = voiceDetectionMode
+            messageServer.send(message: EventMessage(confirmationId: confirmationId).toStringMessage())
         }
     }
     

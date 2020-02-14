@@ -187,6 +187,8 @@ enum Localizable {
         static let babyNamePlaceholder = localized("settings.babyNameTextField.placeholder")
         static let noiseDetection = localized("settings.voiceMode.noiseDetection")
         static let cryDetection = localized("settings.voiceMode.cryDetection")
+        static let voiceModeFailedTitle = localized("settings.voiceMode.failed-title")
+        static let voiceModeFailedDescription = localized("settings.voiceMode.failed-description")
         static let rateButtonTitle = localized("settings.rateButton.title")
         static let resetButtonTitle = localized("settings.resetButton.title")
         static let switchToServer = localized("settings.cell.switch-to-server")

@@ -224,6 +224,9 @@ final class AppDependencies {
         return resetter
     }()
 
+    /// Generator of random values.
+    let randomizer: RandomGenerator = Randomizer()
+
     // MARK: - Analytics
 
     /// Application manager of analytics services.

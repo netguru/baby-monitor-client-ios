@@ -63,6 +63,13 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
             .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
+        viewModel.settingVoiceDetectionFailedPublisher
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.errorHandler.showAlert(title: Localizable.Settings.voiceModeFailedTitle,
+                                                       message: Localizable.Settings.voiceModeFailedDescription,
+                                                       presenter: self)
+            }).disposed(by: bag)
     }
 
     private func handleRating() {

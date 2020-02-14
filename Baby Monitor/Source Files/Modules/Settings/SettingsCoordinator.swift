@@ -35,6 +35,8 @@ final class SettingsCoordinator: Coordinator {
     private func showParentSettings() {
         let viewModel = ParentSettingsViewModel(babyModelController: appDependencies.databaseRepository,
                                                 webSocketEventMessageService: appDependencies.webSocketEventMessageService,
+                                                errorHandler: appDependencies.errorHandler,
+                                                randomizer: appDependencies.randomizer,
                                                 analytics: appDependencies.analytics)
         let settingsViewController = ParentSettingsViewController(viewModel: viewModel, appVersionProvider: appDependencies.appVersionProvider)
         settingsViewController.rx.viewDidLoad

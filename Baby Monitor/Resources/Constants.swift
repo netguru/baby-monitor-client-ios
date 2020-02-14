@@ -28,6 +28,9 @@ enum Constants {
 
     /// An initial limit for noise frequncy that should be cut off.
     static let frequencyLimit: Double = 300
+
+    /// A limit for which should get a confirmation id back.
+    static let webSocketConfimationIDTimeLimit: TimeInterval = 5
     
     /// Represents a size class for constraint constants
     enum ResponsiveSizeClass {
