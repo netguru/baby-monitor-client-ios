@@ -28,20 +28,17 @@ final class VoiceDetectionService: VoiceDetectionServiceProtocol {
 
     var loggingInfoPublisher = PublishSubject<String>()
 
-    private let microphoneCaptureService: AudioMicrophoneCaptureServiceProtocol?
-    private let microphoneRecordService: AudioMicrophoneRecordServiceProtocol?
+    private let microphoneService: AudioMicrophoneServiceProtocol?
     private let noiseDetectionService: NoiseDetectionServiceProtocol
     private let cryingEventService: CryingEventsServiceProtocol
     private let cryingDetectionService: CryingDetectionServiceProtocol
     private let disposeBag = DisposeBag()
 
-    init(microphoneCaptureService: AudioMicrophoneCaptureServiceProtocol?,
-         microphoneRecordService: AudioMicrophoneRecordServiceProtocol?,
+    init(microphoneService: AudioMicrophoneServiceProtocol?,
          noiseDetectionService: NoiseDetectionServiceProtocol,
          cryingDetectionService: CryingDetectionServiceProtocol,
          cryingEventService: CryingEventsServiceProtocol) {
-        self.microphoneCaptureService = microphoneCaptureService
-        self.microphoneRecordService = microphoneRecordService
+        self.microphoneService = microphoneService
         self.noiseDetectionService = noiseDetectionService
         self.cryingDetectionService = cryingDetectionService
         self.cryingEventService = cryingEventService
@@ -49,22 +46,22 @@ final class VoiceDetectionService: VoiceDetectionServiceProtocol {
     }
     
     func startAnalysis() throws {
-        microphoneCaptureService?.startCapturing()
-        if microphoneRecordService == nil {
+        microphoneService?.startCapturing()
+        if microphoneService == nil {
             throw VoiceDetectionServiceError.audioRecordServiceError
         }
     }
 
     func stopAnalysis() {
-        microphoneCaptureService?.stopCapturing()
-        guard self.microphoneRecordService?.isRecording ?? false else {
+        microphoneService?.stopCapturing()
+        guard self.microphoneService?.isRecording ?? false else {
             return
         }
-        self.microphoneRecordService?.stopRecording()
+        self.microphoneService?.stopRecording()
     }
 
     func rxSetup() {
-        microphoneCaptureService?.microphoneFrequencyObservable
+        microphoneService?.microphoneFrequencyObservable
             .subscribe(onNext: { [weak self] frequency in
                 guard self?.mode == .noiseDetection else { return }
                 let roundedFrequency = String(format: "%.2f", frequency)
@@ -72,7 +69,7 @@ final class VoiceDetectionService: VoiceDetectionServiceProtocol {
                 self?.noiseDetectionService.handleFrequency(frequency)
             }).disposed(by: disposeBag)
 
-        microphoneCaptureService?.microphoneBufferReadableObservable
+        microphoneService?.microphoneBufferReadableObservable
             .subscribe(onNext: { [weak self] bufferReadable in
                 guard self?.mode == .machineLearningCryRecognition else { return }
                 self?.cryingDetectionService.predict(on: bufferReadable)

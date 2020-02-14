@@ -18,8 +18,7 @@ final class AppDependencies {
     // MARK: - Audio & Crying
 
     private(set) lazy var voiceDetectionService: VoiceDetectionServiceProtocol = VoiceDetectionService(
-        microphoneCaptureService: audioMicrophoneService,
-        microphoneRecordService: audioMicrophoneService,
+        microphoneService: audioMicrophoneService,
         noiseDetectionService: noiseDetectionService,
         cryingDetectionService: cryingDetectionService,
         cryingEventService: cryingEventService)

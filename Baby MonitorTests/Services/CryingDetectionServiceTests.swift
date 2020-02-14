@@ -10,8 +10,7 @@ import RxTest
 
 class CryingDetectionServiceTests: XCTestCase {
     
-    let audioMicrophoneServiceMock = AudioMicrophoneServiceMock()
-    lazy var cryingDetectionService = CryingDetectionService(microphoneCaptureService: audioMicrophoneServiceMock)
+    lazy var cryingDetectionService = CryingDetectionService()
     
 //    override func tearDown() {
 //        microphoneTrackerMock.simulatedFrequencyLimit = 2000

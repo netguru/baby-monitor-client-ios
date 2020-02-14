@@ -2,7 +2,6 @@
 //  UserDefaults+VoiceDetectionMode.swift
 //  Baby Monitor
 
-
 import Foundation
 
 extension UserDefaults {

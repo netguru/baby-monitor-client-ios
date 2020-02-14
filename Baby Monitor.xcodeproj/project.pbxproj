@@ -237,6 +237,9 @@
 		95BAA39123D83CEF0016A194 /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */; };
 		95C38B2123F580F200713F7B /* UserDefaults+VoiceDetectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2023F580F200713F7B /* UserDefaults+VoiceDetectionMode.swift */; };
 		95C38B2523F67D2E00713F7B /* Randomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2423F67D2E00713F7B /* Randomizer.swift */; };
+		95C38B2723F6903F00713F7B /* VoiceDetectionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2623F6903F00713F7B /* VoiceDetectionServiceTests.swift */; };
+		95C38B2923F6924C00713F7B /* NoiseDetectionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2823F6924C00713F7B /* NoiseDetectionServiceMock.swift */; };
+		95C38B2B23F699FB00713F7B /* RandomizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2A23F699FB00713F7B /* RandomizerMock.swift */; };
 		95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C382390317000AC559D /* AlertPresenter.swift */; };
 		95E75C3D2390318500AC559D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C3C2390318500AC559D /* Logger.swift */; };
 		95E83A1923DAA6FD00AECDE4 /* PermissionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E83A1723DAA6FD00AECDE4 /* PermissionsProvider.swift */; };
@@ -576,6 +579,9 @@
 		95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
 		95C38B2023F580F200713F7B /* UserDefaults+VoiceDetectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+VoiceDetectionMode.swift"; sourceTree = "<group>"; };
 		95C38B2423F67D2E00713F7B /* Randomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Randomizer.swift; sourceTree = "<group>"; };
+		95C38B2623F6903F00713F7B /* VoiceDetectionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDetectionServiceTests.swift; sourceTree = "<group>"; };
+		95C38B2823F6924C00713F7B /* NoiseDetectionServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseDetectionServiceMock.swift; sourceTree = "<group>"; };
+		95C38B2A23F699FB00713F7B /* RandomizerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizerMock.swift; sourceTree = "<group>"; };
 		95E75C382390317000AC559D /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		95E75C3C2390318500AC559D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		95E83A1723DAA6FD00AECDE4 /* PermissionsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionsProvider.swift; sourceTree = "<group>"; };
@@ -1106,8 +1112,10 @@
 				8A50AA9521E8DBA10058C63A /* SdpOfferDecoderMock.swift */,
 				8A50AA9921E8DBA20058C63A /* SessionDescriptionMock.swift */,
 				8A50AA9321E8DBA10058C63A /* WebRtcClientManagerMock.swift */,
+				95C38B2A23F699FB00713F7B /* RandomizerMock.swift */,
 				8A50AA9421E8DBA10058C63A /* WebRtcServerManagerMock.swift */,
 				8A7A614521A6AC7900488ED4 /* AudioMicrophoneServiceMock.swift */,
+				95C38B2823F6924C00713F7B /* NoiseDetectionServiceMock.swift */,
 				8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */,
 				A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */,
 				8A7A614621A6AC7900488ED4 /* DocumentsSavableMock.swift */,
@@ -1273,6 +1281,7 @@
 				8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */,
 				8A7A614D21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift */,
 				8A7A60CB21A40D2F00488ED4 /* CryingDetectionServiceTests.swift */,
+				95C38B2623F6903F00713F7B /* VoiceDetectionServiceTests.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -2236,6 +2245,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9514DA2823D72FC7001999E1 /* AnalyticsTrackerMock.swift in Sources */,
+				95C38B2723F6903F00713F7B /* VoiceDetectionServiceTests.swift in Sources */,
+				95C38B2923F6924C00713F7B /* NoiseDetectionServiceMock.swift in Sources */,
 				8A03503123684E6B00CF88C7 /* AsyncSchedulerMock.swift in Sources */,
 				8A7A615221A6B00F00488ED4 /* CryingEventsServiceMock.swift in Sources */,
 				8A50AAA421E8DBA20058C63A /* PeerConnectionMock.swift in Sources */,
@@ -2267,6 +2278,7 @@
 				8A42DB0E2179D8FB00BF5F1B /* URLUserDefaultsMock.swift in Sources */,
 				8A7A614921A6AC7900488ED4 /* CryingDetectionServiceMock.swift in Sources */,
 				8A8B76F221F1D8210063EF7E /* WebSocketEventMessageServiceMock.swift in Sources */,
+				95C38B2B23F699FB00713F7B /* RandomizerMock.swift in Sources */,
 				8A50AA8821E8D8D60058C63A /* MessageStreamProtocolTests.swift in Sources */,
 				8A50AAA221E8DBA20058C63A /* SdpAnswerDecoderMock.swift in Sources */,
 				8AA7CBCF2187401700FCF62A /* ActivityLogViewModelTests.swift in Sources */,
