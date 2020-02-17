@@ -17,7 +17,7 @@ final class AppDependencies {
     
     // MARK: - Audio & Crying
 
-    private(set) lazy var voiceDetectionService: VoiceDetectionServiceProtocol = VoiceDetectionService(
+    private(set) lazy var soundDetectionService: SoundDetectionServiceProtocol = SoundDetectionService(
         microphoneService: audioMicrophoneService,
         noiseDetectionService: noiseDetectionService,
         cryingDetectionService: cryingDetectionService,
@@ -162,7 +162,7 @@ final class AppDependencies {
             messageServer: messageServer,
             netServiceServer: netServiceServer,
             webRtcDecoders: webRtcMessageDecoders,
-            voiceDetectionService: voiceDetectionService,
+            soundDetectionService: soundDetectionService,
             babyModelController: databaseRepository,
             notificationsService: localNotificationService,
             babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder

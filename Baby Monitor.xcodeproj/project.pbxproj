@@ -230,15 +230,15 @@
 		9574DBDD23A93543000D58A8 /* String+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */; };
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
 		95985AE423E95D6D00A7EC41 /* NoiseDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95985AE323E95D6D00A7EC41 /* NoiseDetectionService.swift */; };
-		95AE6C3623E9611E00B8FB92 /* VoiceDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE6C3523E9611E00B8FB92 /* VoiceDetectionService.swift */; };
-		95AE6C3823E9615000B8FB92 /* VoiceDetectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE6C3723E9614F00B8FB92 /* VoiceDetectionMode.swift */; };
+		95AE6C3623E9611E00B8FB92 /* SoundDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE6C3523E9611E00B8FB92 /* SoundDetectionService.swift */; };
+		95AE6C3823E9615000B8FB92 /* SoundDetectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE6C3723E9614F00B8FB92 /* SoundDetectionMode.swift */; };
 		95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */; };
 		95BAA38823D80BD50016A194 /* AnalyticsScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */; };
 		95BAA38A23D80BE90016A194 /* AnalyticsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */; };
 		95BAA39123D83CEF0016A194 /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */; };
-		95C38B2123F580F200713F7B /* UserDefaults+VoiceDetectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2023F580F200713F7B /* UserDefaults+VoiceDetectionMode.swift */; };
+		95C38B2123F580F200713F7B /* UserDefaults+SoundDetectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2023F580F200713F7B /* UserDefaults+SoundDetectionMode.swift */; };
 		95C38B2523F67D2E00713F7B /* Randomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2423F67D2E00713F7B /* Randomizer.swift */; };
-		95C38B2723F6903F00713F7B /* VoiceDetectionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2623F6903F00713F7B /* VoiceDetectionServiceTests.swift */; };
+		95C38B2723F6903F00713F7B /* SoundDetectionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2623F6903F00713F7B /* SoundDetectionServiceTests.swift */; };
 		95C38B2923F6924C00713F7B /* NoiseDetectionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2823F6924C00713F7B /* NoiseDetectionServiceMock.swift */; };
 		95C38B2B23F699FB00713F7B /* RandomizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2A23F699FB00713F7B /* RandomizerMock.swift */; };
 		95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C382390317000AC559D /* AlertPresenter.swift */; };
@@ -573,15 +573,15 @@
 		9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NSAttributedString.swift"; sourceTree = "<group>"; };
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
 		95985AE323E95D6D00A7EC41 /* NoiseDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseDetectionService.swift; sourceTree = "<group>"; };
-		95AE6C3523E9611E00B8FB92 /* VoiceDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDetectionService.swift; sourceTree = "<group>"; };
-		95AE6C3723E9614F00B8FB92 /* VoiceDetectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDetectionMode.swift; sourceTree = "<group>"; };
+		95AE6C3523E9611E00B8FB92 /* SoundDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetectionService.swift; sourceTree = "<group>"; };
+		95AE6C3723E9614F00B8FB92 /* SoundDetectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetectionMode.swift; sourceTree = "<group>"; };
 		95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetServiceDescriptorTests.swift; path = "../New Group/NetServiceDescriptorTests.swift"; sourceTree = "<group>"; };
 		95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreenType.swift; sourceTree = "<group>"; };
 		95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventType.swift; sourceTree = "<group>"; };
 		95BAA39023D83CEF0016A194 /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
-		95C38B2023F580F200713F7B /* UserDefaults+VoiceDetectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+VoiceDetectionMode.swift"; sourceTree = "<group>"; };
+		95C38B2023F580F200713F7B /* UserDefaults+SoundDetectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+SoundDetectionMode.swift"; sourceTree = "<group>"; };
 		95C38B2423F67D2E00713F7B /* Randomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Randomizer.swift; sourceTree = "<group>"; };
-		95C38B2623F6903F00713F7B /* VoiceDetectionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDetectionServiceTests.swift; sourceTree = "<group>"; };
+		95C38B2623F6903F00713F7B /* SoundDetectionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetectionServiceTests.swift; sourceTree = "<group>"; };
 		95C38B2823F6924C00713F7B /* NoiseDetectionServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseDetectionServiceMock.swift; sourceTree = "<group>"; };
 		95C38B2A23F699FB00713F7B /* RandomizerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizerMock.swift; sourceTree = "<group>"; };
 		95E75C382390317000AC559D /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
@@ -828,7 +828,7 @@
 				8A7A608221A4024100488ED4 /* ErrorHandler */,
 				8AFAE5A9219AAA40007013BC /* Websocket */,
 				8A43DAFB217DD1C300E3004D /* Connection */,
-				95985AE523E960D800A7EC41 /* VoiceDetection */,
+				95985AE523E960D800A7EC41 /* SoundDetection */,
 				A7D7562A2236AFD800F9893E /* MachineLearning */,
 				4E39432F2175D48C00AD7582 /* NetService */,
 				8AEAFBAF217735B3003E756F /* Persistence */,
@@ -1284,7 +1284,7 @@
 				8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */,
 				8A7A614D21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift */,
 				8A7A60CB21A40D2F00488ED4 /* CryingDetectionServiceTests.swift */,
-				95C38B2623F6903F00713F7B /* VoiceDetectionServiceTests.swift */,
+				95C38B2623F6903F00713F7B /* SoundDetectionServiceTests.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -1428,16 +1428,16 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
-		95985AE523E960D800A7EC41 /* VoiceDetection */ = {
+		95985AE523E960D800A7EC41 /* SoundDetection */ = {
 			isa = PBXGroup;
 			children = (
-				95AE6C3523E9611E00B8FB92 /* VoiceDetectionService.swift */,
-				95AE6C3723E9614F00B8FB92 /* VoiceDetectionMode.swift */,
+				95AE6C3523E9611E00B8FB92 /* SoundDetectionService.swift */,
+				95AE6C3723E9614F00B8FB92 /* SoundDetectionMode.swift */,
 				A7D756202232DF0A00F9893E /* AudioMicrophoneService.swift */,
 				A7D756042232DBC800F9893E /* CryingDetection */,
 				959D9EF923E95D3A00BA4141 /* NoiseDetection */,
 			);
-			path = VoiceDetection;
+			path = SoundDetection;
 			sourceTree = "<group>";
 		};
 		959D9EF923E95D3A00BA4141 /* NoiseDetection */ = {
@@ -1516,7 +1516,7 @@
 				A1D36D4122E8364E002F6B2E /* UserDefaults+PushNotificationsKey.swift */,
 				A186818E2208355A0069E521 /* UserDefaults+SendingCryingAllowance.swift */,
 				953C853723D979530087A819 /* UserDefaults+Onboarding.swift */,
-				95C38B2023F580F200713F7B /* UserDefaults+VoiceDetectionMode.swift */,
+				95C38B2023F580F200713F7B /* UserDefaults+SoundDetectionMode.swift */,
 			);
 			path = UserDefaults;
 			sourceTree = "<group>";
@@ -2036,7 +2036,7 @@
 				8A7A611C21A59E5000488ED4 /* ActivityLogEvent.swift in Sources */,
 				4E1D2C6521678D9100E92F29 /* TypedViewController.swift in Sources */,
 				9566206E2359ADF900ACBC94 /* DisabledVideoView.swift in Sources */,
-				95C38B2123F580F200713F7B /* UserDefaults+VoiceDetectionMode.swift in Sources */,
+				95C38B2123F580F200713F7B /* UserDefaults+SoundDetectionMode.swift in Sources */,
 				4EA2802621E8C6B200262E45 /* DateFormatter+Helpers.swift in Sources */,
 				A1640E2B22048EA100398ED2 /* BabyMonitorSwitch.swift in Sources */,
 				95985AE423E95D6D00A7EC41 /* NoiseDetectionService.swift in Sources */,
@@ -2096,7 +2096,7 @@
 				9541FDC623D6BB6000DDC1A3 /* AnalyticsManager.swift in Sources */,
 				9541FDC423D6BB3700DDC1A3 /* AnalyticsProtocol.swift in Sources */,
 				201CF6A221F9CBDC00E06FEF /* ParentSettingsViewController.swift in Sources */,
-				95AE6C3823E9615000B8FB92 /* VoiceDetectionMode.swift in Sources */,
+				95AE6C3823E9615000B8FB92 /* SoundDetectionMode.swift in Sources */,
 				8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */,
 				4E190CA321789E820004ED79 /* Constants.swift in Sources */,
 				4E57319E2170BA7400DEAF0B /* BabyMonitorHeaderCellConfigurable.swift in Sources */,
@@ -2233,7 +2233,7 @@
 				95368F582209BCC6006E263A /* SpecifyDeviceInfoOnboardingViewModel.swift in Sources */,
 				4E994BF0216247A9009C44C5 /* ActivityLogViewModel.swift in Sources */,
 				8A7A608421A4027E00488ED4 /* ErrorHandler.swift in Sources */,
-				95AE6C3623E9611E00B8FB92 /* VoiceDetectionService.swift in Sources */,
+				95AE6C3623E9611E00B8FB92 /* SoundDetectionService.swift in Sources */,
 				4E63DC1E21E39D4B00604167 /* NetworkDispatcher.swift in Sources */,
 				EC8A8FF921AEA7EE00B5FCCF /* IntroView.swift in Sources */,
 				1E5F6497439177C406F45FFF /* AppVersionProvider.swift in Sources */,
@@ -2249,7 +2249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9514DA2823D72FC7001999E1 /* AnalyticsTrackerMock.swift in Sources */,
-				95C38B2723F6903F00713F7B /* VoiceDetectionServiceTests.swift in Sources */,
+				95C38B2723F6903F00713F7B /* SoundDetectionServiceTests.swift in Sources */,
 				95C38B2923F6924C00713F7B /* NoiseDetectionServiceMock.swift in Sources */,
 				8A03503123684E6B00CF88C7 /* AsyncSchedulerMock.swift in Sources */,
 				8A7A615221A6B00F00488ED4 /* CryingEventsServiceMock.swift in Sources */,

@@ -11,7 +11,7 @@ enum BabyMonitorEvent: String, CodingKey {
     case pairingCodeKey = "pairingCode"
     case pairingCodeResponseKey = "pairingResponse"
     case webRtcSdpErrorKey = "sdpError"
-    case voiceDetectionModeKey = "voiceAnalysisOption"
+    case soundDetectionModeKey = "voiceAnalysisOption"
     case confirmationID = "confirmationId"
 }
 
@@ -25,7 +25,7 @@ struct EventMessage {
     var pairingCode: String?
     var pairingCodeResponse: Bool?
     var webRtcSdpErrorMessage: String?
-    var voiceDetectionMode: VoiceDetectionMode?
+    var soundDetectionMode: SoundDetectionMode?
     var confirmationId: Int?
 }
 
@@ -38,7 +38,7 @@ extension EventMessage: Codable {
         pairingCode = try container.decodeIfPresent(String.self, forKey: .pairingCodeKey)
         pairingCodeResponse = try container.decodeIfPresent(Bool.self, forKey: .pairingCodeResponseKey)
         webRtcSdpErrorMessage = try container.decodeIfPresent(String.self, forKey: .webRtcSdpErrorKey)
-        voiceDetectionMode = try container.decodeIfPresent(VoiceDetectionMode.self, forKey: .voiceDetectionModeKey)
+        soundDetectionMode = try container.decodeIfPresent(SoundDetectionMode.self, forKey: .soundDetectionModeKey)
         confirmationId = try container.decodeIfPresent(Int.self, forKey: .confirmationID)
     }
 
@@ -49,7 +49,7 @@ extension EventMessage: Codable {
         try container.encodeIfPresent(pairingCode, forKey: .pairingCodeKey)
         try container.encodeIfPresent(pairingCodeResponse, forKey: .pairingCodeResponseKey)
         try container.encodeIfPresent(webRtcSdpErrorMessage, forKey: .webRtcSdpErrorKey)
-        try container.encodeIfPresent(voiceDetectionMode, forKey: .voiceDetectionModeKey)
+        try container.encodeIfPresent(soundDetectionMode, forKey: .soundDetectionModeKey)
         try container.encodeIfPresent(confirmationId, forKey: .confirmationID)
     }
 }

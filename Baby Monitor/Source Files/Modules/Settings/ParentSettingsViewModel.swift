@@ -15,18 +15,18 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
 
     lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
-    let voiceDetectionModes: [VoiceDetectionMode] = [.noiseDetection, .machineLearningCryRecognition]
-    var voiceDetectionTitles: [String] {
-        return voiceDetectionModes.map { $0.localizedTitle }
+    let soundDetectionModes: [SoundDetectionMode] = [.noiseDetection, .machineLearningCryRecognition]
+    var soundDetectionTitles: [String] {
+        return soundDetectionModes.map { $0.localizedTitle }
     }
     var selectedVoiceModeIndex: Int {
-        return voiceDetectionModes.index(of: UserDefaults.voiceDetectionMode) ?? 0
+        return soundDetectionModes.index(of: UserDefaults.soundDetectionMode) ?? 0
     }
-    let settingVoiceDetectionFailedPublisher = PublishRelay<Void>()
+    let settingSoundDetectionFailedPublisher = PublishRelay<Void>()
     let errorHandler: ErrorHandlerProtocol
 
     private(set) var addPhotoTap: Observable<UIButton>?
-    private(set) var voiceDetectionTap: Observable<Int>?
+    private(set) var soundDetectionTap: Observable<Int>?
     private(set) var resetAppTap: Observable<Void>?
     private(set) var cancelTap: Observable<Void>?
     
@@ -50,11 +50,11 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     
     func attachInput(babyName: Observable<String>,
                      addPhotoTap: Observable<UIButton>,
-                     voiceDetectionTap: Observable<Int>,
+                     soundDetectionTap: Observable<Int>,
                      resetAppTap: Observable<Void>,
                      cancelTap: Observable<Void>) {
         self.addPhotoTap = addPhotoTap
-        self.voiceDetectionTap = voiceDetectionTap
+        self.soundDetectionTap = soundDetectionTap
         self.resetAppTap = resetAppTap
         self.cancelTap = cancelTap
         babyName.subscribe({ [weak self] event in
@@ -74,30 +74,30 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     }
 
     private func setupBindings() {
-        voiceDetectionTap?
+        soundDetectionTap?
             .skip(1)
             .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe({ [weak self] event in
             guard let self = self,
                 let index = event.element else { return }
-                self.handleVoiceDetectionModeChange(for: index)
+                self.handleSoundDetectionModeChange(for: index)
         }).disposed(by: bag)
     }
 
-    private func handleVoiceDetectionModeChange(for index: Int) {
-        guard index < VoiceDetectionMode.allCases.count,
-            VoiceDetectionMode.allCases.count == self.voiceDetectionModes.count else {
+    private func handleSoundDetectionModeChange(for index: Int) {
+        guard index < SoundDetectionMode.allCases.count,
+            SoundDetectionMode.allCases.count == self.soundDetectionModes.count else {
                 assertionFailure("Not handled all voice detection cases")
                 return
         }
-        let voiceDetectionMode = self.voiceDetectionModes[index]
-        let message = EventMessage(voiceDetectionMode: voiceDetectionMode, confirmationId: self.randomizer.generateRandomCode())
+        let soundDetectionMode = self.soundDetectionModes[index]
+        let message = EventMessage(soundDetectionMode: soundDetectionMode, confirmationId: self.randomizer.generateRandomCode())
         self.webSocketEventMessageService.sendMessage(message, completion: { result in
             switch result {
             case .success:
-                UserDefaults.voiceDetectionMode = voiceDetectionMode
+                UserDefaults.soundDetectionMode = soundDetectionMode
             case .failure:
-                self.settingVoiceDetectionFailedPublisher.accept(())
+                self.settingSoundDetectionFailedPublisher.accept(())
             }
         })
     }

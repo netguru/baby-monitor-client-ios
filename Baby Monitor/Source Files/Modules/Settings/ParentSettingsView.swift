@@ -32,8 +32,8 @@ final class ParentSettingsView: BaseSettingsView {
         return textField
     }()
 
-    fileprivate lazy var voiceDetectionModeControl: UISegmentedControl  = {
-        let segmentedControl = UISegmentedControl(items: voiceDetectionTitles)
+    fileprivate lazy var soundDetectionModeControl: UISegmentedControl  = {
+        let segmentedControl = UISegmentedControl(items: soundDetectionTitles)
         segmentedControl.tintColor = .white
         segmentedControl.selectedSegmentIndex = selectedVoiceModeIndex
         let attributes: [NSAttributedString.Key: Any] = [
@@ -44,7 +44,7 @@ final class ParentSettingsView: BaseSettingsView {
         return segmentedControl
     }()
 
-    private let voiceDetectionTitles: [String]
+    private let soundDetectionTitles: [String]
     private let selectedVoiceModeIndex: Int
 
     private let editImageView = UIImageView(image: #imageLiteral(resourceName: "edit"))
@@ -56,8 +56,8 @@ final class ParentSettingsView: BaseSettingsView {
     }()
 
     /// Initializes settings view
-    init(appVersion: String, voiceDetectionTitles: [String], selectedVoiceModeIndex: Int) {
-        self.voiceDetectionTitles = voiceDetectionTitles
+    init(appVersion: String, soundDetectionTitles: [String], selectedVoiceModeIndex: Int) {
+        self.soundDetectionTitles = soundDetectionTitles
         self.selectedVoiceModeIndex = selectedVoiceModeIndex
         super.init(appVersion: appVersion)
         setupLayout()
@@ -75,7 +75,7 @@ final class ParentSettingsView: BaseSettingsView {
          babyNameTextField,
          editImageView,
          underline,
-         voiceDetectionModeControl].forEach { addSubview($0) }
+         soundDetectionModeControl].forEach { addSubview($0) }
         setupConstraints()
     }
 
@@ -111,7 +111,7 @@ final class ParentSettingsView: BaseSettingsView {
             $0.equalConstant(.height, 1)
         ]
         }
-        voiceDetectionModeControl.addConstraints {[
+        soundDetectionModeControl.addConstraints {[
             $0.equalTo(underline, .top, .bottom, constant: 30),
             $0.equalTo(underline, .width, .width),
             $0.equal(.centerX)
@@ -146,7 +146,7 @@ extension Reactive where Base: ParentSettingsView {
     }
 
     var voiceModeTap: ControlProperty<Int> {
-        return base.voiceDetectionModeControl.rx.selectedSegmentIndex
+        return base.soundDetectionModeControl.rx.selectedSegmentIndex
     }
 
     var editPhotoTap: Observable<UIButton> {

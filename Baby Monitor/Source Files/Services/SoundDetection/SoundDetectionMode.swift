@@ -1,8 +1,8 @@
 //
-//  VoiceDetectionMode.swift
+//  SoundDetectionMode.swift
 //  Baby Monitor
 
-enum VoiceDetectionMode: String, Codable, CaseIterable {
+enum SoundDetectionMode: String, Codable, CaseIterable {
     case machineLearningCryRecognition = "MachineLearning"
     case noiseDetection  = "NoiseDetection"
 

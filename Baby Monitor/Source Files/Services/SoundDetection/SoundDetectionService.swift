@@ -1,25 +1,26 @@
 //
-//  VoiceDetectionService.swift
+//  SoundDetectionService.swift
 //  Baby Monitor
 
 import RxSwift
 
-protocol VoiceDetectionServiceProtocol {
-    var mode: VoiceDetectionMode { get }
+protocol SoundDetectionServiceProtocol {
+    var mode: SoundDetectionMode { get }
     var cryingEventObservable: Observable<Void> { get }
     var loggingInfoPublisher: PublishSubject<String> { get }
     func startAnalysis() throws
     func stopAnalysis()
 }
 
-final class VoiceDetectionService: VoiceDetectionServiceProtocol {
+final class SoundDetectionService: SoundDetectionServiceProtocol {
 
-    enum VoiceDetectionServiceError: Error {
+    enum SoundDetectionServiceError: Error {
         case audioRecordServiceError
     }
 
-    var mode: VoiceDetectionMode {
-        return UserDefaults.voiceDetectionMode
+    var mode: SoundDetectionMode {
+        return .noiseDetection
+//        return UserDefaults.soundDetectionMode
     }
     
     var cryingEventObservable: Observable<Void> {
@@ -48,7 +49,7 @@ final class VoiceDetectionService: VoiceDetectionServiceProtocol {
     func startAnalysis() throws {
         microphoneService?.startCapturing()
         if microphoneService == nil {
-            throw VoiceDetectionServiceError.audioRecordServiceError
+            throw SoundDetectionServiceError.audioRecordServiceError
         }
     }
 

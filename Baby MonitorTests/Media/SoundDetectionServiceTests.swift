@@ -1,5 +1,5 @@
 //
-//  VoiceDetectionService.swift
+//  SoundDetectionService.swift
 //  Baby MonitorTests
 
 import Foundation
@@ -9,7 +9,7 @@ import RxTest
 import AVFoundation
 @testable import BabyMonitor
 
-class VoiceDetectionServiceTests: XCTestCase {
+class SoundDetectionServiceTests: XCTestCase {
 
     func testShouldStartCapturing() {
         // Given
@@ -17,13 +17,13 @@ class VoiceDetectionServiceTests: XCTestCase {
         let noiseDetectionServiceMock = NoiseDetectionServiceMock()
         let cryingDetectionServiceMock = CryingDetectionServiceMock()
         let cryingEventsServiceMock = CryingEventsServiceMock()
-        let sut = VoiceDetectionService(microphoneService: microphoneServiceMock,
+        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
                                         noiseDetectionService: noiseDetectionServiceMock,
                                         cryingDetectionService: cryingDetectionServiceMock,
                                         cryingEventService: cryingEventsServiceMock)
 
         // When
-//        UserDefaults.voiceDetectionMode = .machineLearningCryRecognition
+//        UserDefaults.soundDetectionMode = .machineLearningCryRecognition
         try! sut.startAnalysis()
 
         // Then
@@ -36,7 +36,7 @@ class VoiceDetectionServiceTests: XCTestCase {
         let noiseDetectionServiceMock = NoiseDetectionServiceMock()
         let cryingDetectionServiceMock = CryingDetectionServiceMock()
         let cryingEventsServiceMock = CryingEventsServiceMock()
-        let sut = VoiceDetectionService(microphoneService: microphoneServiceMock,
+        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
                                         noiseDetectionService: noiseDetectionServiceMock,
                                         cryingDetectionService: cryingDetectionServiceMock,
                                         cryingEventService: cryingEventsServiceMock)
@@ -53,7 +53,7 @@ class VoiceDetectionServiceTests: XCTestCase {
         let noiseDetectionServiceMock = NoiseDetectionServiceMock()
         let cryingDetectionServiceMock = CryingDetectionServiceMock()
         let cryingEventsServiceMock = CryingEventsServiceMock()
-        let sut = VoiceDetectionService(microphoneService: nil,
+        let sut = SoundDetectionService(microphoneService: nil,
                                         noiseDetectionService: noiseDetectionServiceMock,
                                         cryingDetectionService: cryingDetectionServiceMock,
                                         cryingEventService: cryingEventsServiceMock)
@@ -74,7 +74,7 @@ class VoiceDetectionServiceTests: XCTestCase {
         let noiseDetectionServiceMock = NoiseDetectionServiceMock()
         let cryingDetectionServiceMock = CryingDetectionServiceMock()
         let cryingEventsServiceMock = CryingEventsServiceMock()
-        let sut = VoiceDetectionService(microphoneService: microphoneServiceMock,
+        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
                                         noiseDetectionService: noiseDetectionServiceMock,
                                         cryingDetectionService: cryingDetectionServiceMock,
                                         cryingEventService: cryingEventsServiceMock)
@@ -93,7 +93,7 @@ class VoiceDetectionServiceTests: XCTestCase {
         let noiseDetectionServiceMock = NoiseDetectionServiceMock()
         let cryingDetectionServiceMock = CryingDetectionServiceMock()
         let cryingEventsServiceMock = CryingEventsServiceMock()
-        let sut = VoiceDetectionService(microphoneService: microphoneServiceMock,
+        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
                                         noiseDetectionService: noiseDetectionServiceMock,
                                         cryingDetectionService: cryingDetectionServiceMock,
                                         cryingEventService: cryingEventsServiceMock)
@@ -113,9 +113,9 @@ class VoiceDetectionServiceTests: XCTestCase {
         let noiseDetectionServiceMock = NoiseDetectionServiceMock()
         let cryingDetectionServiceMock = CryingDetectionServiceMock()
         let cryingEventsServiceMock = CryingEventsServiceMock()
-        UserDefaults.voiceDetectionMode = .noiseDetection
+        UserDefaults.soundDetectionMode = .noiseDetection
         let simulatedFrequency: Double = 120
-        let sut = VoiceDetectionService(microphoneService: microphoneServiceMock,
+        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
                                         noiseDetectionService: noiseDetectionServiceMock,
                                         cryingDetectionService: cryingDetectionServiceMock,
                                         cryingEventService: cryingEventsServiceMock)
@@ -135,8 +135,8 @@ class VoiceDetectionServiceTests: XCTestCase {
         let cryingDetectionServiceMock = CryingDetectionServiceMock()
         let cryingEventsServiceMock = CryingEventsServiceMock()
         let simulatedFrequency: Double = 120
-        UserDefaults.voiceDetectionMode = .machineLearningCryRecognition
-        let sut = VoiceDetectionService(microphoneService: microphoneServiceMock,
+        UserDefaults.soundDetectionMode = .machineLearningCryRecognition
+        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
                                         noiseDetectionService: noiseDetectionServiceMock,
                                         cryingDetectionService: cryingDetectionServiceMock,
                                         cryingEventService: cryingEventsServiceMock)
@@ -155,8 +155,8 @@ class VoiceDetectionServiceTests: XCTestCase {
         let noiseDetectionServiceMock = NoiseDetectionServiceMock()
         let cryingDetectionServiceMock = CryingDetectionServiceMock()
         let cryingEventsServiceMock = CryingEventsServiceMock()
-        UserDefaults.voiceDetectionMode = .machineLearningCryRecognition
-        let sut = VoiceDetectionService(microphoneService: microphoneServiceMock,
+        UserDefaults.soundDetectionMode = .machineLearningCryRecognition
+        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
                                         noiseDetectionService: noiseDetectionServiceMock,
                                         cryingDetectionService: cryingDetectionServiceMock,
                                         cryingEventService: cryingEventsServiceMock)

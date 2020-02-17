@@ -78,7 +78,7 @@ private extension DefaultApplicationResetter {
         UserDefaults.isSendingCryingsAllowed = false
         UserDefaults.selfPushNotificationsToken = ""
         UserDefaults.receiverPushNotificationsToken = nil
-        UserDefaults.voiceDetectionMode = .noiseDetection
+        UserDefaults.soundDetectionMode = .noiseDetection
     }
     
     func clearNotificationTokens() {
