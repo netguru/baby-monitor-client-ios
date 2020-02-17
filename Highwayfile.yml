@@ -7,17 +7,26 @@ variables:
         XCODEBUILD_SCHEME: Staging
         XCODEBUILD_PROJECT: ./Baby Monitor.xcworkspace
         APPCENTER_ORG_NAME: office-4dmm
+        FIREBASE_PLIST_URL: $(ENV:BITRISEIO_GOOGLESERVICE_INFO_STAGING_URL)
     staging:
         XCODEBUILD_SCHEME: Staging
+        FIREBASE_PLIST_URL: $(ENV:BITRISEIO_GOOGLESERVICE_INFO_STAGING_URL)
         APPCENTER_API_TOKEN: $(ENV:APP_CENTER_API_TOKEN_STAGING)
         APPCENTER_APP_NAME: $(ENV:APP_CENTER_APP_NAME_STAGING_ID)
         APPCENTER_DISTRIBUTION_GROUP: $(ENV:APP_CENTER_DISTRIBUTION_GROUP)
     release:
         XCODEBUILD_SCHEME: Production
+        FIREBASE_PLIST_URL: $(ENV:BITRISEIO_GOOGLESERVICE_INFO_PRODUCTION_URL)
 
 # Bootstrap stage.
 bootstrap:
     default:
+        - sh:
+            # copying firebase plist from bitrise.
+            command: "wget '$(FIREBASE_PLIST_URL)' -O '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist'"
+        - sh:
+            # copying firebase development plist for building project for tests.
+            command: "cp '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist' '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-Development.plist'"
         - carthage:
             command: "bootstrap"
             platforms:
@@ -33,6 +42,7 @@ test:
         - xcode_test:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
+            skip_build: true
             settings: 
                 _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
 
