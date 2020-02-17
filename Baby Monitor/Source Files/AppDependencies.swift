@@ -17,12 +17,14 @@ final class AppDependencies {
     
     // MARK: - Audio & Crying
 
+    /// Service which is controlling a sound detection in the app.
     private(set) lazy var soundDetectionService: SoundDetectionServiceProtocol = SoundDetectionService(
         microphoneService: audioMicrophoneService,
         noiseDetectionService: noiseDetectionService,
         cryingDetectionService: cryingDetectionService,
         cryingEventService: cryingEventService)
 
+    /// Service for detecting noise.
     private(set) lazy var noiseDetectionService: NoiseDetectionServiceProtocol = NoiseDetectionService()
 
     /// Service for detecting baby's cry

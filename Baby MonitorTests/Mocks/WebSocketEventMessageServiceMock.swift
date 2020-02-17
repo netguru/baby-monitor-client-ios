@@ -30,7 +30,6 @@ final class WebSocketEventMessageServiceMock: WebSocketEventMessageServiceProtoc
     }
 
     func sendMessage(_ message: EventMessage, completion: @escaping (Result<()>) -> Void) {
-        // TODOOOOO
         messages.append(message.toStringMessage())
     }
 }

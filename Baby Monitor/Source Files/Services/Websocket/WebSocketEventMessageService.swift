@@ -12,6 +12,8 @@ protocol WebSocketEventMessageServiceProtocol: class {
     func start()
     func close()
     func sendMessage(_ message: String)
+
+    /// Sending an event message and waiting for a confimation id answer if there is one.
     func sendMessage(_ message: EventMessage, completion: @escaping (Result<()>) -> Void)
 }
 
