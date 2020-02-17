@@ -67,7 +67,6 @@
 		4E63DC1921E39D4B00604167 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DC1321E39D4B00604167 /* HTTPMethod.swift */; };
 		4E63DC1A21E39D4B00604167 /* ServerKeyObtainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DC1421E39D4B00604167 /* ServerKeyObtainable.swift */; };
 		4E63DC1B21E39D4B00604167 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DC1521E39D4B00604167 /* Request.swift */; };
-		4E63DC1C21E39D4B00604167 /* FirebasePushNotificationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DC1621E39D4B00604167 /* FirebasePushNotificationsRequest.swift */; };
 		4E63DC1D21E39D4B00604167 /* URLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DC1721E39D4B00604167 /* URLRequestConvertible.swift */; };
 		4E63DC1E21E39D4B00604167 /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E63DC1821E39D4B00604167 /* NetworkDispatcher.swift */; };
 		4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */; };
@@ -250,6 +249,7 @@
 		95F3756C239EA98A00692B3A /* ServerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3756B239EA98A00692B3A /* ServerServiceMock.swift */; };
 		95F3756F239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3756E239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift */; };
 		95F3757323A0017C00692B3A /* BaseProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F3757223A0017C00692B3A /* BaseProgressIndicator.swift */; };
+		95F41CE423FAD7C8009A2376 /* FirebasePushNotificationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F41CE323FAD7C8009A2376 /* FirebasePushNotificationsRequest.swift */; };
 		A1492A66221D814500AA7716 /* ClearableLazyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1492A65221D814500AA7716 /* ClearableLazyItem.swift */; };
 		A1572D8B22005AF600AC57C4 /* ActivityLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */; };
 		A1572D902200A8B300AC57C4 /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */; };
@@ -394,7 +394,6 @@
 		4E63DC1321E39D4B00604167 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		4E63DC1421E39D4B00604167 /* ServerKeyObtainable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerKeyObtainable.swift; sourceTree = "<group>"; };
 		4E63DC1521E39D4B00604167 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		4E63DC1621E39D4B00604167 /* FirebasePushNotificationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebasePushNotificationsRequest.swift; path = "../New Group/FirebasePushNotificationsRequest.swift"; sourceTree = "<group>"; };
 		4E63DC1721E39D4B00604167 /* URLRequestConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestConvertible.swift; sourceTree = "<group>"; };
 		4E63DC1821E39D4B00604167 /* NetworkDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
 		4E6EA7972161FEEF005575E0 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
@@ -594,6 +593,7 @@
 		95F3756B239EA98A00692B3A /* ServerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerServiceMock.swift; sourceTree = "<group>"; };
 		95F3756E239FB7AD00692B3A /* AvailablePairingDevicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailablePairingDevicesTableViewCell.swift; sourceTree = "<group>"; };
 		95F3757223A0017C00692B3A /* BaseProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProgressIndicator.swift; sourceTree = "<group>"; };
+		95F41CE323FAD7C8009A2376 /* FirebasePushNotificationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebasePushNotificationsRequest.swift; sourceTree = "<group>"; };
 		A1492A65221D814500AA7716 /* ClearableLazyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearableLazyItem.swift; sourceTree = "<group>"; };
 		A1572D8A22005AF600AC57C4 /* ActivityLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogCell.swift; sourceTree = "<group>"; };
 		A1572D8F2200A8B300AC57C4 /* AnimationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFactory.swift; sourceTree = "<group>"; };
@@ -903,7 +903,7 @@
 		4E63DC1221E39D4B00604167 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				957084B023FAB23400D002AC /* Push Notifications */,
+				95F41CE323FAD7C8009A2376 /* FirebasePushNotificationsRequest.swift */,
 				4E63DC1321E39D4B00604167 /* HTTPMethod.swift */,
 				4E63DC1421E39D4B00604167 /* ServerKeyObtainable.swift */,
 				4E63DC1521E39D4B00604167 /* Request.swift */,
@@ -1405,14 +1405,6 @@
 				955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */,
 			);
 			path = Errors;
-			sourceTree = "<group>";
-		};
-		957084B023FAB23400D002AC /* Push Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				4E63DC1621E39D4B00604167 /* FirebasePushNotificationsRequest.swift */,
-			);
-			path = "Push Notifications";
 			sourceTree = "<group>";
 		};
 		95985AE523E960D800A7EC41 /* SoundDetection */ = {
@@ -2107,6 +2099,7 @@
 				8A6098C221EBFD0D00592B01 /* RTCSessionDescriptionDelegateProxy.swift in Sources */,
 				4E3943332175E50200AD7582 /* NetServiceServer.swift in Sources */,
 				A7D756382237CAE900F9893E /* MfccDct.swift in Sources */,
+				95F41CE423FAD7C8009A2376 /* FirebasePushNotificationsRequest.swift in Sources */,
 				8A03502F23684D4500CF88C7 /* AsyncScheduler.swift in Sources */,
 				A18681932209A2350069E521 /* RecordingsIntroFeatureViewController.swift in Sources */,
 				A18D3E6E21FF071200C165C6 /* CALayerBasicAnimation.swift in Sources */,
@@ -2130,7 +2123,6 @@
 				A7D756322236B03D00F9893E /* AudioSpectrogramLayer.swift in Sources */,
 				A7D756212232DF0A00F9893E /* AudioMicrophoneService.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
-				4E63DC1C21E39D4B00604167 /* FirebasePushNotificationsRequest.swift in Sources */,
 				955B8D2023903EEA00582330 /* LoggingProtocol.swift in Sources */,
 				4EB6DE6521B67C11004701EA /* EventMessageDecoder.swift in Sources */,
 				4E8E056821AD8327009ACE05 /* UIFont+BabyMonitor.swift in Sources */,
