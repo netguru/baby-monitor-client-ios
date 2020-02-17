@@ -159,6 +159,7 @@ enum Localizable {
         static let emptyStateMessage = localized("activity-log.empty-state.message")
         static let noMoreNotificationsMessage = localized("activity-log.no-more-notifications.message")
         static let wasCrying = localized("activity-log.was-crying")
+        static let noiseDetected = localized("activity-log.noise-detected")
     }
     
     enum SwitchBaby {
