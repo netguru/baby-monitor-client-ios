@@ -13,7 +13,7 @@ extension UserDefaults {
     /// A current mode that is set in the app.
     static var soundDetectionMode: SoundDetectionMode {
         get {
-            let rawValue = UserDefaults.standard.string(forKey: soundDetectionModeKey) ?? SoundDetectionMode.noiseDetection.rawValue
+            let rawValue = UserDefaults.standard.string(forKey: soundDetectionModeKey) ?? SoundDetectionMode.cryRecognition.rawValue
             return SoundDetectionMode(rawValue: rawValue)!
         }
         set {
