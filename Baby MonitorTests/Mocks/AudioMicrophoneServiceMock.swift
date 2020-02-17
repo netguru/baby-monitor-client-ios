@@ -20,8 +20,8 @@ final class AudioMicrophoneServiceMock: AudioMicrophoneServiceProtocol {
     lazy var microphoneBufferReadableObservable: Observable<AVAudioPCMBuffer> = microphoneBufferReadablePublisher.asObservable()
     var microphoneBufferReadablePublisher = PublishSubject<AVAudioPCMBuffer>()
 
-    lazy var microphoneFrequencyObservable: Observable<Double> = microphoneFrequencyPublisher.asObservable()
-    let microphoneFrequencyPublisher = PublishSubject<Double>()
+    lazy var microphoneAmplitudeObservable: Observable<MicrophoneAmplitudeInfo> = microphoneAmplitudePublisher.asObservable()
+    let microphoneAmplitudePublisher = PublishSubject<MicrophoneAmplitudeInfo>()
 
     func stopRecording() {
         isRecording = false

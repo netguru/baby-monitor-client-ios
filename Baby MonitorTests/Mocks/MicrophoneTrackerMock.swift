@@ -6,14 +6,18 @@
 import Foundation
 @testable import BabyMonitor
 
-final class MicrophoneTrackerMock: MicrophoneFrequencyTracker {
+final class MicrophoneTrackerMock: MicrophoneAmplitudeTracker {
+    
+    var amplitude: Double {
+        return 0
+    }
 
-    var simulatedReturnedValues: [Double] = []
-    var simulatedFrequencyLimit: Double = 2000
-    var simulatedFrequencyStartValue: Double = 0
+    var loudnessFactor: Double {
+        return 20
+    }
 
-    var frequency: Double {
-        return Double.random(in: simulatedFrequencyStartValue..<simulatedFrequencyLimit)
+    var decibels: Double {
+        return 60
     }
 
 }

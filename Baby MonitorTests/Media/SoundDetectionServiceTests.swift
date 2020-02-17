@@ -113,7 +113,7 @@ class SoundDetectionServiceTests: XCTestCase {
         let cryingDetectionServiceMock = CryingDetectionServiceMock()
         let cryingEventsServiceMock = CryingEventsServiceMock()
         UserDefaults.soundDetectionMode = .noiseDetection
-        let simulatedFrequency: Double = 120
+        let simulatedAmplitude = MicrophoneAmplitudeInfo(loudnessFactor: 0, decibels: 0)
         let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
                                         noiseDetectionService: noiseDetectionServiceMock,
                                         cryingDetectionService: cryingDetectionServiceMock,
@@ -121,10 +121,10 @@ class SoundDetectionServiceTests: XCTestCase {
 
         // When
         try! sut.startAnalysis()
-        microphoneServiceMock.microphoneFrequencyPublisher.onNext(simulatedFrequency)
+        microphoneServiceMock.microphoneAmplitudePublisher.onNext(simulatedAmplitude)
 
         // Then
-        XCTAssertTrue(noiseDetectionServiceMock.receivedFrequencies.first == simulatedFrequency)
+        XCTAssertTrue(noiseDetectionServiceMock.receivedAmplitudes[0].loudnessFactor == simulatedAmplitude.loudnessFactor)
     }
 
     func testShouldNotHandleFrequencyWhenInMLMode() {
@@ -133,7 +133,7 @@ class SoundDetectionServiceTests: XCTestCase {
         let noiseDetectionServiceMock = NoiseDetectionServiceMock()
         let cryingDetectionServiceMock = CryingDetectionServiceMock()
         let cryingEventsServiceMock = CryingEventsServiceMock()
-        let simulatedFrequency: Double = 120
+        let simulatedAmplitude = MicrophoneAmplitudeInfo(loudnessFactor: 0, decibels: 0)
         UserDefaults.soundDetectionMode = .cryRecognition
         let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
                                         noiseDetectionService: noiseDetectionServiceMock,
@@ -142,10 +142,10 @@ class SoundDetectionServiceTests: XCTestCase {
 
         // When
         try! sut.startAnalysis()
-        microphoneServiceMock.microphoneFrequencyPublisher.onNext(simulatedFrequency)
+        microphoneServiceMock.microphoneAmplitudePublisher.onNext(simulatedAmplitude)
 
         // Then
-        XCTAssertTrue(noiseDetectionServiceMock.receivedFrequencies.isEmpty)
+        XCTAssertTrue(noiseDetectionServiceMock.receivedAmplitudes.isEmpty)
     }
 
     func testShouldPredictCryingWhenInMLMode() {

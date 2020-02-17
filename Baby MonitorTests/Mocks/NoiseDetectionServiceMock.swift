@@ -6,12 +6,15 @@ import RxSwift
 @testable import BabyMonitor
 
 final class NoiseDetectionServiceMock: NoiseDetectionServiceProtocol {
+    lazy var noiseEventObservable: Observable<Void> = noiseEventPublisher.asObservable()
+
+    private var noiseEventPublisher = PublishSubject<Void>()
 
     var loggingInfoPublisher = PublishSubject<String>()
-    
-    var receivedFrequencies: [Double] = []
 
-    func handleFrequency(_ frequency: Double) {
-        receivedFrequencies.append(frequency)
+    var receivedAmplitudes: [MicrophoneAmplitudeInfo] = []
+
+    func handleAmplitude(_ amplitudeInfo: MicrophoneAmplitudeInfo) {
+        receivedAmplitudes.append(amplitudeInfo)
     }
 }

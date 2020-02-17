@@ -9,11 +9,11 @@ import Foundation
 final class AudioKitMicrophoneMock: AudioKitMicrophoneProtocol {
     let record: MicrophoneRecordProtocol
     let capture: MicrophoneCaptureProtocol
-    let tracker: MicrophoneFrequencyTracker
+    let tracker: MicrophoneAmplitudeTracker
     
     init(record: MicrophoneRecordProtocol,
          capture: MicrophoneCaptureProtocol,
-         tracker: MicrophoneFrequencyTracker) {
+         tracker: MicrophoneAmplitudeTracker) {
         self.record = record
         self.capture = capture
         self.tracker = tracker
