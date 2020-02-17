@@ -7,7 +7,7 @@ import RxSwift
 protocol NoiseDetectionServiceProtocol {
     var loggingInfoPublisher: PublishSubject<String> { get }
 
-    func handleFrequency(_ frequency: Double)
+    func handleLoudnessFactor(_ loudnessFactor: Double)
 }
 
 final class NoiseDetectionService: NoiseDetectionServiceProtocol {
@@ -16,9 +16,9 @@ final class NoiseDetectionService: NoiseDetectionServiceProtocol {
 
     private let disposeBag = DisposeBag()
 
-    func handleFrequency(_ frequency: Double) {
-        guard frequency < Constants.frequencyLimit else { return }
-        loggingInfoPublisher.onNext("Frequency limit has been reached.")
+    func handleLoudnessFactor(_ loudnessFactor: Double) {
+        guard loudnessFactor < Constants.loudnessFactorLimit else { return }
+        loggingInfoPublisher.onNext("Loudness limit has been reached.")
         // TODO: send notification
     }
 }

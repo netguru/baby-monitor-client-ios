@@ -61,12 +61,15 @@ final class VoiceDetectionService: VoiceDetectionServiceProtocol {
     }
 
     func rxSetup() {
-        microphoneService?.microphoneFrequencyObservable
-            .subscribe(onNext: { [weak self] frequency in
+        microphoneService?.microphoneAmplitudeObservable
+            .subscribe(onNext: { [weak self] amplitudeInfo in
                 guard self?.mode == .noiseDetection else { return }
-                let roundedFrequency = String(format: "%.2f", frequency)
-                self?.loggingInfoPublisher.onNext("Current frequency: \(roundedFrequency) Hz")
-                self?.noiseDetectionService.handleFrequency(frequency)
+                let roundedLoudnessFactor = String(format: "%.2f", amplitudeInfo.loudnessFactor)
+                let roundedDecibels = String(format: "%.2f", amplitudeInfo.decibels)
+                let infoText = "Current loundness factor: \(roundedLoudnessFactor) %" + "\n" +
+                "\(roundedDecibels) db"
+                self?.loggingInfoPublisher.onNext(infoText)
+                self?.noiseDetectionService.handleLoudnessFactor(amplitudeInfo.loudnessFactor)
             }).disposed(by: disposeBag)
 
         microphoneService?.microphoneBufferReadableObservable

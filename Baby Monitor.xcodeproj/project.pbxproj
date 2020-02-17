@@ -225,6 +225,7 @@
 		955B8D2023903EEA00582330 /* LoggingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D1F23903EEA00582330 /* LoggingProtocol.swift */; };
 		955B8D2223903F0A00582330 /* SwiftyBeaverLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D2123903F0A00582330 /* SwiftyBeaverLogger.swift */; };
 		9566206E2359ADF900ACBC94 /* DisabledVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */; };
+		957084AF23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957084AE23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift */; };
 		9574DBDB23A93175000D58A8 /* NSAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */; };
 		9574DBDD23A93543000D58A8 /* String+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */; };
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
@@ -567,6 +568,7 @@
 		955B8D1F23903EEA00582330 /* LoggingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingProtocol.swift; sourceTree = "<group>"; };
 		955B8D2123903F0A00582330 /* SwiftyBeaverLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBeaverLogger.swift; sourceTree = "<group>"; };
 		9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledVideoView.swift; sourceTree = "<group>"; };
+		957084AE23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneAmplitudeTracker.swift; sourceTree = "<group>"; };
 		9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Attributes.swift"; sourceTree = "<group>"; };
 		9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NSAttributedString.swift"; sourceTree = "<group>"; };
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
@@ -840,6 +842,7 @@
 			isa = PBXGroup;
 			children = (
 				A7D7561E2232DE8700F9893E /* MicrophoneFactory.swift */,
+				957084AE23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift */,
 				8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */,
 				A7D7562422344B0300F9893E /* NodeCapture.swift */,
 			);
@@ -2234,6 +2237,7 @@
 				4E63DC1E21E39D4B00604167 /* NetworkDispatcher.swift in Sources */,
 				EC8A8FF921AEA7EE00B5FCCF /* IntroView.swift in Sources */,
 				1E5F6497439177C406F45FFF /* AppVersionProvider.swift in Sources */,
+				957084AF23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift in Sources */,
 				1E5F67AF7244AFABE62F799A /* ApplicationResetter.swift in Sources */,
 				1E5F6CF6A2F2C644AF699F68 /* SocketCommunicationManager.swift in Sources */,
 				1E5F6D786A5E19A514F88F5B /* WebSocketConnectionStatusProvider.swift in Sources */,
