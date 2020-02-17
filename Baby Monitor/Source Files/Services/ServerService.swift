@@ -76,20 +76,13 @@ final class ServerService: ServerServiceProtocol {
     }
     
     private func rxSetup() {
-        soundDetectionService.cryingEventObservable
+        soundDetectionService.soundEventObservable
             .throttle(Constants.notificationRequestTimeLimit, scheduler: MainScheduler.instance)
             .do(onNext: { [weak self] _ in
-                self?.loggingInfoPublisher.onNext("Crying passed 3 minutes limit. Attemps to send push notification request.")
+                self?.loggingInfoPublisher.onNext("Passed 3 minutes limit. Attemps to send push notification request.")
             })
-            .subscribe(onNext: { [weak self] _ in
-                self?.notificationsService.sendPushNotificationsRequest(completion: { [weak self] result in
-                    switch result {
-                    case .failure(let error):
-                        self?.loggingInfoPublisher.onNext("Push notification request sending failed with error: \(error?.localizedDescription ?? "unknown")")
-                    case .success:
-                        self?.loggingInfoPublisher.onNext("Push Notification was sent successfully.")
-                    }
-                })
+            .subscribe(onNext: { [weak self] mode in
+                self?.sendNotification(for: mode)
             }).disposed(by: disposeBag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
@@ -112,6 +105,17 @@ final class ServerService: ServerServiceProtocol {
             })
             .disposed(by: disposeBag)
         soundDetectionService.loggingInfoPublisher.bind(to: loggingInfoPublisher).disposed(by: disposeBag)
+    }
+
+    private func sendNotification(for mode: SoundDetectionMode) {
+        notificationsService.sendPushNotificationsRequest(mode: mode, completion: { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.loggingInfoPublisher.onNext("Push notification request sending failed with error: \(error?.localizedDescription ?? "unknown")")
+            case .success:
+                self?.loggingInfoPublisher.onNext("Push Notification was sent successfully.")
+            }
+        })
     }
     
     private func handle(message: WebRtcMessage) {

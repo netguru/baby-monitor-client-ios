@@ -393,7 +393,7 @@
 		4E63DC1321E39D4B00604167 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		4E63DC1421E39D4B00604167 /* ServerKeyObtainable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerKeyObtainable.swift; sourceTree = "<group>"; };
 		4E63DC1521E39D4B00604167 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		4E63DC1621E39D4B00604167 /* FirebasePushNotificationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebasePushNotificationsRequest.swift; sourceTree = "<group>"; };
+		4E63DC1621E39D4B00604167 /* FirebasePushNotificationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebasePushNotificationsRequest.swift; path = "../New Group/FirebasePushNotificationsRequest.swift"; sourceTree = "<group>"; };
 		4E63DC1721E39D4B00604167 /* URLRequestConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestConvertible.swift; sourceTree = "<group>"; };
 		4E63DC1821E39D4B00604167 /* NetworkDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
 		4E63DC2121E485E300604167 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -901,10 +901,10 @@
 		4E63DC1221E39D4B00604167 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				957084B023FAB23400D002AC /* Push Notifications */,
 				4E63DC1321E39D4B00604167 /* HTTPMethod.swift */,
 				4E63DC1421E39D4B00604167 /* ServerKeyObtainable.swift */,
 				4E63DC1521E39D4B00604167 /* Request.swift */,
-				4E63DC1621E39D4B00604167 /* FirebasePushNotificationsRequest.swift */,
 				4E63DC1721E39D4B00604167 /* URLRequestConvertible.swift */,
 				4E63DC1821E39D4B00604167 /* NetworkDispatcher.swift */,
 			);
@@ -1426,6 +1426,14 @@
 				955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		957084B023FAB23400D002AC /* Push Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				4E63DC1621E39D4B00604167 /* FirebasePushNotificationsRequest.swift */,
+			);
+			path = "Push Notifications";
 			sourceTree = "<group>";
 		};
 		95985AE523E960D800A7EC41 /* SoundDetection */ = {

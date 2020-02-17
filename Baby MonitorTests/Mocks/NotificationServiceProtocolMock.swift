@@ -10,7 +10,7 @@ class NotificationServiceProtocolMock: NotificationServiceProtocol {
     private(set) var getNotificationsAllowanceCalled = false
     private(set) var resetTokensCalled = false
     
-    func sendPushNotificationsRequest(completion: @escaping ((Result<Data>) -> Void)) {
+    func sendPushNotificationsRequest(mode: SoundDetectionMode, completion: @escaping ((Result<Data>) -> Void)) {
         sendPushNotificationsRequestCalled = true
     }
     

@@ -5,14 +5,28 @@
 import Foundation
 import AudioKit
 
+/// A tracker that detects amplitude from the microphone.
 protocol MicrophoneAmplitudeTracker: Any {
+
+    /// The current amplitude with values from 0 to 1.
     var amplitude: Double { get }
+
+    /// The loudness factor customly counted in order to get poercentage-like result.
+    /// The amlitude multipled by the special factor.
     var loudnessFactor: Double { get }
+
+    /// A current level of decibels of the sound captured.
     var decibels: Double { get }
 }
 
+/// An additional info to the amplitude.
 struct MicrophoneAmplitudeInfo {
+
+    /// The loudness factor customly counted in order to get poercentage-like result.
+    /// The amlitude multipled by the special factor.
     var loudnessFactor: Double
+
+    /// A current level of decibels of the sound captured.
     var decibels: Double
 }
 

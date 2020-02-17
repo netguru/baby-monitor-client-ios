@@ -7,9 +7,10 @@ import Foundation
 extension UserDefaults {
 
     private static var soundDetectionModeKey: String {
-       return "VOICE_DETECTION_KEY"
+       return "SOUND_DETECTION_KEY"
     }
 
+    /// A current mode that is set in the app.
     static var soundDetectionMode: SoundDetectionMode {
         get {
             let rawValue = UserDefaults.standard.string(forKey: soundDetectionModeKey) ?? SoundDetectionMode.noiseDetection.rawValue

@@ -4,11 +4,22 @@
 
 import RxSwift
 
+/// A service which handles a sound detection mode used in the app.
 protocol SoundDetectionServiceProtocol {
+
+    /// A current mode that is used.
     var mode: SoundDetectionMode { get }
-    var cryingEventObservable: Observable<Void> { get }
+
+    /// Notifying about a new recognition event.
+    var soundEventObservable: Observable<SoundDetectionMode> { get }
+
+    /// A logging info used for debug purposes only.
     var loggingInfoPublisher: PublishSubject<String> { get }
+
+    /// Start analysis of the sound by microphone.
     func startAnalysis() throws
+
+    /// Stop analysis of the sound by microphone.
     func stopAnalysis()
 }
 
@@ -19,12 +30,13 @@ final class SoundDetectionService: SoundDetectionServiceProtocol {
     }
 
     var mode: SoundDetectionMode {
-        return .noiseDetection
-//        return UserDefaults.soundDetectionMode
+        return UserDefaults.soundDetectionMode
     }
     
-    var cryingEventObservable: Observable<Void> {
-        return cryingEventService.cryingEventObservable
+    var soundEventObservable: Observable<SoundDetectionMode> {
+        let cryEventObservable = cryingEventService.cryingEventObservable.map({ SoundDetectionMode.cryRecognition })
+        let noiseEventObservable = noiseDetectionService.noiseEventObservable.map({ SoundDetectionMode.noiseDetection })
+        return Observable.merge(cryEventObservable, noiseEventObservable)
     }
 
     var loggingInfoPublisher = PublishSubject<String>()
@@ -61,26 +73,21 @@ final class SoundDetectionService: SoundDetectionServiceProtocol {
         self.microphoneService?.stopRecording()
     }
 
-    func rxSetup() {
+    private func rxSetup() {
         microphoneService?.microphoneAmplitudeObservable
             .subscribe(onNext: { [weak self] amplitudeInfo in
-                guard self?.mode == .noiseDetection else { return }
-                let roundedLoudnessFactor = String(format: "%.2f", amplitudeInfo.loudnessFactor)
-                let roundedDecibels = String(format: "%.2f", amplitudeInfo.decibels)
-                let infoText = "Current loundness factor: \(roundedLoudnessFactor) %" + "\n" +
-                "\(roundedDecibels) db"
-                self?.loggingInfoPublisher.onNext(infoText)
-                self?.noiseDetectionService.handleLoudnessFactor(amplitudeInfo.loudnessFactor)
+                guard let self = self,
+                    self.mode == .noiseDetection else { return }
+                self.noiseDetectionService.handleAmplitude(amplitudeInfo)
             }).disposed(by: disposeBag)
 
         microphoneService?.microphoneBufferReadableObservable
             .subscribe(onNext: { [weak self] bufferReadable in
-                guard self?.mode == .machineLearningCryRecognition else { return }
+                guard self?.mode == .cryRecognition else { return }
                 self?.cryingDetectionService.predict(on: bufferReadable)
             }).disposed(by: disposeBag)
 
         noiseDetectionService.loggingInfoPublisher.bind(to: loggingInfoPublisher).disposed(by: disposeBag)
         cryingEventService.loggingInfoPublisher.bind(to: loggingInfoPublisher).disposed(by: disposeBag)
     }
-
 }

@@ -167,6 +167,7 @@ enum Localizable {
     
     enum Server {
         static let babyIsCrying = localized("server.baby-is-crying")
+        static let noiseDetected = localized("server.noise-detected")
         static let babyStoppedCrying = localized("server.baby-stopped-crying")
         static let audioRecordError = localized("server.audio-record-error")
         static let streamError = localized("server.stream-error")

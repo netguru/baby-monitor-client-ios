@@ -2,13 +2,19 @@
 //  SoundDetectionMode.swift
 //  Baby Monitor
 
+/// A sound detection mode that should be used on the baby device.
 enum SoundDetectionMode: String, Codable, CaseIterable {
-    case machineLearningCryRecognition = "MachineLearning"
+    /// A machine learning cry detection mode.
+    case cryRecognition = "MachineLearning"
+
+    /// A detection of the noise with setting a limit on parent device.
     case noiseDetection  = "NoiseDetection"
 
+
+    /// A localized title for a mode.
     var localizedTitle: String {
         switch self {
-        case .machineLearningCryRecognition:
+        case .cryRecognition:
             return Localizable.Settings.cryDetection
         case .noiseDetection:
             return Localizable.Settings.noiseDetection

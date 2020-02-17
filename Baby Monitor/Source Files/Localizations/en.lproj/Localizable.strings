@@ -123,6 +123,7 @@
 //MARK: - Server
 "server.baby-stopped-crying" = "Baby stopped crying!";
 "server.baby-is-crying" = "Baby is crying!";
+"server.noise-detected" = "Noise detected!";
 "server.audio-record-error" = "There is some error with audio recording. Please turn app again.";
 "server.stream-error" = "There is some error with connecting to the stream.";
 "server.no-stream" = "No stream available.";
