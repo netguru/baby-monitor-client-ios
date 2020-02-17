@@ -31,6 +31,9 @@ enum Constants {
 
     /// A limit for which should get a confirmation id back.
     static let webSocketConfimationIDTimeLimit: TimeInterval = 5
+
+    /// The default mode to be used when not set.
+    static let defaultSoundDetectionMode: SoundDetectionMode = .cryRecognition
     
     /// Represents a size class for constraint constants
     enum ResponsiveSizeClass {
