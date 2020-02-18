@@ -11,16 +11,30 @@ import AVFoundation
 
 class SoundDetectionServiceTests: XCTestCase {
 
+    // swiftlint:disable implicitly_unwrapped_optional
+    private var microphoneServiceMock: AudioMicrophoneServiceMock!
+    private var noiseDetectionServiceMock: NoiseDetectionServiceMock!
+    private var cryingDetectionServiceMock: CryingDetectionServiceMock!
+    private var cryingEventsServiceMock: CryingEventsServiceMock!
+
+    private var initialSoundDetectionMode: SoundDetectionMode!
+    // swiftlint:enable implicitly_unwrapped_optional
+
+    override func setUp() {
+        microphoneServiceMock = AudioMicrophoneServiceMock()
+        noiseDetectionServiceMock = NoiseDetectionServiceMock()
+        cryingDetectionServiceMock = CryingDetectionServiceMock()
+        cryingEventsServiceMock = CryingEventsServiceMock()
+        initialSoundDetectionMode = UserDefaults.soundDetectionMode
+    }
+
+    override func tearDown() {
+        UserDefaults.soundDetectionMode = initialSoundDetectionMode
+    }
+
     func testShouldStartCapturing() {
         // Given
-        let microphoneServiceMock = AudioMicrophoneServiceMock()
-        let noiseDetectionServiceMock = NoiseDetectionServiceMock()
-        let cryingDetectionServiceMock = CryingDetectionServiceMock()
-        let cryingEventsServiceMock = CryingEventsServiceMock()
-        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
-                                        noiseDetectionService: noiseDetectionServiceMock,
-                                        cryingDetectionService: cryingDetectionServiceMock,
-                                        cryingEventService: cryingEventsServiceMock)
+        let sut = makeSoundDetectionService()
 
         // When
         try! sut.startAnalysis()
@@ -31,14 +45,7 @@ class SoundDetectionServiceTests: XCTestCase {
 
     func testShouldNotStartRecordingAudio() {
         // Given
-        let microphoneServiceMock = AudioMicrophoneServiceMock()
-        let noiseDetectionServiceMock = NoiseDetectionServiceMock()
-        let cryingDetectionServiceMock = CryingDetectionServiceMock()
-        let cryingEventsServiceMock = CryingEventsServiceMock()
-        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
-                                        noiseDetectionService: noiseDetectionServiceMock,
-                                        cryingDetectionService: cryingDetectionServiceMock,
-                                        cryingEventService: cryingEventsServiceMock)
+        let sut = makeSoundDetectionService()
 
         // When
         try! sut.startAnalysis()
@@ -49,13 +56,7 @@ class SoundDetectionServiceTests: XCTestCase {
 
     func testThrowWhenNoMicrophoneService() {
         // Given
-        let noiseDetectionServiceMock = NoiseDetectionServiceMock()
-        let cryingDetectionServiceMock = CryingDetectionServiceMock()
-        let cryingEventsServiceMock = CryingEventsServiceMock()
-        let sut = SoundDetectionService(microphoneService: nil,
-                                        noiseDetectionService: noiseDetectionServiceMock,
-                                        cryingDetectionService: cryingDetectionServiceMock,
-                                        cryingEventService: cryingEventsServiceMock)
+        let sut = makeSoundDetectionService(withoutMicrophoneService: true)
 
         // When
         do {
@@ -69,14 +70,7 @@ class SoundDetectionServiceTests: XCTestCase {
 
     func testShouldStopCapturing() {
         // Given
-        let microphoneServiceMock = AudioMicrophoneServiceMock()
-        let noiseDetectionServiceMock = NoiseDetectionServiceMock()
-        let cryingDetectionServiceMock = CryingDetectionServiceMock()
-        let cryingEventsServiceMock = CryingEventsServiceMock()
-        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
-                                        noiseDetectionService: noiseDetectionServiceMock,
-                                        cryingDetectionService: cryingDetectionServiceMock,
-                                        cryingEventService: cryingEventsServiceMock)
+        let sut = makeSoundDetectionService()
 
         // When
         try! sut.startAnalysis()
@@ -88,18 +82,11 @@ class SoundDetectionServiceTests: XCTestCase {
 
     func testShouldStopRecording() {
         // Given
-        let microphoneServiceMock = AudioMicrophoneServiceMock()
-        let noiseDetectionServiceMock = NoiseDetectionServiceMock()
-        let cryingDetectionServiceMock = CryingDetectionServiceMock()
-        let cryingEventsServiceMock = CryingEventsServiceMock()
-        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
-                                        noiseDetectionService: noiseDetectionServiceMock,
-                                        cryingDetectionService: cryingDetectionServiceMock,
-                                        cryingEventService: cryingEventsServiceMock)
+        let sut = makeSoundDetectionService()
 
         // When
         try! sut.startAnalysis()
-        microphoneServiceMock.startRecording()
+        microphoneServiceMock?.startRecording()
         sut.stopAnalysis()
 
         // Then
@@ -108,20 +95,13 @@ class SoundDetectionServiceTests: XCTestCase {
 
     func testShouldHandleFrequencyWhenInMode() {
         // Given
-        let microphoneServiceMock = AudioMicrophoneServiceMock()
-        let noiseDetectionServiceMock = NoiseDetectionServiceMock()
-        let cryingDetectionServiceMock = CryingDetectionServiceMock()
-        let cryingEventsServiceMock = CryingEventsServiceMock()
         UserDefaults.soundDetectionMode = .noiseDetection
         let simulatedAmplitude = MicrophoneAmplitudeInfo(loudnessFactor: 0, decibels: 0)
-        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
-                                        noiseDetectionService: noiseDetectionServiceMock,
-                                        cryingDetectionService: cryingDetectionServiceMock,
-                                        cryingEventService: cryingEventsServiceMock)
+        let sut = makeSoundDetectionService()
 
         // When
         try! sut.startAnalysis()
-        microphoneServiceMock.microphoneAmplitudePublisher.onNext(simulatedAmplitude)
+        microphoneServiceMock?.microphoneAmplitudePublisher.onNext(simulatedAmplitude)
 
         // Then
         XCTAssertTrue(noiseDetectionServiceMock.receivedAmplitudes[0].loudnessFactor == simulatedAmplitude.loudnessFactor)
@@ -129,20 +109,13 @@ class SoundDetectionServiceTests: XCTestCase {
 
     func testShouldNotHandleFrequencyWhenInMLMode() {
         // Given
-        let microphoneServiceMock = AudioMicrophoneServiceMock()
-        let noiseDetectionServiceMock = NoiseDetectionServiceMock()
-        let cryingDetectionServiceMock = CryingDetectionServiceMock()
-        let cryingEventsServiceMock = CryingEventsServiceMock()
         let simulatedAmplitude = MicrophoneAmplitudeInfo(loudnessFactor: 0, decibels: 0)
         UserDefaults.soundDetectionMode = .cryRecognition
-        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
-                                        noiseDetectionService: noiseDetectionServiceMock,
-                                        cryingDetectionService: cryingDetectionServiceMock,
-                                        cryingEventService: cryingEventsServiceMock)
+        let sut = makeSoundDetectionService()
 
         // When
         try! sut.startAnalysis()
-        microphoneServiceMock.microphoneAmplitudePublisher.onNext(simulatedAmplitude)
+        microphoneServiceMock?.microphoneAmplitudePublisher.onNext(simulatedAmplitude)
 
         // Then
         XCTAssertTrue(noiseDetectionServiceMock.receivedAmplitudes.isEmpty)
@@ -150,22 +123,25 @@ class SoundDetectionServiceTests: XCTestCase {
 
     func testShouldPredictCryingWhenInMLMode() {
         // Given
-        let microphoneServiceMock = AudioMicrophoneServiceMock()
-        let noiseDetectionServiceMock = NoiseDetectionServiceMock()
-        let cryingDetectionServiceMock = CryingDetectionServiceMock()
-        let cryingEventsServiceMock = CryingEventsServiceMock()
         UserDefaults.soundDetectionMode = .cryRecognition
-        let sut = SoundDetectionService(microphoneService: microphoneServiceMock,
-                                        noiseDetectionService: noiseDetectionServiceMock,
-                                        cryingDetectionService: cryingDetectionServiceMock,
-                                        cryingEventService: cryingEventsServiceMock)
+        let sut = makeSoundDetectionService()
 
         // When
         try! sut.startAnalysis()
-        microphoneServiceMock.microphoneBufferReadablePublisher.onNext(AVAudioPCMBuffer())
+        microphoneServiceMock?.microphoneBufferReadablePublisher.onNext(AVAudioPCMBuffer())
 
         // Then
         XCTAssertTrue(cryingDetectionServiceMock.didPredict)
     }
 
+}
+
+private extension SoundDetectionServiceTests {
+
+    func makeSoundDetectionService(withoutMicrophoneService: Bool = false) -> SoundDetectionService {
+        return SoundDetectionService(microphoneService: withoutMicrophoneService ? nil : microphoneServiceMock,
+                                     noiseDetectionService: noiseDetectionServiceMock,
+                                     cryingDetectionService: cryingDetectionServiceMock,
+                                     cryingEventService: cryingEventsServiceMock)
+    }
 }
