@@ -7,14 +7,6 @@ import Foundation
 
 final class FirebasePushNotificationsRequest: Request, URLRequestConvertible {
 
-    private let mode: SoundDetectionMode
-
-    init(receiverId: String, serverKey: String, mode: SoundDetectionMode) {
-        self.mode = mode
-        headers?["Authorization"] = "key=\(serverKey)"
-        body?["to"] = receiverId
-    }
-    
     var headers: [String: String]? = [
         "Content-Type": "application/json"
     ]
@@ -36,4 +28,12 @@ final class FirebasePushNotificationsRequest: Request, URLRequestConvertible {
     let path = "/fcm/send"
     let method: HTTPMethod = .post
     let parameters: [String: String]? = nil
+
+    private let mode: SoundDetectionMode
+    
+    init(receiverId: String, serverKey: String, mode: SoundDetectionMode) {
+        self.mode = mode
+        headers?["Authorization"] = "key=\(serverKey)"
+        body?["to"] = receiverId
+    }
 }

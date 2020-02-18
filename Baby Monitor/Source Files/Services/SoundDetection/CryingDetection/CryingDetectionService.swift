@@ -39,14 +39,14 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
                                                              shape: [264600],
                                                              dataType: .float32,
                                                              strides: [1])
-            let input = audioprocessingInput(raw_audio__0: audioProcessingMultiArray)
-            let pred = try self.audioprocessingModel.prediction(input: input)
+            let audioProcessingInput = audioprocessingInput(raw_audio__0: audioProcessingMultiArray)
+            let audioProcessingPrediction = try self.audioprocessingModel.prediction(input: audioProcessingInput)
             let crydetectionMultiArray = try MLMultiArray(shape: [1, 1, 1, 598, 64], dataType: .float32)
-            crydetectionMultiArray.dataPointer.copyMemory(from: pred.Mfcc__0.dataPointer, byteCount: 38272 * 4)
-            let input1 = crydetectionInput(Mfcc__0: crydetectionMultiArray)
-            let pred2 = try self.crydetectionModel.prediction(input: input1)
-            let cryingProbability = Double(exactly: pred2.labels_softmax__0[1]) ?? 0
-            let babyCryingDetected: Bool = cryingProbability >= Constants.cryingDetectionThreshold
+            crydetectionMultiArray.dataPointer.copyMemory(from: audioProcessingPrediction.Mfcc__0.dataPointer, byteCount: 38272 * 4)
+            let cryDetectionInput = crydetectionInput(Mfcc__0: crydetectionMultiArray)
+            let cryDetectionPrediction = try self.crydetectionModel.prediction(input: cryDetectionInput)
+            let cryingProbability = Double(exactly: cryDetectionPrediction.labels_softmax__0[1]) ?? 0
+            let babyCryingDetected = cryingProbability >= Constants.cryingDetectionThreshold
             self.cryingDetectionSubject.onNext(CryingDetectionResult(isBabyCrying: babyCryingDetected, probability: cryingProbability))
         } catch {
             Logger.error("Crying detection failed - audioProcessingMultiArray exeption", error: error)

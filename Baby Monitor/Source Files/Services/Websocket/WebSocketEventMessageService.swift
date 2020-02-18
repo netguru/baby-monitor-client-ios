@@ -44,20 +44,20 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
     
     private func eventMessageHandler() -> AnyObserver<EventMessage> {
         return AnyObserver<EventMessage>(eventHandler: { [weak self] event in
-            guard let event = event.element else {
+            guard let self = self, let event = event.element else {
                     return
             }
             if case .reset = event.action {
-                self?.remoteResetPublisher.onNext(())
+                self.remoteResetPublisher.onNext(())
             }
             if let isPairingApproved = event.pairingCodeResponse {
-                self?.remotePairingCodeResponsePublisher.onNext(isPairingApproved)
+                self.remotePairingCodeResponsePublisher.onNext(isPairingApproved)
             }
             if let webRtcSdpErrorMessage = event.webRtcSdpErrorMessage {
-                self?.remoteStreamConnectingErrorPublisher.onNext(webRtcSdpErrorMessage)
+                self.remoteStreamConnectingErrorPublisher.onNext(webRtcSdpErrorMessage)
             }
             if let confirmationID = event.confirmationId {
-                self?.remoteConfimationIdPublisher.onNext(confirmationID)
+                self.remoteConfimationIdPublisher.onNext(confirmationID)
             }
         })
     }
