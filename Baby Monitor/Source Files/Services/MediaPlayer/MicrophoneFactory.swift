@@ -48,9 +48,7 @@ enum AudioKitMicrophoneFactory {
         let silentCapturerMixer = AKMixer(capturerMixer)
         silentCapturerMixer.volume = 0
 
-        let silentFilter = AKBooster(tracker, gain: 0)
-
-        let outputMixer = AKMixer(silentRecorderMixer, silentCapturerMixer, silentFilter)
+        let outputMixer = AKMixer(silentRecorderMixer, silentCapturerMixer)
 
         AudioKit.output = outputMixer
         try AudioKit.start()

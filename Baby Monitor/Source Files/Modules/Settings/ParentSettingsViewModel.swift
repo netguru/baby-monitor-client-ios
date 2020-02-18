@@ -86,13 +86,14 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
 
     private func handleSoundDetectionModeChange(for index: Int) {
         guard index < SoundDetectionMode.allCases.count,
-            SoundDetectionMode.allCases.count == self.soundDetectionModes.count else {
+            SoundDetectionMode.allCases.count == soundDetectionModes.count else {
                 assertionFailure("Not handled all voice detection cases")
                 return
         }
-        let soundDetectionMode = self.soundDetectionModes[index]
-        let message = EventMessage(soundDetectionMode: soundDetectionMode, confirmationId: self.randomizer.generateRandomCode())
-        self.webSocketEventMessageService.sendMessage(message, completion: { result in
+        let soundDetectionMode = soundDetectionModes[index]
+        let message = EventMessage(soundDetectionMode: soundDetectionMode, confirmationId: randomizer.generateRandomCode())
+        webSocketEventMessageService.sendMessage(message, completion: { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success:
                 UserDefaults.soundDetectionMode = soundDetectionMode

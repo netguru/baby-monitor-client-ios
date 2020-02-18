@@ -14,6 +14,7 @@ protocol CryingDetectionServiceProtocol: Any {
     /// Observable that informs about detection of baby's cry
     var cryingDetectionObservable: Observable<CryingDetectionResult> { get }
 
+    /// Predicts a baby cry.
     func predict(on bufferReadable: AVAudioPCMBuffer)
 }
 

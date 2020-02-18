@@ -133,7 +133,7 @@
 "activity-log.empty-state.message" = "Device was paired and configured correctly";
 "activity-log.no-more-notifications.message" = "It seems you don’t have more notifications!\n Enjoy using BabyGuard!";
 "activity-log.was-crying" = "was crying";
-"activity-log.noise-detected" = "Detected some noise.";
+"activity-log.noise-detected" = "Detected some noise";
 
 //MARK: - Lullabies
 "lullabies.bm-library" = "BM library";
