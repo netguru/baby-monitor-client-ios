@@ -86,7 +86,7 @@ class SoundDetectionServiceTests: XCTestCase {
 
         // When
         try! sut.startAnalysis()
-        microphoneServiceMock?.startRecording()
+        microphoneServiceMock.startRecording()
         sut.stopAnalysis()
 
         // Then
@@ -101,7 +101,7 @@ class SoundDetectionServiceTests: XCTestCase {
 
         // When
         try! sut.startAnalysis()
-        microphoneServiceMock?.microphoneAmplitudePublisher.onNext(simulatedAmplitude)
+        microphoneServiceMock.microphoneAmplitudePublisher.onNext(simulatedAmplitude)
 
         // Then
         XCTAssertTrue(noiseDetectionServiceMock.receivedAmplitudes[0].loudnessFactor == simulatedAmplitude.loudnessFactor)
@@ -115,7 +115,7 @@ class SoundDetectionServiceTests: XCTestCase {
 
         // When
         try! sut.startAnalysis()
-        microphoneServiceMock?.microphoneAmplitudePublisher.onNext(simulatedAmplitude)
+        microphoneServiceMock.microphoneAmplitudePublisher.onNext(simulatedAmplitude)
 
         // Then
         XCTAssertTrue(noiseDetectionServiceMock.receivedAmplitudes.isEmpty)
@@ -128,7 +128,7 @@ class SoundDetectionServiceTests: XCTestCase {
 
         // When
         try! sut.startAnalysis()
-        microphoneServiceMock?.microphoneBufferReadablePublisher.onNext(AVAudioPCMBuffer())
+        microphoneServiceMock.microphoneBufferReadablePublisher.onNext(AVAudioPCMBuffer())
 
         // Then
         XCTAssertTrue(cryingDetectionServiceMock.didPredict)
