@@ -10,7 +10,7 @@ enum BabyMonitorEvent: String, CodingKey {
     case actionKey = "action"
     case pairingCodeKey = "pairingCode"
     case pairingCodeResponseKey = "pairingResponse"
-    case webRtcSdpErrorKey = "sdpError"
+    case webRtcSdpErrorKey = "errorSDP"
 }
 
 enum BabyMonitorEvenAction: String, Codable {
