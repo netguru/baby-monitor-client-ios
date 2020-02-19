@@ -16,9 +16,6 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
     let soundDetectionModes: [SoundDetectionMode] = [.noiseDetection, .cryRecognition]
-    var soundDetectionTitles: [String] {
-        return soundDetectionModes.map { $0.localizedTitle }
-    }
     var selectedVoiceModeIndex: Int {
         return soundDetectionModes.index(of: UserDefaults.soundDetectionMode) ?? 0
     }

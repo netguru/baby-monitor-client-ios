@@ -16,7 +16,7 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
         let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
         super.init(
-            viewMaker: ParentSettingsView(appVersion: appVersion, soundDetectionTitles: viewModel.soundDetectionTitles, selectedVoiceModeIndex: viewModel.selectedVoiceModeIndex),
+            viewMaker: ParentSettingsView(appVersion: appVersion, soundDetectionModes: viewModel.soundDetectionModes, selectedVoiceModeIndex: viewModel.selectedVoiceModeIndex),
             analytics: viewModel.analytics,
             analyticsScreenType: .parentSettings)
     }

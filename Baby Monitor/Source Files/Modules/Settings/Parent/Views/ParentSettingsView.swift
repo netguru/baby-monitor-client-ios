@@ -33,7 +33,7 @@ final class ParentSettingsView: BaseSettingsView {
     }()
 
     fileprivate lazy var soundDetectionModeControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: soundDetectionTitles)
+        let segmentedControl = UISegmentedControl(items: soundDetectionModes.map { $0.localizedTitle })
         segmentedControl.tintColor = .white
         segmentedControl.selectedSegmentIndex = selectedVoiceModeIndex
         let attributes: [NSAttributedString.Key: Any] = [
@@ -46,7 +46,7 @@ final class ParentSettingsView: BaseSettingsView {
 
     fileprivate lazy var noiseSliderView: UIView = NoiseSliderView()
 
-    private let soundDetectionTitles: [String]
+    private let soundDetectionModes: [SoundDetectionMode]
     private let selectedVoiceModeIndex: Int
 
     private let editImageView = UIImageView(image: #imageLiteral(resourceName: "edit"))
@@ -57,12 +57,15 @@ final class ParentSettingsView: BaseSettingsView {
         return view
     }()
 
+    private let disposeBag = DisposeBag()
+
     /// Initializes settings view
-    init(appVersion: String, soundDetectionTitles: [String], selectedVoiceModeIndex: Int) {
-        self.soundDetectionTitles = soundDetectionTitles
+    init(appVersion: String, soundDetectionModes: [SoundDetectionMode], selectedVoiceModeIndex: Int) {
+        self.soundDetectionModes = soundDetectionModes
         self.selectedVoiceModeIndex = selectedVoiceModeIndex
         super.init(appVersion: appVersion)
         setupLayout()
+        setupBindings()
     }
 
     override func layoutSubviews() {
@@ -121,7 +124,7 @@ final class ParentSettingsView: BaseSettingsView {
         ]
         }
         noiseSliderView.addConstraints {[
-            $0.equalTo(soundDetectionModeControl, .top, .bottom, constant: 30),
+            $0.equalTo(soundDetectionModeControl, .top, .bottom, constant: 22),
             $0.equalTo(soundDetectionModeControl, .width, .width),
             $0.equal(.height, constant: 80),
             $0.equal(.centerX)
@@ -135,6 +138,16 @@ final class ParentSettingsView: BaseSettingsView {
         ]
         }
         editBabyPhotoButton.layer.zPosition = 1
+    }
+
+    private func setupBindings() {
+        rx.voiceModeTap.subscribe(onNext: { [weak self] selectedVoiceModeIndex in
+            guard let self = self else { return }
+            let animation = CATransition()
+            animation.duration = 0.3
+            self.noiseSliderView.layer.add(animation, forKey: nil)
+            self.noiseSliderView.isHidden = selectedVoiceModeIndex != self.soundDetectionModes.index(of: .noiseDetection)
+            }).disposed(by: disposeBag)
     }
 }
 
