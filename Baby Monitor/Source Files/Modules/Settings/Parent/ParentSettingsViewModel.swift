@@ -19,6 +19,9 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     var selectedVoiceModeIndex: Int {
         return soundDetectionModes.index(of: UserDefaults.soundDetectionMode) ?? 0
     }
+    var noiseLoudnessFactorLimit: Int {
+        return UserDefaults.noiseLoudnessFactorLimit
+    }
     let settingSoundDetectionFailedPublisher = PublishRelay<Void>()
     let errorHandler: ErrorHandlerProtocol
 
@@ -26,6 +29,7 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     private(set) var soundDetectionTap: Observable<Int>?
     private(set) var resetAppTap: Observable<Void>?
     private(set) var cancelTap: Observable<Void>?
+    private(set) var noiseSliderValue: Observable<Int>?
     
     private let babyModelController: BabyModelControllerProtocol
     private let bag = DisposeBag()
@@ -49,11 +53,13 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
                      addPhotoTap: Observable<UIButton>,
                      soundDetectionTap: Observable<Int>,
                      resetAppTap: Observable<Void>,
-                     cancelTap: Observable<Void>) {
+                     cancelTap: Observable<Void>,
+                     noiseSliderValue: Observable<Int>) {
         self.addPhotoTap = addPhotoTap
         self.soundDetectionTap = soundDetectionTap
         self.resetAppTap = resetAppTap
         self.cancelTap = cancelTap
+        self.noiseSliderValue = noiseSliderValue
         babyName.subscribe({ [weak self] event in
             if let name = event.element {
                 self?.babyModelController.updateName(name)
@@ -79,6 +85,15 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
                 let index = event.element else { return }
                 self.handleSoundDetectionModeChange(for: index)
         }).disposed(by: bag)
+
+        noiseSliderValue?
+            .skip(1)
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .subscribe({ [weak self] event in
+            guard let self = self,
+                let value = event.element else { return }
+                self.handleNoiseLimit(value)
+        }).disposed(by: bag)
     }
 
     private func handleSoundDetectionModeChange(for index: Int) {
@@ -94,6 +109,19 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
             switch result {
             case .success:
                 UserDefaults.soundDetectionMode = soundDetectionMode
+            case .failure:
+                self.settingSoundDetectionFailedPublisher.accept(())
+            }
+        })
+    }
+
+    private func handleNoiseLimit(_ noiseLimit: Int) {
+        let message = EventMessage(noiseLevelLimit: noiseLimit, confirmationId: randomizer.generateRandomCode())
+        webSocketEventMessageService.sendMessage(message, completion: { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                UserDefaults.noiseLoudnessFactorLimit = noiseLimit
             case .failure:
                 self.settingSoundDetectionFailedPublisher.accept(())
             }

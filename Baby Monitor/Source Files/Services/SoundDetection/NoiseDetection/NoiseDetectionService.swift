@@ -33,7 +33,7 @@ final class NoiseDetectionService: NoiseDetectionServiceProtocol {
         let infoText = "Current loundness factor: \(roundedLoudnessFactor) %" + "\n" +
                "\(roundedDecibels) db"
         loggingInfoPublisher.onNext(infoText)
-        guard amplitudeInfo.loudnessFactor > Constants.loudnessFactorLimit else { return }
+        guard Int(amplitudeInfo.loudnessFactor) > UserDefaults.noiseLoudnessFactorLimit else { return }
         loggingInfoPublisher.onNext(infoText + "\n" + "Loudness limit has been reached.")
         noiseEventPublisher.onNext(())
     }

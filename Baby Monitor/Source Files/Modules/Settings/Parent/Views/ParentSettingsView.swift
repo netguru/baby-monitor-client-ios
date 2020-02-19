@@ -44,10 +44,13 @@ final class ParentSettingsView: BaseSettingsView {
         return segmentedControl
     }()
 
-    fileprivate lazy var noiseSliderView: UIView = NoiseSliderView()
+    fileprivate lazy var noiseSliderView: NoiseSliderView = {
+        return NoiseSliderView(noiseLoudnessFactorLimit: self.noiseLoudnessFactorLimit)
+    }()
 
     private let soundDetectionModes: [SoundDetectionMode]
     private let selectedVoiceModeIndex: Int
+    private let noiseLoudnessFactorLimit: Int
 
     private let editImageView = UIImageView(image: #imageLiteral(resourceName: "edit"))
     
@@ -60,9 +63,13 @@ final class ParentSettingsView: BaseSettingsView {
     private let disposeBag = DisposeBag()
 
     /// Initializes settings view
-    init(appVersion: String, soundDetectionModes: [SoundDetectionMode], selectedVoiceModeIndex: Int) {
+    init(appVersion: String,
+         soundDetectionModes: [SoundDetectionMode],
+         selectedVoiceModeIndex: Int,
+         noiseLoudnessFactorLimit: Int) {
         self.soundDetectionModes = soundDetectionModes
         self.selectedVoiceModeIndex = selectedVoiceModeIndex
+        self.noiseLoudnessFactorLimit = noiseLoudnessFactorLimit
         super.init(appVersion: appVersion)
         setupLayout()
         setupBindings()
@@ -174,5 +181,9 @@ extension Reactive where Base: ParentSettingsView {
 
     var editPhotoTap: Observable<UIButton> {
         return base.editBabyPhotoButton.rx.tap.map { [unowned base] in base.editBabyPhotoButton }
+    }
+
+    var noiseSliderValue: Observable<Int> {
+        return base.noiseSliderView.rx.noiseSliderValue
     }
 }

@@ -16,7 +16,10 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
         let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
         super.init(
-            viewMaker: ParentSettingsView(appVersion: appVersion, soundDetectionModes: viewModel.soundDetectionModes, selectedVoiceModeIndex: viewModel.selectedVoiceModeIndex),
+            viewMaker: ParentSettingsView(appVersion: appVersion,
+                                          soundDetectionModes: viewModel.soundDetectionModes,
+                                          selectedVoiceModeIndex: viewModel.selectedVoiceModeIndex,
+                                          noiseLoudnessFactorLimit: viewModel.noiseLoudnessFactorLimit),
             analytics: viewModel.analytics,
             analyticsScreenType: .parentSettings)
     }
@@ -51,7 +54,8 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
             addPhotoTap: customView.rx.editPhotoTap.asObservable(),
             soundDetectionTap: customView.rx.voiceModeTap.asObservable(),
             resetAppTap: customView.rx.resetButtonTap.asObservable(),
-            cancelTap: customView.rx.cancelButtonTap.asObservable()
+            cancelTap: customView.rx.cancelButtonTap.asObservable(),
+            noiseSliderValue: customView.rx.noiseSliderValue
         )
         viewModel.baby
             .map { $0.name }

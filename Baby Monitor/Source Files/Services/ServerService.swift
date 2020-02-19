@@ -144,6 +144,11 @@ final class ServerService: ServerServiceProtocol {
             UserDefaults.soundDetectionMode = soundDetectionMode
             messageServer.send(message: EventMessage(confirmationId: confirmationId).toStringMessage())
         }
+        if let noiseLevel = event.noiseLevelLimit,
+            let confirmationId = event.confirmationId {
+            UserDefaults.noiseLoudnessFactorLimit = noiseLevel
+            messageServer.send(message: EventMessage(confirmationId: confirmationId).toStringMessage())
+        }
     }
     
     private func sdpAnswerJson() -> Observable<String> {

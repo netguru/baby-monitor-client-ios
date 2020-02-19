@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>CLIENT_ID</key>
+	<string>551231461484-uocojolk6phq8lrmgjv8g3ao6m3tn2ma.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.551231461484-uocojolk6phq8lrmgjv8g3ao6m3tn2ma</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBlIkoda88eR2-QB6EGsRqF9PUKOEFcP0U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>551231461484</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>co.netguru.internal.babymonitor.staging</string>
+	<key>PROJECT_ID</key>
+	<string>baby-monitor-8f86a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>baby-monitor-8f86a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:551231461484:ios:6a656c6e886f033d</string>
+	<key>DATABASE_URL</key>
+	<string>https://baby-monitor-8f86a.firebaseio.com</string>
+</dict>
 </plist>

@@ -3,6 +3,8 @@
 //  Baby Monitor
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class NoiseSliderView: UIView {
 
@@ -14,7 +16,6 @@ final class NoiseSliderView: UIView {
         slider.minimumValueImage = minimumValueImage
         slider.maximumValueImage = maximumValueImage
         slider.tintColor = tintColor
-        slider.value = 0.5
         return slider
     }()
 
@@ -27,8 +28,9 @@ final class NoiseSliderView: UIView {
         return label
     }()
 
-    init() {
+    init(noiseLoudnessFactorLimit: Int) {
         super.init(frame: .zero)
+        noiseSlider.value = Float(noiseLoudnessFactorLimit) / 100.0
         setup()
     }
 
@@ -57,6 +59,13 @@ final class NoiseSliderView: UIView {
             $0.equal(.centerX)
         ]
         }
+    }
+}
+
+extension Reactive where Base: NoiseSliderView {
+
+    var noiseSliderValue: Observable<Int> {
+        return base.noiseSlider.rx.value.map { Int($0 * 100) }
     }
 
 }

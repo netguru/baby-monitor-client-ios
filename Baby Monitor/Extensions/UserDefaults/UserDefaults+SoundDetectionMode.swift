@@ -10,6 +10,10 @@ extension UserDefaults {
        return "SOUND_DETECTION_KEY"
     }
 
+    private static var noiseLevelKey: String {
+       return "NOISE_LEVEL_KEY"
+    }
+
     /// A current mode that is set in the app.
     static var soundDetectionMode: SoundDetectionMode {
         get {
@@ -18,6 +22,15 @@ extension UserDefaults {
         }
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: soundDetectionModeKey)
+        }
+    }
+
+    static var noiseLoudnessFactorLimit: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: noiseLevelKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: noiseLevelKey)
         }
     }
 }

@@ -27,7 +27,7 @@ enum Constants {
     static let recognizingSoundTimeLimit: TimeInterval = 10
 
     /// An initial limit for sound loudness that should be cut off.
-    static let loudnessFactorLimit: Double = 65
+    static let loudnessFactorLimit = 65
 
     /// A limit for which should get a confirmation id back.
     static let webSocketConfimationIDTimeLimit: TimeInterval = 5
