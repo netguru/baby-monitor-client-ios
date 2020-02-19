@@ -32,7 +32,7 @@ final class ParentSettingsView: BaseSettingsView {
         return textField
     }()
 
-    fileprivate lazy var soundDetectionModeControl: UISegmentedControl  = {
+    fileprivate lazy var soundDetectionModeControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: soundDetectionTitles)
         segmentedControl.tintColor = .white
         segmentedControl.selectedSegmentIndex = selectedVoiceModeIndex
@@ -43,6 +43,8 @@ final class ParentSettingsView: BaseSettingsView {
         segmentedControl.setTitleTextAttributes(attributes, for: .normal)
         return segmentedControl
     }()
+
+    fileprivate lazy var noiseSliderView: UIView = NoiseSliderView()
 
     private let soundDetectionTitles: [String]
     private let selectedVoiceModeIndex: Int
@@ -75,7 +77,8 @@ final class ParentSettingsView: BaseSettingsView {
          babyNameTextField,
          editImageView,
          underline,
-         soundDetectionModeControl].forEach { addSubview($0) }
+         soundDetectionModeControl,
+         noiseSliderView].forEach { addSubview($0) }
         setupConstraints()
     }
 
@@ -114,6 +117,13 @@ final class ParentSettingsView: BaseSettingsView {
         soundDetectionModeControl.addConstraints {[
             $0.equalTo(underline, .top, .bottom, constant: 30),
             $0.equalTo(underline, .width, .width),
+            $0.equal(.centerX)
+        ]
+        }
+        noiseSliderView.addConstraints {[
+            $0.equalTo(soundDetectionModeControl, .top, .bottom, constant: 30),
+            $0.equalTo(soundDetectionModeControl, .width, .width),
+            $0.equal(.height, constant: 80),
             $0.equal(.centerX)
         ]
         }

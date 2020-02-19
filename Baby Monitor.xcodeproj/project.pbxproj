@@ -203,6 +203,7 @@
 		8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */; };
 		8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */; };
 		9514DA2823D72FC7001999E1 /* AnalyticsTrackerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9514DA2723D72FC7001999E1 /* AnalyticsTrackerMock.swift */; };
+		9524BD4123FD17D70020712E /* NoiseSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524BD4023FD17D70020712E /* NoiseSliderView.swift */; };
 		952A637A238DBC2900C3837A /* VideoCapturerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6379238DBC2900C3837A /* VideoCapturerMock.swift */; };
 		952A637C238DBCF300C3837A /* WebRtcVideoCapturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A637B238DBCF300C3837A /* WebRtcVideoCapturer.swift */; };
 		952A6388238DE31F00C3837A /* PeerConnectionProxyMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6387238DE31F00C3837A /* PeerConnectionProxyMock.swift */; };
@@ -543,6 +544,7 @@
 		8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcMessage.swift; sourceTree = "<group>"; };
 		8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 		9514DA2723D72FC7001999E1 /* AnalyticsTrackerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTrackerMock.swift; sourceTree = "<group>"; };
+		9524BD4023FD17D70020712E /* NoiseSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseSliderView.swift; sourceTree = "<group>"; };
 		952A6379238DBC2900C3837A /* VideoCapturerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapturerMock.swift; sourceTree = "<group>"; };
 		952A637B238DBCF300C3837A /* WebRtcVideoCapturer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcVideoCapturer.swift; sourceTree = "<group>"; };
 		952A6387238DE31F00C3837A /* PeerConnectionProxyMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerConnectionProxyMock.swift; sourceTree = "<group>"; };
@@ -1014,10 +1016,8 @@
 		4E994BE6216240DA009C44C5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */,
+				9524BD3E23FD16240020712E /* Parent */,
 				200681C021FB53AA00340596 /* SettingsCoordinator.swift */,
-				2025564021F728F1006C6490 /* ParentSettingsView.swift */,
-				201CF6A121F9CBDC00E06FEF /* ParentSettingsViewController.swift */,
 				A1640E20220391D500398ED2 /* ServerSettingsView.swift */,
 				A1640E222203930F00398ED2 /* BaseSettingsView.swift */,
 				A1640E242203A3DB00398ED2 /* ServerSettingsViewController.swift */,
@@ -1345,6 +1345,25 @@
 				8A8EF94E219D55B60098A27B /* MessageStreamProtocol.swift */,
 			);
 			path = Messages;
+			sourceTree = "<group>";
+		};
+		9524BD3E23FD16240020712E /* Parent */ = {
+			isa = PBXGroup;
+			children = (
+				9524BD3F23FD16420020712E /* Views */,
+				200681BE21FB4FC600340596 /* ParentSettingsViewModel.swift */,
+				201CF6A121F9CBDC00E06FEF /* ParentSettingsViewController.swift */,
+			);
+			path = Parent;
+			sourceTree = "<group>";
+		};
+		9524BD3F23FD16420020712E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2025564021F728F1006C6490 /* ParentSettingsView.swift */,
+				9524BD4023FD17D70020712E /* NoiseSliderView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		95368F502209BBFA006E263A /* Specify Device */ = {
@@ -2039,6 +2058,7 @@
 				4E63DC0A21E39CD800604167 /* ServerService.swift in Sources */,
 				4E8E056E21AD8E72009ACE05 /* OnboardingButton.swift in Sources */,
 				8AA7CBB92183560900FCF62A /* BabyModelControllerProtocol.swift in Sources */,
+				9524BD4123FD17D70020712E /* NoiseSliderView.swift in Sources */,
 				4E994BDD216237D8009C44C5 /* DashboardViewController.swift in Sources */,
 				95368F522209BC36006E263A /* SpecifyDeviceInfoOnboardingViewController.swift in Sources */,
 				ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */,
