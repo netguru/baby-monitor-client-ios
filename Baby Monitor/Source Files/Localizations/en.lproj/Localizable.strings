@@ -123,6 +123,7 @@
 //MARK: - Server
 "server.baby-stopped-crying" = "Baby stopped crying!";
 "server.baby-is-crying" = "Baby is crying!";
+"server.noise-detected" = "Noise detected!";
 "server.audio-record-error" = "There is some error with audio recording. Please turn app again.";
 "server.stream-error" = "There is some error with connecting to the stream.";
 "server.no-stream" = "No stream available.";
@@ -132,6 +133,7 @@
 "activity-log.empty-state.message" = "Device was paired and configured correctly";
 "activity-log.no-more-notifications.message" = "It seems you don’t have more notifications!\n Enjoy using BabyGuard!";
 "activity-log.was-crying" = "was crying";
+"activity-log.noise-detected" = "Detected some noise";
 
 //MARK: - Lullabies
 "lullabies.bm-library" = "BM library";
@@ -153,6 +155,10 @@
 "settings.cell.clear-data" = "Clear data";
 "settings.cell.clear-data-alert-message" = "Your current connection will be terminated. Are you sure you want to proceed?";
 "settings.babyNameTextField.placeholder" = "Your baby name";
+"settings.voiceMode.noiseDetection" = "Noise Detection";
+"settings.voiceMode.cryDetection" = "Cry Detection";
+"settings.voiceMode.failed-title" = "Failed to set a new voice detection mode.";
+"settings.voiceMode.failed-description" = "Please try again and make sure the baby device is connected.";
 "settings.rateButton.title" = "Rate us";
 "settings.resetButton.title" = "Reset the connection";
 "settings.allow-sending.message" = "Allow to send baby voice\nrecordings";

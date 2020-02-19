@@ -16,9 +16,19 @@ final class AppDependencies {
     private let bag = DisposeBag()
     
     // MARK: - Audio & Crying
-    
+
+    /// Service which is controlling a sound detection in the app.
+    private(set) lazy var soundDetectionService: SoundDetectionServiceProtocol = SoundDetectionService(
+        microphoneService: audioMicrophoneService,
+        noiseDetectionService: noiseDetectionService,
+        cryingDetectionService: cryingDetectionService,
+        cryingEventService: cryingEventService)
+
+    /// Service for detecting noise.
+    private(set) lazy var noiseDetectionService: NoiseDetectionServiceProtocol = NoiseDetectionService()
+
     /// Service for detecting baby's cry
-    private(set) lazy var cryingDetectionService: CryingDetectionServiceProtocol = CryingDetectionService(microphoneCaptureService: audioMicrophoneService)
+    private(set) lazy var cryingDetectionService: CryingDetectionServiceProtocol = CryingDetectionService()
     
     /// Service that takes care of appropriate controling: crying detection, audio recording and saving these events to realm database
     private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(
@@ -154,7 +164,7 @@ final class AppDependencies {
             messageServer: messageServer,
             netServiceServer: netServiceServer,
             webRtcDecoders: webRtcMessageDecoders,
-            cryingService: cryingEventService,
+            soundDetectionService: soundDetectionService,
             babyModelController: databaseRepository,
             notificationsService: localNotificationService,
             babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
@@ -214,6 +224,9 @@ final class AppDependencies {
             .disposed(by: bag)
         return resetter
     }()
+
+    /// Generator of random values.
+    let randomizer: RandomGenerator = Randomizer()
 
     // MARK: - Analytics
 

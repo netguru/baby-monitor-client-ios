@@ -15,9 +15,10 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
     init(viewModel: ParentSettingsViewModel, appVersionProvider: AppVersionProvider) {
         let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
-        super.init(viewMaker: ParentSettingsView(appVersion: appVersion),
-                   analytics: viewModel.analytics,
-                   analyticsScreenType: .parentSettings)
+        super.init(
+            viewMaker: ParentSettingsView(appVersion: appVersion, soundDetectionTitles: viewModel.soundDetectionTitles, selectedVoiceModeIndex: viewModel.selectedVoiceModeIndex),
+            analytics: viewModel.analytics,
+            analyticsScreenType: .parentSettings)
     }
 
     override func viewDidLoad() {
@@ -48,6 +49,7 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
         viewModel.attachInput(
             babyName: customView.rx.babyName.asObservable(),
             addPhotoTap: customView.rx.editPhotoTap.asObservable(),
+            soundDetectionTap: customView.rx.voiceModeTap.asObservable(),
             resetAppTap: customView.rx.resetButtonTap.asObservable(),
             cancelTap: customView.rx.cancelButtonTap.asObservable()
         )
@@ -61,6 +63,13 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
             .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
+        viewModel.settingSoundDetectionFailedPublisher
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.errorHandler.showAlert(title: Localizable.Settings.voiceModeFailedTitle,
+                                                       message: Localizable.Settings.voiceModeFailedDescription,
+                                                       presenter: self)
+            }).disposed(by: bag)
     }
 
     private func handleRating() {

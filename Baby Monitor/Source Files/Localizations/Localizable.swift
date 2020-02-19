@@ -159,6 +159,7 @@ enum Localizable {
         static let emptyStateMessage = localized("activity-log.empty-state.message")
         static let noMoreNotificationsMessage = localized("activity-log.no-more-notifications.message")
         static let wasCrying = localized("activity-log.was-crying")
+        static let noiseDetected = localized("activity-log.noise-detected")
     }
     
     enum SwitchBaby {
@@ -167,6 +168,7 @@ enum Localizable {
     
     enum Server {
         static let babyIsCrying = localized("server.baby-is-crying")
+        static let noiseDetected = localized("server.noise-detected")
         static let babyStoppedCrying = localized("server.baby-stopped-crying")
         static let audioRecordError = localized("server.audio-record-error")
         static let streamError = localized("server.stream-error")
@@ -185,6 +187,10 @@ enum Localizable {
     
     enum Settings {
         static let babyNamePlaceholder = localized("settings.babyNameTextField.placeholder")
+        static let noiseDetection = localized("settings.voiceMode.noiseDetection")
+        static let cryDetection = localized("settings.voiceMode.cryDetection")
+        static let voiceModeFailedTitle = localized("settings.voiceMode.failed-title")
+        static let voiceModeFailedDescription = localized("settings.voiceMode.failed-description")
         static let rateButtonTitle = localized("settings.rateButton.title")
         static let resetButtonTitle = localized("settings.resetButton.title")
         static let switchToServer = localized("settings.cell.switch-to-server")

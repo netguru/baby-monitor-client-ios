@@ -10,12 +10,14 @@ import RxCocoa
 final class ParentSettingsView: BaseSettingsView {
     
     fileprivate let editBabyPhotoButton = UIButton(type: .custom)
+
     fileprivate let editBabyPhotoImage: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "edit_baby_photo"))
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
+    
     fileprivate let babyNameTextField: UITextField = {
         let textField = UITextField()
         textField.returnKeyType = .done
@@ -30,7 +32,23 @@ final class ParentSettingsView: BaseSettingsView {
         return textField
     }()
 
+    fileprivate lazy var soundDetectionModeControl: UISegmentedControl  = {
+        let segmentedControl = UISegmentedControl(items: soundDetectionTitles)
+        segmentedControl.tintColor = .white
+        segmentedControl.selectedSegmentIndex = selectedVoiceModeIndex
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.customFont(withSize: .body),
+            .foregroundColor: UIColor.babyMonitorPurple
+        ]
+        segmentedControl.setTitleTextAttributes(attributes, for: .normal)
+        return segmentedControl
+    }()
+
+    private let soundDetectionTitles: [String]
+    private let selectedVoiceModeIndex: Int
+
     private let editImageView = UIImageView(image: #imageLiteral(resourceName: "edit"))
+    
     private let underline: UIView = {
         let view = UIView()
         view.backgroundColor = .babyMonitorPurple
@@ -38,7 +56,9 @@ final class ParentSettingsView: BaseSettingsView {
     }()
 
     /// Initializes settings view
-    override init(appVersion: String) {
+    init(appVersion: String, soundDetectionTitles: [String], selectedVoiceModeIndex: Int) {
+        self.soundDetectionTitles = soundDetectionTitles
+        self.selectedVoiceModeIndex = selectedVoiceModeIndex
         super.init(appVersion: appVersion)
         setupLayout()
     }
@@ -50,7 +70,12 @@ final class ParentSettingsView: BaseSettingsView {
     }
 
     private func setupLayout() {
-        [editBabyPhotoImage, editBabyPhotoButton, babyNameTextField, editImageView, underline].forEach { addSubview($0) }
+        [editBabyPhotoImage,
+         editBabyPhotoButton,
+         babyNameTextField,
+         editImageView,
+         underline,
+         soundDetectionModeControl].forEach { addSubview($0) }
         setupConstraints()
     }
 
@@ -86,6 +111,12 @@ final class ParentSettingsView: BaseSettingsView {
             $0.equalConstant(.height, 1)
         ]
         }
+        soundDetectionModeControl.addConstraints {[
+            $0.equalTo(underline, .top, .bottom, constant: 30),
+            $0.equalTo(underline, .width, .width),
+            $0.equal(.centerX)
+        ]
+        }
         editBabyPhotoButton.addConstraints {[
             $0.equalTo(editBabyPhotoImage, .leading, .leading),
             $0.equalTo(editBabyPhotoImage, .trailing, .trailing),
@@ -113,6 +144,11 @@ extension Reactive where Base: ParentSettingsView {
         }
         return ControlProperty(values: name, valueSink: binder)
     }
+
+    var voiceModeTap: ControlProperty<Int> {
+        return base.soundDetectionModeControl.rx.selectedSegmentIndex
+    }
+
     var editPhotoTap: Observable<UIButton> {
         return base.editBabyPhotoButton.rx.tap.map { [unowned base] in base.editBabyPhotoButton }
     }

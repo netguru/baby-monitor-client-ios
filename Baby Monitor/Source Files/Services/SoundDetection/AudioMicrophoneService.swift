@@ -25,6 +25,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     
     lazy var errorObservable = errorSubject.asObservable()
     lazy var microphoneBufferReadableObservable = microphoneBufferReadableSubject.asObservable()
+    lazy var microphoneAmplitudeObservable = microphoneAmplitudeSubject.asObservable()
     lazy var directoryDocumentsSavableObservable = directoryDocumentsSavableSubject.asObservable()
     
     private(set) var isCapturing = false
@@ -32,9 +33,11 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     
     private var microphoneCapturer: MicrophoneCaptureProtocol
     private var microphoneRecorder: MicrophoneRecordProtocol
-    
+    private var microphoneTracker: MicrophoneAmplitudeTracker
+
     private let errorSubject = PublishSubject<Error>()
     private let microphoneBufferReadableSubject = PublishSubject<AVAudioPCMBuffer>()
+    private let microphoneAmplitudeSubject = PublishSubject<MicrophoneAmplitudeInfo>()
     private let directoryDocumentsSavableSubject = PublishSubject<DirectoryDocumentsSavable>()
     
     private let disposeBag = DisposeBag()
@@ -45,6 +48,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         }
         microphoneCapturer = audioKitMicrophone.capture
         microphoneRecorder = audioKitMicrophone.record
+        microphoneTracker = audioKitMicrophone.tracker
         rxSetup()
     }
     
@@ -102,7 +106,10 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         microphoneCapturer.bufferReadable
             .throttle(Constants.recognizingSoundTimeLimit, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
             .subscribe(onNext: { [weak self] bufferReadable in
-                self?.microphoneBufferReadableSubject.onNext(bufferReadable)
+                guard let self = self else { return }
+                let amplitudeInfo = MicrophoneAmplitudeInfo(loudnessFactor: self.microphoneTracker.loudnessFactor, decibels: self.microphoneTracker.decibels)
+                self.microphoneAmplitudeSubject.onNext(amplitudeInfo)
+                self.microphoneBufferReadableSubject.onNext(bufferReadable)
             }).disposed(by: disposeBag)
     }
 

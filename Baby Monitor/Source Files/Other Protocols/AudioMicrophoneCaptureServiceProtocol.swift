@@ -8,6 +8,7 @@ import RxSwift
 
 protocol AudioMicrophoneCaptureServiceProtocol {
     var microphoneBufferReadableObservable: Observable<AVAudioPCMBuffer> { get }
+    var microphoneAmplitudeObservable: Observable<MicrophoneAmplitudeInfo> { get }
     var isCapturing: Bool { get }
     
     func stopCapturing()

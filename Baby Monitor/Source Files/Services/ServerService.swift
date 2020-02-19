@@ -36,7 +36,7 @@ final class ServerService: ServerServiceProtocol {
     private let webRtcServerManager: WebRtcServerManagerProtocol
     private let messageServer: MessageServerProtocol
     private let netServiceServer: NetServiceServerProtocol
-    private let cryingEventService: CryingEventsServiceProtocol
+    private var soundDetectionService: SoundDetectionServiceProtocol
     private let babyModelController: BabyModelControllerProtocol
     private let disposeBag = DisposeBag()
     private let decoders: [AnyMessageDecoder<WebRtcMessage>]
@@ -47,8 +47,16 @@ final class ServerService: ServerServiceProtocol {
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     private let loggingInfoPublisher = PublishSubject<String>()
 
-    init(webRtcServerManager: WebRtcServerManagerProtocol, messageServer: MessageServerProtocol, netServiceServer: NetServiceServerProtocol, webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>], cryingService: CryingEventsServiceProtocol, babyModelController: BabyModelControllerProtocol, notificationsService: NotificationServiceProtocol, babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>, parentResponseTime: TimeInterval = 5.0) {
-        self.cryingEventService = cryingService
+    init(webRtcServerManager: WebRtcServerManagerProtocol,
+         messageServer: MessageServerProtocol,
+         netServiceServer: NetServiceServerProtocol,
+         webRtcDecoders: [AnyMessageDecoder<WebRtcMessage>],
+         soundDetectionService: SoundDetectionServiceProtocol,
+         babyModelController: BabyModelControllerProtocol,
+         notificationsService: NotificationServiceProtocol,
+         babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>,
+         parentResponseTime: TimeInterval = 5.0) {
+        self.soundDetectionService = soundDetectionService
         self.babyModelController = babyModelController
         self.webRtcServerManager = webRtcServerManager
         self.messageServer = messageServer
@@ -64,24 +72,17 @@ final class ServerService: ServerServiceProtocol {
         netServiceServer.isEnabled.value = false
         messageServer.stop()
         webRtcServerManager.stop()
-        cryingEventService.stop()
+        soundDetectionService.stopAnalysis()
     }
     
     private func rxSetup() {
-        cryingEventService.cryingEventObservable
+        soundDetectionService.soundEventObservable
             .throttle(Constants.notificationRequestTimeLimit, scheduler: MainScheduler.instance)
             .do(onNext: { [weak self] _ in
-                self?.loggingInfoPublisher.onNext("Crying passed 3 minutes limit. Attemps to send push notification request.")
+                self?.loggingInfoPublisher.onNext("Passed 3 minutes limit. Attemps to send push notification request.")
             })
-            .subscribe(onNext: { [weak self] _ in
-                self?.notificationsService.sendPushNotificationsRequest(completion: { [weak self] result in
-                    switch result {
-                    case .failure(let error):
-                        self?.loggingInfoPublisher.onNext("Push notification request sending failed with error: \(error?.localizedDescription ?? "unknown")")
-                    case .success:
-                        self?.loggingInfoPublisher.onNext("Push Notification was sent successfully.")
-                    }
-                })
+            .subscribe(onNext: { [weak self] mode in
+                self?.sendNotification(for: mode)
             }).disposed(by: disposeBag)
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
@@ -103,7 +104,18 @@ final class ServerService: ServerServiceProtocol {
                 self.messageServer.send(message: json)
             })
             .disposed(by: disposeBag)
-        cryingEventService.loggingInfoPublisher.bind(to: loggingInfoPublisher).disposed(by: disposeBag)
+        soundDetectionService.loggingInfoPublisher.bind(to: loggingInfoPublisher).disposed(by: disposeBag)
+    }
+
+    private func sendNotification(for mode: SoundDetectionMode) {
+        notificationsService.sendPushNotificationsRequest(mode: mode, completion: { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.loggingInfoPublisher.onNext("Push notification request sending failed with error: \(error?.localizedDescription ?? "unknown")")
+            case .success:
+                self?.loggingInfoPublisher.onNext("Push Notification was sent successfully.")
+            }
+        })
     }
     
     private func handle(message: WebRtcMessage) {
@@ -126,6 +138,11 @@ final class ServerService: ServerServiceProtocol {
         }
         if let pairingCode = event.pairingCode {
             remotePairingCodePublisher.onNext(pairingCode)
+        }
+        if let soundDetectionMode = event.soundDetectionMode,
+            let confirmationId = event.confirmationId {
+            UserDefaults.soundDetectionMode = soundDetectionMode
+            messageServer.send(message: EventMessage(confirmationId: confirmationId).toStringMessage())
         }
     }
     
@@ -156,7 +173,7 @@ final class ServerService: ServerServiceProtocol {
         messageServer.start()
         netServiceServer.isEnabled.value = true
         do {
-            try cryingEventService.start()
+            try soundDetectionService.startAnalysis()
         } catch {
             switch error {
             case CryingEventService.CryingEventServiceError.audioRecordServiceError:

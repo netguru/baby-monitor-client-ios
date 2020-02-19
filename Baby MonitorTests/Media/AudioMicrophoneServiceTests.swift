@@ -12,7 +12,8 @@ class AudioMicrophoneServiceTests: XCTestCase {
     //Given
     lazy var recorderMock = MicrophoneRecordMock()
     lazy var capturerMock = MicrophoneCaptureMock()
-    lazy var microphoneMock = AudioKitMicrophoneMock(record: recorderMock, capture: capturerMock)
+    lazy var trackerMock = MicrophoneTrackerMock()
+    lazy var microphoneMock = AudioKitMicrophoneMock(record: recorderMock, capture: capturerMock, tracker: trackerMock)
 
     lazy var sut = try! AudioMicrophoneService(microphoneFactory: {
         return microphoneMock

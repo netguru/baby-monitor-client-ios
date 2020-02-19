@@ -7,7 +7,7 @@ import UserNotifications
 import FirebaseInstanceID
 
 protocol NotificationServiceProtocol: AnyObject {
-    func sendPushNotificationsRequest(completion: @escaping ((Result<Data>) -> Void))
+    func sendPushNotificationsRequest(mode: SoundDetectionMode, completion: @escaping ((Result<Data>) -> Void))
     func getNotificationsAllowance(completion: @escaping (Bool) -> Void)
     func resetTokens(completion: @escaping (Error?) -> Void)
 }
@@ -39,14 +39,15 @@ final class NotificationService: NotificationServiceProtocol {
         }
     }
     
-    func sendPushNotificationsRequest(completion: @escaping ((Result<Data>) -> Void)) {
+    func sendPushNotificationsRequest(mode: SoundDetectionMode, completion: @escaping ((Result<Data>) -> Void)) {
         guard let receiverId = UserDefaults.receiverPushNotificationsToken else {
             completion(Result.failure(TokenError.noReceiverTokenError))
             return
         }
         let firebasePushNotificationsRequest = FirebasePushNotificationsRequest(
             receiverId: receiverId,
-            serverKey: serverKeyObtainable.serverKey)
+            serverKey: serverKeyObtainable.serverKey,
+            mode: mode)
         .asURLRequest()
         networkDispatcher.execute(urlRequest: firebasePushNotificationsRequest, completion: completion)
         analytics.logEvent(.notificationSent)

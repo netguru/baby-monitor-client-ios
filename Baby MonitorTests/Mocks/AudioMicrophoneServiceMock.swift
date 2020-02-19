@@ -10,10 +10,18 @@ import RxSwift
 
 final class AudioMicrophoneServiceMock: AudioMicrophoneServiceProtocol {
 
-    lazy var directoryDocumentsSavableObservable: Observable<DirectoryDocumentsSavable> = directoryDocumentSavablePublihser.asObservable()
-    var directoryDocumentSavablePublihser = PublishSubject<DirectoryDocumentsSavable>()
     var isRecording: Bool = false
     var isSaveActionSuccess = true
+    var isCapturing: Bool = false
+    
+    lazy var directoryDocumentsSavableObservable: Observable<DirectoryDocumentsSavable> = directoryDocumentSavablePublihser.asObservable()
+    var directoryDocumentSavablePublihser = PublishSubject<DirectoryDocumentsSavable>()
+
+    lazy var microphoneBufferReadableObservable: Observable<AVAudioPCMBuffer> = microphoneBufferReadablePublisher.asObservable()
+    var microphoneBufferReadablePublisher = PublishSubject<AVAudioPCMBuffer>()
+
+    lazy var microphoneAmplitudeObservable: Observable<MicrophoneAmplitudeInfo> = microphoneAmplitudePublisher.asObservable()
+    let microphoneAmplitudePublisher = PublishSubject<MicrophoneAmplitudeInfo>()
 
     func stopRecording() {
         isRecording = false
@@ -24,17 +32,13 @@ final class AudioMicrophoneServiceMock: AudioMicrophoneServiceProtocol {
         isRecording = true
     }
 
-    lazy var microphoneBufferReadableObservable: Observable<AVAudioPCMBuffer> = microphoneBufferReadablePublisher.asObservable()
-    var microphoneBufferReadablePublisher = PublishSubject<AVAudioPCMBuffer>()
-    var isCapturing: Bool = false
-
     func stopCapturing() {
-        isCapturing = true
+        isCapturing = false
         microphoneBufferReadablePublisher.onNext(AVAudioPCMBuffer())
     }
 
     func startCapturing() {
-        isCapturing = false
+        isCapturing = true
     }
 
 }

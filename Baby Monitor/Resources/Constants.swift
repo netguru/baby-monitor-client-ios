@@ -25,6 +25,15 @@ enum Constants {
 
     /// A limit for sending maximum one sound to an ML model for recognizing in this time.
     static let recognizingSoundTimeLimit: TimeInterval = 10
+
+    /// An initial limit for sound loudness that should be cut off.
+    static let loudnessFactorLimit: Double = 65
+
+    /// A limit for which should get a confirmation id back.
+    static let webSocketConfimationIDTimeLimit: TimeInterval = 5
+
+    /// The default mode to be used when not set.
+    static let defaultSoundDetectionMode: SoundDetectionMode = .cryRecognition
     
     /// Represents a size class for constraint constants
     enum ResponsiveSizeClass {

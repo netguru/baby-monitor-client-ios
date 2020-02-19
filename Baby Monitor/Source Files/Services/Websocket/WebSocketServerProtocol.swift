@@ -75,7 +75,6 @@ extension PSWebSocketServerWrapper: PSWebSocketServerDelegate {
         connectionStatusPublisher.onNext(.disconnected)
     }
     
-    
     func server(_ server: PSWebSocketServer, webSocketDidOpen webSocket: PSWebSocket) {
         connectedSocketPublisher.accept(PSWebSocketWrapper(socket: webSocket, assignDelegate: false))
         connectionStatusPublisher.onNext(.connected)

@@ -11,11 +11,6 @@ protocol CryingEventsServiceProtocol: Any {
     var cryingEventObservable: Observable<Void> { get }
 
     var loggingInfoPublisher: PublishSubject<String> { get }
-
-    /// Starts work of crying events service
-    func start() throws
-    /// Stops work of crying events service
-    func stop()
 }
 
 final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
@@ -43,21 +38,6 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
         self.activityLogEventsRepository = activityLogEventsRepository
         self.storageService = storageService
         rxSetup()
-    }
-    
-    func start() throws {
-        cryingDetectionService.startAnalysis()
-        if microphoneRecordService == nil {
-            throw CryingEventServiceError.audioRecordServiceError
-        }
-    }
-    
-    func stop() {
-        cryingDetectionService.stopAnalysis()
-        guard self.microphoneRecordService?.isRecording ?? false else {
-            return
-        }
-        self.microphoneRecordService?.stopRecording()
     }
     
     private func rxSetup() {
