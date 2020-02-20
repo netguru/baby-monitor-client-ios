@@ -8,12 +8,13 @@ import Foundation
 protocol RandomGenerator {
 
     /// Generating a random 4 number code.
-     func generateRandomCode() -> Int
+     func generateRandomCode() -> String
 }
 
 struct Randomizer: RandomGenerator {
 
-    func generateRandomCode() -> Int {
-        return Int.random(in: 1000...9999)
+    func generateRandomCode() -> String {
+        return String(Int.random(in: 1000...9999))
     }
+
 }

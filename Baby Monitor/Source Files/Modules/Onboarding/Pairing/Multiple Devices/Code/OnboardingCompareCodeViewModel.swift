@@ -29,7 +29,7 @@ final class OnboardingCompareCodeViewModel: BaseViewModel {
         self.urlConfiguration = urlConfiguration
         self.serverURL = serverURL
         self.activityLogEventsRepository = activityLogEventsRepository
-        self.codeText = String(randomizer.generateRandomCode())
+        self.codeText = randomizer.generateRandomCode()
         super.init(analytics: analytics)
         setupBindings()
     }
