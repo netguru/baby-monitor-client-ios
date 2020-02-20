@@ -26,7 +26,7 @@ struct EventMessage {
     var pairingCodeResponse: Bool?
     var webRtcSdpErrorMessage: String?
     var soundDetectionMode: SoundDetectionMode?
-    var confirmationId: Int?
+    var confirmationId: String?
 }
 
 extension EventMessage: Codable {
@@ -39,7 +39,7 @@ extension EventMessage: Codable {
         pairingCodeResponse = try container.decodeIfPresent(Bool.self, forKey: .pairingCodeResponseKey)
         webRtcSdpErrorMessage = try container.decodeIfPresent(String.self, forKey: .webRtcSdpErrorKey)
         soundDetectionMode = try container.decodeIfPresent(SoundDetectionMode.self, forKey: .soundDetectionModeKey)
-        confirmationId = try container.decodeIfPresent(Int.self, forKey: .confirmationID)
+        confirmationId = try container.decodeIfPresent(String.self, forKey: .confirmationID)
     }
 
     func encode(to encoder: Encoder) throws {
