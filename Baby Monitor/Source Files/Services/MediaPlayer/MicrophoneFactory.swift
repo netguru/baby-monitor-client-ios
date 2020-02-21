@@ -45,7 +45,7 @@ enum AudioKitMicrophoneFactory {
 
         let silentRecorderMixer = AKMixer(recorderMixer)
         silentRecorderMixer.volume = 0
-        let silentCapturerMixer = AKMixer(capturerMixer)
+        let silentCapturerMixer = AKMixer(tracker)
         silentCapturerMixer.volume = 0
 
         let outputMixer = AKMixer(silentRecorderMixer, silentCapturerMixer)
