@@ -8,6 +8,8 @@ import RxCocoa
 
 final class NoiseSliderView: UIView {
 
+    fileprivate let sliderValueAfterFinishedTouchesPublisher = PublishSubject<Int>()
+
     fileprivate lazy var noiseSlider: UISlider = {
         let slider = UISlider()
         let tintColor = UIColor.babyMonitorPurple
@@ -19,6 +21,9 @@ final class NoiseSliderView: UIView {
         return slider
     }()
 
+    fileprivate var percentSliderValue: Int {
+        return convertSliderValueToPercent(noiseSlider.value)
+    }
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = Localizable.Settings.noiseLevel
@@ -39,11 +44,25 @@ final class NoiseSliderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    fileprivate func convertSliderValueToPercent(_ value: Float) -> Int {
+        return Int(value * 100)
+    }
+
     private func setup() {
         [titleLabel, noiseSlider].forEach {
             addSubview($0)
         }
         setupConstraints()
+        noiseSlider.addTarget(self, action: #selector(onFinishedEditingSlider(_:event:)), for: .touchUpInside)
+    }
+
+    @objc private func onFinishedEditingSlider(_ slider: UISlider, event: UIEvent) {
+        guard let touch = event.allTouches?.first else { return }
+        switch touch.phase {
+        case .ended:
+            sliderValueAfterFinishedTouchesPublisher.onNext(percentSliderValue)
+        default: break
+        }
     }
 
     private func setupConstraints() {
@@ -65,7 +84,11 @@ final class NoiseSliderView: UIView {
 extension Reactive where Base: NoiseSliderView {
 
     var noiseSliderValue: Observable<Int> {
-        return base.noiseSlider.rx.value.map { Int($0 * 100) }
+        return base.noiseSlider.rx.value.map { [unowned base] floatValue in base.convertSliderValueToPercent(floatValue) }
+    }
+
+    var noiseSliderValueOnEnded: Observable<Int> {
+        return base.sliderValueAfterFinishedTouchesPublisher.asObserver()
     }
 
 }

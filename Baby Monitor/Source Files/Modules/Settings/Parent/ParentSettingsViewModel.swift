@@ -30,6 +30,7 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     private(set) var resetAppTap: Observable<Void>?
     private(set) var cancelTap: Observable<Void>?
     private(set) var noiseSliderValue: Observable<Int>?
+    private(set) var noiseSliderValueOnEnded: Observable<Int>?
     
     private let babyModelController: BabyModelControllerProtocol
     private let bag = DisposeBag()
@@ -54,12 +55,14 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
                      soundDetectionTap: Observable<Int>,
                      resetAppTap: Observable<Void>,
                      cancelTap: Observable<Void>,
-                     noiseSliderValue: Observable<Int>) {
+                     noiseSliderValue: Observable<Int>,
+                     noiseSliderValueOnEnded: Observable<Int>) {
         self.addPhotoTap = addPhotoTap
         self.soundDetectionTap = soundDetectionTap
         self.resetAppTap = resetAppTap
         self.cancelTap = cancelTap
         self.noiseSliderValue = noiseSliderValue
+        self.noiseSliderValueOnEnded = noiseSliderValueOnEnded
         babyName.subscribe({ [weak self] event in
             if let name = event.element {
                 self?.babyModelController.updateName(name)
@@ -86,9 +89,9 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
                 self.handleSoundDetectionModeChange(for: index)
         }).disposed(by: bag)
 
-        noiseSliderValue?
-            .skip(1)
-            .throttle(0.5, scheduler: MainScheduler.instance)
+        noiseSliderValueOnEnded?
+            .debounce(0.5, scheduler: MainScheduler.instance)
+            .throttle(1, scheduler: MainScheduler.instance)// if needed
             .subscribe({ [weak self] event in
             guard let self = self,
                 let value = event.element else { return }

@@ -186,4 +186,8 @@ extension Reactive where Base: ParentSettingsView {
     var noiseSliderValue: Observable<Int> {
         return base.noiseSliderView.rx.noiseSliderValue
     }
+
+    var noiseSliderValueOnEnded: Observable<Int> {
+        return base.noiseSliderView.rx.noiseSliderValueOnEnded
+    }
 }
