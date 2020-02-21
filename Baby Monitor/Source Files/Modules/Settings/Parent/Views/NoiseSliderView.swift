@@ -33,15 +33,18 @@ final class NoiseSliderView: UIView {
         return label
     }()
 
-    init(noiseLoudnessFactorLimit: Int) {
+    init() {
         super.init(frame: .zero)
-        noiseSlider.value = Float(noiseLoudnessFactorLimit) / 100.0
         setup()
     }
 
     @available(*, unavailable, message: "Use init() instead")
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func update(sliderValue: Int) {
+        noiseSlider.setValue(Float(sliderValue) / 100.0, animated: true)
     }
 
     fileprivate func convertSliderValueToPercent(_ value: Float) -> Int {

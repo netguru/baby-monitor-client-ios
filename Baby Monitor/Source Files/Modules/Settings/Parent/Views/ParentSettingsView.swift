@@ -8,7 +8,7 @@ import RxSwift
 import RxCocoa
 
 final class ParentSettingsView: BaseSettingsView {
-    
+
     fileprivate let editBabyPhotoButton = UIButton(type: .custom)
 
     fileprivate let editBabyPhotoImage: UIImageView = {
@@ -44,13 +44,10 @@ final class ParentSettingsView: BaseSettingsView {
         return segmentedControl
     }()
 
-    fileprivate lazy var noiseSliderView: NoiseSliderView = {
-        return NoiseSliderView(noiseLoudnessFactorLimit: self.noiseLoudnessFactorLimit)
-    }()
+    fileprivate lazy var noiseSliderView = NoiseSliderView()
 
     private let soundDetectionModes: [SoundDetectionMode]
     private let selectedVoiceModeIndex: Int
-    private let noiseLoudnessFactorLimit: Int
 
     private let editImageView = UIImageView(image: #imageLiteral(resourceName: "edit"))
     
@@ -60,16 +57,18 @@ final class ParentSettingsView: BaseSettingsView {
         return view
     }()
 
+    private let sliderProgressIndicator = SliderProgressIndicator()
+
+    private var timer: Timer?
+
     private let disposeBag = DisposeBag()
 
     /// Initializes settings view
     init(appVersion: String,
          soundDetectionModes: [SoundDetectionMode],
-         selectedVoiceModeIndex: Int,
-         noiseLoudnessFactorLimit: Int) {
+         selectedVoiceModeIndex: Int) {
         self.soundDetectionModes = soundDetectionModes
         self.selectedVoiceModeIndex = selectedVoiceModeIndex
-        self.noiseLoudnessFactorLimit = noiseLoudnessFactorLimit
         super.init(appVersion: appVersion)
         setupLayout()
         setupBindings()
@@ -81,6 +80,19 @@ final class ParentSettingsView: BaseSettingsView {
         editBabyPhotoImage.layer.cornerRadius = editBabyPhotoImage.bounds.height / 2
     }
 
+    func updateProgressIndicator(with result: Result<()>) {
+        sliderProgressIndicator.stopAnimating()
+        switch result {
+        case .success:
+            sliderProgressIndicator.value = "✔️"
+        case .failure:
+            sliderProgressIndicator.value = "❌"
+        }
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+            self?.sliderProgressIndicator.isHidden = true
+        }
+    }
+
     private func setupLayout() {
         [editBabyPhotoImage,
          editBabyPhotoButton,
@@ -88,8 +100,14 @@ final class ParentSettingsView: BaseSettingsView {
          editImageView,
          underline,
          soundDetectionModeControl,
-         noiseSliderView].forEach { addSubview($0) }
+         noiseSliderView,
+         sliderProgressIndicator].forEach { addSubview($0) }
         setupConstraints()
+        sliderProgressIndicator.isHidden = true
+    }
+
+    func updateSlider(with value: Int) {
+        noiseSliderView.update(sliderValue: value)
     }
 
     private func setupConstraints() {
@@ -133,7 +151,7 @@ final class ParentSettingsView: BaseSettingsView {
         noiseSliderView.addConstraints {[
             $0.equalTo(soundDetectionModeControl, .top, .bottom, constant: 22),
             $0.equalTo(soundDetectionModeControl, .width, .width),
-            $0.equal(.height, constant: 80),
+            $0.equalConstant(.height, 80),
             $0.equal(.centerX)
         ]
         }
@@ -145,6 +163,14 @@ final class ParentSettingsView: BaseSettingsView {
         ]
         }
         editBabyPhotoButton.layer.zPosition = 1
+
+        sliderProgressIndicator.addConstraints {[
+            $0.equalConstant(.width, 50),
+            $0.equalConstant(.height, 50),
+            $0.equal(.centerX),
+            $0.equalTo(noiseSliderView, .bottom, .top, constant: 6)
+        ]
+        }
     }
 
     private func setupBindings() {
@@ -154,6 +180,24 @@ final class ParentSettingsView: BaseSettingsView {
             animation.duration = 0.3
             self.noiseSliderView.layer.add(animation, forKey: nil)
             self.noiseSliderView.isHidden = selectedVoiceModeIndex != self.soundDetectionModes.index(of: .noiseDetection)
+        }).disposed(by: disposeBag)
+
+        rx.noiseSliderValue
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] value in
+                guard let self = self else { return }
+                if self.sliderProgressIndicator.isHidden {
+                    self.sliderProgressIndicator.isHidden = false
+                    self.sliderProgressIndicator.animateAppearence()
+                }
+                self.sliderProgressIndicator.value = String(value)
+            }).disposed(by: disposeBag)
+
+        rx.noiseSliderValueOnEnded
+            .subscribe(onNext: { [weak self] value in
+                guard let self = self else { return }
+                self.sliderProgressIndicator.startAnimating()
             }).disposed(by: disposeBag)
     }
 }

@@ -18,8 +18,7 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
         super.init(
             viewMaker: ParentSettingsView(appVersion: appVersion,
                                           soundDetectionModes: viewModel.soundDetectionModes,
-                                          selectedVoiceModeIndex: viewModel.selectedVoiceModeIndex,
-                                          noiseLoudnessFactorLimit: viewModel.noiseLoudnessFactorLimit),
+                                          selectedVoiceModeIndex: viewModel.selectedVoiceModeIndex),
             analytics: viewModel.analytics,
             analyticsScreenType: .parentSettings)
     }
@@ -68,12 +67,15 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
             .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
-        viewModel.settingSoundDetectionFailedPublisher
+        viewModel.webSocketMessageResultPublisher
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
-                self?.viewModel.errorHandler.showAlert(title: Localizable.Settings.voiceModeFailedTitle,
-                                                       message: Localizable.Settings.voiceModeFailedDescription,
-                                                       presenter: self)
+            .subscribe(onNext: { [weak self] result  in
+                self?.customView.updateProgressIndicator(with: result)
+            }).disposed(by: bag)
+        viewModel.noiseLoudnessFactorLimitPublisher
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] value in
+                self?.customView.updateSlider(with: value)
             }).disposed(by: bag)
     }
 

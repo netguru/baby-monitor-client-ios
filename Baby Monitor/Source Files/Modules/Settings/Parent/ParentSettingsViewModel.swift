@@ -19,11 +19,9 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     var selectedVoiceModeIndex: Int {
         return soundDetectionModes.index(of: UserDefaults.soundDetectionMode) ?? 0
     }
-    var noiseLoudnessFactorLimit: Int {
-        return UserDefaults.noiseLoudnessFactorLimit
-    }
-    let settingSoundDetectionFailedPublisher = PublishRelay<Void>()
+    var noiseLoudnessFactorLimitPublisher = BehaviorSubject<Int>(value: UserDefaults.noiseLoudnessFactorLimit)
     let errorHandler: ErrorHandlerProtocol
+    let webSocketMessageResultPublisher = PublishSubject<Result<()>>()
 
     private(set) var addPhotoTap: Observable<UIButton>?
     private(set) var soundDetectionTap: Observable<Int>?
@@ -37,7 +35,7 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     private let dismissImagePickerSubject = PublishRelay<Void>()
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
     private let randomizer: RandomGenerator
-    
+
     init(babyModelController: BabyModelControllerProtocol,
          webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
          errorHandler: ErrorHandlerProtocol,
@@ -107,13 +105,15 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
         }
         let soundDetectionMode = soundDetectionModes[index]
         let message = EventMessage(soundDetectionMode: soundDetectionMode, confirmationId: randomizer.generateRandomCode())
-        webSocketEventMessageService.sendMessage(message, completion: { [weak self] result in
-            guard let self = self else { return }
+        webSocketEventMessageService.sendMessage(message, completion: { result in
+//            guard let self = self else { return }
+
             switch result {
             case .success:
                 UserDefaults.soundDetectionMode = soundDetectionMode
             case .failure:
-                self.settingSoundDetectionFailedPublisher.accept(())
+                 break
+//                self.settingSoundDetectionFailedPublisher.accept(())
             }
         })
     }
@@ -126,8 +126,9 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
             case .success:
                 UserDefaults.noiseLoudnessFactorLimit = noiseLimit
             case .failure:
-                self.settingSoundDetectionFailedPublisher.accept(())
+                self.noiseLoudnessFactorLimitPublisher.onNext(UserDefaults.noiseLoudnessFactorLimit)
             }
+            self.webSocketMessageResultPublisher.onNext(result)
         })
     }
 }
