@@ -35,7 +35,6 @@ final class ParentSettingsView: BaseSettingsView {
     fileprivate lazy var soundDetectionModeControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: soundDetectionModes.map { $0.localizedTitle })
         segmentedControl.tintColor = .white
-        segmentedControl.selectedSegmentIndex = selectedVoiceModeIndex
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.customFont(withSize: .body),
             .foregroundColor: UIColor.babyMonitorPurple
@@ -47,7 +46,6 @@ final class ParentSettingsView: BaseSettingsView {
     fileprivate lazy var noiseSliderView = NoiseSliderView()
 
     private let soundDetectionModes: [SoundDetectionMode]
-    private let selectedVoiceModeIndex: Int
 
     private let editImageView = UIImageView(image: #imageLiteral(resourceName: "edit"))
     
@@ -65,10 +63,8 @@ final class ParentSettingsView: BaseSettingsView {
 
     /// Initializes settings view
     init(appVersion: String,
-         soundDetectionModes: [SoundDetectionMode],
-         selectedVoiceModeIndex: Int) {
+         soundDetectionModes: [SoundDetectionMode]) {
         self.soundDetectionModes = soundDetectionModes
-        self.selectedVoiceModeIndex = selectedVoiceModeIndex
         super.init(appVersion: appVersion)
         setupLayout()
         setupBindings()
@@ -104,10 +100,16 @@ final class ParentSettingsView: BaseSettingsView {
          sliderProgressIndicator].forEach { addSubview($0) }
         setupConstraints()
         sliderProgressIndicator.isHidden = true
+        setupNoiseSlider()
     }
 
     func updateSlider(with value: Int) {
         noiseSliderView.update(sliderValue: value)
+    }
+
+    func updateSoundMode(with value: Int) {
+        soundDetectionModeControl.selectedSegmentIndex = value
+        setupNoiseSlider()
     }
 
     private func setupConstraints() {
@@ -174,13 +176,14 @@ final class ParentSettingsView: BaseSettingsView {
     }
 
     private func setupBindings() {
-        rx.voiceModeTap.subscribe(onNext: { [weak self] selectedVoiceModeIndex in
-            guard let self = self else { return }
-            let animation = CATransition()
-            animation.duration = 0.3
-            self.noiseSliderView.layer.add(animation, forKey: nil)
-            self.noiseSliderView.isHidden = selectedVoiceModeIndex != self.soundDetectionModes.index(of: .noiseDetection)
-        }).disposed(by: disposeBag)
+        rx.voiceModeTap
+            .skip(1)
+            .subscribe(onNext: { [weak self] selectedVoiceModeIndex in
+                guard let self = self else { return }
+                self.sliderProgressIndicator.isHidden = false
+                self.sliderProgressIndicator.startAnimating()
+                self.setupNoiseSlider()
+            }).disposed(by: disposeBag)
 
         rx.noiseSliderValue
             .skip(1)
@@ -199,6 +202,13 @@ final class ParentSettingsView: BaseSettingsView {
                 guard let self = self else { return }
                 self.sliderProgressIndicator.startAnimating()
             }).disposed(by: disposeBag)
+    }
+
+    private func setupNoiseSlider() {
+        let animation = CATransition()
+        animation.duration = 0.3
+        noiseSliderView.layer.add(animation, forKey: nil)
+        noiseSliderView.isHidden = soundDetectionModeControl.selectedSegmentIndex != soundDetectionModes.index(of: .noiseDetection)
     }
 }
 

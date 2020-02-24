@@ -17,8 +17,7 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
         self.viewModel = viewModel
         super.init(
             viewMaker: ParentSettingsView(appVersion: appVersion,
-                                          soundDetectionModes: viewModel.soundDetectionModes,
-                                          selectedVoiceModeIndex: viewModel.selectedVoiceModeIndex),
+                                          soundDetectionModes: viewModel.soundDetectionModes),
             analytics: viewModel.analytics,
             analyticsScreenType: .parentSettings)
     }
@@ -77,6 +76,11 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
             .subscribe(onNext: { [weak self] value in
                 self?.customView.updateSlider(with: value)
             }).disposed(by: bag)
+        viewModel.selectedVoiceModeIndexPublisher
+        .observeOn(MainScheduler.instance)
+        .subscribe(onNext: { [weak self] value in
+            self?.customView.updateSoundMode(with: value)
+        }).disposed(by: bag)
     }
 
     private func handleRating() {

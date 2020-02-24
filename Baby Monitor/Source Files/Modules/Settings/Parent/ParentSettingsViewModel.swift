@@ -16,9 +16,7 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
     let soundDetectionModes: [SoundDetectionMode] = [.noiseDetection, .cryRecognition]
-    var selectedVoiceModeIndex: Int {
-        return soundDetectionModes.index(of: UserDefaults.soundDetectionMode) ?? 0
-    }
+    var selectedVoiceModeIndexPublisher = BehaviorSubject<Int>(value: 0)
     var noiseLoudnessFactorLimitPublisher = BehaviorSubject<Int>(value: UserDefaults.noiseLoudnessFactorLimit)
     let errorHandler: ErrorHandlerProtocol
     let webSocketMessageResultPublisher = PublishSubject<Result<()>>()
@@ -66,6 +64,7 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
                 self?.babyModelController.updateName(name)
             }
         }).disposed(by: bag)
+        updateSelectedSoundMode()
         setupBindings()
     }
     
@@ -105,16 +104,15 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
         }
         let soundDetectionMode = soundDetectionModes[index]
         let message = EventMessage(soundDetectionMode: soundDetectionMode, confirmationId: randomizer.generateRandomCode())
-        webSocketEventMessageService.sendMessage(message, completion: { result in
-//            guard let self = self else { return }
-
+        webSocketEventMessageService.sendMessage(message, completion: { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success:
                 UserDefaults.soundDetectionMode = soundDetectionMode
             case .failure:
-                 break
-//                self.settingSoundDetectionFailedPublisher.accept(())
+                self.updateSelectedSoundMode()
             }
+            self.webSocketMessageResultPublisher.onNext(result)
         })
     }
 
@@ -130,5 +128,9 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
             }
             self.webSocketMessageResultPublisher.onNext(result)
         })
+    }
+
+    private func updateSelectedSoundMode() {
+        selectedVoiceModeIndexPublisher.onNext(soundDetectionModes.index(of: UserDefaults.soundDetectionMode) ?? 0)
     }
 }
