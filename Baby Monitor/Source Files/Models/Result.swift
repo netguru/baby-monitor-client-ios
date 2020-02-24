@@ -5,7 +5,7 @@
 
 import Foundation
 
-enum Result<T> {
+enum Result<T>: Equatable {
     case success(T)
     case failure(Error?)
     
@@ -21,4 +21,14 @@ enum Result<T> {
             return .failure(error)
         }
     }
+
+    static func == (lhs: Result<T>, rhs: Result<T>) -> Bool {
+        switch (lhs, rhs) {
+        case (.success, .success),
+             (.failure, .failure):
+            return true
+        default:
+            return false
+        }
+   }
 }

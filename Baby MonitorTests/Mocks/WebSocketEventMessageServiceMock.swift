@@ -13,9 +13,10 @@ final class WebSocketEventMessageServiceMock: WebSocketEventMessageServiceProtoc
     lazy var remotePairingCodeResponseObservable: Observable<Bool> = remotePairingCodeResponsePublisher.asObservable()
     lazy var remoteStreamConnectingErrorObservable: Observable<String> = remoteStreamConnectingErrorPublisher.asObservable()
     let remotePairingCodeResponsePublisher = PublishSubject<Bool>()
+    let connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
+    var shouldNotConfirmMessage = false
     private let remoteResetPublisher = PublishSubject<Void>()
     private let remoteStreamConnectingErrorPublisher = PublishSubject<String>()
-    private let connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
     private(set) var isOpen = false
     private(set) var messages = [String]()
 
@@ -32,6 +33,11 @@ final class WebSocketEventMessageServiceMock: WebSocketEventMessageServiceProtoc
     }
 
     func sendMessage(_ message: EventMessage, completion: @escaping (Result<()>) -> Void) {
+        if message.confirmationId != nil && !shouldNotConfirmMessage {
+            completion(.success(()))
+        } else {
+            completion(.failure(nil))
+        }
         messages.append(message.toStringMessage())
     }
 }

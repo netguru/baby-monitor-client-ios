@@ -18,7 +18,6 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     let soundDetectionModes: [SoundDetectionMode] = [.noiseDetection, .cryRecognition]
     var selectedVoiceModeIndexPublisher = BehaviorSubject<Int>(value: 0)
     var noiseLoudnessFactorLimitPublisher = BehaviorSubject<Int>(value: UserDefaults.noiseLoudnessFactorLimit)
-    let errorHandler: ErrorHandlerProtocol
     let webSocketMessageResultPublisher = PublishSubject<Result<()>>()
 
     private(set) var addPhotoTap: Observable<UIButton>?
@@ -37,12 +36,10 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
 
     init(babyModelController: BabyModelControllerProtocol,
          webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
-         errorHandler: ErrorHandlerProtocol,
          randomizer: RandomGenerator,
          analytics: AnalyticsManager) {
         self.babyModelController = babyModelController
         self.webSocketEventMessageService = webSocketEventMessageService
-        self.errorHandler = errorHandler
         self.randomizer = randomizer
         super.init(analytics: analytics)
     }
@@ -52,13 +49,11 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
                      soundDetectionTap: Observable<Int>,
                      resetAppTap: Observable<Void>,
                      cancelTap: Observable<Void>,
-                     noiseSliderValue: Observable<Int>,
                      noiseSliderValueOnEnded: Observable<Int>) {
         self.addPhotoTap = addPhotoTap
         self.soundDetectionTap = soundDetectionTap
         self.resetAppTap = resetAppTap
         self.cancelTap = cancelTap
-        self.noiseSliderValue = noiseSliderValue
         self.noiseSliderValueOnEnded = noiseSliderValueOnEnded
         babyName.subscribe({ [weak self] event in
             if let name = event.element {
@@ -89,12 +84,11 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
 
         noiseSliderValueOnEnded?
             .debounce(0.5, scheduler: MainScheduler.instance)
-            .throttle(1, scheduler: MainScheduler.instance)// if needed
             .subscribe({ [weak self] event in
-            guard let self = self,
-                let value = event.element else { return }
-                self.handleNoiseLimit(value)
-        }).disposed(by: bag)
+                guard let self = self,
+                    let value = event.element else { return }
+                    self.handleNoiseLimit(value)
+            }).disposed(by: bag)
 
         webSocketEventMessageService.connectionStatusObservable
             .subscribe({ [weak self] status in

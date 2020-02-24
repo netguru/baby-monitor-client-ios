@@ -53,7 +53,6 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
             soundDetectionTap: customView.rx.voiceModeTap.asObservable(),
             resetAppTap: customView.rx.resetButtonTap.asObservable(),
             cancelTap: customView.rx.cancelButtonTap.asObservable(),
-            noiseSliderValue: customView.rx.noiseSliderValue,
             noiseSliderValueOnEnded: customView.rx.noiseSliderValueOnEnded
         )
         viewModel.baby
