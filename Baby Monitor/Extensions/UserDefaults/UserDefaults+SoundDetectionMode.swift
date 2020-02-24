@@ -18,7 +18,7 @@ extension UserDefaults {
     static var soundDetectionMode: SoundDetectionMode {
         get {
             let rawValue = UserDefaults.standard.string(forKey: soundDetectionModeKey) ?? Constants.defaultSoundDetectionMode.rawValue
-            return SoundDetectionMode(rawValue: rawValue)!
+            return SoundDetectionMode(rawValue: rawValue) ?? Constants.defaultSoundDetectionMode
         }
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: soundDetectionModeKey)
