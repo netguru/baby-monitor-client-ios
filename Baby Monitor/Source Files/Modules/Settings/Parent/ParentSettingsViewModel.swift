@@ -27,6 +27,7 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     private(set) var cancelTap: Observable<Void>?
     private(set) var noiseSliderValue: Observable<Int>?
     private(set) var noiseSliderValueOnEnded: Observable<Int>?
+    private var currentConnectionStatus: WebSocketConnectionStatus?
     
     private let babyModelController: BabyModelControllerProtocol
     private let bag = DisposeBag()
@@ -94,6 +95,11 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
                 let value = event.element else { return }
                 self.handleNoiseLimit(value)
         }).disposed(by: bag)
+
+        webSocketEventMessageService.connectionStatusObservable
+            .subscribe({ [weak self] status in
+                self?.currentConnectionStatus = status.element
+            }).disposed(by: bag)
     }
 
     private func handleSoundDetectionModeChange(for index: Int) {
@@ -101,6 +107,11 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
             SoundDetectionMode.allCases.count == soundDetectionModes.count else {
                 assertionFailure("Not handled all voice detection cases")
                 return
+        }
+        guard currentConnectionStatus != .disconnected else {
+            updateSelectedSoundMode()
+            self.webSocketMessageResultPublisher.onNext(.failure(nil))
+            return
         }
         let soundDetectionMode = soundDetectionModes[index]
         let message = EventMessage(soundDetectionMode: soundDetectionMode, confirmationId: randomizer.generateRandomCode())
@@ -117,6 +128,11 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     }
 
     private func handleNoiseLimit(_ noiseLimit: Int) {
+        guard currentConnectionStatus != .disconnected else {
+            noiseLoudnessFactorLimitPublisher.onNext(UserDefaults.noiseLoudnessFactorLimit)
+            self.webSocketMessageResultPublisher.onNext(.failure(nil))
+            return
+        }
         let message = EventMessage(noiseLevelLimit: noiseLimit, confirmationId: randomizer.generateRandomCode())
         webSocketEventMessageService.sendMessage(message, completion: { [weak self] result in
             guard let self = self else { return }

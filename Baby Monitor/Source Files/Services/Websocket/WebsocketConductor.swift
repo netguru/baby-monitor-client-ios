@@ -6,12 +6,24 @@
 import PocketSocket
 import RxSwift
 
-protocol WebSocketConductorProtocol {
+protocol WebSocketConductorProtocol: WebSocketConnectionStatusProvider {
     func open()
     func close()
 }
 
 final class WebSocketConductor<MessageType>: WebSocketConductorProtocol {
+
+    enum WebSocketError: Error {
+        case noSocket
+    }
+
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        guard let webSocket = webSocket else {
+            assertionFailure()
+            return Observable.error(WebSocketError.noSocket)
+        }
+        return webSocket.connectionStatusObservable
+    }
 
     private let messageEmitter: Observable<String>
     private let messageHandler: AnyObserver<MessageType>?

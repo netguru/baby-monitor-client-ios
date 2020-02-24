@@ -5,7 +5,7 @@
 
 import RxSwift
 
-protocol WebSocketEventMessageServiceProtocol: class {
+protocol WebSocketEventMessageServiceProtocol: class, WebSocketConnectionStatusProvider {
     var remoteResetObservable: Observable<Void> { get }
     var remotePairingCodeResponseObservable: Observable<Bool> { get }
     var remoteStreamConnectingErrorObservable: Observable<String> { get }
@@ -18,6 +18,18 @@ protocol WebSocketEventMessageServiceProtocol: class {
 }
 
 final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
+
+    enum WebSocketError: Error {
+        case noSocket
+    }
+
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        guard let eventMessageConductor = eventMessageConductor else {
+            assertionFailure()
+            return Observable.error(WebSocketError.noSocket)
+        }
+        return eventMessageConductor.connectionStatusObservable
+    }
 
     private enum EventMessageError: Error {
         case idNotConfirmed
