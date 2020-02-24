@@ -31,7 +31,8 @@ final class NoiseDetectionService: NoiseDetectionServiceProtocol {
         let roundedLoudnessFactor = String(format: "%.2f", amplitudeInfo.loudnessFactor)
         let roundedDecibels = String(format: "%.2f", amplitudeInfo.decibels)
         let infoText = "Current loundness factor: \(roundedLoudnessFactor) %" + "\n" +
-               "\(roundedDecibels) db"
+               "\(roundedDecibels) db" +
+            "\n Loundness limit:  \(UserDefaults.noiseLoudnessFactorLimit) %"
         loggingInfoPublisher.onNext(infoText)
         guard Int(amplitudeInfo.loudnessFactor) > UserDefaults.noiseLoudnessFactorLimit else { return }
         loggingInfoPublisher.onNext(infoText + "\n" + "Loudness limit has been reached.")
