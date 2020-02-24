@@ -4,12 +4,13 @@
 
 import UIKit
 
-final class SliderProgressIndicator: UIView {
+final class SliderProgressIndicatorView: UIView {
 
     var value: String = "" {
         didSet {
             valueLabel.text = value
             valueLabel.isHidden = false
+            resultImageView.isHidden = true
             loadingIndicator.isHidden = true
         }
     }
@@ -30,6 +31,13 @@ final class SliderProgressIndicator: UIView {
         return label
     }()
 
+    private let resultImageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        view.tintColor = .babyMonitorPurple
+        return view
+    }()
+
     init() {
         super.init(frame: .zero)
         setup()
@@ -41,7 +49,7 @@ final class SliderProgressIndicator: UIView {
     }
 
     func setup() {
-        [backgroundImageView, loadingIndicator, valueLabel].forEach {
+        [backgroundImageView, loadingIndicator, valueLabel, resultImageView].forEach {
             addSubview($0)
             $0.addConstraints {
                 $0.equalEdges()
@@ -49,10 +57,11 @@ final class SliderProgressIndicator: UIView {
         }
         loadingIndicator.style = .gray
         loadingIndicator.isHidden = true
-        loadingIndicator.startAnimating()
+        resultImageView.isHidden = true
     }
 
     func startAnimating() {
+        resultImageView.isHidden = true
         valueLabel.isHidden = true
         loadingIndicator.isHidden = false
         loadingIndicator.startAnimating()
@@ -62,6 +71,17 @@ final class SliderProgressIndicator: UIView {
         valueLabel.isHidden = false
         loadingIndicator.isHidden = true
         loadingIndicator.stopAnimating()
+    }
+
+    func update(with result: Result<()>) {
+        switch result {
+        case .success:
+            resultImageView.image = #imageLiteral(resourceName: "onboarding-completed")
+        case .failure:
+            resultImageView.image = #imageLiteral(resourceName: "onboarding-error")
+        }
+        resultImageView.isHidden = false
+        stopAnimating()
     }
 
     func animateAppearence() {

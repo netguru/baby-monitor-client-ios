@@ -55,7 +55,7 @@ final class ParentSettingsView: BaseSettingsView {
         return view
     }()
 
-    private let sliderProgressIndicator = SliderProgressIndicator()
+    private let sliderProgressIndicatorView = SliderProgressIndicatorView()
 
     private var timer: Timer?
 
@@ -77,15 +77,9 @@ final class ParentSettingsView: BaseSettingsView {
     }
 
     func updateProgressIndicator(with result: Result<()>) {
-        sliderProgressIndicator.stopAnimating()
-        switch result {
-        case .success:
-            sliderProgressIndicator.value = "✔️"
-        case .failure:
-            sliderProgressIndicator.value = "❌"
-        }
+        sliderProgressIndicatorView.update(with: result)
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
-            self?.sliderProgressIndicator.isHidden = true
+            self?.sliderProgressIndicatorView.isHidden = true
         }
     }
 
@@ -97,9 +91,9 @@ final class ParentSettingsView: BaseSettingsView {
          underline,
          soundDetectionModeControl,
          noiseSliderView,
-         sliderProgressIndicator].forEach { addSubview($0) }
+         sliderProgressIndicatorView].forEach { addSubview($0) }
         setupConstraints()
-        sliderProgressIndicator.isHidden = true
+        sliderProgressIndicatorView.isHidden = true
         setupNoiseSlider()
     }
 
@@ -166,7 +160,7 @@ final class ParentSettingsView: BaseSettingsView {
         }
         editBabyPhotoButton.layer.zPosition = 1
 
-        sliderProgressIndicator.addConstraints {[
+        sliderProgressIndicatorView.addConstraints {[
             $0.equalConstant(.width, 50),
             $0.equalConstant(.height, 50),
             $0.equal(.centerX),
@@ -180,8 +174,8 @@ final class ParentSettingsView: BaseSettingsView {
             .skip(1)
             .subscribe(onNext: { [weak self] selectedVoiceModeIndex in
                 guard let self = self else { return }
-                self.sliderProgressIndicator.isHidden = false
-                self.sliderProgressIndicator.startAnimating()
+                self.sliderProgressIndicatorView.isHidden = false
+                self.sliderProgressIndicatorView.startAnimating()
                 self.setupNoiseSlider()
             }).disposed(by: disposeBag)
 
@@ -190,17 +184,17 @@ final class ParentSettingsView: BaseSettingsView {
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
-                if self.sliderProgressIndicator.isHidden {
-                    self.sliderProgressIndicator.isHidden = false
-                    self.sliderProgressIndicator.animateAppearence()
+                if self.sliderProgressIndicatorView.isHidden {
+                    self.sliderProgressIndicatorView.isHidden = false
+                    self.sliderProgressIndicatorView.animateAppearence()
                 }
-                self.sliderProgressIndicator.value = String(value)
+                self.sliderProgressIndicatorView.value = String(value)
             }).disposed(by: disposeBag)
 
         rx.noiseSliderValueOnEnded
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
-                self.sliderProgressIndicator.startAnimating()
+                self.sliderProgressIndicatorView.startAnimating()
             }).disposed(by: disposeBag)
     }
 

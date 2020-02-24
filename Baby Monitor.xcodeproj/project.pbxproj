@@ -241,7 +241,7 @@
 		95C38B2723F6903F00713F7B /* SoundDetectionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2623F6903F00713F7B /* SoundDetectionServiceTests.swift */; };
 		95C38B2923F6924C00713F7B /* NoiseDetectionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2823F6924C00713F7B /* NoiseDetectionServiceMock.swift */; };
 		95C38B2B23F699FB00713F7B /* RandomizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C38B2A23F699FB00713F7B /* RandomizerMock.swift */; };
-		95CCC78224000D1E003FEBA0 /* SliderProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CCC78124000D1E003FEBA0 /* SliderProgressIndicator.swift */; };
+		95CCC78224000D1E003FEBA0 /* SliderProgressIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CCC78124000D1E003FEBA0 /* SliderProgressIndicatorView.swift */; };
 		95E75C3A2390317000AC559D /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C382390317000AC559D /* AlertPresenter.swift */; };
 		95E75C3D2390318500AC559D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75C3C2390318500AC559D /* Logger.swift */; };
 		95E83A1923DAA6FD00AECDE4 /* PermissionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E83A1723DAA6FD00AECDE4 /* PermissionsProvider.swift */; };
@@ -586,7 +586,7 @@
 		95C38B2623F6903F00713F7B /* SoundDetectionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetectionServiceTests.swift; sourceTree = "<group>"; };
 		95C38B2823F6924C00713F7B /* NoiseDetectionServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseDetectionServiceMock.swift; sourceTree = "<group>"; };
 		95C38B2A23F699FB00713F7B /* RandomizerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizerMock.swift; sourceTree = "<group>"; };
-		95CCC78124000D1E003FEBA0 /* SliderProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderProgressIndicator.swift; sourceTree = "<group>"; };
+		95CCC78124000D1E003FEBA0 /* SliderProgressIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderProgressIndicatorView.swift; sourceTree = "<group>"; };
 		95E75C382390317000AC559D /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		95E75C3C2390318500AC559D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		95E83A1723DAA6FD00AECDE4 /* PermissionsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionsProvider.swift; sourceTree = "<group>"; };
@@ -1364,7 +1364,7 @@
 			children = (
 				2025564021F728F1006C6490 /* ParentSettingsView.swift */,
 				9524BD4023FD17D70020712E /* NoiseSliderView.swift */,
-				95CCC78124000D1E003FEBA0 /* SliderProgressIndicator.swift */,
+				95CCC78124000D1E003FEBA0 /* SliderProgressIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2148,7 +2148,7 @@
 				4E8E056821AD8327009ACE05 /* UIFont+BabyMonitor.swift in Sources */,
 				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
 				8A8EF94A219C47FD0098A27B /* RTCICECandidate+JSON.swift in Sources */,
-				95CCC78224000D1E003FEBA0 /* SliderProgressIndicator.swift in Sources */,
+				95CCC78224000D1E003FEBA0 /* SliderProgressIndicatorView.swift in Sources */,
 				4E57319B2170BA7400DEAF0B /* HasWindow.swift in Sources */,
 				9546908F23A6771D0077D2B5 /* OnboardingCompareCodeViewModel.swift in Sources */,
 				4E55436121D4C33A005C41FD /* WebRtcServerManager.swift in Sources */,
