@@ -45,6 +45,7 @@ final class ServerService: ServerServiceProtocol {
     private let remoteResetEventPublisher = PublishSubject<Void>()
     private let remotePairingCodePublisher = PublishSubject<String>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
+    private let analytics: AnalyticsManager
     private let loggingInfoPublisher = PublishSubject<String>()
 
     init(webRtcServerManager: WebRtcServerManagerProtocol,
@@ -55,7 +56,8 @@ final class ServerService: ServerServiceProtocol {
          babyModelController: BabyModelControllerProtocol,
          notificationsService: NotificationServiceProtocol,
          babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>,
-         parentResponseTime: TimeInterval = 5.0) {
+         parentResponseTime: TimeInterval = 5.0,
+         analytics: AnalyticsManager) {
         self.soundDetectionService = soundDetectionService
         self.babyModelController = babyModelController
         self.webRtcServerManager = webRtcServerManager
@@ -65,6 +67,7 @@ final class ServerService: ServerServiceProtocol {
         self.notificationsService = notificationsService
         self.babyMonitorEventMessagesDecoder = babyMonitorEventMessagesDecoder
         self.parentResponseTime = parentResponseTime
+        self.analytics = analytics
         rxSetup()
     }
     
@@ -149,11 +152,13 @@ final class ServerService: ServerServiceProtocol {
         if let soundDetectionMode = event.soundDetectionMode,
             let confirmationId = event.confirmationId {
             UserDefaults.soundDetectionMode = soundDetectionMode
+            analytics.setUserProperty(.soundMode(soundDetectionMode))
             messageServer.send(message: EventMessage(confirmationId: confirmationId).toStringMessage())
         }
         if let noiseLevel = event.noiseLevelLimit,
             let confirmationId = event.confirmationId {
             UserDefaults.noiseLoudnessFactorLimit = noiseLevel
+            analytics.setUserProperty(.noiseLevel(noiseLevel))
             messageServer.send(message: EventMessage(confirmationId: confirmationId).toStringMessage())
         }
     }

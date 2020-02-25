@@ -167,7 +167,8 @@ final class AppDependencies {
             soundDetectionService: soundDetectionService,
             babyModelController: databaseRepository,
             notificationsService: localNotificationService,
-            babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder
+            babyMonitorEventMessagesDecoder: babyMonitorEventMessagesDecoder,
+            analytics: analytics
         )
         service.remoteResetEventObservable
             .observeOn(MainScheduler.asyncInstance)
