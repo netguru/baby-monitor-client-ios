@@ -82,8 +82,6 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
 
     private func setupBindings() {
         soundDetectionTap?
-            .skip(1)
-            .throttle(0.5, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe({ [weak self] event in
             guard let self = self,
@@ -92,7 +90,6 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
         }).disposed(by: bag)
 
         noiseSliderValueOnEnded?
-            .debounce(0.5, scheduler: MainScheduler.instance)
             .subscribe({ [weak self] event in
                 guard let self = self,
                     let value = event.element else { return }

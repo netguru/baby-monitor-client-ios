@@ -177,7 +177,6 @@ final class ParentSettingsView: BaseSettingsView {
 
     private func setupBindings() {
         rx.voiceModeTap
-            .skip(1)
             .subscribe(onNext: { [weak self] selectedVoiceModeIndex in
                 guard let self = self else { return }
                 self.sliderProgressIndicatorView.isHidden = false
@@ -197,7 +196,7 @@ final class ParentSettingsView: BaseSettingsView {
                 self.sliderProgressIndicatorView.update(with: String(value))
             }).disposed(by: disposeBag)
 
-        rx.noiseSliderValueOnEnded
+        noiseSliderView.rx.noiseSliderValueOnEnded
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
                 self.sliderProgressIndicatorView.startAnimating()
@@ -229,8 +228,8 @@ extension Reactive where Base: ParentSettingsView {
         return ControlProperty(values: name, valueSink: binder)
     }
 
-    var voiceModeTap: ControlProperty<Int> {
-        return base.soundDetectionModeControl.rx.selectedSegmentIndex
+    var voiceModeTap: Observable<Int> {
+        return base.soundDetectionModeControl.rx.selectedSegmentIndex.skip(1).throttle(0.5, scheduler: MainScheduler.instance)
     }
 
     var editPhotoTap: Observable<UIButton> {
@@ -242,6 +241,6 @@ extension Reactive where Base: ParentSettingsView {
     }
 
     var noiseSliderValueOnEnded: Observable<Int> {
-        return base.noiseSliderView.rx.noiseSliderValueOnEnded
+        return base.noiseSliderView.rx.noiseSliderValueOnEnded.debounce(0.2, scheduler: MainScheduler.instance)
     }
 }

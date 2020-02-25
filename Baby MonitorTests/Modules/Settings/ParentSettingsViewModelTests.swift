@@ -28,7 +28,6 @@ class ParentSettingsViewModelTests: XCTestCase {
     private var noiseSliderValueOnEnded: PublishSubject<Int>!
 
     private var sut: ParentSettingsViewModel!
-    private var timer: Timer?
 
     // swiftlint:enable implicitly_unwrapped_optional
 
@@ -64,7 +63,6 @@ class ParentSettingsViewModelTests: XCTestCase {
     override func tearDown() {
         UserDefaults.soundDetectionMode = initialSoundDetectionMode
         UserDefaults.noiseLoudnessFactorLimit = initialNoiseLimit
-        timer = nil
     }
 
     func testShouldSentFailureWhenAttempingToChangeSoundModeOnDisconnect() {
@@ -76,12 +74,9 @@ class ParentSettingsViewModelTests: XCTestCase {
 
         // When
         soundDetectionTap.onNext(0)
-        soundDetectionTap.onNext(0)
 
         // Then
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            XCTAssertEqual(observer.events, [.next(0, .failure(nil))])
-        })
+        XCTAssertEqual(observer.events, [.next(0, .failure(nil))])
     }
 
     func testShouldNotChangeSoundModeWhenDisconnected() {
@@ -90,7 +85,7 @@ class ParentSettingsViewModelTests: XCTestCase {
         let noiseIndex = sut.soundDetectionModes.index(of: .noiseDetection)
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(Int.self)
-        sut.selectedVoiceModeIndexPublisher.bind(to: observer).disposed(by: disposeBag)
+        sut.selectedVoiceModeIndexPublisher.skip(1).bind(to: observer).disposed(by: disposeBag)
 
         // When
         UserDefaults.soundDetectionMode = .cryRecognition
@@ -107,7 +102,6 @@ class ParentSettingsViewModelTests: XCTestCase {
         // When
         UserDefaults.soundDetectionMode = .cryRecognition
         soundDetectionTap.onNext(noiseIndex!)
-        soundDetectionTap.onNext(noiseIndex!)
 
         // Then
         XCTAssertEqual(UserDefaults.soundDetectionMode, .noiseDetection)
@@ -121,14 +115,11 @@ class ParentSettingsViewModelTests: XCTestCase {
 
         // When
         soundDetectionTap.onNext(0)
-        soundDetectionTap.onNext(0)
 
         scheduler.start()
 
         // Then
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            XCTAssertEqual(observer.events, [.next(0, .success(()))])
-        })
+        XCTAssertEqual(observer.events, [.next(0, .success(()))])
     }
 
     func testShouldNotChangeSoundModeWhenNoConfimation() {
@@ -138,7 +129,6 @@ class ParentSettingsViewModelTests: XCTestCase {
 
         // When
         UserDefaults.soundDetectionMode = .cryRecognition
-        soundDetectionTap.onNext(noiseIndex!)
         soundDetectionTap.onNext(noiseIndex!)
 
         // Then
@@ -154,14 +144,11 @@ class ParentSettingsViewModelTests: XCTestCase {
 
         // When
         soundDetectionTap.onNext(0)
-        soundDetectionTap.onNext(0)
 
         scheduler.start()
 
         // Then
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            XCTAssertEqual(observer.events, [.next(0, .failure(nil))])
-        })
+        XCTAssertEqual(observer.events, [.next(0, .failure(nil))])
     }
 
     func testShouldSentFailureWhenAttempingToChangeNoiseLevelOnDisconnect() {
@@ -175,9 +162,7 @@ class ParentSettingsViewModelTests: XCTestCase {
         noiseSliderValueOnEnded.onNext(0)
 
         // Then
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            XCTAssertEqual(observer.events, [.next(0, .failure(nil))])
-        })
+        XCTAssertEqual(observer.events, [.next(0, .failure(nil))])
     }
 
     func testShouldNotChangeNoiseLevelWhenDisconnected() {
@@ -196,9 +181,7 @@ class ParentSettingsViewModelTests: XCTestCase {
         scheduler.start()
 
         // Then
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            XCTAssertEqual(observer.events, [.next(0, oldLimit)])
-        })
+        XCTAssertEqual(observer.events, [.next(0, oldLimit)])
     }
 
     func testShouldChangeLimitAfterConfimation() {
@@ -212,9 +195,7 @@ class ParentSettingsViewModelTests: XCTestCase {
         noiseSliderValueOnEnded.onNext(newLimit)
 
         // Then
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            XCTAssertEqual(UserDefaults.noiseLoudnessFactorLimit, newLimit)
-        })
+        XCTAssertEqual(UserDefaults.noiseLoudnessFactorLimit, newLimit)
     }
 
     func testShouldNotChangeNoiseLimitWhenNoConfimation() {
@@ -243,9 +224,7 @@ class ParentSettingsViewModelTests: XCTestCase {
         scheduler.start()
 
         // Then
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            XCTAssertEqual(observer.events, [.next(0, .success(()))])
-        })
+        XCTAssertEqual(observer.events, [.next(0, .success(()))])
     }
 
     func testShouldSentResultForNoiseLevelWhenReceivedNoConfimation() {
@@ -261,9 +240,7 @@ class ParentSettingsViewModelTests: XCTestCase {
         scheduler.start()
 
         // Then
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            XCTAssertEqual(observer.events, [.next(0, .failure(nil))])
-        })
+        XCTAssertEqual(observer.events, [.next(0, .failure(nil))])
     }
     
 }
