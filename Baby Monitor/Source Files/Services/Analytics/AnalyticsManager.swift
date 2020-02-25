@@ -32,7 +32,7 @@ final class AnalyticsManager {
 
     /// Set user property.
     /// - Parameter property: The property to be logged.
-    func logUserProperty(_ property: AnalyticsPropertyType) {
-        analyticsTracker.logUserProperty(property.value, forName: property.name)
+    func setUserProperty(_ property: AnalyticsPropertyType) {
+        analyticsTracker.setUserProperty(property.value, forName: property.name)
     }
 }

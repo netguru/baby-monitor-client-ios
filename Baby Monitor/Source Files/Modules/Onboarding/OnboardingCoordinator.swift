@@ -26,8 +26,10 @@ final class OnboardingCoordinator: Coordinator {
         switch UserDefaults.appMode {
         case .none:
             if UserDefaults.didShowOnboarding {
+                appDependencies.analytics.setUserProperty(.appState(.undefined))
                 showSpecifyDeviceInfoView()
             } else {
+                appDependencies.analytics.setUserProperty(.appState(.firstOpen))
                 childCoordinators.first?.start()
             }
         case .baby, .parent:
@@ -61,9 +63,11 @@ final class OnboardingCoordinator: Coordinator {
     private func showInitialSetup() {
         let viewModel = SpecifyDeviceOnboardingViewModel(analytics: appDependencies.analytics)
         viewModel.didSelectBaby = { [weak self] in
+            self?.appDependencies.analytics.setUserProperty(.appState(.server))
             self?.showAllowSendingRecordingsView()
         }
         viewModel.didSelectParent = { [weak self] in
+            self?.appDependencies.analytics.setUserProperty(.appState(.client))
             self?.pairingCoordinator?.start()
         }
         let viewController = SpecifyDeviceOnboardingViewController(viewModel: viewModel)

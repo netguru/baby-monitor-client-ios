@@ -15,7 +15,7 @@ struct FirebaseAnalyticsTracker: AnalyticsProtocol {
         Analytics.logEvent(eventName, parameters: parameters)
     }
 
-    func logUserProperty(_ value: String?, forName name: String) {
+    func setUserProperty(_ value: String?, forName name: String) {
         Analytics.setUserProperty(value, forName: name)
     }
 }

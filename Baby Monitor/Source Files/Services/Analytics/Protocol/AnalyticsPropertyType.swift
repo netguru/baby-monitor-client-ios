@@ -24,7 +24,7 @@ enum AnalyticsPropertyType {
     case noiseLevel(Int)
 
     /// The value of the property.
-    var value: String {
+    var name: String {
         switch self {
         case .soundMode: return "voice_analysis"
         case .appState: return "app_state"
@@ -33,7 +33,7 @@ enum AnalyticsPropertyType {
     }
 
     /// The key name of the property.
-    var name: String? {
+    var value: String? {
         switch self {
         case .soundMode(let mode):
             switch mode {

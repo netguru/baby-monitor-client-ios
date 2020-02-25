@@ -24,5 +24,5 @@ protocol AnalyticsProtocol {
     /// - Parameters:
     ///     - value: The property to set.
     ///     - name: The key for which it should be set.
-    func logUserProperty(_ value: String?, forName name: String)
+    func setUserProperty(_ value: String?, forName name: String)
 }
