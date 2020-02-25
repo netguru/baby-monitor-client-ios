@@ -104,7 +104,6 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
 
     private func rxSetup() {
         microphoneCapturer.bufferReadable
-            .throttle(Constants.recognizingSoundTimeLimit, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
             .subscribe(onNext: { [weak self] bufferReadable in
                 guard let self = self else { return }
                 let amplitudeInfo = MicrophoneAmplitudeInfo(loudnessFactor: self.microphoneTracker.loudnessFactor, decibels: self.microphoneTracker.decibels)

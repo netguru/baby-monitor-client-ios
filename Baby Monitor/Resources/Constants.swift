@@ -14,8 +14,11 @@ enum Constants {
     static let netServiceName = "Baby Monitor Service"
     static let cryingDetectionThreshold = 0.7
 
-    /// A limit per which one notification can be sent.
-    static let notificationRequestTimeLimit: TimeInterval = 3 * 60
+    /// A limit per which one notification about cry detection can be sent.
+    static let cryingNotificationRequestTimeLimit: TimeInterval = 3 * 60
+
+    /// A limit per which noise detection notification can be sent.
+    static let noiseNotificationRequestTimeLimit: TimeInterval = 15
 
     /// A time after which the video stream should be hidden.
     static let videoStreamVisibilityTimeLimit: TimeInterval = 60
