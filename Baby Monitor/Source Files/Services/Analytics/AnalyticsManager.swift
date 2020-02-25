@@ -29,4 +29,10 @@ final class AnalyticsManager {
     func logEvent(_ event: AnalyticsEventType) {
         analyticsTracker.logEvent(event.eventName, parameters: event.parameters)
     }
+
+    /// Set user property.
+    /// - Parameter property: The property to be logged.
+    func logUserProperty(_ property: AnalyticsPropertyType) {
+        analyticsTracker.logUserProperty(property.value, forName: property.name)
+    }
 }

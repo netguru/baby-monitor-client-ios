@@ -203,6 +203,7 @@
 		8AFAE5C6219C205F007013BC /* WebRtcMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */; };
 		8AFAE5CC219C240C007013BC /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */; };
 		9514291E24040B7200CBF3EF /* ParentSettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9514291D24040B7200CBF3EF /* ParentSettingsViewModelTests.swift */; };
+		951429202405501700CBF3EF /* AnalyticsPropertyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9514291F2405501700CBF3EF /* AnalyticsPropertyType.swift */; };
 		9514DA2823D72FC7001999E1 /* AnalyticsTrackerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9514DA2723D72FC7001999E1 /* AnalyticsTrackerMock.swift */; };
 		9524BD4123FD17D70020712E /* NoiseSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524BD4023FD17D70020712E /* NoiseSliderView.swift */; };
 		952A637A238DBC2900C3837A /* VideoCapturerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6379238DBC2900C3837A /* VideoCapturerMock.swift */; };
@@ -546,6 +547,7 @@
 		8AFAE5C5219C205F007013BC /* WebRtcMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcMessage.swift; sourceTree = "<group>"; };
 		8AFAE5CB219C240C007013BC /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 		9514291D24040B7200CBF3EF /* ParentSettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsViewModelTests.swift; sourceTree = "<group>"; };
+		9514291F2405501700CBF3EF /* AnalyticsPropertyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsPropertyType.swift; sourceTree = "<group>"; };
 		9514DA2723D72FC7001999E1 /* AnalyticsTrackerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTrackerMock.swift; sourceTree = "<group>"; };
 		9524BD4023FD17D70020712E /* NoiseSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseSliderView.swift; sourceTree = "<group>"; };
 		952A6379238DBC2900C3837A /* VideoCapturerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapturerMock.swift; sourceTree = "<group>"; };
@@ -1472,6 +1474,7 @@
 				9541FDC323D6BB3700DDC1A3 /* AnalyticsProtocol.swift */,
 				95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */,
 				95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */,
+				9514291F2405501700CBF3EF /* AnalyticsPropertyType.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -2225,6 +2228,7 @@
 				8A8EF94D219C52480098A27B /* AnyMessageDecoder.swift in Sources */,
 				A1EC977D221ADC8100C27786 /* OnboardingClientSetupView.swift in Sources */,
 				95E75C3D2390318500AC559D /* Logger.swift in Sources */,
+				951429202405501700CBF3EF /* AnalyticsPropertyType.swift in Sources */,
 				95E83A1A23DAA6FD00AECDE4 /* MicrophonePermissionProvider.swift in Sources */,
 				8A43DB1F2181D1E700E3004D /* GeneralSection.swift in Sources */,
 				4E63DC1A21E39D4B00604167 /* ServerKeyObtainable.swift in Sources */,
