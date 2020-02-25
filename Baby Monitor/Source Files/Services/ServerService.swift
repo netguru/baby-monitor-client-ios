@@ -76,34 +76,41 @@ final class ServerService: ServerServiceProtocol {
     }
     
     private func rxSetup() {
-        soundDetectionService.soundEventObservable
-            .throttle(Constants.notificationRequestTimeLimit, scheduler: MainScheduler.instance)
+        soundDetectionService.noiseEventObservable
+            .throttle(Constants.noiseNotificationRequestTimeLimit, scheduler: MainScheduler.instance)
             .do(onNext: { [weak self] _ in
-                self?.loggingInfoPublisher.onNext("Passed 3 minutes limit. Attemps to send push notification request.")
+                self?.loggingInfoPublisher.onNext("Passed \(Constants.noiseNotificationRequestTimeLimit) seconds limit. Attemps to send push notification request.")
             })
-            .subscribe(onNext: { [weak self] mode in
-                self?.sendNotification(for: mode)
+            .subscribe(onNext: { [weak self] _ in
+                self?.sendNotification(for: .noiseDetection)
             }).disposed(by: disposeBag)
+
+        soundDetectionService.cryDetectionEventObservable
+            .throttle(Constants.cryingNotificationRequestTimeLimit, scheduler: MainScheduler.instance)
+            .do(onNext: { [weak self] _ in
+                self?.loggingInfoPublisher.onNext("Passed \(Constants.noiseNotificationRequestTimeLimit) seconds limit. Attemps to send push notification request.")
+            })
+            .subscribe(onNext: { [weak self] _ in
+                self?.sendNotification(for: .cryRecognition)
+            }).disposed(by: disposeBag)
+
         messageServer.decodedMessage(using: decoders)
             .subscribe(onNext: { [unowned self] message in
-                guard let message = message else {
-                    return
-                }
+                guard let message = message else { return }
                 self.handle(message: message)
-            })
-            .disposed(by: disposeBag)
+            }) .disposed(by: disposeBag)
+
         messageServer.decodedMessage(using: [babyMonitorEventMessagesDecoder]).subscribe(onNext: { [unowned self] event in
-            guard let event = event else {
-                return
-            }
+            guard let event = event else { return }
             self.handle(event: event)
-        })
-            .disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
+
         Observable.merge(sdpAnswerJson(), iceCandidateJson())
             .subscribe(onNext: { [unowned self] json in
                 self.messageServer.send(message: json)
             })
             .disposed(by: disposeBag)
+        
         soundDetectionService.loggingInfoPublisher.bind(to: loggingInfoPublisher).disposed(by: disposeBag)
     }
 
@@ -142,6 +149,11 @@ final class ServerService: ServerServiceProtocol {
         if let soundDetectionMode = event.soundDetectionMode,
             let confirmationId = event.confirmationId {
             UserDefaults.soundDetectionMode = soundDetectionMode
+            messageServer.send(message: EventMessage(confirmationId: confirmationId).toStringMessage())
+        }
+        if let noiseLevel = event.noiseLevelLimit,
+            let confirmationId = event.confirmationId {
+            UserDefaults.noiseLoudnessFactorLimit = noiseLevel
             messageServer.send(message: EventMessage(confirmationId: confirmationId).toStringMessage())
         }
     }

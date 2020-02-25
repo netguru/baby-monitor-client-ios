@@ -10,8 +10,11 @@ protocol SoundDetectionServiceProtocol {
     /// A current mode that is used.
     var mode: SoundDetectionMode { get }
 
-    /// Notifying about a new recognition event.
-    var soundEventObservable: Observable<SoundDetectionMode> { get }
+    /// Notifying about a new noise event.
+    var noiseEventObservable: Observable<Void> { get }
+
+    /// Notifying about a new cry detection event.
+    var cryDetectionEventObservable: Observable<Void> { get }
 
     /// A logging info used for debug purposes only.
     var loggingInfoPublisher: PublishSubject<String> { get }
@@ -32,11 +35,13 @@ final class SoundDetectionService: SoundDetectionServiceProtocol {
     var mode: SoundDetectionMode {
         return UserDefaults.soundDetectionMode
     }
+
+    var noiseEventObservable: Observable<Void> {
+        return noiseDetectionService.noiseEventObservable
+    }
     
-    var soundEventObservable: Observable<SoundDetectionMode> {
-        let cryEventObservable = cryingEventService.cryingEventObservable.map({ SoundDetectionMode.cryRecognition })
-        let noiseEventObservable = noiseDetectionService.noiseEventObservable.map({ SoundDetectionMode.noiseDetection })
-        return Observable.merge(cryEventObservable, noiseEventObservable)
+    var cryDetectionEventObservable: Observable<Void> {
+        return cryingEventService.cryingEventObservable
     }
 
     var loggingInfoPublisher = PublishSubject<String>()
@@ -82,6 +87,7 @@ final class SoundDetectionService: SoundDetectionServiceProtocol {
             }).disposed(by: disposeBag)
 
         microphoneService?.microphoneBufferReadableObservable
+            .throttle(Constants.recognizingSoundTimeLimit, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
             .subscribe(onNext: { [weak self] bufferReadable in
                 guard self?.mode == .cryRecognition else { return }
                 self?.cryingDetectionService.predict(on: bufferReadable)

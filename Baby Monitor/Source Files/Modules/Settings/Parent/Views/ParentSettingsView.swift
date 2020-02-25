@@ -8,7 +8,7 @@ import RxSwift
 import RxCocoa
 
 final class ParentSettingsView: BaseSettingsView {
-    
+
     fileprivate let editBabyPhotoButton = UIButton(type: .custom)
 
     fileprivate let editBabyPhotoImage: UIImageView = {
@@ -32,10 +32,9 @@ final class ParentSettingsView: BaseSettingsView {
         return textField
     }()
 
-    fileprivate lazy var soundDetectionModeControl: UISegmentedControl  = {
-        let segmentedControl = UISegmentedControl(items: soundDetectionTitles)
+    fileprivate lazy var soundDetectionModeControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: soundDetectionModes.map { $0.localizedTitle })
         segmentedControl.tintColor = .white
-        segmentedControl.selectedSegmentIndex = selectedVoiceModeIndex
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.customFont(withSize: .body),
             .foregroundColor: UIColor.babyMonitorPurple
@@ -44,8 +43,9 @@ final class ParentSettingsView: BaseSettingsView {
         return segmentedControl
     }()
 
-    private let soundDetectionTitles: [String]
-    private let selectedVoiceModeIndex: Int
+    fileprivate lazy var noiseSliderView = NoiseSliderView()
+
+    private let soundDetectionModes: [SoundDetectionMode]
 
     private let editImageView = UIImageView(image: #imageLiteral(resourceName: "edit"))
     
@@ -55,12 +55,19 @@ final class ParentSettingsView: BaseSettingsView {
         return view
     }()
 
+    private let sliderProgressIndicatorView = SliderProgressIndicatorView()
+
+    private var timer: Timer?
+
+    private let disposeBag = DisposeBag()
+
     /// Initializes settings view
-    init(appVersion: String, soundDetectionTitles: [String], selectedVoiceModeIndex: Int) {
-        self.soundDetectionTitles = soundDetectionTitles
-        self.selectedVoiceModeIndex = selectedVoiceModeIndex
+    init(appVersion: String,
+         soundDetectionModes: [SoundDetectionMode]) {
+        self.soundDetectionModes = soundDetectionModes
         super.init(appVersion: appVersion)
         setupLayout()
+        setupBindings()
     }
 
     override func layoutSubviews() {
@@ -69,14 +76,40 @@ final class ParentSettingsView: BaseSettingsView {
         editBabyPhotoImage.layer.cornerRadius = editBabyPhotoImage.bounds.height / 2
     }
 
+    /// Sets a new value on progress indicator.
+    /// - Parameter result: A result that should be reflected on the indicator view.
+    func updateProgressIndicator(with result: Result<()>) {
+        sliderProgressIndicatorView.update(with: result)
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+            self?.sliderProgressIndicatorView.isHidden = true
+        }
+    }
+
+    /// Sets a new value on a noise slider.
+    /// - Parameter result: A value that should be set on the slider.
+    func updateSlider(with value: Int) {
+        noiseSliderView.update(sliderValue: value)
+    }
+
+    /// Sets a new value on sound mode control.
+    /// - Parameter result: A index that should be selected on the control.
+    func updateSoundMode(with value: Int) {
+        soundDetectionModeControl.selectedSegmentIndex = value
+        setupNoiseSlider()
+    }
+
     private func setupLayout() {
         [editBabyPhotoImage,
          editBabyPhotoButton,
          babyNameTextField,
          editImageView,
          underline,
-         soundDetectionModeControl].forEach { addSubview($0) }
+         soundDetectionModeControl,
+         noiseSliderView,
+         sliderProgressIndicatorView].forEach { addSubview($0) }
         setupConstraints()
+        sliderProgressIndicatorView.isHidden = true
+        setupNoiseSlider()
     }
 
     private func setupConstraints() {
@@ -117,6 +150,13 @@ final class ParentSettingsView: BaseSettingsView {
             $0.equal(.centerX)
         ]
         }
+        noiseSliderView.addConstraints {[
+            $0.equalTo(soundDetectionModeControl, .top, .bottom, constant: 22),
+            $0.equalTo(soundDetectionModeControl, .width, .width),
+            $0.equalConstant(.height, 80),
+            $0.equal(.centerX)
+        ]
+        }
         editBabyPhotoButton.addConstraints {[
             $0.equalTo(editBabyPhotoImage, .leading, .leading),
             $0.equalTo(editBabyPhotoImage, .trailing, .trailing),
@@ -125,6 +165,49 @@ final class ParentSettingsView: BaseSettingsView {
         ]
         }
         editBabyPhotoButton.layer.zPosition = 1
+
+        sliderProgressIndicatorView.addConstraints {[
+            $0.equalConstant(.width, 50),
+            $0.equalConstant(.height, 50),
+            $0.equal(.centerX),
+            $0.equalTo(noiseSliderView, .bottom, .top, constant: 6)
+        ]
+        }
+    }
+
+    private func setupBindings() {
+        rx.voiceModeTap
+            .subscribe(onNext: { [weak self] selectedVoiceModeIndex in
+                guard let self = self else { return }
+                self.sliderProgressIndicatorView.isHidden = false
+                self.sliderProgressIndicatorView.startAnimating()
+                self.setupNoiseSlider()
+            }).disposed(by: disposeBag)
+
+        rx.noiseSliderValue
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] value in
+                guard let self = self else { return }
+                if self.sliderProgressIndicatorView.isHidden {
+                    self.sliderProgressIndicatorView.isHidden = false
+                    self.sliderProgressIndicatorView.animateAppearance()
+                }
+                self.sliderProgressIndicatorView.update(with: String(value))
+            }).disposed(by: disposeBag)
+
+        noiseSliderView.rx.noiseSliderValueOnEnded
+            .subscribe(onNext: { [weak self] value in
+                guard let self = self else { return }
+                self.sliderProgressIndicatorView.startAnimating()
+            }).disposed(by: disposeBag)
+    }
+
+    private func setupNoiseSlider() {
+        let animation = CATransition()
+        animation.duration = 0.3
+        noiseSliderView.layer.add(animation, forKey: nil)
+        noiseSliderView.isHidden = soundDetectionModeControl.selectedSegmentIndex != soundDetectionModes.index(of: .noiseDetection)
     }
 }
 
@@ -145,11 +228,19 @@ extension Reactive where Base: ParentSettingsView {
         return ControlProperty(values: name, valueSink: binder)
     }
 
-    var voiceModeTap: ControlProperty<Int> {
-        return base.soundDetectionModeControl.rx.selectedSegmentIndex
+    var voiceModeTap: Observable<Int> {
+        return base.soundDetectionModeControl.rx.selectedSegmentIndex.skip(1).throttle(0.5, scheduler: MainScheduler.instance)
     }
 
     var editPhotoTap: Observable<UIButton> {
         return base.editBabyPhotoButton.rx.tap.map { [unowned base] in base.editBabyPhotoButton }
+    }
+
+    var noiseSliderValue: Observable<Int> {
+        return base.noiseSliderView.rx.noiseSliderValue
+    }
+
+    var noiseSliderValueOnEnded: Observable<Int> {
+        return base.noiseSliderView.rx.noiseSliderValueOnEnded.debounce(0.2, scheduler: MainScheduler.instance)
     }
 }
