@@ -76,10 +76,10 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
                 self?.customView.updateSlider(with: value)
             }).disposed(by: bag)
         viewModel.selectedVoiceModeIndexPublisher
-        .observeOn(MainScheduler.instance)
-        .subscribe(onNext: { [weak self] value in
-            self?.customView.updateSoundMode(with: value)
-        }).disposed(by: bag)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] value in
+                self?.customView.updateSoundMode(with: value)
+            }).disposed(by: bag)
     }
 
     private func handleRating() {

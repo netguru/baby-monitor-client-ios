@@ -18,13 +18,11 @@ final class NoiseSliderView: UIView {
         let maximumValueImage = #imageLiteral(resourceName: "volume-up").withRenderingMode(.alwaysTemplate)
         slider.minimumValueImage = minimumValueImage
         slider.maximumValueImage = maximumValueImage
+        slider.minimumValue = 0
+        slider.maximumValue = 100
         slider.tintColor = tintColor
         return slider
     }()
-
-    fileprivate var percentSliderValue: Int {
-        return convertSliderValueToPercent(noiseSlider.value)
-    }
 
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -48,11 +46,7 @@ final class NoiseSliderView: UIView {
     /// Set a new value on the slider.
     /// - Parameter sliderValue: a new value to be set.
     func update(sliderValue: Int) {
-        noiseSlider.setValue(Float(sliderValue) / 100.0, animated: true)
-    }
-
-    fileprivate func convertSliderValueToPercent(_ value: Float) -> Int {
-        return Int(value * 100)
+        noiseSlider.setValue(Float(sliderValue), animated: true)
     }
 
     private func setup() {
@@ -67,7 +61,7 @@ final class NoiseSliderView: UIView {
         guard let touch = event.allTouches?.first else { return }
         switch touch.phase {
         case .ended:
-            sliderValueAfterFinishedTouchesPublisher.onNext(percentSliderValue)
+            sliderValueAfterFinishedTouchesPublisher.onNext(Int(slider.value))
         default: break
         }
     }
@@ -91,7 +85,7 @@ final class NoiseSliderView: UIView {
 extension Reactive where Base: NoiseSliderView {
 
     var noiseSliderValue: Observable<Int> {
-        return base.noiseSlider.rx.value.map { [unowned base] floatValue in base.convertSliderValueToPercent(floatValue) }
+        return base.noiseSlider.rx.value.map { Int($0) }
     }
 
     var noiseSliderValueOnEnded: Observable<Int> {

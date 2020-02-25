@@ -13,7 +13,7 @@ enum BabyMonitorEvent: String, CodingKey {
     case webRtcSdpErrorKey = "errorSDP"
     case soundDetectionModeKey = "voiceAnalysisOption"
     case confirmationIDKey = "confirmationId"
-    case noiseLevelLimitKey
+    case noiseLevelLimitKey = "noiseLevel"
 }
 
 enum BabyMonitorEvenAction: String, Codable {
@@ -28,7 +28,7 @@ struct EventMessage {
     var webRtcSdpErrorMessage: String?
     var soundDetectionMode: SoundDetectionMode?
     var noiseLevelLimit: Int?
-    var confirmationId: Int?
+    var confirmationId: String?
 }
 
 extension EventMessage: Codable {
@@ -41,7 +41,7 @@ extension EventMessage: Codable {
         pairingCodeResponse = try container.decodeIfPresent(Bool.self, forKey: .pairingCodeResponseKey)
         webRtcSdpErrorMessage = try container.decodeIfPresent(String.self, forKey: .webRtcSdpErrorKey)
         soundDetectionMode = try container.decodeIfPresent(SoundDetectionMode.self, forKey: .soundDetectionModeKey)
-        confirmationId = try container.decodeIfPresent(Int.self, forKey: .confirmationIDKey)
+        confirmationId = try container.decodeIfPresent(String.self, forKey: .confirmationIDKey)
         noiseLevelLimit = try container.decodeIfPresent(Int.self, forKey: .noiseLevelLimitKey)
     }
 

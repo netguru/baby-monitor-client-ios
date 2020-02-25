@@ -27,7 +27,11 @@ extension UserDefaults {
 
     static var noiseLoudnessFactorLimit: Int {
         get {
-            return UserDefaults.standard.integer(forKey: noiseLevelKey)
+            if UserDefaults.standard.object(forKey: noiseLevelKey) == nil {
+                return Constants.loudnessFactorLimit
+            } else {
+                return UserDefaults.standard.integer(forKey: noiseLevelKey)
+            }
         }
         set {
             UserDefaults.standard.set(newValue, forKey: noiseLevelKey)

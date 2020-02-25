@@ -79,6 +79,7 @@ private extension DefaultApplicationResetter {
         UserDefaults.selfPushNotificationsToken = ""
         UserDefaults.receiverPushNotificationsToken = nil
         UserDefaults.soundDetectionMode = Constants.defaultSoundDetectionMode
+        UserDefaults.noiseLoudnessFactorLimit = Constants.loudnessFactorLimit
     }
     
     func clearNotificationTokens() {
