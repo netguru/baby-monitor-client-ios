@@ -7,7 +7,7 @@ import Foundation
 
 class RandomizerMock: RandomGenerator {
 
-    func generateRandomCode() -> Int {
-        return 7777
+    func generateRandomCode() -> String {
+        return "7777"
     }
 }

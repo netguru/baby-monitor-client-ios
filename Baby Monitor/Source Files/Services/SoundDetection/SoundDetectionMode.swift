@@ -5,10 +5,10 @@
 /// A sound detection mode that should be used on the baby device.
 enum SoundDetectionMode: String, Codable, CaseIterable {
     /// A machine learning cry detection mode.
-    case cryRecognition = "MachineLearning"
+    case cryRecognition = "MACHINE_LEARNING"
 
     /// A detection of the noise with setting a limit on parent device.
-    case noiseDetection  = "NoiseDetection"
+    case noiseDetection  = "NOISE_DETECTION"
 
     /// A localized title for a mode.
     var localizedTitle: String {

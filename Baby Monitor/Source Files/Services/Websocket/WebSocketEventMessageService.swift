@@ -43,7 +43,7 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
     private let remoteResetPublisher = PublishSubject<Void>()
     private let remotePairingCodeResponsePublisher = PublishSubject<Bool>()
     private let remoteStreamConnectingErrorPublisher = PublishSubject<String>()
-    private let remoteConfimationIdPublisher = PublishSubject<Int>()
+    private let remoteConfimationIdPublisher = PublishSubject<String>()
     private let disposeBag = DisposeBag()
 
     init(cryingEventsRepository: ActivityLogEventsRepositoryProtocol, eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>?) -> WebSocketConductorProtocol) {
