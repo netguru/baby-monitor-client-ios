@@ -6,6 +6,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+/// A slider that sets a noise limit for noise detection mode.
 final class NoiseSliderView: UIView {
 
     fileprivate let sliderValueAfterFinishedTouchesPublisher = PublishSubject<Int>()
@@ -24,6 +25,7 @@ final class NoiseSliderView: UIView {
     fileprivate var percentSliderValue: Int {
         return convertSliderValueToPercent(noiseSlider.value)
     }
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = Localizable.Settings.noiseLevel
@@ -43,6 +45,8 @@ final class NoiseSliderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// Set a new value on the slider.
+    /// - Parameter sliderValue: a new value to be set.
     func update(sliderValue: Int) {
         noiseSlider.setValue(Float(sliderValue) / 100.0, animated: true)
     }

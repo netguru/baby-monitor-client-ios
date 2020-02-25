@@ -4,16 +4,9 @@
 
 import UIKit
 
+/// A progress indicator view for slider.
 final class SliderProgressIndicatorView: UIView {
 
-    var value: String = "" {
-        didSet {
-            valueLabel.text = value
-            valueLabel.isHidden = false
-            resultImageView.isHidden = true
-            loadingIndicator.isHidden = true
-        }
-    }
     private let backgroundImageView: UIImageView = {
         let view = UIImageView()
         view.image = #imageLiteral(resourceName: "onboarding-oval")
@@ -48,18 +41,7 @@ final class SliderProgressIndicatorView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup() {
-        [backgroundImageView, loadingIndicator, valueLabel, resultImageView].forEach {
-            addSubview($0)
-            $0.addConstraints {
-                $0.equalEdges()
-            }
-        }
-        loadingIndicator.style = .gray
-        loadingIndicator.isHidden = true
-        resultImageView.isHidden = true
-    }
-
+    /// Starts animating a progress indicator and hiding all other views.
     func startAnimating() {
         resultImageView.isHidden = true
         valueLabel.isHidden = true
@@ -67,12 +49,23 @@ final class SliderProgressIndicatorView: UIView {
         loadingIndicator.startAnimating()
     }
 
+    /// Stops an animation of a progress indicator and hides the view.
     func stopAnimating() {
-        valueLabel.isHidden = false
         loadingIndicator.isHidden = true
         loadingIndicator.stopAnimating()
     }
 
+    /// Sets a new value on the indicator.
+    /// - Parameter value: A text to be set.
+    func update(with value: String) {
+        valueLabel.text = value
+        valueLabel.isHidden = false
+        resultImageView.isHidden = true
+        loadingIndicator.isHidden = true
+    }
+
+    /// Reflects a success or failure of the result.
+    /// - Parameter result: A result that should be reflected on the indicator view.
     func update(with result: Result<()>) {
         switch result {
         case .success:
@@ -84,7 +77,8 @@ final class SliderProgressIndicatorView: UIView {
         stopAnimating()
     }
 
-    func animateAppearence() {
+    /// Animating an appearance of the view by changing opacity and scaling.
+    func animateAppearance() {
         isOpaque = true
 
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
@@ -99,5 +93,17 @@ final class SliderProgressIndicatorView: UIView {
         scaleAnimation.toValue = [1, 1, 1]
         scaleAnimation.duration = 0.3
         layer.add(scaleAnimation, forKey: nil)
+    }
+
+    private func setup() {
+        [backgroundImageView, loadingIndicator, valueLabel, resultImageView].forEach {
+            addSubview($0)
+            $0.addConstraints {
+                $0.equalEdges()
+            }
+        }
+        loadingIndicator.style = .gray
+        loadingIndicator.isHidden = true
+        resultImageView.isHidden = true
     }
 }

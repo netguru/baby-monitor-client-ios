@@ -15,9 +15,17 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
 
     lazy var dismissImagePicker: Observable<Void> = dismissImagePickerSubject.asObservable()
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
+
+    /// Sounds detection modes from which user can chose from.
     let soundDetectionModes: [SoundDetectionMode] = [.noiseDetection, .cryRecognition]
+
+    /// A sound detection index that should be selected in the view.
     var selectedVoiceModeIndexPublisher = BehaviorSubject<Int>(value: 0)
+
+    /// A noise loudness limit that should be set on the noise slider view.
     var noiseLoudnessFactorLimitPublisher = BehaviorSubject<Int>(value: UserDefaults.noiseLoudnessFactorLimit)
+
+    /// A web socket message result published after confimation from the baby app.
     let webSocketMessageResultPublisher = PublishSubject<Result<()>>()
 
     private(set) var addPhotoTap: Observable<UIButton>?
@@ -76,6 +84,7 @@ final class ParentSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
         soundDetectionTap?
             .skip(1)
             .throttle(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
             .subscribe({ [weak self] event in
             guard let self = self,
                 let index = event.element else { return }

@@ -22,6 +22,7 @@ enum Result<T>: Equatable {
         }
     }
 
+    /// - WARNING: This method compares only cases, not values inside them.
     static func == (lhs: Result<T>, rhs: Result<T>) -> Bool {
         switch (lhs, rhs) {
         case (.success, .success),

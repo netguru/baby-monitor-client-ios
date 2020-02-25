@@ -76,11 +76,26 @@ final class ParentSettingsView: BaseSettingsView {
         editBabyPhotoImage.layer.cornerRadius = editBabyPhotoImage.bounds.height / 2
     }
 
+    /// Sets a new value on progress indicator.
+    /// - Parameter result: A result that should be reflected on the indicator view.
     func updateProgressIndicator(with result: Result<()>) {
         sliderProgressIndicatorView.update(with: result)
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
             self?.sliderProgressIndicatorView.isHidden = true
         }
+    }
+
+    /// Sets a new value on a noise slider.
+    /// - Parameter result: A value that should be set on the slider.
+    func updateSlider(with value: Int) {
+        noiseSliderView.update(sliderValue: value)
+    }
+
+    /// Sets a new value on sound mode control.
+    /// - Parameter result: A index that should be selected on the control.
+    func updateSoundMode(with value: Int) {
+        soundDetectionModeControl.selectedSegmentIndex = value
+        setupNoiseSlider()
     }
 
     private func setupLayout() {
@@ -94,15 +109,6 @@ final class ParentSettingsView: BaseSettingsView {
          sliderProgressIndicatorView].forEach { addSubview($0) }
         setupConstraints()
         sliderProgressIndicatorView.isHidden = true
-        setupNoiseSlider()
-    }
-
-    func updateSlider(with value: Int) {
-        noiseSliderView.update(sliderValue: value)
-    }
-
-    func updateSoundMode(with value: Int) {
-        soundDetectionModeControl.selectedSegmentIndex = value
         setupNoiseSlider()
     }
 
@@ -186,9 +192,9 @@ final class ParentSettingsView: BaseSettingsView {
                 guard let self = self else { return }
                 if self.sliderProgressIndicatorView.isHidden {
                     self.sliderProgressIndicatorView.isHidden = false
-                    self.sliderProgressIndicatorView.animateAppearence()
+                    self.sliderProgressIndicatorView.animateAppearance()
                 }
-                self.sliderProgressIndicatorView.value = String(value)
+                self.sliderProgressIndicatorView.update(with: String(value))
             }).disposed(by: disposeBag)
 
         rx.noiseSliderValueOnEnded
