@@ -70,15 +70,16 @@ class BaseSettingsView: UIView {
             $0.equalTo(signatureImageView, .bottom, .top, constant: -29),
             $0.equal(.leading, constant: 23),
             $0.equal(.trailing, constant: -23),
-            $0.equalTo(buttonsStackView, .height, .width, multiplier: 0.415)
+            $0.equalTo(buttonsStackView, .height, .width, multiplier: 0.3)
         ]
         }
         buildVersionLabel.addConstraints { [
-            $0.equal(.bottom, constant: -10),
+            $0.equal(.safeAreaBottom, constant: -6),
             $0.equal(.centerX)
-        ]}
+        ]
+        }
         signatureImageView.addConstraints {[
-            $0.equal(.bottom, constant: -52),
+            $0.equalTo(buildVersionLabel, .bottom, .top, constant: -16),
             $0.equal(.centerX)
         ]
         }
