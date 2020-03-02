@@ -23,7 +23,8 @@ enum AudioKitMicrophoneFactory {
 
     static var makeMicrophoneFactory: () throws -> AudioKitMicrophoneProtocol? = {
 
-        AKSettings.bufferLength = .medium
+//        AKSettings.bufferLength = .medium
+        AKSettings.ioBufferDuration = 6
         AKSettings.channelCount = 1
         AKSettings.audioInputEnabled = true
         AKSettings.defaultToSpeaker = true

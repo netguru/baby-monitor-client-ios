@@ -6,6 +6,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import AVFoundation
 
 protocol CryingEventsServiceProtocol: Any {
     var cryingEventObservable: Observable<Void> { get }
@@ -45,16 +46,12 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
             let roundedProbability = String(format: "%.2f", cryingDetectionResult.probability)
             if cryingDetectionResult.isBabyCrying {
                 self.loggingInfoPublisher.onNext("Crying detected. Probability: \(roundedProbability)")
-                let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
-                self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
-                self.microphoneRecordService?.startRecording()
                 self.cryingEventPublisher.onNext(())
+
+                self.convertToFile(buffer: cryingDetectionResult.buffer)
             } else {
+//                self.storageService.uploadRecordingsToDatabaseIfAllowed()
                 self.loggingInfoPublisher.onNext("Sound detected but no baby crying. Probability: \(roundedProbability)")
-                guard self.microphoneRecordService?.isRecording ?? false else {
-                    return
-                }
-                self.microphoneRecordService?.stopRecording()
             }
         }).disposed(by: disposeBag)
         
@@ -69,4 +66,37 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
             })
         }).disposed(by: disposeBag)
     }
+
+    private func convertToFile(buffer: AVAudioPCMBuffer) {
+        let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
+        let outputFormatSettings = [
+        AVLinearPCMBitDepthKey: 32,
+        AVLinearPCMIsFloatKey: true,
+        AVSampleRateKey: 44100,
+        AVNumberOfChannelsKey: 1
+        ] as [String: Any]
+        self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
+        var audioFile: AVAudioFile?
+        createCryingRecordsFolderIfNeeded()
+        do {
+            audioFile = try AVAudioFile(forWriting: FileManager.cryingRecordsURL.appendingPathComponent(nextFileName), settings: outputFormatSettings, commonFormat: .pcmFormatFloat32, interleaved: false)
+        } catch {
+            Logger.error("Failed to create an audio file.", error: error)
+        }
+
+        do {
+            try audioFile?.write(from: buffer)
+        } catch {
+            Logger.error("Failed to write an audio file.", error: error)
+        }
+        self.storageService.uploadRecordingsToDatabaseIfAllowed()
+    }
+
+    private func createCryingRecordsFolderIfNeeded() {
+        let folderPath = FileManager.cryingRecordsURL
+        if !FileManager.default.fileExists(atPath: folderPath.path) {
+                try? FileManager.default.createDirectory(atPath: folderPath.path, withIntermediateDirectories: true, attributes: nil)
+        }
+    }
+
 }

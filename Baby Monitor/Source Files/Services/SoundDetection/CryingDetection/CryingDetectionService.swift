@@ -18,9 +18,14 @@ protocol CryingDetectionServiceProtocol: Any {
     func predict(on bufferReadable: AVAudioPCMBuffer)
 }
 
+/// A result whether crying was detected.
 struct CryingDetectionResult {
+    /// Indicates whether baby is crying or not.
     let isBabyCrying: Bool
+    /// Propability which machine learning returns for baby crying.
     let probability: Double
+    /// An audio buffer on which the prediction was made.
+    let buffer: AVAudioPCMBuffer
 }
 
 final class CryingDetectionService: CryingDetectionServiceProtocol {
@@ -47,7 +52,7 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
             let cryDetectionPrediction = try self.crydetectionModel.prediction(input: cryDetectionInput)
             let cryingProbability = Double(exactly: cryDetectionPrediction.labels_softmax__0[1]) ?? 0
             let babyCryingDetected = cryingProbability >= Constants.cryingDetectionThreshold
-            self.cryingDetectionSubject.onNext(CryingDetectionResult(isBabyCrying: babyCryingDetected, probability: cryingProbability))
+            self.cryingDetectionSubject.onNext(CryingDetectionResult(isBabyCrying: babyCryingDetected, probability: cryingProbability, buffer: bufferReadable))
         } catch {
             Logger.error("Crying detection failed - audioProcessingMultiArray exeption", error: error)
         }
