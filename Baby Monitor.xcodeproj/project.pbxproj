@@ -232,6 +232,7 @@
 		9574DBDD23A93543000D58A8 /* String+NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDC23A93543000D58A8 /* String+NSAttributedString.swift */; };
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
 		95985AE423E95D6D00A7EC41 /* NoiseDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95985AE323E95D6D00A7EC41 /* NoiseDetectionService.swift */; };
+		959B024C240CEBEF00A565A8 /* MachineLearningAudioConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B024B240CEBEF00A565A8 /* MachineLearningAudioConstants.swift */; };
 		95AE6C3623E9611E00B8FB92 /* SoundDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE6C3523E9611E00B8FB92 /* SoundDetectionService.swift */; };
 		95AE6C3823E9615000B8FB92 /* SoundDetectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE6C3723E9614F00B8FB92 /* SoundDetectionMode.swift */; };
 		95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */; };
@@ -579,6 +580,7 @@
 		957CDD6C23E410E400CA6D9C /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
 		95985AE323E95D6D00A7EC41 /* NoiseDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseDetectionService.swift; sourceTree = "<group>"; };
+		959B024B240CEBEF00A565A8 /* MachineLearningAudioConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineLearningAudioConstants.swift; sourceTree = "<group>"; };
 		95AE6C3523E9611E00B8FB92 /* SoundDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetectionService.swift; sourceTree = "<group>"; };
 		95AE6C3723E9614F00B8FB92 /* SoundDetectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetectionMode.swift; sourceTree = "<group>"; };
 		95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetServiceDescriptorTests.swift; path = "../New Group/NetServiceDescriptorTests.swift"; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 				957084AE23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift */,
 				8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */,
 				A7D7562422344B0300F9893E /* NodeCapture.swift */,
+				959B024B240CEBEF00A565A8 /* MachineLearningAudioConstants.swift */,
 			);
 			path = MediaPlayer;
 			sourceTree = "<group>";
@@ -2237,6 +2240,7 @@
 				4E71CFAB216B496500191FC1 /* CameraPreviewView.swift in Sources */,
 				4E63DC1921E39D4B00604167 /* HTTPMethod.swift in Sources */,
 				8A50AA3921E602F60058C63A /* IceCandidateProtocol.swift in Sources */,
+				959B024C240CEBEF00A565A8 /* MachineLearningAudioConstants.swift in Sources */,
 				8AFAE5AF219AAE63007013BC /* WebSocketServerProtocol.swift in Sources */,
 				4E360CCE21E781E3002781AC /* FirebaseStorageService.swift in Sources */,
 				ECB2428621AD4E1100B4E409 /* IntroCoordinator.swift in Sources */,

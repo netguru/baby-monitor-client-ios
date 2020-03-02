@@ -27,11 +27,14 @@ final class AudioKitNodeCapture: NSObject {
     private let machineLearningFormat: AVAudioFormat
     private let formatConverter: AVAudioConverter
     
-    init(node: AKNode? = AudioKit.output, bufferSize: UInt32 = 264600) throws {
+    init(node: AKNode? = AudioKit.output, bufferSize: UInt32 = MachineLearningAudioConstants.bufferSize) throws {
         self.node = node
         self.bufferSize = bufferSize
-        self.inputBufferFormat = node?.avAudioUnitOrNode.inputFormat(forBus: 0) ?? AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100.0, channels: 1, interleaved: false)!
-        machineLearningFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100.0, channels: 1, interleaved: false)!
+        self.inputBufferFormat = node?.avAudioUnitOrNode.inputFormat(forBus: 0) ?? AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 48000.0, channels: 1, interleaved: false)!
+        machineLearningFormat = AVAudioFormat(commonFormat: MachineLearningAudioConstants.audioFormat,
+                                              sampleRate: MachineLearningAudioConstants.sampleRate,
+                                              channels: MachineLearningAudioConstants.channels,
+                                              interleaved: MachineLearningAudioConstants.isInterleaved)!
         internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: machineLearningFormat, frameCapacity: bufferSize)!
         formatConverter = AVAudioConverter(from: inputBufferFormat, to: machineLearningFormat)!
     }
@@ -68,7 +71,7 @@ final class AudioKitNodeCapture: NSObject {
 
     /// Handle each new buffer: convert it to needed format and pass it further.
     private func handleBuffer(_ buffer: AVAudioPCMBuffer) {
-        let convertedBuffer = AVAudioPCMBuffer(pcmFormat: self.machineLearningFormat, frameCapacity: self.bufferSize)!
+        let convertedBuffer = AVAudioPCMBuffer(pcmFormat: self.machineLearningFormat, frameCapacity: buffer.frameCapacity)!
          var error: NSError?
          let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
           outStatus.pointee = AVAudioConverterInputStatus.haveData
