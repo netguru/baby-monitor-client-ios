@@ -15,29 +15,21 @@ protocol CryingEventsServiceProtocol: Any {
 }
 
 final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
-    
-    enum CryingEventServiceError: Error {
-        case audioRecordServiceError
-    }
-    
+
     lazy var cryingEventObservable = cryingEventPublisher.asObservable()
     private(set) var loggingInfoPublisher = PublishSubject<String>()
-    lazy var errorObservable = errorPublisher.asObservable()
-    private var nextFileName: String = ""
-    
+    var errorObservable: Observable<Error> {
+        return audioFileService.errorObservable
+    }
     private let cryingEventPublisher = PublishSubject<Void>()
-    private let errorPublisher = PublishSubject<Error>()
     private let cryingDetectionService: CryingDetectionServiceProtocol
-    private let microphoneRecordService: AudioMicrophoneRecordServiceProtocol?
-    private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
-    private let storageService: StorageServerServiceProtocol
+    private let audioFileService: AudioFileServiceProtocol
     private let disposeBag = DisposeBag()
     
-    init(cryingDetectionService: CryingDetectionServiceProtocol, microphoneRecordService: AudioMicrophoneRecordServiceProtocol?, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol, storageService: StorageServerServiceProtocol) {
+    init(cryingDetectionService: CryingDetectionServiceProtocol,
+         audioFileService: AudioFileServiceProtocol) {
         self.cryingDetectionService = cryingDetectionService
-        self.microphoneRecordService = microphoneRecordService
-        self.activityLogEventsRepository = activityLogEventsRepository
-        self.storageService = storageService
+        self.audioFileService = audioFileService
         rxSetup()
     }
     
@@ -47,56 +39,10 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
             if cryingDetectionResult.isBabyCrying {
                 self.loggingInfoPublisher.onNext("Crying detected. Probability: \(roundedProbability)")
                 self.cryingEventPublisher.onNext(())
-
-                self.convertToFile(buffer: cryingDetectionResult.buffer)
+                self.audioFileService.uploadRecordingIfNeeded(from: cryingDetectionResult.buffer)
             } else {
-//                self.storageService.uploadRecordingsToDatabaseIfAllowed()
                 self.loggingInfoPublisher.onNext("Sound detected but no baby crying. Probability: \(roundedProbability)")
             }
         }).disposed(by: disposeBag)
-        
-        microphoneRecordService?.directoryDocumentsSavableObservable.subscribe(onNext: { [unowned self] savableFile in
-            savableFile.save(withName: self.nextFileName, completion: { [unowned self] result in
-                switch result {
-                case .success:
-                    self.storageService.uploadRecordingsToDatabaseIfAllowed()
-                case .failure(let error):
-                    self.errorPublisher.onNext(error ?? AudioMicrophoneService.AudioError.saveFailure)
-                }
-            })
-        }).disposed(by: disposeBag)
     }
-
-    private func convertToFile(buffer: AVAudioPCMBuffer) {
-        let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
-        let outputFormatSettings = [
-        AVLinearPCMBitDepthKey: 32,
-        AVLinearPCMIsFloatKey: true,
-        AVSampleRateKey: 44100,
-        AVNumberOfChannelsKey: 1
-        ] as [String: Any]
-        self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
-        var audioFile: AVAudioFile?
-        createCryingRecordsFolderIfNeeded()
-        do {
-            audioFile = try AVAudioFile(forWriting: FileManager.cryingRecordsURL.appendingPathComponent(nextFileName), settings: outputFormatSettings, commonFormat: .pcmFormatFloat32, interleaved: false)
-        } catch {
-            Logger.error("Failed to create an audio file.", error: error)
-        }
-
-        do {
-            try audioFile?.write(from: buffer)
-        } catch {
-            Logger.error("Failed to write an audio file.", error: error)
-        }
-        self.storageService.uploadRecordingsToDatabaseIfAllowed()
-    }
-
-    private func createCryingRecordsFolderIfNeeded() {
-        let folderPath = FileManager.cryingRecordsURL
-        if !FileManager.default.fileExists(atPath: folderPath.path) {
-                try? FileManager.default.createDirectory(atPath: folderPath.path, withIntermediateDirectories: true, attributes: nil)
-        }
-    }
-
 }

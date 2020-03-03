@@ -30,15 +30,16 @@ final class AppDependencies {
     /// Service for detecting baby's cry
     private(set) lazy var cryingDetectionService: CryingDetectionServiceProtocol = CryingDetectionService()
     
-    /// Service that takes care of appropriate controling: crying detection, audio recording and saving these events to realm database
+    /// Service that takes care of appropriate controling: crying detection, audio recording.
     private(set) lazy var cryingEventService: CryingEventsServiceProtocol = CryingEventService(
         cryingDetectionService: cryingDetectionService,
-        microphoneRecordService: audioMicrophoneService,
-        activityLogEventsRepository: databaseRepository,
-        storageService: storageServerService)
+        audioFileService: audioFileService)
     
     /// Service for capturing/recording microphone audio
     private(set) lazy var audioMicrophoneService: AudioMicrophoneServiceProtocol? = try? AudioMicrophoneService(microphoneFactory: AudioKitMicrophoneFactory.makeMicrophoneFactory)
+
+    /// Service for creating, saving, and uploading audio files.
+    private(set) lazy var audioFileService: AudioFileServiceProtocol = AudioFileService(storageService: storageServerService)
     
     let microphonePermissionProvider: MicrophonePermissionProviderProtocol = MicrophonePermissionProvider()
     

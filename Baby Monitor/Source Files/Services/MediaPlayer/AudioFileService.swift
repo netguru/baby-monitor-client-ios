@@ -3,20 +3,27 @@
 //  Baby Monitor
 
 import AVFoundation
+import RxSwift
 
-protocol AudioFileServiceProtocol {
+protocol AudioFileServiceProtocol: ErrorProducable {
 
     /// Create, save, and upload an audio file from input audio buffer.
     /// - Parameter buffer: A buffer which should be converted and sent.
-    func uploadRecording(from buffer: AVAudioPCMBuffer)
+    func uploadRecordingIfNeeded(from buffer: AVAudioPCMBuffer)
 }
 
 /// Service which handles audio file creation, saving it locally and then sending it to the server.
 final class AudioFileService: AudioFileServiceProtocol {
 
+    enum AudioFileError: Error {
+        case convertionToFileFailure
+    }
+
+    lazy var errorObservable = errorPublisher.asObservable()
     private let storageService: StorageServerServiceProtocol
     private let recordingURL: URL
     private let filePrefixName: String
+    private let errorPublisher = PublishSubject<Error>()
 
     /// Initializes the audio file service.
     ///
@@ -32,11 +39,13 @@ final class AudioFileService: AudioFileServiceProtocol {
         self.filePrefixName = filePrefixName
     }
 
-    /// Create, save, and upload an audio file from input audio buffer.
+    /// Create, save, and upload an audio file from input audio buffer if recordings are allowed by user.
     /// - Parameter buffer: A buffer which should be converted and sent.
-    func uploadRecording(from buffer: AVAudioPCMBuffer) {
+    func uploadRecordingIfNeeded(from buffer: AVAudioPCMBuffer) {
+        guard UserDefaults.isSendingCryingsAllowed else { return }
         guard let audioFile = convertToFile(buffer: buffer) else {
             Logger.error("Failed to create an audio file.")
+            errorPublisher.onNext(AudioFileError.convertionToFileFailure)
             return
         }
         writeFile(audioFile, from: buffer)
@@ -58,6 +67,7 @@ final class AudioFileService: AudioFileServiceProtocol {
             return audioFile
         } catch {
             Logger.error("Failed to create an audio file.", error: error)
+            errorPublisher.onNext(error)
             return nil
         }
     }
@@ -68,6 +78,7 @@ final class AudioFileService: AudioFileServiceProtocol {
             try audioFile.write(from: buffer)
         } catch {
             Logger.error("Failed to write an audio file.", error: error)
+            errorPublisher.onNext(error)
         }
     }
 
