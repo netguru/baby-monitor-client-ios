@@ -85,7 +85,10 @@ final class AudioKitNodeCapture: NSObject {
              if convertedBuffer.frameLength < samplesLeft {
                  self.internalAudioBuffer.copy(from: convertedBuffer)
              } else {
-                 self.bufferReadableSubject.onNext(self.internalAudioBuffer.copy() as! AVAudioPCMBuffer)
+                self.bufferReadableSubject.onNext(self.internalAudioBuffer.copy() as! AVAudioPCMBuffer)
+                self.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: self.machineLearningFormat, frameCapacity: self.bufferSize)!
+                self.internalAudioBuffer.copy(from: buffer)
+
              }
          }
     }
