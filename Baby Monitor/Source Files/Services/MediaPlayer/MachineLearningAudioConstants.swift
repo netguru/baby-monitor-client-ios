@@ -21,4 +21,10 @@ enum MachineLearningAudioConstants {
 
     /// Specifies whether audio should be interleaved.
     static let isInterleaved = false
+
+    /// An NSNumber integer that indicates the bit depth for a linear PCM audio format—one of 8, 16, 24, or 32.
+    static let bitDepthKey = 32
+
+    /// A Boolean value that indicates whether the audio format is floating point (true) or fixed point (false).
+    static let isFloat = true
 }

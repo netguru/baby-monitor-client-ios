@@ -233,6 +233,7 @@
 		959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */; };
 		95985AE423E95D6D00A7EC41 /* NoiseDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95985AE323E95D6D00A7EC41 /* NoiseDetectionService.swift */; };
 		959B024C240CEBEF00A565A8 /* MachineLearningAudioConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B024B240CEBEF00A565A8 /* MachineLearningAudioConstants.swift */; };
+		959B024E240E1C7D00A565A8 /* AudioFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B024D240E1C7D00A565A8 /* AudioFileService.swift */; };
 		95AE6C3623E9611E00B8FB92 /* SoundDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE6C3523E9611E00B8FB92 /* SoundDetectionService.swift */; };
 		95AE6C3823E9615000B8FB92 /* SoundDetectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE6C3723E9614F00B8FB92 /* SoundDetectionMode.swift */; };
 		95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */; };
@@ -581,6 +582,7 @@
 		959162E42200BAD2008F28B4 /* UIDevice+ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ScreenSize.swift"; sourceTree = "<group>"; };
 		95985AE323E95D6D00A7EC41 /* NoiseDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseDetectionService.swift; sourceTree = "<group>"; };
 		959B024B240CEBEF00A565A8 /* MachineLearningAudioConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineLearningAudioConstants.swift; sourceTree = "<group>"; };
+		959B024D240E1C7D00A565A8 /* AudioFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileService.swift; sourceTree = "<group>"; };
 		95AE6C3523E9611E00B8FB92 /* SoundDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetectionService.swift; sourceTree = "<group>"; };
 		95AE6C3723E9614F00B8FB92 /* SoundDetectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetectionMode.swift; sourceTree = "<group>"; };
 		95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetServiceDescriptorTests.swift; path = "../New Group/NetServiceDescriptorTests.swift"; sourceTree = "<group>"; };
@@ -855,6 +857,7 @@
 				957084AE23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift */,
 				8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */,
 				A7D7562422344B0300F9893E /* NodeCapture.swift */,
+				959B024D240E1C7D00A565A8 /* AudioFileService.swift */,
 				959B024B240CEBEF00A565A8 /* MachineLearningAudioConstants.swift */,
 			);
 			path = MediaPlayer;
@@ -2146,6 +2149,7 @@
 				F8DAD50C221B0E4700145F0E /* DescriptiveRoundedRectangleButton.swift in Sources */,
 				A1D36D4222E8364E002F6B2E /* UserDefaults+PushNotificationsKey.swift in Sources */,
 				959162E52200BAD2008F28B4 /* UIDevice+ScreenSize.swift in Sources */,
+				959B024E240E1C7D00A565A8 /* AudioFileService.swift in Sources */,
 				4E1D2C692167926500E92F29 /* BaseView.swift in Sources */,
 				8A8B76ED21EF53A20063EF7E /* WebSocketEventMessageService.swift in Sources */,
 				EC8A8FF521AE8F5F00B5FCCF /* TypedPageViewController.swift in Sources */,
