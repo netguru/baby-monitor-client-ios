@@ -83,9 +83,15 @@ final class AudioFileService: AudioFileServiceProtocol {
     }
 
     private func createRecordsFolderIfNeeded() {
-        if !FileManager.default.fileExists(atPath: recordingURL.path) {
-                try? FileManager.default.createDirectory(atPath: recordingURL.path, withIntermediateDirectories: true, attributes: nil)
+        guard !FileManager.default.fileExists(atPath: recordingURL.path) else {
+            return
         }
+        do {
+            try FileManager.default.createDirectory(atPath: recordingURL.path, withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            Logger.error("Failed to create directory.", error: error)
+        }
+
     }
 
 }

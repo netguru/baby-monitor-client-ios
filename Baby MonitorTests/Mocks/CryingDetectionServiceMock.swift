@@ -24,7 +24,7 @@ final class CryingDetectionServiceMock: CryingDetectionServiceProtocol {
     }
     
     func notifyAboutCryingDetection(isBabyCrying isCrying: Bool) {
-        cryingDetectionPublisher.onNext(CryingDetectionResult(isBabyCrying: isCrying, probability: 1))
+        cryingDetectionPublisher.onNext(CryingDetectionResult(isBabyCrying: isCrying, probability: 1, buffer: AVAudioPCMBuffer()))
     }
 
     func predict(on bufferReadable: AVAudioPCMBuffer) {

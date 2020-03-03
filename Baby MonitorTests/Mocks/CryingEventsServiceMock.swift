@@ -22,7 +22,7 @@ final class CryingEventsServiceMock: CryingEventsServiceProtocol {
 
     func start() throws {
         if shouldThrow {
-            throw CryingEventService.CryingEventServiceError.audioRecordServiceError
+            throw SoundDetectionService.SoundDetectionServiceError.audioRecordServiceError
         }
         isStarted = true
     }

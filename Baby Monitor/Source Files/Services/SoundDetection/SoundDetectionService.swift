@@ -72,10 +72,6 @@ final class SoundDetectionService: SoundDetectionServiceProtocol {
 
     func stopAnalysis() {
         microphoneService?.stopCapturing()
-        guard self.microphoneService?.isRecording ?? false else {
-            return
-        }
-        self.microphoneService?.stopRecording()
     }
 
     private func rxSetup() {
