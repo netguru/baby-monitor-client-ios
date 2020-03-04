@@ -74,6 +74,9 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
                 let amplitudeInfo = MicrophoneAmplitudeInfo(loudnessFactor: self.microphoneTracker.loudnessFactor, decibels: self.microphoneTracker.decibels)
                 self.microphoneAmplitudeSubject.onNext(amplitudeInfo)
                 self.microphoneBufferReadableSubject.onNext(bufferReadable)
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+                self.errorSubject.onNext(error)
             }).disposed(by: disposeBag)
     }
 

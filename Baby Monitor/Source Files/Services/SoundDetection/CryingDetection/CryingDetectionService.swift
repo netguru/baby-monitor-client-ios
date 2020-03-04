@@ -41,7 +41,7 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
     func predict(on bufferReadable: AVAudioPCMBuffer) {
         do {
             let audioProcessingMultiArray = try MLMultiArray(dataPointer: bufferReadable.floatChannelData!.pointee,
-                                                             shape: [264600],
+                                                             shape: [NSNumber(value: MachineLearningAudioConstants.bufferSize)],
                                                              dataType: .float32,
                                                              strides: [1])
             let audioProcessingInput = audioprocessingInput(raw_audio__0: audioProcessingMultiArray)

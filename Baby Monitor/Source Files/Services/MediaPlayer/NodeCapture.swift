@@ -9,11 +9,6 @@ import RxSwift
 import RxCocoa
 
 final class AudioKitNodeCapture: NSObject {
-    
-    enum AudioCaptureError: Error {
-        case initializationFailure
-        case captureFailure
-    }
 
     private let bufferReadableSubject = PublishSubject<AVAudioPCMBuffer>()
     lazy var bufferReadable = bufferReadableSubject.asObservable()
@@ -50,7 +45,6 @@ final class AudioKitNodeCapture: NSObject {
                 self.handleBuffer(buffer)
             }
         }
-
         isCapturing = true
     }
     
@@ -75,24 +69,24 @@ final class AudioKitNodeCapture: NSObject {
         let frameCapacity = UInt32(Double(buffer.frameCapacity) / sampleRateRatio)
         let convertedBuffer = AVAudioPCMBuffer(pcmFormat: machineLearningFormat, frameCapacity: frameCapacity)!
         convertedBuffer.frameLength = convertedBuffer.frameCapacity
-         var error: NSError?
-         let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
-          outStatus.pointee = AVAudioConverterInputStatus.haveData
-          return buffer
+        var convertionError: NSError?
+        let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
+            outStatus.pointee = AVAudioConverterInputStatus.haveData
+            return buffer
         }
-        formatConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
-         if let error = error {
-             Logger.error("Failed to convert audio data", error: error)
-         } else {
-             let samplesLeft = self.internalAudioBuffer.frameCapacity - self.internalAudioBuffer.frameLength
-             if convertedBuffer.frameLength < samplesLeft {
-                 self.internalAudioBuffer.copy(from: convertedBuffer)
-             } else {
-                self.bufferReadableSubject.onNext(self.internalAudioBuffer.copy() as! AVAudioPCMBuffer)
-                self.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: self.machineLearningFormat, frameCapacity: self.bufferSize)!
-                self.internalAudioBuffer.copy(from: convertedBuffer)
-
-             }
+        formatConverter.convert(to: convertedBuffer, error: &convertionError, withInputFrom: inputBlock)
+        if let error = convertionError {
+            bufferReadableSubject.onError(error)
+            Logger.error("Failed to convert audio data", error: error)
+        } else {
+            let samplesLeft = internalAudioBuffer.frameCapacity - internalAudioBuffer.frameLength
+            if convertedBuffer.frameLength < samplesLeft {
+                internalAudioBuffer.copy(from: convertedBuffer)
+            } else {
+                bufferReadableSubject.onNext(internalAudioBuffer.copy() as! AVAudioPCMBuffer)
+                internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: self.machineLearningFormat, frameCapacity: bufferSize)!
+                internalAudioBuffer.copy(from: convertedBuffer)
+            }
         }
     }
 }

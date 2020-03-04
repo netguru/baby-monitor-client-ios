@@ -91,7 +91,6 @@ final class AudioFileService: AudioFileServiceProtocol {
         } catch {
             Logger.error("Failed to create directory.", error: error)
         }
-
     }
 
 }
