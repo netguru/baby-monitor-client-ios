@@ -23,7 +23,7 @@ final class AudioFileService: AudioFileServiceProtocol {
     }
 
     var errorObservable: Observable<Error> {
-        return Observable.merge(audioFileStorage.errorObservable, audioFileStorage.errorObservable, errorPublisher.asObservable())
+        return Observable.merge(audioFileStorage.errorObservable, audioBufferConverter.errorObservable, errorPublisher.asObservable())
     }
     private let storageService: StorageServerServiceProtocol
     private let audioFileStorage: AudioFileStorable
