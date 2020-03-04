@@ -22,10 +22,10 @@ final class AudioKitNodeCapture: NSObject {
     private let machineLearningFormat: AVAudioFormat
     private let formatConverter: AVAudioConverter
     
-    init(node: AKNode? = AudioKit.output, bufferSize: UInt32 = MachineLearningAudioConstants.bufferSize) throws {
+    init(node: AKNode, bufferSize: UInt32 = MachineLearningAudioConstants.bufferSize) throws {
         self.node = node
         self.bufferSize = bufferSize
-        self.inputBufferFormat = node?.avAudioUnitOrNode.inputFormat(forBus: 0) ?? AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 48000.0, channels: 1, interleaved: false)!
+        self.inputBufferFormat = node.avAudioUnitOrNode.inputFormat(forBus: 0)
         machineLearningFormat = AVAudioFormat(commonFormat: MachineLearningAudioConstants.audioFormat,
                                               sampleRate: MachineLearningAudioConstants.sampleRate,
                                               channels: MachineLearningAudioConstants.channels,
