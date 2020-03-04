@@ -71,13 +71,16 @@ final class AudioKitNodeCapture: NSObject {
 
     /// Handle each new buffer: convert it to needed format and pass it further.
     private func handleBuffer(_ buffer: AVAudioPCMBuffer) {
-        let convertedBuffer = AVAudioPCMBuffer(pcmFormat: self.machineLearningFormat, frameCapacity: buffer.frameCapacity)!
+        let sampleRateRatio = inputBufferFormat.sampleRate / machineLearningFormat.sampleRate
+        let frameCapacity = UInt32(Double(buffer.frameCapacity) / sampleRateRatio)
+        let convertedBuffer = AVAudioPCMBuffer(pcmFormat: machineLearningFormat, frameCapacity: frameCapacity)!
+        convertedBuffer.frameLength = convertedBuffer.frameCapacity
          var error: NSError?
          let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
           outStatus.pointee = AVAudioConverterInputStatus.haveData
           return buffer
         }
-         self.formatConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
+        formatConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
          if let error = error {
              Logger.error("Failed to convert audio data", error: error)
          } else {
@@ -87,9 +90,9 @@ final class AudioKitNodeCapture: NSObject {
              } else {
                 self.bufferReadableSubject.onNext(self.internalAudioBuffer.copy() as! AVAudioPCMBuffer)
                 self.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: self.machineLearningFormat, frameCapacity: self.bufferSize)!
-                self.internalAudioBuffer.copy(from: buffer)
+                self.internalAudioBuffer.copy(from: convertedBuffer)
 
              }
-         }
+        }
     }
 }
