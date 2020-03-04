@@ -152,12 +152,10 @@
 		8A7A612121A59E6500488ED4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612021A59E6500488ED4 /* Result.swift */; };
 		8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612221A59E7500488ED4 /* FileManager+DocumentsDirectories.swift */; };
 		8A7A612521A59E7500488ED4 /* FileManager+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612321A59E7500488ED4 /* FileManager+Size.swift */; };
-		8A7A612721A59E8600488ED4 /* DirectoryDocumentsSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612621A59E8600488ED4 /* DirectoryDocumentsSavable.swift */; };
 		8A7A612E21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */; };
 		8A7A613E21A6AACD00488ED4 /* MessageServerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */; };
 		8A7A614921A6AC7900488ED4 /* CryingDetectionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */; };
 		8A7A614A21A6AC7900488ED4 /* AudioMicrophoneServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614521A6AC7900488ED4 /* AudioMicrophoneServiceMock.swift */; };
-		8A7A614B21A6AC7900488ED4 /* DocumentsSavableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614621A6AC7900488ED4 /* DocumentsSavableMock.swift */; };
 		8A7A614E21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614D21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift */; };
 		8A7A615021A6ACB000488ED4 /* CryingEventServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */; };
 		8A7A615221A6B00F00488ED4 /* CryingEventsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A615121A6B00F00488ED4 /* CryingEventsServiceMock.swift */; };
@@ -295,7 +293,6 @@
 		A1ED8F932212CA35005762E8 /* OldBaseOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F922212CA35005762E8 /* OldBaseOnboardingView.swift */; };
 		A1ED8F952212CB8D005762E8 /* OnboardingContinuableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED8F942212CB8D005762E8 /* OnboardingContinuableViewController.swift */; };
 		A7B48132223C16BB00FE4A74 /* AudioMicrophoneCaptureServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B48131223C16BB00FE4A74 /* AudioMicrophoneCaptureServiceProtocol.swift */; };
-		A7B48134223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B48133223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift */; };
 		A7D756082232DBC800F9893E /* CryingEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D756052232DBC800F9893E /* CryingEventService.swift */; };
 		A7D756092232DBC800F9893E /* CryingDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D756062232DBC800F9893E /* CryingDetectionService.swift */; };
 		A7D7561F2232DE8700F9893E /* MicrophoneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D7561E2232DE8700F9893E /* MicrophoneFactory.swift */; };
@@ -505,12 +502,10 @@
 		8A7A612021A59E6500488ED4 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		8A7A612221A59E7500488ED4 /* FileManager+DocumentsDirectories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+DocumentsDirectories.swift"; sourceTree = "<group>"; };
 		8A7A612321A59E7500488ED4 /* FileManager+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+Size.swift"; sourceTree = "<group>"; };
-		8A7A612621A59E8600488ED4 /* DirectoryDocumentsSavable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectoryDocumentsSavable.swift; sourceTree = "<group>"; };
 		8A7A612D21A5A35300488ED4 /* WebRtcServerManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRtcServerManagerProtocol.swift; sourceTree = "<group>"; };
 		8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageServerMock.swift; sourceTree = "<group>"; };
 		8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryingDetectionServiceMock.swift; sourceTree = "<group>"; };
 		8A7A614521A6AC7900488ED4 /* AudioMicrophoneServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMicrophoneServiceMock.swift; sourceTree = "<group>"; };
-		8A7A614621A6AC7900488ED4 /* DocumentsSavableMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsSavableMock.swift; sourceTree = "<group>"; };
 		8A7A614D21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMicrophoneServiceTests.swift; sourceTree = "<group>"; };
 		8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CryingEventServiceTests.swift; path = "Baby MonitorTests/Services/CryingEventServiceTests.swift"; sourceTree = SOURCE_ROOT; };
 		8A7A615121A6B00F00488ED4 /* CryingEventsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryingEventsServiceMock.swift; sourceTree = "<group>"; };
@@ -651,7 +646,6 @@
 		A1ED8F922212CA35005762E8 /* OldBaseOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldBaseOnboardingView.swift; sourceTree = "<group>"; };
 		A1ED8F942212CB8D005762E8 /* OnboardingContinuableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContinuableViewController.swift; sourceTree = "<group>"; };
 		A7B48131223C16BB00FE4A74 /* AudioMicrophoneCaptureServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMicrophoneCaptureServiceProtocol.swift; sourceTree = "<group>"; };
-		A7B48133223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMicrophoneRecordServiceProtocol.swift; sourceTree = "<group>"; };
 		A7D756052232DBC800F9893E /* CryingEventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryingEventService.swift; sourceTree = "<group>"; };
 		A7D756062232DBC800F9893E /* CryingDetectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryingDetectionService.swift; sourceTree = "<group>"; };
 		A7D7561E2232DE8700F9893E /* MicrophoneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneFactory.swift; sourceTree = "<group>"; };
@@ -822,7 +816,6 @@
 			isa = PBXGroup;
 			children = (
 				8A8B76DE21EDE3640063EF7E /* WebsocketMessageDecodable.swift */,
-				8A7A612621A59E8600488ED4 /* DirectoryDocumentsSavable.swift */,
 				8A7A608721A403D500488ED4 /* MicrophoneTrackerProtocol.swift */,
 				4E5731922170BA7400DEAF0B /* HasNavigationController.swift */,
 				4E5731932170BA7400DEAF0B /* HasWindow.swift */,
@@ -834,7 +827,6 @@
 				4E7B091221E6148600EDDD11 /* URLSessionProtocol.swift */,
 				3A8DAC88222D403400427BBE /* ApplicationStateProvider.swift */,
 				A7B48131223C16BB00FE4A74 /* AudioMicrophoneCaptureServiceProtocol.swift */,
-				A7B48133223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift */,
 				8A03502E23684D4500CF88C7 /* AsyncScheduler.swift */,
 			);
 			path = "Other Protocols";
@@ -1127,7 +1119,6 @@
 				95C38B2823F6924C00713F7B /* NoiseDetectionServiceMock.swift */,
 				8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */,
 				A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */,
-				8A7A614621A6AC7900488ED4 /* DocumentsSavableMock.swift */,
 				8A7A60CD21A40D3B00488ED4 /* MicrophoneTrackerMock.swift */,
 				95B28ACC240F9FF900081B1D /* AudioFileStorageMock.swift */,
 				8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */,
@@ -2230,7 +2221,6 @@
 				A7D756362237C31400F9893E /* MathUtilities.swift in Sources */,
 				9574DBDD23A93543000D58A8 /* String+NSAttributedString.swift in Sources */,
 				95B28AC9240F960600081B1D /* AudioBufferConverter.swift in Sources */,
-				A7B48134223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift in Sources */,
 				8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */,
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,
 				4E57319F2170BA7400DEAF0B /* Coordinator.swift in Sources */,
@@ -2242,7 +2232,6 @@
 				4E9563362164E77100289475 /* UITableView+Dequeue.swift in Sources */,
 				953C853823D979530087A819 /* UserDefaults+Onboarding.swift in Sources */,
 				4E36A3AE21B15F850058DAD2 /* OnboardingClientSetupViewController.swift in Sources */,
-				8A7A612721A59E8600488ED4 /* DirectoryDocumentsSavable.swift in Sources */,
 				8A7A612521A59E7500488ED4 /* FileManager+Size.swift in Sources */,
 				4E57319D2170BA7400DEAF0B /* Identifiable.swift in Sources */,
 				4E5731A72170BAE000DEAF0B /* AppDependencies.swift in Sources */,
@@ -2348,7 +2337,6 @@
 				8A7A615021A6ACB000488ED4 /* CryingEventServiceTests.swift in Sources */,
 				8AFAE5B5219ACA5F007013BC /* WebSocketServerMock.swift in Sources */,
 				8A7A613E21A6AACD00488ED4 /* MessageServerMock.swift in Sources */,
-				8A7A614B21A6AC7900488ED4 /* DocumentsSavableMock.swift in Sources */,
 				3A8DAC8B222D512400427BBE /* ApplicationStateProviderMock.swift in Sources */,
 				8A7A614E21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift in Sources */,
 				9548A8E723B23C9800B8EE95 /* OnboardingCompareCodeViewModelTests.swift in Sources */,
