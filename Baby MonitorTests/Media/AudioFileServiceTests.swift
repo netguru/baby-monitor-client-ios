@@ -100,5 +100,4 @@ final class AudioFileServiceTests: XCTestCase {
         // Then
         XCTAssertEqual(observer.events.count, 2)
     }
-
 }

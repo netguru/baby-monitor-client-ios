@@ -7,7 +7,7 @@ import RxSwift
 import AVFoundation
 @testable import BabyMonitor
 
-final class AudioBufferConverterMock: AudioBufferConvertertable {
+final class AudioBufferConverterMock: AudioBufferConvertable {
 
     lazy var errorObservable = errorPublisher.asObservable()
 

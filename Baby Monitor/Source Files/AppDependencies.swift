@@ -42,7 +42,7 @@ final class AppDependencies {
     private(set) lazy var audioFileService: AudioFileServiceProtocol = AudioFileService(storageService: storageServerService, audioFileStorage: audioFileStorage, audioBufferConverter: audioBufferConverter)
 
     /// Converts audio buffer to an audio file.
-    private(set) lazy var audioBufferConverter: AudioBufferConvertertable = AudioBufferConverter()
+    private(set) lazy var audioBufferConverter: AudioBufferConvertable = AudioBufferConverter()
 
     /// Saves audio files.
     private(set) lazy var audioFileStorage: AudioFileStorable = AudioFileStorage()

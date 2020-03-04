@@ -27,7 +27,7 @@ final class AudioFileService: AudioFileServiceProtocol {
     }
     private let storageService: StorageServerServiceProtocol
     private let audioFileStorage: AudioFileStorable
-    private let audioBufferConverter: AudioBufferConvertertable
+    private let audioBufferConverter: AudioBufferConvertable
     private let errorPublisher = PublishSubject<Error>()
 
     /// Initializes the audio file service.
@@ -38,7 +38,7 @@ final class AudioFileService: AudioFileServiceProtocol {
     ///     - audioBufferConverter: converter from buffer to audio file.
     init(storageService: StorageServerServiceProtocol,
          audioFileStorage: AudioFileStorable,
-         audioBufferConverter: AudioBufferConvertertable) {
+         audioBufferConverter: AudioBufferConvertable) {
         self.storageService = storageService
         self.audioFileStorage = audioFileStorage
         self.audioBufferConverter = audioBufferConverter

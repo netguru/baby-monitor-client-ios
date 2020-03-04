@@ -5,7 +5,7 @@
 import AVFoundation
 import RxSwift
 
-protocol AudioBufferConvertertable: ErrorProducable {
+protocol AudioBufferConvertable: ErrorProducable {
 
     /// Create an audio file from input audio buffer.
     /// - Parameters:
@@ -15,7 +15,7 @@ protocol AudioBufferConvertertable: ErrorProducable {
     func convertToFile(buffer: AVAudioPCMBuffer, url: URL, filePrefixName: String) -> AVAudioFile?
 }
 
-final class AudioBufferConverter: AudioBufferConvertertable {
+final class AudioBufferConverter: AudioBufferConvertable {
 
     enum AudioBufferConverterError: Error {
         case convertionToFileFailure
