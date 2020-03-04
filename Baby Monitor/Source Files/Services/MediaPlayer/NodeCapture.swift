@@ -42,7 +42,8 @@ final class AudioKitNodeCapture: NSObject {
         node?.avAudioUnitOrNode.installTap(onBus: 0, bufferSize: AKSettings.bufferLength.samplesCount, format: node?.avAudioUnitOrNode.inputFormat(forBus: 0)) { [weak self] buffer, _ in
             self?.bufferQueue.async {
                 guard let self = self else { return }
-                self.handleBuffer(buffer)
+                let convertionResult = self.convertBufferIfNeeded(buffer)
+                self.mergeBufferToNeededFrameCapacity(convertionResult)
             }
         }
         isCapturing = true
@@ -63,8 +64,11 @@ final class AudioKitNodeCapture: NSObject {
         internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: machineLearningFormat, frameCapacity: bufferSize)!
     }
 
-    /// Handle each new buffer: convert it to needed format and pass it further.
-    private func handleBuffer(_ buffer: AVAudioPCMBuffer) {
+    /// Converts buffer to the needed machine learning format if it's not using it yet.
+    private func convertBufferIfNeeded(_ buffer: AVAudioPCMBuffer) -> Result<AVAudioPCMBuffer> {
+        guard inputBufferFormat.sampleRate != machineLearningFormat.sampleRate else {
+            return .success(buffer)
+        }
         let sampleRateRatio = inputBufferFormat.sampleRate / machineLearningFormat.sampleRate
         let frameCapacity = UInt32(Double(buffer.frameCapacity) / sampleRateRatio)
         let convertedBuffer = AVAudioPCMBuffer(pcmFormat: machineLearningFormat, frameCapacity: frameCapacity)!
@@ -76,17 +80,33 @@ final class AudioKitNodeCapture: NSObject {
         }
         formatConverter.convert(to: convertedBuffer, error: &convertionError, withInputFrom: inputBlock)
         if let error = convertionError {
-            bufferReadableSubject.onError(error)
             Logger.error("Failed to convert audio data", error: error)
+            return .failure(error)
         } else {
+            return .success(convertedBuffer)
+        }
+    }
+
+    /// Merges buffers till it doesn't fill up the needed frame capacity for the machine learning model.
+    /// And passes it when ready to bufferReadableSubject.
+    private func mergeBufferToNeededFrameCapacity(_ bufferResult: Result<AVAudioPCMBuffer>) {
+        switch bufferResult {
+        case .success(let buffer):
             let samplesLeft = internalAudioBuffer.frameCapacity - internalAudioBuffer.frameLength
-            if convertedBuffer.frameLength < samplesLeft {
-                internalAudioBuffer.copy(from: convertedBuffer)
+            if buffer.frameLength < samplesLeft {
+                internalAudioBuffer.copy(from: buffer)
             } else {
                 bufferReadableSubject.onNext(internalAudioBuffer.copy() as! AVAudioPCMBuffer)
                 internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: self.machineLearningFormat, frameCapacity: bufferSize)!
-                internalAudioBuffer.copy(from: convertedBuffer)
+                internalAudioBuffer.copy(from: buffer)
             }
+        case .failure(let error):
+            guard let error = error else {
+                assertionFailure()
+                Logger.error("Error shouldn't be nil.")
+                return
+            }
+            bufferReadableSubject.onError(error)
         }
     }
 }
