@@ -19,7 +19,7 @@ protocol AudioFileServiceProtocol: ErrorProducable {
 final class AudioFileService: AudioFileServiceProtocol {
 
     enum AudioFileError: Error {
-        case convertionToFileFailure
+        case conversionToFileFailure
     }
 
     var errorObservable: Observable<Error> {
@@ -50,7 +50,7 @@ final class AudioFileService: AudioFileServiceProtocol {
         guard UserDefaults.isSendingCryingsAllowed else { return }
         guard let audioFile = audioBufferConverter.convertToFile(buffer: buffer, url: audioRecordingURL, filePrefixName: filePrefixName) else {
             Logger.error("Failed to create an audio file.")
-            errorPublisher.onNext(AudioFileError.convertionToFileFailure)
+            errorPublisher.onNext(AudioFileError.conversionToFileFailure)
             return
         }
         audioFileStorage.writeFile(audioFile, from: buffer, at: audioRecordingURL)

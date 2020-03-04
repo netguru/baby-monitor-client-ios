@@ -42,8 +42,8 @@ final class AudioKitNodeCapture: NSObject {
         node?.avAudioUnitOrNode.installTap(onBus: 0, bufferSize: AKSettings.bufferLength.samplesCount, format: node?.avAudioUnitOrNode.inputFormat(forBus: 0)) { [weak self] buffer, _ in
             self?.bufferQueue.async {
                 guard let self = self else { return }
-                let convertionResult = self.convertBufferIfNeeded(buffer)
-                self.mergeBufferToNeededFrameCapacity(convertionResult)
+                let conversionResult = self.convertBufferIfNeeded(buffer)
+                self.mergeBufferToNeededFrameCapacity(conversionResult)
             }
         }
         isCapturing = true
@@ -73,13 +73,13 @@ final class AudioKitNodeCapture: NSObject {
         let frameCapacity = UInt32(Double(buffer.frameCapacity) / sampleRateRatio)
         let convertedBuffer = AVAudioPCMBuffer(pcmFormat: machineLearningFormat, frameCapacity: frameCapacity)!
         convertedBuffer.frameLength = convertedBuffer.frameCapacity
-        var convertionError: NSError?
+        var conversionError: NSError?
         let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
             outStatus.pointee = AVAudioConverterInputStatus.haveData
             return buffer
         }
-        formatConverter.convert(to: convertedBuffer, error: &convertionError, withInputFrom: inputBlock)
-        if let error = convertionError {
+        formatConverter.convert(to: convertedBuffer, error: &conversionError, withInputFrom: inputBlock)
+        if let error = conversionError {
             Logger.error("Failed to convert audio data", error: error)
             return .failure(error)
         } else {

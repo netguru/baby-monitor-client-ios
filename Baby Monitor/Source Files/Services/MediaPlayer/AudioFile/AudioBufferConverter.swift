@@ -18,7 +18,7 @@ protocol AudioBufferConvertable: ErrorProducable {
 final class AudioBufferConverter: AudioBufferConvertable {
 
     enum AudioBufferConverterError: Error {
-        case convertionToFileFailure
+        case conversionToFileFailure
     }
 
     lazy var errorObservable = errorPublisher.asObservable()
