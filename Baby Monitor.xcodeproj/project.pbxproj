@@ -240,7 +240,6 @@
 		95B28ACD240F9FF900081B1D /* AudioFileStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B28ACC240F9FF900081B1D /* AudioFileStorageMock.swift */; };
 		95B28ACF240FA06C00081B1D /* AudioBufferConverterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B28ACE240FA06C00081B1D /* AudioBufferConverterMock.swift */; };
 		95B28AD1240FBBFA00081B1D /* AudioBufferConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B28AD0240FBBFA00081B1D /* AudioBufferConverterTests.swift */; };
-		95B28AD3240FC03700081B1D /* AudioFileStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B28AD2240FC03700081B1D /* AudioFileStorageTests.swift */; };
 		95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */; };
 		95BAA38823D80BD50016A194 /* AnalyticsScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */; };
 		95BAA38A23D80BE90016A194 /* AnalyticsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */; };
@@ -593,7 +592,6 @@
 		95B28ACC240F9FF900081B1D /* AudioFileStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileStorageMock.swift; sourceTree = "<group>"; };
 		95B28ACE240FA06C00081B1D /* AudioBufferConverterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBufferConverterMock.swift; sourceTree = "<group>"; };
 		95B28AD0240FBBFA00081B1D /* AudioBufferConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBufferConverterTests.swift; sourceTree = "<group>"; };
-		95B28AD2240FC03700081B1D /* AudioFileStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileStorageTests.swift; sourceTree = "<group>"; };
 		95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetServiceDescriptorTests.swift; path = "../New Group/NetServiceDescriptorTests.swift"; sourceTree = "<group>"; };
 		95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreenType.swift; sourceTree = "<group>"; };
 		95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventType.swift; sourceTree = "<group>"; };
@@ -1283,7 +1281,6 @@
 				95C38B2623F6903F00713F7B /* SoundDetectionServiceTests.swift */,
 				95B28AC4240F850C00081B1D /* AudioFileServiceTests.swift */,
 				95B28AD0240FBBFA00081B1D /* AudioBufferConverterTests.swift */,
-				95B28AD2240FC03700081B1D /* AudioFileStorageTests.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -2312,7 +2309,6 @@
 				8A6098C021EBFB1F00592B01 /* PeerConnectionFactoryMock.swift in Sources */,
 				95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */,
 				3ABC41BB2255407100645ADA /* MicrophoneCaptureMock.swift in Sources */,
-				95B28AD3240FC03700081B1D /* AudioFileStorageTests.swift in Sources */,
 				8AFAE5BE219C0FF7007013BC /* MessageDecoderMock.swift in Sources */,
 				4E8E057721AEADC5009ACE05 /* SpecifyDeviceOnboardingViewModelTests.swift in Sources */,
 				8AFAE5B8219AFF6D007013BC /* WebSocketMock.swift in Sources */,

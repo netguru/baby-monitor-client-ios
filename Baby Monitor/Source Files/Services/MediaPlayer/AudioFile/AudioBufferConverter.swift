@@ -33,15 +33,31 @@ final class AudioBufferConverter: AudioBufferConvertable {
             AVNumberOfChannelsKey: MachineLearningAudioConstants.channels
         ]
         let fileName = filePrefixName.appending(fileNameSuffix).appending(MachineLearningAudioConstants.recordingFileFormat)
+        let audioURL = url.appendingPathComponent(fileName)
+        guard case .success = createRecordsFolderIfNeeded(for: url) else { return nil }
         var audioFile: AVAudioFile
         do {
-            audioFile = try AVAudioFile(forWriting: url.appendingPathComponent(fileName), settings: outputFormatSettings, commonFormat: MachineLearningAudioConstants.audioFormat, interleaved: false)
+            audioFile = try AVAudioFile(forWriting: audioURL, settings: outputFormatSettings, commonFormat: MachineLearningAudioConstants.audioFormat, interleaved: false)
             return audioFile
         } catch {
             Logger.error("Failed to create an audio file.", error: error)
             errorPublisher.onNext(error)
             return nil
         }
+    }
+
+    private func createRecordsFolderIfNeeded(for url: URL) -> Result<Void> {
+        guard !FileManager.default.fileExists(atPath: url.path) else {
+            return .success(())
+        }
+        do {
+            try FileManager.default.createDirectory(atPath: url.path, withIntermediateDirectories: true, attributes: nil)
+            return .success(())
+        } catch {
+            errorPublisher.onNext(error)
+            Logger.error("Failed to create directory.", error: error)
+            return .failure(error)
+       }
     }
     
 }
