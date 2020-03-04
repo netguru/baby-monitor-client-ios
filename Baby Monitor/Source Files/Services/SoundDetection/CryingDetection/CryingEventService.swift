@@ -39,7 +39,7 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
             if cryingDetectionResult.isBabyCrying {
                 self.loggingInfoPublisher.onNext("Crying detected. Probability: \(roundedProbability)")
                 self.cryingEventPublisher.onNext(())
-                self.audioFileService.uploadRecordingIfNeeded(from: cryingDetectionResult.buffer)
+                self.audioFileService.uploadRecordingIfNeeded(from: cryingDetectionResult.buffer, audioRecordingURL: FileManager.cryingRecordsURL, filePrefixName: "crying_")
             } else {
                 self.loggingInfoPublisher.onNext("Sound detected but no baby crying. Probability: \(roundedProbability)")
             }

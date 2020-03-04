@@ -7,5 +7,10 @@ import Foundation
 @testable import BabyMonitor
 
 final class StorageServerServiceMock: StorageServerServiceProtocol {
-    func uploadRecordingsToDatabaseIfAllowed() { }
+
+    var wasUploadCalled = false
+
+    func uploadRecordingsToDatabaseIfAllowed() {
+        wasUploadCalled = true
+    }
 }

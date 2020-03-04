@@ -236,6 +236,11 @@
 		95AE6C3623E9611E00B8FB92 /* SoundDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE6C3523E9611E00B8FB92 /* SoundDetectionService.swift */; };
 		95AE6C3823E9615000B8FB92 /* SoundDetectionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AE6C3723E9614F00B8FB92 /* SoundDetectionMode.swift */; };
 		95B28AC3240E6F1900081B1D /* AudioFileServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B28AC2240E6F1900081B1D /* AudioFileServiceMock.swift */; };
+		95B28AC5240F850C00081B1D /* AudioFileServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B28AC4240F850C00081B1D /* AudioFileServiceTests.swift */; };
+		95B28AC9240F960600081B1D /* AudioBufferConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B28AC8240F960600081B1D /* AudioBufferConverter.swift */; };
+		95B28ACB240F974600081B1D /* AudioFileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B28ACA240F974600081B1D /* AudioFileStorage.swift */; };
+		95B28ACD240F9FF900081B1D /* AudioFileStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B28ACC240F9FF900081B1D /* AudioFileStorageMock.swift */; };
+		95B28ACF240FA06C00081B1D /* AudioBufferConverterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B28ACE240FA06C00081B1D /* AudioBufferConverterMock.swift */; };
 		95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */; };
 		95BAA38823D80BD50016A194 /* AnalyticsScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */; };
 		95BAA38A23D80BE90016A194 /* AnalyticsEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */; };
@@ -585,6 +590,11 @@
 		95AE6C3523E9611E00B8FB92 /* SoundDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetectionService.swift; sourceTree = "<group>"; };
 		95AE6C3723E9614F00B8FB92 /* SoundDetectionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetectionMode.swift; sourceTree = "<group>"; };
 		95B28AC2240E6F1900081B1D /* AudioFileServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileServiceMock.swift; sourceTree = "<group>"; };
+		95B28AC4240F850C00081B1D /* AudioFileServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileServiceTests.swift; sourceTree = "<group>"; };
+		95B28AC8240F960600081B1D /* AudioBufferConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBufferConverter.swift; sourceTree = "<group>"; };
+		95B28ACA240F974600081B1D /* AudioFileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileStorage.swift; sourceTree = "<group>"; };
+		95B28ACC240F9FF900081B1D /* AudioFileStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileStorageMock.swift; sourceTree = "<group>"; };
+		95B28ACE240FA06C00081B1D /* AudioBufferConverterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBufferConverterMock.swift; sourceTree = "<group>"; };
 		95B6F19523BE45CC00642EE3 /* NetServiceDescriptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetServiceDescriptorTests.swift; path = "../New Group/NetServiceDescriptorTests.swift"; sourceTree = "<group>"; };
 		95BAA38723D80BD50016A194 /* AnalyticsScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreenType.swift; sourceTree = "<group>"; };
 		95BAA38923D80BE90016A194 /* AnalyticsEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventType.swift; sourceTree = "<group>"; };
@@ -857,7 +867,7 @@
 				957084AE23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift */,
 				8AA7CBE1218C576D00FCF62A /* URLMediaPlayer.swift */,
 				A7D7562422344B0300F9893E /* NodeCapture.swift */,
-				959B024D240E1C7D00A565A8 /* AudioFileService.swift */,
+				95B28AC6240F95C100081B1D /* AudioFile */,
 				959B024B240CEBEF00A565A8 /* MachineLearningAudioConstants.swift */,
 			);
 			path = MediaPlayer;
@@ -1109,11 +1119,13 @@
 				95C38B2A23F699FB00713F7B /* RandomizerMock.swift */,
 				8A50AA9421E8DBA10058C63A /* WebRtcServerManagerMock.swift */,
 				8A7A614521A6AC7900488ED4 /* AudioMicrophoneServiceMock.swift */,
+				95B28ACE240FA06C00081B1D /* AudioBufferConverterMock.swift */,
 				95C38B2823F6924C00713F7B /* NoiseDetectionServiceMock.swift */,
 				8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */,
 				A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */,
 				8A7A614621A6AC7900488ED4 /* DocumentsSavableMock.swift */,
 				8A7A60CD21A40D3B00488ED4 /* MicrophoneTrackerMock.swift */,
+				95B28ACC240F9FF900081B1D /* AudioFileStorageMock.swift */,
 				8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */,
 				8A42DB0D2179D8FB00BF5F1B /* URLUserDefaultsMock.swift */,
 				8A42DB182179E0AD00BF5F1B /* URLConfigurationMock.swift */,
@@ -1274,6 +1286,7 @@
 				8A7A614F21A6ACB000488ED4 /* CryingEventServiceTests.swift */,
 				8A7A614D21A6AC8800488ED4 /* AudioMicrophoneServiceTests.swift */,
 				95C38B2623F6903F00713F7B /* SoundDetectionServiceTests.swift */,
+				95B28AC4240F850C00081B1D /* AudioFileServiceTests.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -1463,6 +1476,16 @@
 				95985AE323E95D6D00A7EC41 /* NoiseDetectionService.swift */,
 			);
 			path = NoiseDetection;
+			sourceTree = "<group>";
+		};
+		95B28AC6240F95C100081B1D /* AudioFile */ = {
+			isa = PBXGroup;
+			children = (
+				959B024D240E1C7D00A565A8 /* AudioFileService.swift */,
+				95B28ACA240F974600081B1D /* AudioFileStorage.swift */,
+				95B28AC8240F960600081B1D /* AudioBufferConverter.swift */,
+			);
+			path = AudioFile;
 			sourceTree = "<group>";
 		};
 		95B6F19723BE45E100642EE3 /* NetService */ = {
@@ -2109,6 +2132,7 @@
 				4E57319A2170BA7400DEAF0B /* HasNavigationController.swift in Sources */,
 				4E6EA7982161FEEF005575E0 /* RootCoordinator.swift in Sources */,
 				4E8E057421AE9E4A009ACE05 /* UIColor+BabyMonitor.swift in Sources */,
+				95B28ACB240F974600081B1D /* AudioFileStorage.swift in Sources */,
 				8A43DB02217DD4A500E3004D /* NetServiceConnectionChecker.swift in Sources */,
 				4E9563182163521900289475 /* DashboardButton.swift in Sources */,
 				9574DBDB23A93175000D58A8 /* NSAttributedString+Attributes.swift in Sources */,
@@ -2199,6 +2223,7 @@
 				8A50AA4021E603080058C63A /* WebRtcStreamId.swift in Sources */,
 				A7D756362237C31400F9893E /* MathUtilities.swift in Sources */,
 				9574DBDD23A93543000D58A8 /* String+NSAttributedString.swift in Sources */,
+				95B28AC9240F960600081B1D /* AudioBufferConverter.swift in Sources */,
 				A7B48134223C16D600FE4A74 /* AudioMicrophoneRecordServiceProtocol.swift in Sources */,
 				8A7A612421A59E7500488ED4 /* FileManager+DocumentsDirectories.swift in Sources */,
 				8A7A612121A59E6500488ED4 /* Result.swift in Sources */,
@@ -2287,6 +2312,7 @@
 				8A42DB192179E0AD00BF5F1B /* URLConfigurationMock.swift in Sources */,
 				8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */,
 				A1B57ACF22E992C20021B314 /* MicrophonePermissionProviderMock.swift in Sources */,
+				95B28ACF240FA06C00081B1D /* AudioBufferConverterMock.swift in Sources */,
 				8A7A60CE21A40D3B00488ED4 /* MicrophoneTrackerMock.swift in Sources */,
 				8A6098C021EBFB1F00592B01 /* PeerConnectionFactoryMock.swift in Sources */,
 				95B6F19623BE45CC00642EE3 /* NetServiceDescriptorTests.swift in Sources */,
@@ -2296,6 +2322,7 @@
 				8AFAE5B8219AFF6D007013BC /* WebSocketMock.swift in Sources */,
 				8A50AA8E21E8D8FA0058C63A /* WebRtcClientManagerTests.swift in Sources */,
 				9514291E24040B7200CBF3EF /* ParentSettingsViewModelTests.swift in Sources */,
+				95B28ACD240F9FF900081B1D /* AudioFileStorageMock.swift in Sources */,
 				952A637A238DBC2900C3837A /* VideoCapturerMock.swift in Sources */,
 				8AA7CBCC21871B3E00FCF62A /* ConnectionCheckerMock.swift in Sources */,
 				8A8EF955219D581D0098A27B /* MessageStreamMock.swift in Sources */,
@@ -2326,6 +2353,7 @@
 				8A50AA9E21E8DBA20058C63A /* WebRtcServerManagerMock.swift in Sources */,
 				9557FA6D237034F7002C9483 /* ServerErrorLoggerMock.swift in Sources */,
 				8A7A60C721A40CF200488ED4 /* NetServiceConnectionCheckerTests.swift in Sources */,
+				95B28AC5240F850C00081B1D /* AudioFileServiceTests.swift in Sources */,
 				8A8B76E121EDE4650063EF7E /* WebsocketMessageDecodableTests.swift in Sources */,
 				8A42DB012179C0CE00BF5F1B /* NetServiceClientMock.swift in Sources */,
 				8A50AA9C21E8DBA20058C63A /* IceCandidateDecoderMock.swift in Sources */,

@@ -39,7 +39,13 @@ final class AppDependencies {
     private(set) lazy var audioMicrophoneService: AudioMicrophoneServiceProtocol? = try? AudioMicrophoneService(microphoneFactory: AudioKitMicrophoneFactory.makeMicrophoneFactory)
 
     /// Service for creating, saving, and uploading audio files.
-    private(set) lazy var audioFileService: AudioFileServiceProtocol = AudioFileService(storageService: storageServerService)
+    private(set) lazy var audioFileService: AudioFileServiceProtocol = AudioFileService(storageService: storageServerService, audioFileStorage: audioFileStorage, audioBufferConverter: audioBufferConverter)
+
+    /// Converts audio buffer to an audio file.
+    private(set) lazy var audioBufferConverter: AudioBufferConvertertable = AudioBufferConverter()
+
+    /// Saves audio files.
+    private(set) lazy var audioFileStorage: AudioFileStorable = AudioFileStorage()
     
     let microphonePermissionProvider: MicrophonePermissionProviderProtocol = MicrophonePermissionProvider()
     

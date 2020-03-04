@@ -2,7 +2,6 @@
 //  AudioFileServiceMock.swift
 //  Baby MonitorTests
 
-
 import Foundation
 import AVFoundation
 import RxSwift
@@ -16,7 +15,7 @@ final class AudioFileServiceMock: AudioFileServiceProtocol {
 
     var didUploadRecording = false
 
-    func uploadRecordingIfNeeded(from buffer: AVAudioPCMBuffer) {
+    func uploadRecordingIfNeeded(from buffer: AVAudioPCMBuffer, audioRecordingURL: URL, filePrefixName: String) {
         didUploadRecording = true
     }
 }
