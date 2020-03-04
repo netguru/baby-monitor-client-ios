@@ -74,7 +74,7 @@ final class AudioKitNodeCapture: NSObject {
         let convertedBuffer = AVAudioPCMBuffer(pcmFormat: machineLearningFormat, frameCapacity: frameCapacity)!
         convertedBuffer.frameLength = convertedBuffer.frameCapacity
         var conversionError: NSError?
-        let inputBlock: AVAudioConverterInputBlock = { inNumPackets, outStatus in
+        let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
             outStatus.pointee = AVAudioConverterInputStatus.haveData
             return buffer
         }
