@@ -11,37 +11,15 @@ import RxTest
 class CryingEventServiceTests: XCTestCase {
     
     //Given
-    lazy var sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, microphoneRecordService: audioMicrophoneServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock, storageService: storageServiceMock)
+    lazy var sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock,
+                                      audioFileService: audioFileServiceMock)
     var cryingDetectionServiceMock = CryingDetectionServiceMock()
-    var audioMicrophoneServiceMock = AudioMicrophoneServiceMock()
-    var cryingEventsRepositoryMock = DatabaseRepositoryMock()
-    var storageServiceMock = StorageServerServiceMock()
+    var audioFileServiceMock = AudioFileServiceMock()
 
     override func setUp() {
         cryingDetectionServiceMock = CryingDetectionServiceMock()
-        audioMicrophoneServiceMock = AudioMicrophoneServiceMock()
-        cryingEventsRepositoryMock = DatabaseRepositoryMock()
-        sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock, microphoneRecordService: audioMicrophoneServiceMock, activityLogEventsRepository: cryingEventsRepositoryMock, storageService: storageServiceMock)
-    }
-
-    func testShouldNotSaveCryingEventWithSuccessfullCryingAudioRecordSave() {
-        //When
-        audioMicrophoneServiceMock.isSaveActionSuccess = true
-        cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
-        cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
-
-        //Then
-        XCTAssertEqual(cryingEventsRepositoryMock.fetchAllActivityLogEvents().count, 0)
-    }
-
-    func testShouldNotSaveCryingEvent() {
-        //When
-        audioMicrophoneServiceMock.isSaveActionSuccess = false
-        cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: true)
-        cryingDetectionServiceMock.notifyAboutCryingDetection(isBabyCrying: false)
-
-        //Then
-        XCTAssertEqual(cryingEventsRepositoryMock.fetchAllActivityLogEvents().count, 0)
+        sut = CryingEventService(cryingDetectionService: cryingDetectionServiceMock,
+                                 audioFileService: audioFileServiceMock)
     }
 
     func testShouldNotifyAboutCryingDetecion() {

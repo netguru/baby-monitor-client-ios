@@ -6,6 +6,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import AVFoundation
 
 protocol CryingEventsServiceProtocol: Any {
     var cryingEventObservable: Observable<Void> { get }
@@ -14,29 +15,21 @@ protocol CryingEventsServiceProtocol: Any {
 }
 
 final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
-    
-    enum CryingEventServiceError: Error {
-        case audioRecordServiceError
-    }
-    
+
     lazy var cryingEventObservable = cryingEventPublisher.asObservable()
     private(set) var loggingInfoPublisher = PublishSubject<String>()
-    lazy var errorObservable = errorPublisher.asObservable()
-    private var nextFileName: String = ""
-    
+    var errorObservable: Observable<Error> {
+        return audioFileService.errorObservable
+    }
     private let cryingEventPublisher = PublishSubject<Void>()
-    private let errorPublisher = PublishSubject<Error>()
     private let cryingDetectionService: CryingDetectionServiceProtocol
-    private let microphoneRecordService: AudioMicrophoneRecordServiceProtocol?
-    private let activityLogEventsRepository: ActivityLogEventsRepositoryProtocol
-    private let storageService: StorageServerServiceProtocol
+    private let audioFileService: AudioFileServiceProtocol
     private let disposeBag = DisposeBag()
     
-    init(cryingDetectionService: CryingDetectionServiceProtocol, microphoneRecordService: AudioMicrophoneRecordServiceProtocol?, activityLogEventsRepository: ActivityLogEventsRepositoryProtocol, storageService: StorageServerServiceProtocol) {
+    init(cryingDetectionService: CryingDetectionServiceProtocol,
+         audioFileService: AudioFileServiceProtocol) {
         self.cryingDetectionService = cryingDetectionService
-        self.microphoneRecordService = microphoneRecordService
-        self.activityLogEventsRepository = activityLogEventsRepository
-        self.storageService = storageService
+        self.audioFileService = audioFileService
         rxSetup()
     }
     
@@ -45,28 +38,11 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
             let roundedProbability = String(format: "%.2f", cryingDetectionResult.probability)
             if cryingDetectionResult.isBabyCrying {
                 self.loggingInfoPublisher.onNext("Crying detected. Probability: \(roundedProbability)")
-                let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
-                self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
-                self.microphoneRecordService?.startRecording()
                 self.cryingEventPublisher.onNext(())
+                self.audioFileService.uploadRecordingIfNeeded(from: cryingDetectionResult.buffer, audioRecordingURL: FileManager.cryingRecordsURL, filePrefixName: "crying_")
             } else {
                 self.loggingInfoPublisher.onNext("Sound detected but no baby crying. Probability: \(roundedProbability)")
-                guard self.microphoneRecordService?.isRecording ?? false else {
-                    return
-                }
-                self.microphoneRecordService?.stopRecording()
             }
-        }).disposed(by: disposeBag)
-        
-        microphoneRecordService?.directoryDocumentsSavableObservable.subscribe(onNext: { [unowned self] savableFile in
-            savableFile.save(withName: self.nextFileName, completion: { [unowned self] result in
-                switch result {
-                case .success:
-                    self.storageService.uploadRecordingsToDatabaseIfAllowed()
-                case .failure(let error):
-                    self.errorPublisher.onNext(error ?? AudioMicrophoneService.AudioError.saveFailure)
-                }
-            })
         }).disposed(by: disposeBag)
     }
 }

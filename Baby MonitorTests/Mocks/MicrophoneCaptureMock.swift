@@ -14,9 +14,11 @@ final class MicrophoneCaptureMock: MicrophoneCaptureProtocol {
     lazy var bufferReadable = bufferPublisher.asObservable()
     var isCapturing = false
     var isCaptureReset = false
+    var didCallStopCapture = false
 
     func stop() {
         isCapturing = false
+        didCallStopCapture = true
     }
 
     func start() throws {

@@ -43,17 +43,6 @@ class SoundDetectionServiceTests: XCTestCase {
         XCTAssertTrue(microphoneServiceMock.isCapturing)
     }
 
-    func testShouldNotStartRecordingAudio() {
-        // Given
-        let sut = makeSoundDetectionService()
-
-        // When
-        try! sut.startAnalysis()
-
-        // Then
-        XCTAssertFalse(microphoneServiceMock.isRecording)
-    }
-
     func testThrowWhenNoMicrophoneService() {
         // Given
         let sut = makeSoundDetectionService(withoutMicrophoneService: true)
@@ -78,19 +67,6 @@ class SoundDetectionServiceTests: XCTestCase {
 
         // Then
         XCTAssertFalse(microphoneServiceMock.isCapturing)
-    }
-
-    func testShouldStopRecording() {
-        // Given
-        let sut = makeSoundDetectionService()
-
-        // When
-        try! sut.startAnalysis()
-        microphoneServiceMock.startRecording()
-        sut.stopAnalysis()
-
-        // Then
-        XCTAssertFalse(microphoneServiceMock.isRecording)
     }
 
     func testShouldHandleFrequencyWhenInMode() {

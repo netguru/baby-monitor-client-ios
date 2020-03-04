@@ -4,77 +4,93 @@
 //
 
 import XCTest
+import AVFoundation
 import RxSwift
+import RxTest
 @testable import BabyMonitor
 
-class AudioMicrophoneServiceTests: XCTestCase {
-    
-    //Given
-    lazy var recorderMock = MicrophoneRecordMock()
-    lazy var capturerMock = MicrophoneCaptureMock()
-    lazy var trackerMock = MicrophoneTrackerMock()
-    lazy var microphoneMock = AudioKitMicrophoneMock(record: recorderMock, capture: capturerMock, tracker: trackerMock)
+final class AudioMicrophoneServiceTests: XCTestCase {
 
-    lazy var sut = try! AudioMicrophoneService(microphoneFactory: {
-        return microphoneMock
-    })
-    
+    // swiftlint:disable implicitly_unwrapped_optional
+    private var capturerMock: MicrophoneCaptureMock!
+    private var trackerMock: MicrophoneTrackerMock!
+    private var microphoneMock: AudioKitMicrophoneMock!
+
+    private var disposeBag: DisposeBag!
+
+    private var sut: AudioMicrophoneService!
+    // swiftlint:enable implicitly_unwrapped_optional
+
     override func setUp() {
+        capturerMock = MicrophoneCaptureMock()
+        trackerMock = MicrophoneTrackerMock()
+        microphoneMock = AudioKitMicrophoneMock(capture: capturerMock, tracker: trackerMock)
         sut = try! AudioMicrophoneService(microphoneFactory: {
             return microphoneMock
         })
+
+        disposeBag = DisposeBag()
     }
 
-    func testShouldStartRecording() {
-        //When
-        sut.startRecording()
-        
-        //Then
-        XCTAssertTrue(recorderMock.isRecordReset)
-        XCTAssertTrue(recorderMock.isRecording)
+    func testShouldStartCapturing() {
+        sut.startCapturing()
+
+        XCTAssertTrue(capturerMock.isCapturing)
     }
-    
-    func testShouldStopRecording() {
-        //When
-        sut.startRecording()
-        recorderMock.isRecording = true
-        sut.stopRecording()
-        
-        //Then
-        XCTAssertFalse(recorderMock.isRecording)
+
+    func testShouldStopCapturingIfStarted() {
+        sut.startCapturing()
+        sut.stopCapturing()
+
+        XCTAssertFalse(capturerMock.isCapturing)
+        XCTAssertTrue(capturerMock.didCallStopCapture)
     }
-    
-    func testShouldPublishAudioFile() {
-        //Given
-        let disposeBag = DisposeBag()
-        let exp = expectation(description: "Should publish audio file")
-        sut.directoryDocumentsSavableObservable.subscribe(onNext: { _ in
-            exp.fulfill()
-        }).disposed(by: disposeBag)
-        recorderMock.shouldReturnNilForAudioFile = false
-        
-        //When
-        sut.startRecording()
-        sut.stopRecording()
-        
-        //Then
-        wait(for: [exp], timeout: 2.0)
+
+    func testShouldNotStopCapturingIfNotStarted() {
+        sut.stopCapturing()
+
+        XCTAssertFalse(capturerMock.didCallStopCapture)
     }
-    
-    func testShouldNotPublishAudioFile() {
-        //Given
-        let disposeBag = DisposeBag()
-        let exp = expectation(description: "Should not publish audio file")
-        sut.directoryDocumentsSavableObservable.subscribe(onNext: { _ in
-            exp.fulfill()
-        }).disposed(by: disposeBag)
-        recorderMock.shouldReturnNilForAudioFile = true
-        
-        //When
-        sut.stopRecording()
-        
-        //Then
-        let result = XCTWaiter.wait(for: [exp], timeout: 2.0)
-        XCTAssertTrue(result == .timedOut)
+
+    func testShouldPassBufferWhenGotOne() {
+        /// Given
+        let scheduler = TestScheduler(initialClock: 0)
+        let observer = scheduler.createObserver(AVAudioPCMBuffer.self)
+        sut.microphoneBufferReadableObservable.bind(to: observer).disposed(by: disposeBag)
+
+        // When
+        sut.startCapturing()
+        capturerMock.bufferPublisher.onNext(AVAudioPCMBuffer())
+
+        // Then
+        XCTAssertTrue(observer.events.isNotEmpty)
+    }
+
+    func testShouldPassAmplitudeInfoWhenGotBuffer() {
+        /// Given
+        let scheduler = TestScheduler(initialClock: 0)
+        let observer = scheduler.createObserver(MicrophoneAmplitudeInfo.self)
+        sut.microphoneAmplitudeObservable.bind(to: observer).disposed(by: disposeBag)
+
+        // When
+        sut.startCapturing()
+        capturerMock.bufferPublisher.onNext(AVAudioPCMBuffer())
+
+        // Then
+        XCTAssertTrue(observer.events.isNotEmpty)
+    }
+
+    func testShouldEmmitErrorWhenGotItInBuffer() {
+        /// Given
+        let scheduler = TestScheduler(initialClock: 0)
+        let observer = scheduler.createObserver(Error.self)
+        sut.errorObservable.bind(to: observer).disposed(by: disposeBag)
+
+        // When
+        sut.startCapturing()
+        capturerMock.bufferPublisher.onError(NSError())
+
+        // Then
+        XCTAssertTrue(observer.events.isNotEmpty)
     }
 }

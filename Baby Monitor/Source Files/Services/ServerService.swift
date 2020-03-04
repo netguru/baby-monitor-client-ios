@@ -193,7 +193,7 @@ final class ServerService: ServerServiceProtocol {
             try soundDetectionService.startAnalysis()
         } catch {
             switch error {
-            case CryingEventService.CryingEventServiceError.audioRecordServiceError:
+            case SoundDetectionService.SoundDetectionServiceError.audioRecordServiceError:
                 audioMicrophoneServiceErrorPublisher.onNext(())
             default:
                 break

@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         setupAppearance()
         setupPushNotifications(application)
-        appDependencies.storageServerService.uploadRecordingsToDatabaseIfAllowed()
+        appDependencies.storageServerService.uploadRecordingsToDatabaseIfAllowed(for: FileManager.cryingRecordsURL)
         return true
     }
     
