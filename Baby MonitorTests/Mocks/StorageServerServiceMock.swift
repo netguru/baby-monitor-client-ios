@@ -10,7 +10,7 @@ final class StorageServerServiceMock: StorageServerServiceProtocol {
 
     var wasUploadCalled = false
 
-    func uploadRecordingsToDatabaseIfAllowed() {
+    func uploadRecordingsToDatabaseIfAllowed(for recordingsURL: URL) {
         wasUploadCalled = true
     }
 }

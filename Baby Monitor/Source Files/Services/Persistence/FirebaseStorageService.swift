@@ -7,7 +7,7 @@ import Foundation
 import FirebaseStorage
 
 protocol StorageServerServiceProtocol: AnyObject {
-    func uploadRecordingsToDatabaseIfAllowed()
+    func uploadRecordingsToDatabaseIfAllowed(for recordingsURL: URL)
 }
 
 final class FirebaseStorageService: StorageServerServiceProtocol {
@@ -21,11 +21,11 @@ final class FirebaseStorageService: StorageServerServiceProtocol {
         self.memoryCleaner = memoryCleaner
     }
     
-    func uploadRecordingsToDatabaseIfAllowed() {
+    func uploadRecordingsToDatabaseIfAllowed(for recordingsURL: URL) {
         guard UserDefaults.isSendingCryingsAllowed else {
             return
         }
-        subpathsToSend = subpathsToSend.union(getAllSubpaths())
+        subpathsToSend = subpathsToSend.union(getAllSubpaths(for: recordingsURL))
         guard !isSending else {
             return
         }
@@ -34,9 +34,8 @@ final class FirebaseStorageService: StorageServerServiceProtocol {
         }
     }
     
-    private func getAllSubpaths() -> [String] {
-        let cryingRecordsUrl = FileManager.cryingRecordsURL
-        guard let subpaths = FileManager.default.subpaths(atPath: cryingRecordsUrl.path) else {
+    private func getAllSubpaths(for recordingsURL: URL) -> [String] {
+        guard let subpaths = FileManager.default.subpaths(atPath: recordingsURL.path) else {
             return []
         }
         return subpaths

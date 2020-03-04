@@ -54,6 +54,6 @@ final class AudioFileService: AudioFileServiceProtocol {
             return
         }
         audioFileStorage.writeFile(audioFile, from: buffer, at: audioRecordingURL)
-        storageService.uploadRecordingsToDatabaseIfAllowed()
+        storageService.uploadRecordingsToDatabaseIfAllowed(for: audioRecordingURL)
     }
 }
