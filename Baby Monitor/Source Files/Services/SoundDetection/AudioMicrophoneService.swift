@@ -26,7 +26,6 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
     lazy var microphoneAmplitudeObservable = microphoneAmplitudeSubject.asObservable()
     
     private(set) var isCapturing = false
-    private(set) var isRecording = false
     
     private var microphoneCapturer: MicrophoneCaptureProtocol
     private var microphoneTracker: MicrophoneAmplitudeTracker
@@ -45,15 +44,7 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         microphoneTracker = audioKitMicrophone.tracker
         rxSetup()
     }
-    
-    func stopCapturing() {
-        guard isCapturing else {
-            return
-        }
-        microphoneCapturer.stop()
-        isCapturing = false
-    }
-    
+
     func startCapturing() {
         guard !isCapturing else {
             return
@@ -65,6 +56,14 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
             return
         }
         isCapturing = true
+    }
+
+    func stopCapturing() {
+        guard isCapturing else {
+            return
+        }
+        microphoneCapturer.stop()
+        isCapturing = false
     }
 
     private func rxSetup() {

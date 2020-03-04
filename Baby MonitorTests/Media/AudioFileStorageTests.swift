@@ -11,7 +11,6 @@ import RxTest
 final class AudioFileStorageTests: XCTestCase {
 
     // swiftlint:disable implicitly_unwrapped_optional
-
     private var sut: AudioFileStorable!
 
     private var disposeBag: DisposeBag!
