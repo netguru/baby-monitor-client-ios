@@ -32,7 +32,7 @@ final class AudioBufferConverter: AudioBufferConvertable {
             AVSampleRateKey: MachineLearningAudioConstants.sampleRate,
             AVNumberOfChannelsKey: MachineLearningAudioConstants.channels
         ]
-        let fileName = filePrefixName.appending(fileNameSuffix).appending(".wav")
+        let fileName = filePrefixName.appending(fileNameSuffix).appending(MachineLearningAudioConstants.recordingFileFormat)
         var audioFile: AVAudioFile
         do {
             audioFile = try AVAudioFile(forWriting: url.appendingPathComponent(fileName), settings: outputFormatSettings, commonFormat: MachineLearningAudioConstants.audioFormat, interleaved: false)

@@ -27,4 +27,7 @@ enum MachineLearningAudioConstants {
 
     /// A Boolean value that indicates whether the audio format is floating point (true) or fixed point (false).
     static let isFloat = true
+
+    /// A format in which the audio file should be saved and send for future retraining of the model.
+    static let recordingFileFormat: String = ".wav"
 }
