@@ -28,12 +28,13 @@ extension RTCPeerConnection: PeerConnectionProtocol {
 
     func add(stream: MediaStream) {
         guard let stream = stream as? RTCMediaStream,
-            let videoTrack = stream.videoTracks.first,
             let audioTrack = stream.audioTracks.first else {
             return
         }
-        add(videoTrack, streamIds: [stream.streamId])
         add(audioTrack, streamIds: [stream.streamId])
+        if let videoTrack = stream.videoTracks.first {
+            add(videoTrack, streamIds: [stream.streamId])
+        }
     }
 
     func add(iceCandidate: IceCandidateProtocol) {

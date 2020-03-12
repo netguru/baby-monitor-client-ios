@@ -3,8 +3,8 @@
 //  Baby Monitor
 //
 
-enum WebRtcStreamId: String {
-    case audioTrack = "ARDAMSa0"
-    case videoTrack = "ARDAMSv0"
-    case mediaStream = "ARDAMS"
+enum WebRtcStreamId {
+    static let audioTrack = "ARDAMSa0"
+    static let videoTrack = "ARDAMSv0"
+    static let mediaStream = "ARDAMS"
 }
