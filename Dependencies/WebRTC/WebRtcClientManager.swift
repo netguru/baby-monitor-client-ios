@@ -23,7 +23,8 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     var mediaStream: Observable<MediaStream?> {
         return mediaStreamPublisher
     }
-    
+
+    private var localMediaStream: MediaStream?
     private var isStarted = false
     private(set) var connectionStatusObservable: Observable<WebSocketConnectionStatus>
     private let sdpOfferPublisher = PublishSubject<SessionDescriptionProtocol>()
@@ -110,13 +111,22 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
         isStarted = false
     }
 
-
     func setAnswerSDP(sdp: SessionDescriptionProtocol) {
         peerConnection?.setRemoteDescription(sdp: sdp) { _ in }
     }
 
     func setICECandidates(iceCandidate: IceCandidateProtocol) {
         peerConnection?.add(iceCandidate: iceCandidate)
+    }
+
+    func enableAudioTrack() {
+        guard let stream = localMediaStream as? RTCMediaStream else { return }
+        stream.audioTracks.first?.isEnabled = true
+    }
+
+    func disableAudioTrack() {
+        guard let stream = localMediaStream as? RTCMediaStream else { return }
+        stream.audioTracks.first?.isEnabled = false
     }
 
     private func pause() {
@@ -138,7 +148,8 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     }
 
     private func startAudioStream() {
-        let stream = peerConnectionFactory.createAudioStream()
-        peerConnection?.add(stream: stream)
+        localMediaStream = peerConnectionFactory.createAudioStream()
+        localMediaStream?.audioTracks.first?.isEnabled = false
+        peerConnection?.add(stream: localMediaStream!)
     }
 }

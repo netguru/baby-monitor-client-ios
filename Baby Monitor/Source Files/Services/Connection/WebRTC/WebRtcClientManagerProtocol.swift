@@ -13,6 +13,12 @@ protocol WebRtcClientManagerProtocol: WebSocketConnectionStatusProvider {
     /// Closes connection
     func stop()
 
+    /// Enable audio track in the stream.
+    func enableAudioTrack()
+
+    /// Disabable audio track in the stream.
+    func disableAudioTrack()
+
     /// Sets session description answer
     ///
     /// - Parameter sdp: session description protocol to add

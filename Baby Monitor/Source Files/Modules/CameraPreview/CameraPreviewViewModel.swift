@@ -93,12 +93,12 @@ final class CameraPreviewViewModel: BaseViewModel {
 
     private func rxSetupMicrophoneEvents() {
         microphoneHoldEvent?
-            .subscribe(onNext: { _ in
-                print("holding")
+            .subscribe(onNext: { [weak self] _ in
+                self?.webSocketWebRtcService.get().startAudioTransmitting()
             }).disposed(by: bag)
         microphoneReleaseEvent?
-            .subscribe(onNext: { _ in
-                print("released")
+            .subscribe(onNext: { [weak self] _ in
+                self?.webSocketWebRtcService.get().stopAudioTransmitting()
             }).disposed(by: bag)
     }
 }

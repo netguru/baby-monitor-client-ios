@@ -10,6 +10,8 @@ protocol WebSocketWebRtcServiceProtocol: class, WebSocketConnectionStatusProvide
     func start()
     func close()
     func closeWebRtcConnection()
+    func startAudioTransmitting()
+    func stopAudioTransmitting()
 }
 
 final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
@@ -82,5 +84,13 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
     
     func closeWebRtcConnection() {
         webRtcClientManager.stop()
+    }
+
+    func startAudioTransmitting() {
+        webRtcClientManager.enableAudioTrack()
+    }
+    
+    func stopAudioTransmitting() {
+        webRtcClientManager.disableAudioTrack()
     }
 }

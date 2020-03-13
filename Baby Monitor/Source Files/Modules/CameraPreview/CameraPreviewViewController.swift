@@ -108,6 +108,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         videoTrack?.remove(videoView)
         videoTrack = stream.videoTracks[0]
         videoTrack?.add(videoView)
+        customView.shouldHideMicrophoneButton = false
     }
 
     private func handleStreamError(errorMessage: String) {

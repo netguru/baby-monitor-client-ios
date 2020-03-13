@@ -8,7 +8,14 @@ import RxCocoa
 import RxSwift
 
 final class CameraPreviewView: BaseView {
-    
+
+    var shouldHideMicrophoneButton: Bool = true {
+        didSet {
+            DispatchQueue.main.async {
+                self.microphoneButton.isHidden = self.shouldHideMicrophoneButton
+            }
+        }
+    }
     let mediaView = StreamVideoView(contentTransform: .none)
     let babyNavigationItemView = BabyNavigationItemView(mode: .parent)
     let settingsBarButtonItem = UIBarButtonItem(
@@ -29,6 +36,7 @@ final class CameraPreviewView: BaseView {
     fileprivate let microphoneButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "microphone-icon"), for: .normal)
+        button.isHidden = true
         button.adjustsImageWhenHighlighted = false
         return button
     }()
