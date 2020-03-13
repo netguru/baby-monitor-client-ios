@@ -11,9 +11,7 @@ final class CameraPreviewView: BaseView {
 
     var shouldHideMicrophoneButton: Bool = true {
         didSet {
-            DispatchQueue.main.async {
-                self.microphoneButton.isHidden = self.shouldHideMicrophoneButton
-            }
+            microphoneButton.isHidden = shouldHideMicrophoneButton
         }
     }
     var shouldAnimateMicrophoneButton = true
