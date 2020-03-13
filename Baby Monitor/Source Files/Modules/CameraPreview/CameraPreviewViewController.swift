@@ -74,7 +74,9 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
             .disposed(by: bag)
         viewModel.attachInput(
             cancelTap: customView.rx.cancelTap.asObservable(),
-            settingsTap: customView.rx.settingsTap.asObservable())
+            settingsTap: customView.rx.settingsTap.asObservable(),
+            microphoneHoldEvent: customView.rx.microphoneHoldEvent,
+            microphoneReleaseEvent: customView.rx.microphoneReleaseEvent)
         viewModel.streamResettedPublisher.asObservable()
             .subscribe(onNext: { [weak self] in
                 self?.setupStream()

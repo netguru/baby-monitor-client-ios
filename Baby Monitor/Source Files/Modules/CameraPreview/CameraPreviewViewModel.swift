@@ -15,6 +15,8 @@ final class CameraPreviewViewModel: BaseViewModel {
     private(set) var streamResettedPublisher = PublishSubject<Void>()
     private(set) var cancelTap: Observable<Void>?
     private(set) var settingsTap: Observable<Void>?
+    private(set) var microphoneHoldEvent: Observable<Void>?
+    private(set) var microphoneReleaseEvent: Observable<Void>?
     
     var shouldPlayPreview = false
     var remoteStream: Observable<MediaStream?> {
@@ -43,9 +45,15 @@ final class CameraPreviewViewModel: BaseViewModel {
     }
     
     // MARK: - Internal functions
-    func attachInput(cancelTap: Observable<Void>, settingsTap: Observable<Void>) {
+    func attachInput(cancelTap: Observable<Void>,
+                     settingsTap: Observable<Void>,
+                     microphoneHoldEvent: Observable<Void>,
+                     microphoneReleaseEvent: Observable<Void>) {
         self.cancelTap = cancelTap
         self.settingsTap = settingsTap
+        self.microphoneHoldEvent = microphoneHoldEvent
+        self.microphoneReleaseEvent = microphoneReleaseEvent
+        rxSetupMicrophoneEvents()
     }
     
     func play() {
@@ -81,5 +89,16 @@ final class CameraPreviewViewModel: BaseViewModel {
         default:
             print("connection status: connecting")
         }
+    }
+
+    private func rxSetupMicrophoneEvents() {
+        microphoneHoldEvent?
+            .subscribe(onNext: { _ in
+                print("holding")
+            }).disposed(by: bag)
+        microphoneReleaseEvent?
+            .subscribe(onNext: { _ in
+                print("released")
+            }).disposed(by: bag)
     }
 }

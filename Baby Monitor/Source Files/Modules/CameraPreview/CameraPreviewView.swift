@@ -25,6 +25,16 @@ final class CameraPreviewView: BaseView {
         indicator.hidesWhenStopped = true
         return indicator
     }()
+
+    fileprivate let microphoneButton: UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "microphone-icon"), for: .normal)
+        button.adjustsImageWhenHighlighted = false
+        return button
+    }()
+
+    fileprivate let microphoneHoldPublisher = PublishSubject<Void>()
+    fileprivate let microphoneReleasePublisher = PublishSubject<Void>()
     
     override init() {
         super.init()
@@ -42,10 +52,44 @@ final class CameraPreviewView: BaseView {
         addSubview(mediaView)
         mediaView.addConstraints { $0.equalEdges() }
         addSubview(activityIndicatorView)
+        addSubview(microphoneButton)
         activityIndicatorView.addConstraints {[
             $0.equal(.centerX),
             $0.equal(.centerY)
-        ]}
+        ]
+        }
+        microphoneButton.addConstraints {[
+            $0.equal(.centerX),
+            $0.equal(.safeAreaBottom, constant: -52)
+        ]
+        }
+        microphoneButton.addTarget(self, action: #selector(onMicrophoneButtonPressed), for: .touchDown)
+        microphoneButton.addTarget(self, action: #selector(onMicrophoneButtonReleased), for: .touchUpInside)
+    }
+
+    @objc private func onMicrophoneButtonPressed() {
+        microphoneHoldPublisher.onNext(())
+        addMicrophoneAnimations()
+    }
+
+    @objc private func onMicrophoneButtonReleased() {
+        microphoneReleasePublisher.onNext(())
+        removeAllMicrophoneAnimations()
+    }
+
+    private func addMicrophoneAnimations() {
+        let scaleAnimation = CABasicAnimation()
+        scaleAnimation.valueFunction = CAValueFunction(name: CAValueFunctionName.scale)
+        scaleAnimation.fromValue = [1, 1, 1]
+        scaleAnimation.toValue = [1.5, 1.5, 1.5]
+        scaleAnimation.duration = 0.6
+        scaleAnimation.repeatCount = .greatestFiniteMagnitude
+        scaleAnimation.autoreverses = true
+        microphoneButton.layer.add(scaleAnimation, forKey: "transform")
+    }
+
+    private func removeAllMicrophoneAnimations() {
+        microphoneButton.layer.removeAllAnimations()
     }
 }
 
@@ -72,5 +116,13 @@ extension Reactive where Base: CameraPreviewView {
 
     var isLoading: Binder<Bool> {
         return base.activityIndicatorView.rx.isLoading
+    }
+
+    var microphoneHoldEvent: Observable<Void> {
+        return base.microphoneHoldPublisher.asObservable()
+    }
+
+    var microphoneReleaseEvent: Observable<Void> {
+        return base.microphoneReleasePublisher.asObservable()
     }
 }
