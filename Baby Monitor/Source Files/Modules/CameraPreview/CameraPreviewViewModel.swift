@@ -108,9 +108,9 @@ final class CameraPreviewViewModel: BaseViewModel {
                 }
             }).disposed(by: bag)
         microphoneReleaseEvent?
+            .filter({ [weak self] _ in (self?.isMicrophoneAccessGranted ?? false) })
             .subscribe(onNext: { [weak self] _ in
-                guard let self = self,
-                    self.isMicrophoneAccessGranted else { return }
+                guard let self = self else { return }
                 self.webSocketWebRtcService.get().stopAudioTransmitting()
             }).disposed(by: bag)
     }
