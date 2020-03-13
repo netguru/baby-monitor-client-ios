@@ -225,6 +225,8 @@
 		955B8D2223903F0A00582330 /* SwiftyBeaverLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D2123903F0A00582330 /* SwiftyBeaverLogger.swift */; };
 		956518F1241B7AD800DF584F /* WebRTCMediaStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956518F0241B7AD800DF584F /* WebRTCMediaStream.swift */; };
 		956518F4241B7D4F00DF584F /* WebRTCMediaStreamMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956518F3241B7D4F00DF584F /* WebRTCMediaStreamMock.swift */; };
+		956518F7241B82E200DF584F /* CameraPreviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956518F6241B82E200DF584F /* CameraPreviewViewModelTests.swift */; };
+		956518F9241B846700DF584F /* PermissionsProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956518F8241B846700DF584F /* PermissionsProviderMock.swift */; };
 		9566206E2359ADF900ACBC94 /* DisabledVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */; };
 		957084AF23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957084AE23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift */; };
 		9574DBDB23A93175000D58A8 /* NSAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */; };
@@ -576,6 +578,8 @@
 		955B8D2123903F0A00582330 /* SwiftyBeaverLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBeaverLogger.swift; sourceTree = "<group>"; };
 		956518F0241B7AD800DF584F /* WebRTCMediaStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCMediaStream.swift; sourceTree = "<group>"; };
 		956518F3241B7D4F00DF584F /* WebRTCMediaStreamMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCMediaStreamMock.swift; sourceTree = "<group>"; };
+		956518F6241B82E200DF584F /* CameraPreviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewViewModelTests.swift; sourceTree = "<group>"; };
+		956518F8241B846700DF584F /* PermissionsProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsProviderMock.swift; sourceTree = "<group>"; };
 		9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledVideoView.swift; sourceTree = "<group>"; };
 		957084AE23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneAmplitudeTracker.swift; sourceTree = "<group>"; };
 		9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Attributes.swift"; sourceTree = "<group>"; };
@@ -1083,6 +1087,7 @@
 		8A42DAFB2179BF8200BF5F1B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				956518F5241B82C300DF584F /* Camera Preview */,
 				95701B0224040B23002175A6 /* Settings */,
 				4E8E057521AEADB2009ACE05 /* Onboarding */,
 				8AA7CBCD2187400400FCF62A /* ActivityLog */,
@@ -1137,6 +1142,7 @@
 				8A8EF954219D581D0098A27B /* MessageStreamMock.swift */,
 				8A7A613D21A6AACD00488ED4 /* MessageServerMock.swift */,
 				8A7A615121A6B00F00488ED4 /* CryingEventsServiceMock.swift */,
+				956518F8241B846700DF584F /* PermissionsProviderMock.swift */,
 				8A6098BF21EBFB1F00592B01 /* PeerConnectionFactoryMock.swift */,
 				4EB93D1F21ECA15F00E99BB3 /* StorageServerServiceMock.swift */,
 				8A8B76F121F1D8210063EF7E /* WebSocketEventMessageServiceMock.swift */,
@@ -1448,6 +1454,14 @@
 				955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		956518F5241B82C300DF584F /* Camera Preview */ = {
+			isa = PBXGroup;
+			children = (
+				956518F6241B82E200DF584F /* CameraPreviewViewModelTests.swift */,
+			);
+			path = "Camera Preview";
 			sourceTree = "<group>";
 		};
 		95701B0224040B23002175A6 /* Settings */ = {
@@ -2309,6 +2323,7 @@
 				8A42DB122179D9A300BF5F1B /* UserDefaultsURLConfiguration.swift in Sources */,
 				8AA7CBE4218C5A5100FCF62A /* URLMediaPlayerMock.swift in Sources */,
 				8A42DB192179E0AD00BF5F1B /* URLConfigurationMock.swift in Sources */,
+				956518F9241B846700DF584F /* PermissionsProviderMock.swift in Sources */,
 				8A42DAFE2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift in Sources */,
 				A1B57ACF22E992C20021B314 /* MicrophonePermissionProviderMock.swift in Sources */,
 				95B28ACF240FA06C00081B1D /* AudioBufferConverterMock.swift in Sources */,
@@ -2330,6 +2345,7 @@
 				8AA7CBCA21871AE300FCF62A /* DashboardViewModelTests.swift in Sources */,
 				952A6388238DE31F00C3837A /* PeerConnectionProxyMock.swift in Sources */,
 				8A7A614A21A6AC7900488ED4 /* AudioMicrophoneServiceMock.swift in Sources */,
+				956518F7241B82E200DF584F /* CameraPreviewViewModelTests.swift in Sources */,
 				8A42DB0E2179D8FB00BF5F1B /* URLUserDefaultsMock.swift in Sources */,
 				8A7A614921A6AC7900488ED4 /* CryingDetectionServiceMock.swift in Sources */,
 				8A8B76F221F1D8210063EF7E /* WebSocketEventMessageServiceMock.swift in Sources */,
