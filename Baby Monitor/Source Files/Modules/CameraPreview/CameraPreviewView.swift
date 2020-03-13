@@ -16,6 +16,7 @@ final class CameraPreviewView: BaseView {
             }
         }
     }
+    var shouldAnimateMicrophoneButton = true
     let mediaView = StreamVideoView(contentTransform: .none)
     let babyNavigationItemView = BabyNavigationItemView(mode: .parent)
     let settingsBarButtonItem = UIBarButtonItem(
@@ -77,6 +78,7 @@ final class CameraPreviewView: BaseView {
 
     @objc private func onMicrophoneButtonPressed() {
         microphoneHoldPublisher.onNext(())
+        guard shouldAnimateMicrophoneButton else { return }
         addMicrophoneAnimations()
     }
 

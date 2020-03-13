@@ -54,6 +54,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         navigationItem.leftBarButtonItem = customView.cancelItemButton
         navigationItem.rightBarButtonItem = customView.settingsBarButtonItem
         navigationItem.titleView = customView.babyNavigationItemView
+        customView.shouldAnimateMicrophoneButton = viewModel.isMicrophoneAccessGranted
     }
     
     private func setupViewModel() {
@@ -80,8 +81,11 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         viewModel.streamResettedPublisher.asObservable()
             .subscribe(onNext: { [weak self] in
                 self?.setupStream()
-            })
-            .disposed(by: bag)
+            }).disposed(by: bag)
+        viewModel.noMicrophoneAccessPublisher
+            .subscribe(onNext: { [weak self] in
+                self?.showNoMicrophoneAccessAlert()
+            }).disposed(by: bag)
     }
     
     private func setupStream() {
@@ -97,8 +101,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         viewModel.remoteStreamErrorMessageObservable
             .subscribe(onNext: { [weak self] message in
                 self?.handleStreamError(errorMessage: message)
-            })
-            .disposed(by: bag)
+            }).disposed(by: bag)
     }
     
     private func attach(stream: MediaStream) {
@@ -116,6 +119,13 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         let okAction = UIAlertAction(title: Localizable.General.ok, style: .default, handler: { _ in
             self.navigationController?.popViewController(animated: true)
         })
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+
+    private func showNoMicrophoneAccessAlert() {
+        let alertController = UIAlertController(title: Localizable.Onboarding.BabySetup.microphonePermissionsDenied, message: Localizable.Server.noMicrophoneAccessMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: Localizable.General.ok, style: .default, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true)
     }

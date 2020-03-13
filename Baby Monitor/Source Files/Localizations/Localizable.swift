@@ -173,6 +173,7 @@ enum Localizable {
         static let audioRecordError = localized("server.audio-record-error")
         static let streamError = localized("server.stream-error")
         static let noStream = localized("server.no-stream")
+        static let noMicrophoneAccessMessage = localized("server.no-microphone-access-message")
     }
     
     enum Lullabies {

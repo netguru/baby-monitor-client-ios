@@ -12,6 +12,7 @@ final class CameraPreviewViewModel: BaseViewModel {
     var remoteStreamErrorMessageObservable: Observable<String> {
         return self.webSocketEventMessageService.remoteStreamConnectingErrorObservable
     }
+    private(set) var noMicrophoneAccessPublisher = PublishSubject<Void>()
     private(set) var streamResettedPublisher = PublishSubject<Void>()
     private(set) var cancelTap: Observable<Void>?
     private(set) var settingsTap: Observable<Void>?
@@ -25,21 +26,26 @@ final class CameraPreviewViewModel: BaseViewModel {
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
         webSocketWebRtcService.get().connectionStatusObservable
     }
-    
+    var isMicrophoneAccessGranted: Bool {
+        return permissionsService.isMicrophoneAccessGranted
+    }
     private let babyModelController: BabyModelControllerProtocol
     private unowned var webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>
     private unowned var socketCommunicationManager: SocketCommunicationManager
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
+    private let permissionsService: PermissionsProvider
 
     init(webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
          babyModelController: BabyModelControllerProtocol,
          socketCommunicationManager: SocketCommunicationManager,
          webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
+         permissionsService: PermissionsProvider,
          analytics: AnalyticsManager) {
         self.webSocketWebRtcService = webSocketWebRtcService
         self.babyModelController = babyModelController
         self.socketCommunicationManager = socketCommunicationManager
         self.webSocketEventMessageService = webSocketEventMessageService
+        self.permissionsService = permissionsService
         super.init(analytics: analytics)
         rxSetup()
     }
@@ -94,11 +100,18 @@ final class CameraPreviewViewModel: BaseViewModel {
     private func rxSetupMicrophoneEvents() {
         microphoneHoldEvent?
             .subscribe(onNext: { [weak self] _ in
-                self?.webSocketWebRtcService.get().startAudioTransmitting()
+                guard let self = self else { return }
+                if self.isMicrophoneAccessGranted {
+                    self.webSocketWebRtcService.get().startAudioTransmitting()
+                } else {
+                    self.noMicrophoneAccessPublisher.onNext(())
+                }
             }).disposed(by: bag)
         microphoneReleaseEvent?
             .subscribe(onNext: { [weak self] _ in
-                self?.webSocketWebRtcService.get().stopAudioTransmitting()
+                guard let self = self,
+                    self.isMicrophoneAccessGranted else { return }
+                self.webSocketWebRtcService.get().stopAudioTransmitting()
             }).disposed(by: bag)
     }
 }

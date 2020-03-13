@@ -123,6 +123,7 @@ final class DashboardCoordinator: Coordinator {
             babyModelController: appDependencies.databaseRepository,
             socketCommunicationManager: appDependencies.socketCommunicationsManager,
             webSocketEventMessageService: appDependencies.webSocketEventMessageService,
+            permissionsService: appDependencies.permissionsService,
             analytics: appDependencies.analytics)
         return viewModel
     }
