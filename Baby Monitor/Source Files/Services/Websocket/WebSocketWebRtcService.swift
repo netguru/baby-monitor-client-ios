@@ -6,7 +6,7 @@
 import RxSwift
 
 protocol WebSocketWebRtcServiceProtocol: class, WebSocketConnectionStatusProvider {
-    var mediaStream: Observable<MediaStream?> { get }
+    var mediaStream: Observable<WebRTCMediaStream?> { get }
     func start()
     func close()
     func closeWebRtcConnection()
@@ -16,7 +16,7 @@ protocol WebSocketWebRtcServiceProtocol: class, WebSocketConnectionStatusProvide
 
 final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
 
-    lazy var mediaStream: Observable<MediaStream?> = webRtcClientManager.mediaStream
+    lazy var mediaStream: Observable<WebRTCMediaStream?> = webRtcClientManager.mediaStream
     
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
         webRtcClientManager.connectionStatusObservable

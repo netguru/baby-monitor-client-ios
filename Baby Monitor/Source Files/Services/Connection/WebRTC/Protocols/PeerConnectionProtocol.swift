@@ -18,15 +18,14 @@ protocol PeerConnectionProtocol {
 
     func createOffer(for constraints: MediaConstraints, handler: ((RTCSessionDescription?, Error?) -> Void)?)
 
-    func add(stream: MediaStream)
+    func add(stream: WebRTCMediaStream)
 }
 
 typealias MediaConstraints = AnyObject
-typealias MediaStream = AnyObject
 
 extension RTCPeerConnection: PeerConnectionProtocol {
 
-    func add(stream: MediaStream) {
+    func add(stream: WebRTCMediaStream) {
         guard let stream = stream as? RTCMediaStream,
             let audioTrack = stream.audioTracks.first else {
             return

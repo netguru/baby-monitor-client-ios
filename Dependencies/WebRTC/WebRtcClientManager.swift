@@ -20,16 +20,16 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     var sdpOffer: Observable<SessionDescriptionProtocol> {
         return sdpOfferPublisher
     }
-    var mediaStream: Observable<MediaStream?> {
+    var mediaStream: Observable<WebRTCMediaStream?> {
         return mediaStreamPublisher
     }
 
-    private var localMediaStream: MediaStream?
+    private var localMediaStream: WebRTCMediaStream?
     private var isStarted = false
     private(set) var connectionStatusObservable: Observable<WebSocketConnectionStatus>
     private let sdpOfferPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
-    private let mediaStreamPublisher = BehaviorSubject<MediaStream?>(value: nil)
+    private let mediaStreamPublisher = BehaviorSubject<WebRTCMediaStream?>(value: nil)
     private var connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
     private let disposeBag = DisposeBag()
 
@@ -120,13 +120,11 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
     }
 
     func enableAudioTrack() {
-        guard let stream = localMediaStream as? RTCMediaStream else { return }
-        stream.audioTracks.first?.isEnabled = true
+        localMediaStream?.enableAudioTrack()
     }
 
     func disableAudioTrack() {
-        guard let stream = localMediaStream as? RTCMediaStream else { return }
-        stream.audioTracks.first?.isEnabled = false
+        localMediaStream?.disableAudioTrack()
     }
 
     private func pause() {
@@ -149,7 +147,7 @@ final class WebRtcClientManager: NSObject, WebRtcClientManagerProtocol {
 
     private func startAudioStream() {
         localMediaStream = peerConnectionFactory.createAudioStream()
-        localMediaStream?.audioTracks.first?.isEnabled = false
+        localMediaStream?.disableAudioTrack()
         peerConnection?.add(stream: localMediaStream!)
     }
 }

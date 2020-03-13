@@ -20,7 +20,7 @@ final class CameraPreviewViewModel: BaseViewModel {
     private(set) var microphoneReleaseEvent: Observable<Void>?
     
     var shouldPlayPreview = false
-    var remoteStream: Observable<MediaStream?> {
+    var remoteStream: Observable<WebRTCMediaStream?> {
         return webSocketWebRtcService.get().mediaStream
     }
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> {

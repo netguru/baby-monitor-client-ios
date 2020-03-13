@@ -19,13 +19,13 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
     var iceCandidate: Observable<IceCandidateProtocol> {
         return iceCandidatePublisher
     }
-    var mediaStream: Observable<MediaStream> {
+    var mediaStream: Observable<WebRTCMediaStream> {
         return mediaStreamPublisher
     }
     private var isStarted = false
     private var videoCapturer: VideoCapturer?
-    private var mediaStreamInstance: MediaStream?
-    private let mediaStreamPublisher = PublishSubject<MediaStream>()
+    private var mediaStreamInstance: WebRTCMediaStream?
+    private let mediaStreamPublisher = PublishSubject<WebRTCMediaStream>()
     private let sdpAnswerPublisher = PublishSubject<SessionDescriptionProtocol>()
     private let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
     private var peerConnection: PeerConnectionProtocol?
@@ -157,7 +157,7 @@ final class WebRtcServerManager: NSObject, WebRtcServerManagerProtocol {
           mediaStreamInstance = nil
       }
 
-    private func handleDidSetRemoteDescription(stream: MediaStream, completion: @escaping (_ isSuccessful: Bool) -> Void) {
+    private func handleDidSetRemoteDescription(stream: WebRTCMediaStream, completion: @escaping (_ isSuccessful: Bool) -> Void) {
         peerConnection?.add(stream: stream)
         peerConnection?.createAnswer(for: self.streamMediaConstraints) { [weak self] sdp, error in
             guard let self = self, let sdp = sdp, error == nil else {

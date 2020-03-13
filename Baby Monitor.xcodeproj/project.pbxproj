@@ -223,6 +223,8 @@
 		955ADBC3236B3263004507F7 /* ServerErrorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */; };
 		955B8D2023903EEA00582330 /* LoggingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D1F23903EEA00582330 /* LoggingProtocol.swift */; };
 		955B8D2223903F0A00582330 /* SwiftyBeaverLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B8D2123903F0A00582330 /* SwiftyBeaverLogger.swift */; };
+		956518F1241B7AD800DF584F /* WebRTCMediaStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956518F0241B7AD800DF584F /* WebRTCMediaStream.swift */; };
+		956518F4241B7D4F00DF584F /* WebRTCMediaStreamMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956518F3241B7D4F00DF584F /* WebRTCMediaStreamMock.swift */; };
 		9566206E2359ADF900ACBC94 /* DisabledVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */; };
 		957084AF23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957084AE23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift */; };
 		9574DBDB23A93175000D58A8 /* NSAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */; };
@@ -572,6 +574,8 @@
 		955ADBC2236B3263004507F7 /* ServerErrorLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorLogger.swift; sourceTree = "<group>"; };
 		955B8D1F23903EEA00582330 /* LoggingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingProtocol.swift; sourceTree = "<group>"; };
 		955B8D2123903F0A00582330 /* SwiftyBeaverLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBeaverLogger.swift; sourceTree = "<group>"; };
+		956518F0241B7AD800DF584F /* WebRTCMediaStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCMediaStream.swift; sourceTree = "<group>"; };
+		956518F3241B7D4F00DF584F /* WebRTCMediaStreamMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCMediaStreamMock.swift; sourceTree = "<group>"; };
 		9566206D2359ADF900ACBC94 /* DisabledVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledVideoView.swift; sourceTree = "<group>"; };
 		957084AE23FA8C0A00D002AC /* MicrophoneAmplitudeTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneAmplitudeTracker.swift; sourceTree = "<group>"; };
 		9574DBDA23A93175000D58A8 /* NSAttributedString+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Attributes.swift"; sourceTree = "<group>"; };
@@ -1118,6 +1122,7 @@
 				8A7A614421A6AC7800488ED4 /* CryingDetectionServiceMock.swift */,
 				A1C5E6E121FA2E7100D93203 /* DatabaseRepositoryMock.swift */,
 				8A7A60CD21A40D3B00488ED4 /* MicrophoneTrackerMock.swift */,
+				956518F3241B7D4F00DF584F /* WebRTCMediaStreamMock.swift */,
 				95B28ACC240F9FF900081B1D /* AudioFileStorageMock.swift */,
 				8A42DB002179C0CE00BF5F1B /* NetServiceClientMock.swift */,
 				8A42DB0D2179D8FB00BF5F1B /* URLUserDefaultsMock.swift */,
@@ -1253,6 +1258,7 @@
 				4E55435821D4C33A005C41FD /* WebRtcServerManager.swift */,
 				8A50AA3D21E603080058C63A /* WebRtcConstraintKey.swift */,
 				8A50AA3E21E603080058C63A /* WebRtcStreamId.swift */,
+				956518F0241B7AD800DF584F /* WebRTCMediaStream.swift */,
 			);
 			path = WebRTC;
 			sourceTree = "<group>";
@@ -2183,6 +2189,7 @@
 				A7D756212232DF0A00F9893E /* AudioMicrophoneService.swift in Sources */,
 				4E9563392164F09C00289475 /* BabyNavigationItemView.swift in Sources */,
 				955B8D2023903EEA00582330 /* LoggingProtocol.swift in Sources */,
+				956518F1241B7AD800DF584F /* WebRTCMediaStream.swift in Sources */,
 				4EB6DE6521B67C11004701EA /* EventMessageDecoder.swift in Sources */,
 				4E8E056821AD8327009ACE05 /* UIFont+BabyMonitor.swift in Sources */,
 				EC4C9947216B946B0093EDFC /* OnboardingCoordinator.swift in Sources */,
@@ -2338,6 +2345,7 @@
 				9548A8E723B23C9800B8EE95 /* OnboardingCompareCodeViewModelTests.swift in Sources */,
 				4EB93D2021ECA15F00E99BB3 /* StorageServerServiceMock.swift in Sources */,
 				8A42DB172179DD9C00BF5F1B /* URL+PrefixTests.swift in Sources */,
+				956518F4241B7D4F00DF584F /* WebRTCMediaStreamMock.swift in Sources */,
 				8AEAFBC321773D3E003E756F /* RealmBabiesRepositoryTests.swift in Sources */,
 				A1C5E6E221FA2E7100D93203 /* DatabaseRepositoryMock.swift in Sources */,
 				8A50AAA321E8DBA20058C63A /* SessionDescriptionMock.swift in Sources */,

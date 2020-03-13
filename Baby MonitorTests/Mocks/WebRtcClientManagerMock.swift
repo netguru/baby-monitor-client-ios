@@ -9,6 +9,8 @@ import RxSwift
 final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
 
     private(set) var isStarted = false
+    private(set) var didAddAudioTrack = false
+    private(set) var didStopAudioTrack = false
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var iceCandidates = [IceCandidateProtocol]()
     private(set) var connectionStatusObservable: Observable<WebSocketConnectionStatus>
@@ -41,6 +43,14 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
         isStarted = false
     }
 
+    func enableAudioTrack() {
+        didAddAudioTrack = true
+    }
+
+    func disableAudioTrack() {
+        didStopAudioTrack = true
+    }
+
     var sdpOffer: Observable<SessionDescriptionProtocol> {
         return sdpOfferPublisher
     }
@@ -51,8 +61,8 @@ final class WebRtcClientManagerMock: WebRtcClientManagerProtocol {
     }
     let iceCandidatePublisher = PublishSubject<IceCandidateProtocol>()
 
-    var mediaStream: Observable<MediaStream?> {
+    var mediaStream: Observable<WebRTCMediaStream?> {
         return mediaStreamPublisher
     }
-    let mediaStreamPublisher = PublishSubject<MediaStream?>()
+    let mediaStreamPublisher = PublishSubject<WebRTCMediaStream?>()
 }

@@ -36,6 +36,6 @@ protocol WebRtcClientManagerProtocol: WebSocketConnectionStatusProvider {
     var iceCandidate: Observable<IceCandidateProtocol> { get }
 
     /// Observable emitting media stream
-    var mediaStream: Observable<MediaStream?> { get }
+    var mediaStream: Observable<WebRTCMediaStream?> { get }
 
 }

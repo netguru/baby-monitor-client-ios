@@ -10,10 +10,10 @@ protocol PeerConnectionFactoryProtocol {
     func peerConnection(with delegate: PeerConnectionProxy) -> PeerConnectionProtocol
 
     /// Creates a stream with audio and video source.
-    func createStream() -> (VideoCapturer?, MediaStream?)
+    func createStream() -> (VideoCapturer?, WebRTCMediaStream?)
 
     /// Creates stream with audio track.
-    func createAudioStream() -> MediaStream
+    func createAudioStream() -> WebRTCMediaStream
 }
 
 extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
@@ -28,7 +28,7 @@ extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
         return peerConnection(with: config, constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: ["DtlsSrtpKeyAgreement": "true"]), delegate: delegate)
     }
 
-    func createStream() -> (VideoCapturer?, MediaStream?) {
+    func createStream() -> (VideoCapturer?, WebRTCMediaStream?) {
         let localStream = mediaStream(withStreamId: WebRtcStreamId.mediaStream)
 
         let vSource = videoSource()
@@ -54,7 +54,7 @@ extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
         return (nil, nil)
     }
 
-    func createAudioStream() -> MediaStream {
+    func createAudioStream() -> WebRTCMediaStream {
         let localStream = mediaStream(withStreamId: WebRtcStreamId.mediaStream)
         let audioStreamSource = audioSource(with: nil)
         let audioStreamTrack = audioTrack(with: audioStreamSource, trackId: WebRtcStreamId.audioTrack)

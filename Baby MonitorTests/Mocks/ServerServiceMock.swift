@@ -8,7 +8,7 @@ import RxSwift
 
 final class ServerServiceMock: ServerServiceProtocol {
 
-    var localStreamObservable: Observable<MediaStream> = Observable.just("" as AnyObject)
+    var localStreamObservable: Observable<WebRTCMediaStream> = Observable.just(WebRTCMediaStreamMock())
 
     var audioMicrophoneServiceErrorObservable: Observable<Void> = Observable.just(())
 
