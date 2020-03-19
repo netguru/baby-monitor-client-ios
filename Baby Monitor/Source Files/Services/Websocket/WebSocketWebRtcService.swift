@@ -6,15 +6,17 @@
 import RxSwift
 
 protocol WebSocketWebRtcServiceProtocol: class, WebSocketConnectionStatusProvider {
-    var mediaStream: Observable<MediaStream?> { get }
+    var mediaStream: Observable<WebRTCMediaStream?> { get }
     func start()
     func close()
     func closeWebRtcConnection()
+    func startAudioTransmitting()
+    func stopAudioTransmitting()
 }
 
 final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
 
-    lazy var mediaStream: Observable<MediaStream?> = webRtcClientManager.mediaStream
+    lazy var mediaStream: Observable<WebRTCMediaStream?> = webRtcClientManager.mediaStream
     
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
         webRtcClientManager.connectionStatusObservable
@@ -82,5 +84,13 @@ final class WebSocketWebRtcService: WebSocketWebRtcServiceProtocol {
     
     func closeWebRtcConnection() {
         webRtcClientManager.stop()
+    }
+
+    func startAudioTransmitting() {
+        webRtcClientManager.enableAudioTrack()
+    }
+    
+    func stopAudioTransmitting() {
+        webRtcClientManager.disableAudioTrack()
     }
 }

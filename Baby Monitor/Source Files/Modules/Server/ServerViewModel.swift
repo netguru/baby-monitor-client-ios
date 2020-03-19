@@ -8,7 +8,7 @@ import RxSwift
 
 final class ServerViewModel: BaseViewModel {
     
-    var stream: Observable<MediaStream> {
+    var stream: Observable<WebRTCMediaStream> {
         return serverService.localStreamObservable
     }
     var loggingInfoObservable: Observable<String> {

@@ -7,7 +7,7 @@ import Foundation
 import RxSwift
 
 protocol ServerServiceProtocol: AnyObject {
-    var localStreamObservable: Observable<MediaStream> { get }
+    var localStreamObservable: Observable<WebRTCMediaStream> { get }
     var audioMicrophoneServiceErrorObservable: Observable<Void> { get }
     var remoteResetEventObservable: Observable<Void> { get }
     var remoteParingCodeObservable: Observable<String> { get }
@@ -21,7 +21,7 @@ protocol ServerServiceProtocol: AnyObject {
 
 final class ServerService: ServerServiceProtocol {
     
-    var localStreamObservable: Observable<MediaStream> {
+    var localStreamObservable: Observable<WebRTCMediaStream> {
         return webRtcServerManager.mediaStream
     }
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> {

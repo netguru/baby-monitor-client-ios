@@ -22,7 +22,7 @@ target 'Baby Monitor' do
   pod 'RxCocoa', '~> 4.0'
   pod 'RxDataSources', '~> 3.0'
   pod 'PocketSocket', '~> 1.0.1'
-  pod 'AudioKit', '~> 4.9.3'
+  pod 'AudioKit', '~> 4.9.4'
   pod 'Fabric', '~> 1.10.2'
   pod 'Crashlytics', '~> 3.14.0'
   pod 'GoogleWebRTC', '~> 1.1.29400'

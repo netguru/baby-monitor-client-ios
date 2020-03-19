@@ -160,7 +160,7 @@ final class ServerViewController: BaseViewController {
             .disposed(by: bag)
     }
     
-    private func attach(stream: MediaStream) {
+    private func attach(stream: WebRTCMediaStream) {
         guard let stream = stream as? RTCMediaStream else {
             return
         }

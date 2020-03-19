@@ -8,7 +8,12 @@ import WebRTC
 
 protocol PeerConnectionFactoryProtocol {
     func peerConnection(with delegate: PeerConnectionProxy) -> PeerConnectionProtocol
-    func createStream() -> (VideoCapturer?, MediaStream?)
+
+    /// Creates a stream with audio and video source.
+    func createStream() -> (VideoCapturer?, WebRTCMediaStream?)
+
+    /// Creates stream with audio track.
+    func createAudioStream() -> WebRTCMediaStream
 }
 
 extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
@@ -23,8 +28,8 @@ extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
         return peerConnection(with: config, constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: ["DtlsSrtpKeyAgreement": "true"]), delegate: delegate)
     }
 
-    func createStream() -> (VideoCapturer?, MediaStream?) {
-        let localStream = mediaStream(withStreamId: "ARDAMS")
+    func createStream() -> (VideoCapturer?, WebRTCMediaStream?) {
+        let localStream = mediaStream(withStreamId: WebRtcStreamId.mediaStream)
 
         let vSource = videoSource()
 
@@ -38,14 +43,22 @@ extension RTCPeerConnectionFactory: PeerConnectionFactoryProtocol {
             videoCapturer.startCapturing()
             // The next line is a fix for a stream freeze on iOS 13.
             vSource.adaptOutputFormat(toWidth: 640, height: 480, fps: 30)
-            let vTrack = videoTrack(with: vSource, trackId: "ARDAMSv0")
+            let vTrack = videoTrack(with: vSource, trackId: WebRtcStreamId.videoTrack)
             localStream.addVideoTrack(vTrack)
 
-            let aTrack = audioTrack(withTrackId: "ARDAMSa0")
+            let aTrack = audioTrack(withTrackId: WebRtcStreamId.audioTrack)
             localStream.addAudioTrack(aTrack)
 
             return (videoCapturer, localStream)
         }
         return (nil, nil)
+    }
+
+    func createAudioStream() -> WebRTCMediaStream {
+        let localStream = mediaStream(withStreamId: WebRtcStreamId.mediaStream)
+        let audioStreamSource = audioSource(with: nil)
+        let audioStreamTrack = audioTrack(with: audioStreamSource, trackId: WebRtcStreamId.audioTrack)
+        localStream.addAudioTrack(audioStreamTrack)
+        return localStream
     }
 }

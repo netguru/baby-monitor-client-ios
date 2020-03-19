@@ -3,10 +3,9 @@ import Foundation
 import RxTest
 import RxSwift
 
-
 class WebSocketWebRtcServiceMock: WebSocketWebRtcServiceProtocol {
     
-    var mediaStream: Observable<MediaStream?> {
+    var mediaStream: Observable<WebRTCMediaStream?> {
         return mediaStreamEmitter.asObservable()
     }
     var connectionStateObservable: Observable<WebSocketConnectionStatus> {
@@ -15,9 +14,11 @@ class WebSocketWebRtcServiceMock: WebSocketWebRtcServiceProtocol {
     
     private(set) var startCalled = false
     private(set) var closeCalled = false
+    private(set) var didAddAudioTrack = false
+    private(set) var didStopAudioTrack = false
     private(set) var closeWebRtcConnectionCalled = false
     
-    var mediaStreamEmitter = PublishSubject<MediaStream?>()
+    var mediaStreamEmitter = PublishSubject<WebRTCMediaStream?>()
     var stateEmitter = PublishSubject<WebSocketConnectionStatus>()
     
     let connectionStatusPublisher = PublishSubject<WebSocketConnectionStatus>()
@@ -35,5 +36,13 @@ class WebSocketWebRtcServiceMock: WebSocketWebRtcServiceProtocol {
     
     func closeWebRtcConnection() {
         closeWebRtcConnectionCalled = false
+    }
+    
+    func startAudioTransmitting() {
+        didAddAudioTrack = true
+    }
+
+    func stopAudioTransmitting() {
+        didStopAudioTrack = true
     }
 }
