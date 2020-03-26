@@ -34,7 +34,7 @@ protocol NetServiceClientProtocol: AnyObject {
     /// The variable controlling the state of the client. Changing its
     /// underlying `value` to `true` enables the client and changing it to
     /// `false` disables it.
-    var isEnabled: Variable<Bool> { get }
+    var isEnabled: BehaviorRelay<Bool> { get }
 }
 
 final class NetServiceClient: NSObject, NetServiceClientProtocol {
@@ -43,7 +43,7 @@ final class NetServiceClient: NSObject, NetServiceClientProtocol {
         case didNotResolve, didNotSearch, didRemoveDomain, IPNotParsed
     }
 
-    let isEnabled = Variable<Bool>(false)
+    let isEnabled = BehaviorRelay<Bool>(value: false)
 
     lazy var services = servicesVariable.asObservable()
     private let servicesVariable = BehaviorRelay<[NetServiceDescriptor]>(value: [])

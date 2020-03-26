@@ -7,7 +7,7 @@ PODS:
     - AudioKit/Core
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
-  - Differentiator (3.1.0)
+  - Differentiator (4.0.1)
   - Fabric (1.10.2)
   - Firebase/Core (5.15.0):
     - Firebase/CoreOnly
@@ -95,17 +95,20 @@ PODS:
   - Realm/Headers (3.19.1)
   - RealmSwift (3.19.1):
     - Realm (= 3.19.1)
-  - RxBlocking (4.5.0):
-    - RxSwift (>= 4.4.2, ~> 4.4)
-  - RxCocoa (4.5.0):
-    - RxSwift (>= 4.4.2, ~> 4.4)
-  - RxDataSources (3.1.0):
-    - Differentiator (~> 3.0)
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
-  - RxSwift (4.5.0)
-  - RxTest (4.5.0):
-    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxBlocking (5.1.1):
+    - RxSwift (~> 5)
+  - RxCocoa (5.1.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.1.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.0)
+  - RxTest (5.1.1):
+    - RxSwift (~> 5)
   - SwiftLint (0.27.0)
   - SwiftyBeaver (1.8.3)
 
@@ -120,18 +123,17 @@ DEPENDENCIES:
   - Keys (from `Pods/CocoaPodsKeys`)
   - PocketSocket (~> 1.0.1)
   - RealmSwift (~> 3.19.0)
-  - RxBlocking (~> 4.0)
-  - RxCocoa (~> 4.0)
-  - RxDataSources (~> 3.0)
-  - RxSwift (~> 4.0)
-  - RxTest (~> 4.0)
+  - RxBlocking (~> 5.1)
+  - RxCocoa (~> 5.1)
+  - RxDataSources (~> 4.0)
+  - RxSwift (~> 5.1)
+  - RxTest (~> 5.1)
   - SwiftLint (~> 0.27.0)
   - SwiftyBeaver (~> 1.8.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Crashlytics
-    - Differentiator
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -150,15 +152,17 @@ SPEC REPOS:
     - Protobuf
     - Realm
     - RealmSwift
-    - RxBlocking
-    - RxCocoa
-    - RxDataSources
-    - RxSwift
-    - RxTest
     - SwiftLint
     - SwiftyBeaver
   trunk:
     - AudioKit
+    - Differentiator
+    - RxBlocking
+    - RxCocoa
+    - RxDataSources
+    - RxRelay
+    - RxSwift
+    - RxTest
 
 EXTERNAL SOURCES:
   Keys:
@@ -167,7 +171,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AudioKit: 2ad2c0c546f53134967e4a381dfd8691b7674093
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
-  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
@@ -187,14 +191,15 @@ SPEC CHECKSUMS:
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
   Realm: fb377747e694c7deb62d402400454134fe321bee
   RealmSwift: 1302b0ab60f3105a2b214a735eeb0938607cf16b
-  RxBlocking: 79413e4d916f44bb3e113c5b2cc059e36fe58910
-  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
-  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
-  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
-  RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
+  RxBlocking: 5f700a78cad61ce253ebd37c9a39b5ccc76477b4
+  RxCocoa: 13d2a4d7546a34b8ececae8c281e4ea1dbb94f2b
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRelay: a168bd6caf712d00c676ac344e9295afc93b418e
+  RxSwift: ad5874f24bb0dbffd1e9bb8443604e3578796c7a
+  RxTest: 711632d5644dffbeb62c936a521b5b008a1e1faa
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   SwiftyBeaver: 3d3e93a12d648bd400b6f2948a7ef128b5b183c7
 
-PODFILE CHECKSUM: 07094cedb48aac4eb2f67563946da3c442bc41cc
+PODFILE CHECKSUM: 19c73f08f5767cdb961030cd439d1f431de2caa8
 
 COCOAPODS: 1.8.4

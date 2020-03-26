@@ -91,7 +91,7 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
             sendMessage(message.toStringMessage())
             remoteConfimationIdPublisher
                 .take(1)
-                .timeout(Constants.webSocketConfimationIDTimeLimit, scheduler: MainScheduler.instance)
+                .timeout(RxTimeInterval.seconds(Constants.webSocketConfimationIDTimeLimit), scheduler: MainScheduler.instance)
                 .subscribe(onNext: { eventConfimationId in
                     if confimationID == eventConfimationId {
                         completion(.success(()))

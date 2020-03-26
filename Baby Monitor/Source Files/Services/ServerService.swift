@@ -72,7 +72,7 @@ final class ServerService: ServerServiceProtocol {
     }
     
     func stop() {
-        netServiceServer.isEnabled.value = false
+        netServiceServer.isEnabled.accept(false)
         messageServer.stop()
         webRtcServerManager.stop()
         soundDetectionService.stopAnalysis()
@@ -80,7 +80,8 @@ final class ServerService: ServerServiceProtocol {
     
     private func rxSetup() {
         soundDetectionService.noiseEventObservable
-            .throttle(Constants.noiseNotificationRequestTimeLimit, scheduler: MainScheduler.instance)
+            .throttle(.seconds(Constants.noiseNotificationRequestTimeLimit),
+                      scheduler: MainScheduler.instance)
             .do(onNext: { [weak self] _ in
                 self?.loggingInfoPublisher.onNext("Passed \(Constants.noiseNotificationRequestTimeLimit) seconds limit. Attemps to send push notification request.")
             })
@@ -89,7 +90,8 @@ final class ServerService: ServerServiceProtocol {
             }).disposed(by: disposeBag)
 
         soundDetectionService.cryDetectionEventObservable
-            .throttle(Constants.cryingNotificationRequestTimeLimit, scheduler: MainScheduler.instance)
+            .throttle(.seconds(Constants.cryingNotificationRequestTimeLimit),
+                      scheduler: MainScheduler.instance)
             .do(onNext: { [weak self] _ in
                 self?.loggingInfoPublisher.onNext("Passed \(Constants.noiseNotificationRequestTimeLimit) seconds limit. Attemps to send push notification request.")
             })
@@ -188,7 +190,7 @@ final class ServerService: ServerServiceProtocol {
     /// Starts streaming
     func startStreaming() {
         messageServer.start()
-        netServiceServer.isEnabled.value = true
+        netServiceServer.isEnabled.accept(true)
         do {
             try soundDetectionService.startAnalysis()
         } catch {
