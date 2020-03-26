@@ -9,9 +9,9 @@ plugin 'cocoapods-keys', {
   inhibit_all_warnings!
 
 def shared_pods
-    pod 'Firebase/Core', '~> 5.15.0'
-    pod 'Firebase/Messaging', '~> 5.15.0'
-    pod 'Firebase/Storage', '~> 5.15.0'
+    pod 'Firebase/Core', '~> 6.21.0'
+    pod 'Firebase/Messaging', '~> 6.21.0'
+    pod 'Firebase/Storage', '~> 6.21.0'
 end
 
 target 'Baby Monitor' do
