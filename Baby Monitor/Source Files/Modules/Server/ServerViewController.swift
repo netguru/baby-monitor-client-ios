@@ -16,12 +16,6 @@ final class ServerViewController: BaseViewController {
         view.backgroundColor = .babyMonitorLightGreen
         return view
     }()
-    private lazy var rotateCameraButton: UIButton = {
-        let view = UIButton(frame: .zero)
-        view.setImage(#imageLiteral(resourceName: "switchCamera"), for: .normal)
-        view.isHidden = true // TODO: remove when this functionality gets implemented
-        return view
-    }()
     private lazy var nightModeButton: UIButton = {
         let view = UIButton(frame: .zero)
         view.setImage(#imageLiteral(resourceName: "nightMode"), for: .normal)
@@ -31,12 +25,6 @@ final class ServerViewController: BaseViewController {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.9)
         view.isHidden = true
-        return view
-    }()
-    private lazy var buttonsStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [rotateCameraButton, nightModeButton])
-        view.distribution = .fillEqually
-        view.spacing = 32
         return view
     }()
     
@@ -93,13 +81,13 @@ final class ServerViewController: BaseViewController {
     }
 
     private func setupView() {
-        [disabledVideoView, localView, buttonsStackView, nightModeOverlay, debugInfoLabel].forEach(view.addSubview)
+        [disabledVideoView, localView, nightModeButton, nightModeOverlay, debugInfoLabel].forEach(view.addSubview)
         localView.addConstraints { $0.equalEdges() }
         nightModeOverlay.addConstraints { $0.equalEdges() }
 
         navigationItem.titleView = babyNavigationItemView
         navigationItem.rightBarButtonItem = settingsBarButtonItem
-        buttonsStackView.addConstraints {[
+        nightModeButton.addConstraints {[
             $0.equal(.safeAreaBottom, constant: -52),
             $0.equal(.centerX)
         ]
@@ -111,7 +99,7 @@ final class ServerViewController: BaseViewController {
         ]
         }
         view.bringSubviewToFront(nightModeOverlay)
-        view.bringSubviewToFront(buttonsStackView)
+        view.bringSubviewToFront(nightModeButton)
         view.bringSubviewToFront(debugInfoLabel)
         #if ENV_PRODUCTION
         debugInfoLabel.isHidden = true

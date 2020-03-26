@@ -5,7 +5,7 @@
 
 import RxSwift
 
-protocol WebSocketEventMessageServiceProtocol: class, WebSocketConnectionStatusProvider {
+protocol WebSocketEventMessageServiceProtocol: AnyObject, WebSocketConnectionStatusProvider {
     var remoteResetObservable: Observable<Void> { get }
     var remotePairingCodeResponseObservable: Observable<Bool> { get }
     var remoteStreamConnectingErrorObservable: Observable<String> { get }

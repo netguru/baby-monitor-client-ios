@@ -94,10 +94,6 @@ enum Localizable {
                 static let specifyParentButton = localized("onboarding.specify-device.info.specify-button-parent")
                 static let specifyBabyButton = localized("onboarding.specify-device.info.specify-button-baby")
             }
-
-            enum Specification {
-                // TODO: Add in BM-321
-            }
         }
 
         enum Connecting {

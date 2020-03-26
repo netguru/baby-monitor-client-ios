@@ -19,7 +19,7 @@ internal class TypedPageViewController<BackgroundView: UIView>: BasePageViewCont
     ///     - analyticsScreenType: The type of the screen in terms of analytics tracking.
     init(viewMaker: @escaping @autoclosure () -> BackgroundView,
          analytics: AnalyticsManager,
-         analyticsScreenType: AnalyticsScreenType){
+         analyticsScreenType: AnalyticsScreenType) {
         self.customView = viewMaker()
         super.init(analytics: analytics, analyticsScreenType: analyticsScreenType)
     }

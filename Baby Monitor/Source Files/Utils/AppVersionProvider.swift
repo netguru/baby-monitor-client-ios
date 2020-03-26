@@ -21,7 +21,7 @@ class DefaultAppVersionProvider: AppVersionProvider {
     }
 }
 
-protocol BundleDataProvider: class {
+protocol BundleDataProvider: AnyObject {
     var buildNumber: String { get }
     var bundleVersion: String { get }
 }
