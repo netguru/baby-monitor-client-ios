@@ -5,25 +5,35 @@
 
 import Foundation
 
-struct FirebasePushNotificationsRequest: Request, URLRequestConvertible {
-    
-    init(receiverId: String, serverKey: String) {
-        headers?["Authorization"] = "key=\(serverKey)"
-        body?["to"] = receiverId
-    }
-    
+final class FirebasePushNotificationsRequest: Request, URLRequestConvertible {
+
     var headers: [String: String]? = [
         "Content-Type": "application/json"
     ]
-    var body: [String: Any]? = [
-        "notification": [
-            "title": Localizable.General.attention,
-            "body": Localizable.Server.babyIsCrying
-        ]
-    ]
+
+    lazy var body: [String: Any]? = {
+        let title = Localizable.General.attention
+        let body: String
+        switch mode {
+        case .cryRecognition:
+            body = Localizable.Server.babyIsCrying
+        case .noiseDetection:
+            body = Localizable.Server.noiseDetected
+        }
+        return ["notification": ["title": title, "body": body]]
+    }()
+
     let basePath = "https://fcm.googleapis.com"
     let apiPath = ""
     let path = "/fcm/send"
     let method: HTTPMethod = .post
     let parameters: [String: String]? = nil
+
+    private let mode: SoundDetectionMode
+    
+    init(receiverId: String, serverKey: String, mode: SoundDetectionMode) {
+        self.mode = mode
+        headers?["Authorization"] = "key=\(serverKey)"
+        body?["to"] = receiverId
+    }
 }

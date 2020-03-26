@@ -5,14 +5,15 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 ## Team
 
 * [Ania Pinderak](mailto:anna.pinderak@netguru.com) - Project Manager
+* [Anna-Mariia Shkarlinska](mailto:anna-mariia.shkarlinska@netguru.com) - iOS Developer
 * [Rafał Żurawski](mailto:rafal.zurawski@netguru.com) - QA
 
 ## Tools & Services
 
 * Tools:
-	* Xcode 11.2.1 with latest iOS SDK (13.2)
+	* Xcode 11.3 with latest iOS SDK (13.3)
 	* [Carthage](https://github.com/Carthage/Carthage) 0.33 or higher
-	<!-- * [CocoaPods](https://github.com/CocoaPods/CocoaPods) 1.7.5 or higher -->
+	* [CocoaPods](https://github.com/CocoaPods/CocoaPods) 1.8.4 or higher
 * Services:
 	* [JIRA](https://netguru.atlassian.net/secure/RapidBoard.jspa?rapidView=620&view=detail)
 	* [Bitrise](https://app.bitrise.io/app/80545282645ad180)
@@ -50,15 +51,29 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 	carthage bootstrap --platform iOS --cache-builds
 	```
 
-4. **Only if cocoapods-keys are applied:** Download `.env` file from project's 1password vault and paste it into the root project's directory.
+4. For Developers from Netguru:
 
-5. Install pods through Bundler:
+Download from project's vault:
+- `.env` file into the project's root directory
+- `GoogleService-Info-Development`, `GoogleService-Info-Staging`, `GoogleService-Info-Production.plist` files to the location: `Baby Monitor/Supporting Files/Firebase/`
+	   
+In case of the lack of an access:
+
+For a full integration please configure your own application in Firebase, download and paste `plist`s from there as well as a key to `.env`.
+
+5. **IMPORTANT:** Open terminal and ignore changes being made to `GoogleService-Info.plist`:
+
+   ```bash
+   git update-index --assume-unchanged "Baby Monitor/Supporting Files/Firebase"
+   ```
+
+6. Install pods through Bundler:
 
 	```bash
 	bundle exec pod install
 	```
 
-6. Open `Baby Monitor.xcworkspace` file and build the project.
+7. Open `Baby Monitor.xcworkspace` file and build the project.
 
 
 ## Coding guidelines

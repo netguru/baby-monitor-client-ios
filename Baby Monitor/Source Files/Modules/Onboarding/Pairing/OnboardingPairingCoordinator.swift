@@ -156,6 +156,7 @@ private extension OnboardingPairingCoordinator {
             urlConfiguration: appDependencies.urlConfiguration,
             serverURL: url,
             activityLogEventsRepository: appDependencies.databaseRepository,
+            randomizer: appDependencies.randomizer,
             analytics: appDependencies.analytics)
         let viewController = OnboardingCompareCodeViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)

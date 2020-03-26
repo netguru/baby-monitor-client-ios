@@ -2,7 +2,7 @@ import Foundation
 import AudioKit
 import RxSwift
 
-protocol ApplicationResetter: class {
+protocol ApplicationResetter: AnyObject {
     var localResetCompletionObservable: Observable<Void> { get }
     func reset(isRemote: Bool)
 }
@@ -78,6 +78,8 @@ private extension DefaultApplicationResetter {
         UserDefaults.isSendingCryingsAllowed = false
         UserDefaults.selfPushNotificationsToken = ""
         UserDefaults.receiverPushNotificationsToken = nil
+        UserDefaults.soundDetectionMode = Constants.defaultSoundDetectionMode
+        UserDefaults.noiseLoudnessFactorLimit = Constants.loudnessFactorLimit
     }
     
     func clearNotificationTokens() {

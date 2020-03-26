@@ -15,9 +15,11 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
     init(viewModel: ParentSettingsViewModel, appVersionProvider: AppVersionProvider) {
         let appVersion = appVersionProvider.getAppVersionWithBuildNumber()
         self.viewModel = viewModel
-        super.init(viewMaker: ParentSettingsView(appVersion: appVersion),
-                   analytics: viewModel.analytics,
-                   analyticsScreenType: .parentSettings)
+        super.init(
+            viewMaker: ParentSettingsView(appVersion: appVersion,
+                                          soundDetectionModes: viewModel.soundDetectionModes),
+            analytics: viewModel.analytics,
+            analyticsScreenType: .parentSettings)
     }
 
     override func viewDidLoad() {
@@ -48,8 +50,10 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
         viewModel.attachInput(
             babyName: customView.rx.babyName.asObservable(),
             addPhotoTap: customView.rx.editPhotoTap.asObservable(),
+            soundDetectionTap: customView.rx.voiceModeTap.asObservable(),
             resetAppTap: customView.rx.resetButtonTap.asObservable(),
-            cancelTap: customView.rx.cancelButtonTap.asObservable()
+            cancelTap: customView.rx.cancelButtonTap.asObservable(),
+            noiseSliderValueOnEnded: customView.rx.noiseSliderValueOnEnded
         )
         viewModel.baby
             .map { $0.name }
@@ -61,6 +65,21 @@ final class ParentSettingsViewController: TypedViewController<ParentSettingsView
             .distinctUntilChanged()
             .bind(to: customView.rx.babyPhoto)
             .disposed(by: bag)
+        viewModel.webSocketMessageResultPublisher
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] result  in
+                self?.customView.updateProgressIndicator(with: result)
+            }).disposed(by: bag)
+        viewModel.noiseLoudnessFactorLimitPublisher
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] value in
+                self?.customView.updateSlider(with: value)
+            }).disposed(by: bag)
+        viewModel.selectedVoiceModeIndexPublisher
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] value in
+                self?.customView.updateSoundMode(with: value)
+            }).disposed(by: bag)
     }
 
     private func handleRating() {

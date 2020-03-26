@@ -62,6 +62,8 @@ final class ActivityLogViewModel: BaseViewModel {
         case .cryingEvent:
             let babyName = databaseRepository.baby.name.isEmpty ? Localizable.General.yourBaby : databaseRepository.baby.name
             cell.update(mainText: "\(babyName) \(Localizable.ActivityLog.wasCrying)")
+        case .noiseEvent:
+            cell.update(mainText: Localizable.ActivityLog.noiseDetected)
         }
     }
 

@@ -12,7 +12,7 @@ final class OnboardingCompareCodeViewModel: BaseViewModel {
     let bag = DisposeBag()
     let title: String = Localizable.Onboarding.connecting
     let description = Localizable.Onboarding.Connecting.compareCodeDescription
-    let codeText = String(Int.random(in: 1000...9999))
+    let codeText: String
 
     private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
     private let urlConfiguration: URLConfiguration
@@ -23,11 +23,13 @@ final class OnboardingCompareCodeViewModel: BaseViewModel {
          urlConfiguration: URLConfiguration,
          serverURL: URL,
          activityLogEventsRepository: ActivityLogEventsRepositoryProtocol,
+         randomizer: RandomGenerator,
          analytics: AnalyticsManager) {
         self.webSocketEventMessageService = webSocketEventMessageService
         self.urlConfiguration = urlConfiguration
         self.serverURL = serverURL
         self.activityLogEventsRepository = activityLogEventsRepository
+        self.codeText = randomizer.generateRandomCode()
         super.init(analytics: analytics)
         setupBindings()
     }

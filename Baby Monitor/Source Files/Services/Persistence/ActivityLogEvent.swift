@@ -12,6 +12,7 @@ struct ActivityLogEvent: Equatable {
     
     enum Mode: String {
         case cryingEvent = "CRYING_EVENT_ACTIVITY_LOG_EVENT_KEY"
+        case noiseEvent = "NOISE_EVENT_ACTIVITY_LOG_EVENT_KEY"
         case emptyState = "EMPTY_STATE_ACTIVITY_LOG_EVENT_KEY"
     }
     

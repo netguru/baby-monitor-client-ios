@@ -66,11 +66,6 @@ final class OnboardingAccessViewModel: BaseViewModel {
         let isMicrophoneAccessGranted = AVCaptureDevice.authorizationStatus(for: .audio) == .authorized
         return isCameraAccessGranted && isMicrophoneAccessGranted
     }
-    var areAllRequiredPermissionsNotDetermined: Bool {
-        let isCameraAccessNotDetermined = AVCaptureDevice.authorizationStatus(for: .video) == .notDetermined
-        let isMicrophoneAccessNotDetermined = AVCaptureDevice.authorizationStatus(for: .audio) == .notDetermined
-        return isCameraAccessNotDetermined || isMicrophoneAccessNotDetermined
-    }
     
     func checkAccess() {
         switch role {

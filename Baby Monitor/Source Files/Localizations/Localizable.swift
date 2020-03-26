@@ -24,7 +24,7 @@ enum Localizable {
         static let yourBaby = localized("general.your-baby")
         static let letsStart = localized("general.lets-start")
         static let retry = localized("general.retry")
-        static let imSure = localized("general.i-am-sure")
+        static let imSureExitApp = localized("general.i-am-sure-exit")
         static let important = localized("general.important")
         static let version = localized("general.version")
         static let decline = localized("general.decline")
@@ -69,7 +69,9 @@ enum Localizable {
         
         enum BabySetup {
             static let permissionsDenidedText = localized("onboarding.baby-setup.permissions-denided.text")
-            static let permissionsDenided = localized("onboarding.baby-setup.permissions-denided")
+            static let cameraAndMicrophonePermissionsDenied = localized("onboarding.baby-setup.camera-and-microphone-permissions-denied")
+            static let cameraPermissionsDenied = localized("onboarding.baby-setup.camera-permission-denied")
+            static let microphonePermissionsDenied = localized("onboarding.baby-setup.microphone-permission-denied")
             static let permissionsDenidedQuestion = localized("onboarding.baby-setup.permissions-denided-question.text")
             static let accessCameraMainDescription = localized("onboarding.baby-setup.access.camera.main-description")
             static let accessCameraSecondDescription = localized("onboarding.baby-setup.access.camera.second-description")
@@ -157,6 +159,7 @@ enum Localizable {
         static let emptyStateMessage = localized("activity-log.empty-state.message")
         static let noMoreNotificationsMessage = localized("activity-log.no-more-notifications.message")
         static let wasCrying = localized("activity-log.was-crying")
+        static let noiseDetected = localized("activity-log.noise-detected")
     }
     
     enum SwitchBaby {
@@ -165,6 +168,7 @@ enum Localizable {
     
     enum Server {
         static let babyIsCrying = localized("server.baby-is-crying")
+        static let noiseDetected = localized("server.noise-detected")
         static let babyStoppedCrying = localized("server.baby-stopped-crying")
         static let audioRecordError = localized("server.audio-record-error")
         static let streamError = localized("server.stream-error")
@@ -183,6 +187,11 @@ enum Localizable {
     
     enum Settings {
         static let babyNamePlaceholder = localized("settings.babyNameTextField.placeholder")
+        static let noiseDetection = localized("settings.voiceMode.noiseDetection")
+        static let cryDetection = localized("settings.voiceMode.cryDetection")
+        static let noiseLevel = localized("settings.voiceMode.noiseLevel")
+        static let voiceModeFailedTitle = localized("settings.voiceMode.failed-title")
+        static let voiceModeFailedDescription = localized("settings.voiceMode.failed-description")
         static let rateButtonTitle = localized("settings.rateButton.title")
         static let resetButtonTitle = localized("settings.resetButton.title")
         static let switchToServer = localized("settings.cell.switch-to-server")

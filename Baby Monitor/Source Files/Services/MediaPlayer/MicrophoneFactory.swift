@@ -10,11 +10,13 @@ import AudioKit
 protocol AudioKitMicrophoneProtocol {
     var record: MicrophoneRecordProtocol { get }
     var capture: MicrophoneCaptureProtocol { get }
+    var tracker: MicrophoneAmplitudeTracker { get }
 }
 
 struct AudioKitMicrophone: AudioKitMicrophoneProtocol {
     var record: MicrophoneRecordProtocol
     var capture: MicrophoneCaptureProtocol
+    var tracker: MicrophoneAmplitudeTracker
 }
 
 enum AudioKitMicrophoneFactory {
@@ -36,12 +38,14 @@ enum AudioKitMicrophoneFactory {
         let recorderMixer = AKMixer(microphone)
         let capturerMixer = AKMixer(microphone)
 
+        let tracker = AKAmplitudeTracker(capturerMixer)
+
         let recorder = try AKNodeRecorder(node: recorderMixer)
-        let capturer = try AudioKitNodeCapture(node: capturerMixer)
+        let capturer = try AudioKitNodeCapture(node: tracker)
 
         let silentRecorderMixer = AKMixer(recorderMixer)
         silentRecorderMixer.volume = 0
-        let silentCapturerMixer = AKMixer(capturerMixer)
+        let silentCapturerMixer = AKMixer(tracker)
         silentCapturerMixer.volume = 0
 
         let outputMixer = AKMixer(silentRecorderMixer, silentCapturerMixer)
@@ -49,7 +53,7 @@ enum AudioKitMicrophoneFactory {
         AudioKit.output = outputMixer
         try AudioKit.start()
 
-        return AudioKitMicrophone(record: recorder, capture: capturer)
+        return AudioKitMicrophone(record: recorder, capture: capturer, tracker: tracker)
     }
 }
 

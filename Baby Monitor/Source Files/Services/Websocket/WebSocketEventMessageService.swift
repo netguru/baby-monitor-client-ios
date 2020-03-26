@@ -5,17 +5,35 @@
 
 import RxSwift
 
-protocol WebSocketEventMessageServiceProtocol: class {
+protocol WebSocketEventMessageServiceProtocol: class, WebSocketConnectionStatusProvider {
     var remoteResetObservable: Observable<Void> { get }
     var remotePairingCodeResponseObservable: Observable<Bool> { get }
     var remoteStreamConnectingErrorObservable: Observable<String> { get }
     func start()
     func close()
     func sendMessage(_ message: String)
+
+    /// Sending an event message and waiting for a confimation id answer if there is one.
+    func sendMessage(_ message: EventMessage, completion: @escaping (Result<()>) -> Void)
 }
 
 final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
 
+    enum WebSocketError: Error {
+        case noSocket
+    }
+
+    var connectionStatusObservable: Observable<WebSocketConnectionStatus> {
+        guard let eventMessageConductor = eventMessageConductor else {
+            assertionFailure()
+            return Observable.error(WebSocketError.noSocket)
+        }
+        return eventMessageConductor.connectionStatusObservable
+    }
+
+    private enum EventMessageError: Error {
+        case idNotConfirmed
+    }
     private(set) lazy var remoteResetObservable = remoteResetPublisher.asObservable()
     private(set) lazy var remotePairingCodeResponseObservable = remotePairingCodeResponsePublisher.asObservable()
     private(set) lazy var remoteStreamConnectingErrorObservable = remoteStreamConnectingErrorPublisher.asObservable()
@@ -25,6 +43,8 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
     private let remoteResetPublisher = PublishSubject<Void>()
     private let remotePairingCodeResponsePublisher = PublishSubject<Bool>()
     private let remoteStreamConnectingErrorPublisher = PublishSubject<String>()
+    private let remoteConfimationIdPublisher = PublishSubject<String>()
+    private let disposeBag = DisposeBag()
 
     init(cryingEventsRepository: ActivityLogEventsRepositoryProtocol, eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>?) -> WebSocketConductorProtocol) {
         setupEventMessageConductor(with: eventMessageConductorFactory)
@@ -36,17 +56,20 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
     
     private func eventMessageHandler() -> AnyObserver<EventMessage> {
         return AnyObserver<EventMessage>(eventHandler: { [weak self] event in
-            guard let event = event.element else {
+            guard let self = self, let event = event.element else {
                     return
             }
             if case .reset = event.action {
-                self?.remoteResetPublisher.onNext(())
+                self.remoteResetPublisher.onNext(())
             }
             if let isPairingApproved = event.pairingCodeResponse {
-                self?.remotePairingCodeResponsePublisher.onNext(isPairingApproved)
+                self.remotePairingCodeResponsePublisher.onNext(isPairingApproved)
             }
             if let webRtcSdpErrorMessage = event.webRtcSdpErrorMessage {
-                self?.remoteStreamConnectingErrorPublisher.onNext(webRtcSdpErrorMessage)
+                self.remoteStreamConnectingErrorPublisher.onNext(webRtcSdpErrorMessage)
+            }
+            if let confirmationID = event.confirmationId {
+                self.remoteConfimationIdPublisher.onNext(confirmationID)
             }
         })
     }
@@ -61,5 +84,27 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
 
     func sendMessage(_ message: String) {
         eventMessagePublisher.onNext(message)
+    }
+
+    func sendMessage(_ message: EventMessage, completion: @escaping (Result<()>) -> Void) {
+        if let confimationID = message.confirmationId {
+            sendMessage(message.toStringMessage())
+            remoteConfimationIdPublisher
+                .take(1)
+                .timeout(Constants.webSocketConfimationIDTimeLimit, scheduler: MainScheduler.instance)
+                .subscribe(onNext: { eventConfimationId in
+                    if confimationID == eventConfimationId {
+                        completion(.success(()))
+                    } else {
+                        completion(.failure(EventMessageError.idNotConfirmed))
+                    }
+                }, onError: { error in
+                    completion(.failure(error))
+                }).disposed(by: disposeBag)
+
+        } else {
+            sendMessage(message.toStringMessage())
+            completion(.success(()))
+        }
     }
 }

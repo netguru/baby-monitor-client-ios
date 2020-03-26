@@ -20,8 +20,8 @@ final class DisabledVideoView: BaseView {
         label.font = UIFont.customFont(withSize: .body, weight: .light)
         label.textColor = .babyMonitorNonTranslucentWhite
         label.numberOfLines = 0
-        label.textAlignment = .center
         label.text = Localizable.Video.videoDisabledDescription
+        label.textAlignment = .center
         return label
     }()
 

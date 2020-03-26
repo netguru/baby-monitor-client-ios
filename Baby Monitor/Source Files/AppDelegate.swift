@@ -32,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAppearance()
         setupPushNotifications(application)
         appDependencies.storageServerService.uploadRecordingsToDatabaseIfAllowed()
-        RTCSetMinDebugLogLevel(.verbose)
         return true
     }
     
@@ -71,10 +70,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             completionHandler(.noData)
             return
         }
-        appDependencies.databaseRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent), completion: { _ in
+        appDependencies.databaseRepository.save(activityLogEvent: ActivityLogEvent(mode: UserDefaults.soundDetectionMode.activityEventMode), completion: { _ in
             completionHandler(.noData)
         })
     }
+
 }
 
 extension AppDelegate: MessagingDelegate {
@@ -87,7 +87,7 @@ extension AppDelegate: MessagingDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        appDependencies.databaseRepository.save(activityLogEvent: ActivityLogEvent(mode: .cryingEvent), completion: { _ in
+        appDependencies.databaseRepository.save(activityLogEvent: ActivityLogEvent(mode: UserDefaults.soundDetectionMode.activityEventMode), completion: { _ in
             completionHandler([.alert, .sound, .badge])
         })
     }

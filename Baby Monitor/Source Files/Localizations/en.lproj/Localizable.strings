@@ -19,7 +19,7 @@
 "general.your-baby" = "Your baby";
 "general.lets-start" = "Let's start";
 "general.retry" = "Retry";
-"general.i-am-sure" = "I'm sure";
+"general.i-am-sure-exit" = "I'm sure, exit the app";
 "general.important" = "IMPORTANT: ";
 "general.version" = "Version";
 "general.decline" = "Decline";
@@ -27,11 +27,11 @@
 
 //MARK: = Intro
 "intro.title.monitoring" = "Do your daily errands and\nkeep an eye on your baby";
-"intro.title.detection" = "Crying baby alert";
+"intro.title.detection" = "Crying baby or noise\ndetected alert";
 "intro.title.safety" = "Your privacy is safe when\nusing BabyGuard";
 "intro.title.recordings" = "Send anonymized baby\nvoice recordings";
 "intro.description.monitoring" = "Easily check on the baby anywhere\nand anytime you want.";
-"intro.description.detection" = "You'll get a notification every time your\nbaby starts crying.";
+"intro.description.detection" = "You'll get a notification when your baby\nstarts crying (beta) or some noise will be\ndetected. You can set the exact sound\ndetection setting on parent’s  device.";
 "intro.description.safety" = "Video and audio will not be recorded, unless\nyou want to help us develop the app and\ngive your permission to do it.";
 "intro.description.recordings" = "Voice recordings are only used for\ndevelopment purposes and never without\nyour permission.";
 "intro.button.skip" = "Skip";
@@ -77,7 +77,9 @@
 "onboarding.connecting.start-monitoring" = "Start monitoring";
 "onboarding.baby-setup.permissions-denided.text" = "BabyGuard is\nunable to work\nwithout permissions.";
 "onboarding.baby-setup.permissions-denided-question.text" = "Are you sure you want to deny\npermissions?";
-"onboarding.baby-setup.permissions-denided" = "Permissions denied";
+"onboarding.baby-setup.camera-and-microphone-permissions-denied" = "Camera and microphone permissions denied";
+"onboarding.baby-setup.camera-permission-denied" = "Camera permission denied";
+"onboarding.baby-setup.microphone-permission-denied" = "Microphone permission denied";
 "onboarding.baby-setup.access.camera.main-description" = "Tap “OK” to keep an\neye on your baby!";
 "onboarding.baby-setup.access.microphone.main-description" = "Tap “OK” if you want\nto know if your baby\nis crying";
 "onboarding.baby-setup.access.camera.second-description" = "Don't worry - we care about your safety. No video\nwill be recorded and we will protect you from any\ndata leakage.";
@@ -121,6 +123,7 @@
 //MARK: - Server
 "server.baby-stopped-crying" = "Baby stopped crying!";
 "server.baby-is-crying" = "Baby is crying!";
+"server.noise-detected" = "Noise detected!";
 "server.audio-record-error" = "There is some error with audio recording. Please turn app again.";
 "server.stream-error" = "There is some error with connecting to the stream.";
 "server.no-stream" = "No stream available.";
@@ -130,6 +133,7 @@
 "activity-log.empty-state.message" = "Device was paired and configured correctly";
 "activity-log.no-more-notifications.message" = "It seems you don’t have more notifications!\n Enjoy using BabyGuard!";
 "activity-log.was-crying" = "was crying";
+"activity-log.noise-detected" = "Detected some noise";
 
 //MARK: - Lullabies
 "lullabies.bm-library" = "BM library";
@@ -151,6 +155,11 @@
 "settings.cell.clear-data" = "Clear data";
 "settings.cell.clear-data-alert-message" = "Your current connection will be terminated. Are you sure you want to proceed?";
 "settings.babyNameTextField.placeholder" = "Your baby name";
+"settings.voiceMode.noiseDetection" = "Noise Detection";
+"settings.voiceMode.cryDetection" = "Cry Detection";
+"settings.voiceMode.noiseLevel" = "Noise Level";
+"settings.voiceMode.failed-title" = "Failed to set a new voice detection mode.";
+"settings.voiceMode.failed-description" = "Please try again and make sure the baby device is connected.";
 "settings.rateButton.title" = "Rate us";
 "settings.resetButton.title" = "Reset the connection";
 "settings.allow-sending.message" = "Allow to send baby voice\nrecordings";

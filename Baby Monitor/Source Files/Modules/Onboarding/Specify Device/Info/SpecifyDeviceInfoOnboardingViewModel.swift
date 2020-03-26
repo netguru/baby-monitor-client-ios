@@ -12,9 +12,8 @@ final class SpecifyDeviceInfoOnboardingViewModel: BaseViewModel {
     private(set) var specifyDeviceTap: Observable<Void>?
     private(set) var cancelTap: Observable<Void>?
 
-    func attachInput(specifyDeviceTap: Observable<Void>, cancelTap: Observable<Void>) {
+    func attachInput(specifyDeviceTap: Observable<Void>) {
         self.specifyDeviceTap = specifyDeviceTap
-        self.cancelTap = cancelTap
     }
     
     let descriptionText: NSMutableAttributedString = {
