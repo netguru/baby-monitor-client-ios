@@ -6,13 +6,13 @@
 import Foundation
 import RxSwift
 
-final class SpecifyDeviceOnboardingViewModel {
-    
+final class SpecifyDeviceOnboardingViewModel: BaseViewModel {
+
     var didSelectParent: (() -> Void)?
     var didSelectBaby: (() -> Void)?
     private(set) var cancelTap: Observable<Void>?
     let bag = DisposeBag()
-    
+
     func selectParent() {
         didSelectParent?()
     }

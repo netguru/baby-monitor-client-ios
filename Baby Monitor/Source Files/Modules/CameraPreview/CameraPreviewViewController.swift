@@ -18,7 +18,9 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
     
     init(viewModel: CameraPreviewViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: CameraPreviewView())
+        super.init(viewMaker: CameraPreviewView(),
+                   analytics: viewModel.analytics,
+                   analyticsScreenType: .parentCameraPreview)
     }
     
     override func viewDidLoad() {
@@ -90,6 +92,11 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
                 self?.attach(stream: stream)
             })
             .disposed(by: bag)
+        viewModel.remoteStreamErrorMessageObservable
+            .subscribe(onNext: { [weak self] message in
+                self?.handleStreamError(errorMessage: message)
+            })
+            .disposed(by: bag)
     }
     
     private func attach(stream: MediaStream) {
@@ -99,5 +106,14 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         videoTrack?.remove(videoView)
         videoTrack = stream.videoTracks[0]
         videoTrack?.add(videoView)
+    }
+
+    private func handleStreamError(errorMessage: String) {
+        let alertController = UIAlertController(title: Localizable.Server.streamError, message: errorMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: Localizable.General.ok, style: .default, handler: { _ in
+            self.navigationController?.popViewController(animated: true)
+        })
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
 }

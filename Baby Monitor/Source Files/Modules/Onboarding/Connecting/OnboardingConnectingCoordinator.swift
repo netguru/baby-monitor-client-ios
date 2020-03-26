@@ -75,7 +75,7 @@ final class OnboardingConnectingCoordinator: Coordinator {
     }
     
     private func showAccessView(role: OnboardingAccessViewModel.Role) {
-        let viewModel = OnboardingAccessViewModel(role: role)
+        let viewModel = OnboardingAccessViewModel(role: role, analytics: appDependencies.analytics)
         let viewController = OnboardingAccessViewController(viewModel: viewModel)
         viewModel.accessObservable.subscribe(onNext: { [weak self] _ in
             guard let self = self else {
@@ -97,7 +97,7 @@ final class OnboardingConnectingCoordinator: Coordinator {
     }
     
     private func showPermissionsDeniedView() {
-        let viewModel = OnboardingTwoOptionsViewModel()
+        let viewModel = OnboardingTwoOptionsViewModel(analytics: appDependencies.analytics)
         let viewController = OnboardingTwoOptionsViewController(viewModel: viewModel)
         viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
             self?.connect(to: viewModel)
@@ -126,7 +126,7 @@ final class OnboardingConnectingCoordinator: Coordinator {
     }
     
     private func prepareContinuableViewController(role: OnboardingContinuableViewModel.Role) -> UIViewController {
-        let viewModel = OnboardingContinuableViewModel(role: role)
+        let viewModel = OnboardingContinuableViewModel(role: role, analytics: appDependencies.analytics)
         let viewController = OnboardingContinuableViewController(viewModel: viewModel)
         viewController.rx.viewDidLoad.subscribe(onNext: { [weak self] in
             self?.connectTo(viewModel: viewModel)

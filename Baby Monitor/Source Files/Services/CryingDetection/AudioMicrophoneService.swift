@@ -89,8 +89,6 @@ final class AudioMicrophoneService: AudioMicrophoneServiceProtocol, ErrorProduca
         do {
             isRecording = true
             try microphoneRecorder.reset()
-            // Removing tap is done in order to prevent adding a tap in case it's already added.
-            microphoneRecorder.removeTap()
             try microphoneRecorder.record()
 
         } catch {

@@ -5,20 +5,43 @@
 
 import Foundation
 
-enum BabyMonitorEvent: String {
-    case pushNotificationsKey = "PUSH_NOTIFICATIONS_KEY"
-    case resetKey = "RESET_KEY"
+enum BabyMonitorEvent: String, CodingKey {
+    case pushNotificationsKey = "pushNotificationsToken"
+    case actionKey = "action"
+    case pairingCodeKey = "pairingCode"
+    case pairingCodeResponseKey = "pairingResponse"
+    case webRtcSdpErrorKey = "sdpError"
 }
 
-struct EventMessage: Codable {
-    let action: String
-    let value: String?
-    
-    static func initWithPushNotificationsKey(key: String) -> EventMessage {
-        return EventMessage(action: BabyMonitorEvent.pushNotificationsKey.rawValue, value: key)
+enum BabyMonitorEvenAction: String, Codable {
+    case reset
+}
+
+struct EventMessage {
+    var pushNotificationsToken: String?
+    var action: BabyMonitorEvenAction?
+    var pairingCode: String?
+    var pairingCodeResponse: Bool?
+    var webRtcSdpErrorMessage: String?
+}
+
+extension EventMessage: Codable {
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: BabyMonitorEvent.self)
+        pushNotificationsToken = try container.decodeIfPresent(String.self, forKey: .pushNotificationsKey)
+        action = try container.decodeIfPresent(BabyMonitorEvenAction.self, forKey: .actionKey)
+        pairingCode = try container.decodeIfPresent(String.self, forKey: .pairingCodeKey)
+        pairingCodeResponse = try container.decodeIfPresent(Bool.self, forKey: .pairingCodeResponseKey)
+        webRtcSdpErrorMessage = try container.decodeIfPresent(String.self, forKey: .webRtcSdpErrorKey)
     }
-    
-    static func initWithResetKey() -> EventMessage {
-        return EventMessage(action: BabyMonitorEvent.resetKey.rawValue, value: nil)
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: BabyMonitorEvent.self)
+        try container.encodeIfPresent(pushNotificationsToken, forKey: .pushNotificationsKey)
+        try container.encodeIfPresent(action, forKey: .actionKey)
+        try container.encodeIfPresent(pairingCode, forKey: .pairingCodeKey)
+        try container.encodeIfPresent(pairingCodeResponse, forKey: .pairingCodeResponseKey)
+        try container.encodeIfPresent(webRtcSdpErrorMessage, forKey: .webRtcSdpErrorKey)
     }
 }

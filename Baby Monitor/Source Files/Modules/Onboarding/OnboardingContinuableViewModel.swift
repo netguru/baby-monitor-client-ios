@@ -6,7 +6,7 @@
 import Foundation
 import RxSwift
 
-final class OnboardingContinuableViewModel {
+final class OnboardingContinuableViewModel: BaseViewModel {
     
     enum Role: Equatable {
         case baby(BabyRole)
@@ -20,12 +20,37 @@ final class OnboardingContinuableViewModel {
     
     enum ParentRole: Equatable {
         case hello
-        case error
+        case searchingError
+        case connectionError
         case allDone
     }
     
     let role: Role
     let bag = DisposeBag()
+    
+    var analyticsScreenType: AnalyticsScreenType {
+        switch role {
+        case .baby(let babyRole):
+            switch babyRole {
+            case .connectToWiFi:
+                return .connectToWiFi
+            case .putNextToBed:
+                return .putNextToBed
+            }
+        case .parent(let parentRole):
+            switch parentRole {
+            case .hello:
+                return .parentHello
+            case .searchingError:
+                return .deviceSearchingFailed
+            case .connectionError:
+                return .pairingFailed
+            case .allDone:
+                return .parentAllDone
+            }
+        }
+    }
+
     var title: String {
         switch role {
         case .baby(let babyRole):
@@ -37,7 +62,7 @@ final class OnboardingContinuableViewModel {
             }
         case .parent(let parentRole):
             switch parentRole {
-            case .hello, .error:
+            case .hello, .searchingError, .connectionError:
                 return Localizable.Onboarding.connecting
             case .allDone:
                 return Localizable.Onboarding.Pairing.allDone
@@ -57,7 +82,7 @@ final class OnboardingContinuableViewModel {
             switch parentRole {
             case .hello:
                 return Localizable.Onboarding.Pairing.hello
-            case .error:
+            case .searchingError, .connectionError:
                 return Localizable.Onboarding.Pairing.error
             case .allDone:
                 return Localizable.Onboarding.Pairing.startUsingBabyMonitor
@@ -95,13 +120,15 @@ final class OnboardingContinuableViewModel {
                 combinationText.append($0)
             }
             return combinationText
-        case .parent(.error):
+        case .parent(.searchingError), .parent(.connectionError):
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: UIColor.babyMonitorPurple,
                 .font: UIFont.customFont(withSize: .small, weight: .regular)
             ]
             let text = NSMutableAttributedString(
-                string: Localizable.Onboarding.Pairing.errorSecondDescription,
+                string: role == .parent(.connectionError) ?
+                    Localizable.Onboarding.Pairing.connectionErrorSecondDescription :
+                    Localizable.Onboarding.Pairing.errorSecondDescription,
                 attributes: attributes)
             return text
         }
@@ -119,7 +146,7 @@ final class OnboardingContinuableViewModel {
             switch parentRole {
             case .hello:
                 return Localizable.Onboarding.Connecting.connectToWiFiButtonTitle
-            case .error:
+            case .searchingError, .connectionError:
                 return Localizable.Onboarding.Pairing.tryAgain
             case .allDone:
                 return Localizable.Onboarding.Pairing.getStarted
@@ -139,7 +166,7 @@ final class OnboardingContinuableViewModel {
             switch parentRole {
             case .hello:
                 return #imageLiteral(resourceName: "onboarding-shareLink")
-            case .error:
+            case .searchingError, .connectionError:
                 return #imageLiteral(resourceName: "onboarding-error")
             case .allDone:
                 return #imageLiteral(resourceName: "recordings")
@@ -149,8 +176,9 @@ final class OnboardingContinuableViewModel {
     var cancelTap: Observable<Void>?
     var nextButtonTap: Observable<Void>?
     
-    init(role: Role) {
+    init(role: Role, analytics: AnalyticsManager) {
         self.role = role
+        super.init(analytics: analytics)
     }
     
     func attachInput(buttonTap: Observable<Void>, cancelButtonTap: Observable<Void>) {

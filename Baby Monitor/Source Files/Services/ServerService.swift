@@ -10,6 +10,7 @@ protocol ServerServiceProtocol: AnyObject {
     var localStreamObservable: Observable<MediaStream> { get }
     var audioMicrophoneServiceErrorObservable: Observable<Void> { get }
     var remoteResetEventObservable: Observable<Void> { get }
+    var remoteParingCodeObservable: Observable<String> { get }
     var loggingInfoObservable: Observable<String> { get }
     var connectionStatusObservable: Observable<WebSocketConnectionStatus> { get }
     func startStreaming()
@@ -28,6 +29,7 @@ final class ServerService: ServerServiceProtocol {
     }
     lazy var audioMicrophoneServiceErrorObservable = audioMicrophoneServiceErrorPublisher.asObservable()
     lazy var remoteResetEventObservable = remoteResetEventPublisher.asObservable()
+    lazy var remoteParingCodeObservable = remotePairingCodePublisher.asObservable()
     lazy var loggingInfoObservable = loggingInfoPublisher.asObservable()
 
     private let parentResponseTime: TimeInterval
@@ -41,6 +43,7 @@ final class ServerService: ServerServiceProtocol {
     private let notificationsService: NotificationServiceProtocol
     private let audioMicrophoneServiceErrorPublisher = PublishSubject<Void>()
     private let remoteResetEventPublisher = PublishSubject<Void>()
+    private let remotePairingCodePublisher = PublishSubject<String>()
     private let babyMonitorEventMessagesDecoder: AnyMessageDecoder<EventMessage>
     private let loggingInfoPublisher = PublishSubject<String>()
 
@@ -108,21 +111,21 @@ final class ServerService: ServerServiceProtocol {
         case .iceCandidate(let iceCandidate):
             webRtcServerManager.setICECandidates(iceCandidate: iceCandidate)
         case .sdpOffer(let sdp):
-            webRtcServerManager.createAnswer(remoteSdp: sdp)
+            webRtcServerManager.createAnswer(remoteSdp: sdp, completion: { _ in })
         default:
             break
         }
     }
     
     private func handle(event: EventMessage) {
-        guard let babyMonitorEvent = BabyMonitorEvent(rawValue: event.action) else {
-            return
+        if let pushToken = event.pushNotificationsToken {
+            UserDefaults.receiverPushNotificationsToken = pushToken
         }
-        switch babyMonitorEvent {
-        case .pushNotificationsKey:
-            UserDefaults.receiverPushNotificationsToken = event.value
-        case .resetKey:
+        if case .reset = event.action {
             remoteResetEventPublisher.onNext(())
+        }
+        if let pairingCode = event.pairingCode {
+            remotePairingCodePublisher.onNext(pairingCode)
         }
     }
     

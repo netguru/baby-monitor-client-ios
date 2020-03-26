@@ -28,7 +28,7 @@ struct AlertPresenter {
                     }
                 }
             } else {
-                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                let alertAction = UIAlertAction(title: Localizable.General.ok, style: .default, handler: nil)
                 actionsToAdd.append(alertAction)
             }
             actionsToAdd.forEach {

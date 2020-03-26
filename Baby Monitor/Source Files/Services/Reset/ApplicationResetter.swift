@@ -10,7 +10,7 @@ protocol ApplicationResetter: class {
 class DefaultApplicationResetter: ApplicationResetter {
     
     private unowned var messageServer: MessageServerProtocol
-    private unowned var webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>
+    private unowned var webSocketEventMessageService: WebSocketEventMessageServiceProtocol
     private unowned var babyModelControllerProtocol: BabyModelControllerProtocol
     private unowned var memoryCleaner: MemoryCleanerProtocol
     private unowned var urlConfiguration: URLConfiguration
@@ -19,15 +19,17 @@ class DefaultApplicationResetter: ApplicationResetter {
     private unowned var serverService: ServerServiceProtocol
     private(set) var localResetCompletionObservable: Observable<Void>
     private var localResetCompletionPublisher = PublishSubject<Void>()
+    private let analytics: AnalyticsManager
     
     init(messageServer: MessageServerProtocol,
-         webSocketEventMessageService: ClearableLazyItem<WebSocketEventMessageServiceProtocol>,
+         webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
          babyModelControllerProtocol: BabyModelControllerProtocol,
          memoryCleaner: MemoryCleanerProtocol,
          urlConfiguration: URLConfiguration,
          webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
          localNotificationService: NotificationServiceProtocol,
-         serverService: ServerServiceProtocol) {
+         serverService: ServerServiceProtocol,
+         analytics: AnalyticsManager) {
         self.messageServer = messageServer
         self.webSocketEventMessageService = webSocketEventMessageService
         self.babyModelControllerProtocol = babyModelControllerProtocol
@@ -36,6 +38,7 @@ class DefaultApplicationResetter: ApplicationResetter {
         self.webSocketWebRtcService = webSocketWebRtcService
         self.localNotificationService = localNotificationService
         self.serverService = serverService
+        self.analytics = analytics
         localResetCompletionObservable = localResetCompletionPublisher.asObservable()
     }
     
@@ -52,18 +55,19 @@ class DefaultApplicationResetter: ApplicationResetter {
         webSocketWebRtcService.get().close()
         stopAudioKit()
         localResetCompletionPublisher.onNext(())
+        analytics.logEvent(.resetApp)
     }
 }
 
 private extension DefaultApplicationResetter {
     
     func sendResetEvent() {
-        let resetEventString = EventMessage.initWithResetKey().toStringMessage()
+        let resetEventString = EventMessage(action: .reset).toStringMessage()
         switch UserDefaults.appMode {
         case .baby:
             messageServer.send(message: resetEventString)
         case .parent:
-            webSocketEventMessageService.get().sendMessage(resetEventString)
+            webSocketEventMessageService.sendMessage(resetEventString)
         case .none:
             break
         }

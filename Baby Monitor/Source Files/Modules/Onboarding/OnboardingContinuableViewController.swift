@@ -13,7 +13,9 @@ final class OnboardingContinuableViewController: TypedViewController<Continuable
     
     init(viewModel: OnboardingContinuableViewModel) {
         self.viewModel = viewModel
-        super.init(viewMaker: ContinuableBaseOnboardingView())
+        super.init(viewMaker: ContinuableBaseOnboardingView(),
+                   analytics: viewModel.analytics,
+                   analyticsScreenType: viewModel.analyticsScreenType)
     }
     
     override func viewDidLoad() {
@@ -31,7 +33,8 @@ final class OnboardingContinuableViewController: TypedViewController<Continuable
     }
     
     private func setup() {
-        if case .parent(.error) = viewModel.role {
+        if case .parent(.searchingError) = viewModel.role,
+            case .parent(.connectionError) = viewModel.role {
             customView.changeButtonBackgroundColor(.clear)
         }
         navigationItem.leftBarButtonItem = customView.cancelButtonItem

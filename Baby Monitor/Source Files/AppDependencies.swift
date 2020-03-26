@@ -45,13 +45,16 @@ final class AppDependencies {
     private(set) lazy var webRtcConnectionProxy: PeerConnectionProxy = RTCPeerConnectionDelegateProxy()
 
     private(set) lazy var webRtcServer: () -> WebRtcServerManagerProtocol = {
-        WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory, connectionDelegateProxy: self.webRtcConnectionProxy)
+        WebRtcServerManager(peerConnectionFactory: self.peerConnectionFactory,
+                            connectionDelegateProxy: self.webRtcConnectionProxy,
+                            messageServer: self.messageServer)
     }
     
     private(set) lazy var webRtcClient: () -> WebRtcClientManagerProtocol = {
         WebRtcClientManager(
             peerConnectionFactory: self.peerConnectionFactory,
-            appStateProvider: NotificationCenter.default
+            appStateProvider: NotificationCenter.default,
+            analytics: self.analytics
         )
     }
     
@@ -70,7 +73,7 @@ final class AppDependencies {
         )
     }
     
-    lazy var webSocketEventMessageService = ClearableLazyItem<WebSocketEventMessageServiceProtocol> { [unowned self] in
+    lazy var webSocketEventMessageService: WebSocketEventMessageServiceProtocol = { [unowned self] in
         let messageService = WebSocketEventMessageService(
             cryingEventsRepository: self.databaseRepository,
             eventMessageConductorFactory: self.eventMessageConductorFactory)
@@ -81,8 +84,8 @@ final class AppDependencies {
             })
             .disposed(by: self.bag)
         return messageService
-    }
-    
+    }()
+
     lazy var webSocketWebRtcService = ClearableLazyItem<WebSocketWebRtcServiceProtocol> { [unowned self] in
         return WebSocketWebRtcService(
             webRtcClientManager: self.webRtcClient(),
@@ -134,7 +137,8 @@ final class AppDependencies {
     
     private(set) lazy var localNotificationService: NotificationServiceProtocol = NotificationService(
         networkDispatcher: networkDispatcher,
-        serverKeyObtainable: serverKeyObtainable)
+        serverKeyObtainable: serverKeyObtainable,
+        analytics: analytics)
     
     private(set) lazy var networkDispatcher: NetworkDispatcherProtocol = NetworkDispatcher(
         urlSession: URLSession(configuration: .default),
@@ -145,7 +149,8 @@ final class AppDependencies {
     private(set) var babyMonitorEventMessagesDecoder = AnyMessageDecoder<EventMessage>(EventMessageDecoder())
     
     private(set) lazy var serverService: ServerServiceProtocol = {
-        let service = ServerService(webRtcServerManager: webRtcServer(),
+        let service = ServerService(
+            webRtcServerManager: webRtcServer(),
             messageServer: messageServer,
             netServiceServer: netServiceServer,
             webRtcDecoders: webRtcMessageDecoders,
@@ -200,7 +205,8 @@ final class AppDependencies {
             urlConfiguration: urlConfiguration,
             webSocketWebRtcService: webSocketWebRtcService,
             localNotificationService: localNotificationService,
-            serverService: serverService)
+            serverService: serverService,
+            analytics: analytics)
         resetter.localResetCompletionObservable
             .subscribe(onNext: { [weak self] resetCompleted in
                 self?.socketCommunicationsManager.terminate()
@@ -208,4 +214,9 @@ final class AppDependencies {
             .disposed(by: bag)
         return resetter
     }()
+
+    // MARK: - Analytics
+
+    /// Application manager of analytics services.
+    private(set) var analytics = AnalyticsManager()
 }

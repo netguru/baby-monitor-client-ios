@@ -7,7 +7,7 @@ import Foundation
 import AVFoundation
 import RxSwift
 
-final class OnboardingAccessViewModel {
+final class OnboardingAccessViewModel: BaseViewModel {
     
     enum Role {
         case camera
@@ -15,6 +15,14 @@ final class OnboardingAccessViewModel {
     }
     
     let bag = DisposeBag()
+
+    var analyticsScreenType: AnalyticsScreenType {
+        switch role {
+        case .camera: return .cameraPermission
+        case .microphone: return .microphonePermission
+        }
+    }
+
     var title: String {
         switch role {
         case .camera, .microphone:
@@ -48,8 +56,9 @@ final class OnboardingAccessViewModel {
     private var accessPublisher = PublishSubject<Void>()
     private let role: Role
     
-    init(role: Role) {
+    init(role: Role, analytics: AnalyticsManager) {
         self.role = role
+        super.init(analytics: analytics)
     }
     
     var areAllRequiredPermissionsGranted: Bool {

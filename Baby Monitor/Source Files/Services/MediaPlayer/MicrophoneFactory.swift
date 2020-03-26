@@ -29,17 +29,22 @@ enum AudioKitMicrophoneFactory {
         try AKSettings.setSession(category: .playAndRecord, with: .defaultToSpeaker)
 
         let recordingFormat = AudioKit.engine.inputNode.inputFormat(forBus: 0)
-        AKSettings.sampleRate = AVAudioSession.sharedInstance().sampleRate
+        AKSettings.sampleRate = recordingFormat.sampleRate
 
         let microphone = AKMicrophone(with: recordingFormat)
 
-        let recorder = try AKNodeRecorder(node: microphone)
-        let capturer = try AudioKitNodeCapture(node: microphone)
+        let recorderMixer = AKMixer(microphone)
+        let capturerMixer = AKMixer(microphone)
 
-        let recorderBooster = AKBooster(microphone, gain: 0)
-        let capturerBooster = AKBooster(microphone, gain: 0)
+        let recorder = try AKNodeRecorder(node: recorderMixer)
+        let capturer = try AudioKitNodeCapture(node: capturerMixer)
 
-        let outputMixer = AKMixer(capturerBooster, recorderBooster)
+        let silentRecorderMixer = AKMixer(recorderMixer)
+        silentRecorderMixer.volume = 0
+        let silentCapturerMixer = AKMixer(capturerMixer)
+        silentCapturerMixer.volume = 0
+
+        let outputMixer = AKMixer(silentRecorderMixer, silentCapturerMixer)
 
         AudioKit.output = outputMixer
         try AudioKit.start()
@@ -54,7 +59,6 @@ protocol MicrophoneRecordProtocol: Any {
     func stop()
     func record() throws
     func reset() throws
-    func removeTap()
 }
 
 protocol MicrophoneCaptureProtocol: Any {
@@ -66,10 +70,5 @@ protocol MicrophoneCaptureProtocol: Any {
     func reset() throws
 }
 
-extension AKNodeRecorder: MicrophoneRecordProtocol {
-
-    func removeTap() {
-        node?.avAudioUnitOrNode.removeTap(onBus: 0)
-    }
-}
+extension AKNodeRecorder: MicrophoneRecordProtocol {}
 extension AudioKitNodeCapture: MicrophoneCaptureProtocol {}

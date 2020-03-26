@@ -6,7 +6,7 @@
 import Foundation
 import RxSwift
 
-final class ServerViewModel {
+final class ServerViewModel: BaseViewModel {
     
     var stream: Observable<MediaStream> {
         return serverService.localStreamObservable
@@ -21,8 +21,9 @@ final class ServerViewModel {
     
     private let serverService: ServerServiceProtocol
     
-    init(serverService: ServerServiceProtocol) {
+    init(serverService: ServerServiceProtocol, analytics: AnalyticsManager) {
         self.serverService = serverService
+        super.init(analytics: analytics)
         rxSetup()
     }
     

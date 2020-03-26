@@ -8,7 +8,6 @@ class SocketCommunicationManagerTests: XCTestCase {
     private var eventMessageServiceMock: WebSocketEventMessageServiceMock!
     private var webSocketWebRtcServiceMock: WebSocketWebRtcServiceMock!
     private var webSocketMock: WebSocketMock!
-    private var eventMessageServiceMockWrapper: ClearableLazyItem<WebSocketEventMessageServiceProtocol>!
     private var webSocketWebRtcMockWrapper: ClearableLazyItem<WebSocketWebRtcServiceProtocol>!
     private var webSocketMockWrapper: ClearableLazyItem<WebSocketProtocol?>!
     private var bag: DisposeBag!
@@ -17,7 +16,6 @@ class SocketCommunicationManagerTests: XCTestCase {
         eventMessageServiceMock = WebSocketEventMessageServiceMock()
         webSocketWebRtcServiceMock = WebSocketWebRtcServiceMock()
         webSocketMock = WebSocketMock()
-        eventMessageServiceMockWrapper = ClearableLazyItem(constructor: { return self.eventMessageServiceMock })
         webSocketWebRtcMockWrapper = ClearableLazyItem(constructor: { return self.webSocketWebRtcServiceMock })
         webSocketMockWrapper = ClearableLazyItem(constructor: { return self.webSocketMock })
         bag = DisposeBag()
@@ -34,9 +32,8 @@ class SocketCommunicationManagerTests: XCTestCase {
         sut.terminate()
         
         //  Then:
-        XCTAssertEqual(eventMessageServiceMockWrapper.isCleared, true)
         XCTAssertEqual(webSocketWebRtcMockWrapper.isCleared, true)
-        XCTAssertEqual(webSocketMockWrapper.isCleared, true)
+        XCTAssertEqual(eventMessageServiceMock.isOpen, false)
         XCTAssertEqual(observer.events.count, 1)
     }
     
@@ -53,14 +50,12 @@ class SocketCommunicationManagerTests: XCTestCase {
         sut.reset()
         
         //  Then:
-        XCTAssertEqual(eventMessageServiceMockWrapper.isCleared, false)
         XCTAssertEqual(webSocketWebRtcMockWrapper.isCleared, false)
         XCTAssertEqual(terminationObserver.events.count, 1)
         XCTAssertEqual(resetObserver.events.count, 1)
     }
     
     override func tearDown() {
-        eventMessageServiceMockWrapper.clear()
         webSocketWebRtcMockWrapper.clear()
         webSocketMockWrapper.clear()
     }
@@ -70,7 +65,7 @@ private extension SocketCommunicationManagerTests {
     
     func makeCommunicationManager() -> DefaultSocketCommunicationManager {
         return DefaultSocketCommunicationManager(
-            webSocketEventMessageService: eventMessageServiceMockWrapper,
+            webSocketEventMessageService: eventMessageServiceMock,
             webSocketWebRtcService: webSocketWebRtcMockWrapper,
             webSocket: webSocketMockWrapper)
     }

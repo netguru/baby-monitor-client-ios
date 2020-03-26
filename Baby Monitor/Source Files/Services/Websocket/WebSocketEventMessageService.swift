@@ -7,18 +7,24 @@ import RxSwift
 
 protocol WebSocketEventMessageServiceProtocol: class {
     var remoteResetObservable: Observable<Void> { get }
-    
+    var remotePairingCodeResponseObservable: Observable<Bool> { get }
+    var remoteStreamConnectingErrorObservable: Observable<String> { get }
     func start()
+    func close()
     func sendMessage(_ message: String)
 }
 
 final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
 
     private(set) lazy var remoteResetObservable = remoteResetPublisher.asObservable()
-    
+    private(set) lazy var remotePairingCodeResponseObservable = remotePairingCodeResponsePublisher.asObservable()
+    private(set) lazy var remoteStreamConnectingErrorObservable = remoteStreamConnectingErrorPublisher.asObservable()
+
     private var eventMessageConductor: WebSocketConductorProtocol?
     private let eventMessagePublisher = PublishSubject<String>()
     private let remoteResetPublisher = PublishSubject<Void>()
+    private let remotePairingCodeResponsePublisher = PublishSubject<Bool>()
+    private let remoteStreamConnectingErrorPublisher = PublishSubject<String>()
 
     init(cryingEventsRepository: ActivityLogEventsRepositoryProtocol, eventMessageConductorFactory: (Observable<String>, AnyObserver<EventMessage>?) -> WebSocketConductorProtocol) {
         setupEventMessageConductor(with: eventMessageConductorFactory)
@@ -30,21 +36,27 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
     
     private func eventMessageHandler() -> AnyObserver<EventMessage> {
         return AnyObserver<EventMessage>(eventHandler: { [weak self] event in
-            guard let event = event.element,
-                let babyEvent = BabyMonitorEvent(rawValue: event.action) else {
+            guard let event = event.element else {
                     return
             }
-            switch babyEvent {
-            case .resetKey:
+            if case .reset = event.action {
                 self?.remoteResetPublisher.onNext(())
-            case .pushNotificationsKey:
-                break
+            }
+            if let isPairingApproved = event.pairingCodeResponse {
+                self?.remotePairingCodeResponsePublisher.onNext(isPairingApproved)
+            }
+            if let webRtcSdpErrorMessage = event.webRtcSdpErrorMessage {
+                self?.remoteStreamConnectingErrorPublisher.onNext(webRtcSdpErrorMessage)
             }
         })
     }
     
     func start() {
         eventMessageConductor?.open()
+    }
+
+    func close() {
+        eventMessageConductor?.close()
     }
 
     func sendMessage(_ message: String) {

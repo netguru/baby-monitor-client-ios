@@ -30,7 +30,7 @@ final class IntroCoordinator: Coordinator {
             featureControllers.append(featureController)
         }
 
-        let introViewController = IntroViewController(featureControllers: featureControllers)
+        let introViewController = IntroViewController(featureControllers: featureControllers, analytics: appDependencies.analytics)
         self.introViewController = introViewController
         setFeatureViewController(featureControllers.first!)
 

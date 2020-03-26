@@ -67,6 +67,7 @@ final class CryingEventService: CryingEventsServiceProtocol, ErrorProducable {
                 self.loggingInfoPublisher.onNext("Crying detected. Probability: \(roundedProbability)")
                 let fileNameSuffix = DateFormatter.fullTimeFormatString(breakCharacter: "_")
                 self.nextFileName = "crying_".appending(fileNameSuffix).appending(".caf")
+                self.microphoneRecordService?.startRecording()
                 self.cryingEventPublisher.onNext(())
             } else {
                 self.loggingInfoPublisher.onNext("Sound detected but no baby crying. Probability: \(roundedProbability)")

@@ -9,10 +9,10 @@ import XCTest
 class SpecifyDeviceOnboardingViewModelTests: XCTestCase {
     
     //Given
-    var sut = SpecifyDeviceOnboardingViewModel()
+    var sut = SpecifyDeviceOnboardingViewModel(analytics: AnalyticsManager(analyticsTracker: AnalyticsTrackerMock()))
     
     override func setUp() {
-        sut = SpecifyDeviceOnboardingViewModel()
+        sut = SpecifyDeviceOnboardingViewModel(analytics: AnalyticsManager(analyticsTracker: AnalyticsTrackerMock()))
     }
     
     func testShouldNotifyAboutSelectingParent() {

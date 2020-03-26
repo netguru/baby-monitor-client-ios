@@ -9,12 +9,20 @@ import RxSwift
 final class WebSocketEventMessageServiceMock: WebSocketEventMessageServiceProtocol {
 
     lazy var remoteResetObservable: Observable<Void> = remoteResetPublisher.asObservable()
+    lazy var remotePairingCodeResponseObservable: Observable<Bool> = remotePairingCodeResponsePublisher.asObservable()
+    lazy var remoteStreamConnectingErrorObservable: Observable<String> = remoteStreamConnectingErrorPublisher.asObservable()
+    let remotePairingCodeResponsePublisher = PublishSubject<Bool>()
     private let remoteResetPublisher = PublishSubject<Void>()
-    private(set) var isStarted = false
+    private let remoteStreamConnectingErrorPublisher = PublishSubject<String>()
+    private(set) var isOpen = false
     private(set) var messages = [String]()
 
     func start() {
-        isStarted = true
+        isOpen = true
+    }
+
+    func close() {
+        isOpen = false
     }
 
     func sendMessage(_ message: String) {

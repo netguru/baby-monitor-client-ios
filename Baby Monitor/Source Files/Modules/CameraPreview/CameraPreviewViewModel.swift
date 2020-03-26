@@ -5,10 +5,13 @@
 
 import RxSwift
 
-final class CameraPreviewViewModel {
+final class CameraPreviewViewModel: BaseViewModel {
     
     let bag = DisposeBag()
     lazy var baby: Observable<Baby> = babyModelController.babyUpdateObservable
+    var remoteStreamErrorMessageObservable: Observable<String> {
+        return self.webSocketEventMessageService.remoteStreamConnectingErrorObservable
+    }
     private(set) var streamResettedPublisher = PublishSubject<Void>()
     private(set) var cancelTap: Observable<Void>?
     private(set) var settingsTap: Observable<Void>?
@@ -24,13 +27,18 @@ final class CameraPreviewViewModel {
     private let babyModelController: BabyModelControllerProtocol
     private unowned var webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>
     private unowned var socketCommunicationManager: SocketCommunicationManager
-    
+    private let webSocketEventMessageService: WebSocketEventMessageServiceProtocol
+
     init(webSocketWebRtcService: ClearableLazyItem<WebSocketWebRtcServiceProtocol>,
-        babyModelController: BabyModelControllerProtocol,
-        socketCommunicationManager: SocketCommunicationManager) {
+         babyModelController: BabyModelControllerProtocol,
+         socketCommunicationManager: SocketCommunicationManager,
+         webSocketEventMessageService: WebSocketEventMessageServiceProtocol,
+         analytics: AnalyticsManager) {
         self.webSocketWebRtcService = webSocketWebRtcService
         self.babyModelController = babyModelController
         self.socketCommunicationManager = socketCommunicationManager
+        self.webSocketEventMessageService = webSocketEventMessageService
+        super.init(analytics: analytics)
         rxSetup()
     }
     
