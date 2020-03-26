@@ -88,9 +88,7 @@ final class BabyNavigationItemView: UIView {
         }
         switch mode {
         case .baby:
-            [pulsatoryView].forEach {
-                stackView.addArrangedSubview($0)
-            }
+            stackView.addArrangedSubview(pulsatoryView)
             pulsatoryView.addConstraints {[
                 $0.equalTo(stackView, .height, .height, multiplier: 0.5),
                 $0.equalTo(pulsatoryView, .width, .height)
