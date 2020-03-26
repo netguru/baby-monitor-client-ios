@@ -112,11 +112,11 @@ PODS:
     - PocketSocket/Client
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.4)
-  - Realm (3.19.1):
-    - Realm/Headers (= 3.19.1)
-  - Realm/Headers (3.19.1)
-  - RealmSwift (3.19.1):
-    - Realm (= 3.19.1)
+  - Realm (4.3.2):
+    - Realm/Headers (= 4.3.2)
+  - Realm/Headers (4.3.2)
+  - RealmSwift (4.3.2):
+    - Realm (= 4.3.2)
   - RxBlocking (5.1.1):
     - RxSwift (~> 5)
   - RxCocoa (5.1.0):
@@ -144,7 +144,7 @@ DEPENDENCIES:
   - GoogleWebRTC (~> 1.1.29400)
   - Keys (from `Pods/CocoaPodsKeys`)
   - PocketSocket (~> 1.0.1)
-  - RealmSwift (~> 3.19.0)
+  - RealmSwift (~> 4.3.0)
   - RxBlocking (~> 5.1)
   - RxCocoa (~> 5.1)
   - RxDataSources (~> 4.0)
@@ -159,9 +159,6 @@ SPEC REPOS:
     - Fabric
     - GoogleWebRTC
     - PocketSocket
-    - Realm
-    - RealmSwift
-    - SwiftLint
     - SwiftyBeaver
   trunk:
     - AudioKit
@@ -185,12 +182,15 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Protobuf
+    - Realm
+    - RealmSwift
     - RxBlocking
     - RxCocoa
     - RxDataSources
     - RxRelay
     - RxSwift
     - RxTest
+    - SwiftLint
 
 EXTERNAL SOURCES:
   Keys:
@@ -223,8 +223,8 @@ SPEC CHECKSUMS:
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
-  Realm: fb377747e694c7deb62d402400454134fe321bee
-  RealmSwift: 1302b0ab60f3105a2b214a735eeb0938607cf16b
+  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
+  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
   RxBlocking: 5f700a78cad61ce253ebd37c9a39b5ccc76477b4
   RxCocoa: 13d2a4d7546a34b8ececae8c281e4ea1dbb94f2b
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
@@ -234,6 +234,6 @@ SPEC CHECKSUMS:
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   SwiftyBeaver: 3d3e93a12d648bd400b6f2948a7ef128b5b183c7
 
-PODFILE CHECKSUM: caaf3ab7897eed4659cf5e3aaaab56cbd874ad04
+PODFILE CHECKSUM: fa2c3d9e578f2bba0b2563516dbebbd4fa47479c
 
 COCOAPODS: 1.8.4

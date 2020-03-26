@@ -17,7 +17,7 @@ end
 target 'Baby Monitor' do
   shared_pods
   pod 'SwiftLint', '~> 0.27.0'
-  pod 'RealmSwift', '~> 3.19.0'
+  pod 'RealmSwift', '~> 4.3.0'
   pod 'RxSwift', '~> 5.1'
   pod 'RxCocoa', '~> 5.1'
   pod 'RxDataSources', '~> 4.0'
