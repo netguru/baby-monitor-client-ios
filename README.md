@@ -51,7 +51,17 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 	carthage bootstrap --platform iOS --cache-builds
 	```
 
-4. For Developers from Netguru:
+4. **IMPORTANT:** Open terminal and prevent saving changes being made to `GoogleService-Info.plist`:
+Enter plists folder
+```bash
+cd "Baby Monitor/Supporting Files/Firebase"
+```
+and start ignoring changes made to the files in there
+```bash
+git update-index --assume-unchanged $(git ls-files | tr '\n' ' ') 
+```
+
+5. For Developers from Netguru:
 
 Download from project's vault:
 - `.env` file into the project's root directory
@@ -60,12 +70,6 @@ Download from project's vault:
 In case of the lack of an access:
 
 For a full integration please configure your own application in Firebase, download and paste `plist`s from there as well as a key to `.env`.
-
-5. **IMPORTANT:** Open terminal and ignore changes being made to `GoogleService-Info.plist`:
-
-   ```bash
-   git update-index --assume-unchanged "Baby Monitor/Supporting Files/Firebase"
-   ```
 
 6. Install pods through Bundler:
 
