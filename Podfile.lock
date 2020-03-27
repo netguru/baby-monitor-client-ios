@@ -132,7 +132,7 @@ PODS:
   - RxTest (5.1.1):
     - RxSwift (~> 5)
   - SwiftLint (0.27.0)
-  - SwiftyBeaver (1.8.3)
+  - SwiftyBeaver (1.8.4)
 
 DEPENDENCIES:
   - AudioKit (~> 4.9.4)
@@ -151,7 +151,7 @@ DEPENDENCIES:
   - RxSwift (~> 5.1)
   - RxTest (~> 5.1)
   - SwiftLint (~> 0.27.0)
-  - SwiftyBeaver (~> 1.8.0)
+  - SwiftyBeaver (~> 1.8.4)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -159,7 +159,6 @@ SPEC REPOS:
     - Fabric
     - GoogleWebRTC
     - PocketSocket
-    - SwiftyBeaver
   trunk:
     - AudioKit
     - Differentiator
@@ -191,6 +190,7 @@ SPEC REPOS:
     - RxSwift
     - RxTest
     - SwiftLint
+    - SwiftyBeaver
 
 EXTERNAL SOURCES:
   Keys:
@@ -232,8 +232,8 @@ SPEC CHECKSUMS:
   RxSwift: ad5874f24bb0dbffd1e9bb8443604e3578796c7a
   RxTest: 711632d5644dffbeb62c936a521b5b008a1e1faa
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
-  SwiftyBeaver: 3d3e93a12d648bd400b6f2948a7ef128b5b183c7
+  SwiftyBeaver: f9a9aba96a6a6166e21682377804d728b0d20b95
 
-PODFILE CHECKSUM: fa2c3d9e578f2bba0b2563516dbebbd4fa47479c
+PODFILE CHECKSUM: 3f245ce7f863b9cc61f65c0306a631ea04b0fa24
 
 COCOAPODS: 1.8.4
