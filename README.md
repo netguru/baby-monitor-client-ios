@@ -12,7 +12,7 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 
 * Tools:
 	* Xcode 11.3 with latest iOS SDK (13.3)
-	* [Carthage](https://github.com/Carthage/Carthage) 0.33 or higher
+	* [Carthage](https://github.com/Carthage/Carthage) 0.34 or higher
 	* [CocoaPods](https://github.com/CocoaPods/CocoaPods) 1.9.1 or higher
 * Services:
 	* [JIRA](https://netguru.atlassian.net/secure/RapidBoard.jspa?rapidView=620&view=detail)
