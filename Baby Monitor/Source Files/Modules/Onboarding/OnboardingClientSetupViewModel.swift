@@ -79,14 +79,14 @@ final class OnboardingClientSetupViewModel: BaseViewModel {
             } else {
                 self.state.accept(.timeoutReached)
             }
-            self.netServiceClient.isEnabled.value = false
+            self.netServiceClient.isEnabled.accept(false)
             self.searchCancelTimer = nil
         })
-        netServiceClient.isEnabled.value = true
+        netServiceClient.isEnabled.accept(true)
     }
 
     func stopDiscovering() {
-        netServiceClient.isEnabled.value = false
+        netServiceClient.isEnabled.accept(false)
         searchCancelTimer?.invalidate()
         availableDevicesPublisher.accept([])
         state.accept(.noneFound)

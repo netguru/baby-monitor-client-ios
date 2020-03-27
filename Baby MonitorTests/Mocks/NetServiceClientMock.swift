@@ -10,7 +10,7 @@ import RxCocoa
 final class NetServiceClientMock: NetServiceClientProtocol {
 
     let servicesRelay = PublishRelay<[NetServiceDescriptor]>()
-    let isEnabled = Variable<Bool>(false)
+    let isEnabled = BehaviorRelay<Bool>(value: false)
 
     var services: Observable<[NetServiceDescriptor]> {
         let relay = Observable.combineLatest(servicesRelay, isEnabled.asObservable()).filter { _, enabled in enabled == true }.map { service, _ in service }

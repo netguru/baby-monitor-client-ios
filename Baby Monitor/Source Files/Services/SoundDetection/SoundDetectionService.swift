@@ -83,7 +83,7 @@ final class SoundDetectionService: SoundDetectionServiceProtocol {
             }).disposed(by: disposeBag)
 
         microphoneService?.microphoneBufferReadableObservable
-            .throttle(Constants.recognizingSoundTimeLimit, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
+            .throttle(.seconds(Constants.recognizingSoundTimeLimit), scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
             .subscribe(onNext: { [weak self] bufferReadable in
                 guard self?.mode == .cryRecognition else { return }
                 self?.cryingDetectionService.predict(on: bufferReadable)

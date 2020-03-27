@@ -44,7 +44,7 @@ class NetServiceConnectionCheckerTests: XCTestCase {
         let urlConfiguration = URLConfigurationMock(url: URL(string: "ws://ip:port"))
         let sut = NetServiceConnectionChecker(netServiceClient: client, urlConfiguration: urlConfiguration)
 
-        client.isEnabled.value = false
+        client.isEnabled.accept(false)
         sut.start()
 
         XCTAssertTrue(client.isEnabled.value)
@@ -57,7 +57,7 @@ class NetServiceConnectionCheckerTests: XCTestCase {
         let urlConfiguration = URLConfigurationMock(url: URL(string: "ws://ip:port"))
         let sut = NetServiceConnectionChecker(netServiceClient: client, urlConfiguration: urlConfiguration)
 
-        client.isEnabled.value = true
+        client.isEnabled.accept(true)
         sut.stop()
 
         XCTAssertFalse(client.isEnabled.value)

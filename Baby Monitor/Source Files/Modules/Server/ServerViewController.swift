@@ -171,7 +171,7 @@ final class ServerViewController: BaseViewController {
     }
 
     private func fireVideoTimer() {
-        videoTimer = Observable<Int>.interval(Constants.videoStreamVisibilityTimeLimit,
+        videoTimer = Observable<Int>.interval(.seconds(Constants.videoStreamVisibilityTimeLimit),
                                               scheduler: MainScheduler.instance)
     }
 }

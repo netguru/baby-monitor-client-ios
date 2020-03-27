@@ -12,8 +12,8 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 
 * Tools:
 	* Xcode 11.3 with latest iOS SDK (13.3)
-	* [Carthage](https://github.com/Carthage/Carthage) 0.33 or higher
-	* [CocoaPods](https://github.com/CocoaPods/CocoaPods) 1.8.4 or higher
+	* [Carthage](https://github.com/Carthage/Carthage) 0.34 or higher
+	* [CocoaPods](https://github.com/CocoaPods/CocoaPods) 1.9.1 or higher
 * Services:
 	* [JIRA](https://netguru.atlassian.net/secure/RapidBoard.jspa?rapidView=620&view=detail)
 	* [Bitrise](https://app.bitrise.io/app/80545282645ad180)
@@ -51,7 +51,17 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 	carthage bootstrap --platform iOS --cache-builds
 	```
 
-4. For Developers from Netguru:
+4. **IMPORTANT:** Open terminal and prevent saving changes being made to `GoogleService-Info.plist`:
+Enter plists folder
+```bash
+cd "Baby Monitor/Supporting Files/Firebase"
+```
+and start ignoring changes made to the files in there
+```bash
+git update-index --assume-unchanged $(git ls-files | tr '\n' ' ') 
+```
+
+5. For Developers from Netguru:
 
 Download from project's vault:
 - `.env` file into the project's root directory
@@ -60,12 +70,6 @@ Download from project's vault:
 In case of the lack of an access:
 
 For a full integration please configure your own application in Firebase, download and paste `plist`s from there as well as a key to `.env`.
-
-5. **IMPORTANT:** Open terminal and ignore changes being made to `GoogleService-Info.plist`:
-
-   ```bash
-   git update-index --assume-unchanged "Baby Monitor/Supporting Files/Firebase"
-   ```
 
 6. Install pods through Bundler:
 
