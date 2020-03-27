@@ -14,25 +14,25 @@ enum Constants {
     static let netServiceName = "Baby Monitor Service"
     static let cryingDetectionThreshold = 0.7
 
-    /// A limit per which one notification about cry detection can be sent.
+    /// A limit per which one notification about cry detection can be sent (in seconds).
     static let cryingNotificationRequestTimeLimit: Int = 3 * 60
 
-    /// A limit per which noise detection notification can be sent.
+    /// A limit per which noise detection notification can be sent (in seconds).
     static let noiseNotificationRequestTimeLimit: Int = 15
 
-    /// A time after which the video stream should be hidden.
+    /// A time after which the video stream should be hidden (in seconds).
     static let videoStreamVisibilityTimeLimit: Int = 60
 
     /// A limit for searching for a baby device to be paired to.
     static let pairingDeviceSearchTimeLimit: TimeInterval = 2 * 60
 
-    /// A limit for sending maximum one sound to an ML model for recognizing in this time.
+    /// A limit for sending maximum one sound to an ML model for recognizing in this time (in seconds).
     static let recognizingSoundTimeLimit: Int = 10
 
     /// An initial limit for sound loudness that should be cut off.
     static let loudnessFactorLimit = 35
 
-    /// A limit for which should get a confirmation id back.
+    /// A limit for which should get a confirmation id back (in seconds).
     static let webSocketConfimationIDTimeLimit: Int = 5
 
     /// The default mode to be used when not set.
