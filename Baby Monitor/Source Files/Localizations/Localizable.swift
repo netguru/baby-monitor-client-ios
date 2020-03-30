@@ -217,8 +217,7 @@ enum Localizable {
     }
 }
 
-// swiftlint:disable nslocalizedstring_key
 private func localized(_ value: String) -> String {
+    // swiftlint:disable:next nslocalizedstring_key
     return NSLocalizedString(value, comment: "")
 }
-// swiftlint:enable nslocalizedstring_key
