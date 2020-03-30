@@ -4,7 +4,6 @@
 
 import AVFoundation
 import RxSwift
-import AVFoundation
 @testable import BabyMonitor
 
 final class AudioBufferConverterMock: AudioBufferConvertable {

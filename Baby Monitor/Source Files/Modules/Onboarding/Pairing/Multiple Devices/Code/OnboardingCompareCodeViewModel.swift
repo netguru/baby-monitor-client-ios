@@ -62,7 +62,7 @@ final class OnboardingCompareCodeViewModel: BaseViewModel {
 
     private func saveEmptyStateIfNeeded() {
         let allActivityLogEvents = activityLogEventsRepository.fetchAllActivityLogEvents()
-        guard allActivityLogEvents.first(where: { $0.mode == .emptyState }) == nil else {
+        guard allActivityLogEvents.allSatisfy({ $0.mode != .emptyState }) else {
             return
         }
         let emptyStateLogEvent = ActivityLogEvent(mode: .emptyState)

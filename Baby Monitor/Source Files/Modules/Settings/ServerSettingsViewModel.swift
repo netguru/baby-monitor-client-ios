@@ -20,7 +20,7 @@ final class ServerSettingsViewModel: BaseViewModel, BaseSettingsViewModelProtoco
     func attachInput(resetAppTap: Observable<Void>, cancelTap: Observable<Void>, allowSwitchControlProperty: Observable<Bool>) {
         self.resetAppTap = resetAppTap
         self.cancelTap = cancelTap
-        allowSwitchControlProperty.subscribe (onNext: { isOn in
+        allowSwitchControlProperty.subscribe(onNext: { isOn in
             UserDefaults.isSendingCryingsAllowed = isOn
         })
         .disposed(by: bag)

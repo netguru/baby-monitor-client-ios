@@ -96,7 +96,7 @@ class SpectrogramOp: NSObject {
                 nSamples = inputLength - i * stepLength
             }
             for j in nSamples..<fftLength + 2 {
-                if j % 2 == 0 {
+                if j.isMultiple(of: 2) {
                     inputReal[j / 2] = 0.0
                 } else {
                     inputImg[(j - 1) / 2] = 0.0

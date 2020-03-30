@@ -48,7 +48,7 @@ opt_in_rules:
   - empty_string
   - identical_operands
   - inert_defer
-  - indentation_width
+#  - indentation_width #TODO in BM-694
   - legacy_cggeometry_functions
   - legacy_constructor
   - legacy_hashing
