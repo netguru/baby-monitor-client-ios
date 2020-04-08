@@ -82,7 +82,7 @@ class ParentSettingsViewModelTests: XCTestCase {
     func testShouldNotChangeSoundModeWhenDisconnected() {
         // Given
         webSocketEventMessageService.connectionStatusPublisher.on(.next(.disconnected))
-        let noiseIndex = sut.soundDetectionModes.index(of: .noiseDetection)
+        let noiseIndex = sut.soundDetectionModes.firstIndex(of: .noiseDetection)
         let scheduler = TestScheduler(initialClock: 0)
         let observer = scheduler.createObserver(Int.self)
         sut.selectedVoiceModeIndexPublisher.skip(1).bind(to: observer).disposed(by: disposeBag)
@@ -92,12 +92,12 @@ class ParentSettingsViewModelTests: XCTestCase {
         soundDetectionTap.onNext(noiseIndex!)
 
         // Then
-        XCTAssertEqual(observer.events, [.next(0, sut.soundDetectionModes.index(of: .cryRecognition)!)])
+        XCTAssertEqual(observer.events, [.next(0, sut.soundDetectionModes.firstIndex(of: .cryRecognition)!)])
     }
 
     func testShouldChangeSoundModeAfterConfimation() {
         // Given
-        let noiseIndex = sut.soundDetectionModes.index(of: .noiseDetection)
+        let noiseIndex = sut.soundDetectionModes.firstIndex(of: .noiseDetection)
 
         // When
         UserDefaults.soundDetectionMode = .cryRecognition
@@ -125,7 +125,7 @@ class ParentSettingsViewModelTests: XCTestCase {
     func testShouldNotChangeSoundModeWhenNoConfimation() {
         // Given
         webSocketEventMessageService.shouldNotConfirmMessage = true
-        let noiseIndex = sut.soundDetectionModes.index(of: .noiseDetection)
+        let noiseIndex = sut.soundDetectionModes.firstIndex(of: .noiseDetection)
 
         // When
         UserDefaults.soundDetectionMode = .cryRecognition

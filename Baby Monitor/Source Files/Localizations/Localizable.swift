@@ -94,10 +94,6 @@ enum Localizable {
                 static let specifyParentButton = localized("onboarding.specify-device.info.specify-button-parent")
                 static let specifyBabyButton = localized("onboarding.specify-device.info.specify-button-baby")
             }
-
-            enum Specification {
-                // TODO: Add in BM-321
-            }
         }
 
         enum Connecting {
@@ -173,6 +169,7 @@ enum Localizable {
         static let audioRecordError = localized("server.audio-record-error")
         static let streamError = localized("server.stream-error")
         static let noStream = localized("server.no-stream")
+        static let noMicrophoneAccessMessage = localized("server.no-microphone-access-message")
     }
     
     enum Lullabies {
@@ -221,5 +218,6 @@ enum Localizable {
 }
 
 private func localized(_ value: String) -> String {
+    // swiftlint:disable:next nslocalizedstring_key
     return NSLocalizedString(value, comment: "")
 }

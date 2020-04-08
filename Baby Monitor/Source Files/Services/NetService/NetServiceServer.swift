@@ -12,7 +12,7 @@ protocol NetServiceServerProtocol {
     /// The variable controlling the state of the server. Changing its
     /// underlying `value` to `true` enables the server and changing it to
     /// `false` disables it.
-    var isEnabled: Variable<Bool> { get }
+    var isEnabled: BehaviorRelay<Bool> { get }
 }
 
 final class NetServiceServer: NSObject, NetServiceServerProtocol, NetServiceDelegate {
@@ -21,7 +21,7 @@ final class NetServiceServer: NSObject, NetServiceServerProtocol, NetServiceDele
         case didNotPublish
     }
 
-    let isEnabled = Variable<Bool>(false)
+    let isEnabled = BehaviorRelay<Bool>(value: false)
 
     private lazy var netService: NetService = NetService(
         domain: Constants.domain,

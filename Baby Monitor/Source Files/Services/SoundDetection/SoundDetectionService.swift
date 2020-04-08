@@ -72,10 +72,6 @@ final class SoundDetectionService: SoundDetectionServiceProtocol {
 
     func stopAnalysis() {
         microphoneService?.stopCapturing()
-        guard self.microphoneService?.isRecording ?? false else {
-            return
-        }
-        self.microphoneService?.stopRecording()
     }
 
     private func rxSetup() {
@@ -87,7 +83,7 @@ final class SoundDetectionService: SoundDetectionServiceProtocol {
             }).disposed(by: disposeBag)
 
         microphoneService?.microphoneBufferReadableObservable
-            .throttle(Constants.recognizingSoundTimeLimit, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
+            .throttle(.seconds(Constants.recognizingSoundTimeLimit), scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
             .subscribe(onNext: { [weak self] bufferReadable in
                 guard self?.mode == .cryRecognition else { return }
                 self?.cryingDetectionService.predict(on: bufferReadable)

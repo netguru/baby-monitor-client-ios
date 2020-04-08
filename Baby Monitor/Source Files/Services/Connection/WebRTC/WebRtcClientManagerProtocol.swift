@@ -13,6 +13,12 @@ protocol WebRtcClientManagerProtocol: WebSocketConnectionStatusProvider {
     /// Closes connection
     func stop()
 
+    /// Enable audio track in the stream.
+    func enableAudioTrack()
+
+    /// Disabable audio track in the stream.
+    func disableAudioTrack()
+
     /// Sets session description answer
     ///
     /// - Parameter sdp: session description protocol to add
@@ -30,6 +36,6 @@ protocol WebRtcClientManagerProtocol: WebSocketConnectionStatusProvider {
     var iceCandidate: Observable<IceCandidateProtocol> { get }
 
     /// Observable emitting media stream
-    var mediaStream: Observable<MediaStream?> { get }
+    var mediaStream: Observable<WebRTCMediaStream?> { get }
 
 }

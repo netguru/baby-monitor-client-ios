@@ -127,6 +127,7 @@
 "server.audio-record-error" = "There is some error with audio recording. Please turn app again.";
 "server.stream-error" = "There is some error with connecting to the stream.";
 "server.no-stream" = "No stream available.";
+"server.no-microphone-access-message" = "To be able to talk to your baby enable microphone access in the device settings.";
 
 //MARK: - Activity Log
 "activity-log.title" = "Latest activity";

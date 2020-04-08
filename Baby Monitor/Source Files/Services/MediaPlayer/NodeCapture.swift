@@ -9,11 +9,6 @@ import RxSwift
 import RxCocoa
 
 final class AudioKitNodeCapture: NSObject {
-    
-    enum AudioCaptureError: Error {
-        case initializationFailure
-        case captureFailure
-    }
 
     private let bufferReadableSubject = PublishSubject<AVAudioPCMBuffer>()
     lazy var bufferReadable = bufferReadableSubject.asObservable()
@@ -22,14 +17,21 @@ final class AudioKitNodeCapture: NSObject {
     private var node: AKNode?
     private let bufferSize: UInt32
     private var internalAudioBuffer: AVAudioPCMBuffer
-    private let bufferFormat: AVAudioFormat
+    private let inputBufferFormat: AVAudioFormat
     private let bufferQueue = DispatchQueue(label: "co.netguru.netguru.babymonitor.AudioKitNodeCapture.bufferQueue", qos: .default)
+    private let machineLearningFormat: AVAudioFormat
+    private let formatConverter: AVAudioConverter
     
-    init(node: AKNode? = AudioKit.output, bufferSize: UInt32 = 264600) throws {
+    init(node: AKNode, bufferSize: UInt32 = MachineLearningAudioConstants.bufferSize) throws {
         self.node = node
         self.bufferSize = bufferSize
-        self.bufferFormat = node?.avAudioUnitOrNode.inputFormat(forBus: 0) ?? AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100.0, channels: 1, interleaved: false)!
-        self.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: bufferFormat, frameCapacity: bufferSize)!
+        self.inputBufferFormat = node.avAudioUnitOrNode.inputFormat(forBus: 0)
+        machineLearningFormat = AVAudioFormat(commonFormat: MachineLearningAudioConstants.audioFormat,
+                                              sampleRate: MachineLearningAudioConstants.sampleRate,
+                                              channels: MachineLearningAudioConstants.channels,
+                                              interleaved: MachineLearningAudioConstants.isInterleaved)!
+        internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: machineLearningFormat, frameCapacity: bufferSize)!
+        formatConverter = AVAudioConverter(from: inputBufferFormat, to: machineLearningFormat)!
     }
 
     /// Start Capturing
@@ -38,19 +40,12 @@ final class AudioKitNodeCapture: NSObject {
             return
         }
         node?.avAudioUnitOrNode.installTap(onBus: 0, bufferSize: AKSettings.bufferLength.samplesCount, format: node?.avAudioUnitOrNode.inputFormat(forBus: 0)) { [weak self] buffer, _ in
-           self?.bufferQueue.async {
-               guard let self = self else { return }
-               let samplesLeft = self.internalAudioBuffer.frameCapacity - self.internalAudioBuffer.frameLength
-               if buffer.frameLength < samplesLeft {
-                   self.internalAudioBuffer.copy(from: buffer)
-               } else {
-                   self.bufferReadableSubject.onNext(self.internalAudioBuffer.copy() as! AVAudioPCMBuffer)
-                   self.internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: self.bufferFormat, frameCapacity: self.bufferSize)!
-                   self.internalAudioBuffer.copy(from: buffer)
-               }
-           }
+            self?.bufferQueue.async {
+                guard let self = self else { return }
+                let conversionResult = self.convertBufferIfNeeded(buffer)
+                self.mergeBufferToNeededFrameCapacity(conversionResult)
+            }
         }
-
         isCapturing = true
     }
     
@@ -66,6 +61,52 @@ final class AudioKitNodeCapture: NSObject {
     /// Reset the Buffer to clear previous recordings
     func reset() throws {
         stop()
-        internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: bufferFormat, frameCapacity: bufferSize)!
+        internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: machineLearningFormat, frameCapacity: bufferSize)!
+    }
+
+    /// Converts buffer to the needed machine learning format if it's not using it yet.
+    private func convertBufferIfNeeded(_ buffer: AVAudioPCMBuffer) -> Result<AVAudioPCMBuffer> {
+        guard inputBufferFormat.sampleRate != machineLearningFormat.sampleRate else {
+            return .success(buffer)
+        }
+        let sampleRateRatio = inputBufferFormat.sampleRate / machineLearningFormat.sampleRate
+        let frameCapacity = UInt32(Double(buffer.frameCapacity) / sampleRateRatio)
+        let convertedBuffer = AVAudioPCMBuffer(pcmFormat: machineLearningFormat, frameCapacity: frameCapacity)!
+        convertedBuffer.frameLength = convertedBuffer.frameCapacity
+        var conversionError: NSError?
+        let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
+            outStatus.pointee = AVAudioConverterInputStatus.haveData
+            return buffer
+        }
+        formatConverter.convert(to: convertedBuffer, error: &conversionError, withInputFrom: inputBlock)
+        if let error = conversionError {
+            Logger.error("Failed to convert audio data", error: error)
+            return .failure(error)
+        } else {
+            return .success(convertedBuffer)
+        }
+    }
+
+    /// Merges buffers till it doesn't fill up the needed frame capacity for the machine learning model.
+    /// And passes it when ready to bufferReadableSubject.
+    private func mergeBufferToNeededFrameCapacity(_ bufferResult: Result<AVAudioPCMBuffer>) {
+        switch bufferResult {
+        case .success(let buffer):
+            let samplesLeft = internalAudioBuffer.frameCapacity - internalAudioBuffer.frameLength
+            if buffer.frameLength < samplesLeft {
+                internalAudioBuffer.copy(from: buffer)
+            } else {
+                bufferReadableSubject.onNext(internalAudioBuffer.copy() as! AVAudioPCMBuffer)
+                internalAudioBuffer = AVAudioPCMBuffer(pcmFormat: self.machineLearningFormat, frameCapacity: bufferSize)!
+                internalAudioBuffer.copy(from: buffer)
+            }
+        case .failure(let error):
+            guard let error = error else {
+                assertionFailure()
+                Logger.error("Error shouldn't be nil.")
+                return
+            }
+            bufferReadableSubject.onError(error)
+        }
     }
 }

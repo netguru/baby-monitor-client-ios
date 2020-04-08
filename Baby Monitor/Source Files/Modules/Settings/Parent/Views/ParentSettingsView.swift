@@ -207,7 +207,7 @@ final class ParentSettingsView: BaseSettingsView {
         let animation = CATransition()
         animation.duration = 0.3
         noiseSliderView.layer.add(animation, forKey: nil)
-        noiseSliderView.isHidden = soundDetectionModeControl.selectedSegmentIndex != soundDetectionModes.index(of: .noiseDetection)
+        noiseSliderView.isHidden = soundDetectionModeControl.selectedSegmentIndex != soundDetectionModes.firstIndex(of: .noiseDetection)
     }
 }
 
@@ -229,7 +229,8 @@ extension Reactive where Base: ParentSettingsView {
     }
 
     var voiceModeTap: Observable<Int> {
-        return base.soundDetectionModeControl.rx.selectedSegmentIndex.skip(1).throttle(0.5, scheduler: MainScheduler.instance)
+        return base.soundDetectionModeControl.rx.selectedSegmentIndex.skip(1)
+            .throttle(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
     }
 
     var editPhotoTap: Observable<UIButton> {
@@ -241,6 +242,6 @@ extension Reactive where Base: ParentSettingsView {
     }
 
     var noiseSliderValueOnEnded: Observable<Int> {
-        return base.noiseSliderView.rx.noiseSliderValueOnEnded.debounce(0.2, scheduler: MainScheduler.instance)
+        return base.noiseSliderView.rx.noiseSliderValueOnEnded.debounce(.milliseconds(200), scheduler: MainScheduler.instance)
     }
 }

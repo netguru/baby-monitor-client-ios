@@ -20,7 +20,7 @@ final class AnimationFactory: NSObject {
         pulsatingLayer.fillColor = from.cgColor
         let point = view.bounds.origin
         let frame = view.frame
-        pulsatingLayer.position =  CGPoint(
+        pulsatingLayer.position = CGPoint(
             x: point.x + (frame.width / 2),
             y: point.y + (frame.height / 2)
         )

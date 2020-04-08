@@ -20,11 +20,11 @@ final class NetServiceConnectionChecker: ConnectionChecker {
     }
     
     func start() {
-        netServiceClient.isEnabled.value = true
+        netServiceClient.isEnabled.accept(true)
     }
     
     func stop() {
-        netServiceClient.isEnabled.value = false
+        netServiceClient.isEnabled.accept(false)
     }
     
     private func createStatus() -> Observable<ConnectionStatus> {

@@ -15,8 +15,8 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
         return babyPublisher.value
     }
     
-    private var babyPublisher = Variable<Baby>(Baby.initial)
-    private let activityLogEventsPublisher = Variable<[ActivityLogEvent]>([])
+    private var babyPublisher = BehaviorRelay<Baby>(value: Baby.initial)
+    private let activityLogEventsPublisher = BehaviorRelay<[ActivityLogEvent]>(value: [])
     private let realm: Realm
     private var currentBabyToken: NotificationToken?
     
@@ -31,7 +31,7 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
             do {
                 try self.realm.write {
                     self.realm.create(RealmActivityLogEvent.self, value: realmActivityLogEvent, update: .error)
-                    self.activityLogEventsPublisher.value.append(activityLogEvent)
+                    self.activityLogEventsPublisher.accept(self.activityLogEventsPublisher.value + [activityLogEvent])
                     completion(.success(()))
                 }
             } catch {
@@ -50,8 +50,8 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
         DispatchQueue.main.async {
             try! self.realm.write {
                 self.realm.deleteAll()
-                self.babyPublisher.value = Baby.initial
-                self.activityLogEventsPublisher.value = []
+                self.babyPublisher.accept(Baby.initial)
+                self.activityLogEventsPublisher.accept([])
             }
         }
     }
@@ -64,7 +64,7 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
                     .toBaby()
                 self.babyPublisher.value.photo = photo
                 let currentBaby = self.baby
-                self.babyPublisher.value = currentBaby
+                self.babyPublisher.accept(currentBaby)
             }
         }
     }
@@ -76,7 +76,7 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
                     .toBaby()
                 self.babyPublisher.value.name = name
                 let currentBaby = self.baby
-                self.babyPublisher.value = currentBaby
+                self.babyPublisher.accept(currentBaby)
             }
         }
     }
@@ -85,11 +85,11 @@ final class RealmBabiesRepository: BabyModelControllerProtocol & ActivityLogEven
         DispatchQueue.main.async {
             try! self.realm.write {
                 if let realmBaby = self.realm.objects(RealmBaby.self).first {
-                    self.babyPublisher.value = realmBaby.toBaby()
+                    self.babyPublisher.accept(realmBaby.toBaby())
                 } else {
                     self.realm.create(RealmBaby.self, value: ["id": self.baby.id, "name": self.baby.name], update: .error)
                 }
-                self.activityLogEventsPublisher.value = self.fetchAllActivityLogEvents()
+                self.activityLogEventsPublisher.accept(self.fetchAllActivityLogEvents())
             }
         }
     }

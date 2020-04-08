@@ -34,7 +34,6 @@ class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 20
-        //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         imageView.backgroundColor = .lightGray
         imageView.layer.cornerRadius = Constants.mainWidthHeight / 2
         return imageView
@@ -55,7 +54,6 @@ class BabyMonitorCell: UITableViewCell, Identifiable, BabyMonitorCellProtocol {
     
     private let additionalButton: UIButton = {
         let button = UIButton()
-        //TODO: remove color once assets are available, ticket: https://netguru.atlassian.net/browse/BM-65
         button.backgroundColor = .blue
         button.layer.cornerRadius = Constants.mainWidthHeight / 2
         return button

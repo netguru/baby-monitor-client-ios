@@ -25,6 +25,9 @@ extension RTCSdpType {
             return "offer"
         case .prAnswer:
             return "prAnswer"
+        @unknown default:
+            assertionFailure("The case had not been handled.")
+            return ""
         }
     }
 

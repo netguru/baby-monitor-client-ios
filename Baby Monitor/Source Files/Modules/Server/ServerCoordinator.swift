@@ -94,7 +94,7 @@ final class ServerCoordinator: Coordinator {
         })
         let acceptAction = UIAlertAction(title: Localizable.General.accept, style: .default, handler: { [weak self] _ in
             self?.appDependencies.messageServer.send(message: EventMessage(pairingCodeResponse: true).toStringMessage())
-            self?.appDependencies.netServiceServer.isEnabled.value = false
+            self?.appDependencies.netServiceServer.isEnabled.accept(false)
 
         })
         let codeAlertController = UIAlertController(title: Localizable.Onboarding.Pairing.connection, message: Localizable.Onboarding.Pairing.connectionAlertInfo(code: code), preferredStyle: .alert)

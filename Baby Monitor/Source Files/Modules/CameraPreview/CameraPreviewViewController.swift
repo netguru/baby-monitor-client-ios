@@ -54,6 +54,7 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         navigationItem.leftBarButtonItem = customView.cancelItemButton
         navigationItem.rightBarButtonItem = customView.settingsBarButtonItem
         navigationItem.titleView = customView.babyNavigationItemView
+        customView.shouldAnimateMicrophoneButton = viewModel.isMicrophoneAccessGranted
     }
     
     private func setupViewModel() {
@@ -74,17 +75,22 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
             .disposed(by: bag)
         viewModel.attachInput(
             cancelTap: customView.rx.cancelTap.asObservable(),
-            settingsTap: customView.rx.settingsTap.asObservable())
+            settingsTap: customView.rx.settingsTap.asObservable(),
+            microphoneHoldEvent: customView.rx.microphoneHoldEvent,
+            microphoneReleaseEvent: customView.rx.microphoneReleaseEvent)
         viewModel.streamResettedPublisher.asObservable()
             .subscribe(onNext: { [weak self] in
                 self?.setupStream()
-            })
-            .disposed(by: bag)
+            }).disposed(by: bag)
+        viewModel.noMicrophoneAccessPublisher
+            .subscribe(onNext: { [weak self] in
+                self?.showNoMicrophoneAccessAlert()
+            }).disposed(by: bag)
     }
     
     private func setupStream() {
         viewModel.remoteStream
-            .subscribeOn(MainScheduler.instance)
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] stream in
                 guard let stream = stream else {
                     return
@@ -95,17 +101,17 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         viewModel.remoteStreamErrorMessageObservable
             .subscribe(onNext: { [weak self] message in
                 self?.handleStreamError(errorMessage: message)
-            })
-            .disposed(by: bag)
+            }).disposed(by: bag)
     }
     
-    private func attach(stream: MediaStream) {
+    private func attach(stream: WebRTCMediaStream) {
         guard let stream = stream as? RTCMediaStream else {
             return
         }
         videoTrack?.remove(videoView)
         videoTrack = stream.videoTracks[0]
         videoTrack?.add(videoView)
+        customView.shouldHideMicrophoneButton = false
     }
 
     private func handleStreamError(errorMessage: String) {
@@ -113,6 +119,13 @@ final class CameraPreviewViewController: TypedViewController<CameraPreviewView> 
         let okAction = UIAlertAction(title: Localizable.General.ok, style: .default, handler: { _ in
             self.navigationController?.popViewController(animated: true)
         })
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+
+    private func showNoMicrophoneAccessAlert() {
+        let alertController = UIAlertController(title: Localizable.Onboarding.BabySetup.microphonePermissionsDenied, message: Localizable.Server.noMicrophoneAccessMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: Localizable.General.ok, style: .default, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true)
     }

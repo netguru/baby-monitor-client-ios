@@ -5,7 +5,7 @@
 
 import RxSwift
 
-protocol WebSocketEventMessageServiceProtocol: class, WebSocketConnectionStatusProvider {
+protocol WebSocketEventMessageServiceProtocol: AnyObject, WebSocketConnectionStatusProvider {
     var remoteResetObservable: Observable<Void> { get }
     var remotePairingCodeResponseObservable: Observable<Bool> { get }
     var remoteStreamConnectingErrorObservable: Observable<String> { get }
@@ -91,7 +91,7 @@ final class WebSocketEventMessageService: WebSocketEventMessageServiceProtocol {
             sendMessage(message.toStringMessage())
             remoteConfimationIdPublisher
                 .take(1)
-                .timeout(Constants.webSocketConfimationIDTimeLimit, scheduler: MainScheduler.instance)
+                .timeout(RxTimeInterval.seconds(Constants.webSocketConfimationIDTimeLimit), scheduler: MainScheduler.instance)
                 .subscribe(onNext: { eventConfimationId in
                     if confimationID == eventConfimationId {
                         completion(.success(()))

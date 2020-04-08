@@ -77,14 +77,14 @@ class WebRtcServerManagerTests: XCTestCase {
         // Given
         let bag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(MediaStream.self)
+        let observer = scheduler.createObserver(WebRTCMediaStream.self)
         let sdpOffer = SessionDescriptionMock(sdp: "sdp", stringType: "answer")
         let peerConnection = PeerConnectionMock()
         let videoCapturerMock = VideoCapturerMock()
-        let streamId = "test"
+        let mediaStreamMock = WebRTCMediaStreamMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
                                                               videoCapturer: videoCapturerMock,
-                                                              mediaStream: streamId as MediaStream)
+                                                              mediaStream: mediaStreamMock)
         let connectionDelegateProxy = PeerConnectionProxyMock()
         let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
@@ -101,7 +101,7 @@ class WebRtcServerManagerTests: XCTestCase {
         sut.createAnswer(remoteSdp: sdpOffer, completion: { _ in })
 
         // Then
-        XCTAssertEqual([streamId], observer.events.map { ($0.value.element as! String) })
+        XCTAssertTrue(observer.events.isNotEmpty)
     }
 
     func testShouldSendMessageOnCreateAnswerWhenNoStream() {
@@ -160,7 +160,7 @@ class WebRtcServerManagerTests: XCTestCase {
         let videoCapturerMock = VideoCapturerMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
                                                               videoCapturer: videoCapturerMock,
-                                                              mediaStream: "streamId" as MediaStream)
+                                                              mediaStream: WebRTCMediaStreamMock())
         let connectionDelegateProxy = PeerConnectionProxyMock()
         let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
@@ -184,12 +184,11 @@ class WebRtcServerManagerTests: XCTestCase {
         // Given
         let bag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(MediaStream.self)
+        let observer = scheduler.createObserver(WebRTCMediaStream.self)
         let peerConnection = PeerConnectionMock()
-        let streamId = "test"
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
                                                               videoCapturer: nil,
-                                                              mediaStream: streamId as MediaStream)
+                                                              mediaStream: WebRTCMediaStreamMock())
         let connectionDelegateProxy = PeerConnectionProxyMock()
         let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
@@ -205,7 +204,7 @@ class WebRtcServerManagerTests: XCTestCase {
         sut.start()
 
         // Then
-        XCTAssertEqual([], observer.events.map { ($0.value.element as! String) })
+        XCTAssertTrue(observer.events.isEmpty)
     }
 
     func testShouldCaptureStreamAfterStart() {
@@ -233,7 +232,7 @@ class WebRtcServerManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
                                                               videoCapturer: videoCapturerMock,
-                                                              mediaStream: "" as MediaStream)
+                                                              mediaStream: WebRTCMediaStreamMock())
         let connectionDelegateProxy = PeerConnectionProxyMock()
         let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
@@ -255,7 +254,7 @@ class WebRtcServerManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
                                                               videoCapturer: videoCapturerMock,
-                                                              mediaStream: "" as MediaStream)
+                                                              mediaStream: WebRTCMediaStreamMock())
         let connectionDelegateProxy = PeerConnectionProxyMock()
         let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
@@ -278,11 +277,10 @@ class WebRtcServerManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let bag = DisposeBag()
         let scheduler = TestScheduler(initialClock: 0)
-        let observer = scheduler.createObserver(MediaStream.self)
-        let streamId = "test"
+        let observer = scheduler.createObserver(WebRTCMediaStream.self)
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
                                                               videoCapturer: videoCapturerMock,
-                                                              mediaStream: streamId as MediaStream)
+                                                              mediaStream: WebRTCMediaStreamMock())
         let connectionDelegateProxy = PeerConnectionProxyMock()
         let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
@@ -300,7 +298,7 @@ class WebRtcServerManagerTests: XCTestCase {
         sut.resumeMediaStream() // emits stream
 
         // Then
-        XCTAssertEqual([streamId, streamId], observer.events.map { ($0.value.element as! String) })
+        XCTAssertTrue(observer.events.count == 2)
     }
 
     func testShouldNotPauseWhenClientIsConnected() {
@@ -309,7 +307,7 @@ class WebRtcServerManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
                                                               videoCapturer: videoCapturerMock,
-                                                              mediaStream: "" as MediaStream)
+                                                              mediaStream: WebRTCMediaStreamMock())
         let connectionDelegateProxy = PeerConnectionProxyMock()
         let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
@@ -332,7 +330,7 @@ class WebRtcServerManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
                                                               videoCapturer: videoCapturerMock,
-                                                              mediaStream: "" as MediaStream)
+                                                              mediaStream: WebRTCMediaStreamMock())
         let connectionDelegateProxy = PeerConnectionProxyMock()
         let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,
@@ -354,7 +352,7 @@ class WebRtcServerManagerTests: XCTestCase {
         let peerConnection = PeerConnectionMock()
         let peerConnectionFactory = PeerConnectionFactoryMock(peerConnectionProtocol: peerConnection,
                                                               videoCapturer: videoCapturerMock,
-                                                              mediaStream: "" as MediaStream)
+                                                              mediaStream: WebRTCMediaStreamMock())
         let connectionDelegateProxy = PeerConnectionProxyMock()
         let messageServer = MessageServerMock()
         let sut = WebRtcServerManager(peerConnectionFactory: peerConnectionFactory,

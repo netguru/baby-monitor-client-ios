@@ -13,7 +13,7 @@ final class PeerConnectionMock: PeerConnectionProtocol {
     private(set) var remoteSdp: SessionDescriptionProtocol?
     private(set) var localSdp: SessionDescriptionProtocol?
     private(set) var iceCandidates = [IceCandidateProtocol]()
-    private(set) var mediaStream: MediaStream?
+    private(set) var mediaStream: WebRTCMediaStream?
 
     private let offerSdp: SessionDescriptionProtocol?
     private let answerSdp: SessionDescriptionProtocol?
@@ -43,7 +43,7 @@ final class PeerConnectionMock: PeerConnectionProtocol {
         iceCandidates.append(iceCandidate)
     }
 
-    func add(stream: MediaStream) {
+    func add(stream: WebRTCMediaStream) {
         self.mediaStream = stream
     }
 
