@@ -33,6 +33,10 @@ trigger_map:
   - pull_request_target_branch: release/*
     workflow: build-pull-request
 
+app:
+  envs:
+    - BUILD_NUMBER: $BITRISE_BUILD_NUMBER
+
 # Workflow declarations.
 #
 # This list contains workflows used in the above trigger map.
@@ -78,6 +82,8 @@ workflows:
   # staging scheme.
 
   build-pull-request:
+    envs:
+      - HIGHWAY_PRESET: unit_tests
     before_run:
       - cache-pull
       - bundle-install

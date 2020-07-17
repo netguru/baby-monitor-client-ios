@@ -38,13 +38,13 @@ bootstrap:
 
 # Test stage.
 test:
-    default:
+    unit_tests:
         - xcode_test:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
             skip_build: true
-            settings: 
-                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+            settings:
+                _BUILD_NUMBER: $(ENV:BUILD_NUMBER)
 
 # Deploy stage.
 deploy:
@@ -53,8 +53,8 @@ deploy:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
             method: "enterprise"
-            settings: 
-                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+            settings:
+                _BUILD_NUMBER: $(ENV:BUILD_NUMBER)
         - appcenter:
             api_token: $(APPCENTER_API_TOKEN)
             owner_name: $(APPCENTER_ORG_NAME)
@@ -68,7 +68,7 @@ deploy:
             scheme: $(XCODEBUILD_SCHEME)
             method: "app-store"
             settings: 
-                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+                _BUILD_NUMBER: $(ENV:BUILD_NUMBER)
         - testflight:
             username: $(ENV:APPSTORE_USERNAME)
             password: $(ENV:APPSTORE_PASSWORD)
@@ -82,7 +82,8 @@ deploy:
             app_identifier: $(ENV:APPSTORE_APP_IDENTIFIER)
             submit_for_review: false
             skip_binary_upload: true
-            build_number: $(ENV:BITRISE_BUILD_NUMBER)
+            build_number: $(ENV:BUILD_NUMBER)
+            team_id: $(ENV:APPSTORE_TEAM_ID)
             team_name: $(ENV:APPSTORE_TEAM_NAME)
 
 # Report stage.
