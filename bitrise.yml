@@ -36,6 +36,7 @@ trigger_map:
 app:
   envs:
     - BUILD_NUMBER: $BITRISE_BUILD_NUMBER
+    - DEPLOY_DIR: $BITRISE_DEPLOY_DIR
 
 # Workflow declarations.
 #
@@ -125,6 +126,16 @@ workflows:
 
   run-highway:
     steps:
+      - brew-install:
+          title: Install gpg
+          inputs:
+            - packages: "gpg"
+            - cache_enabled: "yes"
+      - brew-install:
+          title: Install 7zip
+          inputs:
+            - packages: "p7zip"
+            - cache_enabled: "yes"
       - script:
           title: 'bundle exec fastlane highway'
           inputs:
