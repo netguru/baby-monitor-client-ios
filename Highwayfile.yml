@@ -7,26 +7,61 @@ variables:
         XCODEBUILD_SCHEME: Staging
         XCODEBUILD_PROJECT: ./Baby Monitor.xcworkspace
         APPCENTER_ORG_NAME: office-4dmm
-        FIREBASE_PLIST_URL: $(ENV:BITRISEIO_GOOGLESERVICE_INFO_STAGING_URL)
     staging:
         XCODEBUILD_SCHEME: Staging
-        FIREBASE_PLIST_URL: $(ENV:BITRISEIO_GOOGLESERVICE_INFO_STAGING_URL)
         APPCENTER_API_TOKEN: $(ENV:APP_CENTER_API_TOKEN_STAGING)
         APPCENTER_APP_NAME: $(ENV:APP_CENTER_APP_NAME_STAGING_ID)
         APPCENTER_DISTRIBUTION_GROUP: $(ENV:APP_CENTER_DISTRIBUTION_GROUP)
     release:
         XCODEBUILD_SCHEME: Production
-        FIREBASE_PLIST_URL: $(ENV:BITRISEIO_GOOGLESERVICE_INFO_PRODUCTION_URL)
 
 # Bootstrap stage.
 bootstrap:
     default:
+        - action:
+            name: "xcversion"
+            options: 
+                version: "11.3.1"
         - sh:
-            # copying firebase plist from bitrise.
-            command: "wget '$(FIREBASE_PLIST_URL)' -O '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist'"
-        - sh:
-            # copying firebase development plist for building project for tests.
-            command: "cp '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-$(XCODEBUILD_SCHEME).plist' '$(ENV:BITRISE_SOURCE_DIR)/Baby\ Monitor/Supporting\ Files/Firebase/GoogleService-Info-Development.plist'"
+            command: |
+                # Decrypt prerequisites archive
+                gpg --quiet --batch --yes --decrypt --passphrase='$(ENV:SECRET_PASSPHRASE)' --output prerequisites.zip prerequisites.zip.gpg
+                # Unzip the archive
+                7z e prerequisites.zip -oprerequisites -y
+                # Copy GoogleService plist files
+                mv -f "./prerequisites/GoogleService-Info-Development.plist" "./Baby Monitor/Supporting Files/Firebase/GoogleService-Info-Development.plist"
+                mv -f "./prerequisites/GoogleService-Info-Production.plist" "./Baby Monitor/Supporting Files/Firebase/GoogleService-Info-Production.plist"
+                mv -f "./prerequisites/GoogleService-Info-Staging.plist" "./Baby Monitor/Supporting Files/Firebase/GoogleService-Info-Staging.plist"
+
+                # Create keychain for storing certificates
+                security create-keychain -p '$(ENV:SECRET_PASSPHRASE)' build.keychain-db 
+                # Import certificates from Certificates.p12 file
+                security import ./prerequisites/Certificates.p12 -t agg -k ~/Library/Keychains/build.keychain-db -P '$(ENV:SECRET_PASSPHRASE)' -A > /dev/null
+
+                # Add keychain to search list
+                security list-keychains -s ~/Library/Keychains/build.keychain-db > /dev/null
+                # Set created keychain as default 
+                security default-keychain -s ~/Library/Keychains/build.keychain-db > /dev/null
+                # Unlock keychain
+                security unlock-keychain -p '$(ENV:SECRET_PASSPHRASE)' ~/Library/Keychains/build.keychain-db > /dev/null
+                # Increase keychain timeout lock
+                security set-keychain-settings -lut 72000 ~/Library/Keychains/build.keychain-db > /dev/null
+
+                # Magic command explained more here: https://stackoverflow.com/a/40039594/1113194
+                security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k '$(ENV:SECRET_PASSPHRASE)' ~/Library/Keychains/build.keychain-db > /dev/null
+        - action:
+            name: "install_provisioning_profile"
+            options:
+                path: "./prerequisites/BabyMonitorStaging.mobileprovision"
+        - action:
+            name: "install_provisioning_profile"
+            options:
+                path: "./prerequisites/BabyMonitorProduction.mobileprovision"
+        - action:
+            name: "install_provisioning_profile"
+            options:
+                path: "./prerequisites/BabyMonitorAppStore.mobileprovision"
+
         - carthage:
             command: "bootstrap"
             platforms:
@@ -38,13 +73,13 @@ bootstrap:
 
 # Test stage.
 test:
-    default:
+    unit_tests:
         - xcode_test:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
             skip_build: true
-            settings: 
-                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+            settings:
+                _BUILD_NUMBER: $(ENV:BUILD_NUMBER)
 
 # Deploy stage.
 deploy:
@@ -53,8 +88,8 @@ deploy:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
             method: "enterprise"
-            settings: 
-                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+            settings:
+                _BUILD_NUMBER: $(ENV:BUILD_NUMBER)
         - appcenter:
             api_token: $(APPCENTER_API_TOKEN)
             owner_name: $(APPCENTER_ORG_NAME)
@@ -68,7 +103,7 @@ deploy:
             scheme: $(XCODEBUILD_SCHEME)
             method: "app-store"
             settings: 
-                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+                _BUILD_NUMBER: $(ENV:BUILD_NUMBER)
         - testflight:
             username: $(ENV:APPSTORE_USERNAME)
             password: $(ENV:APPSTORE_PASSWORD)
@@ -82,14 +117,14 @@ deploy:
             app_identifier: $(ENV:APPSTORE_APP_IDENTIFIER)
             submit_for_review: false
             skip_binary_upload: true
-            build_number: $(ENV:BITRISE_BUILD_NUMBER)
+            build_number: $(ENV:BUILD_NUMBER)
             team_name: $(ENV:APPSTORE_TEAM_NAME)
 
 # Report stage.
 report:
   default:
     - copy_artifacts:
-        path: $(ENV:BITRISE_DEPLOY_DIR)
+        path: $(ENV:DEPLOY_DIR)
     - slack:
         webhook: $(ENV:SLACK_WEBHOOK_URL)
         channel: "#notify-baby-monitor"

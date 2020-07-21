@@ -21,7 +21,7 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 
 ## Configuration
 
-### Prerequisites
+### Dependencies
 
 - [Bundler](http://bundler.io) (`gem install bundler`)
 - [Homebrew](https://brew.sh)
@@ -32,24 +32,24 @@ Welcome to the **Baby Monitor** project. It's an application made for monitoring
 
 1. Clone repository:
 
-	```bash
-	# over https:
-	git clone https://github.com/netguru/baby-monitor-client-ios.git
-	# or over SSH:
-	git clone git@github.com:netguru/baby-monitor-client-ios.git
-	```
+```bash
+# over https:
+git clone https://github.com/netguru/baby-monitor-client-ios.git
+# or over SSH:
+git clone git@github.com:netguru/baby-monitor-client-ios.git
+```
 
 2. Install required Gems:
 
-	```bash
-	bundle install
-	```
+```bash
+bundle install
+```
 
 3. Run Carthage:
 
-	```bash
-	carthage bootstrap --platform iOS --cache-builds
-	```
+```bash
+carthage bootstrap --platform iOS --cache-builds
+```
 
 4. **IMPORTANT:** Open terminal and prevent saving changes being made to `GoogleService-Info.plist`:
 Enter plists folder
@@ -62,10 +62,18 @@ git update-index --assume-unchanged $(git ls-files | tr '\n' ' ')
 ```
 
 5. For Developers from Netguru:
-
-Download from project's vault:
-- `.env` file into the project's root directory
-- `GoogleService-Info-Development`, `GoogleService-Info-Staging`, `GoogleService-Info-Production.plist` files to the location: `Baby Monitor/Supporting Files/Firebase/`
+Get `SECRET_PASSPHRASE` from project's vault and do not expose it in any way, make sure this key is secure with you.
+Make sure you have `gpg` and `7zip` installed, then run:
+```bash
+# Decrypt prerequisites archive
+gpg --quiet --batch --yes --decrypt --passphrase='$SECRET_PASSPHRASE' --output prerequisites.zip prerequisites.zip.gpg
+# Unzip the archive
+7z e prerequisites.zip -oprerequisites -y
+# Copy GoogleService plist files
+mv -f "./prerequisites/GoogleService-Info-Development.plist" "./Baby Monitor/Supporting Files/Firebase/GoogleService-Info-Development.plist"
+mv -f "./prerequisites/GoogleService-Info-Production.plist" "./Baby Monitor/Supporting Files/Firebase/GoogleService-Info-Production.plist"
+mv -f "./prerequisites/GoogleService-Info-Staging.plist" "./Baby Monitor/Supporting Files/Firebase/GoogleService-Info-Staging.plist"
+```
 	   
 In case of the lack of an access:
 
@@ -79,6 +87,25 @@ For a full integration please configure your own application in Firebase, downlo
 
 7. Open `Baby Monitor.xcworkspace` file and build the project.
 
+### Updating prerequisites
+
+1. For Developers from Netguru:
+Get `SECRET_PASSPHRASE` from project's vault and do not expose it in any way, make sure this key is secure with you.
+Make sure you have `gpg` and `7zip` installed, then run:
+```bash
+# Decrypt prerequisites archive
+gpg --quiet --batch --yes --decrypt --passphrase='$SECRET_PASSPHRASE' --output prerequisites.zip prerequisites.zip.gpg
+# Unzip the archive
+7z e prerequisites.zip -oprerequisites -y
+```
+2. Update files in `prerequisites` directory.
+3. Certificates.p12 have to also be locked with `SECRET_PASSPHRASE`.
+4. Create the archive from the  `prerequisites` directory.
+5. Encrypt it using command:
+```bash
+gpg --symmetric --cipher-algo AES256 prerequisites.zip
+```
+6. Commit updated gpg file.
 
 ## Coding guidelines
 
