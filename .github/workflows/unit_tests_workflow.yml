@@ -1,0 +1,45 @@
+name: Unit test
+# This workflow is triggered on pushes to the repository.
+on:
+  push:
+    branches:
+    - task/*
+
+jobs:
+  validate-and-test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Cache Gems
+        uses: actions/cache@v2
+        id: cache-gems
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Cache Pods
+        uses: actions/cache@v2
+        id: cache-pods
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+           ${{ runner.os }}-pods-
+
+      - name: Bundle install
+        run: bundle install
+
+      - name: Update RubyGems
+        run: gem update --system
+
+      - name: Run Highway
+        run: bundle exec fastlane highway preset:unit_tests
+        env:
+          BUILD_NUMBER: ${{ env.GITHUB_RUN_NUMBER }}
+          SECRET_PASSPHRASE: ${{ secrets.DECRYPT_PASSPHRASE }}
+          DEPLOY_DIR: ./
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

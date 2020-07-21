@@ -33,6 +33,11 @@ trigger_map:
   - pull_request_target_branch: release/*
     workflow: build-pull-request
 
+app:
+  envs:
+    - BUILD_NUMBER: $BITRISE_BUILD_NUMBER
+    - DEPLOY_DIR: $BITRISE_DEPLOY_DIR
+
 # Workflow declarations.
 #
 # This list contains workflows used in the above trigger map.
@@ -78,6 +83,8 @@ workflows:
   # staging scheme.
 
   build-pull-request:
+    envs:
+      - HIGHWAY_PRESET: unit_tests
     before_run:
       - cache-pull
       - bundle-install
@@ -108,7 +115,6 @@ workflows:
 
   bundle-install:
     steps:
-      - certificate-and-profile-installer: {}
       - script:
           title: 'bundle-install'
           inputs:
@@ -119,6 +125,16 @@ workflows:
 
   run-highway:
     steps:
+      - brew-install:
+          title: Install gpg
+          inputs:
+            - packages: "gpg"
+            - cache_enabled: "yes"
+      - brew-install:
+          title: Install 7zip
+          inputs:
+            - packages: "p7zip"
+            - cache_enabled: "yes"
       - script:
           title: 'bundle exec fastlane highway'
           inputs:
