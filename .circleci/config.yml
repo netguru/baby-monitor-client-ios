@@ -18,4 +18,10 @@ jobs:
     steps:
       - checkout
       - bundle-install/bundle-install
+      - run:
+        name: install gpg
+        command: brew install gpg
+      - run:
+        name: install 7zip
+        command: brew install p7zip
       - run: bundle exec fastlane highway preset:unit_tests
