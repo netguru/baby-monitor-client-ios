@@ -78,6 +78,7 @@ test:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
             skip_build: true
+            device: "iPhone 11"
             settings:
                 _BUILD_NUMBER: $(ENV:BUILD_NUMBER)
 

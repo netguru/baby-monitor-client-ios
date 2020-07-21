@@ -7,8 +7,7 @@ orbs:
   bundle-install: toshimaru/bundle-install@0.3.1
 
 jobs:
-  build:
-
+  unit_tests:
     macos:
       xcode: 11.3.1 # Specify the Xcode version to use
     environment:
@@ -18,10 +17,37 @@ jobs:
     steps:
       - checkout
       - bundle-install/bundle-install
-      - run:
-        name: install gpg
-        command: brew install gpg
-      - run:
-        name: install 7zip
-        command: brew install p7zip
+      - run: brew install gpg
+      - run: brew install p7zip
       - run: bundle exec fastlane highway preset:unit_tests
+
+  qa_build:
+    macos:
+      xcode: 11.3.1 # Specify the Xcode version to use
+    environment:
+      BUILD_NUMBER: $CIRCLE_BUILD_NUM
+      DEPLOY_DIR: ./
+
+    steps:
+      - checkout
+      - bundle-install/bundle-install
+      - run: brew install gpg
+      - run: brew install p7zip
+      - run: bundle exec fastlane highway preset:staging
+
+workflows:
+  run_unit_tests:
+    jobs:
+      - unit_tests:
+          filters:
+            branches:
+              only:
+                - /task\/.*/
+
+  generate_qa_build:
+    jobs:
+      - qa_build:
+          filters:
+            branches:
+              only:
+                - master
