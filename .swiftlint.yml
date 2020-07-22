@@ -8,6 +8,7 @@ excluded:
   - Pods
   - Dependencies
   - fastlane
+  - vendor
 
 # Enabled rules.
 opt_in_rules:
