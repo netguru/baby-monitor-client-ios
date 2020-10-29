@@ -25,7 +25,7 @@ bootstrap:
 
         - code_sign:
             path: "prerequisites.zip.gpg"
-            passphrase: (ENV:SECRET_PASSPHRASE)
+            passphrase: $(ENV:SECRET_PASSPHRASE)
 
         - sh:
             command: |
