@@ -2,6 +2,6 @@ source 'https://rubygems.org'
 
 gem 'cocoapods', '~> 1.9.1'
 gem 'cocoapods-keys', '~> 2.1.0'
-gem "highway", git: "https://github.com/netguru/highway.git", ref: "f37d2c77fe16bb324b120951a36b51e906c6557b"
+gem "highway", git: "https://github.com/netguru/highway.git", branch: "gpg-certs"
 gem 'fastlane-plugin-appcenter'
 gem 'xcode-install'
