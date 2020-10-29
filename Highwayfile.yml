@@ -22,6 +22,11 @@ bootstrap:
             name: "xcversion"
             options: 
                 version: "11.3.1"
+
+        - code_sign:
+            path: "prerequisites.zip.gpg"
+            passphrase: $(ENV:SECRET_PASSPHRASE)
+
         - sh:
             command: |
                 # Decrypt prerequisites archive
@@ -32,36 +37,7 @@ bootstrap:
                 mv -f "./prerequisites/GoogleService-Info-Development.plist" "./Baby Monitor/Supporting Files/Firebase/GoogleService-Info-Development.plist"
                 mv -f "./prerequisites/GoogleService-Info-Production.plist" "./Baby Monitor/Supporting Files/Firebase/GoogleService-Info-Production.plist"
                 mv -f "./prerequisites/GoogleService-Info-Staging.plist" "./Baby Monitor/Supporting Files/Firebase/GoogleService-Info-Staging.plist"
-
-                # Create keychain for storing certificates
-                security create-keychain -p '$(ENV:SECRET_PASSPHRASE)' build.keychain-db 
-                # Import certificates from Certificates.p12 file
-                security import ./prerequisites/Certificates.p12 -t agg -k ~/Library/Keychains/build.keychain-db -P '$(ENV:SECRET_PASSPHRASE)' -A > /dev/null
-
-                # Add keychain to search list
-                security list-keychains -s ~/Library/Keychains/build.keychain-db > /dev/null
-                # Set created keychain as default 
-                security default-keychain -s ~/Library/Keychains/build.keychain-db > /dev/null
-                # Unlock keychain
-                security unlock-keychain -p '$(ENV:SECRET_PASSPHRASE)' ~/Library/Keychains/build.keychain-db > /dev/null
-                # Increase keychain timeout lock
-                security set-keychain-settings -lut 72000 ~/Library/Keychains/build.keychain-db > /dev/null
-
-                # Magic command explained more here: https://stackoverflow.com/a/40039594/1113194
-                security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k '$(ENV:SECRET_PASSPHRASE)' ~/Library/Keychains/build.keychain-db > /dev/null
-        - action:
-            name: "install_provisioning_profile"
-            options:
-                path: "./prerequisites/BabyMonitorStaging.mobileprovision"
-        - action:
-            name: "install_provisioning_profile"
-            options:
-                path: "./prerequisites/BabyMonitorProduction.mobileprovision"
-        - action:
-            name: "install_provisioning_profile"
-            options:
-                path: "./prerequisites/BabyMonitorAppStore.mobileprovision"
-
+                
         - carthage:
             command: "bootstrap"
             platforms:
