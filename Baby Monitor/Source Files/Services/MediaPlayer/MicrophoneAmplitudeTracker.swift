@@ -8,9 +8,6 @@ import AudioKit
 /// A tracker that detects amplitude from the microphone.
 protocol MicrophoneAmplitudeTracker: Any {
 
-    /// The current amplitude with values from 0 to 1.
-    var amplitude: Double { get }
-
     /// The loudness factor customly counted in order to get percentage from 0 to 100 result.
     /// The amlitude multipled by the special factor.
     var loudnessFactor: Double { get }
