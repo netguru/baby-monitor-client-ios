@@ -2455,7 +2455,6 @@
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 9HJ69C5G9K;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				PROVISIONING_PROFILE_SPECIFIER = "BabyMonitor Development";
 			};
 			name = Development;
@@ -2464,7 +2463,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DA213EA45E00C504FD /* App-Production.xcconfig */;
 			buildSettings = {
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 			};
 			name = Production;
 		};
@@ -2493,7 +2491,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DC213EA45E00C504FD /* App-Staging.xcconfig */;
 			buildSettings = {
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 			};
 			name = Staging;
 		};
