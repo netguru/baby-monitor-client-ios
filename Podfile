@@ -43,6 +43,15 @@ end
 post_install do |pi|
     # https://github.com/CocoaPods/CocoaPods/issues/7314
     fix_deployment_target(pi)
+
+
+    pi.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+          if target.name == "RealmSwift" || target.name == "Realm"
+            config.build_settings["EXCLUDED_ARCHS"] = "arm64"
+          end
+        end
+    end
 end
 
 def fix_deployment_target(pod_installer)
