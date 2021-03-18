@@ -27,7 +27,7 @@ enum AudioKitMicrophoneFactory {
 
         try AKSettings.setSession(category: .playAndRecord, with: .defaultToSpeaker)
 
-        let recordingFormat = AudioKit.engine.inputNode.inputFormat(forBus: 0)
+        let recordingFormat = AKManager.engine.inputNode.inputFormat(forBus: 0)
         AKSettings.sampleRate = recordingFormat.sampleRate
 
         let microphone = AKMicrophone(with: recordingFormat)
@@ -37,8 +37,8 @@ enum AudioKitMicrophoneFactory {
         let silentCapturerMixer = AKMixer(tracker)
         silentCapturerMixer.volume = 0
 
-        AudioKit.output = silentCapturerMixer
-        try AudioKit.start()
+        AKManager.output = silentCapturerMixer
+        try AKManager.start()
 
         return AudioKitMicrophone(capture: capturer, tracker: tracker)
     }

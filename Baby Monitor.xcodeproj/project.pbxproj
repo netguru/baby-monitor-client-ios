@@ -25,7 +25,7 @@
 		20AFCFFE21F62B8D00FC810F /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFCFFD21F62B8C00FC810F /* Rubik-Medium.ttf */; };
 		20AFD00021F62B9900FC810F /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFCFFF21F62B9900FC810F /* Rubik-Bold.ttf */; };
 		20AFD00221F62BA200FC810F /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AFD00121F62BA200FC810F /* Rubik-Regular.ttf */; };
-		2FD6861BC0920FE58CB3D522 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DA983E08D91DB2F19F277C9 /* Pods_Baby_Monitor.framework */; };
+		2C84D1E0E480514B1A0D4743 /* Pods_Baby_MonitorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63D1C892B56A06A0E3D7526 /* Pods_Baby_MonitorTests.framework */; };
 		3A3C61AC223EC2140020FD3D /* StreamVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3C61AB223EC2140020FD3D /* StreamVideoView.swift */; };
 		3A8DAC89222D403400427BBE /* ApplicationStateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DAC88222D403400427BBE /* ApplicationStateProvider.swift */; };
 		3A8DAC8B222D512400427BBE /* ApplicationStateProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DAC8A222D512400427BBE /* ApplicationStateProviderMock.swift */; };
@@ -327,7 +327,7 @@
 		ECB2428A21AD4F9200B4E409 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428921AD4F9200B4E409 /* IntroViewController.swift */; };
 		ECB2428C21AD4FB700B4E409 /* IntroFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2428B21AD4FB700B4E409 /* IntroFeatureView.swift */; };
 		F8DAD50C221B0E4700145F0E /* DescriptiveRoundedRectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DAD50B221B0E4700145F0E /* DescriptiveRoundedRectangleButton.swift */; };
-		FC7230DB613AB91A16BE007E /* Pods_Baby_MonitorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0A7360EB7E7A40F5162D1F /* Pods_Baby_MonitorTests.framework */; };
+		FBF07AA35E6F81899E2E7081 /* Pods_Baby_Monitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC54F6664C76994DF3F69946 /* Pods_Baby_Monitor.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -341,7 +341,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0806325953361018B6D7E8E8 /* Pods-Baby MonitorTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.development.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"; sourceTree = "<group>"; };
 		1E5F607E283F0C73D0034DE1 /* AppVersionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionProvider.swift; sourceTree = "<group>"; };
 		1E5F61157181D05F22C21AF1 /* MemoryCleanerProtocolMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryCleanerProtocolMock.swift; sourceTree = "<group>"; };
 		1E5F632CADA6A2D0C7F315E0 /* ApplicationResetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationResetter.swift; sourceTree = "<group>"; };
@@ -360,14 +359,13 @@
 		20AFCFFD21F62B8C00FC810F /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		20AFCFFF21F62B9900FC810F /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		20AFD00121F62BA200FC810F /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
-		2DF3AA99E8050A590C2C9C86 /* Pods-Baby MonitorTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.staging.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.staging.xcconfig"; sourceTree = "<group>"; };
-		33E1959F9CAED63F1EBBC378 /* Pods-Baby Monitor.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.staging.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.staging.xcconfig"; sourceTree = "<group>"; };
+		24008D0AD872D6E9A13B2B7F /* Pods-Baby MonitorTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.production.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.production.xcconfig"; sourceTree = "<group>"; };
+		3181B960DB645F9F6B511498 /* Pods-Baby Monitor.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.staging.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.staging.xcconfig"; sourceTree = "<group>"; };
 		3A3C61AB223EC2140020FD3D /* StreamVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVideoView.swift; sourceTree = "<group>"; };
 		3A8DAC88222D403400427BBE /* ApplicationStateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStateProvider.swift; sourceTree = "<group>"; };
 		3A8DAC8A222D512400427BBE /* ApplicationStateProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStateProviderMock.swift; sourceTree = "<group>"; };
 		3ABC41B622553F7900645ADA /* AudioKitMicrophoneMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioKitMicrophoneMock.swift; sourceTree = "<group>"; };
 		3ABC41BA2255407100645ADA /* MicrophoneCaptureMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneCaptureMock.swift; sourceTree = "<group>"; };
-		3D35897D6D02EF8BB7728EDE /* Pods-Baby MonitorTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.production.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.production.xcconfig"; sourceTree = "<group>"; };
 		4E1134B321E498E5005E3583 /* BabyMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BabyMonitor.entitlements; sourceTree = "<group>"; };
 		4E190CA221789E820004ED79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4E1CF816217856C500F48706 /* ServerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewModel.swift; sourceTree = "<group>"; };
@@ -448,9 +446,9 @@
 		4EB6DE6421B67C11004701EA /* EventMessageDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMessageDecoder.swift; sourceTree = "<group>"; };
 		4EB93D1F21ECA15F00E99BB3 /* StorageServerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServerServiceMock.swift; sourceTree = "<group>"; };
 		4EE33F1121B54230003A1742 /* OnboardingConnectingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConnectingCoordinator.swift; sourceTree = "<group>"; };
-		5DA983E08D91DB2F19F277C9 /* Pods_Baby_Monitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_Monitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		628AB16EA85CF755318610CE /* Pods-Baby Monitor.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.development.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.development.xcconfig"; sourceTree = "<group>"; };
-		70DF5E8DDD07AD93272C122A /* Pods-Baby Monitor.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.production.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.production.xcconfig"; sourceTree = "<group>"; };
+		62AD2152AD6A17C3087BB7EC /* Pods-Baby Monitor.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.production.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.production.xcconfig"; sourceTree = "<group>"; };
+		62F62708D743A3B448F0B410 /* Pods-Baby MonitorTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.development.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.development.xcconfig"; sourceTree = "<group>"; };
+		6DBC914CC6E6FBD17B93348A /* Pods-Baby Monitor.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby Monitor.development.xcconfig"; path = "Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor.development.xcconfig"; sourceTree = "<group>"; };
 		8A03502E23684D4500CF88C7 /* AsyncScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncScheduler.swift; sourceTree = "<group>"; };
 		8A03503023684E6B00CF88C7 /* AsyncSchedulerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncSchedulerMock.swift; sourceTree = "<group>"; };
 		8A42DAFD2179BFBF00BF5F1B /* ClientSetupViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSetupViewModelTests.swift; sourceTree = "<group>"; };
@@ -666,7 +664,9 @@
 		A7D7562F2236B03D00F9893E /* SpectrogramOp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrogramOp.swift; sourceTree = "<group>"; };
 		A7D756352237C31400F9893E /* MathUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtilities.swift; sourceTree = "<group>"; };
 		A7D756372237CAE900F9893E /* MfccDct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MfccDct.swift; sourceTree = "<group>"; };
-		DC0A7360EB7E7A40F5162D1F /* Pods_Baby_MonitorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_MonitorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3E66345492C50E7BDAE0390 /* Pods-Baby MonitorTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baby MonitorTests.staging.xcconfig"; path = "Target Support Files/Pods-Baby MonitorTests/Pods-Baby MonitorTests.staging.xcconfig"; sourceTree = "<group>"; };
+		DC54F6664C76994DF3F69946 /* Pods_Baby_Monitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_Monitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E63D1C892B56A06A0E3D7526 /* Pods_Baby_MonitorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baby_MonitorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4C9946216B946B0093EDFC /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		EC82B556213EA072005CA395 /* BabyMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC82B559213EA072005CA395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -695,7 +695,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FD6861BC0920FE58CB3D522 /* Pods_Baby_Monitor.framework in Frameworks */,
+				FBF07AA35E6F81899E2E7081 /* Pods_Baby_Monitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,22 +703,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC7230DB613AB91A16BE007E /* Pods_Baby_MonitorTests.framework in Frameworks */,
+				2C84D1E0E480514B1A0D4743 /* Pods_Baby_MonitorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DCFF52831D1F5251773EA2A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC54F6664C76994DF3F69946 /* Pods_Baby_Monitor.framework */,
+				E63D1C892B56A06A0E3D7526 /* Pods_Baby_MonitorTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1BD3FFBE9B26AAC1CE2C0505 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				628AB16EA85CF755318610CE /* Pods-Baby Monitor.development.xcconfig */,
-				33E1959F9CAED63F1EBBC378 /* Pods-Baby Monitor.staging.xcconfig */,
-				70DF5E8DDD07AD93272C122A /* Pods-Baby Monitor.production.xcconfig */,
-				0806325953361018B6D7E8E8 /* Pods-Baby MonitorTests.development.xcconfig */,
-				2DF3AA99E8050A590C2C9C86 /* Pods-Baby MonitorTests.staging.xcconfig */,
-				3D35897D6D02EF8BB7728EDE /* Pods-Baby MonitorTests.production.xcconfig */,
+				6DBC914CC6E6FBD17B93348A /* Pods-Baby Monitor.development.xcconfig */,
+				3181B960DB645F9F6B511498 /* Pods-Baby Monitor.staging.xcconfig */,
+				62AD2152AD6A17C3087BB7EC /* Pods-Baby Monitor.production.xcconfig */,
+				62F62708D743A3B448F0B410 /* Pods-Baby MonitorTests.development.xcconfig */,
+				B3E66345492C50E7BDAE0390 /* Pods-Baby MonitorTests.staging.xcconfig */,
+				24008D0AD872D6E9A13B2B7F /* Pods-Baby MonitorTests.production.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1073,15 +1082,6 @@
 				8AA7CBBA21870FC700FCF62A /* BabyMonitorCellProtocol.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		5A6BEA236D04738E5E6A922E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5DA983E08D91DB2F19F277C9 /* Pods_Baby_Monitor.framework */,
-				DC0A7360EB7E7A40F5162D1F /* Pods_Baby_MonitorTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8A42DAFB2179BF8200BF5F1B /* Modules */ = {
@@ -1689,8 +1689,8 @@
 				EC82B56D213EA074005CA395 /* Baby MonitorTests */,
 				EC82B557213EA072005CA395 /* Products */,
 				1BD3FFBE9B26AAC1CE2C0505 /* Pods */,
-				5A6BEA236D04738E5E6A922E /* Frameworks */,
 				8A8B76DD21EC8A680063EF7E /* Recovered References */,
+				0DCFF52831D1F5251773EA2A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -1819,14 +1819,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC82B573213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby Monitor" */;
 			buildPhases = (
-				E8D010A476555CE6364C9AA2 /* [CP] Check Pods Manifest.lock */,
+				DDCD06B396AFE970CB712B8B /* [CP] Check Pods Manifest.lock */,
 				4E363B5321E487320085BB09 /* Setup Firebase Environment GoogleService-Info.plist */,
+				8176D4BD0995B4DA80CC3456 /* [CP] Prepare Artifacts */,
 				EC82B552213EA072005CA395 /* Sources */,
 				EC82B553213EA072005CA395 /* Frameworks */,
 				EC82B554213EA072005CA395 /* Resources */,
 				8AEAFBC5217765E4003E756F /* ShellScript */,
-				A26267CED18B34A62F4B5C27 /* [CP] Embed Pods Frameworks */,
 				958D98E8234E30C3002CE572 /* Fabric */,
+				C681D7A9A18E449FAEB470D7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1841,11 +1842,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC82B576213EA074005CA395 /* Build configuration list for PBXNativeTarget "Baby MonitorTests" */;
 			buildPhases = (
-				155885A79113F73CDFFD93E1 /* [CP] Check Pods Manifest.lock */,
+				D622905DE59733A0E9A4BB07 /* [CP] Check Pods Manifest.lock */,
 				EC82B566213EA074005CA395 /* Sources */,
 				EC82B567213EA074005CA395 /* Frameworks */,
 				EC82B568213EA074005CA395 /* Resources */,
-				1AA8C8AC41421C6E47C281CD /* [CP] Embed Pods Frameworks */,
+				22B02C37D5167F08619FFDF6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1938,29 +1939,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		155885A79113F73CDFFD93E1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Baby MonitorTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1AA8C8AC41421C6E47C281CD /* [CP] Embed Pods Frameworks */ = {
+		22B02C37D5167F08619FFDF6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1995,6 +1974,23 @@
 			shellPath = /bin/sh;
 			shellScript = "cp \"${PROJECT_DIR}/${TARGET_NAME}/Supporting Files/Firebase/GoogleService-Info-$GOOGLE_SERVICES_CONFIGURATION.plist\" \"${PROJECT_DIR}/${TARGET_NAME}/Supporting Files/Firebase/GoogleService-Info.plist\"\n";
 		};
+		8176D4BD0995B4DA80CC3456 /* [CP] Prepare Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Prepare Artifacts";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-artifacts.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8AEAFBC5217765E4003E756F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2028,7 +2024,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
-		A26267CED18B34A62F4B5C27 /* [CP] Embed Pods Frameworks */ = {
+		C681D7A9A18E449FAEB470D7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2045,7 +2041,29 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Baby Monitor/Pods-Baby Monitor-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E8D010A476555CE6364C9AA2 /* [CP] Check Pods Manifest.lock */ = {
+		D622905DE59733A0E9A4BB07 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Baby MonitorTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDCD06B396AFE970CB712B8B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2436,6 +2454,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB146DB213EA45E00C504FD /* App-Development.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 9HJ69C5G9K;
+				PROVISIONING_PROFILE_SPECIFIER = "BabyMonitor Development";
 			};
 			name = Development;
 		};

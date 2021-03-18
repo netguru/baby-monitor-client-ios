@@ -108,7 +108,11 @@ class SpectrogramOp: NSObject {
             
             // Multiply window with hanning window
             vDSP_vmul(samplesPtr, 2, &window, 2, &inputReal, 1, vDSP_Length(Int(ceil(Float(nSamples) / 2.0))))
-            vDSP_vmul(samplesPtr.advanced(by: 1), 2, &window + 1, 2, &inputImg, 1, vDSP_Length(Int(floor(Float(nSamples) / 2.0))))
+            
+            window.withUnsafeMutableBufferPointer { windowPtr in
+                guard let windowPtrAddress = windowPtr.baseAddress else { return }
+                vDSP_vmul(samplesPtr.advanced(by: 1), 2, windowPtrAddress + 1, 2, &inputImg, 1, vDSP_Length(Int(floor(Float(nSamples) / 2.0))))
+            }
 
             // Execute Discrete Fourier transform
             vDSP_DFT_Execute(fftSetup!, &inputReal, &inputImg, &fftReal, &fftImg)
@@ -121,13 +125,21 @@ class SpectrogramOp: NSObject {
             vDSP_vsmul(&fftReal, 1, &scaleFactor, &inputReal, 1, vDSP_Length(fftLength / 2 + 1))
             vDSP_vsmul(&fftImg, 1, &scaleFactor, &inputImg, 1, vDSP_Length(fftLength / 2 + 1))
 
-            var dspSplit = DSPSplitComplex(realp: &inputReal, imagp: &inputImg)
-
-            // Compute output values and write to output buffer
-            if magnitudeSquared {
-                vDSP_zvmags(&dspSplit, 1, outputPtr, 1, vDSP_Length(fftLength / 2 + 1))
-            } else {
-                vDSP_zvabs(&dspSplit, 1, outputPtr, 1, vDSP_Length(fftLength / 2 + 1))
+            inputReal.withUnsafeMutableBufferPointer { inputRealPtr in
+                guard let inputRealPtrAddress = inputRealPtr.baseAddress else { return }
+                
+                inputImg.withUnsafeMutableBufferPointer { inputImgPtr in
+                    guard let inputImgPtrAddress = inputImgPtr.baseAddress else { return }
+                    
+                    var dspSplit = DSPSplitComplex(realp: inputRealPtrAddress, imagp: inputImgPtrAddress)
+                    
+                    // Compute output values and write to output buffer
+                    if magnitudeSquared {
+                        vDSP_zvmags(&dspSplit, 1, outputPtr, 1, vDSP_Length(fftLength / 2 + 1))
+                    } else {
+                        vDSP_zvabs(&dspSplit, 1, outputPtr, 1, vDSP_Length(fftLength / 2 + 1))
+                    }
+                }
             }
         }
     }

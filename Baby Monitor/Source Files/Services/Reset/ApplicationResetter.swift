@@ -90,7 +90,7 @@ private extension DefaultApplicationResetter {
     
     func stopAudioKit() {
          do {
-            try AudioKit.stop()
+            try AKManager.stop()
            } catch {
                 Logger.error("AudioKit did not stop", error: error)
            }

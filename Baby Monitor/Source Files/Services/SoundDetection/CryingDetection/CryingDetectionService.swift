@@ -35,8 +35,20 @@ final class CryingDetectionService: CryingDetectionServiceProtocol {
     private let cryingDetectionSubject = PublishSubject<CryingDetectionResult>()
 
     private let disposeBag = DisposeBag()
-    private let audioprocessingModel = audioprocessing()
-    private let crydetectionModel = crydetection()
+    private let audioprocessingModel: audioprocessing
+    private let crydetectionModel: crydetection
+    
+    init() {
+        guard let audioprocessingModel = try? audioprocessing(contentsOf: audioprocessing.urlOfModelInThisBundle) else {
+            fatalError("The bundle does not contain the audioprocessing model.")
+        }
+        self.audioprocessingModel = audioprocessingModel
+        
+        guard let crydetectionModel = try? crydetection(contentsOf: crydetection.urlOfModelInThisBundle) else {
+            fatalError("The bundle does not contain the crydetection model.")
+        }
+        self.crydetectionModel = crydetectionModel
+    }
 
     func predict(on bufferReadable: AVAudioPCMBuffer) {
         do {
