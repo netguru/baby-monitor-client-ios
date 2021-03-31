@@ -5,6 +5,7 @@
 
 import Foundation
 import RxSwift
+import Baby_MonitorCoreKit
 
 final class SpecifyDeviceInfoOnboardingViewController: TypedViewController<SpecifyDeviceInfoOnboardingView> {
 

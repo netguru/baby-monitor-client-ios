@@ -6,6 +6,7 @@
 import UIKit
 import RxSwift
 import AVFoundation
+import Baby_MonitorCoreKit
 
 final class OnboardingContinuableViewController: TypedViewController<ContinuableBaseOnboardingView> {
     

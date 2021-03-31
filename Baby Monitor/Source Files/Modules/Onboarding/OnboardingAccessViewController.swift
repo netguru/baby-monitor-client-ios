@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Baby_MonitorCoreKit
 
 final class OnboardingAccessViewController: TypedViewController<AccessBaseOnboardingView> {
     

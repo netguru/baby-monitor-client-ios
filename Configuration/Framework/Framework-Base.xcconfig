@@ -1,0 +1,23 @@
+//
+//  Framework-Base.xcconfig
+//  Baby MonitorCoreKit
+
+#include "../../Carthage/Checkouts/xcconfigs/Platforms/iOS.xcconfig"
+#include "../../Carthage/Checkouts/xcconfigs/Targets/Framework.xcconfig"
+#include "../../Configuration/Common/Common-Base.xcconfig"
+
+_BUNDLE_NAME = BabyMonitorCoreKit
+_PRODUCT_NAME = Baby Monitor CoreKit
+_BUNDLE_IDENTIFIER = co.netguru.internal.babymonitorcorekit.Baby-MonitorCoreKit
+_BUNDLE_INFOPLIST_PATH = $(PROJECT_DIR)/Baby MonitorCoreKit/Supporting Files/Info.plist
+
+_BUNDLE_TESTABLE = YES
+
+BITCODE_GENERATION_MODE = bitcode
+
+ONLY_ACTIVE_ARCH = YES
+
+EXCLUDED_ARCHS[sdk=iphonesimulator*] = arm64
+
+_BUILD_VERSION = 1.0.0
+_BUILD_NUMBER = 1

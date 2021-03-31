@@ -122,11 +122,11 @@ extension NetServiceClient: NetServiceBrowserDelegate {
     }
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String: NSNumber]) {
-        errorLogger.log(error: ServiceError.didNotSearch, additionalInfo: errorDict)
+        errorLogger.log(error: ServiceError.didNotSearch)
     }
 
     func netServiceBrowser(_ browser: NetServiceBrowser, didRemoveDomain domainString: String, moreComing: Bool) {
-        errorLogger.log(error: ServiceError.didRemoveDomain, additionalInfo: ["name": domainString])
+        errorLogger.log(error: ServiceError.didRemoveDomain)
     }
 
 }
@@ -138,12 +138,8 @@ extension NetServiceClient: NetServiceDelegate {
         guard let address = sender.addresses?.first,
             netServiceAllowedPorts.contains(sender.port),
             let ip = ip(from: address) else {
-                let errorDict: [String: Any] = [
-                    "adress": sender.addresses?.first ?? "null",
-                    "containsPort": netServiceAllowedPorts.contains(sender.port)
-                ]
                 Logger.error("Failed to parse id.")
-                errorLogger.log(error: ServiceError.IPNotParsed, additionalInfo: errorDict)
+                errorLogger.log(error: ServiceError.IPNotParsed)
                 netServices.removeAll(where: { $0 == sender })
                 return
         }
@@ -152,7 +148,7 @@ extension NetServiceClient: NetServiceDelegate {
     }
 
     func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {
-        errorLogger.log(error: ServiceError.didNotResolve, additionalInfo: errorDict)
+        errorLogger.log(error: ServiceError.didNotResolve)
     }
 
 }
