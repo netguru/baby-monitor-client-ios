@@ -1,5 +1,5 @@
 source 'https://github.com/AudioKit/Specs.git'
-source 'https://cdn.cocoapods.org/'
+source 'https://github.com/CocoaPods/Specs.git'
 
 plugin 'cocoapods-keys', {
   :project => "BabyMonitor",
@@ -12,10 +12,11 @@ plugin 'cocoapods-keys', {
   inhibit_all_warnings!
 
 def shared_pods
-    pod 'Firebase/Core', '~> 6.21.0'
-    pod 'Firebase/Messaging', '~> 6.21.0'
-    pod 'Firebase/Storage', '~> 6.21.0'
-    pod 'Firebase/Crashlytics', '~> 6.21.0'
+    pod 'FirebaseCore', '~> 8.0'
+    pod 'FirebaseMessaging', '~> 8.0'
+    pod 'FirebaseStorage', '~> 8.0'
+    pod 'FirebaseCrashlytics', '~> 8.0'
+    pod 'RealmSwift', '~> 10.7.6'
     pod 'GoogleWebRTC', '~> 1.1.29400'
     pod 'RxSwift', '~> 5.1'
     pod 'RxDataSources', '~> 4.0'
@@ -26,7 +27,6 @@ end
 target 'Baby Monitor' do
   shared_pods
   pod 'SwiftLint', '~> 0.39.0'
-  pod 'RealmSwift', '~> 4.3.0'
   pod 'RxCocoa', '~> 5.1'
   
   target 'Baby MonitorTests' do
@@ -41,7 +41,7 @@ end
 target 'Baby MonitorCoreKit' do
   shared_pods
     
-  pod 'Firebase/Analytics', '~> 6.21.0'
+  pod 'FirebaseAnalytics', '~> 8.0'
   pod 'SwiftyBeaver', '~> 1.8.4'
 end
 

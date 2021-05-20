@@ -8,7 +8,10 @@ import FirebaseAnalytics
 struct FirebaseAnalyticsTracker: AnalyticsProtocol {
 
     func logScreen(name: String, className: String) {
-        Analytics.setScreenName(name, screenClass: className)
+        Analytics.logEvent(
+            AnalyticsEventScreenView,
+            parameters: [AnalyticsParameterScreenName: name, AnalyticsParameterScreenClass: className]
+        )
     }
 
     func logEvent(_ eventName: String, parameters: [String: Any]?) {

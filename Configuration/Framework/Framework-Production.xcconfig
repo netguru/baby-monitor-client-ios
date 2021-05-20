@@ -1,0 +1,7 @@
+//
+//  Framework-Production.xcconfig
+//  Baby MonitorCoreKit
+
+#include "Framework-Base.xcconfig"
+#include "../../Pods/Target Support Files/Pods-Baby MonitorCoreKit/Pods-Baby MonitorCoreKit.production.xcconfig"
+

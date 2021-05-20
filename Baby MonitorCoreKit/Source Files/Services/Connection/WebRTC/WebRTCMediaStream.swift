@@ -3,7 +3,7 @@
 //  Baby Monitor
 
 import Foundation
-import WebRCT
+import WebRTC
 
 protocol WebRTCMediaStream: AnyObject {
     func enableAudioTrack()

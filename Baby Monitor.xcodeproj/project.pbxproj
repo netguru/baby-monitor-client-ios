@@ -18,6 +18,9 @@
 		0C3132FF260DED3400C300D5 /* WebRTCMediaStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3132FE260DED3400C300D5 /* WebRTCMediaStream.swift */; };
 		0C665C79260CB243006D6CF1 /* AnalyticsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C665C78260CB243006D6CF1 /* AnalyticsProtocol.swift */; };
 		0C665C80260CB274006D6CF1 /* FirebaseAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C665C7F260CB274006D6CF1 /* FirebaseAnalyticsTracker.swift */; };
+		0CA131BB2615C95900AE0CE2 /* Framework-Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0CA131BA2615C95900AE0CE2 /* Framework-Development.xcconfig */; };
+		0CA131BF2615C96F00AE0CE2 /* Framework-Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0CA131BE2615C96F00AE0CE2 /* Framework-Staging.xcconfig */; };
+		0CA131C32615C98700AE0CE2 /* Framework-Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0CA131C22615C98700AE0CE2 /* Framework-Production.xcconfig */; };
 		1E5F604054D58A7792735CB9 /* SocketCommunicationManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F68FF26F11308D9520E8D /* SocketCommunicationManagerMock.swift */; };
 		1E5F63B663B2F2D005639BC6 /* WebSocketWebRtcServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F6F66C941ECD091338326 /* WebSocketWebRtcServiceMock.swift */; };
 		1E5F6497439177C406F45FFF /* AppVersionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F607E283F0C73D0034DE1 /* AppVersionProvider.swift */; };
@@ -375,6 +378,9 @@
 		0C3132FE260DED3400C300D5 /* WebRTCMediaStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCMediaStream.swift; sourceTree = "<group>"; };
 		0C665C78260CB243006D6CF1 /* AnalyticsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsProtocol.swift; sourceTree = "<group>"; };
 		0C665C7F260CB274006D6CF1 /* FirebaseAnalyticsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalyticsTracker.swift; sourceTree = "<group>"; };
+		0CA131BA2615C95900AE0CE2 /* Framework-Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Development.xcconfig"; sourceTree = "<group>"; };
+		0CA131BE2615C96F00AE0CE2 /* Framework-Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Staging.xcconfig"; sourceTree = "<group>"; };
+		0CA131C22615C98700AE0CE2 /* Framework-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Production.xcconfig"; sourceTree = "<group>"; };
 		1E5F607E283F0C73D0034DE1 /* AppVersionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionProvider.swift; sourceTree = "<group>"; };
 		1E5F61157181D05F22C21AF1 /* MemoryCleanerProtocolMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryCleanerProtocolMock.swift; sourceTree = "<group>"; };
 		1E5F632CADA6A2D0C7F315E0 /* ApplicationResetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationResetter.swift; sourceTree = "<group>"; };
@@ -780,6 +786,9 @@
 			isa = PBXGroup;
 			children = (
 				0C12A0C5260784A1008339DC /* Framework-Base.xcconfig */,
+				0CA131BA2615C95900AE0CE2 /* Framework-Development.xcconfig */,
+				0CA131BE2615C96F00AE0CE2 /* Framework-Staging.xcconfig */,
+				0CA131C22615C98700AE0CE2 /* Framework-Production.xcconfig */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -2164,6 +2173,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C12A0C6260784A1008339DC /* Framework-Base.xcconfig in Resources */,
+				0CA131BF2615C96F00AE0CE2 /* Framework-Staging.xcconfig in Resources */,
+				0CA131C32615C98700AE0CE2 /* Framework-Production.xcconfig in Resources */,
+				0CA131BB2615C95900AE0CE2 /* Framework-Development.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2712,7 +2724,7 @@
 /* Begin XCBuildConfiguration section */
 		0C12A0BB260783C3008339DC /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C12A0C5260784A1008339DC /* Framework-Base.xcconfig */;
+			baseConfigurationReference = 0CA131BA2615C95900AE0CE2 /* Framework-Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2746,7 +2758,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -2771,7 +2782,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Baby MonitorCoreKit/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2790,8 +2800,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2799,7 +2808,7 @@
 		};
 		0C12A0BC260783C3008339DC /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C12A0C5260784A1008339DC /* Framework-Base.xcconfig */;
+			baseConfigurationReference = 0CA131BE2615C96F00AE0CE2 /* Framework-Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2833,7 +2842,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -2852,7 +2860,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Baby MonitorCoreKit/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2870,8 +2877,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -2880,7 +2886,7 @@
 		};
 		0C12A0BD260783C3008339DC /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C12A0C5260784A1008339DC /* Framework-Base.xcconfig */;
+			baseConfigurationReference = 0CA131C22615C98700AE0CE2 /* Framework-Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2914,7 +2920,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -2933,7 +2938,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Baby MonitorCoreKit/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2951,8 +2955,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
